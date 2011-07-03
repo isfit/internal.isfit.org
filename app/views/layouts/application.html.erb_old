@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : "ISFiT Internal" %></title>
+    <%= stylesheet_link_tag :all %>
+    <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
+    <%= javascript_include_tag :defaults %>
+    <%= stylesheet_link_tag 'smoothness/jqueryui' %>
+    <%= javascript_include_tag 'jquery-ui-1.8.4.min', 'imgareaselect', 'jquery-ui-timepicker-addon', 'jquery.uploadify.v2.1.4', 'swfobject', 'jquery.lightbox-0.5' %>
+    <%= yield :script %>
+    <%= csrf_meta_tag %>
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-18016792-4']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+    </script>
+    <%= yield(:head) %>
+  </head>
+  <body>
+    <div id="hovedramme" class="container_24"> <!-- Start hovedramme -->
+      <div id="omeny" class="grid_25"> <!-- Start omeny -->
+        <div id="olinker" class="grid_20"> <!-- Start olinker -->
+          <a href="http://www.isfit.org/" class="olink">External</a>
+          <a href="http://mail.isfit.org/" class="olink">E-post</a>
+
+        </div><!-- Slutt olinker -->
+        <div id="odiverse" class="grid_4"><!-- Start odiverse -->
+        </div><!-- Slutt odiverse -->
+      </div><!-- Slutt omeny -->
+      <div id="header" class="grid_25" ><!-- Start header -->
+        <%=link_to (image_tag("header-internal-norsk.jpg", :class=>"isfitlogo"), root_path) %>
+      </div><!-- Slutt header -->
+      <div id="meny" class="grid_25"><!-- Start meny -->
+        <div id="faner" class="grid_20"><!-- Start faner -->
+          <%= render('menu/tabs') %>
+        </div><!-- Slutt faner -->
+        <div id="sok" class="grid_4"><!-- Start søk -->
+          <!-- <input type="button" value="" class="btn"><input name="search" type="text" value="<%=t('layout.search')%>">-->
+        </div><!-- Slutt søk -->
+      </div><!-- Slutt meny -->
+      <div id="submeny" class="grid_25"><!-- Start submeny -->
+        <%= render('menu/sublinks')%>
+      </div><!-- Slutt submeny -->
+      <div id="ramme" class="grid_25"><!-- Start ramme -->
+        <div id="venstreramme" class="grid_5"><!-- Start venstreramme -->
+          <% logged_in? &&  if @active_sublink[:menu_link_id] == 0%>
+          <div id="boksturkis_bg" class="grid_5 alpha omega"><!-- Start turkis -->
+            <div id="boksturkis" class="grid_5 alpha omega">
+              <%= render 'menu/groups'%>
+            </div>
+          </div><!-- Slutt turkis -->
+        <%else%>
+          <% if logged_in? %>
+            <div id="boksturkis_bg" class="grid_5 alpha omega"><!-- start shoutbox -->
+              <div id ="boksturkis" class="grid_5 alpha omega">
+                <%= render 'shoutboxes/index' %>
+              </div>
+            </div>
+          <% end %>
+        <% end%>
+      </div><!-- Slutt venstreramme -->
+      <div id="midtramme" class="grid_19"><!-- Start midtramme -->
+        <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, :id => "flash_#{name}" %>
+        <% end %>
+        <%#= content_tag :h1, yield(:title) if show_title? %>
+        <%= yield %>
+      </div><!-- Slutt midtramme -->
+    </div><!-- Slutt ramme -->
+    <div id="footer" class="grid_25"><!-- Start footer -->
+      <%=link_to(image_tag("isfitliten.png", :class=>"footerlogo"), root_path)%>
+      <p style="color:pink; text-align:center">Editor in Chief: Sanna Drogset Børstad, sannadro[at]isfit.org. All written material and the ISFiT logo is copyrighted the ISFiT Foundation © 2011. </p>
+    </div><!-- Slutt footer -->
+  </div><!-- Slutt hovedramme -->
+</body>
+</html>

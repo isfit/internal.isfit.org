@@ -14,12 +14,19 @@ gem 'uglifier'
 
 gem 'jquery-rails'
 
-# Use unicorn as the web server
-# gem 'unicorn'
+gem 'therubyracer'
 
+
+# Spesifikke gems her
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'mysql2'
+gem 'capistrano'
+gem 'cancan'
+gem 'rspec-rails'
+gem 'nifty-generators'
 
 # To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+gem 'ruby-debug19', :require => 'ruby-debug'
 
+gem "bcrypt-ruby", :require => "bcrypt"
+gem "mocha", :group => :test

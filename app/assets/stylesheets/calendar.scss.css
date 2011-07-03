@@ -1,0 +1,15 @@
+/* calendar */
+table.calendar		{ text-align:center; margin-left: auto; margin-right: auto; }
+td.calendar-day	{  min-height:10px; font-size:12px; position:relative; }
+td.calendar-day a:visited	{ color:#000000; }
+td.calendar-day a:link	{ color:#000000; }
+td.calendar-day a:hover	{ color:#FFFFFF; }
+span.calendar-day-today	{  border: 1px solid black;}
+td.calendar-day-np	{ font-size: 8px; min-height:10px; }
+/* td.calendar-day-head {  color: #008AD2; } */
+td.calendar-day-head {  color: #EEEEEE; }
+td.calendar-day-headw { color: #EAAE0D; }
+/* shared */
+td.calendar-day-headw, td.calendar-day-head { font-weight:bold; text-align:center; width:15px; padding:0px; font-size: 12px; }
+td.calendar-day, td.calendar-day-np { width:10px; padding:5px; }
+
