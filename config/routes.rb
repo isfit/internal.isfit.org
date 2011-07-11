@@ -1,4 +1,6 @@
 InternalIsfitOrg::Application.routes.draw do
+  resources :articles
+
   match 'user/edit' => 'users#edit', :as => :edit_current_user
 
   match 'signup' => 'users#new', :as => :signup
@@ -10,5 +12,5 @@ InternalIsfitOrg::Application.routes.draw do
   resources :sessions
 
   resources :users
-  root :to => "sessions#new"
+  root :to => "articles#index"
 end

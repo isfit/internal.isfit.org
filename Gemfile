@@ -24,6 +24,8 @@ gem 'capistrano'
 gem 'cancan'
 gem 'rspec-rails'
 gem 'nifty-generators'
+gem 'ancestry'
+gem 'paperclip'
 
 # To use debugger
 gem 'ruby-debug19', :require => 'ruby-debug'

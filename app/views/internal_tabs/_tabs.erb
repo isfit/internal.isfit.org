@@ -1,0 +1,9 @@
+<% unless logged_in? %>
+<%= link_to('Log in', {}, {:class => 'active'}) %>
+<% else %>
+<% tabs.each do |tab| %>
+    <%= link_to tab.title.capitalize, root_path %>
+    <%= image_tag("menyspacer.png", :class=>"menyspacer") %> 
+<% end %>
+<%= link_to('Log out', logout_path) %>
+<% end %>

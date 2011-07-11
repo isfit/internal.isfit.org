@@ -35,15 +35,14 @@
       </div><!-- Slutt header -->
       <div id="meny" class="grid_25"><!-- Start meny -->
         <div id="faner" class="grid_20"><!-- Start faner -->
-          <%#= render('menu/tabs') %>
+          <%= render :partial => 'internal_tabs/tabs', :locals => {:tabs => InternalTab.roots} %>
         </div><!-- Slutt faner -->
         <div id="sok" class="grid_4"><!-- Start søk -->
           <!-- <input type="button" value="" class="btn"><input name="search" type="text" value="<%=t('layout.search')%>">-->
         </div><!-- Slutt søk -->
       </div><!-- Slutt meny -->
       <div id="submeny" class="grid_25"><!-- Start submeny -->
-        <%#= render('menu/sublinks')%>
-      </div><!-- Slutt submeny -->
+              </div><!-- Slutt submeny -->
       <div id="ramme" class="grid_25"><!-- Start ramme -->
         <div id="venstreramme" class="grid_5"><!-- Start venstreramme -->
           <div id="boksturkis_bg" class="grid_5 alpha omega"><!-- Start turkis -->

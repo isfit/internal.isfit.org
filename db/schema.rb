@@ -10,7 +10,48 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110703224535) do
+ActiveRecord::Schema.define(:version => 20110711205207) do
+
+  create_table "articles", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "user_id"
+    t.boolean  "sticky"
+    t.datetime "end_at"
+    t.boolean  "deleted"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "article_image_file_name"
+    t.string   "article_image_content_type"
+    t.integer  "article_image_file_size"
+    t.datetime "article_image_updated_at"
+  end
+
+  create_table "internal_tabs", :force => true do |t|
+    t.string   "title"
+    t.string   "tag"
+    t.string   "controller"
+    t.string   "action"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "ancestry"
+  end
+
+  add_index "internal_tabs", ["ancestry"], :name => "index_internal_tabs_on_ancestry"
+
+  create_table "roles", :id => false, :force => true do |t|
+    t.integer  "id",         :default => 0, :null => false
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles_users", :id => false, :force => true do |t|
+    t.integer  "role_id",                   :null => false
+    t.integer  "user_id",    :default => 0, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :id => false, :force => true do |t|
     t.integer  "id",                                        :default => 0, :null => false

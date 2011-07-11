@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @article.title %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @article.body %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @article.user %>
+</p>
+
+<p>
+  <b>Sticky:</b>
+  <%= @article.sticky %>
+</p>
+
+<p>
+  <b>End at:</b>
+  <%= @article.end_at %>
+</p>
+
+<p>
+  <b>Deleted:</b>
+  <%= @article.deleted %>
+</p>
+
+
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Back', articles_path %>
