@@ -3,20 +3,7 @@
   <head>
     <title><%= content_for?(:title) ? yield(:title) : "ISFiT Internal" %></title>
     <%= stylesheet_link_tag "960", :application, :debug => true %>
-    <%= javascript_include_tag :application, :debug => true %>
     <%= csrf_meta_tag %>
-    <%= yield :script %>
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-18016792-4']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-       })();
-    </script>
     <%= yield(:head) %>
   </head>
   <body>
@@ -25,7 +12,6 @@
         <div id="olinker" class="grid_20"> <!-- Start olinker -->
           <a href="http://www.isfit.org/" class="olink">External</a>
           <a href="http://mail.isfit.org/" class="olink">E-post</a>
-
         </div><!-- Slutt olinker -->
         <div id="odiverse" class="grid_4"><!-- Start odiverse -->
         </div><!-- Slutt odiverse -->
@@ -42,32 +28,47 @@
         </div><!-- Slutt søk -->
       </div><!-- Slutt meny -->
       <div id="submeny" class="grid_25"><!-- Start submeny -->
-              </div><!-- Slutt submeny -->
+        <%= render :partial => 'internal_tabs/sublinks', :locals => {:tabs => current_tab.children } %>
+      </div><!-- Slutt submeny -->
       <div id="ramme" class="grid_25"><!-- Start ramme -->
         <div id="venstreramme" class="grid_5"><!-- Start venstreramme -->
           <div id="boksturkis_bg" class="grid_5 alpha omega"><!-- Start turkis -->
             <div id="boksturkis" class="grid_5 alpha omega">
-              <%#= render 'menu/groups'%>
+              <%= render :partial => 'internal_tabs/groups', :locals => {:tabs => current_sublink.children }%>
             </div>
           </div><!-- Slutt turkis -->
-            <div id="boksturkis_bg" class="grid_5 alpha omega"><!-- start shoutbox -->
-              <div id ="boksturkis" class="grid_5 alpha omega">
-                <%#= render 'shoutboxes/index' %>
-              </div>
+          <div id="boksturkis_bg" class="grid_5 alpha omega"><!-- start shoutbox -->
+            <div id ="boksturkis" class="grid_5 alpha omega">
+              <%#= render 'shoutboxes/index' %>
             </div>
-      </div><!-- Slutt venstreramme -->
-      <div id="midtramme" class="grid_19"><!-- Start midtramme -->
-        <% flash.each do |name, msg| %>
-          <%= content_tag :div, msg, :id => "flash_#{name}" %>
-        <% end %>
-        <%= content_tag :h1, yield(:title) if show_title? %>
-        <%= yield %>
-      </div><!-- Slutt midtramme -->
-    </div><!-- Slutt ramme -->
-    <div id="footer" class="grid_25"><!-- Start footer -->
-      <%=link_to(image_tag("isfitliten.png", :class=>"footerlogo"), root_path)%>
-      <p style="color:pink; text-align:center">Editor in Chief: Sanna Drogset Børstad, sannadro[at]isfit.org. All written material and the ISFiT logo is copyrighted the ISFiT Foundation © 2013. </p>
-    </div><!-- Slutt footer -->
-  </div><!-- Slutt hovedramme -->
+          </div>
+        </div><!-- Slutt venstreramme -->
+        <div id="midtramme" class="grid_19"><!-- Start midtramme -->
+          <% flash.each do |name, msg| %>
+            <%= content_tag :div, msg, :id => "flash_#{name}" %>
+          <% end %>
+          <%= content_tag :h1, yield(:title) if show_title? %>
+          <%= yield %>
+        </div><!-- Slutt midtramme -->
+      </div><!-- Slutt ramme -->
+      <div id="footer" class="grid_25"><!-- Start footer -->
+        <%=link_to(image_tag("isfitliten.png", :class=>"footerlogo"), root_path)%>
+        <p style="color:pink; text-align:center">Editor in Chief: Sanna Drogset Børstad, sannadro[at]isfit.org. All written material and the ISFiT logo is copyrighted the ISFiT Foundation © 2013. </p>
+      </div><!-- Slutt footer -->
+    </div><!-- Slutt hovedramme -->
+    <!--Script at bottom for fast page load -->
+    <%= javascript_include_tag :application, :debug => true %>
+    <%= yield :script %>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-18016792-4']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+</script>
 </body>
 </html>

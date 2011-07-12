@@ -2,7 +2,7 @@
 <%= link_to('Log in', {}, {:class => 'active'}) %>
 <% else %>
 <% tabs.each do |tab| %>
-    <%= link_to tab.title.capitalize, root_path %>
+    <%= link_to tab.title.capitalize, url_for_internal_tab(tab) %>
     <%= image_tag("menyspacer.png", :class=>"menyspacer") %> 
 <% end %>
 <%= link_to('Log out', logout_path) %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110711205207) do
+ActiveRecord::Schema.define(:version => 20110712193940) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20110711205207) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "ancestry"
+    t.integer  "action_id"
   end
 
   add_index "internal_tabs", ["ancestry"], :name => "index_internal_tabs_on_ancestry"
@@ -52,6 +53,16 @@ ActiveRecord::Schema.define(:version => 20110711205207) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "static_pages", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "static_pages", ["user_id"], :name => "index_static_pages_on_user_id"
 
   create_table "users", :id => false, :force => true do |t|
     t.integer  "id",                                        :default => 0, :null => false
