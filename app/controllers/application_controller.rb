@@ -29,17 +29,4 @@ class ApplicationController < ActionController::Base
   def current_menu_link
     @current_menu_link ||= (InternalTab.where(controller: controller_name, action: action_name).first || InternalTab.find(7))
   end
-
-  #def menu
-  #  @menu ||= build_menu_hash(InternalTab.roots)
-  #end
-
-  #def build_menu_hash(internal_tab)
-  #  logger.debug internal_tab
-  #  array = []
-  #  internal_tab.each do |tab|
-  #    array << {tag:tab.tag, title:tab.title,children:build_menu_hash(tab.children)}
-  #  end
-  #  return array
-  #end
 end
