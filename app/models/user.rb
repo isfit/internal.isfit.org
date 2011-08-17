@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   end
 
   def role?(r)
-    role = Role.where(:name=>r).first
-    role_abstraction.include?(role)
+    role = Role.where(name:r).first
+    roles.include?(role)
   end
 end
