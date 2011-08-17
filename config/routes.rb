@@ -1,6 +1,6 @@
 InternalIsfitOrg::Application.routes.draw do
 
-  scope "(/:tab)"do   
+#  scope "(/:tab)"do   
     resources :static_pages
     resources :articles
     match 'user/edit' => 'users#edit', :as => :edit_current_user
@@ -9,6 +9,6 @@ InternalIsfitOrg::Application.routes.draw do
     match 'login' => 'sessions#new', :as => :login
     resources :sessions
     resources :users
-  end
-  root :to => "articles#index"
+    root :to => "articles#index"
+#  end
 end

@@ -1,1 +1,6 @@
-<%= tabs.inspect %>
+<% tabs.each do |tab| %>
+<b><%=tab.title%></b><br>
+<%tab.children.each do |child| %>
+  <%= link_to child.title, url_for(controller:child.controller,action:child.action,id:child.action_id) %>
+<% end %>
+<% end %>

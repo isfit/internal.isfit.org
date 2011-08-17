@@ -1,5 +1,4 @@
 <% tabs.each do |sublink| %>
-  <% url = url_for(controller: sublink.controller, action: sublink.action) %>
   <%
     active = false
     url = url_for_internal_tab(sublink)
