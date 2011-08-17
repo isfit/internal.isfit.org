@@ -12,4 +12,17 @@ module ApplicationHelper
   def numeric?(object)
     true if Float(object) rescue false
   end
+
+  def can_access_link(link)
+    return false unless current_user
+    if link.controller && link.action
+      return can?(link.action, link.controller)
+    elsif link.children.size == 0
+      return false
+    else
+      link.children.each do |child|
+        return true if can_access_link(child)
+      end
+    end
+  end
 end

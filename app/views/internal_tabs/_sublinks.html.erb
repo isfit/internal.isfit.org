@@ -7,5 +7,6 @@
       current_sublink = sublink
     end
     %>
-  <%= link_to sublink.title, url, :class => active ? "a_sublink" : "ina_sublink" %>
+  
+  <%= link_to sublink.title, url, :class => active ? "a_sublink" : "ina_sublink"  if can_access_link(sublink) %>
 <% end %>
