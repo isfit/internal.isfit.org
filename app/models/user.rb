@@ -7,4 +7,9 @@ class User < ActiveRecord::Base
   def full_name
     "#{given_name} #{family_name}"
   end
+
+  def role?(r)
+    role = Role.where(:name=>r).first
+    role_abstraction.include?(role)
+  end
 end
