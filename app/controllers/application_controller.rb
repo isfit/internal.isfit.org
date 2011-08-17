@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_tab, :current_sublink, :current_sublink=, :menu
 
+  before_filter :login_required
+
   #def default_url_options(options={})
   #  { :tab => params[:tab] || :social}
   #end
