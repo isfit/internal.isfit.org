@@ -1,0 +1,21 @@
+<h1>Ny Link</h1>
+Du lager nå en ny link under: <b><%= @internal_tab.parent.nil? ? "Ingen foreldre" : @internal_tab.parent.title %></b>
+<br><br>
+<%= form_for @internal_tab do |f| %>
+  <%= f.label :title %> : <%= f.text_field :title %> <br>
+  <%= f.label :controller %> : <%= f.select :controller, @controllers.collect {|c| [c,c.gsub("Controller", "").underscore]} %><br>
+  <%= f.label :action %> : <%= f.select :action, [] %><br>
+  <%= f.label :action_id %> : <%= f.text_field :action_id %><br>
+  <%= f.hidden_field :parent_id %>
+  <%= f.submit "Lagre" %>
+<% end %>
+
+<% content_for :script do %>
+  <script type="text/javascript">
+    jQuery("#internal_tab_controller").change(function() {
+        jQuery.post('get_actions.js', {controller_js:this.value}, function(data) {
+          $("#internal_tab_action").html(data);
+        });
+      });
+  </script>
+<% end %>
