@@ -2,7 +2,7 @@
   <% if can_access_link(menu_group) %>
     <b><%=menu_group.title%></b><br>
     <% menu_group.children.each do |child| %>
-      <%= link_to child.title, url_for(controller:child.controller,action:child.action,id:child.action_id) %>
+      <%= link_to child.title, url_for(controller:child.controller,action:child.action,id:child.action_id) %><br>
     <% end %>
   <% end %>
 <% end %>

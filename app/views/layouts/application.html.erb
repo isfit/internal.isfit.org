@@ -2,7 +2,7 @@
 <html>
   <head>
     <title><%= content_for?(:title) ? yield(:title) : "ISFiT Internal" %></title>
-    <%= stylesheet_link_tag "960", :application, :debug => true %>
+    <%= stylesheet_link_tag '960', :application %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>

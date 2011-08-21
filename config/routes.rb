@@ -2,7 +2,11 @@ InternalIsfitOrg::Application.routes.draw do
 
 
 #  scope "(/:tab)"do   
-    resources :internal_tabs
+    resources :internal_tabs do 
+      collection do
+        post 'get_actions'
+      end
+    end
     resources :static_pages
     resources :articles
     match 'user/edit' => 'users#edit', :as => :edit_current_user
