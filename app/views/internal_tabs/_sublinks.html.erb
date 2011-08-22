@@ -1,11 +1,7 @@
-<% tabs.each do |sublink| %>
+<% sublinks.each do |sublink| %>
   <%
-    active = false
     url = url_for_internal_tab(sublink)
-    if url == request.fullpath
-      active = true
-      current_sublink = sublink
-    end
+    active =sublink == current_sublink
     %>
   
   <%= link_to sublink.title, url, :class => active ? "a_sublink" : "ina_sublink"  if can_access_link(sublink) %>
