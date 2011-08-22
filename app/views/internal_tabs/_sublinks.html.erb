@@ -1,12 +1,8 @@
 <ul class="pills">
-  <% tabs.each do |sublink| %>
-    <%
-      active = false
-      url = url_for_internal_tab(sublink)
-      if url == request.fullpath
-        active = true
-        current_sublink = sublink
-      end
+<% sublinks.each do |sublink| %>
+  <%
+    url = url_for_internal_tab(sublink)
+    active =sublink == current_sublink
     %>
 
     <li><%= link_to sublink.title, url, :class => active ? "active":"active"  if can_access_link(sublink) %></li>
