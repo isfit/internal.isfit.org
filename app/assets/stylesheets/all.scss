@@ -1,0 +1,18 @@
+@import 'compass';
+
+img.right {
+  float: right;
+  padding: 0 0 0.5em 0.5em;
+}
+
+div.action-menu {
+  float: right;
+}
+
+div.sidebar div.action-menu {
+  float: left;
+}
+body {
+  @include background-image(linear-gradient(darken(white,5%), white));
+}
+
