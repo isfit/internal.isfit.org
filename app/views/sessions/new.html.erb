@@ -2,14 +2,17 @@
 
 <p>Don't have an account? <%= link_to "Sign up!", signup_path %></p>
 
-<%= form_tag sessions_path do %>
-  <p>
-    <%= label_tag :login, "Username or Email Address" %><br />
+<%= form_tag sessions_path, class: "form-stacked" do %>
+  <fieldset>
+    <legend>Login</legend>
+  <div class="type-text">
+    <%= label_tag :login, "Username or Email Address" %>
     <%= text_field_tag :login, params[:login] %>
-  </p>
-  <p>
-    <%= label_tag :password %><br />
+  </div>
+  <div class="type-text">
+    <%= label_tag :password %>
     <%= password_field_tag :password %>
-  </p>
-  <p><%= submit_tag "Log in" %></p>
+  </div>
+</fieldset>
+<div class="type-button"><%= submit_tag "Log in", class: "primary btn" %></div>
 <% end %>

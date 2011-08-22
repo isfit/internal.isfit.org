@@ -3,16 +3,3 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-#tree {
-  border-style: none none none solid;
-  border-width: 0 0 0 1px;
-  border-color: #ffffff;
-}
-
-.nested_links {
-  margin-left: 30px;
-}
-
-.nested_links .nested_links .nested_links .nested_links {
-  margin-left: 0;
-}
