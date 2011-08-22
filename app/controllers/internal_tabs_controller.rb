@@ -27,6 +27,7 @@ class InternalTabsController < ApplicationController
 
   def find_all_controllers
     ret = []
+    ret << ""
     controllers = Dir.new("#{Rails.root}/app/controllers").entries
     controllers.each do |controller|
       if controller =~ /_controller/
