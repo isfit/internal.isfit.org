@@ -11,7 +11,6 @@ load_and_authorize_resource
   
   def statistics
     @positions = Position.where(:admission_id =>3, :number => 1..100)
-    #find(:all, :conditions => {:admission_id => 3, :number => 1..100 , :deleted => 0})
     @applicants = Applicant.all
     @simple_stat = Hash.new
     @positions.each do |p|
@@ -22,7 +21,6 @@ load_and_authorize_resource
       @stat[p.title_en] = 5*Float((@applicants.find_all {|a| a.position_id_1 == p.id}).size)/Float(p.number) + 3*Float((@applicants.find_all {|a| a.position_id_2 == p.id}).size)/Float(p.number)+ Float((@applicants.find_all {|a| a.position_id_3 == p.id}).size)/Float(p.number)
     end
     @all_pos = Position.where(:admission_id => 3)
-    #.find(:all, :conditions => {:admission_id => 1, :deleted => 0})
     @no_apply = []
 
     @all_pos.each do |p|
@@ -49,7 +47,7 @@ load_and_authorize_resource
 	end
 
 	def show
-		@recruiting = can_access?('applicants', 'browse_all')
+		#@recruiting = can_access?('applicants', 'browse_all')
 		@applicant = Applicant.find(params[:id])
     
 		@status = {	0 => 'Not contacted',
@@ -61,11 +59,11 @@ load_and_authorize_resource
 	end
 
 	def edit
-		@recruiting = can_access?('applicants','browse_all')
-		@applicant = Applicant.find(params[:id])
-                @positions = [Position.new]
-                @positions.concat(Position.find_all_active_positions_alfa)
-		@sections = Group.find(:all, :order => "name_no asc")
+		#@recruiting = can_access?('applicants','browse_all')
+    @applicant = Applicant.find(params[:id])
+    @positions = [Position.new]
+    #@positions.concat(Position.find_all_active_positions_alfa)
+		#@sections = Group.find(:all, :order => "name_no asc")
 
 		@status = {	0 => 'Not contacted',
 					1 => 'Meeting planned',
@@ -74,24 +72,25 @@ load_and_authorize_resource
 					4 => 'Recruited',
 					5 => 'Not of interest' }
 
-		@functionaries = 
-			LdapUnit.get_by_dn("ou=isfit11,ou=units,dc=isfit,dc=org").functionaries(true)
-		nobody = LdapUser.new({})
-		nobody.lastname = "<Not set"
-		nobody.firstname = "yet>"
-		nobody.id = -1
-		@functionaries.insert(0, nobody)
+		#@functionaries = 
+		#	LdapUnit.get_by_dn("ou=isfit11,ou=units,dc=isfit,dc=org").functionaries(true)
+		#nobody = LdapUser.new({})
+		#nobody.lastname = "<Not set"
+		#nobody.firstname = "yet>"
+		#nobody.id = -1
+		#@functionaries.insert(0, nobody)
 
-		if request.post?
-			
-			@applicant.attributes = params[:applicant]
-	
-
-			if @applicant.save
-				redirect_to :action => 'index'
-			end
-		end
 	end
+
+  def update
+    @applicant = Applicant.find(params[:id])
+			if @applicant.update_attributes(params[:applicant])
+				redirect_to applicants_path
+      else
+        render :edit
+			end
+
+  end
 
   def index
     #@current_user = current_user
