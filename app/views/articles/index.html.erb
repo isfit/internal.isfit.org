@@ -1,20 +1,22 @@
-(<%= link_to "Create article", new_article_path %>)
-<div class="article">
+<div class="action-menu">
+  <%= link_to "Create article", new_article_path, :class => "primary btn" %>
+</div>
+<div class="articles">
   <% for article in @articles %>
-    <div class="grid_14 alpha_omega hoved_artikkel">
-      <h1><%= link_to article.title, article %></h1>
-      <p class="info">Created <%= time_ago_in_words(article.created_at) %> ago by <%= link_to article.user.full_name, article.user %>.</p>
-      <%= image_tag article.article_image.url(:thumb), :class => "photo_right" %> 
+    <div class="article">
+      <div class="action-menu">
+        <%= link_to :edit, edit_article_path(article), :class => "small btn"%>
+        <%= link_to :delete, article, confirm: "Are you sure?", method: :delete, :class => "small btn"  %>
+      </div>
+      <h1><%= link_to article.title, article %>
+        <p class="small">Created <%= time_ago_in_words(article.created_at) %> ago by <%= link_to article.user.full_name, article.user %>.</p>
+      </h1>
+      <%= image_tag article.article_image.url(:thumb), :class => "right" %> 
       <p>
       <%= simple_format(truncate(article.body, :length => 200, :omission =>"...")) %>
       <%= article.body.length > 200 ? (link_to("Read more...", :controller => "article", :action => "show", :id => article.id)) : '' %>
-      <%= link_to image_tag("icon/edit.png", :alt => "Edit", :title => "Edit", :border => 0), edit_article_path(article)%>
-      <%= link_to image_tag("icon/trash.png", :alt => "Delete", :title => "Delete", :border => 0), article, confirm: "Are you sure?", method: :delete  %>
-      </p>
-      </div>
-      <% end %>
-      <p>
-        <span style="float: left"><%#= will_paginate @articles %></span>
-        &nbsp;
+
       </p>
     </div>
+  <% end %>
+</div>

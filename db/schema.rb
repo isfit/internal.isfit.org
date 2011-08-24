@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,40 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110712193940) do
+ActiveRecord::Schema.define(:version => 20110822095154) do
+
+  create_table "applicants", :id => false, :force => true do |t|
+    t.integer  "id",                                :default => 0,     :null => false
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "mail"
+    t.integer  "phone"
+    t.text     "information"
+    t.text     "background"
+    t.text     "heardof"
+    t.integer  "position_id_1",                                        :null => false
+    t.integer  "position_id_2"
+    t.integer  "position_id_3"
+    t.integer  "status",                            :default => 0
+    t.string   "interview_place_1"
+    t.string   "interview_place_2"
+    t.string   "interview_place_3"
+    t.datetime "interview_time_1"
+    t.datetime "interview_time_2"
+    t.datetime "interview_time_3"
+    t.integer  "interviewer_id_1_1"
+    t.integer  "interviewer_id_1_2"
+    t.integer  "interviewer_id_2_1"
+    t.integer  "interviewer_id_2_2"
+    t.integer  "interviewer_id_3_1"
+    t.integer  "interviewer_id_3_2"
+    t.boolean  "deleted",                           :default => false, :null => false
+    t.string   "username"
+    t.string   "password",           :limit => 16
+    t.string   "dn",                 :limit => 512
+    t.integer  "has_account",        :limit => 1,   :default => 0,     :null => false
+    t.integer  "is_notified",                       :default => 0,     :null => false
+  end
 
   create_table "articles", :force => true do |t|
     t.string   "title"

@@ -1,8 +1,10 @@
 <% menu_groups.each do |menu_group| %>
   <% if can_access_link(menu_group) %>
-    <b><%=menu_group.title%></b><br>
-    <% menu_group.children.each do |child| %>
-      <%= link_to child.title, url_for(controller:child.controller,action:child.action,id:child.action_id) %>
-    <% end %>
+    <h3><%=menu_group.title%></h3>
+    <ul>
+      <% menu_group.children.each do |child| %>
+        <li><%= link_to child.title, url_for(controller:child.controller,action:child.action,id:child.action_id) %></li>
+      <% end %>
+    </ul>
   <% end %>
 <% end %>

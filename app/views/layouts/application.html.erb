@@ -1,61 +1,49 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for?(:title) ? yield(:title) : "ISFiT Internal" %></title>
-    <%= stylesheet_link_tag "960", :application, :debug => true %>
+    <title><%#= content_for?(:title) yield(:title) : "ISFiT Internal" %>ISFiT Internal</title>
+    <!-- http://twitter.github.com/bootstrap/  stylesheet -->
+    <%= stylesheet_link_tag :application %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
   <body>
-    <div id="hovedramme" class="container_24"> <!-- Start hovedramme -->
-      <div id="omeny" class="grid_25"> <!-- Start omeny -->
-        <div id="olinker" class="grid_20"> <!-- Start olinker -->
-          <a href="http://www.isfit.org/" class="olink">External</a>
-          <a href="http://mail.isfit.org/" class="olink">E-post</a>
-        </div><!-- Slutt olinker -->
-        <div id="odiverse" class="grid_4"><!-- Start odiverse -->
-        </div><!-- Slutt odiverse -->
-      </div><!-- Slutt omeny -->
-      <div id="header" class="grid_25" ><!-- Start header -->
-        <%= link_to image_tag("header-internal-norsk.jpg", :class=>"isfitlogo"), root_path %>
-      </div><!-- Slutt header -->
-      <div id="meny" class="grid_25"><!-- Start meny -->
-        <div id="faner" class="grid_20"><!-- Start faner -->
+    <div id="header" class="topbar-wrapper" style="z-index: 5;"> 
+      <div class="topbar"> 
+        <div class="fixed"> 
+          <h3><%= link_to "ISFiT Internal", root_path, :class => :logo %></h3> 
           <%= render :partial => 'internal_tabs/tabs', :locals => {:tabs => InternalTab.roots} %>
-        </div><!-- Slutt faner -->
-        <div id="sok" class="grid_4"><!-- Start søk -->
-          <!-- <input type="button" value="" class="btn"><input name="search" type="text" value="<%=t('layout.search')%>">-->
-        </div><!-- Slutt søk -->
-      </div><!-- Slutt meny -->
-      <div id="submeny" class="grid_25"><!-- Start submeny -->
-        <%= render :partial => 'internal_tabs/sublinks', :locals => {:tabs => current_tab.children } %>
-      </div><!-- Slutt submeny -->
-      <div id="ramme" class="grid_25"><!-- Start ramme -->
-        <div id="venstreramme" class="grid_5"><!-- Start venstreramme -->
-          <div id="boksturkis_bg" class="grid_5 alpha omega"><!-- Start turkis -->
-            <div id="boksturkis" class="grid_5 alpha omega">
-              <%= render :partial => 'internal_tabs/groups', :locals => {:menu_groups => current_sublink.children }%>
-            </div>
-          </div><!-- Slutt turkis -->
-          <div id="boksturkis_bg" class="grid_5 alpha omega"><!-- start shoutbox -->
-            <div id ="boksturkis" class="grid_5 alpha omega">
-              <%#= render 'shoutboxes/index' %>
-            </div>
-          </div>
-        </div><!-- Slutt venstreramme -->
-        <div id="midtramme" class="grid_19"><!-- Start midtramme -->
-          <% flash.each do |name, msg| %>
-            <%= content_tag :div, msg, :id => "flash_#{name}" %>
+          <% if current_user %>
+            <ul class="nav secondary-nav"> 
+              <li class="menu"> 
+              <a href="#" class="menu"><%= current_user.full_name %></a> 
+              <ul class="menu-dropdown" style="display: none;"> 
+                <li><a href="#">Edit profile</a></li> 
+                <li class="divider"></li> 
+                <li><a href="#">Logout</a></li> 
+              </ul> 
+              </li> 
+            </ul> 
           <% end %>
-          <%= content_tag :h1, yield(:title) if show_title? %>
-          <%= yield %>
-        </div><!-- Slutt midtramme -->
-      </div><!-- Slutt ramme -->
-      <div id="footer" class="grid_25"><!-- Start footer -->
-        <%=link_to(image_tag("isfitliten.png", :class=>"footerlogo"), root_path)%>
-        <p style="color:pink; text-align:center">Editor in Chief: Sanna Drogset Børstad, sannadro[at]isfit.org. All written material and the ISFiT logo is copyrighted the ISFiT Foundation © 2013. </p>
-      </div><!-- Slutt footer -->
-    </div><!-- Slutt hovedramme -->
+        </div> 
+      </div> 
+    </div>
+    <div class="container-fluid">
+      <div id="submeny" class="content"><!-- Start submeny -->
+        <%= render :partial => 'internal_tabs/sublinks', :locals => {:sublinks => current_tab.children } %>
+      </div>
+      <div id="sidebar" class="sidebar">
+        <div class="widget">
+          <%= render :partial => 'internal_tabs/groups', :locals => {:menu_groups => current_sublink.children }%>
+        </div>
+        <%= yield :sidebar %>
+      </div>
+      <div id="content" class="content">
+        <!-- TODO notices -->
+        <%= content_tag :h1, yield(:title) if show_title? %>
+        <%= yield %>
+      </div>
+    </div>
     <!--Script at bottom for fast page load -->
     <%= javascript_include_tag :application, :debug => true %>
     <%= yield :script %>
@@ -70,5 +58,5 @@
        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
        })();
 </script>
-</body>
+ </body>
 </html>

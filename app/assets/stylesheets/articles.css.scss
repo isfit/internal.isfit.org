@@ -1,8 +1,20 @@
 // Place all the styles related to the articles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'compass/css3';
 
 body.articles {
   // Add the articles class to your body tag
   // Then, place scoped styles here.
+}
+
+div.articles {
+  width: 75%;
+  .article {
+    background-color: darken(white, 2%);
+    padding: 1em;
+    @include border-radius(10px);
+    @include single-box-shadow(rgba(black,0.4), 0px, 0px, 3px, 1px, inset);
+    overflow: auto;
+  }
 }

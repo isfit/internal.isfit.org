@@ -1,8 +1,18 @@
 InternalIsfitOrg::Application.routes.draw do
 
 
+  resources :applicants do
+    collection do 
+      get 'statistics'
+    end
+  end
+
 #  scope "(/:tab)"do   
-    resources :internal_tabs
+    resources :internal_tabs do 
+      collection do
+        post 'get_actions'
+      end
+    end
     resources :static_pages
     resources :articles
     resources :applicants

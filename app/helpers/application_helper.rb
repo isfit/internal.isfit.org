@@ -25,4 +25,15 @@ module ApplicationHelper
       end
     end
   end
+
+
+  def sortable(column, parameters, title = nil)
+    title ||= column.titleize
+    css_class = column == sort_column ? "current #{sort_direction}" : nil
+    direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
+    parameters[:sort] = column
+    parameters[:direction] = direction
+    link_to title, parameters, {:class => css_class}
+  end
+
 end

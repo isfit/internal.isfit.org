@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/chriseppstein/compass.git
+  revision: f23bf58e8db84e17e6fab37cc73e5a539924cca0
+  branch: rails31
+  specs:
+    compass (0.12.0.alpha.0.f23bf58)
+      chunky_png (~> 1.2)
+      fssm (>= 0.2.7)
+      sass (~> 3.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -43,6 +53,7 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
+    chunky_png (1.2.1)
     cocaine (0.2.0)
     coffee-script (2.2.0)
       coffee-script-source
@@ -53,8 +64,9 @@ GEM
     erubis (2.7.0)
     execjs (1.2.4)
       multi_json (~> 1.0)
+    fssm (0.2.7)
     highline (1.6.2)
-    hike (1.2.0)
+    hike (1.2.1)
     i18n (0.6.0)
     jquery-rails (1.0.13)
       railties (~> 3.0)
@@ -75,7 +87,7 @@ GEM
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
       net-ssh (>= 2.0.9)
-    net-ssh (2.1.4)
+    net-ssh (2.2.0)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
     nifty-generators (0.4.6)
@@ -141,10 +153,10 @@ GEM
       sass (>= 3.1.4)
     simple-navigation (3.5.0)
       activesupport (>= 2.3.2)
-    sprockets (2.0.0.beta.13)
+    sprockets (2.0.0.beta.14)
       hike (~> 1.2)
       rack (~> 1.0)
-      tilt (!= 1.3.0, ~> 1.1)
+      tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.4)
     therubyracer (0.9.3)
       libv8 (~> 3.3.10)
@@ -167,6 +179,7 @@ DEPENDENCIES
   cancan
   capistrano
   coffee-script
+  compass!
   jquery-rails
   memcache-client
   mocha
