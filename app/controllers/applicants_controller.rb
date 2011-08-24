@@ -150,7 +150,15 @@ load_and_authorize_resource
                                                         #		:joins => leader_joins,
                                                         #		:conditions => (@recruiting ? president_conditions : board_conditions)
                                                         #		)
-    @applicants = Applicant.all
+    if current_user.role?(:admin) || current_user.role?(:recruitment) || current_user.has_role?(:board)
+      @applicants = Applicant.all
+    else if current_user.role?(:wingman)
+      @applicants = Applicant.applicants_in_same_section( current_user)
+    else if current_user.role?(:interviewer) || current_user.role?(:leader)
+      @applicants = Applicant.applicants_in_same_group( current_user )
+    else
+      CanCan::AccessDenied
+    end
     @status = {	0 => 'Not contacted',
       1 => 'Meeting planned',
       2 => 'Meeting done',
