@@ -31,10 +31,10 @@
 			<%= link_to(applicant.id, edit_applicant_path(applicant)) %>
 		</td>
 		<td><%= applicant.lastname %></td>
-		<td><%#= applicant.first_position.title_no %>, <%#= applicant.first_position.groups.first.name_no%></td>
-		<td><%#= applicant.second_position ? 
+		<td><%= applicant.first_position.title_no  %>, <%#= applicant.first_position.groups.first.name_no%></td>
+		<td><%= applicant.second_position ? 
 			applicant.second_position.title_no: '-' %></td>
-		<td><%#= applicant.third_position ? 
+		<td><%= applicant.third_position ? 
 			applicant.third_position.title_no : '-' %></td>
 		<td><%= @status[applicant.status] %></td>
 		<td><%= (applicant.interview_place_1 != '' and applicant.interview_time_1) ? applicant.interview_time_1.strftime("%d.%m %H:%M") : '-' %></td>
