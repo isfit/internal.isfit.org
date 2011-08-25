@@ -11,10 +11,7 @@ body.articles {
 div.articles {
   width: 75%;
   .article {
-    background-color: darken(white, 2%);
     padding: 1em;
-    @include border-radius(10px);
-    @include single-box-shadow(rgba(black,0.4), 0px, 0px, 3px, 1px, inset);
     overflow: auto;
   }
 }

@@ -5,6 +5,6 @@
     active =sublink == current_sublink
     %>
 
-    <li><%= link_to sublink.title, url, :class => active ? "active":"active"  if can_access_link(sublink) %></li>
+    <li class="<%= active ? "active":"active"%>" ><%= link_to sublink.title, url, :class => active ? "active":"active"  if can_access_link(sublink) %></li>
   <% end %>
 </ul>
