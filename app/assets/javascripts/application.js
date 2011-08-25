@@ -6,4 +6,20 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require_self
 //= require_tree .
+
+$(function() {
+
+  // Closes errors when clicking a.close
+  $('a.close').click(function() {
+    $(this).parent().hide();
+  });
+
+  $('li.menu').toggle(function() {
+    $(this).addClass('open');
+  }, function() {
+    $(this).removeClass('open');
+  });
+
+});

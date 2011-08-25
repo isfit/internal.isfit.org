@@ -12,53 +12,58 @@
       <div class="topbar"> 
         <div class="fill"> 
           <div class="container-fluid">
-          <h3><%= link_to "ISFiT Internal", root_path, :class => :logo %></h3> 
-          <%= render :partial => 'internal_tabs/tabs', :locals => {:tabs => InternalTab.roots} %>
-          <% if current_user %>
-            <ul class="nav secondary-nav"> 
-              <li class="menu"> 
-              <a href="#" class="menu"><%= current_user.full_name %></a> 
-              <ul class="menu-dropdown" style="display: none;"> 
-                <li><a href="#">Edit profile</a></li> 
-                <li class="divider"></li> 
-                <li><a href="#">Logout</a></li> 
+            <h3><%= link_to "ISFiT Internal", root_path, :class => :logo %></h3> 
+            <%= render :partial => 'internal_tabs/tabs', :locals => {:tabs => InternalTab.roots} %>
+            <% if current_user %>
+              <ul class="nav secondary-nav"> 
+                <li class="menu"> 
+                <a href="#" class="menu"><%= current_user.full_name %></a> 
+                <ul class="menu-dropdown"> 
+                  <li><a href="#">Edit profile</a></li> 
+                  <li class="divider"></li> 
+                  <li><a href="#">Logout</a></li> 
+                </ul> 
+                </li> 
               </ul> 
-              </li> 
-            </ul> 
-          <% end %>
-        </div>
+            <% end %>
+          </div>
+        </div> 
       </div> 
-    </div> 
-  </div>
-  <div class="container-fluid content-margin">
-    <div id="submeny" class="content"><!-- Start submeny -->
-      <%= render :partial => 'internal_tabs/sublinks', :locals => {:sublinks => current_tab.children } %>
     </div>
-    <div id="sidebar" class="sidebar">
-      <div class="widget">
-        <%= render :partial => 'internal_tabs/groups', :locals => {:menu_groups => current_sublink.children }%>
+    <div class="container-fluid content-margin">
+      <div id="submeny" class="content"><!-- Start submeny -->
+        <%= render :partial => 'internal_tabs/sublinks', :locals => {:sublinks => current_tab.children } %>
       </div>
-      <%= yield :sidebar %>
+      <div id="sidebar" class="sidebar">
+        <div class="widget">
+          <%= render :partial => 'internal_tabs/groups', :locals => {:menu_groups => current_sublink.children }%>
+        </div>
+        <%= yield :sidebar %>
+      </div>
+      <div id="content" class="content">
+        <% if notice or alert %>
+          <div class="alert-message <%= notice ? "success":"error" %>">
+            <a href="#" class="close">x</a>
+            <p><%= image_tag("icons/#{notice ? "accept":""}.png") %> <%= notice ? notice : alert %></p>
+          </div>
+        <% end %>
+        <%= content_tag :h1, yield(:title) if show_title? %>
+        <%= yield %>
+      </div>
     </div>
-    <div id="content" class="content">
-      <!-- TODO notices -->
-      <%= content_tag :h1, yield(:title) if show_title? %>
-      <%= yield %>
-    </div>
-  </div>
-  <!--Script at bottom for fast page load -->
-  <%= javascript_include_tag :application, :debug => true %>
-  <%= yield :script %>
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-18016792-4']);
-    _gaq.push(['_trackPageview']);
+    <!--Script at bottom for fast page load -->
+    <%= javascript_include_tag :application, :debug => true %>
+    <%= yield :script %>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-18016792-4']);
+      _gaq.push(['_trackPageview']);
 
-    (function() {
-     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-     })();
-   </script>
- </body>
-</html>
+      (function() {
+       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+</script>
+   </body>
+ </html>

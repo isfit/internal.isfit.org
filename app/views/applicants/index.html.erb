@@ -1,29 +1,23 @@
-<style>
-.sortable {
-  font-size:10px;
-}
-</style>
-
 <h1>Browse volunteers</h1>
 <p>Below is the list of volunteer applications registered.</p>
 <table cellspacing="0" cellpadding="4" style="border: 1px solid #ccc" class="sortable">
 	<tr>
 		<td></td>
-		<td style="border-left: 1px solid #ccc"></td>
-		<td align="center" colspan="3" style="border-left: 1px solid #ccc; border-bottom: 1px solid #ccc"><em>Position choices</em></td>
-		<td style="border-left: 1px solid #ccc"></td>
-		<td align="center" colspan="3" style="border-left: 1px solid #ccc; border-bottom: 1px solid #ccc"><em>Position choices interview times</em></td>
+		<td></td>
+		<td>Position choices</td>
+		<td></td>
+                <td>Position choices interview times</td>
 	</tr>
 	<tr>
-		<td align="center" width="40"><b><%= sortable "applicants.id", params.clone, "ID" %></b></td>
-                <td width="80" style="border-left: 1px solid #ccc"><b><%= sortable "lastname", params.clone, "lastname" %></b></td>
-                <td width="150" style="border-left: 1px solid #ccc"><b><%= sortable 'position_id_1', params.clone, "First choice"%></b></td>
-		<td width="150" style="border-left: 1px solid #ccc"><b><%= sortable 'position_id_2', params.clone, "Second"%></b></td>
-		<td width="150" style="border-left: 1px solid #ccc"><b><%= sortable 'position_id_3', params.clone, "Third"%></td>
-		<td width="100" style="border-left: 1px solid #ccc"><b><%= sortable 'status', params.clone, "Status"%></b></td>
-		<td width="70" style="border-left: 1px solid #ccc"><b><%= sortable 'interview_time_1', params.clone, "First interview"%></b></td>
-		<td width="70" style="border-left: 1px solid #ccc"><b><%= sortable 'interview_time_2', params.clone, "Second"%></b></td>
-                <td width="70" style="border-left: 1px solid #ccc"><b><%= sortable 'interview_time_3', params.clone, "Thirds"%></b></td>
+		<td><b><%= sortable "applicants.id", params.clone, "ID" %></b></td>
+                <td><b><%= sortable "lastname", params.clone, "lastname" %></b></td>
+                <td><b><%= sortable 'position_id_1', params.clone, "First choice"%></b></td>
+		<td><b><%= sortable 'position_id_2', params.clone, "Second"%></b></td>
+		<td><b><%= sortable 'position_id_3', params.clone, "Third"%></td>
+		<td><b><%= sortable 'status', params.clone, "Status"%></b></td>
+		<td><b><%= sortable 'interview_time_1', params.clone, "First interview"%></b></td>
+		<td><b><%= sortable 'interview_time_2', params.clone, "Second"%></b></td>
+                <td><b><%= sortable 'interview_time_3', params.clone, "Thirds"%></b></td>
 	</tr>
 <% @applicants.each do |applicant| %>
 	<tr class=<%= cycle("alternate", "") %>>
@@ -31,7 +25,7 @@
 			<%= link_to(applicant.id, edit_applicant_path(applicant)) %>
 		</td>
 		<td><%= applicant.lastname %></td>
-		<td><%= applicant.first_position.title_no  %>, <%#= applicant.first_position.groups.first.name_no%></td>
+		<td><%= applicant.first_position.title_no %></td>
 		<td><%= applicant.second_position ? 
 			applicant.second_position.title_no: '-' %></td>
 		<td><%= applicant.third_position ? 

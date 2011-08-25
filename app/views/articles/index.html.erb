@@ -1,10 +1,5 @@
-<% content_for :sidebar do %>
-  <h3>Actions</h3>
-  <ul>
-    <li><%= link_to "Create article", new_article_path %></li>
-  </ul>
-<% end %>
 <div class="articles">
+  <%= link_to "Create article", new_article_path, :class => "primary btn" %>
   <% for article in @articles %>
     <div class="article">
       <div class="action-menu">

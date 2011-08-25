@@ -1,6 +1,11 @@
 <%= form_for(@article) do |f| %>
+  <% if f.error_messages %>  
+    <div class="alert-message block-message error">
+      <a href="#" class="close">x</a>
+      <%= f.error_messages %>
+    </div>
+  <% end %>
 
-  <%= f.error_messages %>
   <fieldset>
     <div class="field">
       <%= f.label :title %><br />
