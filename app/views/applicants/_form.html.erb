@@ -1,17 +1,150 @@
-<%= form_for(@applicant) do |f| %>
-  <% if @applicant.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@applicant.errors.count, "error") %> prohibited this applicant from being saved:</h2>
+<h1>Volunteer application</h1>
+<p>Showing volunteer application details.</p>
+<%= form_for @applicant do |f| %>
+<table>
+	<tr>
+		<td width="150"><b>ID</b></td>
+		<td><%= @applicant.id.nil? ? "Not creadted" : @applicant.id %></td>
+	</tr>
+	<tr>
+		<td><b>Firstname</b></td>
+		<td><%= f.text_field:firstname %></td>
+	</tr>
+  <tr>
+		<td><b>Lastname</b></td>
+		<td><%= f.text_field :lastname  %></td>
+	</tr>
 
-      <ul>
-      <% @applicant.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+	<tr>
+		<td><b>E-mail</b></td>
+		<td><%= f.text_field :mail %></td>
+	</tr>
+	<tr>
+		<td><b>Phone</b></td>
+		<td><%= f.phone_field :phone %></td>
+        </tr>
+        <tr>
+		<td><b>First choice</b></td>
+                <td><%#= f.select 'position_id_1', @positions.to_select_position, :selected => ( @applicant.first_position == nil ? 0 : @applicant.first_position.id) %></td>
+	</tr>
+	<tr>
+		<td><b>Second choice</b></td>
+	
+                <td><%#= f.select 'position_id_2', @positions.to_select_position, :selected => @applicant.second_position == nil ? -1 : @applicant.second_position.id %></td>
+</tr>
+	<tr>
+		<td><b>Third choice</b></td>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+                <td><%#= f.select 'position_id_3', @positions.to_select_position, :selected => @applicant.third_position == nil ? -1 : @applicant.third_position.id %></td>
+
+	</tr>
+
+		<tr valign="top">
+		<td><b>Information about self</b></td>
+		<td><%= f.text_area :information, size: "60x20" %><%#= simple_format(@applicant.information) %></td>
+	</tr>
+	<tr valign="top">
+		<td><b>Relevant experience</b></td>
+		<td><%= f.text_area :background, size:"60x20" %> <%#= simple_format(@applicant.background) %></td>
+</tr>
+	<tr>
+		<td><b>Status</b></td>
+		<td><%= f.select(:status, @status.invert) %></td>
+	</tr>
+  <tr>
+		<td><b>Comment</b></td>
+		<td><%#= f.text_area(:comment, :size => "40x2") %></td>
+	</tr>
+
+	<tr>
+		<td colspan="2">
+			<em>First choice interview</em>
+		</td>
+	</tr>
+	<tr>
+		<td><b>Place</b></td>
+		<td><%= f.text_field(:interview_place_1) %></td>
+	</tr>
+	<tr valign="top">
+		<td><b>Time</b></td>
+		<td><%= f.datetime_select(:interview_time_1) %></td>
+	</tr>
+	<tr>
+		<td><b>Interviewers</b></td>
+		<td>
+		<%#= f.collection_select(:interviewer_id_1_1, @functionaries,   :id, :name_reversed) %>
+		</td>	
+	</tr>
+	<tr>
+		<td></td>
+		<td>
+			<%#= f.collection_select(:interviewer_id_1_2, @functionaries, :id, :name_reversed) %>
+		</td>
+	</tr>
+<% if @applicant.position_id_2 != -1 %>
+	<tr>
+		<td colspan="2">
+			<em>Second choice interview</em>
+		</td>
+	</tr>
+	<tr>
+		<td><b>Place</b></td>
+		<td><%= f.text_field(:interview_place_2) %></td>
+	</tr>
+	<tr valign="top">
+		<td><b>Time</b></td>
+		<td><%= f.datetime_select(:interview_time_2) %></td>
+	</tr>
+	<tr>
+		<td><b>Interviewers</b></td>
+		<td>
+			<%#= f.collection_select(:interviewer_id_2_1, @functionaries, :id, :name_reversed) %>
+		</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>
+			<%#= f.collection_select(:interviewer_id_2_2, @functionaries, :id, :name_reversed) %>
+		</td>
+	</tr>
 <% end %>
+<% if @applicant.third_position %>
+	<tr>
+		<td colspan="2">
+			<em>Third choice interview</em>
+		</td>
+	</tr>
+	<tr>
+		<td><b>Place</b></td>
+		<td><%= f.text_field(:interview_place_3) %></td>
+	</tr>
+	<tr valign="top">
+		<td><b>Time</b></td>
+		<td><%= f.datetime_select(:interview_time_3) %></td>
+	</tr>
+	<tr>
+		<td><b>Interviewers</b></td>
+		<td>
+			<%#= f.collection_select(:interviewer_id_3_1, @functionaries, :id, :name_reversed) %>
+		</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>
+			<%#= f.collection_select(:interviewer_id_3_2, @functionaries, :id, :name_reversed) %>
+		</td>
+	</tr>
+<%end%>
+	<tr>
+		<td><b>Delete</b></td>
+		<td>
+			<%= f.check_box(:deleted) %>
+		</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><br /><%= f.submit %></td>
+	</tr>
+</table>
+<% end %>
+<p>Return to <%= link_to('application list', applicants_path) %>.</p>

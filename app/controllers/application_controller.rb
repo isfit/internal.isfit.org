@@ -27,6 +27,6 @@ class ApplicationController < ActionController::Base
   end
 
   def current_menu_link
-    @current_menu_link ||= (InternalTab.where(controller: controller_name, action: action_name).first || InternalTab.find(7))
+    @current_menu_link ||= (InternalTab.where(controller: controller_name, action: action_name).first || InternalTab.where(controller: controller_name).first || InternalTab.find(7))
   end
 end

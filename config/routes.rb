@@ -4,10 +4,10 @@ InternalIsfitOrg::Application.routes.draw do
   resources :applicants do
     collection do 
       get 'statistics'
+      get 'interviews'
     end
   end
 
-#  scope "(/:tab)"do   
     resources :internal_tabs do 
       collection do
         post 'get_actions'
@@ -15,6 +15,7 @@ InternalIsfitOrg::Application.routes.draw do
     end
     resources :static_pages
     resources :articles
+    resources :applicants
     match 'user/edit' => 'users#edit', :as => :edit_current_user
     match 'signup' => 'users#new', :as => :signup
     match 'logout' => 'sessions#destroy', :as => :logout
@@ -22,5 +23,4 @@ InternalIsfitOrg::Application.routes.draw do
     resources :sessions
     resources :users
     root :to => "articles#index"
-#  end
 end
