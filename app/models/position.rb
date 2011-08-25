@@ -3,5 +3,5 @@ class Position < ActiveRecord::Base
   
   has_and_belongs_to_many :groups
   has_and_belongs_to_many :users
-  belongs_to :section, through: :groups
+#  belongs_to :section, through: :groups
 end
