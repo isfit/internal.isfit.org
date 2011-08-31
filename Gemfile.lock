@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/chriseppstein/compass.git
+  remote: git@github.com:chriseppstein/compass.git
   revision: 22e2458b77519e8eb8463170c1a1fe4bab105f3e
   branch: rails31
   specs:
