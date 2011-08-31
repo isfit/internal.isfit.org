@@ -19,7 +19,7 @@ class InternalTabsController < ApplicationController
 
   def get_actions
     @actions = find_controller_actions(params[:controller_js].camelize)
-    render :layout => false
+    render layout: false
   end
 
 

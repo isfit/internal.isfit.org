@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-InternalIsfitOrg::Application.config.secret_token = 'cc706a7c4753a6bc5d18e8bf380a295ef737806f6a3820419173704aa806fd1b0c235c77dc0edcfb13009065553f2e357ba7a192dcea91377f9d8529b68604ae'
+InternalIsfitOrg::Application.config.secret_token = '6d962b578883a443f73c7102a70158f057bcf5d89a98e2b1c038eaa2cfd095c254058b966938c10865a79283757b0c8a9b0bf8144d6ddffce25486792dd18a25'

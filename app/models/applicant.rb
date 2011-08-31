@@ -41,6 +41,7 @@ class Applicant < ActiveRecord::Base
     return app
   end
 
+
    # where("#{Position.find(self.position_id_1).groups.first.id} = #{user.positions.first.groups.first.id} OR #{Position.find(position_id_2).group_id} = #{user.position.group_id} OR #{Position.find(position_id_3).group_id} = #{user.position.group_id}")
  # end
 end
