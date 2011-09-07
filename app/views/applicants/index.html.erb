@@ -1,41 +1,43 @@
 <h1>Browse volunteers</h1>
 <p>Below is the list of volunteer applications registered.</p>
-<table cellspacing="0" cellpadding="4" style="border: 1px solid #ccc" class="sortable">
-	<tr>
-		<td></td>
-		<td></td>
-		<td>Position choices</td>
-		<td></td>
-                <td>Position choices interview times</td>
-	</tr>
-	<tr>
-		<td><b><%= sortable "applicants.id", params.clone, "ID" %></b></td>
-                <td><b><%= sortable "lastname", params.clone, "lastname" %></b></td>
-                <td><b><%= sortable 'position_id_1', params.clone, "First choice"%></b></td>
-		<td><b><%= sortable 'position_id_2', params.clone, "Second"%></b></td>
-		<td><b><%= sortable 'position_id_3', params.clone, "Third"%></td>
-		<td><b><%= sortable 'status', params.clone, "Status"%></b></td>
-		<td><b><%= sortable 'interview_time_1', params.clone, "First interview"%></b></td>
-		<td><b><%= sortable 'interview_time_2', params.clone, "Second"%></b></td>
-                <td><b><%= sortable 'interview_time_3', params.clone, "Thirds"%></b></td>
-	</tr>
-<% @applicants.each do |applicant| %>
-	<tr class=<%= cycle("alternate", "") %>>
-		<td align="right" style="padding-right: 12px">
-			<%= link_to(applicant.id, edit_applicant_path(applicant)) %>
-		</td>
-		<td><%= applicant.lastname %></td>
-		<td><%= applicant.first_position.title_no %></td>
-		<td><%= applicant.second_position ? 
-			applicant.second_position.title_no: '-' %></td>
-		<td><%= applicant.third_position ? 
-			applicant.third_position.title_no : '-' %></td>
-		<td><%= @status[applicant.status] %></td>
-		<td><%= (applicant.interview_place_1 != '' and applicant.interview_time_1) ? applicant.interview_time_1.strftime("%d.%m %H:%M") : '-' %></td>
-		<td><%= (applicant.interview_place_2 != '' and applicant.interview_time_2) ? applicant.interview_time_2.strftime("%d.%m %H:%M") : '-' %></td>
-		<td><%= (applicant.interview_place_3 != '' and applicant.interview_time_3) ? applicant.interview_time_3.strftime("%d.%m %H:%M") : '-' %></td>
-	</tr>
-<% end %>
+<table class="zebra-striped sortable">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th colspan="3">Position choices</th>
+      <th></th>
+      <th colspan="3">Position choices interview times</th>
+    </tr>
+    <tr>
+      <th class="header"><%= "ID" %></th>
+      <th class="header"><%= "Last name" %></th>
+      <th class="header"><%= "First choice"%></th>
+      <th class="header"><%= "Second"%></th>
+      <th class="header"><%= "Third"%></th>
+      <th class="header"><%= "Status"%></th>
+      <th class="header"><%= "First interview"%></th>
+      <th class="header"><%= "Second"%></th>
+      <th class="header"><%= "Thirds"%></th>
+    </tr>
+  </thead>
+  <% @applicants.each do |applicant| %>
+    <tr>
+      <td>
+        <%= link_to(applicant.id, edit_applicant_path(applicant)) %>
+      </td>
+      <td><%= applicant.lastname %></td>
+      <td><%= applicant.first_position.title_no %></td>
+      <td><%= applicant.second_position ? 
+        applicant.second_position.title_no: '-' %></td>
+      <td><%= applicant.third_position ? 
+        applicant.third_position.title_no : '-' %></td>
+      <td><%= @status[applicant.status] %></td>
+      <td><%= (applicant.interview_place_1 != '' and applicant.interview_time_1) ? applicant.interview_time_1.strftime("%d.%m %H:%M") : '-' %></td>
+      <td><%= (applicant.interview_place_2 != '' and applicant.interview_time_2) ? applicant.interview_time_2.strftime("%d.%m %H:%M") : '-' %></td>
+      <td><%= (applicant.interview_place_3 != '' and applicant.interview_time_3) ? applicant.interview_time_3.strftime("%d.%m %H:%M") : '-' %></td>
+    </tr>
+  <% end %>
 </table>
 
 <%#= will_paginate @applicants %>
