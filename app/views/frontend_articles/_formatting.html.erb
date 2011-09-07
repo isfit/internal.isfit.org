@@ -1,0 +1,74 @@
+<h2>Help</h2>
+<h3>Photos</h3>
+<p>This section describes the formatting options available in article body contents.</p>
+<div class="leftline">
+<%=collection_select("stuff", "item_id", Photo.order("created_at DESC"), :id, :description )%><br />
+<img src="nothing.jpg" id="img_pre"  alt="Preview!"><br />
+<b>Full image:</b><br />
+<div id="img_full">
+</div>
+<b>Image float right:</b><br />
+<div id="img_right">
+</div>
+<b>Image float left:</b><br />
+<div id="img_left">
+</div>
+</div>
+<h3>Formatting</h3>
+<table class="leftline">
+	<tr>
+		<td width="100"><b>Type</b></td>
+		<td width="200"><b>Usage</b></td>
+		<td><b>Example</b></td>
+	</tr>
+	<tr valign="top">
+		<td>Heading</td>
+		<td>
+			### Heading,<br /> #### Sub heading
+		</td>
+		<td>
+			<h3 style="margin:0;padding:0">Heading</h3>
+			<h4 style="margin:0;padding:0">Sub heading</h4>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td>Emphasis</td>
+		<td>
+			*emphasized text* or<br />_emphasized text_
+			<br />and<br />
+			**emphasized text** or<br />__emphasized text__
+		</td>
+		<td>
+			<em>emphasized text</em>
+			<br /><br /><br />
+			<strong>emphasized text</strong>
+		</td>
+	</tr>
+	<tr valign="top"> 
+		<td>Unordered list</td>
+		<td> - Candy<br /> - Gum<br /> - Booze</td>
+		<td>
+			<ul>
+				<li>Candy</li>
+				<li>Gum</li>
+				<li>Booze</li>
+			</ul>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td>Ordered list</td>
+		<td> 1. Candy<br /> 2. Gum<br /> 3. Booze</td>
+		<td>
+			<ol>
+				<li>Candy</li>
+				<li>Gum</li>
+				<li>Booze</li>
+			</ol>
+		</td>
+	</tr>
+	<tr>
+		<td>Link</td>
+		<td>[NTNU](http://www.ntnu.no)</td>
+		<td><a href="http://www.ntnu.no">NTNU</a></td>
+	</tr>
+</table>

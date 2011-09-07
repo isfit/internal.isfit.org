@@ -1,0 +1,9 @@
+<%url = "/images/"+ Photo.find(params[:stuff]["item_id"]).original_picture.url(:thumb)%>
+$("#img_pre").attr("src", "<%=url%>")
+<% picture_id = params[:stuff]["item_id"]
+  url = "##pic #{picture_id} 1 pic##"%>
+$("#img_full").html("<%=url%>")
+<%url = "##pic #{picture_id} 2 pic##"%>
+$("#img_right").html("<%=url%>")
+<%url = "##pic #{picture_id} 3 pic##"%>
+$("#img_left").html("<%=url%>")

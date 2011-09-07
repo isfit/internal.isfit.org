@@ -1,0 +1,69 @@
+<% form_for(@article, :url => {:tab=>params[:tab]}) do |f| %>
+  <% if @article.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+      <ul>
+      <% @article.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title_en %><br />
+    <%= f.text_field :title_en %>
+  </div>
+<!--  <div class="field">
+    <%= f.label :title_no %><br />
+    <%= f.text_field :title_no %>
+  </div> -->
+  <div class="field">
+    <%= f.label :ingress_en %><br />
+    <%= f.text_area :ingress_en %>
+  </div>
+<!--  <div class="field">
+    <%= f.label :ingress_no %><br />
+    <%= f.text_area :ingress_no %>
+  </div>-->
+  <div class="field">
+    <%= f.label :body_en %><br />
+    <%= f.text_area :body_en %>
+  </div>
+<!--  <div class="field">
+    <%= f.label :body_no %><br />
+    <%= f.text_area :body_no %>
+  </div>-->
+  <div class="field">
+    <%= f.label :list %><br />
+    <%= f.check_box :list %>
+  </div>
+  <div class="field">
+    <%= f.label :weight %><br />
+    <%= f.text_field :weight %>
+  </div>
+  <div class="field">
+    <%= f.label :deleted %><br />
+    <%= f.check_box :deleted %>
+  </div>
+  <div class="field">
+    <%= f.label :press_release %><br />
+    <%= f.check_box :press_release %>
+  </div>
+<!--  <div class="field">
+    <%= f.label :sub_title_en %><br />
+    <%= f.text_area :sub_title_en %>
+  </div>-->
+  <div class="field">
+    <%= f.label :sub_title_no %><br />
+    <%= f.text_area :sub_title_no %>
+  </div>
+  <div class="field">
+    <%= f.label :main_article %> <br />
+    <%= f.check_box :main_article %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

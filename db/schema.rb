@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110822095154) do
+ActiveRecord::Schema.define(:version => 20110904090600) do
 
   create_table "applicants", :id => false, :force => true do |t|
     t.integer  "id",                                :default => 0,     :null => false
@@ -61,6 +61,43 @@ ActiveRecord::Schema.define(:version => 20110822095154) do
     t.datetime "article_image_updated_at"
   end
 
+  create_table "frontend_articles", :force => true do |t|
+    t.string   "title_en"
+    t.string   "title_no"
+    t.text     "ingress_en"
+    t.text     "ingress_no"
+    t.text     "body_en"
+    t.text     "body_no"
+    t.integer  "weight"
+    t.boolean  "deleted"
+    t.string   "sub_title_no"
+    t.string   "sub_title_en"
+    t.string   "byline"
+    t.integer  "byline_user_id"
+    t.boolean  "mail_sent"
+    t.datetime "show_article"
+    t.boolean  "got_comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "groups", :id => false, :force => true do |t|
+    t.integer "id",                             :default => 0, :null => false
+    t.string  "name_en"
+    t.string  "name_no"
+    t.integer "section_id"
+    t.integer "festival_id"
+    t.string  "email",          :limit => 1000
+    t.string  "tag",                                           :null => false
+    t.text    "description_en"
+    t.text    "description_no"
+  end
+
+  create_table "groups_positions", :id => false, :force => true do |t|
+    t.integer "group_id"
+    t.integer "position_id"
+  end
+
   create_table "internal_tabs", :force => true do |t|
     t.string   "title"
     t.string   "tag"
@@ -74,6 +111,24 @@ ActiveRecord::Schema.define(:version => 20110822095154) do
 
   add_index "internal_tabs", ["ancestry"], :name => "index_internal_tabs_on_ancestry"
 
+  create_table "positions", :id => false, :force => true do |t|
+    t.integer "id",             :default => 0, :null => false
+    t.string  "title_en"
+    t.string  "title_no"
+    t.integer "user_id"
+    t.text    "description_en"
+    t.text    "description_no"
+    t.string  "group_dn"
+    t.integer "admission_id"
+    t.integer "group_id"
+    t.integer "number",         :default => 1, :null => false
+  end
+
+  create_table "positions_users", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "position_id", :null => false
+  end
+
   create_table "roles", :id => false, :force => true do |t|
     t.integer  "id",         :default => 0, :null => false
     t.string   "name"
@@ -86,6 +141,17 @@ ActiveRecord::Schema.define(:version => 20110822095154) do
     t.integer  "user_id",    :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "sections", :id => false, :force => true do |t|
+    t.integer "id",                             :default => 0, :null => false
+    t.string  "name_en"
+    t.string  "name_no"
+    t.integer "festival_id"
+    t.string  "email",          :limit => 1000
+    t.string  "tag",                                           :null => false
+    t.text    "description_en"
+    t.text    "description_no"
   end
 
   create_table "static_pages", :force => true do |t|

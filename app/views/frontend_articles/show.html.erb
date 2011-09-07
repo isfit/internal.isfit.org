@@ -1,0 +1,38 @@
+<style>
+.photo_left {
+  float:left;
+  width:253px;
+  padding-right: 10px;
+}
+
+.photo_right {
+  float:right;
+  width:253px;
+  padding-left: 10px;
+}
+</style>
+<div id="article" style="width:530px;color: #333333;line-height:1;font: 14px/1.5 'Georgia','Arial'">
+<h3>
+    <%= @article.title_no %>
+</h3>
+<p style="line-height:1;font: 14px/1.5 'Georgia','Arial'">
+<%=image_tag "frontend_article_images/"+@article.id.to_s + "_3.jpg"%>
+<%if @article.image_credits != ""%>
+  Foto: <%=@article.image_credits%><br />
+<%end%>
+<%=@article.image_text_no%>
+</p>
+<p style="line-height:1;font: 14px/1.5 'Georgia','Arial'">
+<%=raw @article.byline%>
+<br>
+<%=  @article.created_at.strftime("%F")%>
+</p>
+<p style="line-height:1;font: 14px/1.5 'Georgia','Arial'">
+  <b><%=raw format( @article.ingress_no) %></b>
+</p>
+<br />
+<p style="text-align:justify;line-height:1;font: 14px/1.5 'Georgia','Arial'">
+    <%= raw format(@article.body_no) %>
+</p>
+
+

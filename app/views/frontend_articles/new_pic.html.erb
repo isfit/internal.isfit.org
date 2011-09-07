@@ -1,0 +1,21 @@
+<h1>Choose picture</h1>
+<!--<h4>Add new</h4>-->
+<%form_for(@photo , :html =>
+{:multipart => true}, :url => { :tab=>params[:tab], :action => "crop_main" , :id=>params[:id] }) do |f|%>
+<%#= f.label :description %><br/>
+<%#= f.text_field :description %> <br />
+<%#= f.label :image_text_no %><br />
+<%#= f.text_field :image_text_no %><br />
+<%#= f.label :image_text_en %><br />
+<%#= f.text_field :image_text_en %><br />
+<%#= f.label :credits %><br />
+<%#= f.text_field :credits%><br />
+<%#= f.label :original_picture %><br />
+<%#= f.file_field :original_picture %><br />
+<br />
+<h4>Choose excisting</h4>
+<%=collection_select("stuff", "item_id", @pictures, :id, :description )%><br />
+<br />
+<img src="" id="img_pre" alt="Preview!"><br />
+<%=f.submit "Go to cutting"%> <br />
+<%end%>

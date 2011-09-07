@@ -1,0 +1,37 @@
+<script>
+
+$(document).ready(function() {
+    $("#stuff_item_id").change(function() {
+      temp = $(this).val();
+      str = "/~skjervum/internal.isfit.org/2011/public/images/article/photos/original_pictures/"+temp+"/thumb.jpg"; 
+      //    temp2 = $("#img_pre").attr("src");
+      $("#img_pre").attr("src", str);
+      url = "##pic "+temp+" 1 pic##"
+      $("#img_full").html(url)
+      url = "##pic "+temp+" 2 pic##"
+      $("#img_right").html(url)
+      url = "##pic "+temp+" 3 pic##"
+      $("#img_left").html(url)
+      //$.post("update_picture.js", $(this).serialize(), null, "script");
+      return false;
+      })
+    })
+</script>
+
+<h1>New article</h1>
+<%= render :partial => 'form' %>
+
+<%=collection_select("stuff", "item_id", @pictures, :id, :description )%>
+<img src="nothing.jpg" id="img_pre" style="float:right" alt="Preview!">
+<h5>Full image:</h5>
+<div id="img_full">
+</div>
+<h5>Image float right:</h5>
+<div id="img_right">
+</div>
+<h5>Image float left:</h5>
+<div id="img_left">
+</div>
+
+
+<%= link_to 'Back', frontend_articles_path %>
