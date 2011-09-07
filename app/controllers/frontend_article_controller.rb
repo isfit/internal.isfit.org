@@ -1,5 +1,4 @@
 class FrontendArticleController < ApplicationController
-  helper :sort
 
   def index
     @articles = FrontendArticle.where(deleted:0).order(:desc)
