@@ -22,4 +22,6 @@ $(function() {
     $(this).removeClass('open');
   });
 
+  $('.sortable').tablesorter({ sortList: [[1,0]] });
+
 });
