@@ -11,8 +11,8 @@
   <%@no_apply.each do |p|%>
     <tr class="article_tr<%= row % 2 == 1 ? ' alternate' : '' %>">
       <td><%=p.title_en%></td>
-      <td><center><%=p.group.name_en%></center></td>
-      <td><center><%=p.group.section.name_en%></center></td>
+      <td><center><%=p.groups.first.name_en if p.groups.first%></center></td>
+      <td><center><%=p.groups.first.section.name_en if p.groups.first%></center></td>
     </tr>
     <%row +=1%>
   <%end%>
