@@ -13,7 +13,7 @@ class ApplicantsController < ApplicationController
     @positions.each do |p|
       @stat[p.title_en] = 5*Float((@applicants.find_all {|a| a.position_id_1 == p.id}).size)/Float(p.number) + 3*Float((@applicants.find_all {|a| a.position_id_2 == p.id}).size)/Float(p.number)+ Float((@applicants.find_all {|a| a.position_id_3 == p.id}).size)/Float(p.number)
     end
-    @all_pos = Position.where(:admission_id => 3)
+    @all_pos = Position.where(:admission_id => 5)
     @no_apply = []
 
     @all_pos.each do |p|
@@ -84,5 +84,4 @@ class ApplicantsController < ApplicationController
       4 => 'Recruited',
       5 => 'Not of interest' }
   end
-
 end 
