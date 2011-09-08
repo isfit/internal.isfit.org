@@ -3,7 +3,7 @@ class ApplicantsController < ApplicationController
 
 
   def statistics
-    @positions = Position.where(:admission_id =>3, :number => 1..100)
+    @positions = Position.where(:admission_id =>5, :number => 1..100)
     @applicants = Applicant.all
     @simple_stat = Hash.new
     @positions.each do |p|
