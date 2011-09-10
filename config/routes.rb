@@ -5,9 +5,9 @@ InternalIsfitOrg::Application.routes.draw do
 
   post "pads/create", :as => :create_pad
 
-  get "pads/:hash" => "pads#show", :as => "pad"
+  get "pads/:hexid" => "pads#show", :as => "pad"
 
-  get "pads/:hash/delete" => "pads#delete", :as => "delete_pad"
+  get "pads/:hexid/delete" => "pads#delete", :as => "delete_pad"
 
   resources :applicants do
     collection do 

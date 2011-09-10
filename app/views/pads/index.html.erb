@@ -5,9 +5,9 @@
 <% @pads.each do |pad| %>
   <div class="pad">
     <div class="action-menu">
-      <%= link_to "Show", pad_path(pad.hash), :class => "btn" %>
+      <%= link_to "Show", pad_path(pad.hexid), :class => "btn" %>
     </div>
-    <h1><%= pad.hash %></h1>
+    <h1><%= pad.hexid %></h1>
     <p>Owned by: ...<br>
        Shared with: ..., ...
     </p>

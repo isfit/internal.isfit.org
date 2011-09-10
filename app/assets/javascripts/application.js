@@ -25,10 +25,10 @@ $(function() {
   $('.sortable').tablesorter({ sortList: [[1,0]] });
 
   $('.show-pad').pad({
-    'padId':$(this).attr('id'),
+    'padId':$('.show-pad').attr('id'),
     'showChat':'true',
     'showControls':'true',
-    'userName': $(this).data().user,
+    'userName': $('.show-pad').data().user,
   });
 
 });
