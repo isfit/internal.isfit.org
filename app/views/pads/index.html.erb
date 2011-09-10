@@ -1,0 +1,15 @@
+<h1>Pads (BETA)</h1>
+<p>Pads are a collaborative sharing tool. For now, all pads are public. Pads are currently in BETA.</p>
+<div class="pads">
+  <%= link_to "Create pad", create_pad_path, :method => :post, :class => "primary btn" %>
+<% @pads.each do |pad| %>
+  <div class="pad">
+    <div class="action-menu">
+      <%= link_to "Show", pad_path(pad.hash), :class => "btn" %>
+    </div>
+    <h1><%= pad.hash %></h1>
+    <p>Owned by: ...<br>
+       Shared with: ..., ...
+    </p>
+  </div>
+<% end %>

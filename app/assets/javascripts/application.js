@@ -24,4 +24,11 @@ $(function() {
 
   $('.sortable').tablesorter({ sortList: [[1,0]] });
 
+  $('.show-pad').pad({
+    'padId':$(this).attr('id'),
+    'showChat':'true',
+    'showControls':'true',
+    'userName': $(this).data().user,
+  });
+
 });

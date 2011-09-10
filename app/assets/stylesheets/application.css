@@ -6,4 +6,5 @@
  *= require "bootstrap/bootstrap-1.2.0"
  *= require "application/all"
  *= require "articles"
+ *= require "pads"
 */

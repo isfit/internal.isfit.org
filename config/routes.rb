@@ -1,6 +1,14 @@
 InternalIsfitOrg::Application.routes.draw do
 
 
+  get "pads" => "pads#index"
+
+  post "pads/create", :as => :create_pad
+
+  get "pads/:hash" => "pads#show", :as => "pad"
+
+  get "pads/:hash/delete" => "pads#delete", :as => "delete_pad"
+
   resources :applicants do
     collection do 
       get 'statistics'

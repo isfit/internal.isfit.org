@@ -1,0 +1,12 @@
+// Place all the styles related to the pads controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.show-pad iframe {
+  height: 70%;
+  width: 100%;
+  border: 1px;
+}
+#editorcontainerbox {
+  width: 100%;
+  height: 100em;
+}
