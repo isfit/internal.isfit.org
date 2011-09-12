@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
     "#{given_name} #{family_name}"
   end
 
+  def full_name_reversed
+    "#{family_name}, #{given_name}"
+  end
+
   def role?(r)
     role = Role.where(name:r).first
     roles.include?(role)

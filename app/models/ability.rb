@@ -4,6 +4,10 @@ class Ability
   def initialize(user)
     if user.role?(:admin)
       can :manage, :all
+    else
+      can :manage, Account
+      can :read, StaticPage
+      can :read, Article
     end
 
     # Define abilities for the passed in user here. For example:

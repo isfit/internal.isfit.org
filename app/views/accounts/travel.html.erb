@@ -1,0 +1,148 @@
+<script type="text/javascript">
+	var rowCount = 1;
+
+	function addRow() {
+		rowCount++;
+
+		var date_col = document.getElementById("date_col");
+		var route_col = document.getElementById("route_col");
+		var means_col = document.getElementById("means_col");
+		var amount_col = document.getElementById("amount_col");
+
+		var date_input = document.createElement("INPUT");
+		date_input.setAttribute("type", "text");
+		date_input.setAttribute("id", "travel_date" + rowCount);
+		date_input.setAttribute("name", "travel[date" + rowCount + "]");
+		date_input.setAttribute("class", "date");
+
+		var route_input = document.createElement("INPUT");
+		route_input.setAttribute("type", "text");
+		route_input.setAttribute("id", "travel_route" + rowCount);
+		route_input.setAttribute("name", "travel[route" + rowCount + "]");
+		route_input.setAttribute("class", "route");
+
+		var means_input = document.createElement("INPUT");
+		means_input.setAttribute("type", "text");
+		means_input.setAttribute("id", "travel_means" + rowCount);
+		means_input.setAttribute("name", "travel[means" + rowCount + "]");
+		means_input.setAttribute("class", "means");
+		
+		var amount_input = document.createElement("INPUT");
+		amount_input.setAttribute("type", "text");
+		amount_input.setAttribute("id", "travel_amount" + rowCount);
+		amount_input.setAttribute("name", "travel[amount" + rowCount + "]");
+		amount_input.setAttribute("class", "amount");
+
+		date_col.appendChild(date_input);
+		route_col.appendChild(route_input);
+		means_col.appendChild(means_input);
+		amount_col.appendChild(amount_input);
+	}
+
+	function removeRow() {
+		if (rowCount > 1) {
+			var date_col = document.getElementById("date_col");
+			var route_col = document.getElementById("route_col");
+			var means_col = document.getElementById("means_col");
+			var amount_col = document.getElementById("amount_col");
+
+			date_col.removeChild(date_col.lastChild);
+			route_col.removeChild(route_col.lastChild);
+			means_col.removeChild(means_col.lastChild);
+			amount_col.removeChild(amount_col.lastChild);
+
+			rowCount--;
+		}
+	}
+</script>
+<style type="text/css">
+	input.date
+	{
+		margin-bottom: 4px;
+		width: 130px;
+	}
+	input.route
+	{
+		margin-bottom: 4px;
+		margin-right: 14px;
+		width: 250px;
+	}
+	input.means
+	{
+		margin-bottom: 4px;
+		margin-right: 14px;
+		width: 130px;
+	}
+	input.amount
+	{
+		margin-bottom: 4px;
+		width: 130px;
+	}
+</style>
+<h1>Travel refund form</h1>
+<p>Fill in the form below and press "Create form" to
+generate a printable travel refund form.</p>
+<%= form_tag print_travel_accounts_path do %>
+<table width="725">
+	<tr>
+		<td width="150">Date:</td>
+		<td colspan="3"><%= Time.now.strftime("%d.%m.%Y") %></td>
+	</tr>
+	<tr>
+		<td>Name:</td>
+		<td colspan="3"><%= current_user.full_name_reversed %></td>
+	</tr>
+	<tr><td colspan="4">&nbsp;</td></tr>
+	<tr>
+		<td>Unit:</td>
+		<td colspan="3">
+		  <%= select(:voucher, :unit, @unit_choices_text) %></td>
+	</tr>
+	<tr><td colspan="4">&nbsp;</td></tr>
+	<tr>
+		<td>Refund account number:</td>
+		<td colspan="3">
+			<%= text_field(:voucher, :account_no, :style => 'width: 250px') %>
+		</td>
+	</tr>
+	<tr><td colspan="4">&nbsp;</td></tr>
+	<tr>
+		<td>Purpose of travel:</td>
+		<td colspan="3">
+			<%= text_field(:voucher, :purpose, :style => 'width: 250px') %>
+		</td>
+	</tr>
+	<tr><td colspan="4">&nbsp;</td></tr>
+	<tr>
+		<td>Attachments:</td>
+		<td colspan="3"><%= select(:voucher, :attachments, [0,1,2,3,4,5,6,7,8,9,10], {}, 
+			{:style => 'width: 50px'}) %></td>
+	</tr>
+	<tr><td colspan="4">&nbsp;</td></tr>
+	<tr valign="top">
+		<td id="date_col">
+			Date:<br />
+			<%= text_field(:travel, :date1, :class => 'date') %>
+		</td>
+		<td id="route_col">
+			Travel route:<br />
+			<%= text_field(:travel, :route1, :class => 'route') %>
+		</td>
+		<td id="means_col">
+			Means of transport:<br />
+			<%= text_field(:travel, :means1, :class => 'means') %>
+		</td>
+		<td id="amount_col">
+			Amount (NOK):<br />
+			<%= text_field(:travel, :amount1, :class => 'amount') %>
+		</td>
+	</tr>
+	<tr>
+		<td><br /><%= submit_tag('Create form') %></td>
+		<td align="right" colspan="3"><br />
+			<input type="button" value="Add row" onclick="addRow();" />
+			<input type="button" value="Remove row" onclick="removeRow();" />
+		</td>
+	</tr>
+</table>
+<% end %>

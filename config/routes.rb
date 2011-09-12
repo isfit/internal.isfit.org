@@ -1,6 +1,16 @@
 InternalIsfitOrg::Application.routes.draw do
 
 
+  resources :accounts do
+    collection do
+      get 'travel'
+      get 'voucher'
+      post 'print_travel'
+      post 'print_voucher'
+    end
+  end
+
+
   get "pads" => "pads#index"
 
   post "pads/create", :as => :create_pad
