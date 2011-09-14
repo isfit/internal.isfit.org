@@ -1,7 +1,7 @@
-class FrontendArticleController < ApplicationController
+class FrontendArticlesController < ApplicationController
 
   def index
-    @articles = FrontendArticle.where(deleted:0).order(:desc)
+    @articles = FrontendArticle.where(deleted: 0).order('weight desc')
   end
 
   def show

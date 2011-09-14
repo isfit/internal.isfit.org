@@ -31,4 +31,6 @@ $(function() {
     'userName': $('.show-pad').data().user,
   });
 
+  $('.chosen-select').chosen();
+
 });
