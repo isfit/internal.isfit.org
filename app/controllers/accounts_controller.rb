@@ -1,18 +1,15 @@
 class AccountsController < ApplicationController
   # GET /accounts
-  # GET /accounts.json
   def index
     @accounts = Account.all
   end
 
   # GET /accounts/1
-  # GET /accounts/1.json
   def show
     @account = Account.find(params[:id])
   end
 
   # GET /accounts/new
-  # GET /accounts/new.json
   def new
     @account = Account.new
   end
@@ -23,7 +20,6 @@ class AccountsController < ApplicationController
   end
 
   # POST /accounts
-  # POST /accounts.json
   def create
     @account = Account.new(params[:account])
     if @account.save
@@ -34,7 +30,6 @@ class AccountsController < ApplicationController
   end
 
   # PUT /accounts/1
-  # PUT /accounts/1.json
   def update
     @account = Account.find(params[:id])
     if @account.update_attributes(params[:account])
@@ -45,7 +40,6 @@ class AccountsController < ApplicationController
   end
 
   # DELETE /accounts/1
-  # DELETE /accounts/1.json
   def destroy
     @account = Account.find(params[:id])
     @account.destroy

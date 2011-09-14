@@ -2,36 +2,44 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.0'
 
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
-gem 'sqlite3'
+#gem 'sqlite3'
 
 # Asset template engines
-gem 'sass-rails', ">3.1.0.rc"
-gem 'coffee-rails', ">3.1.0.rc"
 gem 'compass', ">=0.12.alpha.0"
-gem 'coffee-script'
-gem 'uglifier'
 
 gem 'jquery-rails'
 gem 'memcache-client'
 gem 'therubyracer'
 
 
+group :assets do
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
+end
+
+
 # Spesifikke gems her
-# Deploy with Capistrano
 gem 'mysql2'
 gem 'capistrano'
 gem 'cancan'
-gem 'rspec-rails'
-gem 'nifty-generators'
 gem 'ancestry'
 gem 'paperclip'
 gem 'simple-navigation'
 
 # To use debugger
-#gem 'ruby-debug19', :require => 'ruby-debug'
 
 gem "bcrypt-ruby", :require => "bcrypt"
-gem "mocha", :group => :test
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'webrat'
+  gem 'nifty-generators'
+  gem 'mocha'
+	gem 'ruby-debug19', :require => 'ruby-debug'
+end
+
+group :test do
+  # Pretty printed test output
+  gem 'turn', :require => false
+end
