@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110912140725) do
+ActiveRecord::Schema.define(:version => 20110914160003) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20110912140725) do
     t.boolean  "got_comments"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "list"
   end
 
   create_table "groups", :id => false, :force => true do |t|
@@ -125,6 +126,35 @@ ActiveRecord::Schema.define(:version => 20110912140725) do
     t.string   "hexid"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "photos", :force => true do |t|
+    t.string   "image_text_en"
+    t.string   "image_text_no"
+    t.string   "description"
+    t.string   "credits"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "original_picture_file_name"
+    t.string   "original_picture_content_type"
+    t.integer  "original_picture_file_size"
+    t.datetime "original_picture_updated_at"
+    t.string   "half_article_picture_file_name"
+    t.string   "half_article_picture_content_type"
+    t.integer  "half_article_picture_file_size"
+    t.datetime "half_article_picture_updated_at"
+    t.string   "full_article_picture_file_name"
+    t.string   "full_article_picture_content_type"
+    t.integer  "full_article_picture_file_size"
+    t.datetime "full_article_picture_updated_at"
+    t.string   "spp_one_third_article_picture_file_name"
+    t.string   "spp_one_third_article_picture_content_type"
+    t.integer  "spp_one_third_article_picture_file_size"
+    t.datetime "spp_one_third_article_picture_updated_at"
+    t.string   "spp_full_article_picture_file_name"
+    t.string   "spp_full_article_picture_content_type"
+    t.integer  "spp_full_article_picture_file_size"
+    t.datetime "spp_full_article_picture_updated_at"
   end
 
   create_table "positions", :id => false, :force => true do |t|

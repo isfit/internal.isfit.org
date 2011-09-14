@@ -38,6 +38,9 @@ form {
     @include border-radius(5px);
     @include single-box-shadow(darken(white, 10%), 0,0,5px, 0px, inset);
   }
+  textarea.small {
+    height: 5em;
+  }
   select:focus, input:focus, textarea:focus {
     outline: none;
     border-color: rgba(82, 168, 236, 0.8);

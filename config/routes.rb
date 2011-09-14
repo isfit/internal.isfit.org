@@ -1,5 +1,6 @@
 InternalIsfitOrg::Application.routes.draw do
 
+  resources :frontend_articles
 
   resources :accounts do
     collection do
@@ -10,13 +11,10 @@ InternalIsfitOrg::Application.routes.draw do
     end
   end
 
-
+  # pads
   get "pads" => "pads#index"
-
   post "pads/create", :as => :create_pad
-
   get "pads/:hexid" => "pads#show", :as => "pad"
-
   get "pads/:hexid/delete" => "pads#delete", :as => "delete_pad"
 
   resources :applicants do
