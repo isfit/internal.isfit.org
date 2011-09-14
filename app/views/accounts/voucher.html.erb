@@ -1,52 +1,3 @@
-<script type="text/javascript">
-	var rowCount = 1;
-
-	function addRow() {
-		rowCount++;
-
-		var amount_col = document.getElementById("amount_col");
-		var desc_col = document.getElementById("desc_col");
-		
-		var amount_input = document.createElement("INPUT");
-		amount_input.setAttribute("type", "text");
-		amount_input.setAttribute("id", "voucher_amount" + rowCount);
-		amount_input.setAttribute("name", "voucher[amount" + rowCount + "]");
-		amount_input.setAttribute("class", "amount");
-
-		var desc_input = document.createElement("INPUT");
-		desc_input.setAttribute("type", "text");
-		desc_input.setAttribute("id", "voucher_description" + rowCount);
-		desc_input.setAttribute("name", "voucher[description" + rowCount + "]");
-		desc_input.setAttribute("class", "description");
-
-		amount_col.appendChild(amount_input);
-		desc_col.appendChild(desc_input);
-	}
-
-	function removeRow() {
-		if (rowCount > 1) {
-			var amount_col = document.getElementById("amount_col");
-			var desc_col = document.getElementById("desc_col");
-
-			amount_col.removeChild(amount_col.lastChild);
-			desc_col.removeChild(desc_col.lastChild);
-
-			rowCount--;
-		}
-	}
-</script>
-<style type="text/css">
-	input.amount
-	{
-		margin-bottom: 4px;
-		width: 120px;
-	}
-	input.description
-	{
-		margin-bottom: 4px;
-		width: 250px;
-	}
-</style>
 <h1>Voucher form</h1>
 <p>Fill in the form below and press "Create form" to
 generate a printable voucher form.</p>
@@ -81,21 +32,21 @@ generate a printable voucher form.</p>
 		<td><%= select(:voucher, :attachments, [0,1,2,3,4,5,6,7,8,9,10], {}, 
 			{:style => 'width: 50px'}) %><br /><br /></td>
 	</tr>
-	<tr valign="top">
+	<tr valign="top" class='addline'>
 		<td id="amount_col">
 			Amount (NOK):<br />
-			<%= text_field(:voucher, :amount1, :class => 'amount') %>
+			<%= text_field(:voucher, :amount1, :class => 'amount', 'data-number' => '1') %>
 		</td>
 		<td id="desc_col">
 			Description:<br />
-			<%= text_field(:voucher, :description1, :class => 'description') %>
+			<%= text_field(:voucher, :description1, :class => 'description', 'data-number' => '1') %>
 		</td>
 	</tr>
 	<tr>
 		<td><br /><%= submit_tag('Create form') %></td>
 		<td align="right"><br />
-			<input type="button" value="Add row" onclick="addRow();" />
-			<input type="button" value="Remove row" onclick="removeRow();" />
+			<input type="button" class='addrow' value="Add row" />
+			<input type="button" class='removerow' value="Remove row"  />
 		</td>
 	</tr>
 </table>
