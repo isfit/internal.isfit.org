@@ -25,7 +25,6 @@ gem 'capistrano'
 gem 'cancan'
 gem 'ancestry'
 gem 'paperclip'
-gem 'simple-navigation'
 
 # To use debugger
 
@@ -36,7 +35,7 @@ group :development, :test do
   gem 'webrat'
   gem 'nifty-generators'
   gem 'mocha'
-	gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'ruby-debug19', :require => 'ruby-debug'
 end
 
 group :test do
