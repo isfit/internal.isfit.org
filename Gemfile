@@ -12,11 +12,9 @@ gem 'memcache-client'
 gem 'therubyracer'
 
 
-group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
-end
 
 
 # Spesifikke gems her
