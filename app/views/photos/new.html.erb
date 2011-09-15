@@ -1,0 +1,15 @@
+<h1>New picture</h1>
+
+<%= form_for(@picture ) do |f|%>
+  <%= f.label :description %><br/>
+  <%= f.text_field :description %> <br />
+  <%= f.label :image_text_no %><br />
+  <%= f.text_field :image_text_no %><br />
+  <%= f.label :image_text_en %><br />
+  <%= f.text_field :image_text_en %><br />
+  <%= f.label :credits %><br />
+  <%= f.text_field :credits%><br />
+  <%= f.label :original_picture %><br />
+  <%= f.file_field :original_picture %><br />
+  <%= f.submit "Go to cutting" %> 
+<%end%>

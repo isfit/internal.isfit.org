@@ -10,7 +10,8 @@ gem 'compass', ">=0.12.alpha.0"
 gem 'jquery-rails'
 gem 'memcache-client'
 gem 'therubyracer'
-
+gem 'mini_magick'
+#gem 'rmagick'
 
   gem 'sass-rails'
   gem 'coffee-rails'

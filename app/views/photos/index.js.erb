@@ -1,0 +1,6 @@
+//alert("<%=@picture.inspect%>");
+<%url = "/images/"+ Picture.find(params[:stuff]["item_id"]).original_picture.url%>
+$("#img_pre").attr("src", "<%=url%>")
+$("#img_div").html("<%=url%>")
+
+

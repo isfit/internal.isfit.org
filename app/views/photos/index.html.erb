@@ -1,0 +1,47 @@
+<%content_for :script do %>
+<script>
+$(document).ready(function() {
+  $("#stuff_item_id").change(function() {
+    temp = $(this).val();
+    str = "/~skjervum/internal.isfit.org_rails3/i2011/public/images/article/photos/original_pictures/"+temp+"/thumb.jpg"; 
+    $("#img_pre").attr("src", str);
+    $.post("index.js", $(this).serialize(), null, "script");
+    return false;
+  })
+})
+</script>
+<%end%>
+<h1>All pictures:</h1>
+<table cellspacing="0" cellpadding="4" style="border: 1px solid #ccc">
+  <tr>
+    <td width="200"><b>Description</b></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <% row = 1 %>
+  <% @photos.each do |photo| %>
+    <tr class="article_tr<%= row % 2 == 1 ? ' alternate' : '' %>">
+      <td><%= photo.description %></td>
+      <td>
+        <%= link_to(image_tag("icon/edit.png",
+                              :alt => "E", :title => "Edit", :border => 0),
+                              edit_photo_path(photo)) %>
+                            </td>
+                            <td>
+                              <%= link_to(image_tag("icon/trash.png",
+                                                    :alt => "Delete", :title => "Delete",:border => 0), 
+                                                    photo_path(photo),
+                                                   :method=>:delete) %>
+                                                   <!--Doesn't work atm, commits anyway :confirm => 'Are you sure you want to delete this article?'-->
+                                                  </td>
+                                                </tr>
+                                                <% row += 1 %>
+                                              <% end %>
+                                            </table>
+
+
+
+
+                                            <%=collection_select("stuff", "item_id", @photos, :id, :description )%><br />
+                                            <img src="" id="img_pre" alt="Preview Here">
+

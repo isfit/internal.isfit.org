@@ -1,0 +1,34 @@
+<h1>Crop picture here:</h1>
+<h3>Full article<h3>
+<%=image_tag @picurl, id:"full" %>
+<br />
+<h3>Half article</h3>
+<%=image_tag @picurl, id:"half" %>
+<br />
+<h3>Student Peace Prize 1/3 article</h3>
+<%=image_tag @picurl, id:"spp_one_third" %>
+<br />
+<h3>Student Peace Prize full article</h3>
+<%=image_tag @picurl, id:"spp_full" %>
+
+<p></p>
+
+<%=form_tag( {:action => "crop_create", :picture => @picture.id}) do  %>
+  <%= hidden_field_tag :x1, ""%>
+  <%= hidden_field_tag :y1, ""%>
+  <%= hidden_field_tag :x2, ""%>
+  <%= hidden_field_tag :y2, ""%>
+  <%= hidden_field_tag :x1_1, ""%>
+  <%= hidden_field_tag :y1_1, ""%>
+  <%= hidden_field_tag :x2_1, ""%>
+  <%= hidden_field_tag :y2_1, ""%> 
+  <%= hidden_field_tag :x1_2, ""%>
+  <%= hidden_field_tag :y1_2, ""%>
+  <%= hidden_field_tag :x2_2, ""%>
+  <%= hidden_field_tag :y2_2, ""%>
+  <%= hidden_field_tag :x1_3, ""%>
+  <%= hidden_field_tag :y1_3, ""%>
+  <%= hidden_field_tag :x2_3, ""%>
+  <%= hidden_field_tag :y2_3, ""%> 
+  <%= submit_tag 'Save' %>
+<%end%>

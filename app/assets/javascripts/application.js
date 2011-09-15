@@ -28,7 +28,7 @@ $(function() {
     'padId':$('.show-pad').attr('id'),
     'showChat':'true',
     'showControls':'true',
-    'userName': $('.show-pad').data().user,
+    'userName': $('.show-pad').data().user
   });
 
   $('.chosen-select').chosen();
