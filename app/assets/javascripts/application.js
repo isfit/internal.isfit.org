@@ -6,31 +6,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_self
 //= require_tree .
+//= require_self
 
 $(function() {
-
-  // Closes errors when clicking a.close
-  $('a.close').click(function() {
-    $(this).parent().hide();
-  });
-
-  $('li.menu').toggle(function() {
-    $(this).addClass('open');
-  }, function() {
-    $(this).removeClass('open');
-  });
-
   $('.sortable').tablesorter({ sortList: [[1,0]] });
 
-  $('.show-pad').pad({
-    'padId':$('.show-pad').attr('id'),
-    'showChat':'true',
-    'showControls':'true',
-    'userName': $('.show-pad').data().user
-  });
-
   $('.chosen-select').chosen();
-
 });

@@ -12,30 +12,18 @@ The rest of the articles will be listed under archive</p>
     <td>Created</td>
     <td>Priority</td>
     <td>Visible</td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td ></td>
   </tr>
   <% @articles.each do |article| %>
     <tr class="article_tr<%= cycle(' alternate', '') %>">
       <td><%= article.title_en.blank? ? "<em>No English version</em>" : article.title_en %> </td>
       <td><%= article.title_no.blank? ? "<em>No Norwegian version</em>" : article.title_no  %></td>
 		  <td><%= article.created_at.strftime("%d %b %Y") %></td>
-		  <td><%#= link_to("up", moveup_frontend_article_path(article))%> <%#=link_to("down", movedown_frontend_article_path(article))%></td>
+		  <td><%= link_to("up", moveup_frontend_article_path(article), class: "btn")%> <%=link_to("down", movedown_frontend_article_path(article), class: "btn")%></td>
 		  <td><%= article.list ? "Yes" : "No" %></td>
-      <td>
-          <%= link_to(image_tag("icon/magnifier.png",
-                :alt => "S", :title => "Show", :border => 0),
-                article) %>
-      </td>
-      <td>
-          <%= link_to(image_tag("icon/edit.png",
-                :alt => "E", :title => "Edit", :border => 0),
-                edit_frontend_article_path(article)) %>
-      </td>
-		  <td>
-            <%= link_to(image_tag("icon/trash.png", :alt => "Delete", :title => "Delete",:border => 0), 
-				      article, :method => :delete, :confirm => 'Are you sure you want to delete this article?') %>
+      <td><%= link_to "Show", article, class: "btn info" %>
+          <%= link_to("Edit", edit_frontend_article_path(article), class: "btn") %>
+          <%= link_to("Delete", article, :class => "btn danger", :method => :delete, :confirm => 'Are you sure you want to delete this article?') %>
       </td>
     </tr>
   <% end %>

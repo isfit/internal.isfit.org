@@ -6,7 +6,7 @@ $('.addrow').click(function() {
 		$.each(row.children(), function(index, line) {
       var child = $(line).children('input').last();
       var id = parseInt($(line).children('input').last().data('number')) +1;
-      $(line).append("<input id='voucher_"+child.attr('class')+""+id+"' class='"+child.attr('class')+"' data-number='"+id+"' type='text' name='voucher["+child.attr('class')+""+id+"]'>")
+      $(line).append("<br><input id='voucher_"+child.attr('class')+""+id+"' class='"+child.attr('class')+"' data-number='"+id+"' type='text' name='voucher["+child.attr('class')+""+id+"]'>")
     });
 });
 
