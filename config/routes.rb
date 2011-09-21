@@ -1,6 +1,11 @@
 InternalIsfitOrg::Application.routes.draw do
 
-  resources :frontend_articles
+  resources :frontend_articles do
+    member do
+      get 'moveup'
+      get 'movedown'
+    end
+  end
 
   resources :accounts do
     collection do

@@ -12,12 +12,5 @@
 $(function() {
   $('.sortable').tablesorter({ sortList: [[1,0]] });
 
-  $('.show-pad').pad({
-    'padId':$('.show-pad').attr('id'),
-    'showChat':'true',
-    'showControls':'true',
-    'userName': $('.show-pad').data().user
-  });
-
   $('.chosen-select').chosen();
 });

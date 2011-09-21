@@ -89,125 +89,113 @@ class FrontendArticlesController < ApplicationController
   # POST /articles
   # POST /articles.xml
   def create
-    func = current_user.id
-    byline = "<a href=\"mailto:#{func.username}@isfit.org\">#{func.firstname} #{func.lastname}</a>"
     saved = false
-    if (@article = FrontendArticle.find(params[:id])) != nil
-      @article.byline = byline
-      @article.byline_func_id = params[:byline_func][:func].to_i
-      @article.show_article = params[:show_article]+" "+params[:show_article_time]
-      if FrontendArticle.all.count == 1
-        #@article.weight = 1
-      else
-        #@article.weight = FrontendArticle.find(:first, :order => "weight DESC").weight+1
-      end
-      if @article.update_attributes(params[:article])
-        saved = true
-      end
+    @article = FrontendArticle.new(params[:frontend_article])
+    @article.deleted = 0
+    @article.byline = ""
+    @article.byline_user_id = current_user
+    if FrontendArticle.count == 1
+      @article.weight = 1
     else
-      @article = FrontendArticle.new(params[:article])
-      @article.byline = byline
-      @article.byline_func_id = params[:byline_func][:func].to_i
-            if @article.save
-        saved = true
-      end
+      @article.weight = FrontendArticle.where(deleted: 0).order("weight desc").limit(1).first.weight + 1
+    end
+    if @article.save
+      saved = true
     end
 
-    respond_to do |format|
-      if saved
-        if @article.mail_sent != 1
-          Emailer.editorial_mail(@article).deliver
-          @article.mail_sent = 1
-          @article.save
-        end
-        format.html { redirect_to(:tab => "workroom", :action=>"index", :notice => 'Article was successfully created.') }
-        format.xml  { render :xml => @article, :status => :created, :location => @article }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @article.errors, :status => :unprocessable_entity }
-      end
+  respond_to do |format|
+    if saved
+#      if @article.mail_sent != 1
+#        Emailer.editorial_mail(@article).deliver
+#        @article.mail_sent = 1
+#        @article.save
+#      end
+      format.html { redirect_to(:action=>"index", :notice => 'Article was successfully created.') }
+    else
+      format.html { render :action => "edit" }
     end
   end
+end
 
-  def article_image(picture_id, type)
-    picture = Photo.find_by_id(picture_id)
-    url = "<div><img src =/images/#{picture.full_article_picture.url} /></div>"
-  end
+def article_image(picture_id, type)
+  picture = Photo.find_by_id(picture_id)
+  url = "<div><img src =/images/#{picture.full_article_picture.url} /></div>"
+end
 
 
-  # PUT /articles/1
-  # PUT /articles/1.xml
-  def update
-    @article = FrontendArticle.find(params[:id])
-    respond_to do |format|
-      if @article.update_attributes(params[:article])
-        format.html { redirect_to(@article, :notice => 'Article was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @article.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /articles/1
-  # DELETE /articles/1.xml
-  def delete
-    @article = FrontendArticle.find(params[:id])
-    @article.deleted = 1
-    @article.save
-
-    respond_to do |format|
-      format.html { redirect_to(:action=>"index") }
+# PUT /articles/1
+# PUT /articles/1.xml
+def update
+  @article = FrontendArticle.find(params[:id])
+  respond_to do |format|
+    if @article.update_attributes(params[:article])
+      format.html { redirect_to(@article, :notice => 'Article was successfully updated.') }
       format.xml  { head :ok }
-    end
-  end
-
-  def moveup
-    current = FrontendArticle.find(params[:id])
-    if current != FrontendArticle.find(:first, :order => "weight DESC") && FrontendArticle.get_all_not_deleted.count > 1
-      switch = FrontendArticle.find(:first, :conditions => ["weight > #{current.weight} AND deleted = 0" ,{ :deleted=>"0"}], :order =>"weight ASC")
-      switch.weight -=1
-      current.weight +=1
-      switch.save
-      current.save
-    end
-    redirect_to :action => "index", :tab=>params[:tab]
-  end
-
-  def movedown
-    current = FrontendArticle.find(params[:id])
-    if current != FrontendArticle.find(:last, :order => "weight DESC") && FrontendArticle.get_all_not_deleted.count > 1
-      switch = FrontendArticle.find(:first, :conditions => ["weight < #{current.weight} AND deleted = 0" ,{ :deleted=>"0"}], :order =>"weight DESC")
-      switch.weight +=1
-      current.weight -=1
-      switch.save
-      current.save
-    end
-    redirect_to :action => "index", :tab=>params[:tab]
-  end
-
-  private
-
-  def set_article_weight(article)
-    if FrontendArticle.all.count == 1
-      article.weight = 1
     else
-      article.weight = FrontendArticle.find(:first, :order => "weight DESC").weight
+      format.html { render :action => "edit" }
+      format.xml  { render :xml => @article.errors, :status => :unprocessable_entity }
     end
   end
+end
 
-  def resize(x1,y1,x2, y2, path, type, out)
-    img_orig = Magick::Image.read(path).first
-    img_orig.crop!(x1.to_i,y1.to_i,(x2.to_i-x1.to_i),(y2.to_i-y1.to_i))
-    if type == 1
-      img_orig.resize_to_fit!(531,196)
-    elsif type == 2
-      img_orig.resize_to_fit!(253,136)
-    else
-      img_orig.resize_to_fit!(531,250)
-    end
-    img_orig.write(out)
-    img_orig.to_blob
+# DELETE /articles/1
+# DELETE /articles/1.xml
+def delete
+  @article = FrontendArticle.find(params[:id])
+  @article.deleted = 1
+  @article.save
+
+  respond_to do |format|
+    format.html { redirect_to(:action=>"index") }
+    format.xml  { head :ok }
   end
+end
+
+def moveup
+  current = FrontendArticle.find(params[:id])
+  if current != FrontendArticle.find(:first, :order => "weight DESC") && FrontendArticle.where(deleted: 0).count > 1
+    switch = FrontendArticle.find(:first, :conditions => ["weight > #{current.weight} AND deleted = 0" ,{ :deleted=>"0"}], :order =>"weight ASC")
+    switch.weight -=1
+    current.weight +=1
+    switch.save
+    current.save
+  end
+  redirect_to :action => "index", :tab=>params[:tab]
+end
+
+def movedown
+  current = FrontendArticle.find(params[:id])
+  if current != FrontendArticle.find(:last, :order => "weight DESC") && FrontendArticle.where(deleted: 0).count > 1
+    switch = FrontendArticle.find(:first, :conditions => ["weight < #{current.weight} AND deleted = 0" ,{ :deleted=>"0"}], :order =>"weight DESC")
+    switch.weight +=1
+    current.weight -=1
+    switch.save
+    current.save
+  end
+  redirect_to :action => "index", :tab=>params[:tab]
+end
+
+private
+
+def set_article_weight(article)
+  if FrontendArticle.all.count == 1
+    article.weight = 1
+  else
+    article.weight = FrontendArticle.find(:first, :order => "weight DESC").weight
+  end
+end
+
+def resize(x1,y1,x2, y2, path, type, out)
+  img_orig = Magick::Image.read(path).first
+  img_orig.crop!(x1.to_i,y1.to_i,(x2.to_i-x1.to_i),(y2.to_i-y1.to_i))
+  if type == 1
+    img_orig.resize_to_fit!(531,196)
+  elsif type == 2
+    img_orig.resize_to_fit!(253,136)
+  else
+    img_orig.resize_to_fit!(531,250)
+  end
+  img_orig.write(out)
+  img_orig.to_blob
+end
 end
