@@ -89,7 +89,7 @@ class FrontendArticlesController < ApplicationController
   # POST /articles
   # POST /articles.xml
   def create
-    func = LdapUser.get_by_id(params[:byline_func][:func].to_i)
+    func = current_user.id
     byline = "<a href=\"mailto:#{func.username}@isfit.org\">#{func.firstname} #{func.lastname}</a>"
     saved = false
     if (@article = FrontendArticle.find(params[:id])) != nil

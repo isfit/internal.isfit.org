@@ -8,17 +8,17 @@
     <%= yield(:head) %>
   </head>
   <body>
-    <div id="header" class="topbar-wrapper" style="z-index: 5;"> 
-      <div class="topbar"> 
-        <div class="fill"> 
+    <div id="header" class="topbar-wrapper"> 
+      <div id="topbar" class="topbar" data-scrollspy="scrollspy"> 
+        <div class="topbar-inner"> 
           <div class="container-fluid">
             <h3><%= link_to "ISFiT Internal", root_path, :class => :logo %></h3> 
             <%= render :partial => 'internal_tabs/tabs', :locals => {:tabs => InternalTab.roots} %>
             <% if current_user %>
               <ul class="nav secondary-nav"> 
-                <li class="menu"> 
-                <a href="#" class="menu"><%= current_user.full_name %></a> 
-                <ul class="menu-dropdown"> 
+                <li class="dropdown" data-dropdown="dropdown"> 
+                <a href="#" class="dropdown-toggle"><%= current_user.full_name %></a> 
+                <ul class="dropdown-menu"> 
                   <li><a href="#">Edit profile</a></li> 
                   <li class="divider"></li> 
                   <li><a href="#">Logout</a></li> 
@@ -42,7 +42,7 @@
       </div>
       <div id="content" class="content">
         <% if notice or alert %>
-          <div class="alert-message <%= notice ? "success":"error" %>">
+          <div class="alert-message <%= notice ? "success":"error" %>" data-alert="<%= notice ? "success":"error" %>">
             <a href="#" class="close">x</a>
             <p><%= image_tag("icons/#{notice ? "accept":""}.png") %> <%= notice ? notice : alert %></p>
           </div>
