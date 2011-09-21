@@ -1,12 +1,12 @@
-<%= form_for(@static_page) do |f| %>
+<%= form_for(@static_page, html: {class: "form-stacked"}) do |f| %>
   <%= f.error_messages %> 
   <div class="field">
     <%= f.label :title %><br />
-    <%= f.text_field :title, :class => "title" %>
+    <%= f.text_field :title, :class => "span12" %>
   </div>
   <div class="field">
     <%= f.label :body %><br />
-    <%= f.text_area :body %>
+    <%= f.text_area :body, class: "span12" %>
   </div>
   <div class="type-button">
     <%= f.submit :class => "primary btn" %>

@@ -19,9 +19,9 @@
                 <li class="dropdown" data-dropdown="dropdown"> 
                 <a href="#" class="dropdown-toggle"><%= current_user.full_name %></a> 
                 <ul class="dropdown-menu"> 
-                  <li><a href="#">Edit profile</a></li> 
+                  <li><%= link_to "Edit profile",  edit_current_user_path %></li> 
                   <li class="divider"></li> 
-                  <li><a href="#">Logout</a></li> 
+                  <li><%= link_to "Logout", logout_path %></li> 
                 </ul> 
                 </li> 
               </ul> 
