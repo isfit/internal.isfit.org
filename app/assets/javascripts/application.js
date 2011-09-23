@@ -13,4 +13,10 @@ $(function() {
   $('.sortable').tablesorter({ sortList: [[1,0]] });
 
   $('.chosen-select').chosen();
+
+  $('[rel=popover]').popover({
+    offset: 10
+  }).click(function(e) { 
+    e.preventDefault()
+  });
 });

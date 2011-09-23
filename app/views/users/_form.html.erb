@@ -1,20 +1,77 @@
-<%= form_for @user do |f| %>
+<%= form_for @user, html: {class: "form-stacked"} do |f| %>
   <%= f.error_messages %>
-  <p>
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
-  </p>
-  <p>
-    <%= f.label :email, "Email Address" %><br />
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :password %><br />
+  <fieldset>
+    <legend>Personal information</legend>
+    <div class="field">
+      <%= f.label :given_name %>
+      <%= f.text_field :given_name %>
+    </div>
+    <div class="field">
+      <%= f.label :family_name %>
+      <%= f.text_field :family_name %>
+    </div>
+    <div class="field">
+      <%= f.label :phone %>
+      <%= f.text_field :phone %>
+    </div>
+    <div class="field">
+      <%= f.label :private_email %>
+      <%= f.text_field :private_email %>
+    </div>
+    <div class="field">
+      <%= f.label :address %>
+      <%= f.text_field :address %>
+    </div>
+    <div class="field">
+      <%= f.label :postal_code %>
+      <%= f.text_field :postal_code, class: "span1" %> <%= f.text_field :city, class: "span3" %>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>Education</legend>
+     <div class="field">
+      <%= f.label :study %>
+      <%= f.text_field :study %>
+    </div>
+     
+  </fieldset>
+  <fieldset>
+    <legend>Administration</legend>
+    <div class="field">
+      <%= f.label :cardnumber_ntnu %>
+      <%= f.text_field :cardnumber_ntnu %>
+      <p class="btn" rel="popover" data-original-title="NTNU cardnumber" data-content="Your NTNU cardnumber is the six digits right next to the 'NTNU' at the back of the card.">What is this?</p>
+    </div>
+    <div class="field">
+      <%= f.label :cardnumber_samfundet %>
+      <%= f.text_field :cardnumber_samfundet %>
+      <p class="btn" rel="popover" data-original-title="Samfundet cardnumber" data-content="Your samfundet card number is the ">What is this?</p>
+    </div>
+    
+  </fieldset>
+  <fieldset>
+    <legend>Next of kin</legend>
+    <div class="field">
+      <%= f.label :next_of_kin_name %>
+      <%= f.text_field :next_of_kin_name %>
+    </div>
+    <div class="field">
+      <%= f.label :next_of_kin_tlf %>
+      <%= f.text_field :next_of_kin_tlf %>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>Change password</legend>
+  <div class="field">
+    <%= f.label :password %>
     <%= f.password_field :password %>
-  </p>
-  <p>
-    <%= f.label :password_confirmation, "Confirm Password" %><br />
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation, "Confirm Password" %>
     <%= f.password_field :password_confirmation %>
-  </p>
-  <p><%= f.submit (@user.new_record? ? "Sign up" : "Update") %></p>
+  </div>
+  <div class="field">
+    <%= f.submit (@user.new_record? ? "Sign up" : "Update") %>
+  </div>
+</fieldset>
 <% end %>
