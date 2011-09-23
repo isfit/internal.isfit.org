@@ -1,6 +1,3 @@
-
-$('#full').imgAreaSelect({ minWidth: 540, minHeight: 250,aspectRatio: '2.16:1',  handles: true , onSelectEnd: function (img, selection) { $('input[name=x1]').val(selection.x1); $('input[name=y1]').val(selection.y1); $('input[name=x2]').val(selection.x2); $('input[name=y2]').val(selection.y2); } 
-});
 $('#half').imgAreaSelect({ minWidth: 260, minHeight: 340,aspectRatio: '0.76:1',  handles: true , onSelectEnd: function (img, selection) { $('input[name=x1_1]').val(selection.x1); $('input[name=y1_1]').val(selection.y1); $('input[name=x2_1]').val(selection.x2); $('input[name=y2_1]').val(selection.y2); } 
 });
 $('#spp_one_third').imgAreaSelect({ minWidth: 210, minHeight: 310,aspectRatio: '0.72:1',  handles: true , onSelectEnd: function (img, selection) { $('input[name=x1_2]').val(selection.x1); $('input[name=y1_2]').val(selection.y1); $('input[name=x2_2]').val(selection.x2); $('input[name=y2_2]').val(selection.y2); } 

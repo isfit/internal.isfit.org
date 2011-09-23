@@ -1,9 +1,6 @@
-<h1>The picture!</h1>
-
 <%=@picture.image_text_no%>
-<br />
-<%= image_tag @picture.original_picture.url%>
-<br />
-<br />
-<br />
-<%= debug @picture%>
+<%= image_tag @picture.original_picture.url(:cropable)%>
+<%= image_tag @picture.original_picture.url(:full_article)%>
+<%= image_tag @picture.original_picture.url(:half_article)%>
+<%= image_tag @picture.original_picture.url(:spp_one_third_article)%>
+<%= image_tag @picture.original_picture.url(:spp_full_article)%>
