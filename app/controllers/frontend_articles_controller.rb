@@ -73,10 +73,8 @@ class FrontendArticlesController < ApplicationController
   # GET /articles/1/edit
   def edit
     @article = FrontendArticle.find(params[:id])
-    @user_editor = can_access?("frontend_articles","editor")
-    #@functionaries = LdapUnit.get_by_dn("ou=isfit11,ou=units,dc=isfit,dc=org").functionaries(true)
-    @users = User.current_festival
-    #@current_byline = LdapUser.get_by_id(@article.byline_func_id)
+    @user_editor = can?("frontend_articles","editor")
+    @pictures = Photo.order("created_at DESC")
   end
 
   def update_picture
@@ -128,7 +126,7 @@ end
 def update
   @article = FrontendArticle.find(params[:id])
   respond_to do |format|
-    if @article.update_attributes(params[:article])
+    if @article.update_attributes(params[:frontend_article])
       format.html { redirect_to(@article, :notice => 'Article was successfully updated.') }
       format.xml  { head :ok }
     else

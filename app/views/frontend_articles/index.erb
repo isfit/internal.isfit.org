@@ -5,17 +5,17 @@ The rest of the articles will be listed under archive</p>
 <div class="action-menu">
   <%= link_to "Create article", new_frontend_article_path, class: "primary btn" %>
 </div>
-<table>
+<table class="zebra-striped">
   <tr>
-    <td>English title</td>
-    <td>Norwegian title</td>
-    <td>Created</td>
-    <td>Priority</td>
-    <td>Visible</td>
-    <td ></td>
+    <th>English title</th>
+    <th>Norwegian title</th>
+    <th>Created</th>
+    <th>Priority</th>
+    <th>Published</th>
+    <th></th>
   </tr>
   <% @articles.each do |article| %>
-    <tr class="article_tr<%= cycle(' alternate', '') %>">
+    <tr>
       <td><%= article.title_en.blank? ? "<em>No English version</em>" : article.title_en %> </td>
       <td><%= article.title_no.blank? ? "<em>No Norwegian version</em>" : article.title_no  %></td>
 		  <td><%= article.created_at.strftime("%d %b %Y") %></td>

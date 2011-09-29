@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110914160003) do
+ActiveRecord::Schema.define(:version => 20110929085531) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -90,6 +90,12 @@ ActiveRecord::Schema.define(:version => 20110914160003) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "list"
+    t.string   "image_text_no"
+    t.string   "image_text_en"
+    t.boolean  "published"
+    t.string   "image_credits"
+    t.boolean  "press_release"
+    t.boolean  "main_article"
   end
 
   create_table "groups", :id => false, :force => true do |t|
@@ -121,6 +127,58 @@ ActiveRecord::Schema.define(:version => 20110914160003) do
   end
 
   add_index "internal_tabs", ["ancestry"], :name => "index_internal_tabs_on_ancestry"
+
+  create_table "new_frontend_articles", :force => true do |t|
+    t.string   "title_en"
+    t.string   "title_no"
+    t.text     "ingress_en"
+    t.text     "ingress_no"
+    t.text     "body_en"
+    t.text     "body_no"
+    t.integer  "weight"
+    t.boolean  "deleted"
+    t.string   "sub_title_no"
+    t.string   "sub_title_en"
+    t.string   "byline"
+    t.integer  "byline_user_id"
+    t.boolean  "mail_sent"
+    t.datetime "show_article"
+    t.boolean  "got_comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "list"
+    t.string   "image_text_no"
+    t.string   "image_text_en"
+    t.boolean  "published"
+    t.string   "image_credits"
+    t.boolean  "press_release"
+  end
+
+  create_table "old_frontend_articles", :force => true do |t|
+    t.string   "title_en"
+    t.string   "title_no"
+    t.text     "ingress_en"
+    t.text     "ingress_no"
+    t.text     "body_en"
+    t.text     "body_no"
+    t.boolean  "list"
+    t.integer  "weight"
+    t.datetime "created_at"
+    t.boolean  "deleted"
+    t.integer  "press_release",  :limit => 1
+    t.string   "sub_title_no"
+    t.string   "sub_title_en"
+    t.string   "image_text_no"
+    t.string   "image_text_en"
+    t.boolean  "main_article"
+    t.boolean  "published"
+    t.string   "byline"
+    t.integer  "byline_func_id"
+    t.string   "image_credits"
+    t.integer  "mail_sent"
+    t.datetime "show_article"
+    t.boolean  "got_comments"
+  end
 
   create_table "pads", :force => true do |t|
     t.string   "hexid"

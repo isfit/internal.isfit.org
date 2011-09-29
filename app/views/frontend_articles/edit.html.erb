@@ -1,123 +1,28 @@
-<script type="text/javascript">
-  jQuery(document).ready(function() {
-    jQuery("#dialog").dialog({
-      bgiframe: true, autoOpen: false, height: 500, width: 800, position: top, modal: true
-    });
-  });
+<script>
+
+$(document).ready(function() {
+    $("#stuff_item_id").change(function() {
+      temp = $(this).val();
+      str = "/~skjervum/internal.isfit.org/2011/public/images/article/photos/original_pictures/"+temp+"/thumb.jpg"; 
+      //    temp2 = $("#img_pre").attr("src");
+      $("#img_pre").attr("src", str);
+      url = "##pic "+temp+" 1 pic##"
+      $("#img_full").html(url)
+      url = "##pic "+temp+" 2 pic##"
+      $("#img_right").html(url)
+      url = "##pic "+temp+" 3 pic##"
+      $("#img_left").html(url)
+      //$.post("update_picture.js", $(this).serialize(), null, "script");
+      return false;
+      })
+    })
 </script>
-<script type="text/javascript">
-	$(function() {
-    $.datepicker.setDefaults({ dateFormat: 'yy-mm-dd' });
-		$("#datepicker0").datepicker();
-		$("#datepicker1").datepicker();
-	});
 
-</script>
+<h1>Edit article</h1>
+<%= render :partial => 'form' %>
 
-
-<style>
-.leftline {
-  padding-left: 10px;
-  margin-left: 2px;
-  border-left: 4px solid #ccc;
-}
-</style>
-<h1><%= params[:id] ? "Edit" : "Create new" %> article</h1>
-<% form_for :article, @article, :html=> { :multipart => true },
-  :url => { :action => "create", 
-    :id => params[:id]  } do |f|
-    %>
-
-    <p><%= params[:id] ? "Edit information and press Save article to update the article." : "Enter article meta and content information and press Save article to create the new article."  %></p>
-
-    <h2>Meta</h2>
-    <table class="leftline">
-    <%if @user_editor%>
-    <tr>
-      <td>Article is visible on isfit.org:</td>
-      <td><%= f.check_box "list"%></td>
-    </tr>
-    <%end%>
-    <tr>
-    <td>Article is a press release:</td>
-    <td><%= f.check_box "press_release"%></td>
-    </tr>
-    <tr>
-    <td>Show facebook comments:</td>
-    <td><%= f.check_box "got_comments"%></td>
-    </tr>
-    <tr>
-    <td>Editor (byline)</td>
-    <td>
-    <%= select_tag 'byline_func[func]',
-    options_from_collection_for_select(@functionaries,:id,:name_reversed,(@current_byline != nil ? @current_byline.id.to_i : 1))
-    %></td>
-    <tr>
-    <td>Show article on date:</td>
-    <td>
- 			<% if @article.show_article != nil%>
-        <%= text_field_tag :show_article, nil, :id=> "datepicker0", :value => @article.show_article.strftime("%Y-%b-%d").to_date %>
-		    <%= text_field_tag :show_article_time, nil, :value => @article.show_article.strftime("%H:%M")%>
-      <% else %>
-				<%= text_field_tag :show_article, nil, :id => "datepicker0", :value => Time.new.strftime("%Y-%b-%d").to_date%>
-        <%= text_field_tag :show_article_time, nil, :value => Time.new.strftime("%H:%M")%>
-      <% end%>  
-    </td>
-    </tr>
-    </table>
-    <p><%= f.submit "Save article" %></p>
-
-    <h2>Content</h2>
-    <%#= <a href="#" onclick="jQuery('#dialog').dialog('open'); return false">Formatting help</a> %>
-    <h3>Norwegian version</h3>
-    <div class="leftline">
-    <p><b>Title</b><br />
-    <%= f.text_field :title_no, :style => "width: 450px" %>
-    </p>
-    <p><b>Subtitle</b><br />
-    <%= f.text_field :sub_title_no, :style => "width: 450px" %>
-    </p>
-    <p><b>Ingress</b><br />
-    <%= f.text_area :ingress_no, :rows => 5, :style => "width: 450px" %>
-    </p>
-    <p><b>Body</b><br />
-    <%= f.text_area :body_no, :rows => 15, :style => "width: 450px" %>
-  	<%= render :partial =>"frontend_article/formatting_small"%>
-    </p>
-    </div>
-
-    <h3>English version</h3>
-    <div class="leftline">
-    <p><b>Title</b><br />
-    <%= f.text_field :title_en, :style => "width: 450px" %>
-    </p>
-    <p><b>Subtitle</b><br />
-    <%= f.text_field :sub_title_en, :style => "width: 450px" %>
-    </p>
-    <p><b>Ingress</b><br />
-    <%= f.text_area :ingress_en, :rows => 5, :style => "width: 450px" %>
-    </p>
-    <p><b>Body</b><br />
-    <%= f.text_area :body_en, :rows => 15, :style => "width: 450px" %>
-
-    </p>
-    </div>
-    <h3>Main photo</h3>
-    <div class="leftline">
-      <%=image_tag "frontend_article_images/#{@article.id}_1.jpg", :size=>"200x100"%><br />
-      <%=link_to "Change main photo", :action=>"new_pic", :id=>@article.id%>
-      <p><b>Image text norwegian</b></p>
-      <%= f.text_field :image_text_no %>
-      <p><b>Image text english</b></p>
-      <%= f.text_field :image_text_en %>
-      <p><b>Image credits</b></p>
-      <%= f.text_field :image_credits %>
-
-    </div> 
-    <p><%= f.submit "Save article" %></p>
-    <% end %>
-
-<div id="dialog" title="Formatting help">
+<%= link_to 'Back', frontend_articles_path %>
+<div id="formatting">
   <%= render 'formatting' %>
 </div>
 
