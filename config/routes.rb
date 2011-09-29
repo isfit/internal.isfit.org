@@ -4,6 +4,9 @@ InternalIsfitOrg::Application.routes.draw do
     member do
       get 'moveup'
       get 'movedown'
+      get 'new_pic'
+      post 'crop_main'
+      post 'crop_create'
     end
   end
 

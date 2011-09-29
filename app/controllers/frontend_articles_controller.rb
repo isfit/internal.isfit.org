@@ -32,7 +32,7 @@ class FrontendArticlesController < ApplicationController
     @article.image_credits = @picture.credits
 
     if @article.save
-      url = "#{Rails.root}/public/images/#{@picture.original_picture.url}"
+      url = "#{Rails.root}/public#{@picture.original_picture.url}"
       url = url.to_s.gsub!(/\?[1234567890]+/, "")
       url_pic = "#{Rails.root}/public/images/frontend_article_images/#{@article.id}_1.jpg"
       @main = resize(params[:x1],params[:y1],params[:x2],params[:y2],url, 1, url_pic)

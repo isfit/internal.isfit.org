@@ -20,3 +20,42 @@ $(function() {
     e.preventDefault()
   });
 });
+$(function () {
+  $('#main').imgAreaSelect({
+    minWidth: 531,
+    minHeight: 196,
+    aspectRatio: '2.71:1',
+    handles: true ,
+    onSelectEnd: function (img, selection) {
+      $('input[name=x1]').val(selection.x1);
+      $('input[name=y1]').val(selection.y1);
+      $('input[name=x2]').val(selection.x2);
+      $('input[name=y2]').val(selection.y2);
+    } 
+  });
+  $('#half').imgAreaSelect({
+    minWidth: 253,
+    minHeight: 136,
+    aspectRatio: '1.86:1',
+    handles: true ,
+    onSelectEnd: function (img, selection) { 
+      $('input[name=x1_1]').val(selection.x1);
+      $('input[name=y1_1]').val(selection.y1);
+      $('input[name=x2_1]').val(selection.x2);
+      $('input[name=y2_1]').val(selection.y2);
+    } 
+  });
+  $('#photo-article').imgAreaSelect({
+    minWidth: 531,
+    minHeight: 250,
+    aspectRatio: '2.12:1', 
+    handles: true ,
+    onSelectEnd: function (img, selection) {
+      $('input[name=x1_2]').val(selection.x1);
+      $('input[name=y1_2]').val(selection.y1);
+      $('input[name=x2_2]').val(selection.x2);
+      $('input[name=y2_2]').val(selection.y2);
+    } 
+  });
+});
+
