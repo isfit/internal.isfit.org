@@ -61,6 +61,33 @@
     </div>
   </fieldset>
   <fieldset>
+    <legend>Allergies</legend>
+    <div class="field">
+      <%= f.label :vegetarian %>
+      <%= f.check_box :vegetarian %>
+    </div>
+    <div class="field">
+      <%= f.label :lactose_allergy %>
+      <%= f.check_box :lactose_allergy %>
+    </div>
+    <div class="field">
+      <%= f.label :gluten_allergy %>
+      <%= f.check_box :gluten_allergy %>
+    </div>
+    <div class="field">
+      <%= f.label :nut_allergy %>
+      <%= f.check_box :nut_allergy %>
+    </div>
+    <div class="field">
+      <%= f.label :fruit_allergy %>
+      <%= f.check_box :fruit_allergy %>
+    </div>
+    <div class="field">
+      <%= f.label :other_allergy %>
+      <%= f.text_field :other_allergy %>
+    </div>
+  </fieldset>
+  <fieldset>
     <legend>Change password</legend>
   <div class="field">
     <%= f.label :password %>
