@@ -97,8 +97,8 @@
     <%= f.label :password_confirmation, "Confirm Password" %>
     <%= f.password_field :password_confirmation %>
   </div>
-  <div class="field">
-    <%= f.submit (@user.new_record? ? "Sign up" : "Update") %>
-  </div>
 </fieldset>
+  <div class="field">
+    <%= f.submit (@user.new_record? ? "Sign up" : "Update"), class: "primary btn" %>
+  </div>
 <% end %>
