@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
   has_and_belongs_to_many :positions
 
+  attr_readonly :username, :ldap_id, :password_digest, :email
+
   def full_name
     "#{given_name} #{family_name}"
   end
