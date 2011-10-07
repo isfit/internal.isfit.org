@@ -9,8 +9,8 @@ class SppArticlesController < ApplicationController
 
   def create
     @spp_article = SppArticle.new(params[:spp_article])
-    @photo = Photo.find(params[:spp_article][:photo_id])
-    @spp_article.spp_article_image = @photo.original_picture
+    @photo = Photo.find(params[:spp_article][:photo_id]) if Photo.exists?(params[:spp_article][:photo_id])
+    @spp_article.spp_article_image = @photo.original_picture if @photo
     @spp_article.weight = SppArticle.maximum(:weight) ? SppArticle.maximum(:weight) + 1 : 0
     @spp_article.deleted = 0
 
