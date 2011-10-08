@@ -7,6 +7,10 @@ class SppArticlesController < ApplicationController
     @spp_article = SppArticle.new
   end
 
+  def edit
+
+  end
+
   def create
     @spp_article = SppArticle.new(params[:spp_article])
     @photo = Photo.find(params[:spp_article][:photo_id]) if Photo.exists?(params[:spp_article][:photo_id])
@@ -33,7 +37,6 @@ class SppArticlesController < ApplicationController
   def moveup
     current = SppArticle.find(params[:id])
     if current != SppArticle.find(:first, :order => "weight DESC") && SppArticle.get_all_not_deleted.count > 1
-     #switch = SppArticle.find(:first, :conditions => ["weight > #{current.weight} AND deleted = 0" ,{ :deleted=>"0"}], :order =>"weight ASC")
      switch = SppArticle.where("weight > #{current.weight} AND deleted = 0").order(:weight).first
      between = switch.weight
      switch.weight = current.weight
@@ -41,13 +44,12 @@ class SppArticlesController < ApplicationController
      switch.save
      current.save
     end
-    redirect_to :action => "index", :tab=>params[:tab]
+    redirect_to action: "index"
   end
 
   def movedown
     current = SppArticle.find(params[:id])
     if current != SppArticle.find(:last, :order => "weight DESC") && SppArticle.get_all_not_deleted.count > 1
-     #switch = SppArticle.find(:first, :conditions => ["weight < #{current.weight} AND deleted = 0" ,{ :deleted=>"0"}], :order =>"weight DESC")
      switch = SppArticle.where("weight < #{current.weight} AND deleted = 0").order("weight desc").first
      between = switch.weight
      switch.weight = current.weight
@@ -55,7 +57,7 @@ class SppArticlesController < ApplicationController
      switch.save
      current.save
     end
-    redirect_to :action => "index", :tab=>params[:tab]
+    redirect_to action: "index"
   end
 
 end
