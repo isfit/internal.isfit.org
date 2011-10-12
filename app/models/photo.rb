@@ -28,6 +28,6 @@ class Photo < ActiveRecord::Base
   private
 
   def reprocess_photos
-    original_picture.reprocess!
+    self.original_picture.reprocess!
   end
 end

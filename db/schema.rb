@@ -13,7 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20111012191544) do
 
-
   create_table "accounts", :force => true do |t|
     t.string   "name"
     t.integer  "section_id"

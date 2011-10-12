@@ -7,7 +7,6 @@ InternalIsfitOrg::Application.routes.draw do
     collection do
       post 'photo'
     end
-
     member do
       get 'movedown'
       get 'moveup'
@@ -15,6 +14,9 @@ InternalIsfitOrg::Application.routes.draw do
   end
   
   resources :frontend_articles do
+    collection do
+      post 'photo'
+    end
     member do
       get 'moveup'
       get 'movedown'

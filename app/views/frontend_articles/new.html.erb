@@ -17,12 +17,10 @@ $(document).ready(function() {
       })
     })
 </script>
-
-<h1>New article</h1>
 <%= render :partial => 'form' %>
 
-<%=collection_select("stuff", "item_id", @pictures, :id, :description )%>
-<img src="nothing.jpg" id="img_pre" style="float:right" alt="Preview!">
+<%#=collection_select("stuff", "item_id", @pictures, :id, :description )%>
+<!--<img src="nothing.jpg" id="img_pre" style="float:right" alt="Preview!">
 <h5>Full image:</h5>
 <div id="img_full">
 </div>
@@ -31,7 +29,7 @@ $(document).ready(function() {
 </div>
 <h5>Image float left:</h5>
 <div id="img_left">
-</div>
+</div>-->
 
 
 <%= link_to 'Back', frontend_articles_path %>
