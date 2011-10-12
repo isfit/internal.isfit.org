@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111007002027) do
+ActiveRecord::Schema.define(:version => 20111012180825) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -126,6 +126,13 @@ ActiveRecord::Schema.define(:version => 20111007002027) do
   end
 
   add_index "internal_tabs", ["ancestry"], :name => "index_internal_tabs_on_ancestry"
+
+  create_table "kvitters", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "new_frontend_articles", :force => true do |t|
     t.string   "title_en"
