@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111007002027) do
+ActiveRecord::Schema.define(:version => 20111012191544) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -71,6 +71,18 @@ ActiveRecord::Schema.define(:version => 20111007002027) do
     t.datetime "article_image_updated_at"
   end
 
+  create_table "contact_log_people", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contact_log_people", ["user_id"], :name => "index_contact_log_people_on_user_id"
+
   create_table "frontend_articles", :force => true do |t|
     t.string   "title_en"
     t.string   "title_no"
@@ -82,7 +94,7 @@ ActiveRecord::Schema.define(:version => 20111007002027) do
     t.integer  "weight"
     t.datetime "created_at"
     t.boolean  "deleted"
-    t.integer  "press_release",  :limit => 1
+    t.integer  "press_release",                       :limit => 1
     t.string   "sub_title_no"
     t.string   "sub_title_en"
     t.string   "image_text_no"
@@ -95,6 +107,10 @@ ActiveRecord::Schema.define(:version => 20111007002027) do
     t.integer  "mail_sent"
     t.datetime "show_article"
     t.boolean  "got_comments"
+    t.string   "frontend_article_image_file_name"
+    t.string   "frontend_article_image_content_type"
+    t.integer  "frontend_article_image_file_size"
+    t.datetime "frontend_article_image_updated_at"
   end
 
   create_table "groups", :id => false, :force => true do |t|
@@ -126,6 +142,13 @@ ActiveRecord::Schema.define(:version => 20111007002027) do
   end
 
   add_index "internal_tabs", ["ancestry"], :name => "index_internal_tabs_on_ancestry"
+
+  create_table "kvitters", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "new_frontend_articles", :force => true do |t|
     t.string   "title_en"

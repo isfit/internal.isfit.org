@@ -1,4 +1,5 @@
 InternalIsfitOrg::Application.routes.draw do
+  resources :contact_logs
 
   resources :spp_articles do
     collection do
