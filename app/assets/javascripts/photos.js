@@ -5,3 +5,4 @@ $('#spp_one_third').imgAreaSelect({ minWidth: 210, minHeight: 310,aspectRatio: '
 $('#spp_full').imgAreaSelect({ minWidth: 700, minHeight: 320,aspectRatio: '2.19:1',  handles: true , onSelectEnd: function (img, selection) { $('input[name=x1_3]').val(selection.x1); $('input[name=y1_3]').val(selection.y1); $('input[name=x2_3]').val(selection.x2); $('input[name=y2_3]').val(selection.y2); } 
 });
 
+$("a[rel^='prettyPhoto']").prettyPhoto({social_tools: ''}); 
