@@ -1,0 +1,100 @@
+<h1>New article</h1>
+
+<div class="well">
+  <button class="btn primary" data-page="images">Image</button>
+  <button class="btn" data-page="misc">Misc</button>
+  <button class="btn" data-page="english">English</button>
+  <button class="btn" data-page="norsk">Norwegian</button>
+  <button class="btn" data-page="preview">Preview</button>
+</div>
+
+<div id="images" class="hidable">
+<div id="fileupload">
+  <%= form_tag photo_spp_articles_path , class: "file_upload" do %>
+    Drag file here
+  <% end %>
+
+  <div class="fileupload-content">
+    <table class="files"></table>
+    <div class="fileupload-progressbar"></div>
+  </div>
+</div>
+  <div id="img1"></div>
+  <div id="img2"></div>
+  <div id="img3"></div>
+</div>
+<br>
+<br>
+<%= form_for(@spp_article, html: {class: "form-stacked"}) do |f| %>
+<% if f.error_messages %>  
+    <div class="alert-message block-message error" data-alert="true">
+      <a href="#" class="close">x</a>
+      <%= f.error_messages %>
+    </div>
+  <% end %>
+  <% for attribute in [:x1, :y1, :x2, :y2, :y1_1, :x2_1, :y2_1, :x1_1, :x1_2, :y1_2, :x2_2, :y2_2] %>
+    <%= f.hidden_field attribute, id: attribute %>
+  <% end %>
+
+  <div id="misc" class="hidable">
+  <fieldset>
+    <legend><%= t('common.common') %></legend>
+      <div class="field">
+      <%= f.label :visible %>
+      <%= f.check_box :visible %>
+    </div>
+    <div class="field">
+      <%= f.label :got_comments %>
+      <%= f.check_box :got_comments %>
+    </div>
+    <div class="field">
+      <%= f.label :youtube_link %>
+      <%= f.text_field :youtube_link %>
+    </div>
+    <%= f.hidden_field :photo_id %>
+ </fieldset>
+ </div>
+ <div id="english" class="hidable">
+  <fieldset>
+    <legend>English</legend>
+    <div class="field">
+      <%= f.label :title_en %>
+      <%= f.text_field :title_en, class: "span12" %>
+    </div>
+    <div class="field">
+      <%= f.label :ingress_en %>
+      <%= f.text_area :ingress_en, class: "small span12"  %>
+    </div>
+    <div class="field">
+      <%= f.label :body_en %>
+      <%= f.text_area :body_en , class: "span12" %>
+    </div>
+  </fieldset>
+  </div>
+  <div id="norsk" class="hidable">
+  <fieldset>
+    <legend>Norsk</legend>
+    <div class="field">
+      <%= f.label :title_no %>
+      <%= f.text_field :title_no, class: "span12" %>
+    </div>
+    <div class="field">
+      <%= f.label :ingress_no %>
+      <%= f.text_area :ingress_no, class: "small span12" %>
+    </div>
+    <div class="field">
+      <%= f.label :body_no %>
+      <%= f.text_area :body_no, class: "span12" %>
+    </div>  
+  </fieldset>
+  </div>
+  <div class="hidable" id="preview">
+  Coming soon...
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<%= link_to 'Back', spp_articles_path %>
+
+<%#= render :partial => "formatting" %>

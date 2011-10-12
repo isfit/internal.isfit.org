@@ -1,5 +1,16 @@
 InternalIsfitOrg::Application.routes.draw do
 
+  resources :spp_articles do
+    collection do
+      post 'photo'
+    end
+
+    member do
+      get 'movedown'
+      get 'moveup'
+    end
+  end
+  
   resources :frontend_articles do
     member do
       get 'moveup'

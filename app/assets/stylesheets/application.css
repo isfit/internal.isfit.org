@@ -8,4 +8,6 @@
  *= require "articles"
  *= require "pads"
  *= require "imgareaselect-default"
+ *= require "prettyPhoto"
+ *= require "jquery.fileupload-ui"
 */
