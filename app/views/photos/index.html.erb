@@ -25,7 +25,7 @@ $(document).ready(function() {
     <tr class="article_tr<%= row % 2 == 1 ? ' alternate' : '' %>">
       <td><%= link_to photo.description, photo %></td>
       <td>
-        <a title="WTF" href="<%=photo.original_picture.url%>" rel="prettyPhoto"><%= image_tag(photo.original_picture.url(:thumb)) %></a>
+        <a title="WTF" href="<%=photo.original_picture.url%>" rel="prettyPhoto"><%= image_tag(photo.original_picture.url(:thumb), height:"100px") %></a>
         <%= link_to(image_tag("icon/edit.png",:alt => "E", :title => "Edit", :border => 0),edit_photo_path(photo)) %>
       </td>
       <td>
