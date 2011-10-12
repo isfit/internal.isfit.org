@@ -11,7 +11,7 @@ gem 'jquery-rails'
 gem 'memcache-client'
 gem 'therubyracer'
 gem 'mini_magick', :require=>'RMagick'
-gem 'rmagick'
+gem 'rmagick', :require => false
 
   gem 'sass-rails'
   gem 'coffee-rails'

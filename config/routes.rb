@@ -1,6 +1,8 @@
 InternalIsfitOrg::Application.routes.draw do
   resources :contact_logs
 
+  resources :kvitters
+
   resources :spp_articles do
     collection do
       post 'photo'
