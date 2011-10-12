@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.1'
 
-#gem 'sqlite3'
+gem 'sqlite3'
 
 # Asset template engines
 gem 'compass', ">=0.12.alpha.0"
@@ -40,4 +40,9 @@ end
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
+	gem 'factory_girl_rails'
+	gem 'capybara'
+	gem 'spork', "> 0.9.0rc"
+	gem 'guard-rspec'
+	gem 'guard-spork'
 end
