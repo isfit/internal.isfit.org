@@ -1,0 +1,2 @@
+module KvittersHelper
+end
