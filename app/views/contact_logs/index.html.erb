@@ -1,0 +1,22 @@
+<h1>ContactLogs#index</h1>
+<p>Find me in app/views/contact_logs/index.html.erb</p>
+<div class="contact-person">
+  <%= link_to "Create contact-person", new_contact_log_path, :class => "primary btn" %>
+  <% for contact_person in @contact_persons %>
+    <div class="contact-person">
+      <div class="action-menu">
+        <%= link_to :edit, edit_contact_log_path(contact_person), :class => "small btn"%>
+        <%= link_to :delete, contact_person, confirm: "Are you sure?", method: :delete, :class => "small btn"  %>
+      </div>
+      <h1><%= link_to contact_person.title, contact_person %>
+        <p class="small">Created <%= time_ago_in_words(contact_person.created_at) %> ago by <%= link_to contact_person.user.full_name, contact_person.user %>.</p>
+      </h1>
+      <%= image_tag contact_person.article_image.url(:thumb), :class => "right" %>
+      <p>
+      <%= simple_format(truncate(contact_person.body, :length => 1000, :omission =>"...")) %>
+      <%= contact_person.body.length > 1000 ? (link_to("Read more...", contact_person)):'' %>
+
+      </p>
+    </div>
+  <% end %>
+</div>

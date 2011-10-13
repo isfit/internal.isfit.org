@@ -11,7 +11,7 @@ gem 'jquery-rails'
 gem 'memcache-client'
 gem 'therubyracer'
 gem 'mini_magick', :require=>'RMagick'
-gem 'rmagick'
+gem 'rmagick', :require => false
 
   gem 'sass-rails'
   gem 'coffee-rails'
@@ -24,6 +24,9 @@ gem 'capistrano'
 gem 'cancan'
 gem 'ancestry'
 gem 'paperclip'
+gem 'rack', '1.3.3'
+gem 'rake', '0.9.2'
+
 
 # To use debugger
 

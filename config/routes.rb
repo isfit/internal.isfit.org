@@ -2,12 +2,13 @@ InternalIsfitOrg::Application.routes.draw do
  
   post "kvitters/create"
   get "kvitters/last"
+  resources :contact_logs
+
 
   resources :spp_articles do
     collection do
       post 'photo'
     end
-
     member do
       get 'movedown'
       get 'moveup'
@@ -15,6 +16,9 @@ InternalIsfitOrg::Application.routes.draw do
   end
   
   resources :frontend_articles do
+    collection do
+      post 'photo'
+    end
     member do
       get 'moveup'
       get 'movedown'

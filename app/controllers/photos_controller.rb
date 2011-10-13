@@ -24,6 +24,7 @@ class PhotosController < ApplicationController
     @photo =  Photo.find(params[:id])
     respond_to do |format|
       if @photo.update_attributes(params[:photo])
+        @photo.original_picture.reprocess!
         format.html {redirect_to photo_path(@photo) }
       else
         format.html { render action: "edit" }
@@ -67,7 +68,7 @@ class PhotosController < ApplicationController
   def crop_create
     @photo = Photo.find(params[:id])
 
-    if @photo.update_attributes(params[:photo])
+    if @photo.update_attributes(params[:photo] && @photo.original_picture.reprocess!)
       redirect_to photo, notice: "Successfully cropped photo"
     else
       render :crop

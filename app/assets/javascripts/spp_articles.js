@@ -2,7 +2,6 @@
 
 $('#fileupload').fileupload({
   dataType: 'json',
-  url: 'photo',
   add: function (e, data) {
     data.submit();
   },
