@@ -7,6 +7,7 @@
  *= require "application/all"
  *= require "articles"
  *= require "pads"
+ *= require "kvitters"
  *= require "imgareaselect-default"
  *= require "prettyPhoto"
  *= require "jquery.fileupload-ui"

@@ -1,12 +1,7 @@
 InternalIsfitOrg::Application.routes.draw do
-  
-  get "kvitters/index"
-
-  get "kvitters/show"
-
-  get "kvitters/create"
-
-  resources :kvitters
+ 
+  post "kvitters/create"
+  get "kvitters/last"
 
   resources :spp_articles do
     collection do
