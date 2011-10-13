@@ -1,7 +1,7 @@
 InternalIsfitOrg::Application.routes.draw do
  
-  post "kvitters/create"
-  get "kvitters/last"
+  post "kvitters/create" => "kvitters#create"
+  get "kvitters/last(:.format)" => "kvitters#last"
   resources :contact_logs
 
 

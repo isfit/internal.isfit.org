@@ -20,7 +20,7 @@ $(function() {
   }).click(function(e) { 
     e.preventDefault()
   });
-  $('.datetimepicker').datetimepicker();
+  //$('.datetimepicker').datetimepicker();
 });
 $(function () {
   $('#main').imgAreaSelect({

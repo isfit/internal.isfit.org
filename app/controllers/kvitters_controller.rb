@@ -20,7 +20,4 @@ class KvittersController < ApplicationController
       format.json { render :json => @kvitters.to_json(methods: :username) }
     end
   end
-
-
-
 end
