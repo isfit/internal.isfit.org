@@ -1,13 +1,26 @@
 class KvittersController < ApplicationController
-  def index
-    @kvitters = Kvitter.all
-  end
+
+  protect_from_forgery :except => :create
 
   def create
-    @kvitter = Kvitter.new(params[:kvitter])
+    logger.debug "Kom hit"
+    @kvitter = Kvitter.new
+    @kvitter.message = params[:message]
     @kvitter.user_id = current_user.id
-    @kvitter.save
-    redirect_to kvitters_path
+    if @kvitter.save
+      render :json => @kvitter.to_json(methods: :username)
+    else
+      render :text => "failed"
+    end
   end
+
+  def last
+    @kvitters = Kvitter.order("created_at desc").limit(10)
+    respond_to do |format|
+      format.json { render :json => @kvitters.to_json(methods: :username) }
+    end
+  end
+
+
 
 end

@@ -1,7 +1,9 @@
 InternalIsfitOrg::Application.routes.draw do
+ 
+  post "kvitters/create"
+  get "kvitters/last"
   resources :contact_logs
 
-  resources :kvitters
 
   resources :spp_articles do
     collection do
