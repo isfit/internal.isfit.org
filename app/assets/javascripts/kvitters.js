@@ -5,7 +5,6 @@ function format(s) {
 }
 function downloadKvitters() {
   $.getJSON('/kvitters/last.json', function(data) {
-    var items = [];
 
     $('#kvitter').empty();
     $('#kvitter').append('<h1 rel="popover" data-original-title="Kvitter" data-content="Kvitter is the internal Twitter of ISFiT. Write something inspiring, engaging, or simply informing, and share it with the world!">Kvitter</span>');
@@ -40,6 +39,16 @@ function downloadKvitters() {
   });
 }
 
+function refreshKvitters() {
+  $.getJSON('/kvitters/last.json', function(data) {
+
+    $('#kvitter-posts').empty();
+    data.forEach(function(item){
+      appendKvitter(item);
+    });
+  });
+}
+
 function appendKvitter(kvitt) {
   $('#kvitter-posts').append('<li id="kvitter-"' + kvitt.id + '"><a href="/users/'+ kvitt.user_id + '">@' + kvitt.username + '</a> ' + format(kvitt.message) + '<br><span class="small">'+ humanized_time_span(kvitt.created_at) + '</span></li>');
 }
@@ -68,6 +77,6 @@ jQuery.fn.exists = function(){return jQuery(this).length>0;}
 $(function() {
   if ($('#kvitter').exists()) {
     downloadKvitters();
-    setInterval(downloadKvitters,20*1000);
+    setInterval(refreshKvitters,20*1000);
   }
 })
