@@ -39,11 +39,11 @@ function downloadKvitters() {
 }
 
 function appendKvitter(kvitt) {
-  $('#kvitter-posts').append('<li id="kvitter-"' + kvitt.id + '"><a href="user/'+ kvitt.user_id + '">@' + kvitt.username + '</a> ' + htmlEncode(kvitt.message) + '<br><span class="small">'+ humanized_time_span(kvitt.created_at) + '</span></li>');
+  $('#kvitter-posts').append('<li id="kvitter-"' + kvitt.id + '"><a href="users/'+ kvitt.user_id + '">@' + kvitt.username + '</a> ' + htmlEncode(kvitt.message) + '<br><span class="small">'+ humanized_time_span(kvitt.created_at) + '</span></li>');
 }
 
 function prependKvitter(kvitt) {
-  $('#kvitter-posts').prepend('<li id="kvitter-"' + kvitt.id + '"><a href="user/'+ kvitt.user_id + '">@' + kvitt.username + '</a> ' + htmlEncode(kvitt.message) + '<br><span class="small">'+ humanized_time_span(kvitt.created_at) + '</span></li>');
+  $('#kvitter-posts').prepend('<li id="kvitter-"' + kvitt.id + '"><a href="users/'+ kvitt.user_id + '">@' + kvitt.username + '</a> ' + htmlEncode(kvitt.message) + '<br><span class="small">'+ humanized_time_span(kvitt.created_at) + '</span></li>');
 }
 
 function spinKvitter() {
@@ -61,7 +61,11 @@ function spinKvitter() {
   var spinner = new Spinner(opts).spin(target);
 }
 
+jQuery.fn.exists = function(){return jQuery(this).length>0;}
+
 $(function() {
-  downloadKvitters();
-  setInterval(downloadKvitters,20*1000);
+  if ($('#kvitter').exists()) {
+    downloadKvitters();
+    setInterval(downloadKvitters,20*1000);
+  }
 })
