@@ -3,6 +3,11 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def username
+    @user = User.find_by_username(params[:username])
+    render action: 'show'
+  end
+
   def update
     @user = current_user
     if @user.update_attributes(params[:user])

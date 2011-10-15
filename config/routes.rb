@@ -69,6 +69,10 @@ InternalIsfitOrg::Application.routes.draw do
   match 'logout' => 'sessions#destroy', :as => :logout
   match 'login' => 'sessions#new', :as => :login
   resources :sessions
-  resources :users
+  resources :users do 
+    collection do
+      get ':username', action: :username
+    end
+  end
   root :to => "articles#index"
 end
