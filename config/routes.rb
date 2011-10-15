@@ -71,7 +71,7 @@ InternalIsfitOrg::Application.routes.draw do
   resources :sessions
   resources :users do 
     collection do
-      get ':username', action: :username
+      get 'username/:username', action: :username
     end
   end
   root :to => "articles#index"

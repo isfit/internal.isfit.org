@@ -1,6 +1,6 @@
 function format(s) {
   var sanitized = s.replace(/&(?!\w+([;\s]|$))/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  var formatted = sanitized.replace(/@([A-Za-z0-9_]+)/g, "<a href='/users/$1'>@$1</a>");
+  var formatted = sanitized.replace(/@([A-Za-z0-9_]+)/g, "<a href='/users/username/$1'>@$1</a>");
   return formatted;
 }
 function downloadKvitters() {
@@ -41,11 +41,11 @@ function downloadKvitters() {
 }
 
 function appendKvitter(kvitt) {
-  $('#kvitter-posts').append('<li id="kvitter-"' + kvitt.id + '"><a href="users/'+ kvitt.user_id + '">@' + kvitt.username + '</a> ' + format(kvitt.message) + '<br><span class="small">'+ humanized_time_span(kvitt.created_at) + '</span></li>');
+  $('#kvitter-posts').append('<li id="kvitter-"' + kvitt.id + '"><a href="/users/'+ kvitt.user_id + '">@' + kvitt.username + '</a> ' + format(kvitt.message) + '<br><span class="small">'+ humanized_time_span(kvitt.created_at) + '</span></li>');
 }
 
 function prependKvitter(kvitt) {
-  $('#kvitter-posts').prepend('<li id="kvitter-"' + kvitt.id + '"><a href="users/'+ kvitt.user_id + '">@' + kvitt.username + '</a> ' + format(kvitt.message) + '<br><span class="small">'+ humanized_time_span(kvitt.created_at) + '</span></li>');
+  $('#kvitter-posts').prepend('<li id="kvitter-"' + kvitt.id + '"><a href="/users/'+ kvitt.user_id + '">@' + kvitt.username + '</a> ' + format(kvitt.message) + '<br><span class="small">'+ humanized_time_span(kvitt.created_at) + '</span></li>');
 }
 
 function spinKvitter() {
