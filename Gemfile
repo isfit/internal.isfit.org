@@ -22,11 +22,11 @@ gem 'therubyracer'
 gem 'mini_magick', :require=>'RMagick'
 gem 'rmagick', :require => false
 
-group :assets do
+#group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
-end
+#end
 
 group :development, :test do
   gem 'rspec-rails'
