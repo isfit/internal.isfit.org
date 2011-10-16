@@ -3,34 +3,30 @@ source 'http://rubygems.org'
 gem 'rails', '3.1.1'
 
 gem 'sqlite3'
+gem 'mysql2'
 
 # Asset template engines
 gem 'compass', ">=0.12.alpha.0"
 
-gem 'jquery-rails'
-gem 'memcache-client'
-gem 'therubyracer'
-gem 'mini_magick', :require=>'RMagick'
-gem 'rmagick', :require => false
-
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
-
-
 # Spesifikke gems her
-gem 'mysql2'
 gem 'capistrano'
 gem 'cancan'
 gem 'ancestry'
 gem 'paperclip'
 gem 'rack', '1.3.3'
 gem 'rake', '0.9.2'
-
-
-# To use debugger
-
 gem "bcrypt-ruby", :require => "bcrypt"
+gem 'jquery-rails'
+gem 'memcache-client'
+gem 'therubyracer'
+gem 'mini_magick', :require=>'RMagick'
+gem 'rmagick', :require => false
+
+group :assets do
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
+end
 
 group :development, :test do
   gem 'rspec-rails'
@@ -38,6 +34,8 @@ group :development, :test do
   gem 'nifty-generators'
   gem 'mocha'
   gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'libnotify'
+  gem 'rb-inotify'
 end
 
 group :test do
