@@ -1,52 +1,30 @@
 <h1><%= "#{user.full_name}" %></h1>
-<ul><i>
-    <h4>
-      <% user.positions.each do |position| %> 
-        <li> <%= position.title_en %> - <%= position.groups.first.name_en %>, <%#=position.festival_year%></li>
-      <% end %>
-    </h4>
-</i></ul>
-<br>
-<p><h6>
-  <% if user.date_of_birth %>
+<h6><%= pluralize(user.positions.count, "position")%></h6>
+<ul id="user-positions">
+  <% user.positions.each do |position| %> 
+    <li><%= position.title_en %> - <%= position.groups.first.name_en %>, <%#=position.festival_year%></li>
+  <% end %>
+</ul>
+<p>  
+<% if user.date_of_birth %>
     <b>Date of birth:</b> <%= user.date_of_birth %> (<%= time_ago_in_words(user.date_of_birth) %>)<br>
   <% end %>
-</h6>
 </p>
-<%# @user =  LdapUser.get_by_id(person.ldap_id) %>
-<p><h6>  <b>Emails:</b> 
-<%  
-#emails = [] 
-#if @user.has_system_account?
-#  emails.push(@user.username)
-#end
-#emails.concat(@user.mails)
-#emails.collect! do |email|
-#  unless email.index('@')
-#    email += '@isfit.org'
-#  end
-#  email
-#end 
-%>
-<%#=raw emails.join(", ")%>
-<br>
-</h6>
+<p>
+<b>Email:</b> <a href="mailto:<%= user.username %>@isfit.org"><%= user.username %>@isfit.org</a>
 </p>
-<p><h6> <% if user.phone %>
-    <b>Phone:</b> <%= user.phone %><br>
+<p>
+  <% if user.phone %>
+    <b>Phone:</b> <%= user.phone %>
   <% end %>
-</h6>
 </p>
-<p><h6>
+<p>
   <% if user.address %>
     <b>Address:</b> <%= user.address %><br>
   <% end %>
-</h6>
 </p>
-<p><h6>
+<p>
   <% if user.postal_code %>
     <b>Postal code:</b> <%= "#{user.postal_code} #{user.city}" %><br>
   <% end %>
-</h6>
 </p>
-<br/>

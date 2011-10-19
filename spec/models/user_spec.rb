@@ -4,7 +4,7 @@ describe User do
   def new_user(attributes = {})
     attributes[:username] ||= 'foo'
     attributes[:email] ||= 'foo@example.com'
-    attributes[:password] ||= 'abc123'
+    attributes[:password] ||= 'abc12345'
     attributes[:password_confirmation] ||= attributes[:password]
     User.new(attributes)
   end
@@ -26,23 +26,19 @@ describe User do
   end
 
   it "should authenticate by username" do
-    user = new_user(:username => 'foobar', :password => 'secret')
+    user = new_user(:username => 'foobar', :password => 'secret12')
     user.save!
-    user.authenticate('secret').should == user
+    user.authenticate('secret12').should == user
   end
 
   it "should authenticate by email" do
-    user = new_user(:email => 'foo@bar.com', :password => 'secret')
+    user = new_user(:email => 'foo@bar.com', :password => 'secret12')
     user.save!
-    user.authenticate('secret').should == user
-  end
-
-  it "should not authenticate bad username" do
-    
+    user.authenticate('secret12').should == user
   end
 
   it "should not authenticate bad password" do
-    user = new_user(:username => 'foobar', :password => 'secret')
+    user = new_user(:username => 'foobar', :password => 'secret12')
     user.save!
     user.authenticate('badpassword').should be_false
   end

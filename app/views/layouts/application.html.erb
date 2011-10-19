@@ -38,6 +38,9 @@
         <div class="widget">
           <%= render :partial => 'internal_tabs/groups', :locals => {:menu_groups => current_sublink.children }%>
         </div>
+        <% unless @no_kvitter %>
+        <div id="kvitter" class="widget"></div>
+        <% end %>
         <%= yield :sidebar %>
       </div>
       <div id="content" class="content">
@@ -52,6 +55,7 @@
       </div>
     </div>
     <!--Script at bottom for fast page load -->
+    <script src="http://fgnass.github.com/spin.js/spin.min.js"></script>
     <%= javascript_include_tag :application %>
     <%= yield :script %>
     <script src="//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>

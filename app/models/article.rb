@@ -3,6 +3,5 @@ class Article < ActiveRecord::Base
   validates :body, :presence => true
   belongs_to :user
   has_attached_file :article_image,
-    :styles => {:thumb => "200x200#", :original => "400x400>"},
-    :default_url => "/images/missing.png"
+    styles: {thumb: "200x200#", original: "400x400>"}
 end

@@ -28,11 +28,11 @@
 <%=  @article.created_at.strftime("%F")%>
 </p>
 <p style="line-height:1;font: 14px/1.5 'Georgia','Arial'">
-  <b><%=raw format( @article.ingress_no) %></b>
+  <b><%=raw simple_format( @article.ingress_no) %></b>
 </p>
 <br />
 <p style="text-align:justify;line-height:1;font: 14px/1.5 'Georgia','Arial'">
-    <%= raw format(@article.body_no) %>
+    <%= raw simple_format(@article.body_no) %>
 </p>
 
 

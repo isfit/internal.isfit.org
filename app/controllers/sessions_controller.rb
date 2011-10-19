@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   before_filter :login_required, except: [:new, :create]
   def new
+    @no_kvitter = true
   end
 
   def create

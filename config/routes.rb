@@ -1,18 +1,14 @@
 InternalIsfitOrg::Application.routes.draw do
+  
+  post "kvitters/create" => "kvitters#create"
+  get "kvitters/last(:.format)" => "kvitters#last"
+  resources :contact_logs
 
-  get "kvitters/index"
-
-  get "kvitters/show"
-
-  get "kvitters/create"
-
-  resources :kvitters
 
   resources :spp_articles do
     collection do
       post 'photo'
     end
-
     member do
       get 'movedown'
       get 'moveup'
@@ -20,6 +16,9 @@ InternalIsfitOrg::Application.routes.draw do
   end
   
   resources :frontend_articles do
+    collection do
+      post 'photo'
+    end
     member do
       get 'moveup'
       get 'movedown'
@@ -79,6 +78,10 @@ InternalIsfitOrg::Application.routes.draw do
   match 'logout' => 'sessions#destroy', :as => :logout
   match 'login' => 'sessions#new', :as => :login
   resources :sessions
-  resources :users
+  resources :users do 
+    collection do
+      get 'username/:username', action: :username
+    end
+  end
   root :to => "articles#index"
 end

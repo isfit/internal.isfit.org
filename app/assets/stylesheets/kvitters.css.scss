@@ -1,3 +1,18 @@
 // Place all the styles related to the kvitters controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#kvitter ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.kvitter-btn {
+  margin-top: 1em;
+}
+
+#kvitter span.small {
+  font-size: 0.8em;
+  text-align: right;
+}
