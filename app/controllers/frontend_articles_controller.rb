@@ -1,4 +1,7 @@
 class FrontendArticlesController < ApplicationController
+
+  load_and_authorize_resource
+
   def index
     @articles = FrontendArticle.where(deleted: 0).order('weight desc')
   end
