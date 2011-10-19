@@ -1,0 +1,35 @@
+<p>Return to <%= link_to('Galleries', gallery_albums_path) %>.</p>
+<h1>Now editing the gallery titled <%= @album.title %></h1>
+<strong>Here are some standard properties for you to edit:</strong>
+	
+<%= render 'form' %>
+
+<strong>But that's just plain boring, time to add some photos:</strong><br/><br/>
+
+<div id="images" class="hidable">
+	<div id="gallery_fileupload">
+	  <%= form_tag add_photo_gallery_albums_path , class: "file_upload" do %>
+	    Drag file here
+	  <% end %>
+	
+	  <div class="fileupload-content">
+	    <table class="files"></table>
+	    <div class="fileupload-progressbar"></div>
+	  </div>
+	</div>
+	
+	<div id="gallery_photos_id_list"></div>
+</div>
+
+<div id="imageList"></div>
+
+<% @album.gallery_photos.each do |photo| %>
+
+	<%= photo.inspect %>
+	<%= link_to("Destroy", destroy_photo_gallery_albums_path(photo).json, confirm: "Are you sure?")%>
+
+<% end %>
+
+<br/>
+<br/>
+<p>Return to <%= link_to('Galleries', gallery_albums_path) %>.</p>
