@@ -1,5 +1,5 @@
 <div class="articles">
-  <%= link_to "Create article", new_article_path, :class => "primary btn" %>
+  <%= link_to "Create article", new_article_path, class: "primary btn" %>
   <% for article in @articles %>
     <div class="article">
       <div class="action-menu">
@@ -9,9 +9,9 @@
       <h1><%= link_to article.title, article %>
         <p class="small">Created <%= time_ago_in_words(article.created_at) %> ago by <%= link_to article.user.full_name, article.user %>.</p>
       </h1>
-      <%= image_tag article.article_image.url(:thumb), :class => "right" %> 
+      <%= image_tag article.article_image.url(:thumb), class: :right %> 
       <p>
-      <%= simple_format(truncate(article.body, :length => 1000, :omission =>"...")) %>
+      <%= simple_format(truncate(article.body, length: 1000, omission: "...")) %>
       <%= article.body.length > 1000 ? (link_to("Read more...", article)):'' %>
 
       </p>
