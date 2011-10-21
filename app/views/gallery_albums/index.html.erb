@@ -1,0 +1,15 @@
+<h1>Galleries</h1>
+<p>Mean, lean gallery machines:</p>
+
+<%= link_to("Add a new album", new_gallery_album_path) %>
+
+<br/><br/>
+
+<% @albums.each do |album| %>
+
+	<%= link_to(album.title, gallery_album_path(album)) %> 
+	<%= album.description %>
+	<%= link_to("Edit", edit_gallery_album_path(album)) %>
+	<%= link_to("Destroy", album, method: "delete", confirm: "Are you sure?")%>
+
+<% end %>

@@ -17,5 +17,6 @@ rerun.txt
 pickle-email-*.html
 *.svn
 *.swp
+/.idea
 public/system
 /.idea/

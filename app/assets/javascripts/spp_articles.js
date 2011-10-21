@@ -2,6 +2,7 @@
 
 $('#fileupload').fileupload({
   dataType: 'json',
+  url: $('.file_upload').attr('action'),
   add: function (e, data) {
     data.submit();
   },

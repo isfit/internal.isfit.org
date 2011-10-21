@@ -1,5 +1,5 @@
 InternalIsfitOrg::Application.routes.draw do
- 
+  
   post "kvitters/create" => "kvitters#create"
   get "kvitters/last(:.format)" => "kvitters#last"
   resources :contact_logs
@@ -26,6 +26,15 @@ InternalIsfitOrg::Application.routes.draw do
       post 'crop_main'
       post 'crop_create'
     end
+  end
+  
+  resources :gallery_albums do
+    collection do
+      post 'add_photo'
+      get 'destroy_photo'
+      get 'update_photo'
+    end
+    resources :gallery_photos
   end
 
   resources :accounts do
