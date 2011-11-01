@@ -6,6 +6,13 @@ class FrontendArticlesController < ApplicationController
     @articles = FrontendArticle.where(deleted: 0).order('weight desc')
   end
 
+  def photo
+   @photo = Photo.new
+   @photo.original_picture = params[:files][0]
+   @photo.save
+   render json: {ratio: (@photo.original_picture_geometry(:original).width / @photo.original_picture_geometry(:cropable).width), photo: @photo}
+  end
+
   def show
     @article = FrontendArticle.find(params[:id])
   end
