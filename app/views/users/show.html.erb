@@ -1,14 +1,14 @@
-<div style="float:left; top:0; left:0; width:250px; height:300px;"><%#= image_tag @user.profile_picture.url(:thumb)%></div>
-
-<div style="float:right; top:0; right:0; width:500px; "><%=render @user %></div>
-
-<div style="float:right; top:0; width:500px; min-height:200px;"><%#= render :partial => 'shoutbox_person', :locals => { :shoutboxes => @user.shoutboxes.order("created_at DESC")} %></div>
-
-<div style="float:left; top:0; width:250px;">
- <% if @user.tasks %>
-  <b>Tasks:</b><br>
-  <%= simple_format(@user.tasks) %><br>
-<% else %>
-  No task added.<br>
-<% end %>
+<div class="user">
+  <div class="picture">
+    <%#= image_tag @user.profile_picture.url(:thumb)%>
+    </div>
+  <div><%=render @user %></div>
+  <div>
+      <% if @user.tasks %>
+        <b>Tasks:</b><br>
+        <%= simple_format(@user.tasks) %><br>
+      <% else %>
+        No task added.<br>
+      <% end %>
+    </div>
 </div>

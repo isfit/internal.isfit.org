@@ -4,12 +4,14 @@ class Ability
   def initialize(user)
     if user.role?(:admin)
       can :manage, :all
-    else
-      can :manage, Account
-      can :read, StaticPage
-      can :read, Article
     end
-
+    if user.role?(:editorial)
+      can :manage, FrontendArticle
+    end
+    can :manage, Account
+    can :read, StaticPage
+    can :read, Article
+    
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

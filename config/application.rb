@@ -1,5 +1,5 @@
 require File.expand_path('../boot', __FILE__)
-
+RMAGICK_BYPASS_VERSION_TEST = true
 require 'rails/all'
 
 

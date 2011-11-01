@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  validate :password, length: "<8"
+  validates :password, length: {minimum: 8}
   set_primary_key :id
   has_secure_password
   has_many :groups, :through => :positions
