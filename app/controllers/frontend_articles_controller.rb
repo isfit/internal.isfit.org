@@ -44,6 +44,8 @@ class FrontendArticlesController < ApplicationController
   # POST /articles.xml
   def create
     @article = FrontendArticle.new(params[:frontend_article])
+    @photo = Photo.find(params[:frontend_article][:photo_id]) if Photo.exists?(params[:frontend_article][:photo_id])
+    @article.frontend_article_image = @photo.original_picture if @photo
     @article.deleted = 0
     if FrontendArticle.count == 1
       @article.weight = 1
