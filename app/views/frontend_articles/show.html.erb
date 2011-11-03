@@ -16,7 +16,7 @@
     <%= @article.title_no %>
 </h3>
 <p style="line-height:1;font: 14px/1.5 'Georgia','Arial'">
-<%=image_tag "frontend_article_images/"+@article.id.to_s + "_3.jpg"%>
+<%=image_tag @article.frontend_article_image.url(:front_large) %>
 <%if @article.image_credits != ""%>
   Foto: <%=@article.image_credits%><br />
 <%end%>

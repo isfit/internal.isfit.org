@@ -1,11 +1,11 @@
 <h1>New article</h1>
 
 <div class="well">
-  <button class="btn primary" data-page="images">Image</button>
-  <button class="btn" data-page="misc">Misc</button>
-  <button class="btn" data-page="english">English</button>
-  <button class="btn" data-page="norsk">Norwegian</button>
-  <button class="btn" data-page="preview">Preview</button>
+  <button class="article btn primary" data-page="images">Image</button>
+  <button class="article btn" data-page="misc">Misc</button>
+  <button class="article btn" data-page="english">English</button>
+  <button class="article btn" data-page="norsk">Norwegian</button>
+  <button class="article btn" data-page="preview">Preview</button>
 </div>
 
 <div id="images" class="hidable">
@@ -42,6 +42,10 @@
       <div class="field">
       <%= f.label :show_article %>
       <%= f.text_field :show_article, class: :datetimepicker %>
+    </div>
+    <div class="field">
+      <%= f.label :list %>
+      <%= f.check_box :list %>
     </div>
     <div class="field">
       <%= f.label :got_comments %>
@@ -101,7 +105,7 @@
   Coming soon...
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "primary btn" %>
   </div>
 <% end %>
 <%= link_to 'Back', frontend_articles_path %>
