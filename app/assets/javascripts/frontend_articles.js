@@ -1,6 +1,6 @@
 // Initialize the jQuery File Upload widget:
 
-$('#fileupload').fileupload({
+$('#frontend_fileupload').fileupload({
   dataType: 'json',
   url: $('.file_upload').attr('action'),
   add: function (e, data) {
