@@ -1,4 +1,26 @@
 module ApplicationHelper
+
+  def transliterate(str)
+    # Based on permalink_fu by Rick Olsen
+
+    # Downcase string
+    s.downcase!
+
+    # Remove apostrophes so isn't changes to isnt
+    s.gsub!(/'/, '')
+
+    # Replace any non-letter or non-number character with a space
+    s.gsub!(/[^A-Za-z0-9]+/, ' ')
+
+    # Remove spaces from beginning and end of string
+    s.strip!
+
+    # Replace groups of spaces with single hyphen
+    s.gsub!(/\ +/, '-')
+
+    return s
+  end
+
   def url_for_internal_tab(tab)
     logger.info tab.inspect if !can_access_link(tab)
     return root_url if !can_access_link(tab)

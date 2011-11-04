@@ -9,9 +9,9 @@ $('#frontend_fileupload').fileupload({
   dropzone: $("form.file_upload"),
   done: function (e, data) {
     str = "/system/original_pictures/"+data.result.photo.id+"/cropable/"+data.result.photo.original_picture_file_name
-    $("#img1").html("<img src="+str+" id='frontend_front_large' />");
-    $("#img2").html("<img src="+str+" id='frontend_front_small' />");
-    $("#img3").html("<img src="+str+" id='frontend_article_img' />");
+    $("#img1").html("<img src='"+str+"' id='frontend_front_large' />");
+    $("#img2").html("<img src='"+str+"' id='frontend_front_small' />");
+    $("#img3").html("<img src='"+str+"' id='frontend_article_img' />");
     $("#frontend_article_photo_id").val(data.result.photo.id);
     frontendAddCropping(data.result.ratio);
   }
