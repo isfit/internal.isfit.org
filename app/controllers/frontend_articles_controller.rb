@@ -75,6 +75,9 @@ class FrontendArticlesController < ApplicationController
   # PUT /articles/1.xml
   def update
     @article = FrontendArticle.find(params[:id])
+    @photo = Photo.find(params[:frontend_article][:photo_id]) if Photo.exists?(params[:frontend_article][:photo_id])
+    @article.frontend_article_image = @photo.original_picture if @photo
+ 
     if @article.update_attributes(params[:frontend_article])
       redirect_to(@article, notice: 'Article was successfully updated.')
     else
