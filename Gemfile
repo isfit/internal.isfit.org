@@ -21,6 +21,7 @@ gem 'memcache-client'
 gem 'therubyracer'
 gem 'mini_magick', :require=>'RMagick'
 gem 'rmagick', :require => false
+gem 'sdoc'
 
 #group :assets do
   gem 'sass-rails'
