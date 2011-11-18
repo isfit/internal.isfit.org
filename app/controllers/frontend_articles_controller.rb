@@ -100,10 +100,11 @@ class FrontendArticlesController < ApplicationController
 
   def moveup
     current = FrontendArticle.find(params[:id])
-    if current != FrontendArticle.find(:first, :order => "weight DESC") && FrontendArticle.where(deleted: 0).count > 1
+    if current != FrontendArticle.find(:first, :order => "weight DESC")# && FrontendArticle.where(deleted: 0).count > 1
       switch = FrontendArticle.find(:first, :conditions => ["weight > #{current.weight} AND deleted = 0" ,{ :deleted=>"0"}], :order =>"weight ASC")
-      switch.weight -=1
-      current.weight +=1
+      current_weight = current.weight
+      current.weight = switch.weight
+      switch.weight = current_weight
       switch.save
       current.save
     end
@@ -112,10 +113,11 @@ class FrontendArticlesController < ApplicationController
 
   def movedown
     current = FrontendArticle.find(params[:id])
-    if current != FrontendArticle.find(:last, :order => "weight DESC") && FrontendArticle.where(deleted: 0).count > 1
+    if current != FrontendArticle.find(:last, :order => "weight DESC")# && FrontendArticle.where(deleted: 0).count > 1
       switch = FrontendArticle.find(:first, :conditions => ["weight < #{current.weight} AND deleted = 0" ,{ :deleted=>"0"}], :order =>"weight DESC")
-      switch.weight +=1
-      current.weight -=1
+      current_weight = current.weight
+      current.weight = switch.weight
+      switch.weight = current_weight
       switch.save
       current.save
     end

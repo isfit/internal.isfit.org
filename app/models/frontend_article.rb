@@ -19,8 +19,10 @@ class FrontendArticle < ActiveRecord::Base
   private
 
   def set_byline
-      user = User.find(self.byline_user_id)
-      self.byline = "<a href=\"mailto:#{user.username}@isfit.org\">#{user.full_name}</a>"
+      if self.byline_user_id
+        user = User.find(self.byline_user_id)
+        self.byline = "<a href=\"mailto:#{user.username}@isfit.org\">#{user.full_name}</a>"
+      end
   end
 
 end
