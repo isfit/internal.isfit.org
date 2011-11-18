@@ -21,34 +21,51 @@ module ApplicationHelper
     return s
   end
 
-  def url_for_internal_tab(tab)
-    logger.info tab.inspect if !can_access_link(tab)
-    return root_url if !can_access_link(tab)
-    if tab.controller && tab.action
-      url_for(controller: tab.controller, action: tab.action, id:tab.action_id)
-    elsif tab.children.size == 0
-      root_url
-    else
-      url_for_internal_tab(tab.children.first)
+  # Traverses a given tab for each of its children
+  # Works recursive, and traveres the tree-structure of the internal menu system. 
+  # Also check for access before returning the url
+  #
+  # @param [Hash] a hash with keys as InternalTab and values as a hash of nested InternalTab
+  # @return [String] returns the first recognized url for the given
+  #
+  # @example url_for_arranged_tab(InternalTab.arrange) will return the first accessable link for the root-tabs
+
+  def url_for_arranged_tab(tab)
+    current = tab.keys
+    children = tab.values
+    return false if current.empty?
+
+    current.each do |c|
+      if c.controller && c.action
+        if can?(c.action.to_sym, Kernel.const_get(c.controller.classify))
+          return url_for(controller: c.controller, action: c.action, id:c.action_id)
+        end
+      end
     end
+    
+    children.each do |child|
+      url = url_for_arranged_tab(child)
+      return url if url
+    end
+    #a_hash = {}.tap{ |r| children.values.each{ |h| h.each{ |k,v| (r[k]||=[]) << v } } }
+    #return url_for_arranged_tab(child)
+    return false
   end
 
   def numeric?(object)
     true if Float(object) rescue false
   end
 
-  def can_access_link(link)
-    logger.info "can? #{link.inspect}"
-    return false unless current_user
+  # Check if current_user can access link
+  #
+  # @param [InternalTab] A link to check
+  # @return [true|false] depending on access
+    
+  def can_access_link?(link)
     if link.controller && link.action
-      logger.info "canCheck? #{can?(link.action, link.controller)}"
-      return can?(link.action, link.controller)
-    elsif link.children.size == 0
+      return can?(link.action.to_sym, Kernel.const_get(link.controller.classify))
+    else 
       return false
-    else
-      link.children.each do |child|
-        return can_access_link(child)
-      end
     end
   end
 

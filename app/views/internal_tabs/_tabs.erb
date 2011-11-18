@@ -1,10 +1,13 @@
 <ul>
-<% unless logged_in? %>
-  <li class="active"><%= link_to('Log in', {}, {:class => 'active'}) %></li>
-<% else %>
-<% tabs.each do |tab| %>
-  <li><%= link_to tab.title.capitalize, url_for_internal_tab(tab) %></li>
-<% end %>
-<li><%= link_to('Log out', logout_path) %></li>
-<% end %>
+  <% unless logged_in? %>
+    <li class="active"><%= link_to('Log in', {}, {:class => 'active'}) %></li>
+  <% else %>
+    <% tabs.each do |tab, children| %>
+      <li><%= children %></li>
+      <li><%= %></li>
+      <% url = url_for_arranged_tab(children) %>
+      <li><%= link_to tab.title.capitalize, url if url%></li>
+    <% end %>
+    <li><%= link_to('Log out', logout_path) %></li>
+  <% end %>
 </ul>

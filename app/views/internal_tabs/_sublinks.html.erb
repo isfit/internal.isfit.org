@@ -1,10 +1,13 @@
 <ul class="pills">
-<% sublinks.each do |sublink| %>
+<% sublinks.each do |sublink,children| %>
   <%
-    url = url_for_internal_tab(sublink)
-    active =sublink == current_sublink
+    if sublink.controller && sublink.action
+      url = url_for(controller: sublink.controller, action: sublink.action, id: sublink.action_id)
+    else
+      url = url_for_arranged_tab(children)
+    end
+    active = sublink == current_sublink
     %>
-
-    <li class="<%= active ? "active":"active"%>" ><%= link_to sublink.title, url, :class => active ? "active":"active"  if can_access_link(sublink) %></li>
+    <li class="<%= active ? "active":"active"%>" ><%= link_to  sublink.title, url, class: active ? "active":"active" if url%></li>
   <% end %>
 </ul>

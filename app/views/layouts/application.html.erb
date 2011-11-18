@@ -13,7 +13,7 @@
         <div class="topbar-inner"> 
           <div class="container-fluid">
             <h3><%= link_to "ISFiT Internal", root_path, :class => :logo %></h3> 
-            <%= render :partial => 'internal_tabs/tabs', :locals => {:tabs => InternalTab.roots} %>
+            <%= render :partial => 'internal_tabs/tabs', :locals => {:tabs => InternalTab.arrange} %>
             <% if current_user %>
               <ul class="nav secondary-nav"> 
                 <li class="dropdown" data-dropdown="dropdown"> 
@@ -32,14 +32,14 @@
     </div>
     <div class="container-fluid content-margin">
       <div id="submeny" class="content"><!-- Start submeny -->
-        <%= render :partial => 'internal_tabs/sublinks', :locals => {:sublinks => current_tab.children } %>
+        <%= render :partial => 'internal_tabs/sublinks', :locals => {:sublinks => current_tab.descendants.arrange } %>
       </div>
       <div id="sidebar" class="sidebar">
         <div class="widget">
-          <%= render :partial => 'internal_tabs/groups', :locals => {:menu_groups => current_sublink.children }%>
+          <%= render :partial => 'internal_tabs/groups', :locals => {:menu_groups => current_sublink.descendants.arrange }%>
         </div>
         <% unless @no_kvitter %>
-        <div id="kvitter" class="widget"></div>
+          <div id="kvitter" class="widget"></div>
         <% end %>
         <%= yield :sidebar %>
       </div>
@@ -70,6 +70,6 @@
        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
        })();
-</script>
+     </script>
    </body>
  </html>
