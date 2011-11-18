@@ -4,4 +4,8 @@ class Position < ActiveRecord::Base
   has_and_belongs_to_many :groups
   has_and_belongs_to_many :users
 #  belongs_to :section, through: :groups
+
+  def festival_year
+    groups.first.section.festival.year
+  end
 end
