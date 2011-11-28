@@ -9,7 +9,7 @@ body.articles {
 }
 
 div.articles {
-  width: 75%;
+  max-width: 1000px;
   .article {
     padding-bottom: 1em;
     overflow: auto;
