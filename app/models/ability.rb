@@ -9,9 +9,11 @@ class Ability
     if user.role?(:editorial)
       can :manage, FrontendArticle
     end
-    can :manage, Account
-    can :read, StaticPage
-    can :read, Article
+    if user.role?(:internal)
+      can :manage, Account
+      can :read, StaticPage
+      can :read, Article
+    end
     
     # Define abilities for the passed in user here. For example:
     #

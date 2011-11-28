@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.1'
+gem 'rails', '3.1.3'
 
 gem 'sqlite3'
 gem 'mysql2'
@@ -13,15 +13,14 @@ gem 'capistrano'
 gem 'cancan'
 gem 'ancestry'
 gem 'paperclip'
-gem 'rack', '1.3.3'
-gem 'rake', '0.9.2'
+gem 'rack'
+gem 'rake'
 gem "bcrypt-ruby", :require => "bcrypt"
 gem 'jquery-rails'
 gem 'memcache-client'
 gem 'therubyracer'
 gem 'mini_magick', :require=>'RMagick'
 gem 'rmagick', :require => false
-gem 'sdoc'
 
 #group :assets do
   gem 'sass-rails'
@@ -37,6 +36,7 @@ group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'libnotify'
   gem 'rb-inotify'
+  gem 'yard'
 end
 
 group :test do
