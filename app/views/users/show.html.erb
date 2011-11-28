@@ -6,7 +6,7 @@
   <div>
       <% if @user.tasks %>
         <b>Tasks:</b><br>
-        <%= simple_format(@user.tasks) %><br>
+        <%= format(@user.tasks) %><br>
       <% else %>
         No task added.<br>
       <% end %>
