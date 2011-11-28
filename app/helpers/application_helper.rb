@@ -79,4 +79,11 @@ module ApplicationHelper
     link_to title, parameters, {:class => css_class}
   end
 
+  def format(text)
+    sanitize(markdown(text))
+  end
+  
+  def markdown(text)
+    BlueCloth::new(text).to_html
+  end
 end
