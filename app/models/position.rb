@@ -6,6 +6,6 @@ class Position < ActiveRecord::Base
 #  belongs_to :section, through: :groups
 
   def festival_year
-    groups.first.section.festival.year
+    groups.first.section ? groups.first.section.festival.year : groups.first.festival.year
   end
 end
