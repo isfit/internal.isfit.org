@@ -8,6 +8,7 @@ class Ability
     end
     if user.role?(:editorial)
       can :manage, FrontendArticle
+      can :manage, SppArticle
       can :manage, StaticPage
     end
     if user.role?(:internal)
