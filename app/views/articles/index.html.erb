@@ -11,9 +11,8 @@
       </h1>
       <%= image_tag article.article_image.url(:thumb), class: :right %> 
       <p>
-      <%= simple_format(truncate(article.body, length: 1000, omission: "...")) %>
+      <%= format(truncate(article.body, length: 1000, omission: "...")) %>
       <%= article.body.length > 1000 ? (link_to("Read more...", article)):'' %>
-
       </p>
     </div>
   <% end %>

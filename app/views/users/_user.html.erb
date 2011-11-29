@@ -1,7 +1,7 @@
 <h1><%= "#{user.full_name}" %></h1>
 <h6><%= pluralize(user.positions.count, "position")%></h6>
 <ul id="user-positions">
-  <% user.positions.each do |position| %> 
+  <% user.positions.reverse.each do |position| %> 
     <li><%= position.title_en %> - <%= position.groups.first.name_en %>, <%=position.festival_year%></li>
   <% end %>
 </ul>

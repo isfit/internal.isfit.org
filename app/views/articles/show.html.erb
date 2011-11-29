@@ -6,7 +6,7 @@
   <%= link_to @article.user.full_name, user_path(@article.user) %>
 </p>
 <p>
-  <%= @article.body %>
+  <%= format @article.body %>
 </p>
 
 <%= link_to 'Edit', edit_article_path(@article) %> |
