@@ -1,6 +1,9 @@
 class SppArticlesController < ApplicationController
+
+  load_and_authorize_resource
+
   def index
-    @spp_articles = SppArticle.all
+    @spp_articles = SppArticle.order("weight DESC")
   end
 
   def new
@@ -8,6 +11,27 @@ class SppArticlesController < ApplicationController
   end
 
   def edit
+    @spp_article = SppArticle.find(params[:id])
+  end
+
+  def show
+    @article = SppArticle.find(params[:id])
+  end
+
+  def update
+    @article = SppArticle.find(params[:id])
+
+    @photo = Photo.find(params[:spp_article][:photo_id]) if Photo.exists?(params[:spp_article][:photo_id])
+    @article.spp_article_image = @photo.original_picture if @photo
+ 
+    if @article.update_attributes(params[:spp_article])
+      if not params[:spp_article][:photo_id] == ""
+        @article.reprocess_photos
+      end
+      redirect_to(spp_articles_path, notice: 'Article was successfully updated.')
+    else
+      render action: "edit" 
+    end
 
   end
 

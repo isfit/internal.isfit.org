@@ -1,15 +1,14 @@
-
 <div class="well">
-  <button class="article btn primary" data-page="images">Image</button>
-  <button class="article btn" data-page="misc">Misc</button>
-  <button class="article btn" data-page="english">English</button>
-  <button class="article btn" data-page="norsk">Norwegian</button>
-  <button class="article btn" data-page="preview">Preview</button>
+  <button class="btn primary" data-page="images">Image</button>
+  <button class="btn" data-page="misc">Misc</button>
+  <button class="btn" data-page="english">English</button>
+  <button class="btn" data-page="norsk">Norwegian</button>
+  <button class="btn" data-page="preview">Preview</button>
 </div>
 
 <div id="images" class="hidable">
-<div id="frontend_fileupload">
-  <%= form_tag photo_frontend_articles_path , class: "file_upload" do %>
+<div id="spp_fileupload">
+  <%= form_tag photo_spp_articles_path , class: "file_upload" do %>
     Drag file here
   <% end %>
 
@@ -24,7 +23,7 @@
 </div>
 <br>
 <br>
-<%= form_for(@article, html: {class: "form-stacked"}) do |f| %>
+<%= form_for(@spp_article, html: {class: "form-stacked"}) do |f| %>
 <% if f.error_messages %>  
     <div class="alert-message block-message error" data-alert="true">
       <a href="#" class="close">x</a>
@@ -39,20 +38,16 @@
   <fieldset>
     <legend><%= t('common.common') %></legend>
       <div class="field">
-      <%= f.label :show_article %>
-      <%= f.text_field :show_article, class: :datetimepicker %>
-    </div>
-    <div class="field">
-      <%= f.label :list %>
-      <%= f.check_box :list %>
+      <%= f.label :visible %>
+      <%= f.check_box :visible %>
     </div>
     <div class="field">
       <%= f.label :got_comments %>
       <%= f.check_box :got_comments %>
     </div>
     <div class="field">
-      <%= f.label :byline_user_id %>
-      <%= f.collection_select :byline_user_id, @users, :id, :full_name_reversed %>
+      <%= f.label :youtube_link %>
+      <%= f.text_field :youtube_link %>
     </div>
     <%= f.hidden_field :photo_id %>
  </fieldset>
@@ -68,11 +63,6 @@
       <%= f.label :ingress_en %>
       <%= f.text_area :ingress_en, class: "small span12"  %>
     </div>
-     <div class="field">
-      <%= f.label :sub_title_en %>
-      <%= f.text_area :sub_title_en, class: "small span12"  %>
-    </div>
-
     <div class="field">
       <%= f.label :body_en %>
       <%= f.text_area :body_en , class: "span12" %>
@@ -90,10 +80,6 @@
       <%= f.label :ingress_no %>
       <%= f.text_area :ingress_no, class: "small span12" %>
     </div>
-     <div class="field">
-      <%= f.label :sub_title_no %>
-      <%= f.text_area :sub_title_no, class: "small span12"  %>
-    </div>
     <div class="field">
       <%= f.label :body_no %>
       <%= f.text_area :body_no, class: "span12" %>
@@ -104,8 +90,7 @@
   Coming soon...
   </div>
   <div class="actions">
-    <%= f.submit class: "primary btn" %>
+    <%= f.submit %>
   </div>
 <% end %>
-<%= link_to 'Back', frontend_articles_path %>
 

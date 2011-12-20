@@ -1,6 +1,6 @@
 // Initialize the jQuery File Upload widget:
 
-$('#fileupload').fileupload({
+$('#spp_fileupload').fileupload({
   dataType: 'json',
   url: $('.file_upload').attr('action'),
   add: function (e, data) {
@@ -9,9 +9,9 @@ $('#fileupload').fileupload({
   dropzone: $("form.file_upload"),
   done: function (e, data) {
     str = "/system/original_pictures/"+data.result.photo.id+"/cropable/"+data.result.photo.original_picture_file_name
-    $("#img1").html("<img src="+str+" id='front_large' />");
-    $("#img2").html("<img src="+str+" id='front_small' />");
-    $("#img3").html("<img src="+str+" id='article' />");
+    $("#img1").html("<img src='"+str+"' id='spp_front_large' />");
+    $("#img2").html("<img src='"+str+"' id='spp_front_small' />");
+    $("#img3").html("<img src='"+str+"' id='spp_article' />");
     $("#spp_article_photo_id").val(data.result.photo.id);
     addCropping(data.result.ratio);
   }
@@ -46,7 +46,7 @@ $("#images").show();
 
 function addCropping(ratio) {
 
-$('#front_large').imgAreaSelect({ 
+$('#spp_front_large').imgAreaSelect({ 
   minWidth: 346, 
   minHeight: 154,
   aspectRatio: '2.25:1',  
@@ -58,7 +58,7 @@ $('#front_large').imgAreaSelect({
     $('#y2').val(Math.round(selection.y2*ratio)); 
     } 
 });
-$('#front_small').imgAreaSelect({ 
+$('#spp_front_small').imgAreaSelect({ 
   minWidth: 220, 
   minHeight: 131,
   aspectRatio: '1.68:1',  
@@ -70,7 +70,7 @@ $('#front_small').imgAreaSelect({
     $('#y2_1').val(Math.round(selection.y2*ratio)); 
     } 
 });
-$('#article').imgAreaSelect({ 
+$('#spp_article').imgAreaSelect({ 
   minWidth: 447, 
   minHeight: 346,
   aspectRatio: '1.29:1',  
