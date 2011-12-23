@@ -1,5 +1,7 @@
 InternalIsfitOrg::Application.routes.draw do
   
+  resources :isfit_pages
+
   resources :presentations
 
   post "kvitters/create" => "kvitters#create"

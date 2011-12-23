@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111102175017) do
+ActiveRecord::Schema.define(:version => 20111223145208) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -76,12 +76,29 @@ ActiveRecord::Schema.define(:version => 20111102175017) do
     t.string   "last_name"
     t.string   "email"
     t.string   "phone"
-    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "contact_log_unit_id"
+  end
+
+  create_table "contact_log_units", :force => true do |t|
+    t.string   "company_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "contact_log_people", ["user_id"], :name => "index_contact_log_people_on_user_id"
+  create_table "contact_logs", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "content"
+    t.integer  "contact_log_person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "festivals", :id => false, :force => true do |t|
+    t.integer "id",   :default => 0, :null => false
+    t.integer "year"
+  end
 
   create_table "frontend_articles", :force => true do |t|
     t.string   "title_en"
@@ -166,6 +183,19 @@ ActiveRecord::Schema.define(:version => 20111102175017) do
   end
 
   add_index "internal_tabs", ["ancestry"], :name => "index_internal_tabs_on_ancestry"
+
+  create_table "isfit_pages", :force => true do |t|
+    t.string   "title_en"
+    t.string   "title_no"
+    t.text     "ingress_en"
+    t.text     "ingress_no"
+    t.text     "body_en"
+    t.text     "body_no"
+    t.string   "tag"
+    t.boolean  "deleted"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "kvitters", :force => true do |t|
     t.integer  "user_id"
