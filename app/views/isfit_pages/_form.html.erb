@@ -1,0 +1,79 @@
+<p><button class="info btn" data-controls-modal="formatting" data-backdrop="true" data-keyboard="true">Formatting</button></p>
+<div id="formatting" class="modal fade">
+  <div class="modal-header">
+    <a href="#" class="close">x</a>
+    <h3>Formatting</h3>
+  </div>
+  <div class="modal-body">
+    <p>Coming soon. For now, see the link below...</p>
+  </div>
+  <div class="modal-footer">
+    <p>ISFiT uses Markdown syntax. To learn more, please see <a href="http://daringfireball.net/projects/markdown/">Daring fireball</a>.</p>
+  </div>
+</div>
+
+<ul class="tabs" data-tabs="tabs">
+  <li class="active"><a href="#options" >Options</a></li>
+  <li class><a href="#english">English</a></li>
+  <li class><a href="#norwegian">Norwegian</a></li>
+</ul>
+
+<%= form_for(@isfit_page, html: {class: "form-stacked"} ) do |f| %>
+  <% if @isfit_page.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@isfit_page.errors.count, "error") %> prohibited this isfit_page from being saved:</h2>
+
+      <ul>
+        <% @isfit_page.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="tab-content" style="clear: none;">
+    <div class="tab-pane active" id="options">
+      <div class="field">
+        <%= f.label :tag %>
+        <%= f.text_field :tag %>
+      </div>
+      <div class="field">
+        <%= f.label :deleted %>
+        <%= f.check_box :deleted %>
+      </div>
+    </div>
+    <div class="tab-pane" id="english">
+      <div class="field">
+        <%= f.label :title_en %>
+        <%= f.text_field :title_en , class: "span10"%>
+      </div>
+      <div class="field">
+        <%= f.label :ingress_en %>
+        <%= f.text_area :ingress_en, class: "span10", rows: 3 %>
+      </div>
+      <div class="field">
+        <%= f.label :body_en %>
+        <%= f.text_area :body_en, class: "span10" %>
+      </div>
+
+    </div>
+    <div class="tab-pane" id="norwegian">
+      <div class="field">
+        <%= f.label :title_no %>
+        <%= f.text_field :title_no, class: "span10" %>
+      </div>
+      <div class="field">
+        <%= f.label :ingress_no %>
+        <%= f.text_area :ingress_no, class: "span10", rows: 3 %>
+      </div>
+      <div class="field">
+        <%= f.label :body_no %>
+        <%= f.text_area :body_no, class: "span10" %>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit class: "primary btn" %>
+  </div>
+<% end %>

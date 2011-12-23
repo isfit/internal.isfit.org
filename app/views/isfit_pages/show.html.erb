@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title en:</b>
+  <%= @isfit_page.title_en %>
+</p>
+
+<p>
+  <b>Title no:</b>
+  <%= @isfit_page.title_no %>
+</p>
+
+<p>
+  <b>Ingress en:</b>
+  <%= @isfit_page.ingress_en %>
+</p>
+
+<p>
+  <b>Ingress no:</b>
+  <%= @isfit_page.ingress_no %>
+</p>
+
+<p>
+  <b>Body en:</b>
+  <%= @isfit_page.body_en %>
+</p>
+
+<p>
+  <b>Body no:</b>
+  <%= @isfit_page.body_no %>
+</p>
+
+<p>
+  <b>Tag:</b>
+  <%= @isfit_page.tag %>
+</p>
+
+<p>
+  <b>Deleted:</b>
+  <%= @isfit_page.deleted %>
+</p>
+
+
+<%= link_to 'Edit', edit_isfit_page_path(@isfit_page) %> |
+<%= link_to 'Back', isfit_pages_path %>
