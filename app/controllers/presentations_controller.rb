@@ -14,13 +14,7 @@ class PresentationsController < ApplicationController
   # GET /presentations/1.json
   def show
     @presentation = Presentation.find(params[:id])
-    
     render layout: "presentation"
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @presentation }
-    end
   end
 
   # GET /presentations/new
