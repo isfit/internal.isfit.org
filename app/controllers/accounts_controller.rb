@@ -57,7 +57,7 @@ class AccountsController < ApplicationController
 
   def print_voucher
     usages = {}
-    @account = Account.find(params[:voucher][:unit])
+    @account = Account.find(params[:voucher][:unit]) if params[:voucher][:unit]
 
     params[:voucher].keys.each do |key|
       if key =~ /amount\d+|description\d+/ then
@@ -77,9 +77,9 @@ class AccountsController < ApplicationController
     usages = {}
     @account = Account.find(params[:voucher][:unit])
 
-    params[:voucher].keys.each do |key|
+    params[:travel].keys.each do |key|
       if key =~ /date\d+|route\d+|means\d+|amount\d+/ then
-        usages[key] = params[:voucher][key]
+        usages[key] = params[:travel][key]
       end
     end
     params[:carriers] = usages
