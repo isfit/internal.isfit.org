@@ -1,5 +1,10 @@
 module ApplicationHelper
 
+  def bootstrap_form_for(object, options = {}, &block)
+    options[:builder] = BootstrapFormBuilder
+    options[:html] = {class: "form-stacked"}
+    form_for(object, options, &block)
+  end
   def transliterate(str)
     # Based on permalink_fu by Rick Olsen
 

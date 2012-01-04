@@ -1,113 +1,48 @@
-<%= form_for @user, html: {class: "form-stacked"} do |f| %>
+<%= bootstrap_form_for @user do |f| %>
   <%= f.error_messages %>
-  <fieldset>
-    <legend>Personal information</legend>
-    <div class="field">
-      <%= f.label :given_name %>
-      <%= f.text_field :given_name %>
-    </div>
-    <div class="field">
-      <%= f.label :family_name %>
-      <%= f.text_field :family_name %>
-    </div>
-    <div class="field">
-      <%= f.label :phone %>
-      <%= f.text_field :phone %>
-    </div>
-    <div class="field">
-      <%= f.label :private_email %>
-      <%= f.text_field :private_email %>
-    </div>
-    <div class="field">
-      <%= f.label :address %>
-      <%= f.text_field :address %>
-    </div>
-    <div class="field">
-      <%= f.label :postal_code %>
-      <%= f.text_field :postal_code, class: "span1" %> <%= f.text_field :city, class: "span3" %>
-    </div>
-  </fieldset>
+
+  <%= f.fieldset "Personal information" do %>
+    <%= f.text_field :given_name %>
+    <%= f.text_field :family_name %>
+    <%= f.text_field :phone %>
+    <%= f.text_field :private_email %>
+    <%= f.text_field :address %>
+    <%= f.text_field :postal_code %> <%= f.text_field :city %>
+  <% end %>
+
   <fieldset>
     <legend>Education</legend>
-     <div class="field">
-      <%= f.label :study %>
-      <%= f.text_field :study %>
-    </div>
-     
+    <%= f.text_field :study %>
   </fieldset>
-    <fieldset>
+  <fieldset>
     <legend>Tasks</legend>
-     <div class="field">
-      <%= f.label :tasks %>
-        <%= f.text_area :tasks, size: "10x10" %>
-    </div>
-     
+    <%= f.text_area :tasks, size: "10x10" %>
+
   </fieldset>
 
   <fieldset>
     <legend>Administration</legend>
-    <div class="field">
-      <%= f.label :cardnumber_ntnu %>
-      <%= f.text_field :cardnumber_ntnu %>
-      <p class="btn" rel="popover" data-original-title="NTNU cardnumber" data-content="Your NTNU cardnumber is the six digits right next to the 'NTNU' at the back of the card.">What is this?</p>
-    </div>
-    <div class="field">
-      <%= f.label :cardnumber_samfundet %>
-      <%= f.text_field :cardnumber_samfundet %>
-      <p class="btn" rel="popover" data-original-title="Samfundet cardnumber" data-content="Your samfundet card number is the member id at the bottom right corner of the card. ">What is this?</p>
-    </div>
-    
+    <%= f.text_field :cardnumber_ntnu,"hint-title"=>"NTNU cardnumber", "hint-content"=>"Your NTNU cardnumber is the six digits right next to the 'NTNU' at the back of the card."%>
+    <%= f.text_field :cardnumber_samfundet, "hint-title" => "Samfundet cardnumber", "hint-content" => "Your samfundet card number is the member id at the bottom right corner of the card." %>
   </fieldset>
   <fieldset>
     <legend>Next of kin</legend>
-    <div class="field">
-      <%= f.label :next_of_kin_name %>
-      <%= f.text_field :next_of_kin_name %>
-    </div>
-    <div class="field">
-      <%= f.label :next_of_kin_tlf %>
-      <%= f.text_field :next_of_kin_tlf %>
-    </div>
+    <%= f.text_field :next_of_kin_name %>
+    <%= f.text_field :next_of_kin_tlf %>
   </fieldset>
   <fieldset>
     <legend>Allergies</legend>
-    <div class="field">
-      <%= f.label :vegetarian %>
-      <%= f.check_box :vegetarian %>
-    </div>
-    <div class="field">
-      <%= f.label :lactose_allergy %>
-      <%= f.check_box :lactose_allergy %>
-    </div>
-    <div class="field">
-      <%= f.label :gluten_allergy %>
-      <%= f.check_box :gluten_allergy %>
-    </div>
-    <div class="field">
-      <%= f.label :nut_allergy %>
-      <%= f.check_box :nut_allergy %>
-    </div>
-    <div class="field">
-      <%= f.label :fruit_allergy %>
-      <%= f.check_box :fruit_allergy %>
-    </div>
-    <div class="field">
-      <%= f.label :other_allergy %>
-      <%= f.text_field :other_allergy %>
-    </div>
+    <%= f.check_box :vegetarian %>
+    <%= f.check_box :lactose_allergy %>
+    <%= f.check_box :gluten_allergy %>
+    <%= f.check_box :nut_allergy %>
+    <%= f.check_box :fruit_allergy %>
+    <%= f.text_field :other_allergy %>
   </fieldset>
   <fieldset>
     <legend>Change password</legend>
-  <div class="field">
-    <%= f.label :password %>
     <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm Password" %>
-    <%= f.password_field :password_confirmation %>
-  </div>
+    <%= f.password_field :password_confirmation, label: "Confirm Password" %>
 </fieldset>
-  <div class="field">
     <%= f.submit (@user.new_record? ? "Sign up" : "Update"), class: "primary btn" %>
-  </div>
 <% end %>
