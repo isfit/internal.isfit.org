@@ -19,12 +19,17 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe ArticlesController do
+  #Add this to don't care about login
+  before do
+    @controller.stubs(:logged_in?).returns(true)
+    User.stub!(:role?).and_return(true)
+  end
 
   # This should return the minimal set of attributes required to create a valid
   # Article. As you add validations to Article, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {title:"Test", body:"Test"}
   end
 
   describe "GET index" do

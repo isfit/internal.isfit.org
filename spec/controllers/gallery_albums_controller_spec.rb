@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe GalleryAlbumsController do
+  #Add this to don't care about login
+  before do
+    @controller.stubs(:logged_in?).returns(true)
+    User.stub!(:role?).and_return(true)
+  end
 
   describe "GET 'index'" do
     it "should be successful" do
@@ -8,26 +13,10 @@ describe GalleryAlbumsController do
       response.should be_success
     end
   end
-
-  describe "GET 'show'" do
-    it "should be successful" do
-      get 'show'
-      response.should be_success
-    end
-  end
-
   describe "GET 'new'" do
     it "should be successful" do
       get 'new'
       response.should be_success
     end
   end
-
-  describe "GET 'edit'" do
-    it "should be successful" do
-      get 'edit'
-      response.should be_success
-    end
-  end
-
 end

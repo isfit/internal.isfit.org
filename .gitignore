@@ -20,3 +20,4 @@ pickle-email-*.html
 /.idea
 public/system
 /.idea/
+.yardoc

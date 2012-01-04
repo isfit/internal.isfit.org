@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe InternalTabsController do
+  #Add this to don't care about login
+  before do
+    @controller.stubs(:logged_in?).returns(true)
+    User.stub!(:role?).and_return(true)
+  end
 
   describe "GET 'index'" do
     it "should be successful" do
@@ -15,12 +20,4 @@ describe InternalTabsController do
       response.should be_success
     end
   end
-
-  describe "GET 'create'" do
-    it "should be successful" do
-      get 'create'
-      response.should be_success
-    end
-  end
-
 end

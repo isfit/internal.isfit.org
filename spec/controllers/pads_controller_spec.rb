@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe PadsController do
+  #Add this to don't care about login
+  before do
+    @controller.stubs(:logged_in?).returns(true)
+    User.stub!(:role?).and_return(true)
+  end
 
   describe "GET 'index'" do
     it "should be successful" do
@@ -8,26 +13,4 @@ describe PadsController do
       response.should be_success
     end
   end
-
-  describe "GET 'create'" do
-    it "should be successful" do
-      get 'create'
-      response.should be_success
-    end
-  end
-
-  describe "GET 'show'" do
-    it "should be successful" do
-      get 'show'
-      response.should be_success
-    end
-  end
-
-  describe "GET 'delete'" do
-    it "should be successful" do
-      get 'delete'
-      response.should be_success
-    end
-  end
-
 end

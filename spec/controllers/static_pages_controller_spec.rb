@@ -19,6 +19,11 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe StaticPagesController do
+  #Add this to don't care about login
+  before do
+    @controller.stubs(:logged_in?).returns(true)
+    User.stub!(:role?).and_return(true)
+  end
 
   # This should return the minimal set of attributes required to create a valid
   # StaticPage. As you add validations to StaticPage, be sure to
