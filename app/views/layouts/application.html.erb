@@ -33,11 +33,11 @@
     </div>
     <div class="container-fluid content-margin">
       <div id="submeny" class="content"><!-- Start submeny -->
-        <%= render :partial => 'internal_tabs/sublinks', :locals => {:sublinks => current_tab.descendants.arrange } %>
+        <%= render :partial => 'internal_tabs/sublinks', :locals => {:sublinks => current_tab.new_record? ? [] : current_tab.descendants.arrange } %>
       </div>
       <div id="sidebar" class="sidebar">
         <div class="widget">
-          <%= render :partial => 'internal_tabs/groups', :locals => {:menu_groups => current_sublink.descendants.arrange }%>
+          <%= render :partial => 'internal_tabs/groups', :locals => {:menu_groups => current_sublink.new_record? ? [] : current_sublink.descendants.arrange }%>
         </div>
         <% unless @no_kvitter %>
           <div id="kvitter" class="widget"></div>
