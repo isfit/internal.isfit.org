@@ -8,22 +8,22 @@ class ApplicationController < ActionController::Base
 
   # Gets tab, parrent of sublink
   def current_tab
-    @current_tab ||= current_sublink.parent
+    @current_tab ||= current_sublink.parent || InternalTab.new
   end
 
   # Gets sublink, parent of menu_link_group
   def current_sublink
-    @current_sublink ||= current_menu_link_group.parent || InternalTab.roots.first.children.first
+    @current_sublink ||= current_menu_link_group.parent ||  InternalTab.new
   end
 
   # Gets the current menu_link_group, parent of menu_link
   def current_menu_link_group
-    @current_menu_link_group ||= current_menu_link.parent 
+    @current_menu_link_group ||= current_menu_link.parent || InternalTab.new 
   end
 
   # Gets the current link from InternalTab by looking at the given controller and action
   def current_menu_link
-    @current_menu_link ||= (InternalTab.where(controller: controller_name, action: action_name).first || InternalTab.where(controller: controller_name).first || InternalTab.find(7))
+    @current_menu_link ||= (InternalTab.where(controller: controller_name, action: action_name).first || InternalTab.where(controller: controller_name).first || InternalTab.new)
   end
 
   # Added to autoreload libs
