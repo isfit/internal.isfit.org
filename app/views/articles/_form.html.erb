@@ -1,40 +1,12 @@
-<%= form_for(@article, html: {class: "form-stacked"}) do |f| %>
-  <% if f.error_messages %>  
-    <div class="alert-message block-message error" data-alert="true">
-      <a href="#" class="close">x</a>
-      <%= f.error_messages %>
-    </div>
-  <% end %>
-
+<%= bootstrap_form_for(@article) do |f| %>
+  <%= f.error_messages %>
   <fieldset>
-    <div class="clearfix">
-      <%= f.label :title %>
-      <div class="input">
-      <%= f.text_field :title, :class => :span12 %>
-    </div>
-    </div>
-    <div class="field">
-      <%= f.label :body %>
-      <%= f.text_area :body, :class => :span12 %>
-    </div>
-    <div class="field">
-      <%= f.label :sticky %>
-      <%= f.check_box :sticky %>
-    </div>
-    <div class="field">
-      <%= f.label :end_at %>
-      <%= f.datetime_select :end_at, :class => "mini" %>
-    </div>
-    <div class="field">
-      <%= f.label :deleted %>
-      <%= f.check_box :deleted %>
-    </div>
-    <div class="field">
-      <%= f.label :article_image %>
-      <%= f.file_field :article_image %>
-    </div>
+    <%= f.text_field :title, :class => :span12 %>
+    <%= f.text_area :body, :class => :span12 %>
+    <%= f.check_box :sticky %>
+    <%= f.datetime_select :end_at %>
+    <%= f.check_box :deleted %>
+    <%= f.file_field :article_image %>
   </fieldset>
-  <div class="type-button">
-    <%= f.submit :class => "primary btn" %>
-  </div>
+  <%= f.submit :class => "primary btn" %>
 <% end %>
