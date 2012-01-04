@@ -1,3 +1,4 @@
 rvm: 1.9.2
+bundler_args: "--without development production"
 before_script: "./config/ci/before_travis.sh"
 script: "bundle exec rake spec"

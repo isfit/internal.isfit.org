@@ -24,21 +24,25 @@ gem 'rmagick', :require => false
 gem 'bluecloth'
 
 #group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'uglifier'
 #end
 
-group :development, :test do
-  gem 'capybara-webkit'
-  gem 'rspec-rails'
-  #gem 'webrat'
-  gem 'nifty-generators'
-  gem 'mocha'
+
+group :development do
   gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'nifty-generators'
   gem 'libnotify'
   gem 'rb-inotify'
   gem 'yard'
+end
+
+group :development, :test do
+  gem 'mocha'
+  gem 'capybara-webkit'
+  gem 'rspec-rails'
+  #gem 'webrat'
   gem 'database_cleaner'
 end
 
