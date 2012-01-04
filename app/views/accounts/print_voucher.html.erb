@@ -46,9 +46,11 @@
 			</tr>
 			<tr class="height" valign="top">
 				<td class="line">
-					<b>Unit:</b><br />
-          <%= @account.account_number %>.
-          <%= @account.name %>
+          <b>Unit:</b><br />
+          <% if @account %>
+            <%= @account.account_number %>.
+            <%= @account.name %>
+          <% end %>
 				</td>
 				<td class="line">
 					<b>Attachments:</b><br />
@@ -90,7 +92,7 @@
 						<tr>
 							<td colspan="2"></td>
 							<td style="border-left: 1px solid black; border-top: 1px solid black;">Total:</td>
-							<td style="border-top: 1px solid black" align="right"><%=@sum.to_s%></td>
+							<td id="sum" style="border-top: 1px solid black" align="right"><%=@sum.to_s%></td>
 							<td style="border-top: 1px solid black"></td>
 						</tr>
 					</table>

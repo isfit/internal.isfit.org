@@ -12,7 +12,7 @@ generate a printable voucher form.</p>
 		<td><%= "#{current_user.full_name_reversed}" %><br /><br /></td>
 	</tr>
 	<tr valign="top">
-    <td>Unit:</td>
+    <td><%=label_tag :unit%></td>
 		<td><%= select(:voucher, :unit, @unit_choices_text) %><br /></td>
 	</tr>
 	<tr>
@@ -22,7 +22,7 @@ generate a printable voucher form.</p>
 	<tr>
 		<td></td>
 		<td>
-			Account number:<br />
+			<%=label_tag :account_number %><br />
 			<%= text_field(:voucher, :account_no, :style => 'width: 250px') %>
 			<br /><br />
 		</td>
@@ -43,11 +43,11 @@ generate a printable voucher form.</p>
 		</td>
 	</tr>
 	<tr>
-		<td><%= submit_tag('Create form', class: "primary btn") %></td>
+		<td><%= submit_tag("Create voucher", class: "primary btn") %></td>
+    <% end %>
 		<td valign="top">
 			<input type="button" class='addrow btn' value="Add row" />
 			<input type="button" class='removerow btn' value="Remove row"  />
 		</td>
 	</tr>
 </table>
-<% end %>
