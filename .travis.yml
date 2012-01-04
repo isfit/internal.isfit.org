@@ -1,3 +1,3 @@
 rvm: 1.9.2
-before_script: "bundle exec rake rails_env"
+before_script: "./config/ci/before_travis.sh"
 script: "bundle exec rake spec"
