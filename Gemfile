@@ -30,14 +30,16 @@ gem 'bluecloth'
 #end
 
 group :development, :test do
+  gem 'capybara-webkit'
   gem 'rspec-rails'
-  gem 'webrat'
+  #gem 'webrat'
   gem 'nifty-generators'
   gem 'mocha'
   gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'libnotify'
   gem 'rb-inotify'
   gem 'yard'
+  gem 'database_cleaner'
 end
 
 group :test do
