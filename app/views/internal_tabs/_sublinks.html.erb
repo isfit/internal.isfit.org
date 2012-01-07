@@ -2,7 +2,11 @@
 <% sublinks.each do |sublink,children| %>
   <%
     if sublink.controller && sublink.action
-      url = url_for(controller: sublink.controller, action: sublink.action, id: sublink.action_id)
+      if can_access_tab?(sublink)
+        url = url_for(controller: sublink.controller, action: sublink.action, id: sublink.action_id)
+      else
+        next
+      end
     else
       url = url_for_arranged_tab(children)
     end

@@ -5,6 +5,7 @@ module ApplicationHelper
     options[:html] = {class: "form-stacked"}
     form_for(object, options, &block)
   end
+
   def transliterate(str)
     # Based on permalink_fu by Rick Olsen
 
@@ -41,21 +42,16 @@ module ApplicationHelper
     return false if current.empty?
 
     current.each do |c|
-      if c.controller && c.action
-        if can?(c.action.to_sym, Kernel.const_get(c.controller.classify))
-          return url_for(controller: c.controller, action: c.action, id:c.action_id)
-        end
-      end
+      return url_for(controller: c.controller, action: c.action, id:c.action_id) if can_access_link?(c)
     end
-    
+
     children.each do |child|
       url = url_for_arranged_tab(child)
       return url if url
     end
-    #a_hash = {}.tap{ |r| children.values.each{ |h| h.each{ |k,v| (r[k]||=[]) << v } } }
-    #return url_for_arranged_tab(child)
     return false
   end
+
 
   def numeric?(object)
     true if Float(object) rescue false
@@ -67,11 +63,7 @@ module ApplicationHelper
   # @return [true|false] depending on access
     
   def can_access_link?(link)
-    if link.controller && link.action
-      return can?(link.action.to_sym, Kernel.const_get(link.controller.classify))
-    else 
-      return false
-    end
+     (link.controller && link.action) &&  (can?(link.action.to_sym, Kernel.const_get(link.controller.classify)))
   end
 
 

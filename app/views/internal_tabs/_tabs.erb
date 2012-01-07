@@ -1,6 +1,6 @@
 <ul>
   <% unless logged_in? %>
-    <li class="active"><%= link_to('Log in', {}, {:class => 'active'}) %></li>
+    <li class="active"><%= link_to('Log in', {}, {class: 'active'}) %></li>
   <% else %>
     <% tabs.each do |tab, children| %>
       <% url = url_for_arranged_tab(children) %>
