@@ -28,6 +28,8 @@ class User < ActiveRecord::Base
   def self.in_festival(year=2013, sort_columns="family_name, given_name")
     id = Festival.find_by_year(year).id
     users = User.joins(:positions => :groups, :positions => [:groups => :section]).where("groups.festival_id = #{id} or sections.festival_id = #{id}").order(sort_columns).select("DISTINCT users.*")  
+    # Jeg spanderer pizza på dne som klarer å fikse denne
+    # User.joins(:positions => [:groups, {:groups => :festival}, {:groups => [:section, {:section => :festival}]}])
     full_users = []
     users.each do |u|
       full_users << User.find(u.id)
