@@ -1,5 +1,7 @@
 module ApplicationHelper
 
+  include FormattingHelper
+
   def bootstrap_form_for(object, options = {}, &block)
     options[:builder] = BootstrapFormBuilder
     options[:html] = {class: "form-stacked"}
