@@ -63,9 +63,9 @@ module ApplicationHelper
   #
   # @param [InternalTab] A link to check
   # @return [true|false] depending on access
-    
+
   def can_access_link?(link)
-     (link.controller && link.action) &&  (can?(link.action.to_sym, Kernel.const_get(link.controller.classify)))
+    (link.controller && link.action) &&  (can?(link.action.to_sym, Kernel.const_get(link.controller.classify)))
   end
 
 
@@ -81,8 +81,11 @@ module ApplicationHelper
   def format(text)
     sanitize(markdown(text))
   end
-  
+
   def markdown(text)
     BlueCloth::new(text).to_html
   end
 end
+
+
+

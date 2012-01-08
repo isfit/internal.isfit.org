@@ -23,36 +23,36 @@
       <tr>
         <td>First choice</td>
         <td>
-          <%= @applicant.first_position.title_en %>
-          <%#= f.select 'position_id_1', @positions.to_select_position, :selected => ( @applicant.first_position == nil ? 0 : @applicant.first_position.id) %></td>
+          <%= f.collection_select :position_id_1, Position.published.order("title_en ASC"), :id, :select_name, prompt: true %>
+        </td>
       </tr>
       <tr>
         <td>Second choice</td>
-
-        <td><%#= f.select 'position_id_2', @positions.to_select_position, :selected => @applicant.second_position == nil ? -1 : @applicant.second_position.id %></td>
+        <td>
+          <%= f.collection_select :position_id_2, Position.published.order("title_en ASC"), :id, :select_name, prompt: true %>
+        </td>
+ 
       </tr>
       <tr>
         <td>Third choice</td>
-
-        <td><%#= f.select 'position_id_3', @positions.to_select_position, :selected => @applicant.third_position == nil ? -1 : @applicant.third_position.id %></td>
+        <td>
+          <%= f.collection_select :position_id_3, Position.published.order("title_en ASC"), :id, :select_name, prompt: true %>
+        </td>
+ 
 
       </tr>
 
       <tr valign="top">
         <td>Information about self</td>
-        <td><%= f.text_area :information, size: "60x20" %><%#= simple_format(@applicant.information) %></td>
+        <td><%= f.text_area :information, class: "span10"  %></td>
       </tr>
       <tr valign="top">
         <td>Relevant experience</td>
-        <td><%= f.text_area :background, size:"60x20" %> <%#= simple_format(@applicant.background) %></td>
+        <td><%= f.text_area :background,  class: "span10" %></td>
       </tr>
       <tr>
         <td>Status</td>
         <td><%= f.select(:status, @status.invert) %></td>
-      </tr>
-      <tr>
-        <td>Comment</td>
-        <td><%#= f.text_area(:comment, :size => "40x2") %></td>
       </tr>
 
       <tr>
@@ -144,4 +144,3 @@
   </fieldset>
   <%= f.submit class: "primary btn" %>
 <% end %>
-<p>Return to <%= link_to('application list', applicants_path) %>.</p>
