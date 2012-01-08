@@ -47,7 +47,8 @@ class ApplicantsController < ApplicationController
 
   def edit
     @applicant = Applicant.find(params[:id])
-    @positions = [Position.new]
+    @positions = Position.published
+    @interviewers = User.in_festival
 
     @status = {	0 => 'Not contacted',
       1 => 'Meeting planned',

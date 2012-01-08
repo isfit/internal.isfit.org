@@ -25,6 +25,21 @@ class User < ActiveRecord::Base
     "#{family_name}, #{given_name}"
   end
 
+  def self.in_festival(year=2013, sort_columns="family_name, given_name")
+    id = Festival.find_by_year(year).id
+    users = User.joins(:positions => :groups, :positions => [:groups => :section]).where("groups.festival_id = #{id} or sections.festival_id = #{id}").order(sort_columns).select("DISTINCT users.*")  
+    full_users = []
+    users.each do |u|
+      full_users << User.find(u.id)
+    end
+    return full_users
+  end
+
+  def name_reversed
+    "#{self.family_name}, #{self.given_name}"
+  end
+
+
   #Return if user has role
   def role?(r)
     role = Role.where(name:r).first

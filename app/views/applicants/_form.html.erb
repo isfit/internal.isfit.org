@@ -71,13 +71,13 @@
       <tr>
         <td>Interviewers</td>
         <td>
-          <%#= f.collection_select(:interviewer_id_1_1, @functionaries,   :id, :name_reversed) %>
+          <%= f.collection_select(:interviewer_id_1_1, @interviewers,   :id, :name_reversed) %>
         </td>	
       </tr>
       <tr>
         <td></td>
         <td>
-          <%#= f.collection_select(:interviewer_id_1_2, @functionaries, :id, :name_reversed) %>
+          <%= f.collection_select(:interviewer_id_1_2, @interviewers, :id, :name_reversed) %>
         </td>
       </tr>
       <% if @applicant.position_id_2 != -1 %>
@@ -97,13 +97,13 @@
         <tr>
           <td>Interviewers</td>
           <td>
-            <%#= f.collection_select(:interviewer_id_2_1, @functionaries, :id, :name_reversed) %>
+            <%= f.collection_select(:interviewer_id_2_1, @interviewers, :id, :name_reversed) %>
           </td>
         </tr>
         <tr>
           <td></td>
           <td>
-            <%#= f.collection_select(:interviewer_id_2_2, @functionaries, :id, :name_reversed) %>
+            <%= f.collection_select(:interviewer_id_2_2, @interviewers, :id, :name_reversed) %>
           </td>
         </tr>
       <% end %>
@@ -124,13 +124,13 @@
         <tr>
           <td>Interviewers</td>
           <td>
-            <%#= f.collection_select(:interviewer_id_3_1, @functionaries, :id, :name_reversed) %>
+            <%= f.collection_select(:interviewer_id_3_1, @interviewers, :id, :name_reversed, prompt: true) %>
           </td>
         </tr>
         <tr>
           <td></td>
           <td>
-            <%#= f.collection_select(:interviewer_id_3_2, @functionaries, :id, :name_reversed) %>
+            <%= f.collection_select(:interviewer_id_3_2, @interviewers, :id, :name_reversed, prompt: true) %>
           </td>
         </tr>
       <%end%>
