@@ -16,7 +16,7 @@ $('#spp_fileupload').fileupload({
     addCropping(data.result.ratio);
   }
 });
-$("button").click(function() {
+$("button.dyntabs").click(function() {
   $("button").removeClass("primary");
   $(this).addClass("primary");
   $(".hidable").hide();
