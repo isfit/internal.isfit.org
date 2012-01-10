@@ -66,18 +66,18 @@
       </tr>
       <tr valign="top">
         <td>Time</td>
-        <td><%= f.datetime_select(:interview_time_1) %></td>
+        <td><%= f.text_field :interview_time_1, class: "datetimepicker span4" %></td>
       </tr>
       <tr>
         <td>Interviewers</td>
         <td>
-          <%= f.collection_select(:interviewer_id_1_1, @interviewers,   :id, :name_reversed) %>
+          <%= f.collection_select(:interviewer_id_1_1, @interviewers,   :id, :name_reversed, prompt: true) %>
         </td>	
       </tr>
       <tr>
         <td></td>
         <td>
-          <%= f.collection_select(:interviewer_id_1_2, @interviewers, :id, :name_reversed) %>
+          <%= f.collection_select(:interviewer_id_1_2, @interviewers, :id, :name_reversed, prompt: true) %>
         </td>
       </tr>
       <% if @applicant.position_id_2 != -1 %>
@@ -92,18 +92,18 @@
         </tr>
         <tr valign="top">
           <td>Time</td>
-          <td><%= f.datetime_select(:interview_time_2) %></td>
+          <td><%= f.text_field :interview_time_2 , class: "datetimepicker span4"%></td>
         </tr>
         <tr>
           <td>Interviewers</td>
           <td>
-            <%= f.collection_select(:interviewer_id_2_1, @interviewers, :id, :name_reversed) %>
+            <%= f.collection_select(:interviewer_id_2_1, @interviewers, :id, :name_reversed, prompt: true) %>
           </td>
         </tr>
         <tr>
           <td></td>
           <td>
-            <%= f.collection_select(:interviewer_id_2_2, @interviewers, :id, :name_reversed) %>
+            <%= f.collection_select(:interviewer_id_2_2, @interviewers, :id, :name_reversed, prompt: true) %>
           </td>
         </tr>
       <% end %>
