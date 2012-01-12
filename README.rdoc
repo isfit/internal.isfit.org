@@ -1,0 +1,2 @@
+== Internal.isfit.org
+{<img src="https://secure.travis-ci.org/isfit/internal.isfit.org.png" />}[http://travis-ci.org/isfit/internal.isfit.org]
