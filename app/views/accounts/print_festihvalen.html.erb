@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<title>ISFiT Intranet</title>
+		<style type="text/css">
+			body, td
+			{
+				font-family: Verdana, Helvetica, Sans-serif;
+				font-size: 10pt;
+				margin-left: 20px;
+			}
+			td
+			{
+				padding: 6px;
+			}
+			td.line
+			{
+				border: 1px solid black;
+			}
+			tr.height
+			{
+				height: 50px;
+			}
+			tr.sigheight
+			{
+				height: 70px
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Festihvalen expenses form</h2>
+		<br />
+		<table width="600px" cellspacing="0">
+			<tr class="height" valign="top">
+				<td class="line" width="50%">
+					<b>Name</b>:<br />
+					<%= current_user.full_name_reversed %> 
+				</td>
+				<td class="line">
+					<b>Date:</b><br />
+					<%= Time.now.strftime("%d.%m.%Y") %>
+				</td>
+			</tr>
+			<tr class="height" valign="top">
+				<td class="line">
+			</td>
+				<td class="line">
+					<b>Attachments:</b><br />
+					<%= params[:voucher][:attachments] %>
+				</td>
+			</tr>
+		<tr valign="top">
+				<td colspan="2"><br /><b>Usage</b>:</td>
+			</tr>
+			<tr>
+				<td class="line" colspan="2">
+					<table width="100%" cellspacing="0">
+						<tr>
+							<td><b>Description</b></td>
+							<td></td>
+							<td></td>
+							<td><b>Amount</b></td>
+							<td></td>
+						</tr>
+					<% for i in 1..(params[:usages].size / 2) %>
+						<tr valign="top">
+							<td width="40%%"><%= params[:usages]["description#{i}"] %></td>
+							<td width="15%"></td>
+							<td width="20%"></td>
+							<td width="15%" align="right"><%= params[:usages]["amount#{i}"] %></td>
+							<td width="10%"></td>
+						</tr>
+					<% end %>
+						<tr>
+							<td colspan="2"></td>
+							<td style="border-left: 1px solid black; border-top: 1px solid black;">Total:</td>
+							<td id="sum" style="border-top: 1px solid black" align="right"><%=@sum.to_s%></td>
+							<td style="border-top: 1px solid black"></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td colspan="2"><br /></td>
+			</tr>
+			<tr class="sigheight" valign="top">
+				<td class="line" colspan="2">
+					<b>Signature:</b>
+				</td>
+			</tr>
+			<tr class="sigheight" valign="top">
+				<td class="line" colspan="2">
+					<b>Economically responsible signature:</b>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<br /><em>The rest of this form is to be filled out by 
+						Accounting.</em>
+				</td>
+			</tr>
+			<tr class="height" valign="top">
+				<td class="line">
+					<b>Budget post:</b>
+				</td>
+				<td class="line">
+					<b>Accounting date:</b>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<table align=center width="80%">
+						<tr>
+							<td rowspan="2">
+								<b>For accounting:</b>
+								<br/>
+							</td>
+							<td>
+								FirstOffice
+							</td>
+							<td colspan="2" align="center">
+								Current accounts
+							</td>
+						</tr>
+						<tr>
+							<td>
+								For entry:
+							</td>
+							<td align="center">
+								<b>D</b>
+							</td>
+							<td align="center">
+								<b>C</b>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

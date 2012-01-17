@@ -45,8 +45,10 @@ InternalIsfitOrg::Application.routes.draw do
     collection do
       get 'travel'
       get 'voucher'
+      get 'festihvalen'
       post 'print_travel'
       post 'print_voucher'
+      post 'print_festihvalen'
     end
   end
 
