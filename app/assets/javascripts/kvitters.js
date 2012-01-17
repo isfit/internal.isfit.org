@@ -19,7 +19,7 @@ if(!String.linkify) {
 
 function format(s) {
   var sanitized = s.replace(/&(?!\w+([;\s]|$))/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  var formatted = sanitized.replace(/@([A-Za-z0-9_]+)/g, "<a href='/users/username/$1'>@$1</a>");
+  var formatted = sanitized.replace(/(\s|^)@([A-Za-z0-9_]+)/g, "<a href='/users/username/$2'> @$2</a>");
   var linkified = formatted.linkify();
   return linkified;
 }
