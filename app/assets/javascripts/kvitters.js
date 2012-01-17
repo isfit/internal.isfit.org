@@ -1,7 +1,27 @@
+if(!String.linkify) {
+  String.prototype.linkify = function() {
+
+    // http://, https://, ftp://
+    var urlPattern = /\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim;
+
+    // www. sans http:// or https://
+    var pseudoUrlPattern = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+
+    // Email addresses *** here I've changed the expression ***
+    var emailAddressPattern = /(([a-zA-Z0-9_\-\.]+)@[a-zA-Z_]+?(?:\.[a-zA-Z]{2,6}))+/gim;
+
+    return this
+    .replace(urlPattern, '<a target="_blank" href="$&">$&</a>')
+    .replace(pseudoUrlPattern, '$1<a target="_blank" href="http://$2">$2</a>')
+    .replace(emailAddressPattern, '<a target="_blank" href="mailto:$1">$1</a>');
+  };
+}
+
 function format(s) {
   var sanitized = s.replace(/&(?!\w+([;\s]|$))/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   var formatted = sanitized.replace(/@([A-Za-z0-9_]+)/g, "<a href='/users/username/$1'>@$1</a>");
-  return formatted;
+  var linkified = formatted.linkify();
+  return linkified;
 }
 function downloadKvitters() {
   $.getJSON('/kvitters/last.json', function(data) {
@@ -22,16 +42,16 @@ function downloadKvitters() {
       var spinner = new Spinner().spin(this);
       $('#kvitter-form > input').disabled = true;
       $.ajax({
-          type: 'POST',
-          url: "/kvitters/create.json",
-          data: $('#kvitter-form').serialize(),
-          dataType: 'json',
-          success: function(data) {
-                    prependKvitter(data);
-                    spinner.stop();
-                    $('#kvitter-form')[0].reset();
-                    $('#kvitter-form > input').disabled = false;
-                  }
+        type: 'POST',
+        url: "/kvitters/create.json",
+        data: $('#kvitter-form').serialize(),
+        dataType: 'json',
+        success: function(data) {
+          prependKvitter(data);
+          spinner.stop();
+          $('#kvitter-form')[0].reset();
+          $('#kvitter-form > input').disabled = false;
+        }
       });
     })
 
