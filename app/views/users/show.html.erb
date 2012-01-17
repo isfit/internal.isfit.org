@@ -1,11 +1,11 @@
-<div class="user">
-  <div class="picture">
+<div class="user readable">
+ <div class="picture">
     <%#= image_tag @user.profile_picture.url(:thumb)%>
     </div>
   <div><%=render @user %></div>
-  <div>
+ <div>
+    <h5>Tasks</h5>
       <% if @user.tasks %>
-        <b>Tasks:</b><br>
         <%= format(@user.tasks) %><br>
       <% else %>
         No task added.<br>

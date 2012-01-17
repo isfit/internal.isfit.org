@@ -1,4 +1,23 @@
 <h1><%= "#{user.full_name}" %></h1>
+
+<div class="social-media">
+  <% if user.twitter_username %>
+    <button id="twitter-button" class="info btn" data-username="<%= user.twitter_username %>" data-controls-modal="twitter" data-backdrop="true" data-keyboard="true">Twitter</button>
+  <% end %>
+</div>
+<div id="twitter" class="modal fade">
+  <div class="modal-header">
+    <h3>Twitter feed</h3>
+  </div>
+  <div class="modal-body">
+    <div id="twitter-header"></div>
+    <div id="twitter-statuses">
+      <h4>Recent statuses</h4>
+    </div>
+  </div>
+</div>
+
+
 <h6><%= pluralize(user.positions.count, "position")%></h6>
 <ul id="user-positions">
   <% user.positions.reverse.each do |position| %> 
@@ -7,24 +26,24 @@
 </ul>
 <p>  
 <% if user.date_of_birth %>
-    <b>Date of birth:</b> <%= user.date_of_birth %> (<%= time_ago_in_words(user.date_of_birth) %>)<br>
-  <% end %>
+  <b>Date of birth:</b> <%= user.date_of_birth %> (<%= time_ago_in_words(user.date_of_birth) %>)<br>
+<% end %>
 </p>
 <p>
 <b>Email:</b> <a href="mailto:<%= user.username %>@isfit.org"><%= user.username %>@isfit.org</a>
 </p>
 <p>
-  <% if user.phone %>
-    <b>Phone:</b> <%= user.phone %>
+<% if user.phone %>
+  <b>Phone:</b> <%= user.phone %>
   <% end %>
-</p>
-<p>
+  </p>
+  <p>
   <% if user.address %>
     <b>Address:</b> <%= user.address %><br>
   <% end %>
-</p>
-<p>
+  </p>
+  <p>
   <% if user.postal_code %>
     <b>Postal code:</b> <%= "#{user.postal_code} #{user.city}" %><br>
   <% end %>
-</p>
+  </p>
