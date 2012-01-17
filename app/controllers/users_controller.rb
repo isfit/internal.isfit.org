@@ -19,4 +19,12 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
   end
+
+  def index
+    @users = User.in_festival(2011).select("users.id, given_name, family_name, username")
+    respond_to do |format|
+      format.html
+      format.json {render json: @users}
+    end
+  end
 end

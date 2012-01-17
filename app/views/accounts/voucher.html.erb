@@ -2,7 +2,7 @@
 <p>Fill in the form below and press "Create form" to
 generate a printable voucher form.</p>
 <%= form_tag print_voucher_accounts_path do %>
-<table width="400">
+<table class="bordered-table" width="400">
 	<tr>
 		<td width="150">Date:</td>
 		<td><%= Time.now.strftime("%d.%m.%Y") %></td>
