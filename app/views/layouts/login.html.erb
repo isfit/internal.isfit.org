@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%#= content_for?(:title) yield(:title) : "ISFiT Internal" %>ISFiT Internal</title>
+    <!-- http://twitter.github.com/bootstrap/  stylesheet -->
+    <%= stylesheet_link_tag :application %>
+    <%= csrf_meta_tag %>
+    <%= yield(:head) %>
+  </head>
+  <body>
+    <div id="header" class="topbar-wrapper"> 
+      <div id="topbar" class="topbar" data-scrollspy="scrollspy"> 
+        <div class="topbar-inner"> 
+          <div class="container-fluid">
+            <h3><%= link_to "ISFiT Internal", root_path, :class => :logo %></h3> 
+            <%= tabs %>
+            <% if current_user %>
+              <ul class="nav secondary-nav"> 
+                <li class="dropdown" data-dropdown="dropdown"> 
+                <a href="#" class="dropdown-toggle"><%= current_user.full_name %></a> 
+                <ul class="dropdown-menu"> 
+                  <li><%= link_to "Edit profile",  edit_current_user_path %></li> 
+                  <li class="divider"></li> 
+                  <li><%= link_to "Logout", logout_path %></li> 
+                </ul> 
+                </li> 
+              </ul> 
+            <% end %>
+          </div>
+        </div> 
+      </div> 
+    </div>
+    <div class="container-fluid content-margin">
+      <div id="submeny" class="content"><!-- Start submeny -->
+        <%= sublinks %>
+      </div>
+      <div id="sidebar" class="sidebar">
+        <div class="widget">
+          <%= menu_groups %>
+        </div>
+        <%= yield :sidebar %>
+      </div>
+      <div id="content" class="content">
+        <% if notice or alert %>
+          <div class="alert-message <%= notice ? "success":"error" %>" data-alert="<%= notice ? "success":"error" %>">
+            <a href="#" class="close">x</a>
+            <p><%= image_tag("icons/#{notice ? "accept":"delete"}.png") %> <%= notice ? notice : alert %></p>
+          </div>
+        <% end %>
+        <%= content_tag :h1, yield(:title) if show_title? %>
+        <%= yield %>
+      </div>
+    </div>
+    <!--Script at bottom for fast page load -->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-18016792-4']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+     </script>
+   </body>
+ </html>
