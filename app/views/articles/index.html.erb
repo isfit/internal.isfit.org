@@ -1,12 +1,13 @@
-<div class="articles">
-  <%= link_to "Create article", new_article_path, class: "primary btn" %>
-  <% for article in @articles %>
-    <div class="article">
-      <div class="action-menu">
-        <%= link_to :edit, edit_article_path(article), :class => "small btn"%>
-        <%= link_to :delete, article, confirm: "Are you sure?", method: :delete, :class => "small btn"  %>
-      </div>
-      <h1><%= link_to article.title, article %>
+<div class="row">
+  <div class="span12">
+    <%= link_to "Create article", new_article_path, class: "primary btn" %>
+    <% for article in @articles %>
+      <div class="article">
+        <div class="action-menu">
+          <%= link_to :edit, edit_article_path(article), :class => "small btn"%>
+          <%= link_to :delete, article, confirm: "Are you sure?", method: :delete, :class => "small btn"  %>
+        </div>
+        <h1><%= link_to article.title, article %>
         <p class="small">Created <%= time_ago_in_words(article.created_at) %> ago by <%= link_to article.user.full_name, article.user %>.</p>
       </h1>
       <%= image_tag article.article_image.url(:thumb), class: :right %> 
@@ -16,4 +17,8 @@
       </p>
     </div>
   <% end %>
+</div>
+<div class="span4">
+  <div class="fb-like-box" data-href="http://www.facebook.com/pages/ISFiT/11541693212" data-width="220" data-height="400" data-show-faces="true" data-stream="false" data-header="true"></div>
+</div>
 </div>
