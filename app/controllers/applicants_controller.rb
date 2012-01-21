@@ -56,6 +56,12 @@ class ApplicantsController < ApplicationController
       3 => 'Of interest',
       4 => 'Recruited',
       5 => 'Not of interest' }
+    if @applicant.deleted = false || current_user.role?(:admin)
+      render :edit
+    else
+      redirect_to applicants_path, notice: "This applicant has been deleted."
+    end
+
   end
 
   def update
@@ -70,9 +76,9 @@ class ApplicantsController < ApplicationController
 
   def index
     if current_user.role?(:admin) || current_user.role?(:recruitment) || current_user.has_role?(:board)
-      @applicants = Applicant.all
+      @applicants = Applicant.where(deleted: false).all
     elsif current_user.role?(:wingman)
-      @applicants = Applicant.applicants_in_same_section( current_user)
+      @applicants = Applicant.applicants_in_same_section(current_user)
     elsif current_user.role?(:interviewer) || current_user.role?(:leader)
       @applicants = Applicant.applicants_in_same_group( current_user )
     else
