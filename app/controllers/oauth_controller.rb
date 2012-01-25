@@ -7,6 +7,7 @@ class OauthController < ApplicationController
 
   def callback
     access_token = client.auth_code.get_token(params[:code], :redirect_uri => oauth_callback_url)
+    render text: "#{access_token.get("/me")} AND #{access_token}"
     current_user.facebook_id = JSON.parse(access_token.get("/me"))
     current_user.facebook_token = access_token.token
 
