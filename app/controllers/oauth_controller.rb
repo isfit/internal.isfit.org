@@ -1,11 +1,12 @@
 class OauthController < ApplicationController
 
   def start
-    redirect_to client.web_server.authorize_url(redirect_uri: oauth_callback_url)
+    facebook_settings = YAML::load(File.open("#{Rails.root}/config/oauth.yml"))
+    redirect_to client(facebook_settings).authorize_url(client_id: facebook_settings[Rails.env]['application_id'],redirect_uri: oauth_callback_url)
   end
 
   def callback
-    access_token = client.web_server.get_access_token(params[:code], :redirect_uri => oauth_callback_url)
+    access_token = client.get_access_token(params[:code], :redirect_uri => oauth_callback_url)
     current_user.facebook_id = JSON.parse(access_token.get("/me"))
     current_user.facebook_token = access_token.token
 
@@ -14,8 +15,8 @@ class OauthController < ApplicationController
 
   protected
 
-  def client
-    facebook_settings = YAML::load(File.open("#{RAILS_ROOT}/config/oauth.yml"))
-    @client ||= OAuth2::Client.new("#{facebook_settings[RAILS_ENV]['application_id']}", "#{facebook_settings[RAILS_ENV]['secret_key']}", :site => 'https://graph.facebook.com')
+  def client(facebook_settings)
+    @client ||= OAuth2::Client.new("#{facebook_settings[Rails.env]['application_id']}", "#{facebook_settings[Rails.env]['secret_key']}", :site => 'https://graph.facebook.com')
+    return @client
   end
 end

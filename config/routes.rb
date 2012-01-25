@@ -1,4 +1,7 @@
 InternalIsfitOrg::Application.routes.draw do
+
+  get 'oauth/start'
+  get 'oauth/callback'
   
   resources :isfit_pages
 
