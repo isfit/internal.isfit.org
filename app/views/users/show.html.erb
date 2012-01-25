@@ -1,14 +1,20 @@
 <div class="user readable">
- <div class="picture">
-    <%#= image_tag @user.profile_picture.url(:thumb)%>
+  <% if @user.facebook_id %>
+    <div class="picture pull-right" >
+      <img src="https://graph.facebook.com/<%= @user.facebook_id %>/picture?type=large"/>
     </div>
+  <% elsif @user == current_user %>
+    <div class="pull-right">
+      <p>No picture? <%= link_to "Connect to Facebook!", oauth_start_path %></p>
+    </div>
+  <% end %>
   <div><%=render @user %></div>
- <div>
+  <div>
     <h5>Tasks</h5>
-      <% if @user.tasks %>
-        <%= format(@user.tasks) %><br>
-      <% else %>
-        No task added.<br>
-      <% end %>
-    </div>
+    <% if @user.tasks %>
+      <%= format(@user.tasks) %><br>
+    <% else %>
+      No task added.<br>
+    <% end %>
+  </div>
 </div>

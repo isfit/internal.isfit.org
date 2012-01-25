@@ -41,6 +41,10 @@
                 <li class="dropdown" data-dropdown="dropdown"> 
                 <a href="#" class="dropdown-toggle"><%= current_user.full_name %></a> 
                 <ul class="dropdown-menu"> 
+                  <% if not current_user.facebook_id %>
+                    <li><%= link_to "Connect to Facebook",  oauth_start_path %></li> 
+                  <% end %>
+                  <li><%= link_to "Show profile",  user_path(current_user.id) %></li> 
                   <li><%= link_to "Edit profile",  edit_current_user_path %></li> 
                   <li class="divider"></li> 
                   <li><%= link_to "Logout", logout_path %></li> 

@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
   # brukes til å hente attributter, seksjoner, gjenger etc. av en bruker
   
 
-  validates :password, length: {minimum: 8}
+  # Fiks meg i egen controller action plx
+  # validates :password, length: {minimum: 8}
   set_primary_key :id
   has_secure_password
   has_many :groups, :through => :positions
