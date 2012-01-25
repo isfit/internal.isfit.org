@@ -22,6 +22,7 @@ gem 'therubyracer'
 gem 'mini_magick', :require=>'RMagick'
 gem 'rmagick', :require => false
 gem 'bluecloth'
+gem 'oauth2'
 
 #group :assets do
 gem 'sass-rails'
