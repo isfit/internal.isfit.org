@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="articles span14">
+  <div class="articles readable">
     <%= link_to "Create article", new_article_path, class: "primary btn" %>
     <% for article in @articles %>
       <div class="article">
@@ -17,36 +17,5 @@
         </p>
       </div>
   <% end %>
-</div>
-<div class="span4">
-  <div class="fb-like-box" data-href="http://www.facebook.com/pages/ISFiT/11541693212" data-width="220" data-height="300" data-show-faces="true" data-stream="false" data-header="true"></div>
-  <script src="http://widgets.twimg.com/j/2/widget.js"></script>
-  <script>
-    new TWTR.Widget({
-      version: 2,
-      type: 'profile',
-      rpp: 3,
-      interval: 30000,
-      width: 220,
-      height: 400,
-      theme: {
-        shell: {
-          background: '#222222',
-          color: '#ffffff'
-        },
-        tweets: {
-          background: '#ffffff',
-          color: '#000000',
-          links: '#003dd6'
-        }
-      },
-      features: {
-        scrollbar: false,
-        loop: false,
-        live: false,
-        behavior: 'all'
-      }
-    }).render().setUser('isfit').start();
-  </script>
 </div>
 </div>
