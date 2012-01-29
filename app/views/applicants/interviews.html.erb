@@ -7,14 +7,13 @@
       <th>Position</th>
       <th>Place</th>
       <th>Time</th>
-      <th>Second interviewer</th>
     </tr>
   </thead>
   <tbody>
     <% @applicants.each do |applicant| %>
       <tr>
         <td><%= applicant.lastname + ", " + applicant.firstname %></td>
-        <td></td>
+        <td><%= "#{applicant.first_position}, #{applicant.second_position}, #{applicant.third_position}" %></td>
         <td><%= applicant.place %></td>
         <td><%= applicant.time %></td>
       </tr>
