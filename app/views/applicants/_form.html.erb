@@ -54,6 +54,10 @@
         <td>Status</td>
         <td><%= f.select(:status, @status.invert) %></td>
       </tr>
+      <tr>
+        <td>Comment</td>
+        <td><%= f.text_area :comment, class: "span10" %></td>
+      </tr>
 
       <tr>
         <td colspan="2">
