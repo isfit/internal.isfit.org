@@ -13,7 +13,7 @@
     <% @applicants.each do |applicant| %>
       <tr>
         <td><%= applicant.lastname + ", " + applicant.firstname %></td>
-        <td><%= "#{applicant.first_position}, #{applicant.second_position}, #{applicant.third_position}" %></td>
+        <td><%= "#{applicant.first_position.title_no}, #{applicant.second_position.title_no}, #{applicant.third_position.title_no}" %></td>
         <td><%= applicant.place %></td>
         <td><%= applicant.time %></td>
       </tr>
