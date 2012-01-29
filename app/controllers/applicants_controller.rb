@@ -56,7 +56,7 @@ class ApplicantsController < ApplicationController
       3 => 'Of interest',
       4 => 'Recruited',
       5 => 'Not of interest' }
-    if @applicant.deleted = false || current_user.role?(:admin)
+    if @applicant.deleted == false || current_user.role?(:admin)
       render :edit
     else
       redirect_to applicants_path, notice: "This applicant has been deleted."
