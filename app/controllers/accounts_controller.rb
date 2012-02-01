@@ -81,9 +81,9 @@ class AccountsController < ApplicationController
     usages = {}
     @account = Account.find(params[:voucher][:unit])
 
-    params[:travel].keys.each do |key|
+    params[:voucher].keys.each do |key|
       if key =~ /date\d+|route\d+|means\d+|amount\d+/ then
-        usages[key] = params[:travel][key]
+        usages[key] = params[:voucher][key]
       end
     end
     params[:carriers] = usages
