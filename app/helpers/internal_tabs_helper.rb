@@ -36,7 +36,8 @@ module InternalTabsHelper
             content_tag(:li, group.title, class: "nav-header") + 
               links.map do |menu_link,value|
                 if can_access_link? menu_link
-                  content_tag(:li, link_to(menu_link.title, url_for(controller: menu_link.controller, action: menu_link.action, id: menu_link.action_id)))
+                  li_class = menu_link == current_menu_link ? "active":""
+                  content_tag(:li, link_to(menu_link.title, url_for(controller: menu_link.controller, action: menu_link.action, id: menu_link.action_id)), class: li_class)
                 end
               end.join.html_safe
           end

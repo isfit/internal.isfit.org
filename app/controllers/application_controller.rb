@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include ControllerAuthentication
   protect_from_forgery
-  helper_method :current_tab, :current_sublink, :current_sublink=, :menu
+  helper_method :current_tab, :current_sublink, :current_sublink=, :menu, :current_menu_link
 
   before_filter :login_required
   before_filter :_reload_libs, :if => :_reload_libs?
