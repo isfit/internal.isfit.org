@@ -17,8 +17,8 @@ $('#spp_fileupload').fileupload({
   }
 });
 $("button.dyntabs").click(function() {
-  $("button").removeClass("primary");
-  $(this).addClass("primary");
+  $("button").removeClass("btn-primary");
+  $(this).addClass("btn-primary");
   $(".hidable").hide();
   $(".imgareaselect-outer").hide();
   $(".imgareaselect-border1").hide();

@@ -1,7 +1,7 @@
 <%= formatting %>
 
 <div class="well">
-  <button class="dyntabs btn primary" data-page="images">Image</button>
+  <button class="dyntabs btn btn-primary" data-page="images">Image</button>
   <button class="dyntabs btn" data-page="misc">Misc</button>
   <button class="dyntabs btn" data-page="english">English</button>
   <button class="dyntabs btn" data-page="norsk">Norwegian</button>
@@ -23,8 +23,6 @@
   <div id="img2"></div>
   <div id="img3"></div>
 </div>
-<br>
-<br>
 <%= form_for(@spp_article, html: {class: "form-stacked"}) do |f| %>
 <% if f.error_messages %>  
     <div class="alert-message block-message error" data-alert="true">
@@ -91,8 +89,8 @@
   <div class="hidable" id="preview">
   Coming soon...
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="well">
+    <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>
 
