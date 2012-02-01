@@ -2,7 +2,7 @@
 
 <div class="social-media">
   <% if user.twitter_username %>
-    <button id="twitter-button" class="info btn" data-username="<%= user.twitter_username %>" data-controls-modal="twitter" data-backdrop="true" data-keyboard="true">Twitter</button>
+    <button id="twitter-button" class="btn-info btn" data-username="<%= user.twitter_username %>" data-toggle="modal" data-target="#twitter" data-backdrop="true" data-keyboard="true">Twitter</button>
   <% end %>
 </div>
 <div id="twitter" class="modal fade">

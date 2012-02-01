@@ -5,7 +5,11 @@ class UsersController < ApplicationController
 
   def username
     @user = User.find_by_username(params[:username])
-    render action: 'show'
+    unless @user.nil?
+      render action: 'show'
+    else
+      redirect_to root_path, alert: "Could not find user with username #{params[:username]}"
+    end
   end
 
   def update
