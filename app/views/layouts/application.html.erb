@@ -2,7 +2,17 @@
 <html>
   <head>
     <title><%#= content_for?(:title) yield(:title) : "ISFiT Internal" %>ISFiT Internal</title>
+    <meta name="description" content="The intranet of ISFiT">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
     <!-- http://twitter.github.com/bootstrap/  stylesheet -->
+    <link href="/stylesheets/bootstrap/bootstrap-2.0.0.css" rel="stylesheet">
+    <link href="/stylesheets/bootstrap/bootstrap-responsive-2.0.0.css" rel="stylesheet">
+
     <%= stylesheet_link_tag :application %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
@@ -30,16 +40,23 @@
         d.getElementsByTagName('head')[0].appendChild(js);
       }(document));
     </script>
-    <div id="header" class="topbar-wrapper"> 
-      <div id="topbar" class="topbar" data-scrollspy="scrollspy"> 
-        <div class="topbar-inner"> 
-          <div class="container-fluid">
-            <h3><%= link_to "ISFiT Internal", root_path, :class => :logo %></h3> 
+
+    <!-- navbar starts here -->
+    <div id="navbar" class="navbar navbar-fixed-top"> 
+      <div class="navbar-inner"> 
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="i-bar"></span>
+            <span class="i-bar"></span>
+            <span class="i-bar"></span>
+          </a>
+          <%= link_to "ISFiT Internal", root_path, :class => :brand %>
+          <div class="nav-collapse">
             <%= tabs %>
             <% if current_user %>
-              <ul class="nav secondary-nav"> 
-                <li class="dropdown" data-dropdown="dropdown"> 
-                <a href="#" class="dropdown-toggle"><%= current_user.full_name %></a> 
+              <ul class="nav pull-right"> 
+                <li class="dropdown"> 
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.full_name %></a> 
                 <ul class="dropdown-menu"> 
                   <% if not current_user.facebook_id %>
                     <li><%= link_to "Connect to Facebook",  oauth_start_path %></li> 
@@ -52,39 +69,47 @@
                 </li> 
               </ul> 
             <% end %>
+          </div> <!-- end nav-collapse -->
+        </div> <!-- end container -->
+      </div> <!-- end navbar-inner -->
+    </div> <!-- end navbar -->
+
+    <div class="container">
+      <div class="row">
+        <div id="sidebar" class="span3">
+          <div class="widget">
+            <%= menu_groups %>
           </div>
-        </div> 
-      </div> 
-    </div>
-    <div class="container-fluid content-margin">
-      <div id="submeny" class="content"><!-- Start submeny -->
-        <%= sublinks %>
-      </div>
-      <div id="sidebar" class="sidebar">
-        <div class="widget">
-          <%= menu_groups %>
+          <% unless @no_kvitter %>
+            <div id="kvitter" class="widget"></div>
+          <% end %>
+          <%= yield :sidebar %>
         </div>
-        <% unless @no_kvitter %>
-          <div id="kvitter" class="widget"></div>
-        <% end %>
-        <%= yield :sidebar %>
-      </div>
-      <div id="content" class="content">
-        <% if notice or alert %>
-          <div class="alert-message <%= notice ? "success":"error" %>" data-alert="<%= notice ? "success":"error" %>">
-            <a href="#" class="close">x</a>
-            <p><%= image_tag("icons/#{notice ? "accept":""}.png") %> <%= notice ? notice : alert %></p>
+
+        <div id="content" class="span9">
+
+          <div id="submeny"><!-- Start submeny -->
+            <%= sublinks %>
           </div>
-        <% end %>
-        <%= content_tag :h1, yield(:title) if show_title? %>
-        <%= yield %>
+
+
+          <div>
+            <% if notice or alert %>
+              <div class="alert alert-<%= notice ? "success":"error" %>">
+                <a href="#" class="close" data-dismiss="alert">x</a>
+                <p><i class="icon-<%= notice ? "success":"warning-sign" %>"></i><%= notice ? notice : alert %></p>
+              </div>
+            <% end %>
+            <%= content_tag :h1, yield(:title) if show_title? %>
+            <%= yield %>
+          </div>
+
+        </div>
       </div>
     </div>
     <!--Script at bottom for fast page load -->
-    <script src="http://fgnass.github.com/spin.js/spin.min.js"></script>
     <%= javascript_include_tag :application %>
     <%= yield :script %>
-    <script src="//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
 
     <script type="text/javascript">
       var _gaq = _gaq || [];
@@ -97,5 +122,5 @@
        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
        })();
 </script>
-   </body>
- </html>
+       </body>
+     </html>
