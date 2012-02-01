@@ -17,8 +17,8 @@ $('#frontend_fileupload').fileupload({
   }
 });
 $("button.article").click(function() {
-  $("button.article").removeClass("primary");
-  $(this).addClass("primary");
+  $("button.article").removeClass("btn-primary");
+  $(this).addClass("btn-primary");
   $(".hidable").hide();
   $(".imgareaselect-outer").hide();
   $(".imgareaselect-border1").hide();

@@ -1,15 +1,14 @@
-<div class="row">
-  <div class="articles span11">
-    <%= link_to "Create article", new_article_path, class: "primary btn" %>
+  <div class="articles">
+    <%= link_to "Create article", new_article_path, class: "btn btn-primary" %>
     <% for article in @articles %>
       <div class="article">
-        <div class="action-menu">
-          <%= link_to :edit, edit_article_path(article), :class => "small btn"%>
-          <%= link_to :delete, article, confirm: "Are you sure?", method: :delete, :class => "small btn"  %>
+        <div class="btn-group pull-right">
+          <%= link_to :edit, edit_article_path(article), :class => "btn"%>
+          <%= link_to :delete, article, confirm: "Are you sure?", method: :delete, :class => "btn btn-danger"  %>
         </div>
         <h1><%= link_to article.title, article %>
-          <p class="small">Created <%= time_ago_in_words(article.created_at) %> ago by <%= link_to article.user.full_name, article.user %>.</p>
         </h1>
+          <small>Created <%= time_ago_in_words(article.created_at) %> ago by <%= link_to article.user.full_name, article.user %>.</small>
         <%= image_tag article.article_image.url(:thumb), class: :right %> 
         <p>
           <%= format(truncate(article.body, length: 1000, omission: "...")) %>
@@ -17,5 +16,4 @@
         </p>
       </div>
   <% end %>
-</div>
 </div>

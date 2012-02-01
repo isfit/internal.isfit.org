@@ -1,7 +1,7 @@
 <h1>Statistics for all positions</h1>
 <h4>ISFiT har nå <%=@applicants.size%> søkere.</h4> 
 <h3>Følgende stillinger har ingen søkere på 1. 2. eller 3. valg:</h3>
-<table class="zebra-striped bordered-table">
+<table class="table table-striped table-bordered">
   <tr>
     <thead>
     <th class="header">Stilling</th>
@@ -19,7 +19,7 @@
 </table>
 
 <h3>Number of first choice / number of positions</h3>
-<table class="sortable zebra-striped bordered-table">
+<table class="sortable table table-striped table-bordered">
   <thead>
   <tr>
     <th>Position</th>
@@ -38,11 +38,11 @@
 <br /> 
 <br />
 <h3>position 1 weight 5, position 2 weight 3, position 1 weight 1</h3>
-<table class="zebra-striped bordered-table">
+<table class="table table-striped table-bordered">
   <thead>
   <tr>
-    <th width = 300>Position</th>
-    <th width = 150 align="right">Score</th>
+    <th>Position</th>
+    <th>Score</th>
   </tr>
 </thead>
   <%@stat.each do |key,value|%>

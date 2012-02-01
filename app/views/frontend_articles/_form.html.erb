@@ -1,6 +1,6 @@
 <%= formatting %>
 <div class="well">
-  <button class="article btn primary" data-page="images">Image</button>
+  <button class="article btn btn-primary" data-page="images">Image</button>
   <button class="article btn" data-page="misc">Misc</button>
   <button class="article btn" data-page="english">English</button>
   <button class="article btn" data-page="norsk">Norwegian</button>
@@ -22,8 +22,6 @@
   <div id="img2"></div>
   <div id="img3"></div>
 </div>
-<br>
-<br>
 <%= form_for(@article, html: {class: "form-stacked"}) do |f| %>
 <% if f.error_messages %>  
     <div class="alert-message block-message error" data-alert="true">
@@ -104,7 +102,7 @@
   Coming soon...
   </div>
   <div class="actions">
-    <%= f.submit class: "primary btn" %>
+    <%= f.submit class: "btn-primary btn" %>
   </div>
 <% end %>
 

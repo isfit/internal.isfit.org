@@ -12,13 +12,13 @@ class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
   def datetime_select(name, *args)
     options = args.extract_options!
     options[:class] = "" if options[:class].nil?
-    options[:class] += " datetimepicker span4"
+    options[:class] += " datetimepicker span3"
     text_field(name, options)
   end
 
   def submit(*args)
     content_tag :div, class: "field" do
-      super
+      super(class: "btn-primary")
     end
   end
 

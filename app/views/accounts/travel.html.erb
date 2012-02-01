@@ -2,7 +2,7 @@
 <p>Fill in the form below and press "Create form" to
 generate a printable travel refund form.</p>
 <%= form_tag print_travel_accounts_path do %>
-<table class="bordered-table" width="725">
+<table class="table table-bordered" width="725">
 	<tr>
 		<td width="150">Date:</td>
 		<td colspan="3"><%= Time.now.strftime("%d.%m.%Y") %></td>

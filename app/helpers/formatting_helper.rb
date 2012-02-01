@@ -1,7 +1,7 @@
 module FormattingHelper
   def formatting
     formatting = content_tag :p do
-      content_tag( :button, "Formatting", class: "info btn", data: {controls_modal: "formatting", backdrop: "true", keyboard: "true" }).html_safe
+      content_tag( :button, "Formatting", class: "btn btn-info", data: {"toggle" => "modal", "target" => "#formatting", backdrop: "true", keyboard: "true" }).html_safe
     end
     formatting += content_tag :div, id: "formatting", class: "modal fade" do
       modal = content_tag :div, class: "modal-header" do
@@ -9,7 +9,7 @@ module FormattingHelper
         content_tag :h3, "Formatting"
       end
       modal += content_tag :div, class: "modal-body" do
-        content_tag :table do
+        content_tag :table, class: "table table-bordered" do
           table = content_tag :tr, content_tag(:th, "Markdown") + content_tag(:th, "HTML")
           table += content_tag :tr, content_tag(:td, "###Heading") + content_tag(:td, content_tag(:h3, "Heading"))
           table += content_tag :tr, content_tag(:td, "####Sub-heading") + content_tag(:td, content_tag(:h4, "Sub-heading"))

@@ -1,12 +1,12 @@
 <%= bootstrap_form_for(@article) do |f| %>
   <%= f.error_messages %>
   <fieldset>
-    <%= f.text_field :title, :class => :span12 %>
-    <%= f.text_area :body, :class => :span12 %>
+    <%= f.text_field :title, :class => :span6 %>
+    <%= f.text_area :body, :class => :span6 %>
     <%= f.check_box :sticky %>
     <%= f.datetime_select :end_at %>
     <%= f.check_box :deleted %>
     <%= f.file_field :article_image %>
   </fieldset>
-  <%= f.submit :class => "primary btn" %>
+  <%= f.submit %>
 <% end %>
