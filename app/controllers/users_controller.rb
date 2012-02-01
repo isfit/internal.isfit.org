@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.in_festival(2011).select("users.id, given_name, family_name, username")
+    @users = User.in_festival(2013).select("users.id, given_name, family_name, username")
     respond_to do |format|
       format.html
       format.json {render json: @users}
