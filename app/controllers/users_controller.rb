@@ -8,7 +8,11 @@ class UsersController < ApplicationController
     unless @user.nil?
       render action: 'show'
     else
-      redirect_to root_path, alert: "Could not find user with username #{params[:username]}"
+      if params[:username] == "yourmama"
+        render action: 'yourmama', layout:false
+      else
+        redirect_to root_path, alert: "Could not find user with username #{params[:username]}"
+      end
     end
   end
 
@@ -26,7 +30,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.in_festival(2013).select("users.id, given_name, family_name, username")
+    @users = User.in_festival(2011).select("users.id, given_name, family_name, username")
     respond_to do |format|
       format.html
       format.json {render json: @users}
