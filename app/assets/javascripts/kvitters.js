@@ -28,7 +28,7 @@ function downloadKvitters() {
 
     $('#kvitter').empty();
     $('#kvitter').append('<h1 rel="popover" data-original-title="Kvitter" data-content="Kvitter is the internal Twitter of ISFiT. Write something inspiring, engaging, or simply informing, and share it with the world!">Kvitter</span>');
-    $('#kvitter').append('<form name="kvitter" id="kvitter-form" action="kvitters/create.json" method="post"><textarea rows="2" name="message" placeholder="Si noe inspirerende..."></textarea><input type="submit" class="small btn" value="Kvitr!" /></form>');
+    $('#kvitter').append('<form name="kvitter" id="kvitter-form" action="kvitters/create.json" method="post"><textarea rows="2" style="width: 100%;"  name="message" placeholder="Si noe inspirerende..."></textarea><input type="submit" class="btn btn-small" value="Kvitr!" /></form>');
     $('#kvitter').append('<ul id="kvitter-posts"></ul>');
     $('[rel=popover]').popover({
       offset: 10

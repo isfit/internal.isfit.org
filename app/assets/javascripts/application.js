@@ -64,12 +64,12 @@ $(function () {
 
 // Twitter integration
 function getTwitterFeed(username) {
-  $.getJSON('https://api.twitter.com/1/statuses/user_timeline.json?id='+username+'&count=5&callback=?', function(data) {
+  $.getJSON('https://api.twitter.com/1/statuses/user_timeline.json?id='+username+'&count=4&callback=?', function(data) {
     $('#twitter-header').append('<h3><a target="_blank" href="http://www.twitter.com/' + username + '"><img src="' + data[0].user.profile_image_url_https + '" style="float: right;"/> @' + username + '</a></h3>');
     $('#twitter-header').append('<p><em>' + data[0].user.description + '</em></p>');
     data.forEach(function(item){
       $('#twitter-statuses').append('<div id="status-' + item.id + '"></div>');
-      $('#status-'+item.id).append('<blockquote><p>' + item.text.linkify() + '</p><small>' + item.user.name + ' @ ' + item.user.location + '</small>');
+      $('#status-'+item.id).append('<blockquote><p style="font-size: 13px;">' + item.text.linkify() + '</p><small>' + item.user.name + ' @ ' + item.user.location + '</small>');
     });
   });
 };
@@ -78,4 +78,32 @@ $(function() {
   if ($('#twitter-button').exists()) {
     getTwitterFeed($('#twitter-button').data("username"));
   }
+});
+
+
+//User search
+
+function getUsersJSON() {
+  $.getJSON('/users.json', function(data) {
+    var userArray = [];
+    data.forEach(function(user) {
+      var searchString = user.given_name + " " + user.family_name + " - @" + user.username;
+      userArray.push(searchString);
+    });
+    console.log(JSON.stringify(userArray));
+    $('#user-search').attr('data-source', JSON.stringify(userArray));
+  });
+}
+
+$(function() {
+  getUsersJSON();
+  
+  $('#user-search-form').submit(function() {
+    var searchString = $('#user-search').val();
+    var formattedSearch = searchString.split('@');
+    formattedSearch = formattedSearch[formattedSearch.length-1]
+    window.location = "/users/username/" + formattedSearch
+    return false;
+  });
+
 });
