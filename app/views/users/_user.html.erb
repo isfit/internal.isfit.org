@@ -4,6 +4,9 @@
   <% if user.twitter_username %>
     <button id="twitter-button" class="btn-info btn" data-username="<%= user.twitter_username %>" data-toggle="modal" data-target="#twitter" data-backdrop="true" data-keyboard="true">Twitter</button>
   <% end %>
+  <% if user.facebook_id %>
+     <button id="facebook-button" class="btn-info btn" data-toggle="modal" data-backdrop="true" data-keyboard="true" onclick="window.location = 'http://facebook.com/<%=user.facebook_id%>';">Facebook</button>
+ <% end %>
 </div>
 <div id="twitter" class="modal fade">
   <div class="modal-header">
