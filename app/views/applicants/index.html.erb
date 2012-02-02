@@ -10,6 +10,7 @@
       <th colspan="3">Position choices interview times</th>
     </tr>
     <tr>
+      <th class="header"></th>
       <th class="header"><%= "Last name" %></th>
       <th class="header"><%= "First name" %></th>
       <th class="header"><%= "First choice"%></th>
@@ -19,11 +20,20 @@
       <th class="header"><%= "First interview"%></th>
       <th class="header"><%= "Second"%></th>
       <th class="header"><%= "Thirds"%></th>
-      <th class="header"></th>
     </tr>
   </thead>
   <% @applicants.each do |applicant| %>
     <tr>
+      <td width="70px">
+        <div class="btn-group">
+          <%= link_to("Edit", edit_applicant_path(applicant), class: "btn btn-info") %>
+          <a href="#" class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Show", applicant %></li>
+            <li><%= link_to("Delete", applicant,  method: :delete, confirm: 'Are you sure you want to delete this applicant?') %></li>
+          </ul>
+        </div>
+      </td>
       <td><%= applicant.lastname %></td>
       <td><%= applicant.firstname %></td>
       <td><%= applicant.first_position.title_no %></td>
@@ -35,17 +45,6 @@
       <td><%= (applicant.interview_place_1 != '' and applicant.interview_time_1) ? applicant.interview_time_1.strftime("%d.%m %H:%M") : '-' %></td>
       <td><%= (applicant.interview_place_2 != '' and applicant.interview_time_2) ? applicant.interview_time_2.strftime("%d.%m %H:%M") : '-' %></td>
       <td><%= (applicant.interview_place_3 != '' and applicant.interview_time_3) ? applicant.interview_time_3.strftime("%d.%m %H:%M") : '-' %></td>
-      <td width="70px">
-        <div class="btn-group">
-          <%= link_to("Edit", edit_applicant_path(applicant), class: "btn btn-info") %>
-          <a href="#" class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><%= link_to "Show", applicant %></li>
-            <li><%= link_to("Delete", applicant,  method: :delete, confirm: 'Are you sure you want to delete this applicant?') %></li>
-          </ul>
-        </div>
-      </td>
-
     </tr>
   <% end %>
 </table>

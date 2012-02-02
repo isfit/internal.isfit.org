@@ -1,13 +1,13 @@
 <h1>Volunteer application</h1>
+<div class="pull-right">
+  <%= link_to "Edit", edit_applicant_path, class: "btn btn-primary" %>
+</div>
 <p>Showing volunteer application details.</p>
+<h1><%= @applicant.lastname + ', ' + @applicant.firstname %></h1>
 <table>
 	<tr>
 		<td width="150"><b>ID</b></td>
 		<td><%= @applicant.id %></td>
-	</tr>
-	<tr>
-		<td><b>Name</b></td>
-		<td><%= @applicant.lastname + ', ' + @applicant.firstname %></td>
 	</tr>
 	<tr>
 		<td><b>E-mail</b></td>
@@ -30,14 +30,18 @@
 		<td><b>Third choice</b></td>
 		<td><%= @applicant.third_position ? 
 			@applicant.third_position.title_no : '-' %></td>
+  </tr>
+  <tr>
+    <td colspan="2">
+		<h3>Information about self</h3>
+    <%= format(@applicant.information) %>
+  </td>
 	</tr>
-	<tr valign="top">
-		<td><b>Information about self</b></td>
-		<td><%= format(@applicant.information) %></td>
-	</tr>
-	<tr valign="top">
-		<td><b>Relevant experience</b></td>
-		<td><%= format(@applicant.background) %></td>
+	<tr>
+    <td colspan="2">
+      <h3>Relevant experience</h3>
+      <%= format(@applicant.background) %>
+    </td>
 	</tr>
 	<tr>
 		<td colspan="2" style="border-bottom: 1px solid #ccc"></td>
@@ -60,9 +64,10 @@
 		</tr>
 		<tr valign="top">
 			<td><b>Interviewers</b></td>
-			<td><%#= LdapUser.get_by_id(@applicant.interviewer_id_1_1).name %>
+			<td><%= link_to User.find(@applicant.interviewer_id_1_1).full_name, user_path(@applicant.interviewer_id_1_1) %>
 				<br />
-			<%#= LdapUser.get_by_id(@applicant.interviewer_id_1_2).name %></td>
+			<%= link_to User.find(@applicant.interviewer_id_1_2).full_name, user_path(@applicant.interviewer_id_1_2) %></td>
+	
 		</tr>
 	<% end %>
 	<% if @applicant.interview_place_2 != '' %>
@@ -79,9 +84,10 @@
 		</tr>
 		<tr valign="top">
 			<td><b>Interviewers</b></td>
-			<td><%#= LdapUser.get_by_id(@applicant.interviewer_id_2_1).name %>
+			<td><%= link_to User.find(@applicant.interviewer_id_2_1).full_name, user_path(@applicant.interviewer_id_2_1) %>
 				<br />
-			<%#= LdapUser.get_by_id(@applicant.interviewer_id_2_2).name %></td>
+			<%= link_to User.find(@applicant.interviewer_id_2_2).full_name, user_path(@applicant.interviewer_id_2_2) %></td>
+	
 		</tr>
 	<% end %>
 	<% if @applicant.interview_place_3 != '' %>
@@ -98,9 +104,9 @@
 		</tr>
 		<tr valign="top">
 			<td><b>Interviewers</b></td>
-			<td><%#= LdapUser.get_by_id(@applicant.interviewer_id_3_1).name %>
+			<td><%= link_to User.find(@applicant.interviewer_id_3_1).full_name, user_path(@applicant.interviewer_id_3_1) %>
 				<br />
-			<%#= LdapUser.get_by_id(@applicant.interviewer_id_3_2).name %></td>
+			<%= link_to User.find(@applicant.interviewer_id_3_2).full_name, user_path(@applicant.interviewer_id_3_2) %></td>
 		</tr>
 	<% end %>
 </table>

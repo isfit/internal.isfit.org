@@ -31,6 +31,10 @@ class ApplicantsController < ApplicationController
 
   def interviews
     @applicants = Applicant.find_by_sql("select *, interview_place_1 as place, interview_time_1 as time from applicants where interviewer_id_1_1 = #{current_user.id} UNION select *, interview_place_1 as place, interview_time_1 as time from applicants where interviewer_id_1_2 = #{current_user.id}")
+    @applicants_1 = Applicant.where("interviewer_id_1_1 = #{current_user.id} OR interviewer_id_1_2 = #{current_user.id}")
+    @applicants_2 = Applicant.where("interviewer_id_2_1 = #{current_user.id} OR interviewer_id_2_2 = #{current_user.id}")
+    @applicants_3 = Applicant.where("interviewer_id_3_1 = #{current_user.id} OR interviewer_id_3_2 = #{current_user.id}")
+
   end
 
   def show
