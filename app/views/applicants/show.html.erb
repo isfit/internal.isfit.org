@@ -31,6 +31,10 @@
 		<td><%= @applicant.third_position ? 
 			@applicant.third_position.title_no : '-' %></td>
   </tr>
+	<tr>
+		<td><b>Status</b></td>
+		<td><%= @status[@applicant.status] %></td>
+	</tr>
   <tr>
     <td colspan="2">
 		<h3>Information about self</h3>
@@ -46,68 +50,6 @@
 	<tr>
 		<td colspan="2" style="border-bottom: 1px solid #ccc"></td>
 	</tr>
-	<tr>
-		<td><b>Status</b></td>
-		<td><%= @status[@applicant.status] %></td>
-	</tr>
-	<% if @applicant.interview_place_1 != '' %>
-		<tr>
-			<td colspan="2"><em>First choice interview</em></td>
-		</tr>
-		<tr>
-			<td><b>Place</b></td>
-			<td><%= @applicant.interview_place_1 %></td>
-		</tr>
-		<tr>
-			<td><b>Time</b></td>
-			<td><%= @applicant.interview_time_1.strftime("%d.%m %H:%M") if @applicant.interview_time_1%></td>
-		</tr>
-		<tr valign="top">
-			<td><b>Interviewers</b></td>
-			<td><%= link_to User.find(@applicant.interviewer_id_1_1).full_name, user_path(@applicant.interviewer_id_1_1) %>
-				<br />
-			<%= link_to User.find(@applicant.interviewer_id_1_2).full_name, user_path(@applicant.interviewer_id_1_2) %></td>
-	
-		</tr>
-	<% end %>
-	<% if @applicant.interview_place_2 != '' %>
-		<tr>
-			<td colspan="2"><em>Second choice interview</em></td>
-		</tr>
-		<tr>
-			<td><b>Place</b></td>
-			<td><%= @applicant.interview_place_2 %></td>
-		</tr>
-		<tr>
-			<td><b>Time</b></td>
-			<td><%= @applicant.interview_time_2.strftime("%d.%m %H:%M") if @applicant.interview_time_2%></td>
-		</tr>
-		<tr valign="top">
-			<td><b>Interviewers</b></td>
-			<td><%= link_to User.find(@applicant.interviewer_id_2_1).full_name, user_path(@applicant.interviewer_id_2_1) %>
-				<br />
-			<%= link_to User.find(@applicant.interviewer_id_2_2).full_name, user_path(@applicant.interviewer_id_2_2) %></td>
-	
-		</tr>
-	<% end %>
-	<% if @applicant.interview_place_3 != '' %>
-		<tr>
-			<td colspan="2"><em>Third choice interview</em></td>
-		</tr>
-		<tr>
-			<td><b>Place</b></td>
-			<td><%= @applicant.interview_place_3 %></td>
-		</tr>
-		<tr>
-			<td><b>Time</b></td>
-			<td><%= @applicant.interview_time_3.strftime("%d.%m %H:%M") if @applicant.interview_time_3%></td>
-		</tr>
-		<tr valign="top">
-			<td><b>Interviewers</b></td>
-			<td><%= link_to User.find(@applicant.interviewer_id_3_1).full_name, user_path(@applicant.interviewer_id_3_1) %>
-				<br />
-			<%= link_to User.find(@applicant.interviewer_id_3_2).full_name, user_path(@applicant.interviewer_id_3_2) %></td>
-		</tr>
-	<% end %>
+
 </table>
 <p>Return to <%= link_to('application list', applicants_path) %>.</p>
