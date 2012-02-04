@@ -36,7 +36,7 @@ group :development do
   gem 'nifty-generators'
   gem 'libnotify'
   gem 'rb-inotify'
-#  gem 'yard' "~> 0.7.5"
+  gem 'yard'
 end
 
 group :development, :test do
