@@ -68,12 +68,42 @@ class ApplicantsController < ApplicationController
 
   end
 
+  def new
+    @applicant = Applicant.new
+    @positions = Position.published
+    @interviewers = User.in_festival
+
+    @status = {	0 => 'Not contacted',
+      1 => 'Meeting planned',
+      2 => 'Meeting done',
+      3 => 'Of interest',
+      4 => 'Recruited',
+      5 => 'Not of interest' }
+  end
+
+  def create
+    @applicant = Applicant.new(params[:applicant])
+    if @applicant.save
+      redirect_to applicants_path, notice: "Applicant was successfully created."
+    else
+    @positions = Position.published
+    @interviewers = User.in_festival
+    @status = {	0 => 'Not contacted',
+      1 => 'Meeting planned',
+      2 => 'Meeting done',
+      3 => 'Of interest',
+      4 => 'Recruited',
+      5 => 'Not of interest' }
+      render "new"
+    end
+  end
+
   def update
     @applicant = Applicant.find(params[:id])
     if @applicant.update_attributes(params[:applicant])
-      redirect_to applicants_path
+      redirect_to applicants_path, notice: "Applicant was successfully updated"
     else
-      render :edit
+      redirect_to edit_applicant_path(@applicant), message: "Something went wrong"
     end
 
   end
