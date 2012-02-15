@@ -1,4 +1,5 @@
 class InternalTabsController < ApplicationController
+  load_and_authorize_resource
   def index
     @internal_tabs = InternalTab.scoped
   end

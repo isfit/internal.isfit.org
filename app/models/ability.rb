@@ -10,11 +10,13 @@ class Ability
       can :manage, FrontendArticle
       can :manage, SppArticle
       can :manage, StaticPage
+      can :manage, IsfitPage
     end
     if user.role?(:internal)
       can :manage, Account
       can :read, StaticPage
       can :read, Article
+      can :manage, Kvitter
     end
     
     # Define abilities for the passed in user here. For example:
