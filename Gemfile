@@ -23,6 +23,7 @@ gem 'mini_magick', :require=>'RMagick'
 gem 'rmagick', :require => false
 gem 'bluecloth'
 gem 'oauth2'
+gem 'net-ldap'
 
 #group :assets do
 gem 'sass-rails'

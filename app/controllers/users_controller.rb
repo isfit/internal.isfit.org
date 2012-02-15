@@ -36,4 +36,35 @@ class UsersController < ApplicationController
       format.json {render json: @users}
     end
   end
+
+  def change_password
+  
+  end
+
+  def update_password
+    if current_user.authenticate(params[:old_password])
+      if params[:new_password] == params[:new_verified_password]
+        current_user.password = params[:new_password]
+        if current_user.save
+          require 'net/ldap'
+          ldap = Net::LDAP::new
+          treebase = "dc=isfit,dc=org"
+          filters = Net::LDAP::Filter.eq("uid", current_user.username)
+          dn = ldap.search(:base => treebase, :filter => filters).first.dn
+          auth = { :method => :simple, :username => dn, :password => params[:old_password] }
+          Net::LDAP.open(:auth => auth) do |ldap|
+            ldap.replace_attribute dn, :userPassword, params[:new_password]
+          end
+        else
+          return redirect_to '/users/change_password', :message => "Try a longer password"
+        end
+      else
+        return redirect_to '/users/change_password', :message => "Password doesn't match"
+      end
+    else
+      return redirect_to '/users/change_password', :message => "Wrong password"
+    end
+    
+    return redirect_to user_path(current_user), :notice => "Password was successfully changed"
+  end
 end

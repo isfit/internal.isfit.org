@@ -90,6 +90,8 @@ InternalIsfitOrg::Application.routes.draw do
   resources :users do 
     collection do
       get 'username/:username', action: :username
+      get 'change_password', action: :change_password
+      post 'update_password', action: :update_password
     end
   end
   root :to => "articles#index"
