@@ -1,11 +1,7 @@
 require 'spec_helper'
 
 describe PadsController do
-  #Add this to don't care about login
-  before do
-    @controller.stubs(:logged_in?).returns(true)
-    User.stub!(:role?).and_return(true)
-  end
+  login_user
 
   describe "GET 'index'" do
     it "should be successful" do

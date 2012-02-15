@@ -19,10 +19,7 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe IsfitPagesController do
-  before do
-    @controller.stubs(:logged_in?).returns(true)
-    User.stub!(:role?).and_return(true)
-  end
+  login_user
 
   # This should return the minimal set of attributes required to create a valid
   # IsfitPage. As you add validations to IsfitPage, be sure to
@@ -32,7 +29,7 @@ describe IsfitPagesController do
   end
 
   describe "GET index" do
-    pending "assigns all isfit_pages as @isfit_pages" do
+    it "assigns all isfit_pages as @isfit_pages" do
       isfit_page = IsfitPage.create! valid_attributes
       get :index
       assigns(:isfit_pages).should eq([isfit_page])

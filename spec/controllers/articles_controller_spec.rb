@@ -20,10 +20,7 @@ require 'spec_helper'
 
 describe ArticlesController do
   #Add this to don't care about login
-  before do
-    @controller.stubs(:logged_in?).returns(true)
-    User.stub!(:role?).and_return(true)
-  end
+  login_user
 
   # This should return the minimal set of attributes required to create a valid
   # Article. As you add validations to Article, be sure to

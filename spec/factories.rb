@@ -23,4 +23,8 @@ FactoryGirl.define do
   factory :account do
     name "TestAccount"
   end
+
+  factory :room do
+    name "Bunkersen"
+  end
 end

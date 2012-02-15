@@ -19,11 +19,7 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe AccountsController do
-  #Add this to don't care about login
-  before do
-    @controller.stubs(:logged_in?).returns(true)
-    User.stub!(:role?).and_return(true)
-  end
+  login_user
 
   # This should return the minimal set of attributes required to create a valid
   # Account. As you add validations to Account, be sure to

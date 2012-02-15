@@ -11,7 +11,9 @@ describe User do
 
   before(:each) do
     User.delete_all
+    @user = create(:user)
   end
+
 
   it "should be valid" do
     new_user.should be_valid
@@ -41,5 +43,10 @@ describe User do
     user = new_user(:username => 'foobar', :password => 'secret12')
     user.save!
     user.authenticate('badpassword').should be_false
+  end
+
+  it "should return full name capitalized on full_name method" do
+    user = new_user(given_name: "iver", family_name: "skjervum")
+    user.full_name.should == "Iver Skjervum"
   end
 end

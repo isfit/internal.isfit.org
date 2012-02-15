@@ -12,6 +12,11 @@ InternalIsfitOrg::Application.routes.draw do
   resources :contact_logs
 
 
+  resources :rooms 
+  get "room_bookings/:week/:year" => "room_bookings#show"
+  resources :room_bookings
+
+
   resources :spp_articles do
     collection do
       post 'photo'

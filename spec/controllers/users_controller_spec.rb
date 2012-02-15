@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe UsersController do
-#  render_views
 
   pending "create action should render new template when model is invalid" do
     User.any_instance.stubs(:valid?).returns(false)
