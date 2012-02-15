@@ -1,4 +1,5 @@
 class AccountsController < ApplicationController
+  load_and_authorize_resource
   # GET /accounts
   def index
     @accounts = Account.all

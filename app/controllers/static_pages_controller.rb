@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+  load_and_authorize_resource
   # GET /static_pages
   # GET /static_pages.json
   def index
