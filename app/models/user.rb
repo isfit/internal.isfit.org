@@ -6,10 +6,10 @@ class User < ActiveRecord::Base
   
 
   # Fiks meg i egen controller action plx
-  # validates :password, length: {minimum: 8}
+  validates :password, length: {minimum: 8}, allow_blank: true
   set_primary_key :id
   has_secure_password
-  has_many :groups, :through => :positions
+  has_many :groups, through: :positions
   has_and_belongs_to_many :roles
   has_and_belongs_to_many :positions
 

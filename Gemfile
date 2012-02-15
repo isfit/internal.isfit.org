@@ -6,7 +6,7 @@ gem 'sqlite3'
 gem 'mysql2'
 
 # Asset template engines
-gem 'compass', ">=0.12.alpha.0"
+gem 'compass', ">=0.12.rc.0"
 
 # Spesifikke gems her
 gem 'capistrano'
@@ -32,7 +32,7 @@ gem 'uglifier'
 
 
 group :development do
-  gem 'ruby-debug19', :require => 'ruby-debug'
+#  gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'nifty-generators'
   gem 'libnotify'
   gem 'rb-inotify'

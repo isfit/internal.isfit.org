@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111223145208) do
+ActiveRecord::Schema.define(:version => 20120107133158) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20111223145208) do
     t.string   "dn",                 :limit => 512
     t.integer  "has_account",        :limit => 1,   :default => 0,     :null => false
     t.integer  "is_notified",                       :default => 0,     :null => false
+    t.text     "comment"
   end
 
   create_table "articles", :force => true do |t|
@@ -185,16 +186,14 @@ ActiveRecord::Schema.define(:version => 20111223145208) do
   add_index "internal_tabs", ["ancestry"], :name => "index_internal_tabs_on_ancestry"
 
   create_table "isfit_pages", :force => true do |t|
-    t.string   "title_en"
-    t.string   "title_no"
-    t.text     "ingress_en"
-    t.text     "ingress_no"
-    t.text     "body_en"
-    t.text     "body_no"
-    t.string   "tag"
-    t.boolean  "deleted"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "title_en"
+    t.string  "title_no"
+    t.text    "ingress_en"
+    t.text    "ingress_no"
+    t.text    "body_en"
+    t.text    "body_no"
+    t.string  "tag"
+    t.boolean "deleted",    :default => false
   end
 
   create_table "kvitters", :force => true do |t|
@@ -266,16 +265,18 @@ ActiveRecord::Schema.define(:version => 20111223145208) do
   end
 
   create_table "positions", :id => false, :force => true do |t|
-    t.integer "id",             :default => 0, :null => false
-    t.string  "title_en"
-    t.string  "title_no"
-    t.integer "user_id"
-    t.text    "description_en"
-    t.text    "description_no"
-    t.string  "group_dn"
-    t.integer "admission_id"
-    t.integer "group_id"
-    t.integer "number",         :default => 1, :null => false
+    t.integer  "id",             :default => 0, :null => false
+    t.string   "title_en"
+    t.string   "title_no"
+    t.integer  "user_id"
+    t.text     "description_en"
+    t.text     "description_no"
+    t.string   "group_dn"
+    t.integer  "admission_id"
+    t.integer  "group_id"
+    t.integer  "number",         :default => 1, :null => false
+    t.datetime "publish_from"
+    t.datetime "publish_to"
   end
 
   create_table "positions_users", :id => false, :force => true do |t|
@@ -305,6 +306,20 @@ ActiveRecord::Schema.define(:version => 20111223145208) do
     t.integer  "user_id",    :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "room_bookings", :force => true do |t|
+    t.datetime "reserved_at"
+    t.integer  "user_id"
+    t.integer  "room_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "rooms", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "sections", :id => false, :force => true do |t|
@@ -353,8 +368,7 @@ ActiveRecord::Schema.define(:version => 20111223145208) do
 
   add_index "static_pages", ["user_id"], :name => "index_static_pages_on_user_id"
 
-  create_table "users", :id => false, :force => true do |t|
-    t.integer  "id",                                        :default => 0, :null => false
+  create_table "users", :force => true do |t|
     t.string   "given_name"
     t.string   "family_name"
     t.date     "date_of_birth"
@@ -396,6 +410,9 @@ ActiveRecord::Schema.define(:version => 20111223145208) do
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "twitter_username"
+    t.string   "facebook_id"
+    t.string   "facebook_token"
   end
 
 end
