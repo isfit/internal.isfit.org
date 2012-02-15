@@ -12,7 +12,7 @@ class Position < ActiveRecord::Base
 
   def self.published
     # Dette er en horribel hack for å kunne redigere posisjoner etter utgått søknadstid...
-    forskyvning = Time.now - (Time.now - 2.weeks.ago)
+    forskyvning = Time.now - (Time.now - 3.weeks.ago)
     Position.where("publish_from < '#{Time.now.strftime("%Y-%m-%d %H:%M") }' AND publish_to > '#{forskyvning.strftime("%Y-%m-%d %H:%M")}'")
   end
 
