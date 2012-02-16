@@ -1,47 +1,39 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
 describe UsersController do
-
-  pending "create action should render new template when model is invalid" do
-    User.any_instance.stubs(:valid?).returns(false)
-    post :create
-    response.should render_template(:new)
+  context "Not logged in" do
+    it "edit action should redirect when not logged in" do
+      get :edit, id: "ignored"
+      response.should redirect_to(login_url)
+    end
+    it "update action should redirect when not logged in" do
+      put :update, id: "ignored"
+      response.should redirect_to(login_url)
+    end
   end
 
-  pending "create action should redirect when model is valid" do
-    User.any_instance.stubs(:valid?).returns(true)
-    post :create
-    response.should redirect_to(root_url)
-    session['user_id'].should == assigns['user'].id
-  end
+  context "When logged in" do
+    login_user
 
-  it "edit action should redirect when not logged in" do
-    get :edit, :id => "ignored"
-    response.should redirect_to(login_url)
-  end
+    before do
+      @controller.stubs(:current_user).returns(create(:user))
+    end
 
-  pending "edit action should render edit template" do
-    @controller.stubs(:current_user).returns(User.first)
-    get :edit, :id => "ignored"
-    response.should render_template(:edit)
-  end
+    it "edit action should render edit template" do
+      get :edit, id: "ignored"
+      response.should render_template(:edit)
+    end
+    
+    it "update action should render edit template when user is invalid" do
+      User.any_instance.stub(:valid?).and_return(false)
+      put :update, id: "ignored"
+      response.should render_template(:edit)
+    end
 
-  it "update action should redirect when not logged in" do
-    put :update, :id => "ignored"
-    response.should redirect_to(login_url)
-  end
-
-  pending "update action should render edit template when user is invalid" do
-    @controller.stubs(:current_user).returns(User.first)
-    User.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => "ignored"
-    response.should render_template(:edit)
-  end
-
-  pending "update action should redirect when user is valid" do
-    @controller.stubs(:current_user).returns(User.first)
-    User.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => "ignored"
-    response.should redirect_to(root_url)
+    it "update action should redirect when user is valid" do
+      User.any_instance.stub(:valid?).and_return(true)
+      put :update, id: "ignored"
+      response.should redirect_to(root_url)
+    end
   end
 end

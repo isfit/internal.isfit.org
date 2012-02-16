@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe InternalTabsController do
-  #Add this to don't care about login
   login_user
 
   describe "GET 'index'" do
