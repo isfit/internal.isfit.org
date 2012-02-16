@@ -26,7 +26,7 @@ still works as it should.
 The application has some tests, but far from 100% test coverage. However, the tests that are on the application
 should never be broken. To ensure this, you should always run guard when developing. Simply type the following command
 from the application root to start up guard
-  guard
+  bundle exec guard
 
 Using guard makes it extremly easy to do test-driven development (TDD). You write the test, and guard will tell you
 that i does or not pass at the moment. When the tests and the implementation are written, guard should send you a green
