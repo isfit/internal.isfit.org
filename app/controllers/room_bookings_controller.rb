@@ -16,9 +16,7 @@ class RoomBookingsController < ApplicationController
   def create
     @room_booking = RoomBooking.new(params[:room_booking])
     @room_booking.user = current_user
-    if !RoomBooking.exists?(reserved_at: @room_booking.reserved_at, room_id: @room_booking.room_id)
-      @room_booking.save
-    end
+    @room_booking.save
   end
 
   def destroy

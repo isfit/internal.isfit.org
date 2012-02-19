@@ -1,5 +1,5 @@
 class RoomBooking < ActiveRecord::Base
   belongs_to :room
   belongs_to :user
-  attr_accessor :reserved
+  validates :reserved_at, uniqueness: {scope: :room_id}
 end
