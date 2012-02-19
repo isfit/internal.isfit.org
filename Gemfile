@@ -24,6 +24,7 @@ gem 'rmagick', :require => false
 gem 'bluecloth'
 gem 'oauth2'
 gem 'net-ldap'
+gem 'jbuilder'
 
 #group :assets do
 gem 'sass-rails'
