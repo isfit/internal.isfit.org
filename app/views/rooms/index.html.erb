@@ -1,0 +1,8 @@
+<h1>List of all rooms</h1>
+<% @rooms.each do |room| %>
+  <div>
+    <%= link_to room.name, room %>
+  </div>
+<% end %>
+
+<%= link_to "Create new room", new_room_path , class: :btn%>

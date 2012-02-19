@@ -1,0 +1,44 @@
+<div class="pagination">
+  <ul>
+    <li><%=link_to "Prev", prev_week %></a></li>
+    <li class="active"><a href="#"><%=params[:week]%> / <%=params[:year]%></a></li>
+    <li><%=link_to "Next", next_week%></li>
+</ul>
+</div>
+<div id="room_reservation_summary"></div>
+<ul class="room_reservation nav nav-tabs">
+  <% @rooms.each_with_index do |room,i| %>
+    <li class="<%='active' if i==0%>">
+      <%=link_to room.name, "##{room.name.downcase}", data:{toggle: "tab"} %>
+    </li>
+  <% end %>
+</ul>
+<div class="tab-content">
+  <% @rooms.each_with_index do |room,i| %>
+    <div id="<%=room.name.downcase%>" class="tab-pane <%= "active" if i==0%>" data-room=<%=room.name%>>
+      <table class ="table table-bordered">
+        <thead>
+          <tr>
+            <th></th>
+            <% @date_range.each do |day| %>
+              <th><%= day %></th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% 8.upto 23 do |time| %>
+            <tr>
+              <th><%= time %>:00</th>
+              <% @date_range.each do |day| %>
+                <td>
+                  <% booking = @room_bookings.find{ |r| r[:room_id] == room.id &&  r[:reserved_at] == (day + time.hour)} %>
+                  <%= render 'form', reserved_at: (day+time.hour), booking: booking , room:room%>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</div>

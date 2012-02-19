@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   set_primary_key :id
   has_secure_password
   has_many :groups, through: :positions
+  has_many :room_bookings
   has_and_belongs_to_many :roles
   has_and_belongs_to_many :positions
 
@@ -22,6 +23,10 @@ class User < ActiveRecord::Base
   #Return full name reversed of user
   def full_name_reversed
     "#{family_name}, #{given_name}"
+  end
+
+  def initiales
+    full_name.split(/ /).map{|n| n[0]}.join('.')
   end
 
   # Returns all users in a given festival

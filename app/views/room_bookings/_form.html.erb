@@ -1,0 +1,16 @@
+<%= form_for RoomBooking.new do |f| %>
+  <%= f.hidden_field :reserved_at, value: reserved_at %>
+  <%= f.hidden_field :room_id, value: room.id %>
+  <% disabled = Time.zone.now > reserved_at  || Time.zone.now + 2.weeks < reserved_at%>
+  <% if booking %>
+    <% if booking[:user] == current_user %>
+      <%= content_tag :a ,class: "btn btn-mini btn-danger room_reservation_self #{'disabled' if disabled}", data: {booking: booking[:id]} do %>
+        <i class="icon-remove icon-white"></i>
+      <% end %>
+    <% else %>
+      <a href="#" rel ="tooltip" data-original-title="<%=booking[:user].full_name%>" class="btn btn-mini btn-danger disabled room_reservation_uavl"><%= booking[:user].initiales %></a>
+    <% end %>
+  <% else %>
+    <a class="btn btn-mini btn-success room_reservation_avl <%='disabled' if disabled %>"><i class="icon-ok icon-white"></i></a>
+  <% end %>
+<% end %>

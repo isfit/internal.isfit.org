@@ -1,0 +1,19 @@
+// Place all the styles related to the room_bookings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.new_room_booking {
+  margin: 0px;
+}
+.room_reservation_avl {
+  cursor: pointer;
+}
+.room_reservation_self {
+  cursor: pointer;
+}
+.room_reservation_uavl {
+}
+ul.room_reservation {
+  margin-bottom: 0px;
+  border-bottom: 0px;
+}

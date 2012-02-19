@@ -9,5 +9,6 @@
  *= require "prettyPhoto"
  *= require "jquery.fileupload-ui"
  *= require "jqueryui"
+ *= require "room_bookings"
  *= require_self
 */
