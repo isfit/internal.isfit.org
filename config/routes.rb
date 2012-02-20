@@ -13,7 +13,7 @@ InternalIsfitOrg::Application.routes.draw do
 
 
   resources :rooms 
-  get "room_bookings/:week/:year" => "room_bookings#show", as: "new_room_booking"
+  get "room_bookings/:week/:year" => "room_bookings#new", as: "new_room_booking"
   resources :room_bookings
 
 

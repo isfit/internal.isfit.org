@@ -1,11 +1,11 @@
 class RoomBookingsController < ApplicationController
-
+  load_and_authorize_resource
   def index
     date = Date.today
     redirect_to new_room_booking_path(date.cweek,date.year)
   end
 
-  def show
+  def new
     @rooms = Room.all
     week = params[:week].to_i
     year = params[:year].to_i
