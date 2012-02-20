@@ -1,5 +1,8 @@
 InternalIsfitOrg::Application.routes.draw do
 
+  get "organization_chart", controller: "organization_chart", action: "index"
+  get "organization_chart/:year", controller: "organization_chart", action: "index"
+
   get 'oauth/start'
   get 'oauth/callback'
   

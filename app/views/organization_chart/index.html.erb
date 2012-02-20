@@ -1,0 +1,31 @@
+<h1>Organization Chart</h1>
+<p>Here you will find the organizational chart of ISFiT <%= @festival.year %>.
+
+<h2>Groups</h2>
+
+<div class="tabbable">
+  <ul class="nav nav-tabs">
+    <% first = true %>
+    <% @groups.each do |group| %>
+      <li <%= 'class=active' if first %>><%= link_to group.name_en, "##{transliterate group.name_en}", "data-toggle" => "tab" %></li>
+      <% first = false %>
+    <% end %>
+    <% @sections.each do |section| %>
+      <li><%= link_to section.name_en, "##{transliterate section.name_en}", "data-toggle" => "tab" %></li>
+    <% end %>
+  </ul>
+  <div class="tab-content">
+    <% first = true %>
+    <% @groups.each do |group| %>
+      <div class="tab-pane <%= "active" if first %>" id="<%= transliterate group.name_en %>">
+        <%= render partial: "group", locals: {group: group} %>
+     </div>
+      <% first = false %>
+      <% @sections.each do |section| %>
+        <div class="tab-pane" id="<%= transliterate section.name_en %>">
+          <%= render partial: "section", locals:{section: section} %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<h1><%= section.name_en %></h1>
+<p>
+<b>Email:</b> <%= mail_to section.email %><br>
+</p>
+<h2>Groups</h2>
+<div class="tabbable">
+  <ul class="nav nav-pills">
+    <% first = true %>
+    <% section.groups.each do |group| %>
+      <li class="<%= "active" if first%>">
+      <%= link_to group.name_en, "#col-#{transliterate group.name_en}", "data-toggle" => "tab" %>
+      </li>
+      <% first = false %>
+    <% end %>
+  </ul>
+  <div class="tab-content">
+    <% first = true %>
+    <% section.groups.each do |group| %>
+      <div id="col-<%= transliterate group.name_en %>" class="tab-pane <%= "active" if first %>">
+        <%= render partial: "group", locals: {group: group} %>
+        <% first = false %>
+      </div>
+    <% end %>
+  </div>
+</div>

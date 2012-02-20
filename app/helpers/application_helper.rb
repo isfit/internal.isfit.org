@@ -8,8 +8,9 @@ module ApplicationHelper
     form_for(object, options, &block)
   end
 
-  def transliterate(str)
+  def transliterate(s)
     # Based on permalink_fu by Rick Olsen
+    s = String.new(s)
 
     # Downcase string
     s.downcase!
