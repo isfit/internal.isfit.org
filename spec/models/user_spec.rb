@@ -49,4 +49,15 @@ describe User do
     user = new_user(given_name: "iver", family_name: "skjervum")
     user.full_name.should == "Iver Skjervum"
   end
+
+  describe "abilities" do 
+    subject { ability }
+    let(:ability) {Ability.new(@user)}
+    context "When is an ordinary func" do
+      it "should only be able to delete his own room bookings" do
+       should be_able_to(:destroy, RoomBooking.new(:user => @user)) 
+       should_not be_able_to(:destroy, RoomBooking.new)
+      end
+    end
+  end
 end
