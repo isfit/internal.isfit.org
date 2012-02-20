@@ -17,6 +17,9 @@ class Ability
       can :read, StaticPage
       can :read, Article
       can :manage, Kvitter
+      can [:read,:create], RoomBooking
+      can :destroy, RoomBooking, user_id: user.id
+      can :read, Room
     end
     
     # Define abilities for the passed in user here. For example:
