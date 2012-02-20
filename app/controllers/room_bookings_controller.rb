@@ -21,12 +21,8 @@ class RoomBookingsController < ApplicationController
 
   def destroy
     @room_booking = RoomBooking.find(params[:id])
-    if @room_booking && @room_booking.user == current_user
-      time,room = @room_booking.reserved_at, @room_booking.room.name
-      @room_booking.destroy
-      render text: "Your roombooking in #{room} at #{time.to_s(:short)} was deleted"
-    else
-      render text: "Did not find the actual booking"
-    end
+    time,room = @room_booking.reserved_at, @room_booking.room.name
+    @room_booking.destroy
+    render text: "Your roombooking in #{room} at #{time.to_s(:short)} was deleted"
   end
 end
