@@ -1,6 +1,6 @@
 <%%= bootstrap_form_for(@<%= singular_table_name %>) do |f| %>
   <%%= f.error_messages %>
-  <%%= f.fieldset <%= singular_table_name %> do %>
+  <%%= f.fieldset "<%= singular_table_name %>" do %>
     <legend><%= singular_table_name %></legend>
     <% attributes.each do |attribute| -%>
       <%%= f.<%= attribute.field_type %> :<%= attribute.name %> %>
