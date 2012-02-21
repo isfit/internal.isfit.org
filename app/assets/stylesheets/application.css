@@ -2,7 +2,6 @@
  * This is a manifest file that'll automatically include all the stylesheets available in this directory
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
- *= require "bootstrap-2.0.0.css"
  *= require "application/all"
  *= require "articles"
  *= require "kvitters"
@@ -11,6 +10,5 @@
  *= require "jquery.fileupload-ui"
  *= require "jqueryui"
  *= require "room_bookings"
- *= require "bootstrap-responsive-2.0.0.css"
  *= require_self
 */
