@@ -1,0 +1,7 @@
+<div class="pull-right">
+<%%= link_to 'Back', <%= index_helper %>_path, <%= key_value :confirm, "'This will cancel all changes. Are you sure?'"%>, <%= key_value :method, ":get" %>, :class => "btn"  %>
+</div>
+<h1>New <%= singular_table_name %></h1>
+
+<%%= render 'form' %>
+
