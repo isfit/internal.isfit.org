@@ -66,12 +66,7 @@ module ApplicationHelper
   # @return [true|false] depending on access
 
   def can_access_link?(link)
-    begin
-      tmp = can?(link.action.to_sym, Kernel.const_get(link.controller.classify))
-    rescue
-      tmp = true
-    end
-    link.controller && link.action && tmp
+    (link.controller && link.action) &&  (can?(link.action.to_sym, Kernel.const_get(link.controller.classify)))
   end
 
 

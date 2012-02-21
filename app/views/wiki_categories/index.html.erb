@@ -1,0 +1,23 @@
+<div class="pull-right">
+  <%= link_to 'New Wiki category', new_wiki_category_path, :class => "btn btn-primary"%>
+</div>
+<h1>Wiki categories</h1>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <% @wiki_categories.each do |wiki_category| %>
+    <tr>
+      <td><%= wiki_category.title %></td>
+      <td><%= link_to 'Edit', edit_wiki_category_path(wiki_category), :class => "btn" %></td>
+      <td><%= link_to 'Destroy', wiki_category, confirm: 'Are you sure?', method: :delete, :class => "btn btn-danger" %></td>
+    </tr>
+  <% end %>
+</table>
+

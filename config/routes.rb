@@ -1,5 +1,7 @@
 InternalIsfitOrg::Application.routes.draw do
 
+  resources :wiki_categories
+
   get 'organization_chart', controller: "organization_chart", action: "index"
   get "organization_chart/:year", controller: "organization_chart", action: "index"
 

@@ -1,0 +1,8 @@
+<div class="pull-right">
+  <%= link_to 'Show', @wiki_category, confirm: 'This will cancel all changes. Are you sure?', method: :get, :class => "btn" %>
+  <%= link_to 'Back', wiki_categories_path, confirm: 'This will cancel all changes. Are you sure?', method: :get , :class => "btn" %>
+</div>
+<h1>Editing wiki_category</h1>
+
+<%= render 'form' %>
+

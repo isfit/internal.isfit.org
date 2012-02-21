@@ -1,0 +1,2 @@
+module WikiCategoriesHelper
+end
