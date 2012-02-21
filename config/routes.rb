@@ -1,5 +1,13 @@
 InternalIsfitOrg::Application.routes.draw do
 
+  scope "/wiki" do
+    get "", controller: "wiki_pages", action: "index"
+    get "*category_slug/:page_slug", controller: "wiki_pages", action: "wiki_show"
+  end
+
+
+  resources :wiki_pages
+
   resources :wiki_categories
 
   get 'organization_chart', controller: "organization_chart", action: "index"

@@ -1,0 +1,22 @@
+<%= render :partial => "menu" %>
+<div class="pull-right">
+  <div class="btn-group">
+  <%= link_to 'New Wiki page', new_wiki_page_path, :class => "btn btn-primary"%>
+    <%= link_to 'Edit', edit_wiki_page_path(@wiki_page), :class => "btn" %>
+    <%= link_to 'Delete', @wiki_page, confirm: 'Are you sure?', method: :delete, :class => "btn btn-danger" %>
+  </div>
+</div>
+
+<h1><%= @wiki_page.title %></h1>
+<em>Last edit <%= time_ago_in_words @wiki_page.created_at %> ago by <%= link_to @wiki_page.user.full_name, user_path(@wiki_page.user) %>.</em>
+<% if @wiki_page.deleted %>
+  <div class="alert alert-block">
+    <a class="close" data-dismiss="alert">&times;</a>
+    <h4 class="alert-heading">Deleted!</h4>
+    This article has been marked as deleted. If this was not the intention, please contact <%= mail_to "orakel@isfit.org" %>.
+  </div>
+<% end %>
+
+<%= format @wiki_page.body %>
+
+

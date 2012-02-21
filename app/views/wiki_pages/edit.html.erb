@@ -1,0 +1,9 @@
+<%= render :partial => "menu" %>
+<div class="pull-right">
+  <%= link_to 'Show', @wiki_page, confirm: 'This will cancel all changes. Are you sure?', method: :get, :class => "btn" %>
+  <%= link_to 'Back', wiki_pages_path, confirm: 'This will cancel all changes. Are you sure?', method: :get , :class => "btn" %>
+</div>
+<h1>Editing wiki_page</h1>
+
+<%= render 'form' %>
+

@@ -20,6 +20,8 @@ class Ability
       can [:read,:create], RoomBooking
       can :destroy, RoomBooking, user_id: user.id
       can :read, Room
+      can :manage, WikiPage
+      can :manage, WikiCategory
     end
     
     # Define abilities for the passed in user here. For example:

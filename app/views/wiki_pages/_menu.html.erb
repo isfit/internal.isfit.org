@@ -1,0 +1,14 @@
+<%= content_for :sidebar do %>
+  <div class="well">
+    <ul class="nav nav-list">
+      <% WikiCategory.where(deleted: false).order("title ASC").each do |category| %>
+        <li class="nav-header"><%= category.title %></li>
+        <% category.wiki_pages.group("slug").order("slug, created_at ASC").each do |page| %>
+          <% unless WikiPage.where(slug: page.slug).order("created_at DESC").limit(1).first.deleted == true %>
+            <li><%= link_to page.title, "/wiki/#{category.slug}/#{page.slug}" %></li>
+          <% end %>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
