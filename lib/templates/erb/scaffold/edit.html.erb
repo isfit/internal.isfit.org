@@ -2,7 +2,7 @@
   <%%= link_to 'Show', @<%= singular_table_name %>, <%= key_value :confirm, "'This will cancel all changes. Are you sure?'"%>, <%= key_value :method, ":get" %>, :class => "btn" %>
   <%%= link_to 'Back', <%= index_helper %>_path, <%= key_value :confirm, "'This will cancel all changes. Are you sure?'"%>, <%= key_value :method, ":get" %> , :class => "btn" %>
 </div>
-<h1>Editing 1<%= singular_table_name %></h1>
+<h1>Editing <%= singular_table_name %></h1>
 
 <%%= render 'form' %>
 
