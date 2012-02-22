@@ -68,7 +68,8 @@
                     <li><%= link_to "Connect to Facebook",  oauth_start_path %></li> 
                   <% end %>
                   <li><%= link_to "Show profile",  user_path(current_user.id) %></li> 
-                  <li><%= link_to "Edit profile",  edit_current_user_path %></li> 
+                  <li><%= link_to "Edit profile",  edit_current_user_path %></li>
+                  <li><%= link_to "Change password", change_password_users_path %></li>
                   <li class="divider"></li> 
                   <li><%= link_to "Logout", logout_path %></li> 
                 </ul> 
