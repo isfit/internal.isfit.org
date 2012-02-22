@@ -80,7 +80,7 @@ class AccountsController < ApplicationController
 
   def print_travel
     usages = {}
-    @account = Account.find(params[:voucher][:unit])
+    @account = Account.find(params[:voucher][:unit]) if params[:voucher][:unit]
 
     params[:voucher].keys.each do |key|
       if key =~ /date\d+|route\d+|means\d+|amount\d+/ then
@@ -128,7 +128,7 @@ class AccountsController < ApplicationController
     end
 
     # Accounts tied to specific sections (section_id non-nil)
-    sections = Section.where(:festival_id => 1)
+    sections = Section.where(:festival_id => 2)
     sections.each do |section|
       unit_choices.push([section.name_en, -1])
       section_accounts = Account.where(:section_id => section.id)
