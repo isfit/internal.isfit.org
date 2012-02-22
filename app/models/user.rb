@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   # Hovedmodell for en bruker av systemet. Inneholder hjelpemetoder som kan
   # brukes til å hente attributter, seksjoner, gjenger etc. av en bruker
 
-  validates :password, length: {minimum: 8}
+  validates :password, length: {minimum: 8}, allow_blank: true
   set_primary_key :id
   has_secure_password
   has_many :groups, through: :positions
