@@ -1,7 +1,7 @@
 class Kvitter < ActiveRecord::Base
   belongs_to :user
 
-  validates :presence, :message
+  validates :message, :presence => true
 
   def username
     self.user.username
