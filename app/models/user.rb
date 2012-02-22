@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   # Hovedmodell for en bruker av systemet. Inneholder hjelpemetoder som kan
   # brukes til å hente attributter, seksjoner, gjenger etc. av en bruker
 
-  validates :password, length: {minimum: 8}, allow_blank: true
+  validates :password, length: {minimum: 8}
   set_primary_key :id
   has_secure_password
   has_many :groups, through: :positions
@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   # Return full name of user
   # Try statements if no name is given
   def full_name
-    "#{given_name.try(:capitalize)} #{family_name.try(:capitalize)}"
+    "#{given_name} #{family_name}"
   end
 
   #Return full name reversed of user
