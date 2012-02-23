@@ -1,5 +1,7 @@
 InternalIsfitOrg::Application.routes.draw do
 
+  resources :spp_pages
+
   scope "/wiki" do
     get "", controller: "wiki_pages", action: "index"
     get "*category_slug/:page_slug", controller: "wiki_pages", action: "wiki_show"

@@ -1,0 +1,11 @@
+<%= formatting %>
+<%= bootstrap_form_for(@spp_page) do |f| %>
+  <%= f.error_messages %>
+  <%= f.fieldset "spp_page" do %>
+          <%= f.text_field :title_en, class: "span6" %>
+          <%= f.text_area :ingress_en , class: "span6", rows: 3%>
+          <%= f.text_area :body_en , class: "span6"%>
+          <%= f.text_field :image_text , class: "span6"%>
+      <% end %>
+  <%= f.submit "Submit", class: "btn" %>
+<% end %>
