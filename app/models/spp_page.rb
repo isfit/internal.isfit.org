@@ -1,3 +1,3 @@
 class SppPage < ActiveRecord::Base
-  set_primary_id :id
+  set_primary_key :id
 end
