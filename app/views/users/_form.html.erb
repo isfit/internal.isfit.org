@@ -41,10 +41,5 @@
     <%= f.check_box :fruit_allergy %>
     <%= f.text_field :other_allergy %>
   </fieldset>
-  <fieldset>
-    <legend>Change password</legend>
-    <%= f.password_field :password %>
-    <%= f.password_field :password_confirmation, label: "Confirm Password" %>
-</fieldset>
     <%= f.submit (@user.new_record? ? "Sign up" : "Update"), class: "btn-primary btn" %>
 <% end %>

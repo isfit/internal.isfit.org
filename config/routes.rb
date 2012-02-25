@@ -1,5 +1,7 @@
 InternalIsfitOrg::Application.routes.draw do
 
+  resources :spp_pages
+
   scope "/wiki" do
     get "", controller: "wiki_pages", action: "index"
     get "*category_slug/:page_slug", controller: "wiki_pages", action: "wiki_show"
@@ -107,8 +109,10 @@ InternalIsfitOrg::Application.routes.draw do
   resources :sessions
   resources :users do 
     collection do
+      get 'impersonate/:username', action: :impersonate
       get 'username/:username', action: :username
       get 'change_password', action: :change_password
+      post 'change_password', action: :change_password
       post 'update_password', action: :update_password
     end
   end

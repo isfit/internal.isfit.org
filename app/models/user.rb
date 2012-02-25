@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   # Return full name of user
   # Try statements if no name is given
   def full_name
-    "#{given_name.try(:capitalize)} #{family_name.try(:capitalize)}"
+    "#{given_name} #{family_name}"
   end
 
   #Return full name reversed of user

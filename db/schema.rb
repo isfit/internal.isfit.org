@@ -425,4 +425,21 @@ ActiveRecord::Schema.define(:version => 20120221204404) do
 
   add_index "wiki_categories", ["slug"], :name => "index_wiki_categories_on_slug"
 
+  create_table "wiki_pages", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "user_id"
+    t.integer  "wiki_page_id"
+    t.string   "slug"
+    t.integer  "wiki_category_id"
+    t.boolean  "lock"
+    t.boolean  "deleted"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "wiki_pages", ["slug"], :name => "index_wiki_pages_on_slug"
+  add_index "wiki_pages", ["user_id"], :name => "index_wiki_pages_on_user_id"
+  add_index "wiki_pages", ["wiki_category_id"], :name => "index_wiki_pages_on_wiki_category_id"
+
 end

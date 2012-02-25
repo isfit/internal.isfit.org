@@ -9,8 +9,13 @@ class Ability
     if user.role?(:editorial)
       can :manage, FrontendArticle
       can :manage, SppArticle
+      can :manage, SppPage
       can :manage, StaticPage
       can :manage, IsfitPage
+    end
+    if user.role?(:spp_editor)
+      can :manage, SppArticle
+      can :manage, SppPage
     end
     if user.role?(:internal)
       can :manage, Account

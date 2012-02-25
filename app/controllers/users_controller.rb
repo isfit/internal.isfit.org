@@ -56,15 +56,31 @@ class UsersController < ApplicationController
             ldap.replace_attribute dn, :userPassword, params[:new_password]
           end
         else
-          return redirect_to '/users/change_password', :message => "Try a longer password"
+          flash.now[:alert] = "Try a longer password"
+          return render :change_password
         end
       else
-        return redirect_to '/users/change_password', :message => "Password doesn't match"
+        flash.now[:alert] = "Password doesn't match"
+        return render :change_password
       end
     else
-      return redirect_to '/users/change_password', :message => "Wrong password"
+      flash.now[:alert] = "Wrong password"
+      return render :change_password
     end
-    
     return redirect_to user_path(current_user), :notice => "Password was successfully changed"
+  end
+
+  def impersonate
+    if current_user.role?(:admin)
+      user = User.find_by_username(params[:username])
+      unless user.nil?
+        session[:user_id] = user.id
+        redirect_to root_url
+      else
+        redirect_to root_url
+      end
+    else
+      redirect_to root_url
+    end
   end
 end
