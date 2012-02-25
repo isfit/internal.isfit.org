@@ -47,9 +47,9 @@ $("#images").show();
 function addCropping(ratio) {
 
 $('#spp_front_large').imgAreaSelect({ 
-  minWidth: 346, 
-  minHeight: 154,
-  aspectRatio: '2.25:1',  
+  minWidth: 620, 
+  minHeight: 365,
+  aspectRatio: '1.69:1',  
   handles: true, 
   onSelectEnd: function (img, selection) { 
     $('#x1').val(Math.round(selection.x1*ratio)); 
