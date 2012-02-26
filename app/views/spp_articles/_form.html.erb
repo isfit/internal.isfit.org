@@ -42,6 +42,21 @@
       <%= f.check_box :visible %>
     </div>
     <div class="field">
+      <p>Pres releases will have a box in the sidebar</p>
+      <%= f.label :press_release %>
+      <%= f.check_box :press_release %>
+    </div>
+     <div class="field">
+      <%= f.label :image_text %>
+      <%= f.text_field :image_text %>
+    </div>
+      <div class="field">
+        <p>Write the name of the journalist</p>
+      <%= f.label :byline %>
+      <%= f.text_field :byline %>
+    </div>
+ 
+    <div class="field">
       <%= f.label :got_comments %>
       <%= f.check_box :got_comments %>
     </div>
