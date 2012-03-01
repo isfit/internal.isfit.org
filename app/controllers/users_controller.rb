@@ -47,13 +47,16 @@ class UsersController < ApplicationController
         current_user.password = params[:new_password]
         if current_user.save
           require 'net/ldap'
+	  require 'openssl'
+	  require 'iconv'
           ldap = Net::LDAP::new
           treebase = "dc=isfit,dc=org"
           filters = Net::LDAP::Filter.eq("uid", current_user.username)
           dn = ldap.search(:base => treebase, :filter => filters).first.dn
           auth = { :method => :simple, :username => dn, :password => params[:old_password] }
           Net::LDAP.open(:auth => auth) do |ldap|
-            ldap.replace_attribute dn, :userPassword, params[:new_password]
+            ldap.replace_attribute dn, :userPassword, "{MD5}" + Base64.encode64(Digest::MD5.digest(params[:new_password]))
+	    ldap.replace_attribute dn, :sambaNTPassword, OpenSSL::Digest::MD4.hexdigest(Iconv.iconv("UCS-2", "UTF-8", params[:new_password]).join).upcase
           end
         else
           flash.now[:alert] = "Try a longer password"
