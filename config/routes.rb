@@ -106,6 +106,8 @@ InternalIsfitOrg::Application.routes.draw do
   match 'signup' => 'users#new', :as => :signup
   match 'logout' => 'sessions#destroy', :as => :logout
   match 'login' => 'sessions#new', :as => :login
+  match 'forgot_password' => 'sessions#forgot_password', :as => :forgot_password
+  match 'mail_password' => 'sessions#mail_password', :as => :mail_password
   resources :sessions
   resources :users do 
     collection do
@@ -114,6 +116,8 @@ InternalIsfitOrg::Application.routes.draw do
       get 'change_password', action: :change_password
       post 'change_password', action: :change_password
       post 'update_password', action: :update_password
+      get 'forgot_password', action: :forgot_password
+      post 'mail_password', action: :mail_password
     end
   end
   root :to => "articles#index"

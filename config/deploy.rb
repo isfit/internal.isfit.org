@@ -32,6 +32,7 @@ namespace :deploy do
   task :symlink_shared, :roles => :app do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
     run "ln -nfs #{shared_path}/config/oauth.yml #{release_path}/config/oauth.yml"
+    run "ln -nfs #{shared_path}/config/password.yml #{release_path}/config/password.yml"
   end
 end
 after 'deploy:update_code', 'deploy:symlink_shared'

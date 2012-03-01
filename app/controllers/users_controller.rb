@@ -36,38 +36,21 @@ class UsersController < ApplicationController
       format.json {render json: @users}
     end
   end
-
   def change_password
   
   end
 
   def update_password
-    if current_user.authenticate(params[:old_password])
-      if params[:new_password] == params[:new_verified_password]
-        current_user.password = params[:new_password]
-        if current_user.save
-          require 'net/ldap'
-	  require 'openssl'
-	  require 'iconv'
-          ldap = Net::LDAP::new
-          treebase = "dc=isfit,dc=org"
-          filters = Net::LDAP::Filter.eq("uid", current_user.username)
-          dn = ldap.search(:base => treebase, :filter => filters).first.dn
-          auth = { :method => :simple, :username => dn, :password => params[:old_password] }
-          Net::LDAP.open(:auth => auth) do |ldap|
-            ldap.replace_attribute dn, :userPassword, "{MD5}" + Base64.encode64(Digest::MD5.digest(params[:new_password]))
-	    ldap.replace_attribute dn, :sambaNTPassword, OpenSSL::Digest::MD4.hexdigest(Iconv.iconv("UCS-2", "UTF-8", params[:new_password]).join).upcase
-          end
-        else
-          flash.now[:alert] = "Try a longer password"
-          return render :change_password
-        end
+    if params[:new_password] == params[:new_verified_password]
+      current_user.password = params[:new_password]
+      if current_user.save
+     	current_user.changeLdapPassword(params[:new_password]) 
       else
-        flash.now[:alert] = "Password doesn't match"
+        flash.now[:alert] = "Try a longer password"
         return render :change_password
       end
     else
-      flash.now[:alert] = "Wrong password"
+      flash.now[:alert] = "Password doesn't match"
       return render :change_password
     end
     return redirect_to user_path(current_user), :notice => "Password was successfully changed"
@@ -86,4 +69,5 @@ class UsersController < ApplicationController
       redirect_to root_url
     end
   end
+
 end

@@ -45,4 +45,21 @@ class User < ActiveRecord::Base
     role = Role.where(name:r).first
     roles.include?(role)
   end
+ 
+  def changeLdapPassword(pass)
+    require 'net/ldap'
+    require 'openssl'
+    require 'iconv'
+    ldap = Net::LDAP::new
+    password = YAML::load(File.open('config/password.yml'))
+    treebase = "dc=isfit,dc=org"
+    filters = Net::LDAP::Filter.eq("uid", self.username)
+    dn = ldap.search(:base => treebase, :filter => filters).first.dn
+    auth = { :method => :simple, :username => "cn=password,dc=isfit,dc=org", :password => password }
+    Net::LDAP.open(:auth => auth) do |ldap|
+      ldap.replace_attribute dn, :userPassword, Net::LDAP::Password.generate(:md5,pass)
+      # TODO iconv er deprecated bruk string#encoding etterhvert...
+      ldap.replace_attribute dn, :sambaNTPassword, OpenSSL::Digest::MD4.hexdigest(Iconv.iconv("UCS-2", "UTF-8", pass).join).upcase
+    end
+  end
 end
