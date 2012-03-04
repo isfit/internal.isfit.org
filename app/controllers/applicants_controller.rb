@@ -109,7 +109,7 @@ class ApplicantsController < ApplicationController
   end
 
   def index
-    if current_user.role?(:admin) || current_user.role?(:recruitment) || current_user.has_role?(:board)
+    if current_user.role?(:admin) || current_user.role?(:recruiting) || current_user.has_role?(:board)
       @applicants = Applicant.where(deleted: false).all
     elsif current_user.role?(:wingman)
       @applicants = Applicant.applicants_in_same_section(current_user)

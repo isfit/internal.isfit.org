@@ -6,6 +6,15 @@ class Ability
     if user.role?(:admin)
       can :manage, :all
     end
+    if user.role?(:recruiting)
+      can :manage, Applicant
+    end
+    if user.role?(:leader)
+      can :manage, Applicant
+    end
+    if user.role?(:wingman)
+      can :manage, Applicant
+    end
     if user.role?(:editorial)
       can :manage, FrontendArticle
       can :manage, SppArticle
