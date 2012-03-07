@@ -27,7 +27,7 @@ gem 'net-ldap'
 gem 'jbuilder'
 
 group :assets do
-  gem 'sass-rails'
+#  gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'bootstrap-sass'

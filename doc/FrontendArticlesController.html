@@ -6,7 +6,7 @@
 <title>
   Class: FrontendArticlesController
   
-    &mdash; Documentation by YARD 0.7.3
+    &mdash; Documentation by YARD 0.7.5
   
 </title>
 
@@ -101,27 +101,16 @@
   
 
 
-  
-  
-  
-  
-  <h3 class="inherited">Constants inherited from <span class='object_link'><a href="ApplicationController.html" title="ApplicationController (class)">ApplicationController</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="ApplicationController.html#RELOAD_LIBS-constant" title="ApplicationController::RELOAD_LIBS (constant)">RELOAD_LIBS</a></span></p>
 
+  <h2>Constant Summary</h2>
   
-  
-  
-  
-  
+  <h3 class="inherited">Constants inherited
+     from <span class='object_link'><a href="ApplicationController.html" title="ApplicationController (class)">ApplicationController</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="ApplicationController.html#RELOAD_LIBS-constant" title="ApplicationController::RELOAD_LIBS (constant)">ApplicationController::RELOAD_LIBS</a></span></p>
 
 
-  
-  
-  
-  
-  
-  
-  
+
+
 
   
     <h2>
@@ -168,9 +157,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-POST /articles POST /articles.xml.
-</p>
+    <span class="summary_desc"><div class='inline'>
+<p>POST /articles POST /articles.xml.</p>
 </div></span>
   
 </li>
@@ -192,9 +180,8 @@ POST /articles POST /articles.xml.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-DELETE /articles/1 DELETE /articles/1.xml.
-</p>
+    <span class="summary_desc"><div class='inline'>
+<p>DELETE /articles/1 DELETE /articles/1.xml.</p>
 </div></span>
   
 </li>
@@ -216,9 +203,8 @@ DELETE /articles/1 DELETE /articles/1.xml.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-GET /articles/1/edit.
-</p>
+    <span class="summary_desc"><div class='inline'>
+<p>GET /articles/1/edit.</p>
 </div></span>
   
 </li>
@@ -303,9 +289,8 @@ GET /articles/1/edit.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-GET /articles/new GET /articles/new.xml.
-</p>
+    <span class="summary_desc"><div class='inline'>
+<p>GET /articles/new GET /articles/new.xml.</p>
 </div></span>
   
 </li>
@@ -369,9 +354,8 @@ GET /articles/new GET /articles/new.xml.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-PUT /articles/1 PUT /articles/1.xml.
-</p>
+    <span class="summary_desc"><div class='inline'>
+<p>PUT /articles/1 PUT /articles/1.xml.</p>
 </div></span>
   
 </li>
@@ -449,9 +433,9 @@ PUT /articles/1 PUT /articles/1.xml.
     <td>
       <pre class="code"><span class="info file"># File 'app/controllers/frontend_articles_controller.rb', line 68</span>
 
-<span class='kw'>def</span> <span class='id article_image'>article_image</span><span class='lparen'>(</span><span class='id picture_id'>picture_id</span><span class='comma'>,</span> <span class='id type'>type</span><span class='rparen'>)</span>
-  <span class='id picture'>picture</span> <span class='op'>=</span> <span class='const'>Photo</span><span class='period'>.</span><span class='id find_by_id'>find_by_id</span><span class='lparen'>(</span><span class='id picture_id'>picture_id</span><span class='rparen'>)</span>
-  <span class='id url'>url</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;div&gt;&lt;img src =/images/</span><span class='embexpr_beg'>#{</span><span class='id picture'>picture</span><span class='period'>.</span><span class='id full_article_picture'>full_article_picture</span><span class='period'>.</span><span class='id url'>url</span><span class='rbrace'>}</span><span class='tstring_content'> /&gt;&lt;/div&gt;</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>def</span> <span class='id identifier rubyid_article_image'>article_image</span><span class='lparen'>(</span><span class='id identifier rubyid_picture_id'>picture_id</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_picture'>picture</span> <span class='op'>=</span> <span class='const'>Photo</span><span class='period'>.</span><span class='id identifier rubyid_find_by_id'>find_by_id</span><span class='lparen'>(</span><span class='id identifier rubyid_picture_id'>picture_id</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_url'>url</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;div&gt;&lt;img src =/images/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_picture'>picture</span><span class='period'>.</span><span class='id identifier rubyid_full_article_picture'>full_article_picture</span><span class='period'>.</span><span class='id identifier rubyid_url'>url</span><span class='rbrace'>}</span><span class='tstring_content'> /&gt;&lt;/div&gt;</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -467,9 +451,8 @@ PUT /articles/1 PUT /articles/1.xml.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-POST /articles POST /articles.xml
-</p>
+    
+<p>POST /articles POST /articles.xml</p>
 
 
   </div>
@@ -509,26 +492,26 @@ POST /articles POST /articles.xml
     <td>
       <pre class="code"><span class="info file"># File 'app/controllers/frontend_articles_controller.rb', line 45</span>
 
-<span class='kw'>def</span> <span class='id create'>create</span>
-  <span class='ivar'>@article</span> <span class='op'>=</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:frontend_article</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-  <span class='ivar'>@photo</span> <span class='op'>=</span> <span class='const'>Photo</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:frontend_article</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:photo_id</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>Photo</span><span class='period'>.</span><span class='id exists?'>exists?</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:frontend_article</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:photo_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-  <span class='ivar'>@article</span><span class='period'>.</span><span class='id frontend_article_image'>frontend_article_image</span> <span class='op'>=</span> <span class='ivar'>@photo</span><span class='period'>.</span><span class='id original_picture'>original_picture</span> <span class='kw'>if</span> <span class='ivar'>@photo</span>
-  <span class='ivar'>@article</span><span class='period'>.</span><span class='id deleted'>deleted</span> <span class='op'>=</span> <span class='int'>0</span>
-  <span class='kw'>if</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id count'>count</span> <span class='op'>==</span> <span class='int'>1</span>
-    <span class='ivar'>@article</span><span class='period'>.</span><span class='id weight'>weight</span> <span class='op'>=</span> <span class='int'>1</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span>
+  <span class='ivar'>@article</span> <span class='op'>=</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:frontend_article</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@photo</span> <span class='op'>=</span> <span class='const'>Photo</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:frontend_article</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:photo_id</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>Photo</span><span class='period'>.</span><span class='id identifier rubyid_exists?'>exists?</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:frontend_article</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:photo_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@article</span><span class='period'>.</span><span class='id identifier rubyid_frontend_article_image'>frontend_article_image</span> <span class='op'>=</span> <span class='ivar'>@photo</span><span class='period'>.</span><span class='id identifier rubyid_original_picture'>original_picture</span> <span class='kw'>if</span> <span class='ivar'>@photo</span>
+  <span class='ivar'>@article</span><span class='period'>.</span><span class='id identifier rubyid_deleted'>deleted</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='kw'>if</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='op'>==</span> <span class='int'>1</span>
+    <span class='ivar'>@article</span><span class='period'>.</span><span class='id identifier rubyid_weight'>weight</span> <span class='op'>=</span> <span class='int'>1</span>
   <span class='kw'>else</span>
-    <span class='ivar'>@article</span><span class='period'>.</span><span class='id weight'>weight</span> <span class='op'>=</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='label'>deleted:</span> <span class='int'>0</span><span class='rparen'>)</span><span class='period'>.</span><span class='id order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>weight desc</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id limit'>limit</span><span class='lparen'>(</span><span class='int'>1</span><span class='rparen'>)</span><span class='period'>.</span><span class='id first'>first</span><span class='period'>.</span><span class='id weight'>weight</span> <span class='op'>+</span> <span class='int'>1</span>
+    <span class='ivar'>@article</span><span class='period'>.</span><span class='id identifier rubyid_weight'>weight</span> <span class='op'>=</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>deleted:</span> <span class='int'>0</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>weight desc</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_limit'>limit</span><span class='lparen'>(</span><span class='int'>1</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span><span class='period'>.</span><span class='id identifier rubyid_weight'>weight</span> <span class='op'>+</span> <span class='int'>1</span>
   <span class='kw'>end</span>
 
-  <span class='kw'>if</span> <span class='ivar'>@article</span><span class='period'>.</span><span class='id save'>save</span>
+  <span class='kw'>if</span> <span class='ivar'>@article</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
     <span class='comment'>#      if @article.mail_sent != 1
 </span>    <span class='comment'>#        Emailer.editorial_mail(@article).deliver
 </span>    <span class='comment'>#        @article.mail_sent = 1
 </span>    <span class='comment'>#        @article.save
 </span>    <span class='comment'>#      end
-</span>    <span class='id redirect_to'>redirect_to</span><span class='lparen'>(</span><span class='label'>action:</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>index</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>notice:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Article was successfully created.</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> 
+</span>    <span class='id identifier rubyid_redirect_to'>redirect_to</span><span class='lparen'>(</span><span class='label'>action:</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>index</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>notice:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Article was successfully created.</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> 
   <span class='kw'>else</span>
-    <span class='id render'>render</span> <span class='id action'>action</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>edit</span><span class='tstring_end'>&quot;</span></span> 
+    <span class='id identifier rubyid_render'>render</span> <span class='id identifier rubyid_action'>action</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>edit</span><span class='tstring_end'>&quot;</span></span> 
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -545,9 +528,8 @@ POST /articles POST /articles.xml
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-DELETE /articles/1 DELETE /articles/1.xml
-</p>
+    
+<p>DELETE /articles/1 DELETE /articles/1.xml</p>
 
 
   </div>
@@ -571,11 +553,11 @@ DELETE /articles/1 DELETE /articles/1.xml
     <td>
       <pre class="code"><span class="info file"># File 'app/controllers/frontend_articles_controller.rb', line 94</span>
 
-<span class='kw'>def</span> <span class='id delete'>delete</span>
-  <span class='ivar'>@article</span> <span class='op'>=</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-  <span class='ivar'>@article</span><span class='period'>.</span><span class='id deleted'>deleted</span> <span class='op'>=</span> <span class='int'>1</span>
-  <span class='ivar'>@article</span><span class='period'>.</span><span class='id save'>save</span>
-  <span class='id redirect_to'>redirect_to</span> <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>index</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>def</span> <span class='id identifier rubyid_delete'>delete</span>
+  <span class='ivar'>@article</span> <span class='op'>=</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@article</span><span class='period'>.</span><span class='id identifier rubyid_deleted'>deleted</span> <span class='op'>=</span> <span class='int'>1</span>
+  <span class='ivar'>@article</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+  <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>index</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -591,9 +573,8 @@ DELETE /articles/1 DELETE /articles/1.xml
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-GET /articles/1/edit
-</p>
+    
+<p>GET /articles/1/edit</p>
 
 
   </div>
@@ -617,11 +598,11 @@ GET /articles/1/edit
     <td>
       <pre class="code"><span class="info file"># File 'app/controllers/frontend_articles_controller.rb', line 29</span>
 
-<span class='kw'>def</span> <span class='id edit'>edit</span>
-  <span class='ivar'>@article</span> <span class='op'>=</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-  <span class='ivar'>@users</span> <span class='op'>=</span> <span class='const'>User</span><span class='period'>.</span><span class='id order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>family_name</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
-  <span class='ivar'>@user_editor</span> <span class='op'>=</span> <span class='id can?'>can?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>frontend_articles</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>editor</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-  <span class='ivar'>@pictures</span> <span class='op'>=</span> <span class='const'>Photo</span><span class='period'>.</span><span class='id order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>created_at DESC</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_edit'>edit</span>
+  <span class='ivar'>@article</span> <span class='op'>=</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@users</span> <span class='op'>=</span> <span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>family_name</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+  <span class='ivar'>@user_editor</span> <span class='op'>=</span> <span class='id identifier rubyid_can?'>can?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>frontend_articles</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>editor</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='ivar'>@pictures</span> <span class='op'>=</span> <span class='const'>Photo</span><span class='period'>.</span><span class='id identifier rubyid_order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>created_at DESC</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -648,8 +629,8 @@ GET /articles/1/edit
     <td>
       <pre class="code"><span class="info file"># File 'app/controllers/frontend_articles_controller.rb', line 5</span>
 
-<span class='kw'>def</span> <span class='id index'>index</span>
-  <span class='ivar'>@articles</span> <span class='op'>=</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='label'>deleted:</span> <span class='int'>0</span><span class='rparen'>)</span><span class='period'>.</span><span class='id order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>weight desc</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_index'>index</span>
+  <span class='ivar'>@articles</span> <span class='op'>=</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>deleted:</span> <span class='int'>0</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>weight desc</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -669,7 +650,6 @@ GET /articles/1/edit
       <pre class="lines">
 
 
-113
 114
 115
 116
@@ -679,21 +659,24 @@ GET /articles/1/edit
 120
 121
 122
-123</pre>
+123
+124
+125</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/frontend_articles_controller.rb', line 113</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/frontend_articles_controller.rb', line 114</span>
 
-<span class='kw'>def</span> <span class='id movedown'>movedown</span>
-  <span class='id current'>current</span> <span class='op'>=</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-  <span class='kw'>if</span> <span class='id current'>current</span> <span class='op'>!=</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='symbol'>:last</span><span class='comma'>,</span> <span class='symbol'>:order</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>weight DESC</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='label'>deleted:</span> <span class='int'>0</span><span class='rparen'>)</span><span class='period'>.</span><span class='id count'>count</span> <span class='op'>&gt;</span> <span class='int'>1</span>
-    <span class='id switch'>switch</span> <span class='op'>=</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='symbol'>:first</span><span class='comma'>,</span> <span class='symbol'>:conditions</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>weight &lt; </span><span class='embexpr_beg'>#{</span><span class='id current'>current</span><span class='period'>.</span><span class='id weight'>weight</span><span class='rbrace'>}</span><span class='tstring_content'> AND deleted = 0</span><span class='tstring_end'>&quot;</span></span> <span class='comma'>,</span><span class='lbrace'>{</span> <span class='symbol'>:deleted</span><span class='op'>=&gt;</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='symbol'>:order</span> <span class='op'>=&gt;</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>weight DESC</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-    <span class='id switch'>switch</span><span class='period'>.</span><span class='id weight'>weight</span> <span class='op'>+=</span><span class='int'>1</span>
-    <span class='id current'>current</span><span class='period'>.</span><span class='id weight'>weight</span> <span class='op'>-=</span><span class='int'>1</span>
-    <span class='id switch'>switch</span><span class='period'>.</span><span class='id save'>save</span>
-    <span class='id current'>current</span><span class='period'>.</span><span class='id save'>save</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_movedown'>movedown</span>
+  <span class='id identifier rubyid_current'>current</span> <span class='op'>=</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_current'>current</span> <span class='op'>!=</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id identifier rubyid_order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>weight DESC</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span> <span class='comment'># &amp;&amp; FrontendArticle.where(deleted: 0).count &gt; 1
+</span>    <span class='id identifier rubyid_switch'>switch</span> <span class='op'>=</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>weight &lt; </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_weight'>weight</span><span class='rbrace'>}</span><span class='tstring_content'> AND deleted = 0</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>weight DESC</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
+    <span class='id identifier rubyid_current_weight'>current_weight</span> <span class='op'>=</span> <span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_weight'>weight</span>
+    <span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_weight'>weight</span> <span class='op'>=</span> <span class='id identifier rubyid_switch'>switch</span><span class='period'>.</span><span class='id identifier rubyid_weight'>weight</span>
+    <span class='id identifier rubyid_switch'>switch</span><span class='period'>.</span><span class='id identifier rubyid_weight'>weight</span> <span class='op'>=</span> <span class='id identifier rubyid_current_weight'>current_weight</span>
+    <span class='id identifier rubyid_switch'>switch</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
   <span class='kw'>end</span>
-  <span class='id redirect_to'>redirect_to</span> <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>index</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>index</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -723,21 +706,23 @@ GET /articles/1/edit
 108
 109
 110
-111</pre>
+111
+112</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'app/controllers/frontend_articles_controller.rb', line 101</span>
 
-<span class='kw'>def</span> <span class='id moveup'>moveup</span>
-  <span class='id current'>current</span> <span class='op'>=</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-  <span class='kw'>if</span> <span class='id current'>current</span> <span class='op'>!=</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='symbol'>:first</span><span class='comma'>,</span> <span class='symbol'>:order</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>weight DESC</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='label'>deleted:</span> <span class='int'>0</span><span class='rparen'>)</span><span class='period'>.</span><span class='id count'>count</span> <span class='op'>&gt;</span> <span class='int'>1</span>
-    <span class='id switch'>switch</span> <span class='op'>=</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='symbol'>:first</span><span class='comma'>,</span> <span class='symbol'>:conditions</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>weight &gt; </span><span class='embexpr_beg'>#{</span><span class='id current'>current</span><span class='period'>.</span><span class='id weight'>weight</span><span class='rbrace'>}</span><span class='tstring_content'> AND deleted = 0</span><span class='tstring_end'>&quot;</span></span> <span class='comma'>,</span><span class='lbrace'>{</span> <span class='symbol'>:deleted</span><span class='op'>=&gt;</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='symbol'>:order</span> <span class='op'>=&gt;</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>weight ASC</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-    <span class='id switch'>switch</span><span class='period'>.</span><span class='id weight'>weight</span> <span class='op'>-=</span><span class='int'>1</span>
-    <span class='id current'>current</span><span class='period'>.</span><span class='id weight'>weight</span> <span class='op'>+=</span><span class='int'>1</span>
-    <span class='id switch'>switch</span><span class='period'>.</span><span class='id save'>save</span>
-    <span class='id current'>current</span><span class='period'>.</span><span class='id save'>save</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_moveup'>moveup</span>
+  <span class='id identifier rubyid_current'>current</span> <span class='op'>=</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_current'>current</span> <span class='op'>!=</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id identifier rubyid_order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>weight DESC</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span> <span class='comment'># &amp;&amp; FrontendArticle.where(deleted: 0).count &gt; 1
+</span>    <span class='id identifier rubyid_switch'>switch</span> <span class='op'>=</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>weight &gt; </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_weight'>weight</span><span class='rbrace'>}</span><span class='tstring_content'> AND deleted = 0</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>weight ASC</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
+    <span class='id identifier rubyid_current_weight'>current_weight</span> <span class='op'>=</span> <span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_weight'>weight</span>
+    <span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_weight'>weight</span> <span class='op'>=</span> <span class='id identifier rubyid_switch'>switch</span><span class='period'>.</span><span class='id identifier rubyid_weight'>weight</span>
+    <span class='id identifier rubyid_switch'>switch</span><span class='period'>.</span><span class='id identifier rubyid_weight'>weight</span> <span class='op'>=</span> <span class='id identifier rubyid_current_weight'>current_weight</span>
+    <span class='id identifier rubyid_switch'>switch</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
   <span class='kw'>end</span>
-  <span class='id redirect_to'>redirect_to</span> <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>index</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>index</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -753,9 +738,8 @@ GET /articles/1/edit
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-GET /articles/new GET /articles/new.xml
-</p>
+    
+<p>GET /articles/new GET /articles/new.xml</p>
 
 
   </div>
@@ -778,10 +762,10 @@ GET /articles/new GET /articles/new.xml
     <td>
       <pre class="code"><span class="info file"># File 'app/controllers/frontend_articles_controller.rb', line 22</span>
 
-<span class='kw'>def</span> <span class='id new'>new</span>
-  <span class='ivar'>@article</span> <span class='op'>=</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id new'>new</span>
-  <span class='ivar'>@users</span> <span class='op'>=</span> <span class='const'>User</span><span class='period'>.</span><span class='id order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>family_name</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
-  <span class='ivar'>@pictures</span> <span class='op'>=</span> <span class='const'>Photo</span><span class='period'>.</span><span class='id order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>created_at DESC</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_new'>new</span>
+  <span class='ivar'>@article</span> <span class='op'>=</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='ivar'>@users</span> <span class='op'>=</span> <span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>family_name</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+  <span class='ivar'>@pictures</span> <span class='op'>=</span> <span class='const'>Photo</span><span class='period'>.</span><span class='id identifier rubyid_order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>created_at DESC</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -811,11 +795,11 @@ GET /articles/new GET /articles/new.xml
     <td>
       <pre class="code"><span class="info file"># File 'app/controllers/frontend_articles_controller.rb', line 9</span>
 
-<span class='kw'>def</span> <span class='id photo'>photo</span>
-  <span class='ivar'>@photo</span> <span class='op'>=</span> <span class='const'>Photo</span><span class='period'>.</span><span class='id new'>new</span>
-  <span class='ivar'>@photo</span><span class='period'>.</span><span class='id original_picture'>original_picture</span> <span class='op'>=</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:files</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
-  <span class='ivar'>@photo</span><span class='period'>.</span><span class='id save'>save</span>
-  <span class='id render'>render</span> <span class='label'>json:</span> <span class='lbrace'>{</span><span class='label'>ratio:</span> <span class='lparen'>(</span><span class='ivar'>@photo</span><span class='period'>.</span><span class='id original_picture_geometry'>original_picture_geometry</span><span class='lparen'>(</span><span class='symbol'>:original</span><span class='rparen'>)</span><span class='period'>.</span><span class='id width'>width</span> <span class='op'>/</span> <span class='ivar'>@photo</span><span class='period'>.</span><span class='id original_picture_geometry'>original_picture_geometry</span><span class='lparen'>(</span><span class='symbol'>:cropable</span><span class='rparen'>)</span><span class='period'>.</span><span class='id width'>width</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='label'>photo:</span> <span class='ivar'>@photo</span><span class='rbrace'>}</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_photo'>photo</span>
+  <span class='ivar'>@photo</span> <span class='op'>=</span> <span class='const'>Photo</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='ivar'>@photo</span><span class='period'>.</span><span class='id identifier rubyid_original_picture'>original_picture</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:files</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+  <span class='ivar'>@photo</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+  <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='lbrace'>{</span><span class='label'>ratio:</span> <span class='lparen'>(</span><span class='ivar'>@photo</span><span class='period'>.</span><span class='id identifier rubyid_original_picture_geometry'>original_picture_geometry</span><span class='lparen'>(</span><span class='symbol'>:original</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_width'>width</span> <span class='op'>/</span> <span class='ivar'>@photo</span><span class='period'>.</span><span class='id identifier rubyid_original_picture_geometry'>original_picture_geometry</span><span class='lparen'>(</span><span class='symbol'>:cropable</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_width'>width</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='label'>photo:</span> <span class='ivar'>@photo</span><span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -842,8 +826,8 @@ GET /articles/new GET /articles/new.xml
     <td>
       <pre class="code"><span class="info file"># File 'app/controllers/frontend_articles_controller.rb', line 16</span>
 
-<span class='kw'>def</span> <span class='id show'>show</span>
-  <span class='ivar'>@article</span> <span class='op'>=</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_show'>show</span>
+  <span class='ivar'>@article</span> <span class='op'>=</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -859,9 +843,8 @@ GET /articles/new GET /articles/new.xml
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-PUT /articles/1 PUT /articles/1.xml
-</p>
+    
+<p>PUT /articles/1 PUT /articles/1.xml</p>
 
 
   </div>
@@ -894,19 +877,19 @@ PUT /articles/1 PUT /articles/1.xml
     <td>
       <pre class="code"><span class="info file"># File 'app/controllers/frontend_articles_controller.rb', line 76</span>
 
-<span class='kw'>def</span> <span class='id update'>update</span>
-  <span class='ivar'>@article</span> <span class='op'>=</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span>
+  <span class='ivar'>@article</span> <span class='op'>=</span> <span class='const'>FrontendArticle</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
 
-  <span class='ivar'>@photo</span> <span class='op'>=</span> <span class='const'>Photo</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:frontend_article</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:photo_id</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>Photo</span><span class='period'>.</span><span class='id exists?'>exists?</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:frontend_article</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:photo_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-  <span class='ivar'>@article</span><span class='period'>.</span><span class='id frontend_article_image'>frontend_article_image</span> <span class='op'>=</span> <span class='ivar'>@photo</span><span class='period'>.</span><span class='id original_picture'>original_picture</span> <span class='kw'>if</span> <span class='ivar'>@photo</span>
+  <span class='ivar'>@photo</span> <span class='op'>=</span> <span class='const'>Photo</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:frontend_article</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:photo_id</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>Photo</span><span class='period'>.</span><span class='id identifier rubyid_exists?'>exists?</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:frontend_article</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:photo_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@article</span><span class='period'>.</span><span class='id identifier rubyid_frontend_article_image'>frontend_article_image</span> <span class='op'>=</span> <span class='ivar'>@photo</span><span class='period'>.</span><span class='id identifier rubyid_original_picture'>original_picture</span> <span class='kw'>if</span> <span class='ivar'>@photo</span>
  
-  <span class='kw'>if</span> <span class='ivar'>@article</span><span class='period'>.</span><span class='id update_attributes'>update_attributes</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:frontend_article</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-    <span class='kw'>if</span> <span class='kw'>not</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:frontend_article</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:photo_id</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
-      <span class='ivar'>@article</span><span class='period'>.</span><span class='id reprocess_photos'>reprocess_photos</span>
+  <span class='kw'>if</span> <span class='ivar'>@article</span><span class='period'>.</span><span class='id identifier rubyid_update_attributes'>update_attributes</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:frontend_article</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:frontend_article</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:photo_id</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+      <span class='ivar'>@article</span><span class='period'>.</span><span class='id identifier rubyid_reprocess_photos'>reprocess_photos</span>
     <span class='kw'>end</span>
-    <span class='id redirect_to'>redirect_to</span><span class='lparen'>(</span><span class='ivar'>@article</span><span class='comma'>,</span> <span class='label'>notice:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Article was successfully updated.</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_redirect_to'>redirect_to</span><span class='lparen'>(</span><span class='ivar'>@article</span><span class='comma'>,</span> <span class='label'>notice:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Article was successfully updated.</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
   <span class='kw'>else</span>
-    <span class='id render'>render</span> <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>edit</span><span class='tstring_end'>&quot;</span></span> 
+    <span class='id identifier rubyid_render'>render</span> <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>edit</span><span class='tstring_end'>&quot;</span></span> 
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -937,10 +920,10 @@ PUT /articles/1 PUT /articles/1.xml
     <td>
       <pre class="code"><span class="info file"># File 'app/controllers/frontend_articles_controller.rb', line 36</span>
 
-<span class='kw'>def</span> <span class='id update_picture'>update_picture</span>
-  <span class='id respond_to'>respond_to</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id format'>format</span><span class='op'>|</span>
-    <span class='id format'>format</span><span class='period'>.</span><span class='id html'>html</span>
-    <span class='id format'>format</span><span class='period'>.</span><span class='id js'>js</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_update_picture'>update_picture</span>
+  <span class='id identifier rubyid_respond_to'>respond_to</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_format'>format</span><span class='op'>|</span>
+    <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_html'>html</span>
+    <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_js'>js</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -953,9 +936,9 @@ PUT /articles/1 PUT /articles/1.xml
 </div>
     
     <div id="footer">
-  Generated on Fri Nov 18 10:42:15 2011 by 
+  Generated on Wed Mar  7 17:39:37 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.7.3 (ruby-1.9.2).
+  0.7.5 (ruby-1.9.3).
 </div>
 
   </body>

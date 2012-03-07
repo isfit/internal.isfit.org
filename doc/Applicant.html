@@ -6,7 +6,7 @@
 <title>
   Class: Applicant
   
-    &mdash; Documentation by YARD 0.7.3
+    &mdash; Documentation by YARD 0.7.5
   
 </title>
 
@@ -96,10 +96,10 @@
 
 
 
-  
 
 
-  
+
+
 
   
     <h2>
@@ -125,9 +125,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-def groups.
-</p>
+    <span class="summary_desc"><div class='inline'>
+<p>def groups.</p>
 </div></span>
   
 </li>
@@ -152,14 +151,13 @@ def groups.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-def groups
-</p>
-<pre class="code">
-   Group.where(&quot;#{first_position.group_id} = id OR #{second_position.group_id} = id OR #{third_position.group_id} = id&quot;)
- end
- scope :akkur, lambda { |range| 
-   joins(&quot;JOIN groups g1 ON g1.id = #{first_position.group_id}, JOIN groups g2 ON g2.id = #{second_position.group_id}, JOIN groups g3 ON g3.id =  #{third_position.group_id}&quot;).where(&quot;g1.id = #{user.position.group_id} OR g2.id &quot;</pre>
+    
+<p>def groups</p>
+
+<pre class="code ruby"><code>  Group.where(&quot;#{first_position.group_id} = id OR #{second_position.group_id} = id OR #{third_position.group_id} = id&quot;)
+end
+scope :akkur, lambda { |range| 
+  joins(&quot;JOIN groups g1 ON g1.id = #{first_position.group_id}, JOIN groups g2 ON g2.id = #{second_position.group_id}, JOIN groups g3 ON g3.id =  #{third_position.group_id}&quot;).where(&quot;g1.id = #{user.position.group_id} OR g2.id &quot;</code></pre>
 
 
   </div>
@@ -207,35 +205,35 @@ def groups
     <td>
       <pre class="code"><span class="info file"># File 'app/models/applicant.rb', line 13</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id applicants_in_same_group'>applicants_in_same_group</span><span class='lparen'>(</span><span class='id user'>user</span><span class='rparen'>)</span>
-  <span class='id applicants'>applicants</span> <span class='op'>=</span> <span class='const'>Applicant</span><span class='period'>.</span><span class='id all'>all</span>
-  <span class='id app'>app</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id new'>new</span>
-  <span class='id applicants'>applicants</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id a'>a</span><span class='op'>|</span>
-    <span class='id found'>found</span> <span class='op'>=</span> <span class='kw'>false</span>
-    <span class='id a'>a</span><span class='period'>.</span><span class='id first_position'>first_position</span><span class='period'>.</span><span class='id groups'>groups</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id f'>f</span><span class='op'>|</span>
-      <span class='kw'>if</span> <span class='id user'>user</span><span class='period'>.</span><span class='id groups'>groups</span><span class='period'>.</span><span class='id include?'>include?</span><span class='lparen'>(</span><span class='id f'>f</span><span class='rparen'>)</span>
-        <span class='id found'>found</span> <span class='op'>=</span> <span class='kw'>true</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_applicants_in_same_group'>applicants_in_same_group</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_applicants'>applicants</span> <span class='op'>=</span> <span class='const'>Applicant</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>deleted:</span> <span class='int'>0</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span>
+  <span class='id identifier rubyid_app'>app</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_applicants'>applicants</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_a'>a</span><span class='op'>|</span>
+    <span class='id identifier rubyid_found'>found</span> <span class='op'>=</span> <span class='kw'>false</span>
+    <span class='id identifier rubyid_a'>a</span><span class='period'>.</span><span class='id identifier rubyid_first_position'>first_position</span><span class='period'>.</span><span class='id identifier rubyid_groups'>groups</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_groups'>groups</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_found'>found</span> <span class='op'>=</span> <span class='kw'>true</span>
       <span class='kw'>end</span>
     <span class='kw'>end</span>
-    <span class='kw'>if</span> <span class='id a'>a</span><span class='period'>.</span><span class='id second_position'>second_position</span>
-      <span class='id a'>a</span><span class='period'>.</span><span class='id second_position'>second_position</span><span class='period'>.</span><span class='id groups'>groups</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id f'>f</span><span class='op'>|</span>
-        <span class='kw'>if</span> <span class='id user'>user</span><span class='period'>.</span><span class='id groups'>groups</span><span class='period'>.</span><span class='id include?'>include?</span><span class='lparen'>(</span><span class='id f'>f</span><span class='rparen'>)</span>
-          <span class='id found'>found</span> <span class='op'>=</span> <span class='kw'>true</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_a'>a</span><span class='period'>.</span><span class='id identifier rubyid_second_position'>second_position</span>
+      <span class='id identifier rubyid_a'>a</span><span class='period'>.</span><span class='id identifier rubyid_second_position'>second_position</span><span class='period'>.</span><span class='id identifier rubyid_groups'>groups</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_groups'>groups</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_found'>found</span> <span class='op'>=</span> <span class='kw'>true</span>
         <span class='kw'>end</span>
       <span class='kw'>end</span>
     <span class='kw'>end</span>
-    <span class='kw'>if</span> <span class='id a'>a</span><span class='period'>.</span><span class='id third_position'>third_position</span>
-      <span class='id a'>a</span><span class='period'>.</span><span class='id third_position'>third_position</span><span class='period'>.</span><span class='id groups'>groups</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id f'>f</span><span class='op'>|</span>
-        <span class='kw'>if</span> <span class='id user'>user</span><span class='period'>.</span><span class='id groups'>groups</span><span class='period'>.</span><span class='id include?'>include?</span><span class='lparen'>(</span><span class='id f'>f</span><span class='rparen'>)</span>
-          <span class='id found'>found</span> <span class='op'>=</span> <span class='kw'>true</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_a'>a</span><span class='period'>.</span><span class='id identifier rubyid_third_position'>third_position</span>
+      <span class='id identifier rubyid_a'>a</span><span class='period'>.</span><span class='id identifier rubyid_third_position'>third_position</span><span class='period'>.</span><span class='id identifier rubyid_groups'>groups</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_groups'>groups</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_found'>found</span> <span class='op'>=</span> <span class='kw'>true</span>
         <span class='kw'>end</span>
      <span class='kw'>end</span>
     <span class='kw'>end</span>
-    <span class='kw'>if</span> <span class='id found'>found</span>
-      <span class='id app'>app</span> <span class='op'>&lt;&lt;</span> <span class='id a'>a</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_found'>found</span>
+      <span class='id identifier rubyid_app'>app</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_a'>a</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
-  <span class='kw'>return</span> <span class='id app'>app</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_app'>app</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -247,9 +245,9 @@ def groups
 </div>
     
     <div id="footer">
-  Generated on Fri Nov 18 10:42:14 2011 by 
+  Generated on Wed Mar  7 17:39:35 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.7.3 (ruby-1.9.2).
+  0.7.5 (ruby-1.9.3).
 </div>
 
   </body>

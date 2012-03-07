@@ -6,7 +6,7 @@
 <title>
   Class: Ability
   
-    &mdash; Documentation by YARD 0.7.3
+    &mdash; Documentation by YARD 0.7.5
   
 </title>
 
@@ -98,10 +98,10 @@
 
 
 
-  
 
 
-  
+
+
 
   
     <h2>
@@ -129,9 +129,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-A new instance of Ability.
-</p>
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of Ability.</p>
 </div></span>
   
 </li>
@@ -153,9 +152,8 @@ A new instance of Ability.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-A new instance of Ability
-</p>
+    
+<p>A new instance of Ability</p>
 
 
   </div>
@@ -203,22 +201,54 @@ A new instance of Ability
 35
 36
 37
-38</pre>
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'app/models/ability.rb', line 4</span>
 
-<span class='kw'>def</span> <span class='id initialize'>initialize</span><span class='lparen'>(</span><span class='id user'>user</span><span class='rparen'>)</span>
-  <span class='id user'>user</span> <span class='op'>||=</span> <span class='const'>User</span><span class='period'>.</span><span class='id new'>new</span>
-  <span class='kw'>if</span> <span class='id user'>user</span><span class='period'>.</span><span class='id role?'>role?</span><span class='lparen'>(</span><span class='symbol'>:admin</span><span class='rparen'>)</span>
-<span class='comment'>#      can :manage, :all
-</span>  <span class='kw'>end</span>
-  <span class='kw'>if</span> <span class='id user'>user</span><span class='period'>.</span><span class='id role?'>role?</span><span class='lparen'>(</span><span class='symbol'>:editorial</span><span class='rparen'>)</span>
-    <span class='id can'>can</span> <span class='symbol'>:manage</span><span class='comma'>,</span> <span class='const'>FrontendArticle</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_user'>user</span> <span class='op'>||=</span> <span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_role?'>role?</span><span class='lparen'>(</span><span class='symbol'>:admin</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_can'>can</span> <span class='symbol'>:manage</span><span class='comma'>,</span> <span class='symbol'>:all</span>
   <span class='kw'>end</span>
-  <span class='id can'>can</span> <span class='symbol'>:manage</span><span class='comma'>,</span> <span class='const'>Account</span>
-  <span class='id can'>can</span> <span class='symbol'>:read</span><span class='comma'>,</span> <span class='const'>StaticPage</span>
-  <span class='id can'>can</span> <span class='symbol'>:read</span><span class='comma'>,</span> <span class='const'>Article</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_role?'>role?</span><span class='lparen'>(</span><span class='symbol'>:editorial</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_can'>can</span> <span class='symbol'>:manage</span><span class='comma'>,</span> <span class='const'>FrontendArticle</span>
+    <span class='id identifier rubyid_can'>can</span> <span class='symbol'>:manage</span><span class='comma'>,</span> <span class='const'>SppArticle</span>
+    <span class='id identifier rubyid_can'>can</span> <span class='symbol'>:manage</span><span class='comma'>,</span> <span class='const'>SppPage</span>
+    <span class='id identifier rubyid_can'>can</span> <span class='symbol'>:manage</span><span class='comma'>,</span> <span class='const'>StaticPage</span>
+    <span class='id identifier rubyid_can'>can</span> <span class='symbol'>:manage</span><span class='comma'>,</span> <span class='const'>IsfitPage</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_role?'>role?</span><span class='lparen'>(</span><span class='symbol'>:spp_editor</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_can'>can</span> <span class='symbol'>:manage</span><span class='comma'>,</span> <span class='const'>SppArticle</span>
+    <span class='id identifier rubyid_can'>can</span> <span class='symbol'>:manage</span><span class='comma'>,</span> <span class='const'>SppPage</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_role?'>role?</span><span class='lparen'>(</span><span class='symbol'>:internal</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_can'>can</span> <span class='symbol'>:manage</span><span class='comma'>,</span> <span class='const'>Account</span>
+    <span class='id identifier rubyid_can'>can</span> <span class='symbol'>:read</span><span class='comma'>,</span> <span class='const'>StaticPage</span>
+    <span class='id identifier rubyid_can'>can</span> <span class='symbol'>:read</span><span class='comma'>,</span> <span class='const'>Article</span>
+    <span class='id identifier rubyid_can'>can</span> <span class='symbol'>:manage</span><span class='comma'>,</span> <span class='const'>Kvitter</span>
+    <span class='id identifier rubyid_can'>can</span> <span class='lbracket'>[</span><span class='symbol'>:read</span><span class='comma'>,</span><span class='symbol'>:create</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='const'>RoomBooking</span>
+    <span class='id identifier rubyid_can'>can</span> <span class='symbol'>:destroy</span><span class='comma'>,</span> <span class='const'>RoomBooking</span><span class='comma'>,</span> <span class='label'>user_id:</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
+    <span class='id identifier rubyid_can'>can</span> <span class='symbol'>:read</span><span class='comma'>,</span> <span class='const'>Room</span>
+    <span class='id identifier rubyid_can'>can</span> <span class='symbol'>:manage</span><span class='comma'>,</span> <span class='const'>WikiPage</span>
+    <span class='id identifier rubyid_can'>can</span> <span class='symbol'>:manage</span><span class='comma'>,</span> <span class='const'>WikiCategory</span>
+  <span class='kw'>end</span>
   
   <span class='comment'># Define abilities for the passed in user here. For example:
 </span>  <span class='comment'>#
@@ -254,9 +284,9 @@ A new instance of Ability
 </div>
     
     <div id="footer">
-  Generated on Fri Nov 18 10:42:14 2011 by 
+  Generated on Wed Mar  7 17:39:35 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.7.3 (ruby-1.9.2).
+  0.7.5 (ruby-1.9.3).
 </div>
 
   </body>

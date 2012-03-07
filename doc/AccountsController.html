@@ -6,7 +6,7 @@
 <title>
   Class: AccountsController
   
-    &mdash; Documentation by YARD 0.7.3
+    &mdash; Documentation by YARD 0.7.5
   
 </title>
 
@@ -101,27 +101,16 @@
   
 
 
-  
-  
-  
-  
-  <h3 class="inherited">Constants inherited from <span class='object_link'><a href="ApplicationController.html" title="ApplicationController (class)">ApplicationController</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="ApplicationController.html#RELOAD_LIBS-constant" title="ApplicationController::RELOAD_LIBS (constant)">RELOAD_LIBS</a></span></p>
 
+  <h2>Constant Summary</h2>
   
-  
-  
-  
-  
+  <h3 class="inherited">Constants inherited
+     from <span class='object_link'><a href="ApplicationController.html" title="ApplicationController (class)">ApplicationController</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="ApplicationController.html#RELOAD_LIBS-constant" title="ApplicationController::RELOAD_LIBS (constant)">ApplicationController::RELOAD_LIBS</a></span></p>
 
 
-  
-  
-  
-  
-  
-  
-  
+
+
 
   
     <h2>
@@ -147,9 +136,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-POST /accounts.
-</p>
+    <span class="summary_desc"><div class='inline'>
+<p>POST /accounts.</p>
 </div></span>
   
 </li>
@@ -171,9 +159,8 @@ POST /accounts.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-DELETE /accounts/1.
-</p>
+    <span class="summary_desc"><div class='inline'>
+<p>DELETE /accounts/1.</p>
 </div></span>
   
 </li>
@@ -195,10 +182,30 @@ DELETE /accounts/1.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-GET /accounts/1/edit.
-</p>
+    <span class="summary_desc"><div class='inline'>
+<p>GET /accounts/1/edit.</p>
 </div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#festihvalen-instance_method" title="#festihvalen (instance method)">- (Object) <strong>festihvalen</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -219,9 +226,8 @@ GET /accounts/1/edit.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-GET /accounts.
-</p>
+    <span class="summary_desc"><div class='inline'>
+<p>GET /accounts.</p>
 </div></span>
   
 </li>
@@ -243,10 +249,30 @@ GET /accounts.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-GET /accounts/new.
-</p>
+    <span class="summary_desc"><div class='inline'>
+<p>GET /accounts/new.</p>
 </div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#print_festihvalen-instance_method" title="#print_festihvalen (instance method)">- (Object) <strong>print_festihvalen</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -309,9 +335,8 @@ GET /accounts/new.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-GET /accounts/1.
-</p>
+    <span class="summary_desc"><div class='inline'>
+<p>GET /accounts/1.</p>
 </div></span>
   
 </li>
@@ -354,9 +379,8 @@ GET /accounts/1.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-PUT /accounts/1.
-</p>
+    <span class="summary_desc"><div class='inline'>
+<p>PUT /accounts/1.</p>
 </div></span>
   
 </li>
@@ -422,9 +446,8 @@ PUT /accounts/1.
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-POST /accounts
-</p>
+    
+<p>POST /accounts</p>
 
 
   </div>
@@ -438,24 +461,24 @@ POST /accounts
       <pre class="lines">
 
 
-23
 24
 25
 26
 27
 28
 29
-30</pre>
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/accounts_controller.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/accounts_controller.rb', line 24</span>
 
-<span class='kw'>def</span> <span class='id create'>create</span>
-  <span class='ivar'>@account</span> <span class='op'>=</span> <span class='const'>Account</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:account</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-  <span class='kw'>if</span> <span class='ivar'>@account</span><span class='period'>.</span><span class='id save'>save</span>
-    <span class='id redirect_to'>redirect_to</span> <span class='ivar'>@account</span><span class='comma'>,</span> <span class='label'>notice:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Account was successfully created.</span><span class='tstring_end'>'</span></span>
+<span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span>
+  <span class='ivar'>@account</span> <span class='op'>=</span> <span class='const'>Account</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:account</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='ivar'>@account</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='ivar'>@account</span><span class='comma'>,</span> <span class='label'>notice:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Account was successfully created.</span><span class='tstring_end'>'</span></span>
   <span class='kw'>else</span>
-    <span class='id render'>render</span> <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>new</span><span class='tstring_end'>&quot;</span></span> 
+    <span class='id identifier rubyid_render'>render</span> <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>new</span><span class='tstring_end'>&quot;</span></span> 
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -472,9 +495,8 @@ POST /accounts
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-DELETE /accounts/1
-</p>
+    
+<p>DELETE /accounts/1</p>
 
 
   </div>
@@ -488,19 +510,19 @@ DELETE /accounts/1
       <pre class="lines">
 
 
-43
 44
 45
 46
-47</pre>
+47
+48</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/accounts_controller.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/accounts_controller.rb', line 44</span>
 
-<span class='kw'>def</span> <span class='id destroy'>destroy</span>
-  <span class='ivar'>@account</span> <span class='op'>=</span> <span class='const'>Account</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-  <span class='ivar'>@account</span><span class='period'>.</span><span class='id destroy'>destroy</span>
-  <span class='id redirect_to'>redirect_to</span> <span class='id accounts_url'>accounts_url</span> 
+<span class='kw'>def</span> <span class='id identifier rubyid_destroy'>destroy</span>
+  <span class='ivar'>@account</span> <span class='op'>=</span> <span class='const'>Account</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@account</span><span class='period'>.</span><span class='id identifier rubyid_destroy'>destroy</span>
+  <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_accounts_url'>accounts_url</span> 
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -516,9 +538,8 @@ DELETE /accounts/1
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-GET /accounts/1/edit
-</p>
+    
+<p>GET /accounts/1/edit</p>
 
 
   </div>
@@ -532,15 +553,43 @@ GET /accounts/1/edit
       <pre class="lines">
 
 
-18
 19
-20</pre>
+20
+21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/accounts_controller.rb', line 18</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/accounts_controller.rb', line 19</span>
 
-<span class='kw'>def</span> <span class='id edit'>edit</span>
-  <span class='ivar'>@account</span> <span class='op'>=</span> <span class='const'>Account</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_edit'>edit</span>
+  <span class='ivar'>@account</span> <span class='op'>=</span> <span class='const'>Account</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="festihvalen-instance_method">
+  
+    - (<tt>Object</tt>) <strong>festihvalen</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+58
+59
+60</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/accounts_controller.rb', line 58</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_festihvalen'>festihvalen</span>
+  <span class='ivar'>@unit_choices_text</span> <span class='op'>=</span> <span class='id identifier rubyid_get_unit_choices_text'>get_unit_choices_text</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -556,9 +605,8 @@ GET /accounts/1/edit
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-GET /accounts
-</p>
+    
+<p>GET /accounts</p>
 
 
   </div>
@@ -572,15 +620,15 @@ GET /accounts
       <pre class="lines">
 
 
-3
 4
-5</pre>
+5
+6</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/accounts_controller.rb', line 3</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/accounts_controller.rb', line 4</span>
 
-<span class='kw'>def</span> <span class='id index'>index</span>
-  <span class='ivar'>@accounts</span> <span class='op'>=</span> <span class='const'>Account</span><span class='period'>.</span><span class='id all'>all</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_index'>index</span>
+  <span class='ivar'>@accounts</span> <span class='op'>=</span> <span class='const'>Account</span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -596,9 +644,8 @@ GET /accounts
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-GET /accounts/new
-</p>
+    
+<p>GET /accounts/new</p>
 
 
   </div>
@@ -612,15 +659,71 @@ GET /accounts/new
       <pre class="lines">
 
 
-13
 14
-15</pre>
+15
+16</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/accounts_controller.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/accounts_controller.rb', line 14</span>
 
-<span class='kw'>def</span> <span class='id new'>new</span>
-  <span class='ivar'>@account</span> <span class='op'>=</span> <span class='const'>Account</span><span class='period'>.</span><span class='id new'>new</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_new'>new</span>
+  <span class='ivar'>@account</span> <span class='op'>=</span> <span class='const'>Account</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="print_festihvalen-instance_method">
+  
+    - (<tt>Object</tt>) <strong>print_festihvalen</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/accounts_controller.rb', line 100</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_print_festihvalen'>print_festihvalen</span>
+  <span class='id identifier rubyid_usages'>usages</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='ivar'>@account</span> <span class='op'>=</span> <span class='const'>Account</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:voucher</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:unit</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:voucher</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:unit</span><span class='rbracket'>]</span>
+
+  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:voucher</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_key'>key</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>amount\d+|description\d+</span><span class='regexp_end'>/</span></span> <span class='kw'>then</span>
+      <span class='id identifier rubyid_usages'>usages</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:voucher</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:usages</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_usages'>usages</span>
+  <span class='ivar'>@sum</span> <span class='op'>=</span> <span class='float'>0.0</span>
+
+  <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>1</span><span class='op'>..</span><span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:usages</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>/</span> <span class='int'>2</span><span class='rparen'>)</span>  <span class='rparen'>)</span>
+    <span class='ivar'>@sum</span> <span class='op'>+=</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:usages</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>amount</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_i'>i</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>,</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>.</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_d'>to_d</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_render'>render</span> <span class='label'>layout:</span><span class='kw'>false</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -640,11 +743,6 @@ GET /accounts/new
       <pre class="lines">
 
 
-76
-77
-78
-79
-80
 81
 82
 83
@@ -657,27 +755,32 @@ GET /accounts/new
 90
 91
 92
-93</pre>
+93
+94
+95
+96
+97
+98</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/accounts_controller.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/accounts_controller.rb', line 81</span>
 
-<span class='kw'>def</span> <span class='id print_travel'>print_travel</span>
-  <span class='id usages'>usages</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
-  <span class='ivar'>@account</span> <span class='op'>=</span> <span class='const'>Account</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:voucher</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:unit</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_print_travel'>print_travel</span>
+  <span class='id identifier rubyid_usages'>usages</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='ivar'>@account</span> <span class='op'>=</span> <span class='const'>Account</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:voucher</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:unit</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:voucher</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:unit</span><span class='rbracket'>]</span>
 
-  <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:travel</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id keys'>keys</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id key'>key</span><span class='op'>|</span>
-    <span class='kw'>if</span> <span class='id key'>key</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>date\d+|route\d+|means\d+|amount\d+</span><span class='regexp_end'>/</span></span> <span class='kw'>then</span>
-      <span class='id usages'>usages</span><span class='lbracket'>[</span><span class='id key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:travel</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id key'>key</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:voucher</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_key'>key</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>date\d+|route\d+|means\d+|amount\d+</span><span class='regexp_end'>/</span></span> <span class='kw'>then</span>
+      <span class='id identifier rubyid_usages'>usages</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:voucher</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
-  <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:carriers</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id usages'>usages</span>
+  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:carriers</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_usages'>usages</span>
   <span class='ivar'>@sum</span> <span class='op'>=</span> <span class='float'>0.0</span>
-  <span class='kw'>for</span> <span class='id i'>i</span> <span class='kw'>in</span> <span class='int'>1</span><span class='op'>..</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:carriers</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id size'>size</span> <span class='op'>/</span> <span class='int'>4</span><span class='rparen'>)</span>
-    <span class='ivar'>@sum</span> <span class='op'>+=</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:carriers</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>amount</span><span class='embexpr_beg'>#{</span><span class='id i'>i</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>,</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>.</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_d'>to_d</span>
+  <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>1</span><span class='op'>..</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:carriers</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>/</span> <span class='int'>4</span><span class='rparen'>)</span>
+    <span class='ivar'>@sum</span> <span class='op'>+=</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:carriers</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>amount</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_i'>i</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>,</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>.</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_d'>to_d</span>
   <span class='kw'>end</span>
 
-  <span class='id render'>render</span> <span class='label'>layout:</span><span class='kw'>false</span>
+  <span class='id identifier rubyid_render'>render</span> <span class='label'>layout:</span><span class='kw'>false</span>
 
 <span class='kw'>end</span></pre>
     </td>
@@ -698,11 +801,6 @@ GET /accounts/new
       <pre class="lines">
 
 
-58
-59
-60
-61
-62
 63
 64
 65
@@ -714,27 +812,32 @@ GET /accounts/new
 71
 72
 73
-74</pre>
+74
+75
+76
+77
+78
+79</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/accounts_controller.rb', line 58</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/accounts_controller.rb', line 63</span>
 
-<span class='kw'>def</span> <span class='id print_voucher'>print_voucher</span>
-  <span class='id usages'>usages</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
-  <span class='ivar'>@account</span> <span class='op'>=</span> <span class='const'>Account</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:voucher</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:unit</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_print_voucher'>print_voucher</span>
+  <span class='id identifier rubyid_usages'>usages</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='ivar'>@account</span> <span class='op'>=</span> <span class='const'>Account</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:voucher</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:unit</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:voucher</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:unit</span><span class='rbracket'>]</span>
 
-  <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:voucher</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id keys'>keys</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id key'>key</span><span class='op'>|</span>
-    <span class='kw'>if</span> <span class='id key'>key</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>amount\d+|description\d+</span><span class='regexp_end'>/</span></span> <span class='kw'>then</span>
-      <span class='id usages'>usages</span><span class='lbracket'>[</span><span class='id key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:voucher</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id key'>key</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:voucher</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_key'>key</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>amount\d+|description\d+</span><span class='regexp_end'>/</span></span> <span class='kw'>then</span>
+      <span class='id identifier rubyid_usages'>usages</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:voucher</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
-  <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:usages</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id usages'>usages</span>
+  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:usages</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_usages'>usages</span>
   <span class='ivar'>@sum</span> <span class='op'>=</span> <span class='float'>0.0</span>
 
-  <span class='kw'>for</span> <span class='id i'>i</span> <span class='kw'>in</span> <span class='int'>1</span><span class='op'>..</span><span class='lparen'>(</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:usages</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id size'>size</span> <span class='op'>/</span> <span class='int'>2</span><span class='rparen'>)</span>  <span class='rparen'>)</span>
-    <span class='ivar'>@sum</span> <span class='op'>+=</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:usages</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>amount</span><span class='embexpr_beg'>#{</span><span class='id i'>i</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>,</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>.</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_d'>to_d</span>
+  <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>1</span><span class='op'>..</span><span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:usages</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>/</span> <span class='int'>2</span><span class='rparen'>)</span>  <span class='rparen'>)</span>
+    <span class='ivar'>@sum</span> <span class='op'>+=</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:usages</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>amount</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_i'>i</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>,</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>.</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_d'>to_d</span>
   <span class='kw'>end</span>
-  <span class='id render'>render</span> <span class='label'>layout:</span><span class='kw'>false</span>
+  <span class='id identifier rubyid_render'>render</span> <span class='label'>layout:</span><span class='kw'>false</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -750,9 +853,8 @@ GET /accounts/new
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-GET /accounts/1
-</p>
+    
+<p>GET /accounts/1</p>
 
 
   </div>
@@ -766,15 +868,15 @@ GET /accounts/1
       <pre class="lines">
 
 
-8
 9
-10</pre>
+10
+11</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/accounts_controller.rb', line 8</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/accounts_controller.rb', line 9</span>
 
-<span class='kw'>def</span> <span class='id show'>show</span>
-  <span class='ivar'>@account</span> <span class='op'>=</span> <span class='const'>Account</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_show'>show</span>
+  <span class='ivar'>@account</span> <span class='op'>=</span> <span class='const'>Account</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -794,15 +896,15 @@ GET /accounts/1
       <pre class="lines">
 
 
-53
 54
-55</pre>
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/accounts_controller.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/accounts_controller.rb', line 54</span>
 
-<span class='kw'>def</span> <span class='id travel'>travel</span>
-  <span class='ivar'>@unit_choices_text</span> <span class='op'>=</span> <span class='id get_unit_choices_text'>get_unit_choices_text</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_travel'>travel</span>
+  <span class='ivar'>@unit_choices_text</span> <span class='op'>=</span> <span class='id identifier rubyid_get_unit_choices_text'>get_unit_choices_text</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -818,9 +920,8 @@ GET /accounts/1
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-PUT /accounts/1
-</p>
+    
+<p>PUT /accounts/1</p>
 
 
   </div>
@@ -834,24 +935,24 @@ PUT /accounts/1
       <pre class="lines">
 
 
-33
 34
 35
 36
 37
 38
 39
-40</pre>
+40
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/accounts_controller.rb', line 33</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/accounts_controller.rb', line 34</span>
 
-<span class='kw'>def</span> <span class='id update'>update</span>
-  <span class='ivar'>@account</span> <span class='op'>=</span> <span class='const'>Account</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-  <span class='kw'>if</span> <span class='ivar'>@account</span><span class='period'>.</span><span class='id update_attributes'>update_attributes</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:account</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-    <span class='id redirect_to'>redirect_to</span> <span class='ivar'>@account</span><span class='comma'>,</span> <span class='label'>notice:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Account was successfully updated.</span><span class='tstring_end'>'</span></span> 
+<span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span>
+  <span class='ivar'>@account</span> <span class='op'>=</span> <span class='const'>Account</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='ivar'>@account</span><span class='period'>.</span><span class='id identifier rubyid_update_attributes'>update_attributes</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:account</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='ivar'>@account</span><span class='comma'>,</span> <span class='label'>notice:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Account was successfully updated.</span><span class='tstring_end'>'</span></span> 
   <span class='kw'>else</span>
-    <span class='id render'>render</span> <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>edit</span><span class='tstring_end'>&quot;</span></span> 
+    <span class='id identifier rubyid_render'>render</span> <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>edit</span><span class='tstring_end'>&quot;</span></span> 
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -872,15 +973,15 @@ PUT /accounts/1
       <pre class="lines">
 
 
-49
 50
-51</pre>
+51
+52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/accounts_controller.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/accounts_controller.rb', line 50</span>
 
-<span class='kw'>def</span> <span class='id voucher'>voucher</span>
-  <span class='ivar'>@unit_choices_text</span> <span class='op'>=</span> <span class='id get_unit_choices_text'>get_unit_choices_text</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_voucher'>voucher</span>
+  <span class='ivar'>@unit_choices_text</span> <span class='op'>=</span> <span class='id identifier rubyid_get_unit_choices_text'>get_unit_choices_text</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -892,9 +993,9 @@ PUT /accounts/1
 </div>
     
     <div id="footer">
-  Generated on Fri Nov 18 10:42:14 2011 by 
+  Generated on Wed Mar  7 17:39:35 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.7.3 (ruby-1.9.2).
+  0.7.5 (ruby-1.9.3).
 </div>
 
   </body>

@@ -6,7 +6,7 @@
 <title>
   Module: ControllerAuthentication
   
-    &mdash; Documentation by YARD 0.7.3
+    &mdash; Documentation by YARD 0.7.5
   
 </title>
 
@@ -83,27 +83,24 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>
-This module is included in your application controller which makes several
-methods available to all controllers and views. Here&#8217;s a common
-example you might add to your application layout file.
-</p>
-<pre class="code">
-  &lt;% if logged_in? %&gt;
-    Welcome &lt;%= current_user.username %&gt;.
-    &lt;%= link_to &quot;Edit profile&quot;, edit_current_user_path %&gt; or
-    &lt;%= link_to &quot;Log out&quot;, logout_path %&gt;
-  &lt;% else %&gt;
-    &lt;%= link_to &quot;Sign up&quot;, signup_path %&gt; or
-    &lt;%= link_to &quot;log in&quot;, login_path %&gt;.
-  &lt;% end %&gt;
-</pre>
-<p>
-You can also restrict unregistered users from accessing a controller using
-a before filter. For example.
-</p>
-<pre class="code">
-  <span class='id before_filter'>before_filter</span> <span class='symbol'>:login_required</span><span class='comma'>,</span> <span class='symbol'>:except</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='symbol'>:index</span><span class='comma'>,</span> <span class='symbol'>:show</span><span class='rbracket'>]</span></pre>
+    
+<p>This module is included in your application controller which makes several
+methods available to all controllers and views. Here's a common example you
+might add to your application layout file.</p>
+
+<pre class="code ruby"><code>&lt;% if logged_in? %&gt;
+  Welcome &lt;%= current_user.username %&gt;.
+  &lt;%= link_to &quot;Edit profile&quot;, edit_current_user_path %&gt; or
+  &lt;%= link_to &quot;Log out&quot;, logout_path %&gt;
+&lt;% else %&gt;
+  &lt;%= link_to &quot;Sign up&quot;, signup_path %&gt; or
+  &lt;%= link_to &quot;log in&quot;, login_path %&gt;.
+&lt;% end %&gt;</code></pre>
+
+<p>You can also restrict unregistered users from accessing a controller using
+a before filter. For example.</p>
+
+<pre class="code ruby"><code><span class='id identifier rubyid_before_filter'>before_filter</span> <span class='symbol'>:login_required</span><span class='comma'>,</span> <span class='symbol'>:except</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='symbol'>:index</span><span class='comma'>,</span> <span class='symbol'>:show</span><span class='rbracket'>]</span></code></pre>
 
 
   </div>
@@ -112,6 +109,8 @@ a before filter. For example.
   
 
 </div>
+
+
 
 
 
@@ -267,8 +266,8 @@ a before filter. For example.
     <td>
       <pre class="code"><span class="info file"># File 'lib/controller_authentication.rb', line 19</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id included'>included</span><span class='lparen'>(</span><span class='id controller'>controller</span><span class='rparen'>)</span>
-  <span class='id controller'>controller</span><span class='period'>.</span><span class='id send'>send</span> <span class='symbol'>:helper_method</span><span class='comma'>,</span> <span class='symbol'>:current_user</span><span class='comma'>,</span> <span class='symbol'>:logged_in?</span><span class='comma'>,</span> <span class='symbol'>:redirect_to_target_or_default</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_included'>included</span><span class='lparen'>(</span><span class='id identifier rubyid_controller'>controller</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_controller'>controller</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span> <span class='symbol'>:helper_method</span><span class='comma'>,</span> <span class='symbol'>:current_user</span><span class='comma'>,</span> <span class='symbol'>:logged_in?</span><span class='comma'>,</span> <span class='symbol'>:redirect_to_target_or_default</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -301,8 +300,8 @@ a before filter. For example.
     <td>
       <pre class="code"><span class="info file"># File 'lib/controller_authentication.rb', line 23</span>
 
-<span class='kw'>def</span> <span class='id current_user'>current_user</span>
-  <span class='ivar'>@current_user</span> <span class='op'>||=</span> <span class='const'>User</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='id session'>session</span><span class='lbracket'>[</span><span class='symbol'>:user_id</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id session'>session</span><span class='lbracket'>[</span><span class='symbol'>:user_id</span><span class='rbracket'>]</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_current_user'>current_user</span>
+  <span class='ivar'>@current_user</span> <span class='op'>||=</span> <span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:user_id</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:user_id</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -351,8 +350,8 @@ a before filter. For example.
     <td>
       <pre class="code"><span class="info file"># File 'lib/controller_authentication.rb', line 27</span>
 
-<span class='kw'>def</span> <span class='id logged_in?'>logged_in?</span>
-  <span class='id current_user'>current_user</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_logged_in?'>logged_in?</span>
+  <span class='id identifier rubyid_current_user'>current_user</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -382,10 +381,10 @@ a before filter. For example.
     <td>
       <pre class="code"><span class="info file"># File 'lib/controller_authentication.rb', line 31</span>
 
-<span class='kw'>def</span> <span class='id login_required'>login_required</span>
-  <span class='kw'>unless</span> <span class='id logged_in?'>logged_in?</span>
-    <span class='id store_target_location'>store_target_location</span>
-    <span class='id redirect_to'>redirect_to</span> <span class='id login_url'>login_url</span><span class='comma'>,</span> <span class='symbol'>:alert</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You must first log in or sign up before accessing this page.</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>def</span> <span class='id identifier rubyid_login_required'>login_required</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_logged_in?'>logged_in?</span>
+    <span class='id identifier rubyid_store_target_location'>store_target_location</span>
+    <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_login_url'>login_url</span><span class='comma'>,</span> <span class='symbol'>:alert</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You must first log in or sign up before accessing this page.</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -414,9 +413,9 @@ a before filter. For example.
     <td>
       <pre class="code"><span class="info file"># File 'lib/controller_authentication.rb', line 38</span>
 
-<span class='kw'>def</span> <span class='id redirect_to_target_or_default'>redirect_to_target_or_default</span><span class='lparen'>(</span><span class='id default'>default</span><span class='comma'>,</span> <span class='op'>*</span><span class='id args'>args</span><span class='rparen'>)</span>
-  <span class='id redirect_to'>redirect_to</span><span class='lparen'>(</span><span class='id session'>session</span><span class='lbracket'>[</span><span class='symbol'>:return_to</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id default'>default</span><span class='comma'>,</span> <span class='op'>*</span><span class='id args'>args</span><span class='rparen'>)</span>
-  <span class='id session'>session</span><span class='lbracket'>[</span><span class='symbol'>:return_to</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>nil</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_redirect_to_target_or_default'>redirect_to_target_or_default</span><span class='lparen'>(</span><span class='id identifier rubyid_default'>default</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_redirect_to'>redirect_to</span><span class='lparen'>(</span><span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:return_to</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id identifier rubyid_default'>default</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:return_to</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>nil</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -428,9 +427,9 @@ a before filter. For example.
 </div>
     
     <div id="footer">
-  Generated on Fri Nov 18 10:42:14 2011 by 
+  Generated on Wed Mar  7 17:39:35 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.7.3 (ruby-1.9.2).
+  0.7.5 (ruby-1.9.3).
 </div>
 
   </body>

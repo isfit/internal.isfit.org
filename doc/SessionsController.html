@@ -6,7 +6,7 @@
 <title>
   Class: SessionsController
   
-    &mdash; Documentation by YARD 0.7.3
+    &mdash; Documentation by YARD 0.7.5
   
 </title>
 
@@ -101,27 +101,16 @@
   
 
 
-  
-  
-  
-  
-  <h3 class="inherited">Constants inherited from <span class='object_link'><a href="ApplicationController.html" title="ApplicationController (class)">ApplicationController</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="ApplicationController.html#RELOAD_LIBS-constant" title="ApplicationController::RELOAD_LIBS (constant)">RELOAD_LIBS</a></span></p>
 
+  <h2>Constant Summary</h2>
   
-  
-  
-  
-  
+  <h3 class="inherited">Constants inherited
+     from <span class='object_link'><a href="ApplicationController.html" title="ApplicationController (class)">ApplicationController</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="ApplicationController.html#RELOAD_LIBS-constant" title="ApplicationController::RELOAD_LIBS (constant)">ApplicationController::RELOAD_LIBS</a></span></p>
 
 
-  
-  
-  
-  
-  
-  
-  
+
+
 
   
     <h2>
@@ -156,6 +145,48 @@
   <span class="summary_signature">
     
       <a href="#destroy-instance_method" title="#destroy (instance method)">- (Object) <strong>destroy</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#forgot_password-instance_method" title="#forgot_password (instance method)">- (Object) <strong>forgot_password</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#mail_password-instance_method" title="#mail_password (instance method)">- (Object) <strong>mail_password</strong> </a>
     
 
     
@@ -237,8 +268,6 @@
       <pre class="lines">
 
 
-7
-8
 9
 10
 11
@@ -246,19 +275,21 @@
 13
 14
 15
-16</pre>
+16
+17
+18</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/sessions_controller.rb', line 7</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/sessions_controller.rb', line 9</span>
 
-<span class='kw'>def</span> <span class='id create'>create</span>
-  <span class='id user'>user</span> <span class='op'>=</span> <span class='const'>User</span><span class='period'>.</span><span class='id find_by_username'>find_by_username</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:login</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-  <span class='kw'>if</span> <span class='id user'>user</span> <span class='op'>&amp;&amp;</span> <span class='id user'>user</span><span class='period'>.</span><span class='id authenticate'>authenticate</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:password</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id user'>user</span><span class='period'>.</span><span class='id role?'>role?</span><span class='lparen'>(</span><span class='symbol'>:internal</span><span class='rparen'>)</span>
-    <span class='id session'>session</span><span class='lbracket'>[</span><span class='symbol'>:user_id</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id user'>user</span><span class='period'>.</span><span class='id id'>id</span>
-    <span class='id redirect_to_target_or_default'>redirect_to_target_or_default</span> <span class='id root_url'>root_url</span><span class='comma'>,</span> <span class='label'>notice:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Logged in successfully.</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span>
+  <span class='id identifier rubyid_user'>user</span> <span class='op'>=</span> <span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_find_by_username'>find_by_username</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:login</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_user'>user</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_authenticate'>authenticate</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:password</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_role?'>role?</span><span class='lparen'>(</span><span class='symbol'>:internal</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:user_id</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
+    <span class='id identifier rubyid_redirect_to_target_or_default'>redirect_to_target_or_default</span> <span class='id identifier rubyid_root_url'>root_url</span><span class='comma'>,</span> <span class='label'>notice:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Logged in successfully.</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>else</span>
-    <span class='id flash'>flash</span><span class='period'>.</span><span class='id now'>now</span><span class='lbracket'>[</span><span class='symbol'>:alert</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Invalid login or password.</span><span class='tstring_end'>&quot;</span></span>
-    <span class='id render'>render</span> <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>new</span><span class='tstring_end'>'</span></span>
+    <span class='id identifier rubyid_flash'>flash</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='lbracket'>[</span><span class='symbol'>:alert</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Invalid login or password.</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_render'>render</span> <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>new</span><span class='tstring_end'>'</span></span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -279,17 +310,101 @@
       <pre class="lines">
 
 
-18
-19
 20
-21</pre>
+21
+22
+23</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/sessions_controller.rb', line 18</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/sessions_controller.rb', line 20</span>
 
-<span class='kw'>def</span> <span class='id destroy'>destroy</span>
-  <span class='id session'>session</span><span class='lbracket'>[</span><span class='symbol'>:user_id</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>nil</span>
-  <span class='id redirect_to'>redirect_to</span> <span class='id root_url'>root_url</span><span class='comma'>,</span> <span class='label'>notice:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You have been logged out.</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>def</span> <span class='id identifier rubyid_destroy'>destroy</span>
+  <span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:user_id</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_root_url'>root_url</span><span class='comma'>,</span> <span class='label'>notice:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You have been logged out.</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="forgot_password-instance_method">
+  
+    - (<tt>Object</tt>) <strong>forgot_password</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+25
+26
+27</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/sessions_controller.rb', line 25</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_forgot_password'>forgot_password</span>
+
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="mail_password-instance_method">
+  
+    - (<tt>Object</tt>) <strong>mail_password</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/sessions_controller.rb', line 29</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_mail_password'>mail_password</span>
+  <span class='id identifier rubyid_new_pass'>new_pass</span> <span class='op'>=</span> <span class='id identifier rubyid_random_password'>random_password</span>
+  <span class='id identifier rubyid_user'>user</span> <span class='op'>=</span> <span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_find_by_username'>find_by_username</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:username</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+	<span class='id identifier rubyid_flash'>flash</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='lbracket'>[</span><span class='symbol'>:alert</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Could not find a user with username: </span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:username</span><span class='rbracket'>]</span>
+	<span class='kw'>return</span> <span class='id identifier rubyid_render'>render</span> <span class='symbol'>:forgot_password</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_password'>password</span> <span class='op'>=</span> <span class='id identifier rubyid_new_pass'>new_pass</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_save!'>save!</span>
+	<span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_changeLdapPassword'>changeLdapPassword</span><span class='lparen'>(</span><span class='id identifier rubyid_new_pass'>new_pass</span><span class='rparen'>)</span>
+  	<span class='const'>UserMailer</span><span class='period'>.</span><span class='id identifier rubyid_forgot_password_mail'>forgot_password_mail</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_private_email'>private_email</span><span class='comma'>,</span> <span class='id identifier rubyid_new_pass'>new_pass</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_deliver'>deliver</span>
+      <span class='kw'>return</span> <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_login_path'>login_path</span><span class='comma'>,</span> <span class='symbol'>:notice</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>A new password has been sent to your private email</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>else</span>
+	<span class='id identifier rubyid_flash'>flash</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='lbracket'>[</span><span class='symbol'>:alert</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Could not generate new password please contact orakel@isfit.org</span><span class='tstring_end'>&quot;</span></span>
+	<span class='kw'>return</span> <span class='id identifier rubyid_render'>render</span> <span class='symbol'>:forgot_password</span>	
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -309,15 +424,13 @@
       <pre class="lines">
 
 
-3
-4
-5</pre>
+6
+7</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/sessions_controller.rb', line 3</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/sessions_controller.rb', line 6</span>
 
-<span class='kw'>def</span> <span class='id new'>new</span>
-  <span class='ivar'>@no_kvitter</span> <span class='op'>=</span> <span class='kw'>true</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_new'>new</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -329,9 +442,9 @@
 </div>
     
     <div id="footer">
-  Generated on Fri Nov 18 10:42:14 2011 by 
+  Generated on Wed Mar  7 17:39:35 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.7.3 (ruby-1.9.2).
+  0.7.5 (ruby-1.9.3).
 </div>
 
   </body>

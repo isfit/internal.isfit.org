@@ -6,7 +6,7 @@
 <title>
   Module: LayoutHelper
   
-    &mdash; Documentation by YARD 0.7.3
+    &mdash; Documentation by YARD 0.7.5
   
 </title>
 
@@ -79,13 +79,12 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>
-These helper methods can be called in your template to set variables to be
+    
+<p>These helper methods can be called in your template to set variables to be
 used in the layout This module should be included in all views globally, to
-do so you may need to add this line to your ApplicationController
-</p>
-<pre class="code">
-  <span class='id helper'>helper</span> <span class='symbol'>:layout</span></pre>
+do so you may need to add this line to your ApplicationController</p>
+
+<pre class="code ruby"><code><span class='id identifier rubyid_helper'>helper</span> <span class='symbol'>:layout</span></code></pre>
 
 
   </div>
@@ -94,6 +93,8 @@ do so you may need to add this line to your ApplicationController
   
 
 </div>
+
+
 
 
 
@@ -219,8 +220,8 @@ do so you may need to add this line to your ApplicationController
     <td>
       <pre class="code"><span class="info file"># File 'app/helpers/layout_helper.rb', line 19</span>
 
-<span class='kw'>def</span> <span class='id javascript'>javascript</span><span class='lparen'>(</span><span class='op'>*</span><span class='id args'>args</span><span class='rparen'>)</span>
-  <span class='id content_for'>content_for</span><span class='lparen'>(</span><span class='symbol'>:head</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id javascript_include_tag'>javascript_include_tag</span><span class='lparen'>(</span><span class='op'>*</span><span class='id args'>args</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_javascript'>javascript</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_content_for'>content_for</span><span class='lparen'>(</span><span class='symbol'>:head</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_javascript_include_tag'>javascript_include_tag</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -269,7 +270,7 @@ do so you may need to add this line to your ApplicationController
     <td>
       <pre class="code"><span class="info file"># File 'app/helpers/layout_helper.rb', line 11</span>
 
-<span class='kw'>def</span> <span class='id show_title?'>show_title?</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_show_title?'>show_title?</span>
   <span class='ivar'>@show_title</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -297,8 +298,8 @@ do so you may need to add this line to your ApplicationController
     <td>
       <pre class="code"><span class="info file"># File 'app/helpers/layout_helper.rb', line 15</span>
 
-<span class='kw'>def</span> <span class='id stylesheet'>stylesheet</span><span class='lparen'>(</span><span class='op'>*</span><span class='id args'>args</span><span class='rparen'>)</span>
-  <span class='id content_for'>content_for</span><span class='lparen'>(</span><span class='symbol'>:head</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id stylesheet_link_tag'>stylesheet_link_tag</span><span class='lparen'>(</span><span class='op'>*</span><span class='id args'>args</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_stylesheet'>stylesheet</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_content_for'>content_for</span><span class='lparen'>(</span><span class='symbol'>:head</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_stylesheet_link_tag'>stylesheet_link_tag</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -326,9 +327,9 @@ do so you may need to add this line to your ApplicationController
     <td>
       <pre class="code"><span class="info file"># File 'app/helpers/layout_helper.rb', line 6</span>
 
-<span class='kw'>def</span> <span class='id title'>title</span><span class='lparen'>(</span><span class='id page_title'>page_title</span><span class='comma'>,</span> <span class='id show_title'>show_title</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
-  <span class='id content_for'>content_for</span><span class='lparen'>(</span><span class='symbol'>:title</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id h'>h</span><span class='lparen'>(</span><span class='id page_title'>page_title</span><span class='period'>.</span><span class='id to_s'>to_s</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
-  <span class='ivar'>@show_title</span> <span class='op'>=</span> <span class='id show_title'>show_title</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_title'>title</span><span class='lparen'>(</span><span class='id identifier rubyid_page_title'>page_title</span><span class='comma'>,</span> <span class='id identifier rubyid_show_title'>show_title</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_content_for'>content_for</span><span class='lparen'>(</span><span class='symbol'>:title</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_h'>h</span><span class='lparen'>(</span><span class='id identifier rubyid_page_title'>page_title</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='ivar'>@show_title</span> <span class='op'>=</span> <span class='id identifier rubyid_show_title'>show_title</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -340,9 +341,9 @@ do so you may need to add this line to your ApplicationController
 </div>
     
     <div id="footer">
-  Generated on Fri Nov 18 10:42:14 2011 by 
+  Generated on Wed Mar  7 17:39:35 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.7.3 (ruby-1.9.2).
+  0.7.5 (ruby-1.9.3).
 </div>
 
   </body>
