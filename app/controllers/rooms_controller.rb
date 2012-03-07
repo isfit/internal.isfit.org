@@ -1,18 +1,18 @@
 class RoomsController < ApplicationController
+  load_and_authorize_resource
+  # Wonder why the four next actions are empty? load_and_authorize_resource actually loads the resource for us.
+  # Might seems like a little magic, but it gets rid of "standard code"
+
   def show
-    @room = Room.find(params[:id])
   end
 
   def index
-    @rooms = Room.all
   end
 
   def new
-    @room = Room.new
   end
   
   def edit
-    @room = Room.find(params[:id])
   end
 
   def update
