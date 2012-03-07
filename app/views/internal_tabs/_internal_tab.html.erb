@@ -1,6 +1,6 @@
 <div class="internal_tab">  
   <div class="content">  
-    <%= internal_tab.title %>  
+    <h4><%= link_to internal_tab.title, edit_internal_tab_path(internal_tab) %>  </h4>
   </div>  
   <div class="actions">  
     <%= link_to "Legg til barn", new_internal_tab_path(:parent_id => internal_tab) %> 

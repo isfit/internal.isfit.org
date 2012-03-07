@@ -1,0 +1,10 @@
+You are now making a link under: <b><%= @internal_tab.parent.nil? ? "root level" : breadcrumbs(@internal_tab) %></b>
+<br><br>
+<%= bootstrap_form_for @internal_tab do |f| %>
+  <%= f.text_field :title %> <br>
+  <%= f.select :controller, @controllers.collect {|c| [c,c.gsub("Controller", "").underscore]}, promt: true %><br>
+  <%= f.select :action, [] %><br>
+  <%= f.text_field :action_id , label: "ID to the current action (f.ex show)"%><br>
+  <%= f.hidden_field :parent_id %>
+  <%= f.submit "Lagre" %>
+<% end %>

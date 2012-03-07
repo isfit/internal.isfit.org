@@ -1,3 +1,19 @@
 // Place all the styles related to the internal_tabs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.nested_links {
+  margin-left: 20px;
+}
+.nested_links .nested_links .nested_links .nested_links {
+  margin-left: 0px;
+}
+.nested_links {
+  margin-bottom: 10px;
+  .nested_links {
+    margin-bottom: 0px;
+  }
+}
+
+
+

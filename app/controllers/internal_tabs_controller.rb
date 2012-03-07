@@ -5,8 +5,22 @@ class InternalTabsController < ApplicationController
   end
 
   def new
-    @internal_tab = InternalTab.new(parent_id:params[:parent_id])
+    @internal_tab = InternalTab.new(parent_id: params[:parent_id])
     @controllers = find_all_controllers
+  end
+
+  def edit
+    @internal_tab = InternalTab.find(params[:id])
+    @controllers = find_all_controllers
+  end
+
+  def update
+    @internal_tab = InternalTab.find(params[:id])
+    if @internal_tab.update_attributes(params[:internal_tab])
+      redirect_to internal_tabs_path, notice: "Tab successfully updated"
+    else
+      render :edit
+    end
   end
 
   def create
@@ -27,20 +41,11 @@ class InternalTabsController < ApplicationController
   private
 
   def find_all_controllers
-    ret = []
-    ret << ""
-    controllers = Dir.new("#{Rails.root}/app/controllers").entries
-    controllers.each do |controller|
-      if controller =~ /_controller/
-        cont = controller.camelize.gsub(".rb","")
-        ret << cont
-      end
-    end
-    ret.delete("ApplicationController")
-    return ret
+    ApplicationController.subclasses.map{|s| s.to_s}
   end
 
   def find_controller_actions(cont)
+    return [] if cont.blank?
     ret = []
     cont += "Controller"
     (eval("#{cont}.action_methods") -

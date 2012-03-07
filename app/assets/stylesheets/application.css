@@ -12,5 +12,6 @@
  *= require "jquery.fileupload-ui"
  *= require "jqueryui"
  *= require "room_bookings"
+ *= require "internal_tabs"
  *= require_self
 */
