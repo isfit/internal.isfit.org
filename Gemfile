@@ -26,12 +26,12 @@ gem 'oauth2'
 gem 'net-ldap'
 gem 'jbuilder'
 
-#group :assets do
-#  gem 'sass-rails'
+group :assets do
+  gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
-  gem 'bootstrap-sass'
-#end
+#  gem 'bootstrap-sass'
+end
 
 
 group :development do
