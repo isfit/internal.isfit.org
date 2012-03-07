@@ -1,11 +1,12 @@
-class User < ActiveRecord::Base
-  # == User
-  #
-  # Hovedmodell for en bruker av systemet. Inneholder hjelpemetoder som kan
-  # brukes til å hente attributter, seksjoner, gjenger etc. av en bruker
+# == User
+#
+# Hovedmodell for en bruker av systemet. Inneholder hjelpemetoder som kan
+# brukes til å hente attributter, seksjoner, gjenger etc. av en bruker
 
+class User < ActiveRecord::Base
+  
   validates :password, length: {minimum: 8}, allow_blank: true
-  set_primary_key :id
+  self.primary_key = :id
   has_secure_password
   has_many :groups, through: :positions
   has_many :room_bookings
@@ -15,7 +16,6 @@ class User < ActiveRecord::Base
   attr_readonly :username, :ldap_id, :email
 
   # Return full name of user
-  # Try statements if no name is given
   def full_name
     "#{given_name} #{family_name}"
   end
