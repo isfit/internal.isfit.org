@@ -1,10 +1,10 @@
 #Inspired from railscasts episode 311
 class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
   delegate :capture, :content_tag, :tag, to: :@template
-  %w[text_field file_field text_area password_field check_box number_field collection_select].each do |method_name|
+  %w[text_field file_field text_area password_field check_box number_field collection_select select].each do |method_name|
     define_method(method_name) do |name, *args|
       content_tag :div, class: "field" do
-        field_label(name) + super(name, *args) + defined_hint(*args)
+        field_label(name, *args) + super(name, *args) + defined_hint(*args)
       end
     end
   end
@@ -18,7 +18,7 @@ class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
 
   def submit(*args)
     content_tag :div, class: "field" do
-      super(class: "btn-primary")
+      super(class: 'btn-primary')
     end
   end
 
