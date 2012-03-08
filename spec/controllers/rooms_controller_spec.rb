@@ -5,8 +5,8 @@ describe RoomsController do
 
   describe "GET 'show'" do
     it "returns http success" do
-      account = create(:room)
-      get :show, :id => account.id.to_s
+      room = create(:room)
+      get :show, id: room.id.to_s
       response.should be_success
     end
   end
