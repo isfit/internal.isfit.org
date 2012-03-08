@@ -2,6 +2,7 @@ class WikiPage < ActiveRecord::Base
   belongs_to :user
   belongs_to :wiki_category
   belongs_to :wiki_page
+  has_one :child_page, class_name: "WikiPage", foreign_key: "wiki_page_id"
   validates_presence_of :title
   before_save :sluggify
 

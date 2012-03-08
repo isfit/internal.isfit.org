@@ -104,36 +104,28 @@ describe WikiPagesController do
 
   describe "PUT update" do
     describe "with valid params" do
-      it "updates the requested wiki_page" do
-        wiki_page = WikiPage.create! valid_attributes
-        # Assuming there are no other wiki_pages in the database, this
-        # specifies that the WikiPage created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        WikiPage.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, {:id => wiki_page.to_param, :wiki_page => {'these' => 'params'}}, valid_session
-      end
 
-      it "assigns the requested wiki_page as @wiki_page" do
+      it "assigns a new wiki_page as @wiki_page with current wiki_page as parrent" do
         wiki_page = WikiPage.create! valid_attributes
         put :update, {:id => wiki_page.to_param, :wiki_page => valid_attributes}, valid_session
-        assigns(:wiki_page).should eq(wiki_page)
+        assigns(:wiki_page).should eq(wiki_page.child_page)
       end
 
-      it "redirects to the wiki_page" do
+      it "redirects to the child wiki_page" do
         wiki_page = WikiPage.create! valid_attributes
         put :update, {:id => wiki_page.to_param, :wiki_page => valid_attributes}, valid_session
-        response.should redirect_to(wiki_page)
+        response.should redirect_to(wiki_page.child_page)
       end
     end
 
     describe "with invalid params" do
-      it "assigns the wiki_page as @wiki_page" do
+      it "assigns a new wiki_page as @wiki_page and set the correct wiki_page_id" do
         wiki_page = WikiPage.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         WikiPage.any_instance.stub(:save).and_return(false)
         put :update, {:id => wiki_page.to_param, :wiki_page => {}}, valid_session
-        assigns(:wiki_page).should eq(wiki_page)
+        assigns(:wiki_page).should be_a_new(WikiPage)
+        assigns(:wiki_page).wiki_page_id.should eq(wiki_page.id)
       end
 
       it "re-renders the 'edit' template" do
