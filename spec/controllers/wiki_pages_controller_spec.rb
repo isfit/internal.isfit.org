@@ -19,12 +19,12 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe WikiPagesController do
-
+  login_user
   # This should return the minimal set of attributes required to create a valid
   # WikiPage. As you add validations to WikiPage, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {title: "WikiPage"}
   end
   
   # This should return the minimal set of values that should be in the session
@@ -36,9 +36,9 @@ describe WikiPagesController do
 
   describe "GET index" do
     it "assigns all wiki_pages as @wiki_pages" do
-      wiki_page = WikiPage.create! valid_attributes
+      wiki_page = WikiPage.create!({title: "getting-started"})
       get :index, {}, valid_session
-      assigns(:wiki_pages).should eq([wiki_page])
+      assigns(:wiki_page).should eq(wiki_page)
     end
   end
 
@@ -149,9 +149,8 @@ describe WikiPagesController do
   describe "DELETE destroy" do
     it "destroys the requested wiki_page" do
       wiki_page = WikiPage.create! valid_attributes
-      expect {
-        delete :destroy, {:id => wiki_page.to_param}, valid_session
-      }.to change(WikiPage, :count).by(-1)
+      delete :destroy, {:id => wiki_page.to_param}, valid_session
+      WikiPage.find(wiki_page.id).deleted.should be_true
     end
 
     it "redirects to the wiki_pages list" do

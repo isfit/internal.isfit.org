@@ -4,6 +4,8 @@ class WikiCategory < ActiveRecord::Base
 
   before_save :sluggify
 
+  validates_presence_of :title
+
   private
 
   def sluggify

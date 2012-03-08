@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   # Return full name of user
   def full_name
     "#{given_name} #{family_name}"
+    #"#{given_name} #{family_name}".split(/\s+/).map{|n| n.capitalize}.join(' ')
   end
 
   #Return full name reversed of user

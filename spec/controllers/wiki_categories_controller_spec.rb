@@ -19,12 +19,14 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe WikiCategoriesController do
+  login_user
+
 
   # This should return the minimal set of attributes required to create a valid
   # WikiCategory. As you add validations to WikiCategory, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {title: "WikiCat", deleted: false}
   end
   
   # This should return the minimal set of values that should be in the session
@@ -149,9 +151,8 @@ describe WikiCategoriesController do
   describe "DELETE destroy" do
     it "destroys the requested wiki_category" do
       wiki_category = WikiCategory.create! valid_attributes
-      expect {
-        delete :destroy, {:id => wiki_category.to_param}, valid_session
-      }.to change(WikiCategory, :count).by(-1)
+      delete :destroy, {:id => wiki_category.to_param}, valid_session
+      WikiCategory.find(wiki_category.id).deleted.should be_true
     end
 
     it "redirects to the wiki_categories list" do

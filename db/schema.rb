@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120221204404) do
+ActiveRecord::Schema.define(:version => 20120223115638) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -356,6 +356,17 @@ ActiveRecord::Schema.define(:version => 20120221204404) do
     t.string   "spp_article_image_content_type"
     t.integer  "spp_article_image_file_size"
     t.datetime "spp_article_image_updated_at"
+  end
+
+  create_table "spp_pages", :force => true do |t|
+    t.string   "title_en"
+    t.string   "ingress_en"
+    t.text     "body_en"
+    t.string   "image_text"
+    t.integer  "byline_func_id"
+    t.string   "byline"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "static_pages", :force => true do |t|

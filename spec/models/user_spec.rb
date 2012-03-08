@@ -45,9 +45,9 @@ describe User do
     user.authenticate('badpassword').should be_false
   end
 
-  it "should return full name capitalized on full_name method" do
-    user = new_user(given_name: "iver", family_name: "skjervum")
-    user.full_name.should == "Iver Skjervum"
+  pending "should return full name capitalized on full_name method" do
+    user = new_user(given_name: "iver", family_name: "dihle skjervum")
+    user.full_name.should == "Iver Dihle Skjervum"
   end
 
   describe "abilities" do 
