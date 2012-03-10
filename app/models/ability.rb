@@ -11,6 +11,7 @@ class Ability
     end
     if user.role?(:leader)
       can :manage, Applicant
+      can :manage, Article
     end
     if user.role?(:wingman)
       can :manage, Applicant
