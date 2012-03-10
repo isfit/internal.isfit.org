@@ -146,7 +146,7 @@ class AccountsController < ApplicationController
         unit_choices_text += "<option value=\"" + choice[1].to_s + "\">" + choice[0].to_s + "</option>"
       end
     end
-    unit_choices_text
+    unit_choices
   end
 
 
