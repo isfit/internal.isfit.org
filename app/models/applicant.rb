@@ -14,12 +14,12 @@ class Applicant < ActiveRecord::Base
     applicants = Applicant.where(deleted: false).all
     app = Array.new
     applicants.each do |a|
-      found = a.first_position.groups.first.section == (user.groups.first.section)
+      found = a.first_position.groups.first.section == (user.groups.last.section)
       if a.second_position
-        found = a.second_position.groups.first.section == (user.groups.first.section)
+        found = a.second_position.groups.first.section == (user.groups.last.section)
       end
       if a.third_position
-        found = a.third_position.groups.first.section == user.groups.first.section
+        found = a.third_position.groups.first.section == user.groups.last.section
       end
       if found
         app << a
