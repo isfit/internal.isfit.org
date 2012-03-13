@@ -60,7 +60,7 @@ class SppArticlesController < ApplicationController
 
   def moveup
     current = SppArticle.find(params[:id])
-    if current != SppArticle.find(:first, :order => "weight DESC") && SppArticle.get_all_not_deleted.count > 1
+    if current != SppArticle.find(:first, :order => "weight DESC") && SppArticle.where(deleted: 0)
      switch = SppArticle.where("weight > #{current.weight} AND deleted = 0").order(:weight).first
      between = switch.weight
      switch.weight = current.weight
@@ -73,7 +73,7 @@ class SppArticlesController < ApplicationController
 
   def movedown
     current = SppArticle.find(params[:id])
-    if current != SppArticle.find(:last, :order => "weight DESC") && SppArticle.get_all_not_deleted.count > 1
+    if current != SppArticle.find(:last, :order => "weight DESC") && SppArticle.where(deleted: 0).count > 1
      switch = SppArticle.where("weight < #{current.weight} AND deleted = 0").order("weight desc").first
      between = switch.weight
      switch.weight = current.weight
