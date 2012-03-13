@@ -25,6 +25,7 @@ gem 'bluecloth'
 gem 'oauth2'
 gem 'net-ldap'
 gem 'jbuilder'
+gem 'private_pub'
 
 group :assets do
   gem 'sass-rails'

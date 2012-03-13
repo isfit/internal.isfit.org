@@ -8,6 +8,7 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require_tree ./jquery
+//= require private_pub
 //= require_tree .
 //= require_self
 
