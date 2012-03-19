@@ -24,8 +24,8 @@ To start develop the this application, you have to do the following steps:
   git clone git://github.com/isfit/internal.isfit.org.git
 3. Install bundler gem, so you can install the rest later (only first time)
   gem install bundler
-4. Cd into the directory and update all your gems so they are up to date:
-  bundle update
+4. Cd into the directory and install all the gems:
+  bundle install
 5. Connect to the database (Not necessary, but it has a lot of test-data and you will need it if you update some views) Again, ask Dag-Inge for password.
 6. Start up the rails server inside the internal.isfit.org - directory
   rails server
