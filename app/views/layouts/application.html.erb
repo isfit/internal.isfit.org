@@ -83,6 +83,9 @@
 
     <div class="container">
       <div class="row">
+        <div id="submeny" class="span9 offset3">
+            <%= sublinks %>
+        </div>
         <div id="sidebar" class="span3">
           <%= yield :sidebar %>
           <%= menu_groups %>
@@ -92,12 +95,6 @@
         </div>
 
         <div id="content" class="span9">
-
-          <div id="submeny"><!-- Start submeny -->
-            <%= sublinks %>
-          </div>
-
-
           <div>
             <% if notice or alert %>
               <div class="alert alert-<%= notice ? "success":"error" %>">
