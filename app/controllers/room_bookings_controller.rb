@@ -9,7 +9,7 @@ class RoomBookingsController < ApplicationController
     @rooms = Room.all
     week = params[:week].to_i
     year = params[:year].to_i
-    @date_range = (Date.commercial(year,week,1)..Date.commercial(year,week,-1))
+    @date_range = (DateTime.commercial(year,week,1)..DateTime.commercial(year,week,-1,-1,-1,-1))
     @room_bookings = RoomBooking.where(reserved_at: @date_range).includes(:user).map{|r| {id:r.id, room_id:r.room_id, reserved_at: r.reserved_at, user: r.user}}
   end
 
