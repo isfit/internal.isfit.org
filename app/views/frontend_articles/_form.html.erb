@@ -52,6 +52,10 @@
       <%= f.label :byline_user_id %>
       <%= f.collection_select :byline_user_id, @users, :id, :full_name_reversed %>
     </div>
+    <div class="field">
+      <%= f.label :image_credits %>
+      <%= f.text_field :image_credits %>
+    </div>
     <%= f.hidden_field :photo_id %>
  </fieldset>
  </div>
