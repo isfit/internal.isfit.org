@@ -1,2 +1,7 @@
-<h1>ContactLogs#new</h1>
-<p>Find me in app/views/contact_logs/new.html.erb</p>
+<div class="pull-right">
+<%= link_to 'Back', contact_logs_path, confirm: 'This will cancel all changes. Are you sure?', method: :get, :class => "btn"  %>
+</div>
+<h1>New Contact Log</h1>
+
+<%= render 'form' %>
+

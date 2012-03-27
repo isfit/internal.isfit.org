@@ -1,8 +1,8 @@
-<h1>Kontaktlogg</h1>
+<h1><%= @contact_log_unit.company_name %></h1>
 
 <div class="contact-log">
-  <%#= link_to "Create contact-log", new_contact_log_path, :class => "primary btn" %>
-  <% for contact_log in @contact_logs %>
+  <%= link_to "Create contact-log", new_contact_log_with_unit_path(@contact_log_unit), :class => "primary btn" %>
+  <% for contact_log in @contact_log_unit.contact_logs %>
     <div class="contact-log">
       <div class="action-menu">
         <%= link_to :edit, edit_contact_log_path(contact_log), :class => "small btn"%>
@@ -13,7 +13,7 @@
       <%= simple_format(truncate(contact_log.content, :length => 1000, :omission =>"...")) %>
       <%= contact_log.content.length > 1000 ? (link_to("Read more...", contact_log)):'' %>
       </p>
-      <p> <%= (not contact_log.contact_log_person.nil?) ? contact_log.contact_log_person.contact_log_unit.company_name : "" %> - <%= (not contact_log.contact_log_person.nil?) ? contact_log.contact_log_person.full_name: "" %> </p>
+      <p> <%= contact_log.contact_log_person.full_name %> </p>
     </div>
   <% end %>
 </div>

@@ -1,0 +1,16 @@
+<h1>Kontaktlogg</h1>
+
+<div class="contact-log-unit">
+  <%= link_to "Create contact-log-unit", new_contact_log_unit_path, :class => "primary btn" %>
+  <% for contact_log_unit in @contact_log_units %>
+    <div class="contact-log-unit">
+      <div class="action-menu">
+        <%= link_to :edit, edit_contact_log_unit_path(contact_log_unit), :class => "small btn"%>
+        <%= link_to :delete, contact_log_unit, confirm: "Are you sure?", method: :delete, :class => "small btn"  %>
+      </div>
+       <p>
+      <%= link_to contact_log_unit.company_name, contact_log_unit %>
+      </p>
+    </div>
+  <% end %>
+</div>
