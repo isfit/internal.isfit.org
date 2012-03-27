@@ -1,6 +1,5 @@
 class KvittersController < ApplicationController
   load_and_authorize_resource
-
   protect_from_forgery :except => :create
 
   def create
