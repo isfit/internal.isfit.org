@@ -72,11 +72,12 @@ class ContactLogPeopleController < ApplicationController
   # DELETE /contact_log_people/1
   # DELETE /contact_log_people/1.json
   def destroy
-    @contact_log_person_unit = ContactLogPerson.find(params[:id])
-    @contact_log_person_unit.destroy
+    @contact_log_person = ContactLogPerson.find(params[:id])
+    @contact_log_unit = @contact_log_person.contact_log_unit
+    @contact_log_person.destroy
 
     respond_to do |format|
-      format.html { redirect_to contact_log_people_url }
+      format.html { redirect_to @contact_log_unit }
       format.json { head :no_content }
     end
   end
