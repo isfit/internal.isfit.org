@@ -33,10 +33,11 @@ class ContactLogsController < ApplicationController
     end
   end
 
-  # GET /contact_logs/1/edit
-  def edit
-    @contact_log = ContactLog.find(params[:id])
-  end
+# TODO Disabler edit inntil vi har tid til å fikse det
+#  # GET /contact_logs/1/edit
+#  def edit
+#    @contact_log = ContactLog.find(params[:id])
+#  end
 
   # POST /contact_logs
   # POST /contact_logs.json
@@ -61,19 +62,19 @@ class ContactLogsController < ApplicationController
 
   # PUT /contact_logs/1
   # PUT /contact_logs/1.json
-  def update
-    @contact_log = ContactLog.find(params[:id])
-
-    respond_to do |format|
-      if @contact_log.update_attributes(params[:contact_log])
-        format.html { redirect_to @contact_log, notice: 'Contact log was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @contact_log.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+#  def update
+#    @contact_log = ContactLog.find(params[:id])
+#
+#    respond_to do |format|
+#      if @contact_log.update_attributes(params[:contact_log])
+#        format.html { redirect_to @contact_log, notice: 'Contact log was successfully updated.' }
+#        format.json { head :no_content }
+#      else
+#        format.html { render action: "edit" }
+#        format.json { render json: @contact_log.errors, status: :unprocessable_entity }
+#      end
+#    end
+#  end
 
   # DELETE /contact_logs/1
   # DELETE /contact_logs/1.json

@@ -1,7 +1,7 @@
 <div class="pull-right">
 <%= link_to 'Back', contact_logs_path, confirm: 'This will cancel all changes. Are you sure?', method: :get, :class => "btn"  %>
 </div>
-<h1>New Contact Log</h1>
+<h1>New Contact Log from <%= @contact_log_unit.company_name %></h1>
 
 <%= render 'form' %>
 

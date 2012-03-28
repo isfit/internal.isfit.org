@@ -1,7 +1,7 @@
 <div class="pull-right">
-<%= link_to 'Back', contact_log_units_path, confirm: 'This will cancel all changes. Are you sure?', method: :get, :class => "btn"  %>
+<%= link_to 'Back', "javascript:history.back()", confirm: 'This will cancel all changes. Are you sure?', method: :get, :class => "btn"  %>
 </div>
-<h1>Edit Contact Log Unit</h1>
+<h1>Edit Contact Person</h1>
 
 <%= render 'form' %>
 

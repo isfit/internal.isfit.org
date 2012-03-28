@@ -1,2 +1,9 @@
-<h1>ContactLogs#show</h1>
-<p>Find me in app/views/contact_logs/show.html.erb</p>
+<h1>Contactperson</h1>
+<div class="contact-person">
+<table>
+  <tr><td>First name:</td><td><%= @contact_log_person.first_name %></td></tr>
+  <tr><td>Last name:</td><td><%= @contact_log_person.last_name %></td></tr>
+  <tr><td>Email:</td><td><%= @contact_log_person.email %></td></tr>
+  <tr><td>Phone: </td><td><%= @contact_log_person.phone %> </tr>
+</table>
+</div>
