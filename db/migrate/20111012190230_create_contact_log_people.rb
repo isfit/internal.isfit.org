@@ -5,10 +5,9 @@ class CreateContactLogPeople < ActiveRecord::Migration
       t.string :last_name
       t.string :email
       t.string :phone
-      t.references :user
+      t.integer :contact_log_unit_id
 
       t.timestamps
     end
-    add_index :contact_log_people, :user_id
   end
 end
