@@ -1,14 +1,14 @@
 class ContactLogPeopleController < ApplicationController
   # GET /contact_log_people
   # GET /contact_log_people.json
-  def index
-    @contact_log_people = ContactLogPerson.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @contact_log_people }
-    end
-  end
+#  def index
+#    @contact_log_people = ContactLogPerson.all
+#
+#    respond_to do |format|
+#      format.html # index.html.erb
+#      format.json { render json: @contact_log_people }
+#    end
+#  end
 
   # GET /contact_log_people/1
   # GET /contact_log_people/1.json
