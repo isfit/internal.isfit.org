@@ -11,7 +11,6 @@ class Applicant < ActiveRecord::Base
 #    joins("JOIN groups g1 ON g1.id = #{first_position.group_id}, JOIN groups g2 ON g2.id = #{second_position.group_id}, JOIN groups g3 ON g3.id =  #{third_position.group_id}").where("g1.id = #{user.position.group_id} OR g2.id "
 
   def self.applicants_in_same_section(user)
-    puts "a bajs"
     applicants = Applicant.where(deleted: false).all
     app = Array.new
     applicants.each do |a|
