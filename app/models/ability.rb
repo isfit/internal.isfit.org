@@ -12,6 +12,9 @@ class Ability
     if user.role?(:leader)
       can :manage, Applicant
       can :manage, Article
+      can :manage, ContactLogPerson
+      can :manage, ContactLogUnit
+      can :manage, ContactLog
     end
     if user.role?(:wingman)
       can :manage, Applicant
