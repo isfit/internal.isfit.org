@@ -37,7 +37,7 @@ class SessionsController < ApplicationController
     if user.save!
 	user.changeLdapPassword(new_pass)
     	UserMailer.forgot_password_mail(user.private_email, new_pass).deliver
-        return redirect_to login_path, :notice => "A new password has been sent to your private email" + new_pass
+        return redirect_to login_path, :notice => "A new password has been sent to your private email"
     else
 	flash.now[:alert] = "Could not generate new password please contact orakel@isfit.org"
 	return render :forgot_password	
