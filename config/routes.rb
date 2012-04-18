@@ -1,5 +1,7 @@
 InternalIsfitOrg::Application.routes.draw do
 
+  resources :zombies
+
   resources :spp_pages
 
   scope "/wiki" do
