@@ -17,7 +17,7 @@
         <td><%= "#{applicant.first_position.title_no}" %></td>
         <td><%= applicant.interview_place_1 %></td>
         <td><%= applicant.interview_time_1 %></td>
-        <td><%= link_to User.find(applicant.interviewer_id_1_2).full_name, user_path(applicant.interviewer_id_1_2) %></td>
+        <td><%= link_to(User.find(applicant.interviewer_id_1_2).full_name, user_path(applicant.interviewer_id_1_2)) if applicant.interviewer_id_1_2 %></td>
       </tr>
     <% end %>
     <% @applicants_2.each do |applicant| %>
@@ -26,7 +26,7 @@
         <td><%= "#{applicant.second_position.title_no unless applicant.second_position.nil?}" %></td>
         <td><%= applicant.interview_place_2 %></td>
         <td><%= applicant.interview_time_2 %></td>
-        <td><%= link_to User.find(applicant.interviewer_id_2_2).full_name, user_path(applicant.interviewer_id_2_2) %></td>
+        <td><%= link_to(User.find(applicant.interviewer_id_2_2).full_name, user_path(applicant.interviewer_id_2_2)) if applicant.interviewer_id_2_2 %></td>
       </tr>
     <% end %>
     <% @applicants_3.each do |applicant| %>
@@ -35,7 +35,7 @@
         <td><%= "#{applicant.third_position.title_no unless applicant.third_position.nil?}" %></td>
         <td><%= applicant.interview_place_3 %></td>
         <td><%= applicant.interview_time_3 %></td>
-        <td><%= link_to User.find(applicant.interviewer_id_3_2).full_name, user_path(applicant.interviewer_id_3_2) %></td>
+        <td><%= link_to(User.find(applicant.interviewer_id_3_2).full_name, user_path(applicant.interviewer_id_3_2)) if applicant.interviewer_id_3_2%></td>
       </tr>
     <% end %>
   </tbody>
