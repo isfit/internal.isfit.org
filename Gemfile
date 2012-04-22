@@ -34,12 +34,14 @@ group :assets do
 #  gem 'bootstrap-sass'
 end
 
+group :production do 
+  gem 'libnotify'
+  gem 'rb-inotify'
+end
 
 group :development do
 #  gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'nifty-generators'
-  gem 'libnotify'
-  gem 'rb-inotify'
   gem 'yard'
 end
 
