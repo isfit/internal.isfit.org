@@ -62,16 +62,18 @@ module ApplicationHelper
 
   # Check if current_user can access link
   #
+  # The rescue block is there for a reason, and shortly explained here:
+  # The thought behind link.controller is that a controller has many actions that can be linked to. (if it is the best approach is an other discussion)
+  # Anyway, CanCan accepts Model-classes as the 2. argument so the controller-name will be classified to the model behind the controller.
+  # This means that a controller without a model will throw an exception here. This is "easy" bypassed with the rescue.
+  # In CanCan 2.0 the behavior should be changed from Classes to symbols as the 2. argument, and it could be solved that way.
+  # In the mean-time, all actions on a controller without a model would get true returned from this method
   # @param [InternalTab] A link to check
   # @return [true|false] depending on access
 
   def can_access_link?(link)
-    begin
-      tmp = can?(link.action.to_sym, Kernel.const_get(link.controller.classify))
-    rescue
-      tmp = true
-    end
-    link.controller && link.action && tmp   
+    access = can?(link.action.to_sym, Kernel.const_get(link.controller.classify)) rescue true
+    link.controller && link.action && access   
   end
 
 

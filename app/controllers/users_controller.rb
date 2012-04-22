@@ -11,7 +11,8 @@ class UsersController < ApplicationController
       if params[:username] == "yourmama"
         render action: 'yourmama', layout:false
       else
-        redirect_to root_path, alert: "Could not find user with username #{params[:username]}"
+#	redirect_to "http://twitter.com/#{params[:username]}"
+        redirect_to root_path, alert: "Could not find user with username #{params[:username]}. Try <a href=\"http://twitter.com/#{params[:username]}\">Twitter</a> instead?"
       end
     end
   end
