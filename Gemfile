@@ -38,14 +38,15 @@ end
 group :development do
 #  gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'nifty-generators'
-  gem 'libnotify'
-  gem 'rb-inotify'
+#  gem 'libnotify' if /linux/ =~ RUBY_PLATFORM
+#  gem 'growl' if /darwin/ =~ RUBY_PLATFORM
+#  gem 'rb-inotify'
   gem 'yard'
 end
 
 group :development, :test do
   gem 'mocha'
-  gem 'capybara-webkit'
+#  gem 'capybara-webkit'
   gem 'rspec-rails'
   #gem 'webrat'
   gem 'database_cleaner'
