@@ -1,7 +1,6 @@
 InternalIsfitOrg::Application.routes.draw do
 
   resources :workshops
-
   resources :spp_pages
 
   scope "/wiki" do
