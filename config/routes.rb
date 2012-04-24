@@ -14,8 +14,10 @@ InternalIsfitOrg::Application.routes.draw do
 
   resources :wiki_categories
 
-  get 'organization_chart', controller: "organization_chart", action: "index"
-  get "organization_chart/:year", controller: "organization_chart", action: "index"
+  get 'organization_chart(:.format)', controller: "organization_chart", action: "index"
+  get "organization_chart/:year(:.format)", controller: "organization_chart", action: "index"
+  get "organization_chart/:year/:section(:.format)", controller: "organization_chart", action: "index"
+  get "organization_chart/:year/:section/:group(:.format)", controller: "organization_chart", action: "index"
 
   get 'oauth/start'
   get 'oauth/callback'

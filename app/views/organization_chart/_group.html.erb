@@ -1,6 +1,7 @@
 <h1><%= group.name_en %></h1>
 <p>
 <b>Email:</b> <%= group.email %><br>
+<a href="/organization_chart/<%= (group.festival.nil?)? 2013 : group.festival.year %>/<%= (group.section.nil?)? 0 : group.section.id %>/<%= group.id %>.vcard"><%= image_tag "icon/vcard.png" %></a> 
 </p>
 <h2>Positions</h2>
 <% group.positions.each do |position| %>
