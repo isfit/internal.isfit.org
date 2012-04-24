@@ -26,6 +26,7 @@ gem 'oauth2'
 gem 'net-ldap'
 gem 'jbuilder'
 gem 'private_pub'
+gem 'simple_form'
 
 group :assets do
   gem 'sass-rails'
@@ -42,18 +43,15 @@ end
 group :development do
 #  gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'nifty-generators'
-<<<<<<< HEAD
 #  gem 'libnotify' if /linux/ =~ RUBY_PLATFORM
 #  gem 'growl' if /darwin/ =~ RUBY_PLATFORM
 #  gem 'rb-inotify'
-=======
->>>>>>> 16bca8921fd47cd50723908d992db5ab4913a3b2
   gem 'yard'
 end
 
 group :development, :test do
   gem 'mocha'
-#  gem 'capybara-webkit'
+  gem 'capybara-webkit'
   gem 'rspec-rails'
   #gem 'webrat'
   gem 'database_cleaner'
