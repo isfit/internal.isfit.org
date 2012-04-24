@@ -37,7 +37,6 @@ class WorkshopsController < ApplicationController
     @workshop = Workshop.find(params[:id])
 
     @workshop_leaders = User.in_festival
-    #@workshop_leaders = User.where('username = "trondkbr"', '')
   end
 
   # POST /workshops
