@@ -1,0 +1,16 @@
+<%= bootstrap_form_for(@workshop) do |f| %>
+  <%= f.error_messages %>
+  <%= f.fieldset "workshop" do %>
+          <%= f.text_field :name %>
+          <%= f.text_area :ingress, :rows=>3 %>
+          <%= f.text_area :body %>
+          <%= f.number_field :number %>
+          <%= f.check_box :published %>
+          <%= f.check_box :got_comments %>
+          <%= f.file_field :workshop_image %>
+
+          
+
+      <% end %>
+  <%= f.submit "Submit", class: "btn" %>
+<% end %>

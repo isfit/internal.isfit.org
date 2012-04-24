@@ -51,9 +51,6 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
-    capybara-webkit (0.10.1)
-      capybara (>= 1.0.0, < 1.2)
-      json
     childprocess (0.3.1)
       ffi (~> 1.0.6)
     chunky_png (1.2.5)
@@ -124,7 +121,6 @@ GEM
       railties (>= 3.2.0, < 5.0)
       thor (~> 0.14)
     json (1.6.5)
-    libnotify (0.7.2)
     libv8 (3.3.10.4)
     mail (2.4.3)
       i18n (>= 0.4.0)
@@ -184,8 +180,6 @@ GEM
       rdoc (~> 3.4)
       thor (~> 0.14.6)
     rake (0.9.2.2)
-    rb-inotify (0.8.8)
-      ffi (>= 0.5.0)
     rdoc (3.12)
       json (~> 1.4)
     rmagick (2.13.1)
@@ -248,7 +242,6 @@ DEPENDENCIES
   cancan
   capistrano
   capybara
-  capybara-webkit
   coffee-rails
   compass (>= 0.12.rc.0)
   database_cleaner
@@ -257,7 +250,6 @@ DEPENDENCIES
   guard-spork
   jbuilder
   jquery-rails
-  libnotify
   memcache-client
   mini_magick
   mocha
@@ -270,7 +262,6 @@ DEPENDENCIES
   rack
   rails (= 3.2.2)
   rake
-  rb-inotify
   rmagick
   rspec-rails
   sass-rails

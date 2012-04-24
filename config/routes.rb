@@ -1,7 +1,6 @@
 InternalIsfitOrg::Application.routes.draw do
 
-  resources :zombies
-
+  resources :workshops
   resources :spp_pages
 
   scope "/wiki" do
@@ -91,6 +90,10 @@ InternalIsfitOrg::Application.routes.draw do
       get 'statistics'
       get 'interviews'
     end
+  end
+
+  resources :workshops do
+    resources :workshops_images
   end
 
   resources :photos do

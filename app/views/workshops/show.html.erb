@@ -1,0 +1,42 @@
+<div class="pull-right">
+<%= link_to 'Edit', edit_workshop_path(@workshop), :class => "btn" %>
+<%= link_to 'Back', workshops_path, :class => "btn" %>
+</div>
+  <p>
+  <b>Name:</b>
+  <%= @workshop.name %>
+  </p>
+
+  <p>
+  <b>Ingress:</b>
+  <%= @workshop.ingress %>
+  </p>
+
+  <p>
+  <b>Body:</b>
+  <%= @workshop.body %>
+  </p>
+
+  <p>
+  <b>Number:</b>
+  <%= @workshop.number %>
+  </p>
+
+  <p>
+  <b>User:</b>
+  <%= @workshop.user.username %>
+  </p>
+
+  <p>
+  <b>Published:</b>
+  <%= @workshop.published %>
+  </p>
+
+  <p>
+  <b>Got comments:</b>
+  <%= @workshop.got_comments %>
+  </p>
+
+  <%= image_tag @workshop.workshop_image.url(:original) %>
+
+

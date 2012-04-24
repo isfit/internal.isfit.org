@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120328210832) do
+ActiveRecord::Schema.define(:version => 20120423180403) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -302,8 +302,8 @@ ActiveRecord::Schema.define(:version => 20120328210832) do
   end
 
   create_table "roles_users", :id => false, :force => true do |t|
-    t.integer  "role_id",                   :null => false
-    t.integer  "user_id",    :default => 0, :null => false
+    t.integer  "role_id",    :null => false
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -379,7 +379,8 @@ ActiveRecord::Schema.define(:version => 20120328210832) do
 
   add_index "static_pages", ["user_id"], :name => "index_static_pages_on_user_id"
 
-  create_table "users", :force => true do |t|
+  create_table "users", :id => false, :force => true do |t|
+    t.integer  "id",                                        :default => 0, :null => false
     t.string   "given_name"
     t.string   "family_name"
     t.date     "date_of_birth"
@@ -452,5 +453,23 @@ ActiveRecord::Schema.define(:version => 20120328210832) do
   add_index "wiki_pages", ["slug"], :name => "index_wiki_pages_on_slug"
   add_index "wiki_pages", ["user_id"], :name => "index_wiki_pages_on_user_id"
   add_index "wiki_pages", ["wiki_category_id"], :name => "index_wiki_pages_on_wiki_category_id"
+
+  create_table "workshops", :force => true do |t|
+    t.string   "name"
+    t.text     "ingress"
+    t.text     "body"
+    t.integer  "number"
+    t.integer  "user_id"
+    t.boolean  "published"
+    t.boolean  "got_comments"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+    t.string   "workshop_image_file_name"
+    t.string   "workshop_image_content_type"
+    t.integer  "workshop_image_file_size"
+    t.datetime "workshop_image_updated_at"
+  end
+
+  add_index "workshops", ["user_id"], :name => "index_workshops_on_user_id"
 
 end
