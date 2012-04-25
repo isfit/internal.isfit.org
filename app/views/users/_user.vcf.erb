@@ -5,5 +5,5 @@ N:<%=user.family_name%>;<%=user.given_name%>;;;
 <% if user.phone %>
 TEL;TYPE=CELL:<%=user.phone%>
 <% end %>
-EMAIL;TYPE=INTERNET:<%=user.username%>@isfit.org
+EMAIL;TYPE=INTERNET:<%=user.username.rstrip%>@isfit.org
 END:VCARD
