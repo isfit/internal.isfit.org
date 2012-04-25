@@ -1,7 +1,7 @@
 <h1><%= section.name_en %></h1>
 <p>
 <b>Email:</b> <%= mail_to section.email %><br>
-<a href="/organization_chart/<%= (section.festival.nil?)? 2013 : section.festival.year %>/<%= section.id %>.vcard"><%= image_tag "icon/vcard.png" %></a> 
+<a href="/organization_chart/<%= (section.festival.nil?)? 2013 : section.festival.year %>/<%= section.id %>.vcf"><%= image_tag "icon/vcard.png" %></a> 
 </p>
 <h2>Groups</h2>
 <div class="tabbable">

@@ -1,6 +1,10 @@
 class OrganizationChartController < ApplicationController
   def index
-    year = params[:year].nil? ? "2013":"#{params[:year]}"
+    year = "2013"
+    unless params[:year].to_i%2 == 0
+	year = params[:year]
+    end
+    puts year
     @festival = Festival.where(year: year).first
     @groups = @festival.groups
     @sections = @festival.sections
@@ -15,7 +19,7 @@ class OrganizationChartController < ApplicationController
       @users  = @festival.users
     end
     respond_to do |format|
-      format.vcard { render @users}
+      format.vcf { render @users.uniq{|x| x.id}}
       format.html
     end
   end
