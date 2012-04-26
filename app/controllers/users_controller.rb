@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     else
       @user = User.find(params[:id])
       respond_to do |format|
-        format.vcard { render @user}
+        format.vcf { render @user}
         format.html
       end
     end
