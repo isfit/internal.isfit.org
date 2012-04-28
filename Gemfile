@@ -27,7 +27,9 @@ gem 'net-ldap'
 gem 'jbuilder'
 gem 'private_pub'
 gem 'simple_form'
-gem 'exception_notification', :require => 'exception_notifier'
+
+# Denne spammer oss med mail atm... Må tunes :P
+# gem 'exception_notification', :require => 'exception_notifier'
 
 group :assets do
   gem 'sass-rails'
