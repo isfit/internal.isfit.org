@@ -41,5 +41,9 @@
     <%= f.check_box :fruit_allergy %>
     <%= f.text_field :other_allergy %>
   </fieldset>
+  <fieldset>
+    <legend>Other</legend>
+    <%= f.local_paper, "hint-title" => "Local newspaper", "hint-content" => "Please enter your local newspaper, so we can try to publish stories about ISFiT in them" %>
+  </fieldset>
     <%= f.submit (@user.new_record? ? "Sign up" : "Update"), class: "btn-primary btn" %>
 <% end %>
