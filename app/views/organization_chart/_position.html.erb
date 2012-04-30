@@ -1,7 +1,7 @@
 <div class="position">
     <h3><%= position.title_en %></h3>
     <% position.users.each do |user| %>
-        <div class="user <%= "has_facebook" if user.facebook_id %>">
+        <div class="user has_facebook">
             <% if user.facebook_id %>
                 <img class="pull-left" src="http://graph.facebook.com/<%= user.facebook_id %>/picture">
             <% else %>

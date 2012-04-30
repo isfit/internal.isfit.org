@@ -12,10 +12,10 @@ InternalIsfitOrg::Application.routes.draw do
 
   resources :wiki_categories
 
-  get 'organization_chart(:.format)', controller: "organization_chart", action: "index"
-  get "organization_chart/section/:id(:.format)", controller: "organization_chart", action: "section"
-  get "organization_chart/group/:id(:.format)", controller: "organization_chart", action: "group"
-  get "organization_chart/board/:id(:.format)", controller: "organization_chart", action: "board"
+  get 'organization_chart(.:format)', controller: "organization_chart", action: "index", :as => "organization_chart"
+  get "organization_chart/section/:id(.:format)", controller: "organization_chart", action: "section", :as => "organization_chart_section"
+  get "organization_chart/group/:id(.:format)", controller: "organization_chart", action: "group", :as => "organization_chart_group"
+  get "organization_chart/board/:id(.:format)", controller: "organization_chart", action: "board", :as => "organization_chart_board"
 
   get 'oauth/start'
   get 'oauth/callback'

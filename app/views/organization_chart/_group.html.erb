@@ -1,4 +1,4 @@
-<h1><%= group.name_en %></h1>
+<h1><%= group.name_en %> <%= link_to organization_chart_group_path(group, :format => :vcf) do %><%= image_tag "icon/vcard.png" %><% end %></h1>
 <p>
     <% if group.email %>
         <b>Email:</b> <%= mail_to group.email %><br>

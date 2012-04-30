@@ -1,4 +1,4 @@
-<h1>Organization Chart of ISFiT <%= CURRENT_FESTIVAL_YEAR %></h1>
+<h1>Organization Chart of ISFiT <%= CURRENT_FESTIVAL_YEAR %> <%= link_to organization_chart_path(:format => :vcf) do %><%= image_tag "icon/vcard.png" %><% end %></h1>
 
 <div class="tabbable" id="org-chart">
     <ul class="nav nav-tabs">
