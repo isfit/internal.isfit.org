@@ -52,7 +52,12 @@
   <% end %>
   </p>
   <p>
-  <% if user.postal_code %>
+<% if user.local_paper %>
+  <b>Local newspaper:</b> <%= user.local_paper %><br>
+<% end %>
+  </p>
+  <p>
+<% if user.postal_code %>
     <b>Postal code:</b> <%= "#{user.postal_code} #{user.city}" %><br>
   <% end %>
   </p>
