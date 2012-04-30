@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    if params[:id] == 1
+    if params[:id] == "1"
       redirect_to root_url, notice: "Placeholdersen is only a figment of your imagination."
     else
       @user = User.find(params[:id])
