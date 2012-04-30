@@ -1,7 +1,7 @@
 class OrganizationChartController < ApplicationController
 
   def index
-    @board = Group.find_by_name_en("Board")
+    @board = Festival.in_progress.groups.first
     @sections = Festival.in_progress.sections
   end
 
