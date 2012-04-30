@@ -26,6 +26,10 @@ gem 'oauth2'
 gem 'net-ldap'
 gem 'jbuilder'
 gem 'private_pub'
+gem 'simple_form'
+
+# Denne spammer oss med mail atm... Må tunes :P
+ gem 'exception_notification', :require => 'exception_notifier'
 
 group :assets do
   gem 'sass-rails'
@@ -42,6 +46,9 @@ end
 group :development do
 #  gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'nifty-generators'
+#  gem 'libnotify' if /linux/ =~ RUBY_PLATFORM
+#  gem 'growl' if /darwin/ =~ RUBY_PLATFORM
+#  gem 'rb-inotify'
   gem 'yard'
 end
 

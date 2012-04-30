@@ -9,6 +9,10 @@
       <button id="facebook-button" class="btn-info btn">Facebook</button>
     </a>
  <% end %>
+    <a href="/users/<%=user.id%>.vcf">
+      <button id="vcard-button" class="btn-info btn">VCard</button>
+    </a>
+
 </div>
 <div id="twitter" class="modal fade">
   <div class="modal-header">
@@ -48,7 +52,12 @@
   <% end %>
   </p>
   <p>
-  <% if user.postal_code %>
+<% if user.local_paper %>
+  <b>Local newspaper:</b> <%= user.local_paper %><br>
+<% end %>
+  </p>
+  <p>
+<% if user.postal_code %>
     <b>Postal code:</b> <%= "#{user.postal_code} #{user.city}" %><br>
   <% end %>
   </p>

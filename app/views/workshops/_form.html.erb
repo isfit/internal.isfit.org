@@ -1,0 +1,16 @@
+<%= simple_form_for(@workshop, :html => { :class => 'form-horizontal' })  do |f| %>
+  <%= f.error_messages %>
+          <%= f.input :name, :input_html => { :class => "span4" } %>
+          <%= f.input :ingress, :input_html => { :class => "span4", :rows=>3} %>
+          <%= f.input :body, :input_html => { :class => "span4" } %>
+          <%= f.input :workshop_image, :input_html => { :class => "span4" }%>
+
+          <%= f.input :number %>
+          <%= f.input :published, :as => :boolean %>
+          <%= f.input :got_comments, :as=> :boolean %>
+
+          
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= submit_tag 'Cancel', :type => :reset, :class => "btn btn-danger" %>
+<% end %>

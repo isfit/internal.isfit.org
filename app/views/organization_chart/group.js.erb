@@ -1,0 +1,5 @@
+$(document).ready(function(){
+    $("#org-chart-section > ul > li").removeClass("active");
+    $("#group_"+<%= @group.id %>).parent().addClass("active");
+    $("#org-chart-section > .tab-content").html("<%= escape_javascript(render partial: "group", locals: {group: @group}) %>");
+});

@@ -31,6 +31,10 @@ class UsersController < ApplicationController
       redirect_to root_url, notice: "Placeholdersen is only a figment of your imagination."
     else
       @user = User.find(params[:id])
+      respond_to do |format|
+        format.vcf { render @user}
+        format.html
+      end
     end
 
   end
