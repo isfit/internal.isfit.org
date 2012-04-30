@@ -1,0 +1,5 @@
+$(document).ready(function(){
+    $("#org-chart > ul > li").removeClass("active");
+    $("#section_"+<%= @board.id %>).parent().addClass("active");
+    $("#org-chart > .tab-content").html("<%= escape_javascript(render partial: "group", locals: {group: @board}) %>");
+});

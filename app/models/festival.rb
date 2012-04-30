@@ -12,4 +12,8 @@ class Festival < ActiveRecord::Base
     end
     return @users
   end
+
+  def self.in_progress
+    find_by_year(CURRENT_FESTIVAL_YEAR)
+  end
 end

@@ -1,21 +1,8 @@
 <h1><%= group.name_en %></h1>
 <p>
-<b>Email:</b> <%= group.email %><br>
-<a href="/organization_chart/<%= (group.festival.nil?)? 2013 : group.festival.year %>/<%= (group.section.nil?)? 0 : group.section.id %>/<%= group.id %>.vcf"><%= image_tag "icon/vcard.png" %></a> 
+    <% if group.email %>
+        <b>Email:</b> <%= mail_to group.email %><br>
+    <% end %>
 </p>
 <h2>Positions</h2>
-<% group.positions.each do |position| %>
-  <div class="position">
-    <h3><%= position.title_en %></h3>
-    <% position.users.each do |user| %>
-      <% if user.facebook_id or true %>
-        <div class="user">
-          <!--
-          <img class="pull-left" src="http://graph.facebook.com/dagingeaas/picture">
-          -->
-          <p><%= link_to user.full_name, user_path(user) %></p>
-      </div>
-      <% end %>
-    <% end %>
-  </div>
-<% end %>
+<%= render partial: "position", collection: group.positions %>

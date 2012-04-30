@@ -28,6 +28,9 @@ gem 'jbuilder'
 gem 'private_pub'
 gem 'simple_form'
 
+# Denne spammer oss med mail atm... Må tunes :P
+# gem 'exception_notification', :require => 'exception_notifier'
+
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
