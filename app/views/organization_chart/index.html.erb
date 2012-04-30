@@ -2,12 +2,12 @@
 
 <div class="tabbable" id="org-chart">
     <ul class="nav nav-tabs">
-        <li><%= link_to @board.name_en, {action: "board", id: @board.id}, remote: true, id: "section_#{@board.id}"  %></li>
+        <li class="active"><%= link_to @board.name_en, {action: "board", id: @board.id}, remote: true, id: "section_#{@board.id}"  %></li>
         <% @sections.each do |section| %>
             <li><%= link_to section.name_en, {action: "section", id: section.id }, remote: true, id: "section_#{section.id}" %></li>
         <% end %>
     </ul>
     <div class="tab-content">
-
+        <%= render partial: "group", locals: { group: @board } %>
     </div>
 </div>
