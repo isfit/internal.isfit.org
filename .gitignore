@@ -21,3 +21,5 @@ pickle-email-*.html
 public/system
 /.idea/
 .yardoc
+nbproject/
+
