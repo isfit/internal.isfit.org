@@ -5,6 +5,7 @@ InternalIsfitOrg::Application.routes.draw do
   get "who_am_i/game"
 
   get "who_am_i/highscore"
+  get "what_am_i/show"
 
   resources :spp_pages
 
