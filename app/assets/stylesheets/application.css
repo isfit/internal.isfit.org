@@ -12,5 +12,6 @@
  *= require "jqueryui"
  *= require "room_bookings"
  *= require "internal_tabs"
+ *= require "organization_chart"
  *= require_self
 */

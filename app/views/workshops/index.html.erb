@@ -1,0 +1,37 @@
+<div class="pull-right">
+  <%= link_to 'New Workshop', new_workshop_path, :class => "btn btn-primary"%>
+</div>
+<h1>Workshops</h1>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Ingress</th>
+      <th>Body</th>
+      <th>Number</th>
+      <th>User</th>
+      <th>Published</th>
+      <th>Got comments</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <% @workshops.each do |workshop| %>
+    <tr>
+      <td><%= workshop.name %></td>
+      <td><%= workshop.ingress %></td>
+      <td><%= workshop.body %></td>
+      <td><%= workshop.number %></td>
+      <td><%= workshop.user.username %></td>
+      <td><%= workshop.published %></td>
+      <td><%= workshop.got_comments %></td>
+      <td><%= link_to 'Show', workshop, :class => "btn-primary btn" %></td>
+      <td><%= link_to 'Edit', edit_workshop_path(workshop), :class => "btn" %></td>
+      <td><%= link_to 'Destroy', workshop, confirm: 'Are you sure?', method: :delete, :class => "btn btn-danger" %></td>
+    </tr>
+  <% end %>
+</table>
+

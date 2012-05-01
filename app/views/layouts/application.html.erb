@@ -99,7 +99,7 @@
             <% if notice or alert %>
               <div class="alert alert-<%= notice ? "success":"error" %>">
                 <a href="#" class="close" data-dismiss="alert">x</a>
-                <i class="icon-<%= notice ? "success":"warning-sign" %>"></i> <strong><%= notice ? notice : alert %></strong>
+                <i class="icon-<%= notice ? "success":"warning-sign" %>"></i> <strong><%= notice ? notice : raw(alert) %></strong>
               </div>
             <% end %>
             <%= content_tag :h1, yield(:title) if show_title? %>

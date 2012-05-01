@@ -1,5 +1,11 @@
 InternalIsfitOrg::Application.routes.draw do
 
+  get "who_am_i/index"
+
+  get "who_am_i/game"
+
+  get "who_am_i/highscore"
+
   resources :spp_pages
 
   scope "/wiki" do
@@ -12,8 +18,10 @@ InternalIsfitOrg::Application.routes.draw do
 
   resources :wiki_categories
 
-  get 'organization_chart', controller: "organization_chart", action: "index"
-  get "organization_chart/:year", controller: "organization_chart", action: "index"
+  get 'organization_chart(.:format)', controller: "organization_chart", action: "index", :as => "organization_chart"
+  get "organization_chart/section/:id(.:format)", controller: "organization_chart", action: "section", :as => "organization_chart_section"
+  get "organization_chart/group/:id(.:format)", controller: "organization_chart", action: "group", :as => "organization_chart_group"
+  get "organization_chart/board/:id(.:format)", controller: "organization_chart", action: "board", :as => "organization_chart_board"
 
   get 'oauth/start'
   get 'oauth/callback'
@@ -87,6 +95,10 @@ InternalIsfitOrg::Application.routes.draw do
       get 'statistics'
       get 'interviews'
     end
+  end
+
+  resources :workshops do
+    resources :workshops_images
   end
 
   resources :photos do

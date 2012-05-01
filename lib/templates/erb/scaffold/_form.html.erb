@@ -1,9 +1,13 @@
-<%%= bootstrap_form_for(@<%= singular_table_name %>) do |f| %>
-  <%%= f.error_messages %>
-  <%%= f.fieldset "<%= singular_table_name %>" do %>
-    <% attributes.each do |attribute| -%>
-      <%%= f.<%= attribute.field_type %> :<%= attribute.name %> %>
-    <% end -%>
-  <%% end %>
-  <%%= f.submit "Submit", class: "btn" %>
+<%%= simple_form_for(@<%= singular_table_name %>) do |f| %>
+  <%%= f.error_notification %>
+
+  <div class="form-inputs">
+  <%- attributes.each do |attribute| -%>
+    <%%= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %> %>
+  <%- end -%>
+  </div>
+
+  <div class="form-actions">
+    <%%= f.button :submit %>
+  </div>
 <%% end %>

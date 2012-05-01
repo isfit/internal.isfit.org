@@ -1,30 +1,13 @@
-<h1>Organization Chart</h1>
-<p>Here you will find the organizational chart of ISFiT <%= @festival.year %>.
+<h1>Organization Chart of ISFiT <%= CURRENT_FESTIVAL_YEAR %> <%= link_to organization_chart_path(:format => :vcf) do %><%= image_tag "icon/vcard.png" %><% end %></h1>
 
-
-<div class="tabbable">
-  <ul class="nav nav-tabs">
-    <% first = true %>
-    <% @groups.each do |group| %>
-      <li <%= 'class=active' if first %>><%= link_to group.name_en, "##{transliterate group.name_en}", "data-toggle" => "tab" %></li>
-      <% first = false %>
-    <% end %>
-    <% @sections.each do |section| %>
-      <li><%= link_to section.name_en, "##{transliterate section.name_en}", "data-toggle" => "tab" %></li>
-    <% end %>
-  </ul>
-  <div class="tab-content">
-    <% first = true %>
-    <% @groups.each do |group| %>
-      <div class="tab-pane <%= "active" if first %>" id="<%= transliterate group.name_en %>">
-        <%= render partial: "group", locals: {group: group} %>
-     </div>
-      <% first = false %>
-      <% @sections.each do |section| %>
-        <div class="tab-pane" id="<%= transliterate section.name_en %>">
-          <%= render partial: "section", locals:{section: section} %>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
+<div class="tabbable" id="org-chart">
+    <ul class="nav nav-tabs">
+        <li class="active"><%= link_to @board.name_en, {action: "board", id: @board.id}, remote: true, id: "section_#{@board.id}"  %></li>
+        <% @sections.each do |section| %>
+            <li><%= link_to section.name_en, {action: "section", id: section.id }, remote: true, id: "section_#{section.id}" %></li>
+        <% end %>
+    </ul>
+    <div class="tab-content">
+        <%= render partial: "group", locals: { group: @board } %>
+    </div>
 </div>
