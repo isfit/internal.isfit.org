@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< Updated upstream
-ActiveRecord::Schema.define(:version => 20120430182015) do
-=======
 ActiveRecord::Schema.define(:version => 20120430184250) do
->>>>>>> Stashed changes
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -519,8 +515,6 @@ ActiveRecord::Schema.define(:version => 20120430184250) do
     t.string   "facebook_token"
   end
 
-<<<<<<< Updated upstream
-=======
   create_table "what_am_is", :force => true do |t|
     t.integer  "correct_user_id"
     t.boolean  "answer"
@@ -531,7 +525,6 @@ ActiveRecord::Schema.define(:version => 20120430184250) do
 
   add_index "what_am_is", ["user_id"], :name => "index_what_am_is_on_user_id"
 
->>>>>>> Stashed changes
   create_table "who_am_is", :force => true do |t|
     t.integer  "correct_user_id"
     t.boolean  "answer"
