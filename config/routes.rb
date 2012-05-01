@@ -1,14 +1,11 @@
 InternalIsfitOrg::Application.routes.draw do
 
-<<<<<<< Updated upstream
   get "who_am_i/index"
 
   get "who_am_i/game"
 
   get "who_am_i/highscore"
-=======
   get "what_am_i/show"
->>>>>>> Stashed changes
 
   resources :spp_pages
 
