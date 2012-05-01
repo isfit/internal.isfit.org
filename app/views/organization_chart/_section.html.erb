@@ -8,6 +8,6 @@
         <%= render :partial => "group_link", :collection => section.groups %>
     </ul>
     <div class="tab-content">
-
+        <%= render partial: "group", locals: { group: section.groups.first } %>
     </div>
 </div>

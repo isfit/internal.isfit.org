@@ -2,4 +2,5 @@ $(document).ready(function(){
     $("#org-chart > ul > li").removeClass("active");
     $("#section_"+<%= @section.id %>).parent().addClass("active");
     $("#org-chart > .tab-content").html("<%= escape_javascript(render partial: "section", locals: {section: @section}) %>");
+    $("#org-chart-section > ul > li:first-child").addClass("active");
 });

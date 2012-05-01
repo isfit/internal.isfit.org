@@ -33,7 +33,7 @@ class InternalTabsController < ApplicationController
   end
 
   def get_actions
-    @actions = find_controller_actions(params[:controller_js].camelize)
+    @actions = find_controller_actions(params[:controller_js])
     render layout: false
   end
 
@@ -46,6 +46,7 @@ class InternalTabsController < ApplicationController
 
   def find_controller_actions(cont)
     return [] if cont.blank?
+    cont = cont.camelize
     ret = []
     cont += "Controller"
     (eval("#{cont}.action_methods") -
