@@ -1,5 +1,11 @@
 InternalIsfitOrg::Application.routes.draw do
 
+  get "who_am_i/index"
+
+  get "who_am_i/game"
+
+  get "who_am_i/highscore"
+
   resources :spp_pages
 
   scope "/wiki" do
