@@ -1,19 +1,19 @@
-<h1>Kontaktgrupper</h1>
+<h1>Contact organizations</h1>
 
 <div class="contact-log-unit">
-<p>  <%= link_to "Create new Contactunit", new_contact_log_unit_path, :class => "primary btn" %></p>
-<table class="table table-bordered table-striped">
+<p>  <%= link_to "Register new organization", new_contact_log_unit_path, :class => "primary btn" %></p>
+<table class="table table-bordered">
   <thead>
   <tr>
-    <th>Company name</th>
+    <th>Organization name</th>
     <th></th>
   </tr>
   </thead>
   <% for contact_log_unit in @contact_log_units %>
-    <tr>
+    <tr bgcolor ="<%= contact_log_unit.contact_log_status ? contact_log_unit.contact_log_status.color_code : "#E0E0E0"  %>">
       <td><%= contact_log_unit.company_name %>
 
-      <td width="80px">
+      <td width="90px">
         <div class="btn-group">
           <%= link_to("Show", contact_log_unit, class: "btn btn-info") %>
           <a href="#" class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>

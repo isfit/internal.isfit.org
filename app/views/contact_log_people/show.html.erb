@@ -1,9 +1,16 @@
+<div class="pull-right">
+  <p><%= link_to "Back to organization", @contact_log_person.contact_log_unit, :class => "primary btn" %></p>
+</div>
 <h1>Contactperson</h1>
 <div class="contact-person">
 <table>
   <tr><td>First name:</td><td><%= @contact_log_person.first_name %></td></tr>
   <tr><td>Last name:</td><td><%= @contact_log_person.last_name %></td></tr>
   <tr><td>Email:</td><td><%= @contact_log_person.email %></td></tr>
-  <tr><td>Phone: </td><td><%= @contact_log_person.phone %> </tr>
+  <tr><td>Phone: </td><td><%= @contact_log_person.phone %> </td></tr>
+  <tr><td>Role: </td><td><%= @contact_log_person.role  %> </td></tr>
+  <tr><td>Status: </td><td bgcolor="<%= @contact_log_person.contact_log_status ? @contact_log_person.contact_log_status.color_code : "#E0E0E0" %>"><%= @contact_log_person.contact_log_status ? @contact_log_person.contact_log_status.status : "Not defined" %>
 </table>
-</div>
+  <br>
+  
+ </div>

@@ -1,7 +1,7 @@
 <h1><%= @contact_log_unit.company_name %></h1>
 
-<h2>Contactlog</h2>
-<p><%= link_to "Create contact-log", new_contact_log_with_unit_path(@contact_log_unit), :class => "primary btn" %></p>
+<h2>Previous contact</h2>
+<p><%= link_to "Create new log", new_contact_log_with_unit_path(@contact_log_unit), :class => "primary btn" %></p>
 <div class="contact-log">
 <table class="table table-bordered table-striped">
   <thead>
@@ -19,7 +19,7 @@
       <td> <%= link_to contact_log.contact_log_person.full_name, contact_log.contact_log_person %> </td>
       <td> <%= simple_format(truncate(contact_log.content, :length => 50, :omission =>"...")) %> </td>
       <td> <%= time_ago_in_words(contact_log.created_at) %> ago </td>
-      <td width="80px">
+      <td width="90px">
         <div class="btn-group">
           <%= link_to("Show", contact_log, class: "btn btn-info") %>
           <a href="#" class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
@@ -34,22 +34,24 @@
 </div>
 <h2>Contactpeople</h2>
 <div class="contact-people">
-<table class="table table-bordered table-striped">
+<table class="table table-bordered">
   <thead>
   <tr>
     <th>First name</th>
     <th>Last name</th>
     <th>Email</th>
     <th>Phone</th>
+    <th>Role</th>
     <th></th>
   </tr>
   </thead>
   <% for contact_person in @contact_log_unit.contact_log_people %>
-      <tr>
+    <tr bgcolor = <%= contact_person.contact_log_status ? contact_person.contact_log_status.color_code : "#E0E0E0"  %>>
         <td> <%= contact_person.first_name %> </td>   
         <td> <%= contact_person.last_name %> </td>   
-        <td> <%= contact_person.email %> </td>    
-        <td> <%= contact_person.phone %> </td>    
+        <td> <%= contact_person.email %> </td>
+        <td> <%= contact_person.phone %> </td>
+        <td> <%= contact_person.role %> </td>
         <td width="70px">
           <div class="btn-group">
             <%= link_to("Edit", edit_contact_log_person_path(contact_person), class: "btn btn-info") %>

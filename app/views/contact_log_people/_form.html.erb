@@ -5,6 +5,8 @@
           <%= f.text_field :last_name , class: "span6"%>
           <%= f.text_field :email , class: "span6"%>
           <%= f.text_field :phone , class: "span6"%>
+	<%= f.text_field :role, class: "span6" %>
+	<%= f.select("contact_log_status_id", ContactLogStatus.all.collect { |s| [s.status, s.id, :style => "background-color: #{s.color_code}"] }) %>
       <% end %>
   <%= f.submit "Submit", class: "btn" %>
 <% end %>

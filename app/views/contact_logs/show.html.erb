@@ -1,3 +1,9 @@
+<div class="pull-right">
+<%= link_to 'Back', "javascript:history.back()", method: :get, :class => "btn"  %>
+</div>
+<div class="pull-right">
+<%= link_to 'Go to organization', @contact_log.contact_log_person.contact_log_unit , method: :get, class: "btn" %>
+</div>
 <h1>Contactlog</h1>
 <div class="contact-log">
 <table>

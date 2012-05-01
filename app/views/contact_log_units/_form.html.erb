@@ -2,6 +2,7 @@
   <%= f.error_messages %>
   <%= f.fieldset "" do %>
           <%= f.text_field :company_name , class: "span6"%>
+	<%= select("contact_log_unit", "contact_log_status_id", ContactLogStatus.all.collect { |s| [s.status, s.id, :style => "background-color: #{s.color_code}"] }) %>
       <% end %>
   <%= f.submit "Submit", class: "btn" %>
 <% end %>
