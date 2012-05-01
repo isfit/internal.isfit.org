@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120430182015) do
+ActiveRecord::Schema.define(:version => 20120501181210) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -81,13 +81,21 @@ ActiveRecord::Schema.define(:version => 20120430182015) do
     t.datetime "updated_at"
     t.integer  "contact_log_unit_id"
     t.text     "role"
-    t.integer  "status"
+    t.integer  "contact_log_status_id"
+  end
+
+  create_table "contact_log_statuses", :force => true do |t|
+    t.string   "status"
+    t.string   "color_code"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "contact_log_units", :force => true do |t|
     t.string   "company_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "contact_log_status_id"
   end
 
   create_table "contact_logs", :force => true do |t|
@@ -96,6 +104,12 @@ ActiveRecord::Schema.define(:version => 20120430182015) do
     t.integer  "contact_log_person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "countries", :id => false, :force => true do |t|
+    t.integer "id",        :default => 0, :null => false
+    t.string  "name",                     :null => false
+    t.integer "region_id",                :null => false
   end
 
   create_table "festivals", :id => false, :force => true do |t|
@@ -508,6 +522,16 @@ ActiveRecord::Schema.define(:version => 20120430182015) do
     t.string   "facebook_id"
     t.string   "facebook_token"
   end
+
+  create_table "what_am_is", :force => true do |t|
+    t.integer  "correct_user_id"
+    t.boolean  "answer"
+    t.integer  "user_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "what_am_is", ["user_id"], :name => "index_what_am_is_on_user_id"
 
   create_table "who_am_is", :force => true do |t|
     t.integer  "correct_user_id"
