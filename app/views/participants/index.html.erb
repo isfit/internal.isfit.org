@@ -1,0 +1,24 @@
+<h1>Participant applications</h1>
+Applications: <%= @participants.count %>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Last name</th>
+      <th>First name</th>
+      <th>Country</th>
+      <th>E-mail</th>
+      <th>Edit</th>
+    </tr>
+  </thead>
+  <% @participants.each do |participant| %>
+    <tr>
+      <td><%= participant.last_name %></td>
+      <td><%= participant.first_name %></td>
+      <td><%= participant.country.name %></td>
+      <td><%= participant.email %></td>
+      <td><%= link_to "Edit", edit_participant_path(participant), :class => "btn" %></td>
+    </tr>
+  <% end %>
+
+</table>

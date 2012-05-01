@@ -22,6 +22,7 @@ InternalIsfitOrg::Application.routes.draw do
   get "organization_chart/section/:id(.:format)", controller: "organization_chart", action: "section", :as => "organization_chart_section"
   get "organization_chart/group/:id(.:format)", controller: "organization_chart", action: "group", :as => "organization_chart_group"
   get "organization_chart/board/:id(.:format)", controller: "organization_chart", action: "board", :as => "organization_chart_board"
+  resources :participants, :only => [:index, :edit, :update]
 
   get 'oauth/start'
   get 'oauth/callback'

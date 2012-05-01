@@ -40,8 +40,11 @@ class Ability
       can :read, Room
       can :manage, WikiPage
       can :manage, WikiCategory
+      can :read, Participant
     end
-    
+    if user.role?(:participant)
+      can :manage, Participant
+    end
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
