@@ -29,7 +29,7 @@ Spork.prefork do
     # examples within a transaction, remove the following line or assign false
     # instead of true.
     config.use_transactional_fixtures = false
-    config.include Factory::Syntax::Methods
+    config.include FactoryGirl::Syntax::Methods
     config.extend ControllerMacros, type: :controller
     config.before(:suite) do  
       DatabaseCleaner.strategy = :transaction  
