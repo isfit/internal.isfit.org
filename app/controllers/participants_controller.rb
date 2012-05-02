@@ -17,6 +17,8 @@ class ParticipantsController < ApplicationController
       if @participant.update_attributes(params[:participant])
         format.html {redirect_to participants_path, notice: "Participant successfuly updated" }
       else
+        @countries = Country.all
+        @workshops = Workshop.all
         format.html { render action: "edit" }
       end
     end

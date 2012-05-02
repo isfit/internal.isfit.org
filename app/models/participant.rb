@@ -62,4 +62,12 @@ class Participant < ActiveRecord::Base
     :too_long  => "too long, maximum 200 words"
     }
 
+  validates_presence_of :travel_nosupport_other,
+			:if => Proc.new { |n| n.travel_apply > 0 },
+      :message => "must be selected"    
+
+  validates_presence_of :travel_nosupport_cancome,
+			:if => Proc.new { |n| n.travel_apply > 0 },
+      :message => "must be selected"    
+
 end
