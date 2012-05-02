@@ -40,7 +40,6 @@ class Ability
       can :read, Room
       can :manage, WikiPage
       can :manage, WikiCategory
-      can :read, Participant
     end
     if user.role?(:participant)
       can :manage, Participant
