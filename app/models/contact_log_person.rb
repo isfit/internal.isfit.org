@@ -6,5 +6,12 @@ class ContactLogPerson < ActiveRecord::Base
   def full_name
     "#{first_name} #{last_name}"
   end
-
+  
+  def css_class
+    self.contact_log_status ? self.contact_log_status.color_code : "status-null"
+  end
+  
+  def status
+    self.contact_log_status ? self.contact_log_status.status : "Not defined"
+  end
 end
