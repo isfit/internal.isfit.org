@@ -1,18 +1,17 @@
 <h1>Contact organizations</h1>
 
 <div class="contact-log-unit">
-<p>  <%= link_to "Register new organization", new_contact_log_unit_path, :class => "primary btn" %></p>
-<table class="table table-bordered">
-  <thead>
-  <tr>
-    <th>Organization name</th>
-    <th></th>
-  </tr>
-  </thead>
-  <% for contact_log_unit in @contact_log_units %>
-    <tr bgcolor ="<%= contact_log_unit.contact_log_status ? contact_log_unit.contact_log_status.color_code : "#E0E0E0"  %>">
-      <td><%= contact_log_unit.company_name %>
-
+  <p>  <%= link_to "Register new organization", new_contact_log_unit_path, :class => "primary btn" %></p>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Organization name</th>
+        <th></th>
+      </tr>
+    </thead>
+    <% for contact_log_unit in @contact_log_units %>
+    <tr class=<%= contact_log_unit.css_class %>>
+      <td><%= contact_log_unit.company_name %></td>
       <td width="90px">
         <div class="btn-group">
           <%= link_to("Show", contact_log_unit, class: "btn btn-info") %>
@@ -24,6 +23,6 @@
         </div>
       </td>
     </tr>
-  <% end %>
+    <% end %>
   </table>
 </div>

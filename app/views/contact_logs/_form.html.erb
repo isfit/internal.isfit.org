@@ -1,37 +1,37 @@
 <%= bootstrap_form_for(@contact_log) do |f| %>
-  <%= f.error_messages %>
-  <%= f.fieldset "" do %>
+<%= f.error_messages %>
+<%= f.fieldset "" do %>
 <h3>Register new person or select existing:</h3>
-    <div id="select_person">
-      <p> <%= link_to "Add new person", "javascript:add_person();", :class => "small btn"%> </p>
-      <%= f.collection_select :contact_log_person_id, @contact_log_unit.contact_log_people, :id, :full_name, :prompt=> "Please select a person"%> 
-    </div>
-    <div id="contact_log_person" style="display:none">
-      <p> <%= link_to "Select person", "javascript:select_person();", :class => "small btn"%> </p>
-      <p>
-        <%= label :contact_log_person, :first_name %>
-        <%= text_field :contact_log_person, :first_name %>
-      </p>
-      <p>
-        <%= label :contact_log_person, :last_name %>
-        <%= text_field :contact_log_person, :last_name %>
-      </p>
-       <p>
-        <%= label :contact_log_person, :email %>
-        <%= text_field :contact_log_person, :email %>
-      </p>        
-      <p>
-        <%= label :contact_log_person, :phone %>
-        <%= text_field :contact_log_person, :phone %>
-      </p>
-        <%= label :contact_log_person, :role %>
-        <%=  text_field :contact_log_person, :role %>
-      </p>
-      <p>
-	 <%= label :contact_log_person, :status  %>
-	<%= select("contact_log_person", "contact_log_status_id", ContactLogStatus.all.collect { |s| [s.status, s.id, :style => "background-color: #{s.color_code}"] }) %>
-      </p>
-      <%= hidden_field :contact_log_person, :contact_log_unit_id, :value => @contact_log_unit.id.to_s %>
+<div id="select_person">
+  <p> <%= link_to "Add new person", "javascript:add_person();", :class => "small btn"%> </p>
+  <%= f.collection_select :contact_log_person_id, @contact_log_unit.contact_log_people, :id, :full_name, :prompt=> "Please select a person"%>
+</div>
+<div id="contact_log_person" style="display:none">
+  <p> <%= link_to "Select person", "javascript:select_person();", :class => "small btn"%> </p>
+  <p>
+    <%= label :contact_log_person, :first_name %>
+    <%= text_field :contact_log_person, :first_name %>
+  </p>
+  <p>
+    <%= label :contact_log_person, :last_name %>
+    <%= text_field :contact_log_person, :last_name %>
+  </p>
+  <p>
+    <%= label :contact_log_person, :email %>
+    <%= text_field :contact_log_person, :email %>
+  </p>
+  <p>
+    <%= label :contact_log_person, :phone %>
+    <%= text_field :contact_log_person, :phone %>
+  </p>
+  <%= label :contact_log_person, :role %>
+  <%=  text_field :contact_log_person, :role %>
+</p>
+<p>
+  <%= label :contact_log_person, :status  %>
+  <%= select("contact_log_person", "contact_log_status_id", ContactLogStatus.all.collect { |s| [s.status, s.id, :style => "background-color: #{s.color_code}"] }) %>
+</p>
+<%= hidden_field :contact_log_person, :contact_log_unit_id, :value => @contact_log_unit.id.to_s %>
     </div>
 <h3>Log entry: </h3>
     <%= f.text_area :content , class: "span6" %>
