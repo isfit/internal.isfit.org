@@ -112,6 +112,47 @@ ActiveRecord::Schema.define(:version => 20120501181210) do
     t.integer "region_id",                :null => false
   end
 
+  create_table "dialogue_participants", :id => false, :force => true do |t|
+    t.integer  "id",                                      :default => 0,     :null => false
+    t.datetime "registered_time",                                            :null => false
+    t.string   "first_name",                                                 :null => false
+    t.string   "middle_name",              :limit => 64
+    t.string   "last_name",                                                  :null => false
+    t.string   "address1",                                :default => "",    :null => false
+    t.string   "address2"
+    t.string   "zipcode",                  :limit => 10,  :default => "",    :null => false
+    t.string   "city",                                    :default => "",    :null => false
+    t.integer  "country_id",                              :default => 0,     :null => false
+    t.string   "phone",                    :limit => 20,  :default => "",    :null => false
+    t.string   "email",                    :limit => 100, :default => "",    :null => false
+    t.string   "fax",                      :limit => 20
+    t.string   "nationality",                             :default => "",    :null => false
+    t.string   "passport",                                :default => "",    :null => false
+    t.date     "birthdate",                                                  :null => false
+    t.string   "sex",                      :limit => 2,   :default => "",    :null => false
+    t.string   "university",                              :default => "",    :null => false
+    t.string   "field_of_study",                                             :null => false
+    t.string   "org_name"
+    t.string   "org_function"
+    t.string   "hear_about_isfit"
+    t.string   "hear_about_isfit_other"
+    t.text     "essay1",                                                     :null => false
+    t.text     "essay2",                                                     :null => false
+    t.text     "essay3",                                                     :null => false
+    t.text     "essay4",                                                     :null => false
+    t.integer  "travel_apply",             :limit => 1,   :default => 0
+    t.text     "travel_essay"
+    t.string   "travel_amount",            :limit => 20
+    t.integer  "travel_nosupport_other",   :limit => 1,   :default => 0
+    t.integer  "travel_nosupport_cancome", :limit => 1,   :default => 0
+    t.integer  "apply_workshop",           :limit => 1,   :default => 0
+    t.integer  "invited",                  :limit => 1,   :default => 0,     :null => false
+    t.string   "password"
+    t.datetime "last_login"
+    t.boolean  "notified_invited",                        :default => false, :null => false
+    t.boolean  "notified_rejected",                       :default => false, :null => false
+  end
+
   create_table "festivals", :id => false, :force => true do |t|
     t.integer "id",   :default => 0, :null => false
     t.integer "year"
