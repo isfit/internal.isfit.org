@@ -1,0 +1,95 @@
+<div class="pull-right">
+  <%= link_to 'Edit', edit_dialogue_participant_path(@participant), :class => "btn" %>
+  <%= link_to 'Back', dialogue_participants_path, :class => "btn" %>
+</div>
+
+<p>
+  <b>Name:</b>
+  <%= "#{@participant.first_name} #{@participant.last_name}" %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @participant.address1 %>
+</p>
+
+<p>
+  <b>Zipcode:</b>
+  <%= @participant.zipcode %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @participant.city %>
+</p>
+
+<p>
+  <b>Country:</b>
+  <%= @participant.country.name %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @participant.phone %>
+</p>
+
+<p>
+  <b>E-mail:</b>
+  <%= @participant.email %>
+</p>
+
+<p>
+  <b>Nationality:</b>
+  <%= @participant.nationality %>
+</p>
+
+<p>
+  <b>Passport:</b>
+  <%= @participant.passport %>
+</p>
+
+<p>
+  <b>Birthdate:</b>
+  <%= @participant.birthdate %>
+</p>
+
+<p>
+  <b>Sex:</b>
+  <%= @participant.sex == "f" ? "female" : "male" %>
+</p>
+
+<p>
+  <b>University:</b>
+  <%= @participant.university %>
+</p>
+
+<p>
+  <b>Field of Study:</b>
+  <%= @participant.field_of_study %>
+</p>
+
+<p>
+  <b>Background:</b>
+  <%= @participant.essay1 %>
+</p>
+
+<p>
+  <b>The conflict:</b>
+  <%= @participant.essay2 %>
+</p>
+
+<p>
+  <b>Visions for your country:</b>
+  <%= @participant.essay3 %>
+</p>
+
+<p>
+  <b>Reflection:</b>
+  <%= @participant.essay4 %>
+</p>
+
+<p>
+  <b>Applied for workshop:</b>
+  <%= @participant.apply_workshop == 1 ? "yes" : "no" %>
+</p>
+

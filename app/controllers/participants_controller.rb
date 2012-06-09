@@ -5,6 +5,10 @@ class ParticipantsController < ApplicationController
     @participants = Participant.all
   end
 
+  def show
+    @participant = Participant.find(params[:id])
+  end
+
   def edit
     @participant = Participant.find(params[:id])
     @countries = Country.all

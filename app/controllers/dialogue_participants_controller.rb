@@ -5,6 +5,10 @@ class DialogueParticipantsController < ApplicationController
     @dialogue_participants = DialogueParticipant.all
   end
 
+  def show
+    @participant = DialogueParticipant.find(params[:id])
+  end
+
   def edit
     @dialogue_participant = DialogueParticipant.find(params[:id])
     @countries = Country.all
