@@ -44,6 +44,9 @@ class Ability
     if user.role?(:participant)
       can :manage, Participant
     end
+    if user.role?(:dialogue)
+      can :manage, DialogueParticipant
+    end
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

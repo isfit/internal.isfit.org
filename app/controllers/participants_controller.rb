@@ -15,7 +15,7 @@ class ParticipantsController < ApplicationController
     @participant = Participant.find(params[:id])
     respond_to do |format|
       if @participant.update_attributes(params[:participant])
-        format.html {redirect_to participants_path, notice: "Participant successfuly updated" }
+        format.html {redirect_to participants_path, notice: "Participant successfully updated!" }
       else
         @countries = Country.all
         @workshops = Workshop.all

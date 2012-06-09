@@ -1,0 +1,42 @@
+<div class="pull-right">
+  <%= link_to "Back", dialogue_participants_path, :class => "btn" %>
+</div>
+
+<h1>Edit participant</h1>
+
+<%= simple_form_for(@dialogue_participant, :html => { :class => "form-horizontal" }) do |f| %>
+  <%= f.error_messages %>
+  <%= f.input :first_name, :input_html => { :class => "span4" } %>
+  <%= f.input :last_name, :input_html => { :class => "span4" } %>
+  <%= f.input :address1, :label => "Address", 
+                        :input_html => { :class => "span4" } %>
+  <%= f.input :zipcode, :input_html => { :class => "span4" } %>
+  <%= f.input :city, :input_html => { :class => "span4" } %>
+  <%= f.input :country_id, :collection => @countries, :as => :select, 
+                           :input_html => { :class => "span4" } %>
+  <%= f.input :phone, :input_html => { :class => "span4" } %>
+  <%= f.input :email, :input_html => { :class => "span4" } %>
+  <%= f.input :nationality, :input_html => { :class => "span4" } %>
+  <%= f.input :passport, :input_html => { :class => "span4" } %>
+  <%= f.input :birthdate, :as => :date, :start_year => Date.today.year - 100,
+                          :end_year => Date.today.year - 17, 
+                          :order => [:year, :month, :day],
+                          :input_html => { :class => "span4" }%>
+  <%= f.input :sex, :as => :radio_buttons, 
+                    :collection => [["female", "f"], ["male", "m"]] %>
+  <%= f.input :university, :input_html => { :class => "span4" } %>
+  <%= f.input :field_of_study, :input_html => { :class => "span4" } %>
+
+  <%= f.input :essay1, :label => "Background", 
+                       :input_html => { :class => "span4", :rows => 10 } %>
+  <%= f.input :essay2, :label => "The conflict", 
+                       :input_html => { :class => "span4", :rows => 10 } %>
+  <%= f.input :essay3, :label => "Visions for your country", 
+                       :input_html => { :class => "span4", :rows => 10 } %>
+  <%= f.input :essay4, :label => "Reflection", 
+                       :input_html => { :class => "span4", :rows => 10 } %>
+  <%= f.input :apply_workshop, :as => :radio_buttons,
+                    :label => "Applied for workshop?",
+                    :collection => [["yes", "1"], ["no", "0"]] %>
+  <%= f.button :submit, :class => "btn-primary" %>
+<% end %>
