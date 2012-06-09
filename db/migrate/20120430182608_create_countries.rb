@@ -1,8 +1,5 @@
 class CreateCountries < ActiveRecord::Migration
   def change
-    create_table :countries do |t|
-
-      t.timestamps
-    end
+    # uses a view
   end
 end
