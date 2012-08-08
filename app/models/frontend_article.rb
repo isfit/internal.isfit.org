@@ -3,9 +3,8 @@ class FrontendArticle < ActiveRecord::Base
   before_save :set_byline
 
   has_attached_file :frontend_article_image, styles:  {
-    front_large: {geometry: "530x196#", processors: [:cropper] },
-    front_small: {geometry: "250x120#", processors: [:cropper_half] },
-    article: {geometry: "447x346#", processors: [:cropper_spp_one_third] }
+    frontpage_large: {geometry: "620x362#", processors: [:cropper] },
+    article_large: {geometry: "940x480#", processors: [:cropper_half] }
   }
  
   def cropping?
