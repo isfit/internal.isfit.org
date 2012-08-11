@@ -5,12 +5,12 @@
       $(document).ready(function() {
         chart = new Highcharts.Chart({
           chart: {
-            renderTo: 'participant-per-day',
+            renderTo: 'participant-progression',
             zoomType: 'x',
             spacingRight: 20
           },
           title: {
-            text: 'Number of applications per day'
+            text: 'Application progression'
           },
           subtitle: {
             text: document.ontouchstart === undefined ?
@@ -68,12 +68,24 @@
 
           series: [{
             type: 'area',
-            name: 'Applications',
+            name: 'Current',
             pointInterval: 24 * 3600 * 1000,
             pointStart: Date.UTC(2012, 3, 28),
             data: [
             <% @participants_per_day.each do |k, v| %>
-              <%= v %>,
+              <%= @sum += v %>,
+            <% end %>
+            ]
+          },
+
+          {
+            type: 'line',
+            name: 'Expected',
+            pointInterval: 24 * 3600 * 1000,
+            pointStart: Date.UTC(2012, 3, 28),
+            data: [
+            <% @participants_per_day.each do |k, v| %>
+              <%= @sum_expected += (10000/155) %>,
             <% end %>
             ]
           }]
@@ -85,6 +97,6 @@
   </script>
 <% end %>
 
-<div id="participant-per-day" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+<div id="participant-progression" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 
 <br />
