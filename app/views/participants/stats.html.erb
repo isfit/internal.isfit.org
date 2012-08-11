@@ -3,7 +3,7 @@
   
   <%= render 'shared/participant_map' %>
 
-  <h2>Workshop stats</h2>
+  <div id="part-work"><h2>Workshop stats</h2></div>
 
   <table class="table table-bordered table-striped">
     <thead>
@@ -24,14 +24,16 @@
     <% end %>
   </table>
     <br />
-  <h2>Participants per day</h2>
-
+  <div id="part-app"><h2>Participants per day</h2></div>
   <%= render 'shared/participant_per_day' %>
 
   <%= render 'shared/participant_progression' %>
 
+  <div id="part-gender"><h2>Participants gender</h2></div>
   <%= render 'shared/participant_gender_chart' %>
 
+  <div id="part-age"><h2>Participants age</h2></div>
+  <%= render 'shared/participant_age' %>
 
   <br />
 </div>
@@ -46,6 +48,12 @@
   <h1><%= @country_count.count %></h1>
   <p>Different countries</p>
 
+  <ul>
+    <li><a href="#part-work">Workshop stats</a></li>
+    <li><a href="#part-app">Participant applications</a></li>
+    <li><a href="#part-gender">Participant gender</a></li>
+    <li><a href="#part-age">Participants age</a></li>
+  </ul>
 </div>
 
 

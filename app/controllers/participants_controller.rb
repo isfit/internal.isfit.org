@@ -31,6 +31,7 @@ class ParticipantsController < ApplicationController
   def stats
     @participants = Participant.all
     @participants_per_day = Participant.count(:group => "date(registered_time)")
+    @participants_age = Participant.count(:group => "year(birthdate)")
     @workshops = Workshop.all
     @country_count = Participant.group("country_id").count
     @countries = Country.where("code IS NOT NULL")
