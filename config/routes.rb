@@ -24,7 +24,12 @@ InternalIsfitOrg::Application.routes.draw do
   get "organization_chart/group/:id(.:format)", controller: "organization_chart", action: "group", :as => "organization_chart_group"
   get "organization_chart/board/:id(.:format)", controller: "organization_chart", action: "board", :as => "organization_chart_board"
 
-  resources :participants, :only => [:index, :show, :edit, :update]
+  resources :participants, :only => [:index, :show, :edit, :update] do
+    collection do
+      get "stats"
+    end
+  end
+
   resources :dialogue_participants, :only => [:index, :show, :edit, :update]
 
   get 'oauth/start'

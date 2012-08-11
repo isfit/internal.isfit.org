@@ -9,6 +9,7 @@
  *= require "imgareaselect-default"
  *= require "prettyPhoto"
  *= require "jquery.fileupload-ui"
+ *= require "jquery.jvectormap"
  *= require "jqueryui"
  *= require "room_bookings"
  *= require "internal_tabs"

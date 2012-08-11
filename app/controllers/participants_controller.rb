@@ -28,4 +28,10 @@ class ParticipantsController < ApplicationController
     end
   end
 
+  def stats
+    @participants = Participant.all
+    @workshops = Workshop.all
+    @country_count = Participant.group("country_id").count
+    @countries = Country.where("code IS NOT NULL")
+  end
 end

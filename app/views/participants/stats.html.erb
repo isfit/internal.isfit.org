@@ -1,0 +1,55 @@
+<h1>Participants Stats</h1>
+
+<p>Applications: <%= @participants.count %></p>
+
+<h2>Workshop stats</h2>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>1st choice</th>
+      <th>2nd choice</th>
+      <th>3rd choice</th>
+    </tr>
+    </thead
+    <% @workshops.each do |workshop| %> 
+      <tr>
+        <td><%= workshop.name %></td>
+        <td><%= @participants.select {|f| f["workshop1"] == workshop.number}.count %></td>
+        <td><%= @participants.select {|f| f["workshop2"] == workshop.number}.count %></td>
+        <td><%= @participants.select {|f| f["workshop2"] == workshop.number}.count %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <h2>Participant map</h2>
+  <%= content_for :script do %>
+    <script>
+      participants = {
+        <% @countries.each do |c| %>
+          "<%= c.code %>": <%= @country_count[c.id].nil? ? 0 : @country_count[c.id] %>,
+        <% end %>
+      }
+    </script>
+
+    <script>
+      $(function(){
+        $('#map').vectorMap({
+          map: 'world_en',
+          scaleColors: ['#DDDDFF', '#0071A4'],
+          values: participants,
+          hoverOpacity: 0.7,
+          hoverColor: false,
+          onLabelShow: function(environment, el, code) {
+            el.html(el.html() + ': ' + participants[code]);
+          }
+        });
+      });
+    </script>
+
+  <%end%>
+  <div id="map" style="width: 600px; height: 400px"></div>
+
+
+
