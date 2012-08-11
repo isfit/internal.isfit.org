@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :login_required
   before_filter :_reload_libs, :if => :_reload_libs?
+  before_filter :miniprofiler
 
   # Gets tab, parrent of sublink
   def current_tab
@@ -40,4 +41,13 @@ class ApplicationController < ActionController::Base
   def _reload_libs?
     defined? RELOAD_LIBS
   end
+
+private
+
+  def miniprofiler
+    if params[:profile] == "yes"
+      Rack::MiniProfiler.authorize_request
+    end
+  end
+
 end

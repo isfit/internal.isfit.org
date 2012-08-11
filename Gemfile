@@ -26,6 +26,7 @@ gem 'oauth2'
 gem 'net-ldap'
 gem 'jbuilder'
 gem 'private_pub'
+gem 'rack-mini-profiler'
 gem 'simple_form'
 
 # Denne spammer oss med mail atm... Må tunes :P
@@ -39,7 +40,7 @@ group :assets do
 end
 
 group :development do
-  gem 'ruby-debug19', :require => 'ruby-debug'
+  # gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'nifty-generators'
   gem 'yard'
 end
