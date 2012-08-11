@@ -35,6 +35,7 @@ class Ability
       can :read, StaticPage
       can :read, Article
       can :manage, Kvitter
+      can :stats, Participant
       can [:read,:create], RoomBooking
       can :destroy, RoomBooking, user_id: user.id
       can :read, Room
