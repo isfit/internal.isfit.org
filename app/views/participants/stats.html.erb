@@ -18,7 +18,7 @@
         <td><%= workshop.name %></td>
         <td><%= @participants.select {|f| f["workshop1"] == workshop.number}.count %></td>
         <td><%= @participants.select {|f| f["workshop2"] == workshop.number}.count %></td>
-        <td><%= @participants.select {|f| f["workshop2"] == workshop.number}.count %></td>
+        <td><%= @participants.select {|f| f["workshop3"] == workshop.number}.count %></td>
       </tr>
     <% end %>
   </table>
