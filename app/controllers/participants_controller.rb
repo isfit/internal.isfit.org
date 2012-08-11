@@ -34,5 +34,7 @@ class ParticipantsController < ApplicationController
     @workshops = Workshop.all
     @country_count = Participant.group("country_id").count
     @countries = Country.where("code IS NOT NULL")
+    @sum = 0
+    @sum_expected = 0
   end
 end

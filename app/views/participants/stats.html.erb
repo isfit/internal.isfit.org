@@ -1,34 +1,51 @@
 <h1>Participants Stats</h1>
+<div class="span6">
+  
+  <%= render 'shared/participant_map' %>
 
-<p>Applications: <%= @participants.count %></p>
+  <h2>Workshop stats</h2>
 
-<h2>Workshop stats</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>1st choice</th>
+        <th>2nd choice</th>
+        <th>3rd choice</th>
+      </tr>
+    </thead>
+    <% @workshops.each do |workshop| %> 
+      <tr>
+        <td><%= workshop.name %></td>
+        <td><%= @participants.select {|f| f["workshop1"] == workshop.number}.count %></td>
+        <td><%= @participants.select {|f| f["workshop2"] == workshop.number}.count %></td>
+        <td><%= @participants.select {|f| f["workshop3"] == workshop.number}.count %></td>
+      </tr>
+    <% end %>
+  </table>
+    <br />
+  <h2>Participants per day</h2>
 
-<table class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>1st choice</th>
-      <th>2nd choice</th>
-      <th>3rd choice</th>
-    </tr>
-  </thead
-  <% @workshops.each do |workshop| %> 
-    <tr>
-      <td><%= workshop.name %></td>
-      <td><%= @participants.select {|f| f["workshop1"] == workshop.number}.count %></td>
-      <td><%= @participants.select {|f| f["workshop2"] == workshop.number}.count %></td>
-      <td><%= @participants.select {|f| f["workshop3"] == workshop.number}.count %></td>
-    </tr>
-  <% end %>
-</table>
+  <%= render 'shared/participant_per_day' %>
 
-<h2>Participant map</h2>
+  <%= render 'shared/participant_progression' %>
 
-<%= render 'shared/participant_map' %>
-<br />
-<h2>Participants per day</h2>
+  <%= render 'shared/participant_gender_chart' %>
 
-<%= render 'shared/participant_per_day' %>
-<br />
+
+  <br />
+</div>
+
+<div class="span2">
+  <h1><%= @participants.count %></h1>
+  <p>Applications</p>
+
+  <h1><%= number_to_currency(Participant.where("travel_amount < 10000 AND travel_amount > 0").sum(:travel_amount), :unit =>"$") %></h1>
+  <p>Travel support needed</p>
+
+  <h1><%= @country_count.count %></h1>
+  <p>Different countries</p>
+
+</div>
+
 
