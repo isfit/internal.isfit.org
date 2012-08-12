@@ -8,7 +8,7 @@ $('#frontend_fileupload').fileupload({
   },
   dropzone: $("form.file_upload"),
   done: function (e, data) {
-    str = "/system/photos/original_pictures/000/000/"+data.result.photo.id+"/cropable/"+data.result.photo.original_picture_file_name
+    str = "/system/photos/original_pictures/000/000/0"+data.result.photo.id+"/cropable/"+data.result.photo.original_picture_file_name
     $("#img1").html("<img src='"+str+"' id='frontend_frontpage_large' />");
     $("#img2").html("<img src='"+str+"' id='frontend_article_large' />");
     $("#frontend_article_photo_id").val(data.result.photo.id);
