@@ -5,7 +5,7 @@ class Workshop < ActiveRecord::Base
 
   has_attached_file :workshop_image,
     :styles => {
-    :original => "940x480>",
+    :original => "940x1480>",
     :thumb => "120x230>"
   }
 end
