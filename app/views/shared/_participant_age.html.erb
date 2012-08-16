@@ -18,7 +18,7 @@
           xAxis: {
             categories: [
             <% @participants_age.each do |k,v| %>
-              <%= k %>,
+              <%= k.to_s[2..3] %>,
             <% end %>
             ]
           },

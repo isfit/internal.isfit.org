@@ -37,8 +37,8 @@
           type: 'pie',
           name: 'Gender share',
           data: [
-          ['Male',    <%= @participants.select {|f| f["sex"] == "m"}.count %>],
-          ['Female',  <%= @participants.select {|f| f["sex"] == "f"}.count %>],
+          ['Male',    <%= @participants_gender["m"] %>],
+          ['Female',  <%= @participants_gender["f"] %>],
           ]
         }]
       });
