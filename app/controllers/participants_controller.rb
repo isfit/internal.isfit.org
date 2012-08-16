@@ -27,6 +27,14 @@ class ParticipantsController < ApplicationController
       end
     end
   end
+  
+  def search
+
+  end
+
+  def map_search
+
+  end
 
   def stats
     @participants = Participant.all
