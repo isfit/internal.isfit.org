@@ -54,20 +54,30 @@ class SessionsController < ApplicationController
 
   def generate_motivational(user)
     motivationals = []
-    motivationals << "Hei #{user.full_name}! Lenge siden sist!"
-    motivationals << "Takk for at du er den du er #{user.given_name}."
+    motivationals << "Takk for at du er den du er, #{user.given_name}."
     motivationals << "Håper du får en fin dag!"
-    motivationals << "Du er et unika, #{user.given_name}"
+    motivationals << "Du er et unika, #{user.given_name}!"
     motivationals << "Så fin du var i dag, #{user.given_name}!"
-    motivationals << "Om bare all var som deg, #{user.given_name}"
+    motivationals << "Om bare alle var som deg, #{user.given_name}"
     motivationals << "Tenk, uten deg, hadde det ikke blitt noe festival!"
     motivationals << "Har du gitt IT en klem i det siste? Jeg har hørt at de liker klemmer."
     motivationals << "Hva leter du etter i dag da, #{user.given_name}?"
     motivationals << "Skal vi gifte oss, #{user.given_name}?"
-    motivationals << "Sliter du med motivasjonen? Se: [How bad do you want it?](http://www.youtube.com/watch?v=lsSC2vx7zFQ)"
+    motivationals << "Sliter du med motivasjonen? Se <a href='http://www.youtube.com/watch?v=lsSC2vx7zFQ'>How bad do you want it?</a>"
     motivationals << "Tenk at du, faktisk er du. Har du noen gang tenkt over hvor fantastisk du faktisk er?"
     motivationals << "Om du bare vil det, så klarer du det. Du kan klare absolutt alt du vil, fordi du er enestående!"
     motivationals << "Har du det bra i dag, #{user.given_name}?"
+    motivationals << "Jeg digger deg!"
+    motivationals << "Du vet det du gjør blir umåtelig verdsatt? Tusen takk!"
+    if user.id == 672
+      motivationals << "Du er den beste presidenten ISFiT kunne hatt, #{user.given_name}. Jeg håper du vet det."
+    end
+    if Time.now.saturday?
+      return "Skal vi danse natten bort, #{user.given_name}?"
+    end
+    if Time.now.hour > 22 || Time.now.hour < 5
+      return "Husk: en god ISFiT-funksjonær er en funksjonær som også sover!"
+    end
     
     return motivationals[rand(motivationals.size)]
   end
