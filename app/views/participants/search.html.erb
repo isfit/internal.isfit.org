@@ -1,0 +1,41 @@
+<h1>Participant applications</h1>
+
+<%= search_form_for @search, url: search2_participants_path, method: :post do |f| %>
+
+  <%= f.condition_fields do |c| %>
+    <div class="field">
+      <%= c.attribute_fields do |a| %>
+        <%= a.attribute_select %>
+      <% end %>
+      <%= c.predicate_select %>
+      <%= c.value_fields do |v| %>
+        <%= v.text_field :value %>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="actions"><%= f.submit "Search" %></div>
+<% end %>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Last name</th>
+      <th>First name</th>
+      <th>Country</th>
+      <th>E-mail</th>
+      <th>Show</th>
+      <th>Edit</th>
+    </tr>
+  </thead>
+  <% @results.each do |participant| %>
+    <tr>
+      <td><%= participant.last_name %></td>
+      <td><%= participant.first_name %></td>
+      <td><%= participant.country.name %></td>
+      <td><%= participant.email %></td>
+      <td><%= link_to "show", participant_path(participant), :class => "btn-primary btn" %></td>
+      <td><%= link_to "Edit", edit_participant_path(participant), :class => "btn" %></td>
+    </tr>
+  <% end %>
+
+</table>

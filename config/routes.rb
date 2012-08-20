@@ -28,6 +28,7 @@ InternalIsfitOrg::Application.routes.draw do
     collection do
       get "stats"
       get "search"
+      post "search2", to: "participants#search"
       get "map_search"
     end
   end

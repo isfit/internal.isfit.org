@@ -29,7 +29,9 @@ class ParticipantsController < ApplicationController
   end
   
   def search
-
+   @search = Participant.search(params[:q])
+   @results = @search.result
+   @search.build_condition
   end
 
   def map_search
