@@ -3,7 +3,7 @@ module UsersHelper
 require 'csv'
 
 def csv_user_list
-  CSV.generate do |csv|
+  CSV.generate(:col_sep => ";") do |csv|
         csv << ["Last name", "First name", "Username", "Cardnumber Samfundet"]
     User.in_festival.all(:select => ["given_name", "family_name", "username", "cardnumber_samfundet"]).each do |user|
       if user.cardnumber_samfundet.to_s.empty?
