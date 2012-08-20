@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120504140521) do
+ActiveRecord::Schema.define(:version => 20120820194049) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -107,13 +107,13 @@ ActiveRecord::Schema.define(:version => 20120504140521) do
   end
 
   create_table "countries", :id => false, :force => true do |t|
-    t.integer "id",        :default => 0, :null => false
-    t.string  "name",                     :null => false
-    t.integer "region_id",                :null => false
+    t.integer "id",                     :default => 0, :null => false
+    t.string  "name",                                  :null => false
+    t.integer "region_id",                             :null => false
+    t.string  "code",      :limit => 4,                :null => false
   end
 
-  create_table "dialogue_participants", :id => false, :force => true do |t|
-    t.integer  "id",                                      :default => 0,     :null => false
+  create_table "dialogue_participants", :force => true do |t|
     t.datetime "registered_time",                                            :null => false
     t.string   "first_name",                                                 :null => false
     t.string   "middle_name",              :limit => 64
@@ -152,6 +152,8 @@ ActiveRecord::Schema.define(:version => 20120504140521) do
     t.boolean  "notified_invited",                        :default => false, :null => false
     t.boolean  "notified_rejected",                       :default => false, :null => false
   end
+
+  add_index "dialogue_participants", ["email"], :name => "email", :unique => true
 
   create_table "festivals", :id => false, :force => true do |t|
     t.integer "id",   :default => 0, :null => false
@@ -292,8 +294,7 @@ ActiveRecord::Schema.define(:version => 20120504140521) do
     t.datetime "updated_at"
   end
 
-  create_table "participants", :id => false, :force => true do |t|
-    t.integer  "id",                                        :default => 0,     :null => false
+  create_table "participants", :force => true do |t|
     t.datetime "registered_time",                                              :null => false
     t.datetime "checked_in"
     t.datetime "picked_up"
@@ -371,6 +372,8 @@ ActiveRecord::Schema.define(:version => 20120504140521) do
     t.boolean  "special_invite",                            :default => false, :null => false
     t.boolean  "deleted",                                   :default => false
   end
+
+  add_index "participants", ["email"], :name => "email", :unique => true
 
   create_table "photos", :force => true do |t|
     t.string   "image_text_en"
@@ -566,10 +569,16 @@ ActiveRecord::Schema.define(:version => 20120504140521) do
 
   create_table "what_am_is", :force => true do |t|
     t.integer  "correct_user_id"
+    t.integer  "guessed_user_id"
     t.boolean  "answer"
     t.integer  "user_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.integer  "user_1_id"
+    t.integer  "user_2_id"
+    t.integer  "user_3_id"
+    t.integer  "user_4_id"
+    t.boolean  "played"
   end
 
   add_index "what_am_is", ["user_id"], :name => "index_what_am_is_on_user_id"
@@ -580,6 +589,11 @@ ActiveRecord::Schema.define(:version => 20120504140521) do
     t.integer  "user_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.integer  "user1_id"
+    t.integer  "user2_id"
+    t.integer  "user3_id"
+    t.integer  "user4_id"
+    t.boolean  "played"
   end
 
   add_index "who_am_is", ["user_id"], :name => "index_who_am_is_on_user_id"
