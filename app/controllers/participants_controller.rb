@@ -29,6 +29,11 @@ class ParticipantsController < ApplicationController
     end
   end
 
+  def search
+    index
+    render :index
+  end
+
   def map_search
 
   end

@@ -28,7 +28,8 @@ InternalIsfitOrg::Application.routes.draw do
   resources :participants, :only => [:index, :show, :edit, :update] do
     collection do
       get "stats"
-      post "search", to: "participants#index"
+      match 'search' => 'participants#search', :via => [:get, :post], :as => :search
+      # post "search", to: "participants#index"
       get "map_search"
     end
   end
