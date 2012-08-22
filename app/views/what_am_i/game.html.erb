@@ -1,0 +1,29 @@
+<h1>What I am?!</h1>
+<% if @prevGame %>
+	<% if @prevGame.answer == true %>
+		<h3 class="correct">Korrekt!</h3>
+	<% else %>
+		<h3 class="wrong">Feil desverre, prøv igjen da vel! </h3>
+	<%end %>
+<% end %>
+<br>
+
+<% @users.each do |user| %>
+	<% if user.id == @whatGame.correct_user_id %>
+		<p> Hvem har tittelen(e)</p>
+		<ul>
+			<% user.positions.each do |position| %>
+				<li><%= position.title_no %></li>
+			<% end %>
+		</ul>
+	<% end %>
+<% end %>
+
+<form method="POST" >
+	<input type="hidden" name="whatGame" value="<%= @whatGame.id %>">
+	<%= token_tag(nil) %>
+	<% @users.each do |user| %>
+		<input type="hidden" name="user_id" value="<%= user.id %>">
+		<input type="submit" name="user_name" value="<%= user.full_name %>"> <br>
+	<% end %>
+</form>
