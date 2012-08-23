@@ -33,7 +33,7 @@ class Ability
     if user.role?(:internal)
       can :manage, Account
       can :read, StaticPage
-      can :read, Article
+      can [:read,:create,:update], Article
       can :manage, Kvitter
       can :stats, Participant
       can [:read,:create], RoomBooking
