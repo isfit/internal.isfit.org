@@ -1,0 +1,4 @@
+<% if current_user.role?(:admin) || current_user.role?(:sec) %>
+  <p>Download csv-file with all active users below.</p>
+  <%= link_to "Download", {:action => "index", :format => :csv }, :class => "btn" %>
+<% end %>

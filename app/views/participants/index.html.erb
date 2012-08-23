@@ -1,5 +1,19 @@
 <h1>Participant applications</h1>
-Applications: <%= @participants.count %>
+
+<p>
+  Search for a participant in the form below. None of the fields are mandatory.
+</p>
+
+<%= search_form_for @search, url: search_participants_path, method: :post do |f| %>
+  <%= f.label :first_name_cont, "First name" %>
+  <%= f.text_field :first_name_cont %>
+  <%= f.label :last_name_cont, "Last name" %>
+  <%= f.text_field :last_name_cont %>
+  <%= f.label :email_cont, "E-mail" %>
+  <%= f.text_field :email_cont %>
+  <br> 
+  <%= f.submit "Search" %>
+<% end %>
 
 <table class="table table-bordered table-striped">
   <thead>

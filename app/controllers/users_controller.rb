@@ -44,6 +44,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html
       format.json {render json: @users}
+      format.csv { render :layout => false }
     end
   end
   def change_password

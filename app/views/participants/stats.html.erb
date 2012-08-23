@@ -17,9 +17,9 @@
     <% @workshops.each do |workshop| %> 
       <tr>
         <td><%= workshop.name %></td>
-        <td><%= @participants.select {|f| f["workshop1"] == workshop.number}.count %></td>
-        <td><%= @participants.select {|f| f["workshop2"] == workshop.number}.count %></td>
-        <td><%= @participants.select {|f| f["workshop3"] == workshop.number}.count %></td>
+        <td><%= @workshop1_count[workshop.number] %></td>
+        <td><%= @workshop2_count[workshop.number] %></td>
+        <td><%= @workshop3_count[workshop.number] %></td>
       </tr>
     <% end %>
   </table>
@@ -39,7 +39,7 @@
 </div>
 
 <div class="span2">
-  <h1><%= @participants.count %></h1>
+  <h1><%= Participant.count %></h1>
   <p>Applications</p>
 
   <h1><%= number_to_currency(Participant.where("travel_amount < 10000 AND travel_amount > 0").sum(:travel_amount), :unit =>"$") %></h1>

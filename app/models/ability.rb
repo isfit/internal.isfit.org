@@ -19,6 +19,9 @@ class Ability
     if user.role?(:wingman)
       can :manage, Applicant
     end
+    if user.role?(:interviewer)
+      can :manage, Applicant
+    end
     if user.role?(:editorial)
       can :manage, FrontendArticle
       can :manage, SppArticle
