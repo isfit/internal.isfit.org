@@ -7,7 +7,6 @@ InternalIsfitOrg::Application.routes.draw do
   get "who_am_i/highscore"
   get "what_am_i/game" => "what_am_i#game"
   post "what_am_i/game" => "what_am_i#game"
-  get "what_am_i/highscore" => "what_am_i#highscore"
 
   resources :spp_pages
 

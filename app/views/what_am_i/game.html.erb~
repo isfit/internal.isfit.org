@@ -28,3 +28,4 @@
         <input type="submit" name="user_name" value="<%= user.full_name %>"> <br>
     </form>
 <% end %>
+

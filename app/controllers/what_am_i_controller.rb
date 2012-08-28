@@ -2,7 +2,9 @@ class WhatAmIController < ApplicationController
   def game
     @users = User.random(2013,4)
     correct_id = @users[Random.rand(@users.length)].id
+    @current_user_id = current_user.id
     @whatGame = WhatAmI.new(
+                            :user_id => @current_user_id,
                             :played => false,
                             :correct_user_id => correct_id,
                             :user_1_id => @users[0].id,
@@ -22,10 +24,35 @@ class WhatAmIController < ApplicationController
       end
       @prevGame.save
     end
-  end 
+  end
 
   def highscore
+    whatAmIs = WhatAmI.where(played: true)
+    points = Hash.new {|h,k| h[k] = 0} #Which player has most correct guesses?
+    guessed = Hash.new {|h,k| h[k] = 0} #Which person is easiest to guess?
+    played = Hash.new {|h,k| h[k] = 0} #Used to find best played based correct/wrong ratio
+    best_ratio = Hash.new {|h,k| h[k] = 0} #Which player has the best correct/wrong ratio?
 
+    whatAmIs.each do |what|
+      if what.played == true
+        played[User.find(what.user_id)] += 1
+
+        if what.answer == true
+          guessed[User.find(what.guessed_user_id)] += 1
+          points[User.find(what.user_id)] += 1
+
+          #Using .to_f to get floating point
+          best_ratio[User.find(what.user_id)] = points[User.find(what.user_id)].to_f / played[User.find(what.user_id)]
+        else
+          guessed[User.find(what.guessed_user_id)] -= 1
+        end
+      end
+    end
+
+    #Sorting all descending (highest to lowest)
+    @guessed_sorted = guessed.sort_by {|k,v| v}.reverse
+    @points_sorted = points.sort_by {|k,v| v}.reverse
+    @best_ratio_sorted = best_ratio.sort_by {|k,v| v}.reverse
   end
 
 end
