@@ -3,13 +3,8 @@ class WhoAmIController < ApplicationController
   end
 
   def game
-    @users = User.random.where("facebook_id IS NOT NULL")
-    @user1 = @users[0]
-    @user2 = @users[1]
-    @user3 = @users[2]
-    @user4 = @users[3]
-    @random_number = Random.new.rand(4)
-    @correct_user = @users[@random_number]
+    @users = User.random(2013,4).where("facebook_id IS NOT NULL")
+    @correct_user = @users[Random.rand(@users.length)]
 
     @session = WhoAmI.new
     @session.user1_id = @users[0].id
@@ -18,6 +13,21 @@ class WhoAmIController < ApplicationController
     @session.user4_id = @users[3].id
     @session.correct_user_id = @correct_user.id
     @session.save
+    if request.post?
+      @obj = WhoAmI.find(params[:session])
+      answered_user_id = params[:user_id]
+      @g = User.find(params[:user_id])
+      puts answered_user_id
+      puts @obj.correct_user_id
+      if answered_user_id.to_i == @obj.correct_user_id.to_i
+        @obj.answer = true
+      else 
+        @obj.answer = false
+      end
+      @obj.played = true
+      @obj.save
+      puts "asdasdasdasdasdasdasd #{@obj.answer}"
+    end
   end
 
   def feedback

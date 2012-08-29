@@ -507,6 +507,9 @@ ActiveRecord::Schema.define(:version => 20120820194049) do
     t.string   "byline"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.string   "title_no"
+    t.text     "body_no"
+    t.text     "ingress_no"
   end
 
   create_table "static_pages", :force => true do |t|

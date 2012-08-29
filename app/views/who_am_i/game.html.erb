@@ -1,11 +1,24 @@
-<h1>Who I am?!?</h1>
-<div class="span6" style="text-align:center">
-<div class="picture pull-middle" >
+<h1>Who am I?</h1>
+
+
+<div class="span6">
+	<% if @obj %>
+	<% if @obj.answer %>
+		Det var riktig! Spill videre!
+	<% else %>
+	 Det var feil... Spill videre!
+	<% end %>	
+<% end %>
+<div class="picture">
       <img src="https://graph.facebook.com/<%= @correct_user.facebook_id %>/picture?type=large"/>
-    </div> 
-<div class="btn-group">
-  <a href="feedback"><button class="btn"><%= @user1.full_name%></button>
-  <button class="btn"><%= @user2.full_name %></button>
-   <button class="btn"><%= @user3.full_name%></button>
-  <button class="btn"><%= @user4.full_name %></button></a>
+    </div>
+
+<% @users.each do |user| %>
+	<form method="POST" >
+	<%= form_tag %>
+	<input type="hidden" name="session" value="<%= @session.id%>">
+	<input type="hidden" name="user_id" value="<%= user.id%>">
+	<input type="submit" name="user_name" value="<%= user.full_name%>">
+</form>
+<% end %>
 </div>
