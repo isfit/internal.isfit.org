@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120820194049) do
+ActiveRecord::Schema.define(:version => 20120829221849) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -500,8 +500,11 @@ ActiveRecord::Schema.define(:version => 20120820194049) do
 
   create_table "spp_pages", :force => true do |t|
     t.string   "title_en"
+    t.string   "title_no"
     t.string   "ingress_en"
+    t.string   "ingress_no"
     t.text     "body_en"
+    t.text     "body_no"
     t.string   "image_text"
     t.integer  "byline_func_id"
     t.string   "byline"
