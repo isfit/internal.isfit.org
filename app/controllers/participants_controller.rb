@@ -2,7 +2,8 @@ class ParticipantsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @participants = Participant.all
+    @search = Participant.search(params[:q])
+    @participants = @search.result
   end
 
   def show
@@ -26,6 +27,15 @@ class ParticipantsController < ApplicationController
         format.html { render action: "edit" }
       end
     end
+  end
+
+  def search
+    index
+    render :index
+  end
+
+  def map_search
+
   end
 
   def stats

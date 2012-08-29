@@ -5,7 +5,9 @@ InternalIsfitOrg::Application.routes.draw do
   get "who_am_i/game"
 
   get "who_am_i/highscore"
-  get "what_am_i/show"
+  get "what_am_i/game" => "what_am_i#game"
+  post "what_am_i/game" => "what_am_i#game"
+  get "what_am_i/highscore" => "what_am_i#highscore"
 
   resources :spp_pages
 
@@ -27,6 +29,9 @@ InternalIsfitOrg::Application.routes.draw do
   resources :participants, :only => [:index, :show, :edit, :update] do
     collection do
       get "stats"
+      match 'search' => 'participants#search', :via => [:get, :post], :as => :search
+      # post "search", to: "participants#index"
+      get "map_search"
     end
   end
 

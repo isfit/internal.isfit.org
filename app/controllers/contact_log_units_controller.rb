@@ -2,7 +2,7 @@ class ContactLogUnitsController < ApplicationController
   # GET /contact_log_units
   # GET /contact_log_units.json
   def index
-    @contact_log_units = ContactLogUnit.all
+    @contact_log_units = ContactLogUnit.find(:all, :order => "company_name")
 
     respond_to do |format|
       format.html # index.html.erb
