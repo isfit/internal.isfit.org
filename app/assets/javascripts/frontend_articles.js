@@ -8,10 +8,9 @@ $('#frontend_fileupload').fileupload({
   },
   dropzone: $("form.file_upload"),
   done: function (e, data) {
-    str = "/system/original_pictures/"+data.result.photo.id+"/cropable/"+data.result.photo.original_picture_file_name
-    $("#img1").html("<img src='"+str+"' id='frontend_front_large' />");
-    $("#img2").html("<img src='"+str+"' id='frontend_front_small' />");
-    $("#img3").html("<img src='"+str+"' id='frontend_article_img' />");
+    str = "/system/photos/original_pictures/000/000/"+data.result.photo.id+"/cropable/"+data.result.photo.original_picture_file_name
+    $("#img1").html("<img src='"+str+"' id='frontend_frontpage_large' />");
+    $("#img2").html("<img src='"+str+"' id='frontend_article_large' />");
     $("#frontend_article_photo_id").val(data.result.photo.id);
     frontendAddCropping(data.result.ratio);
   }
@@ -46,10 +45,10 @@ $("#images").show();
 
 function frontendAddCropping(ratio) {
 
-  $('#frontend_front_large').imgAreaSelect({ 
-    minWidth: 530, 
-    minHeight: 196,
-    aspectRatio: '2.70:1',  
+  $('#frontend_frontpage_large').imgAreaSelect({ 
+    minWidth: 620, 
+    minHeight: 362,
+    aspectRatio: '1.71:1',  
     handles: true, 
     onSelectEnd: function (img, selection) { 
       $('#x1').val(Math.round(selection.x1*ratio)); 
@@ -58,28 +57,16 @@ function frontendAddCropping(ratio) {
       $('#y2').val(Math.round(selection.y2*ratio)); 
     } 
   });
-  $('#frontend_front_small').imgAreaSelect({ 
-    minWidth: 250, 
-    minHeight: 120,
-    aspectRatio: '2.08:1',  
+  $('#frontend_article_large').imgAreaSelect({ 
+    minWidth: 940, 
+    minHeight: 480,
+    aspectRatio: '1.96:1',  
     handles: true, 
     onSelectEnd: function (img, selection) { 
       $('#x1_1').val(Math.round(selection.x1*ratio)); 
       $('#y1_1').val(Math.round(selection.y1*ratio)); 
       $('#x2_1').val(Math.round(selection.x2*ratio)); 
       $('#y2_1').val(Math.round(selection.y2*ratio)); 
-    } 
-  });
-  $('#frontend_article_img').imgAreaSelect({ 
-    minWidth: 447, 
-    minHeight: 346,
-    aspectRatio: '1.29:1',  
-    handles: true, 
-    onSelectEnd: function (img, selection) { 
-      $('#x1_2').val(Math.round(selection.x1*ratio)); 
-      $('#y1_2').val(Math.round(selection.y1*ratio)); 
-      $('#x2_2').val(Math.round(selection.x2*ratio)); 
-      $('#y2_2').val(Math.round(selection.y2*ratio)); 
     } 
   });
 }

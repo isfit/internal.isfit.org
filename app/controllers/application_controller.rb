@@ -40,4 +40,13 @@ class ApplicationController < ActionController::Base
   def _reload_libs?
     defined? RELOAD_LIBS
   end
+
+private
+
+  def miniprofiler
+    if not current_user.nil? && current_user.role?(:admin)
+      Rack::MiniProfiler.authorize_request
+    end
+  end
+
 end

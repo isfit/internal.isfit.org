@@ -1,0 +1,28 @@
+<%= content_for :script do %>
+  <script>
+    participants = {
+      <% @countries.each do |c| %>
+        "<%= c.code %>": <%= @country_count[c.id].nil? ? 0 : @country_count[c.id] %>,
+      <% end %>
+    }
+  </script>
+
+  <script>
+    $(function(){
+      $('#map').vectorMap({
+        map: 'world_en',
+        scaleColors: ['#DDDDFF', '#0071A4'],
+        values: participants,
+        hoverOpacity: 0.7,
+        hoverColor: false,
+        onLabelShow: function(environment, el, code) {
+          el.html(el.html() + ': ' + participants[code]);
+        }
+      });
+    });
+  </script>
+
+<% end %>
+<div id="map" style="width: 600px; height: 400px"></div>
+<br />
+

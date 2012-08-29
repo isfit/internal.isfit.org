@@ -1,0 +1,3 @@
+<% if current_user.role?(:admin) || current_user.role?(:sec) %>
+  <%= csv_user_list %>
+<% end %>

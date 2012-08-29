@@ -1,0 +1,53 @@
+<%= content_for :script do %>
+
+<script>
+  $(function () {
+    var chart;
+    $(document).ready(function() {
+      chart = new Highcharts.Chart({
+        chart: {
+          renderTo: 'gender-chart',
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false
+        },
+        title: {
+          text: 'Distribution of gender'
+        },
+        tooltip: {
+          formatter: function() {
+            return '<b>'+ this.point.name +'</b>: '+ Math.round(this.percentage) +' %';
+          }
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: true,
+              color: '#000000',
+              connectorColor: '#000000',
+              formatter: function() {
+                return '<b>'+ this.point.name +'</b>: '+ Math.round(this.percentage) +' %';
+              }
+            }
+          }
+        },
+        series: [{
+          type: 'pie',
+          name: 'Gender share',
+          data: [
+          ['Male',    <%= @participants_gender["m"] %>],
+          ['Female',  <%= @participants_gender["f"] %>],
+          ]
+        }]
+      });
+    });
+
+  });
+</script>
+
+<% end %>
+
+
+<div id="gender-chart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>

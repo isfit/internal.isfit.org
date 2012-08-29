@@ -5,7 +5,9 @@ InternalIsfitOrg::Application.routes.draw do
   get "who_am_i/game"
 
   get "who_am_i/highscore"
-  get "what_am_i/show"
+  get "what_am_i/game" => "what_am_i#game"
+  post "what_am_i/game" => "what_am_i#game"
+  get "what_am_i/highscore" => "what_am_i#highscore"
 
   resources :spp_pages
 
@@ -24,7 +26,15 @@ InternalIsfitOrg::Application.routes.draw do
   get "organization_chart/group/:id(.:format)", controller: "organization_chart", action: "group", :as => "organization_chart_group"
   get "organization_chart/board/:id(.:format)", controller: "organization_chart", action: "board", :as => "organization_chart_board"
 
-  resources :participants, :only => [:index, :show, :edit, :update]
+  resources :participants, :only => [:index, :show, :edit, :update] do
+    collection do
+      get "stats"
+      match 'search' => 'participants#search', :via => [:get, :post], :as => :search
+      # post "search", to: "participants#index"
+      get "map_search"
+    end
+  end
+
   resources :dialogue_participants, :only => [:index, :show, :edit, :update]
 
   get 'oauth/start'

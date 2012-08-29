@@ -19,6 +19,9 @@ class Ability
     if user.role?(:wingman)
       can :manage, Applicant
     end
+    if user.role?(:interviewer)
+      can :manage, Applicant
+    end
     if user.role?(:editorial)
       can :manage, FrontendArticle
       can :manage, SppArticle
@@ -33,8 +36,9 @@ class Ability
     if user.role?(:internal)
       can :manage, Account
       can :read, StaticPage
-      can :read, Article
+      can [:read,:create,:update], Article
       can :manage, Kvitter
+      can :stats, Participant
       can [:read,:create], RoomBooking
       can :destroy, RoomBooking, user_id: user.id
       can :read, Room
