@@ -1,17 +1,5 @@
 class WhatAmIController < ApplicationController
   def game
-    @users = User.random(2013,4)
-    correct_id = @users[Random.rand(@users.length)].id
-    @current_user_id = current_user.id
-    @whatGame = WhatAmI.new(
-                            :user_id => @current_user_id,
-                            :played => false,
-                            :correct_user_id => correct_id,
-                            :user_1_id => @users[0].id,
-                            :user_2_id => @users[1].id,
-                            :user_3_id => @users[2].id,
-                            :user_4_id => @users[3].id)
-    @whatGame.save
     if request.post?
       @prevGame = WhatAmI.find(params[:whatGame])
       @prevGame.played = true
@@ -23,6 +11,36 @@ class WhatAmIController < ApplicationController
         @prevGame.answer = false
       end
       @prevGame.save
+    end
+
+    @users = User.random(2013,4)
+    
+    #Death to Placeholder Placeholdersen!
+    #while @users.collect {|x| x.id}.include?(1)
+    #  @users = User.random(2013,4)
+    #end
+
+    correct_id = @users[Random.rand(@users.length)].id
+    @current_user_id = current_user.id
+    game = WhatAmI.where(user_id: @current_user_id,played: false).order("created_at DESC").limit(1).first
+
+    #If user has a previous unplayed game, give him that one again.
+    if game
+      @whatGame = game
+      @users[0] = User.find(@whatGame.user_1_id)
+      @users[1] = User.find(@whatGame.user_2_id)
+      @users[2] = User.find(@whatGame.user_3_id)
+      @users[3] = User.find(@whatGame.user_4_id)
+    else 
+      @whatGame = WhatAmI.new(
+                            :user_id => @current_user_id,
+                            :played => false,
+                            :correct_user_id => correct_id,
+                            :user_1_id => @users[0].id,
+                            :user_2_id => @users[1].id,
+                            :user_3_id => @users[2].id,
+                            :user_4_id => @users[3].id)
+      @whatGame.save
     end
   end
 
@@ -50,7 +68,7 @@ class WhatAmIController < ApplicationController
     end
 
     #Sorting all descending (highest to lowest)
-    @guessed_sorted = guessed.sort_by {|k,v| v}.reverse
+    @guessed_sorted = guessed.sort_by {|k,v| v}.reverse[0..9]
     @points_sorted = points.sort_by {|k,v| v}.reverse
     @best_ratio_sorted = best_ratio.sort_by {|k,v| v}.reverse
   end
