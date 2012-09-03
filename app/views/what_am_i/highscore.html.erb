@@ -4,7 +4,7 @@
 <h3>Hvem har flest riktige?</h3>
 <ul style="list-style-type: decimal";>
     <% @points_sorted.each do |user,value| %>
-        <li><%= user.full_name %> -> <%= value %></li>
+        <li><%= user.full_name %> (<%= value %>)</li>
     <% end %>
 </ul>
 
@@ -19,6 +19,6 @@
 <h3>Hvilken bruker er best prosent-vis (Ant. riktige svar / ant. feil svar)?</h3>
 <ul style="list-style-type: decimal";>
     <% @best_ratio_sorted.each do |user,value| %>
-        <li><%= user.full_name %> -> <%= "%0.2f" % (value*100) %>%</li>
+        <li><%= user.full_name %> (<%= "%0.2f" % (value*100) %>%)</li>
     <% end %>
 </ul>
