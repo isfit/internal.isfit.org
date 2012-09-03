@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class WhatAmIController < ApplicationController
   def game
     if request.post?
@@ -7,19 +8,16 @@ class WhatAmIController < ApplicationController
       if @prevGame.guessed_user_id == @prevGame.correct_user_id
         @prevGame.answer = true
         @user_name = params[:user_name]
+        flash[:notice]="Korrekt!"
       else
         @prevGame.answer = false
+        flash[:alert]="Feil desverre, prøv igjen da vel!"
       end
       @prevGame.save
     end
 
     @users = User.random(2013,4)
     
-    #Death to Placeholder Placeholdersen!
-    #while @users.collect {|x| x.id}.include?(1)
-    #  @users = User.random(2013,4)
-    #end
-
     correct_id = @users[Random.rand(@users.length)].id
     @current_user_id = current_user.id
     game = WhatAmI.where(user_id: @current_user_id,played: false).order("created_at DESC").limit(1).first
@@ -41,6 +39,7 @@ class WhatAmIController < ApplicationController
                             :user_3_id => @users[2].id,
                             :user_4_id => @users[3].id)
       @whatGame.save
+
     end
   end
 
