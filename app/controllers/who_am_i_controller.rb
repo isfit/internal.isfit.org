@@ -7,18 +7,13 @@ class WhoAmIController < ApplicationController
     @correct_user = @users[Random.rand(@users.length)]
 
     @session = WhoAmI.new
-    @session.user1_id = @users[0].id
-    @session.user2_id = @users[1].id
-    @session.user3_id = @users[2].id
-    @session.user4_id = @users[3].id
     @session.correct_user_id = @correct_user.id
+    @session.user_id = current_user.id
     @session.save
+
     if request.post?
       @obj = WhoAmI.find(params[:session])
       answered_user_id = params[:user_id]
-      @g = User.find(params[:user_id])
-      puts answered_user_id
-      puts @obj.correct_user_id
       if answered_user_id.to_i == @obj.correct_user_id.to_i
         @obj.answer = true
       else 
@@ -26,7 +21,6 @@ class WhoAmIController < ApplicationController
       end
       @obj.played = true
       @obj.save
-      puts "asdasdasdasdasdasdasd #{@obj.answer}"
     end
   end
 
@@ -35,5 +29,23 @@ class WhoAmIController < ApplicationController
   end
 
   def highscore
+    whoAmIs = WhoAmI.where(played: true)
+    points = Hash.new {|h,k| h[k] = 0} #Which player has most correct guesses?
+    played = Hash.new {|h,k| h[k] = 0} #Used to find best played based correct/wrong ratio
+    best_ratio = Hash.new {|h,k| h[k] = 0} #Which player has the best correct/wrong ratio?
+
+    whoAmIs.each do |who|
+        played[User.find(who.user_id)] += 1
+
+
+        if who.answer == true
+          points[User.find(who.user_id)] += 1
+
+          #Using .to_f to get floating point
+          best_ratio[User.find(who.user_id)] = points[User.find(who.user_id)].to_f / played[User.find(who.user_id)]
+        end
+    end
+    @points_sorted = points.sort_by {|k,v| v}.reverse
+    @best_ratio_sorted = best_ratio.sort_by {|k,v| v}.reverse
   end
 end
