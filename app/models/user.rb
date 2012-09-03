@@ -16,6 +16,15 @@ class User < ActiveRecord::Base
 
   attr_readonly :username, :ldap_id, :email
 
+   has_attached_file :profile_picture, { 
+     :url => "/system/:hash.:extension",
+     :hash_secret => "kakekakekakemonster",
+     styles:  {
+      large: {geometry: "180x180#"},
+      small: {geometry: "50x50#"}
+      }
+   }
+
   # Return full name of user
   def full_name
     "#{given_name} #{family_name}"
