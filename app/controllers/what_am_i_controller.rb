@@ -3,29 +3,31 @@ class WhatAmIController < ApplicationController
   def game
     if request.post?
       @prevGame = WhatAmI.find(params[:whatGame])
-      @prevGame.played = true
-      @prevGame.guessed_user_id = params[:user_id]
+      if @prevGame.played != true
+        @prevGame.played = true
+        @prevGame.guessed_user_id = params[:user_id]
       
-      #Was the guess correct?
-      if @prevGame.guessed_user_id == @prevGame.correct_user_id
-        @prevGame.answer = true
-        @user_name = params[:user_name]
-        flash[:notice]="Korrekt!"
+        #Was the guess correct?
+        if @prevGame.guessed_user_id == @prevGame.correct_user_id
+          @prevGame.answer = true
+          @user_name = params[:user_name]
+          flash[:notice]="Korrekt!"
       
-      # Handle multiple correct answsers in the random pool
-      elsif User.find(@prevGame.guessed_user_id).positions.last == User.find(@prevGame.correct_user_id).positions.last
-        @prevGame.correct_user_id = @guessed_user_id
-        @prevGame.answer = true
-        flash[:notice]="Korrekt!"
+          # Handle multiple correct answsers in the random pool
+        elsif User.find(@prevGame.guessed_user_id).positions.last == User.find(@prevGame.correct_user_id).positions.last
+          @prevGame.correct_user_id = @guessed_user_id
+          @prevGame.answer = true
+          flash[:notice]="Korrekt!"
       
-      # The guess was wrong.
-      else
-        @prevGame.answer = false
-        correct_user = User.find(@prevGame.correct_user_id)
-        flash[:alert]="Feil desverre, "+correct_user.full_name+
+          # The guess was wrong.
+        else
+          @prevGame.answer = false
+          correct_user = User.find(@prevGame.correct_user_id)
+          flash[:alert]="Feil desverre, "+correct_user.full_name+
                       " ("+correct_user.positions.last.title_no+") var det riktige svaret. Prøv igjen da vel!"
+        end
+        @prevGame.save
       end
-      @prevGame.save
     end
 
     @users = User.random(2013,4)
