@@ -36,7 +36,7 @@ class SessionsController < ApplicationController
       return render :forgot_password
     end
     user.password = new_pass
-    if user.save!
+    if !user.private_email.nil? && user.save!
       user.changeLdapPassword(new_pass)
       UserMailer.forgot_password_mail(user.private_email, new_pass).deliver
       return redirect_to login_path, :notice => "A new password has been sent to your private email"
