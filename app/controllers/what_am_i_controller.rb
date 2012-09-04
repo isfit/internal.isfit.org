@@ -5,13 +5,25 @@ class WhatAmIController < ApplicationController
       @prevGame = WhatAmI.find(params[:whatGame])
       @prevGame.played = true
       @prevGame.guessed_user_id = params[:user_id]
+      
+      #Was the guess correct?
       if @prevGame.guessed_user_id == @prevGame.correct_user_id
         @prevGame.answer = true
         @user_name = params[:user_name]
         flash[:notice]="Korrekt!"
+      
+      # Handle multiple correct answsers in the random pool
+      elsif User.find(@prevGame.guessed_user_id).positions.last == User.find(@prevGame.correct_user_id).positions.last
+        @prevGame.correct_user_id = @guessed_user_id
+        @prevGame.answer = true
+        flash[:notice]="Korrekt!"
+      
+      # The guess was wrong.
       else
         @prevGame.answer = false
-        flash[:alert]="Feil desverre, prøv igjen da vel!"
+        correct_user = User.find(@prevGame.correct_user_id)
+        flash[:alert]="Feil desverre, "+correct_user.full_name+
+                      " ("+correct_user.positions.last.title_no+") var det riktige svaret. Prøv igjen da vel!"
       end
       @prevGame.save
     end
@@ -57,19 +69,27 @@ class WhatAmIController < ApplicationController
         if what.answer == true
           guessed[User.find(what.guessed_user_id)] += 1
           points[User.find(what.user_id)] += 1
-
-          #Using .to_f to get floating point
-          best_ratio[User.find(what.user_id)] = points[User.find(what.user_id)].to_f / played[User.find(what.user_id)]
         else
           guessed[User.find(what.guessed_user_id)] -= 1
+        end
+        #Only eligible for Top 10 ratio if you've played 10 or more games.
+        if played[User.find(what.user_id)] >= 10
+          #Using .to_f to get floating point
+          best_ratio[User.find(what.user_id)] = points[User.find(what.user_id)].to_f / played[User.find(what.user_id)]
         end
       end
     end
 
-    #Sorting all descending (highest to lowest)
+    #Sorting all descending (highest to lowest) and only showing Top 10.
     @guessed_sorted = guessed.sort_by {|k,v| v}.reverse[0..9]
-    @points_sorted = points.sort_by {|k,v| v}.reverse
-    @best_ratio_sorted = best_ratio.sort_by {|k,v| v}.reverse
+    @points_sorted = points.sort_by {|k,v| v}.reverse[0..9]
+    @best_ratio_sorted = best_ratio.sort_by {|k,v| v}.reverse[0..9]
+
+    @user_stats = {
+      "Poeng" => points[current_user],
+      "Antall spill" => played[current_user],
+      "Prosent" => best_ratio[current_user]
+    }
   end
 
 end

@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
 
   # Returns a number of random users from a given festival
   def self.random(year=2013, limit=5)
-    self.in_festival(year,"RAND()").limit(limit)
+    self.in_festival(year,"RAND()").limit(limit).where("users.id > 1")
   end
 
   def name_reversed

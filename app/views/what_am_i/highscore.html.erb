@@ -1,24 +1,41 @@
-<h1>Highscore</h1>
+<h1>Highscores - Top 10</h1>
 <a href="game">Tilbake til spillet</a>
-<br>
-<h3>Hvem har flest riktige?</h3>
-<ul style="list-style-type: decimal";>
-    <% @points_sorted.each do |user,value| %>
-        <li><%= user.full_name %> (<%= value %>)</li>
-    <% end %>
-</ul>
+<br><br>
+<div class="row">
+    <div class="span4">
+        <h3>Hvem har flest riktige?</h3>
+        <ul style="list-style-type: decimal";>
+            <% @points_sorted.each do |user,value| %>
+                <li><%= user.full_name %> (<%= value %>)</li>
+            <% end %>
+        </ul>
 
+        <h3>Hvem husker ISFiT best?</h3>
+        <ul style="list-style-type: decimal";>
+            <% @guessed_sorted.each do |user,value| %>
+                <li><%= user.full_name %></li>
+            <% end %>
+        </ul>
 
-<h3>Hvem husker ISFiT best?</h3>
-<ul style="list-style-type: decimal";>
-    <% @guessed_sorted.each do |user,value| %>
-        <li><%= user.full_name %></li>
-    <% end %>
-</ul>
+        <h3>Hvilken bruker er best prosent-vis?</h3>
+        <p> (Du må ha 10 eller flere spill for å bli med i listen) </p>
+        <ul style="list-style-type: decimal";>
+            <% @best_ratio_sorted.each do |user,value| %>
+                <li><%= user.full_name %> (<%= "%0.2f" % (value*100) %>%)</li>
+            <% end %>
+        </ul>
+    </div>
 
-<h3>Hvilken bruker er best prosent-vis (Ant. riktige svar / ant. feil svar)?</h3>
-<ul style="list-style-type: decimal";>
-    <% @best_ratio_sorted.each do |user,value| %>
-        <li><%= user.full_name %> (<%= "%0.2f" % (value*100) %>%)</li>
-    <% end %>
-</ul>
+    <div class="span3">
+        <h3>Din statistikk</h3>
+        <ul tyle="list-style-type: none";>
+            <% @user_stats.each do | string, value | %>
+                <% if string == "Prosent" %>
+                    <li><%= string %>: <%= "%0.2f" % (value*100) %>%</li>
+                <% else %>
+                    <li><%= string %>: <%= value %></li>
+                <% end %>
+            <% end %>
+        </ul>
+    </div>
+</div>
