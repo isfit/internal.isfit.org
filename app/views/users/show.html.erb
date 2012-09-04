@@ -5,7 +5,7 @@
     </div>
   <% elsif @user == current_user %>
     <div class="pull-right">
-      <p>No picture? Upload yours at <%= link_to "edit profile", edit_user_path %></p>
+      <p>No picture? Upload yours at <%= link_to "edit profile", edit_user_path(@user) %></p>
     </div>
   <% end %>
   <div><%=render @user %></div>
