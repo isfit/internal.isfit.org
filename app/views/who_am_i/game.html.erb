@@ -5,7 +5,7 @@
       <img src="https://graph.facebook.com/<%= @correct_user.facebook_id %>/picture?type=large"/>
     </div>
 <br>
-<% @users.each do |user| %>
+<% @players.each do |user| %>
 	<form method="POST" >
 	<%= form_tag %>
 	<input type="hidden" name="session" value="<%= @session.id%>">

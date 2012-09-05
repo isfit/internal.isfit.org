@@ -3,19 +3,8 @@ class WhoAmIController < ApplicationController
   end
 
   def game
-    @session = WhoAmI.where(user_id: current_user.id).order("created_at DESC").limit(1).first
 
-    if @session==nil || @session.played
-      @users = User.random(2013,4).where("facebook_id IS NOT NULL")
-      @correct_user = @users[Random.rand(@users.length)]
-      @session = WhoAmI.new 
-      @session.correct_user_id = @correct_user.id
-      @session.user_id = current_user.id
-      @session.save
-    end
 
-    @correct_user = User.find(@session.correct_user_id)
-    
     
     if request.post?
       @obj = WhoAmI.find(params[:session])
@@ -28,6 +17,30 @@ class WhoAmIController < ApplicationController
     @obj.played = true
     @obj.save
     end
+
+    @session = WhoAmI.where(user_id: current_user.id).order("created_at DESC").limit(1).first
+
+
+    if @session==nil || @session.played
+      @users = User.random(2013,4).where("facebook_id IS NOT NULL")
+
+      @correct_user = @users[Random.rand(@users.length)]
+      @session = WhoAmI.new 
+      @session.correct_user_id = @correct_user.id
+      @session.user_id = current_user.id
+      @session.user1_id = @users[0].id
+      @session.user2_id = @users[1].id
+      @session.user3_id = @users[2].id
+      @session.user4_id = @users[3].id
+      @session.save
+    end
+
+    @players = [User.find(@session.user1_id),User.find(@session.user2_id), User.find(@session.user3_id),User.find(@session.user4_id)]
+
+    @correct_user = User.find(@session.correct_user_id)
+    
+    
+    
   end
 
 
