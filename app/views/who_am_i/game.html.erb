@@ -1,28 +1,28 @@
 <h1>Who am I?</h1>
-
-
-<div class="span6">
-	<% if @obj %>
-	<% if @obj.answer %>
-		Det var riktig! Spill videre!
-	<% else %>
-	 Det var feil... Spill videre!
-	<% end %>	
-<% end %>
+<p><b><b/></p>
+<hr />
 <div class="picture">
       <img src="https://graph.facebook.com/<%= @correct_user.facebook_id %>/picture?type=large"/>
     </div>
-
+<br>
 <% @users.each do |user| %>
 	<form method="POST" >
 	<%= form_tag %>
 	<input type="hidden" name="session" value="<%= @session.id%>">
 	<input type="hidden" name="user_id" value="<%= user.id%>">
-	<input type="submit" name="user_name" value="<%= user.full_name%>">
+	<input class="btn" type="submit" name="user_name" value="<%= user.full_name%>">
 </form>
 <% end %>
 
+	<% if @obj %>
+	<% if @obj.answer %>
+		<h4>Det var riktig! Spill videre!</h4>
+	<% else %>
+	 <h4>Det var feil... Spill videre!</h4>
+	<% end %>
+	<br>	
+<% end %>
+<br>
 <a href="highscore">
 	<button class="btn-large">Gå til highscorelisten</button></a>
-</div>
 </div>

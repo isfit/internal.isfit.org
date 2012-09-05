@@ -14,5 +14,6 @@
  *= require "room_bookings"
  *= require "internal_tabs"
  *= require "organization_chart"
+ *= require "who_am_i"
  *= require_self
 */
