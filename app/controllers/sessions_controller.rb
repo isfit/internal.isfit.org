@@ -10,9 +10,12 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by_username(params[:login])
-    if user && user.authenticate(params[:password]) && user.role?(:internal)
+    if user && !user.password_digest.nil? && user.authenticate(params[:password]) && user.role?(:internal)
       session[:user_id] = user.id
       redirect_to_target_or_default root_url, notice: generate_motivational(user)
+    elsif user && user.password_digest.nil?
+      flash.now[:alert] = "Invalid login or password, contact orakel@isfit.org."
+      render action: 'new'
     else
       flash.now[:alert] = "Invalid login or password."
       render action: 'new'
