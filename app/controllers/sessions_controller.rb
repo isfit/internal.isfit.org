@@ -32,6 +32,9 @@ class SessionsController < ApplicationController
   end
 
   def mail_password
+    if params[:username].nil?
+      return render :forgot_password
+    end
     new_pass = random_password
     user = User.find_by_username(params[:username])
     if user.nil?
