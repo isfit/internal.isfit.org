@@ -1,10 +1,10 @@
 InternalIsfitOrg::Application.routes.draw do
 
   get "who_am_i/index"
-
   get "who_am_i/game"
-
   get "who_am_i/highscore"
+  post "who_am_i/game" => "who_am_i#game"
+
   get "what_am_i/game" => "what_am_i#game"
   post "what_am_i/game" => "what_am_i#game"
   get "what_am_i/highscore" => "what_am_i#highscore"
