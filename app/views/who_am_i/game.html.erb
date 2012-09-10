@@ -2,7 +2,7 @@
 <p><b><b/></p>
 <hr />
 <div class="picture">
-      <img src="https://graph.facebook.com/<%= @correct_user.facebook_id %>/picture?type=large"/>
+      <%= @correct_user.profile_picture.url(:large) %>
     </div>
 <br>
 <% @players.each do |user| %>
@@ -13,12 +13,11 @@
 	<input class="btn" type="submit" name="user_name" value="<%= user.full_name%>">
 </form>
 <% end %>
-
 	<% if @obj %>
 	<% if @obj.answer %>
-		<h4>Det var riktig! Spill videre!</h4>
-	<% else %>
-	 <h4>Det var feil... Spill videre!</h4>
+		<h3>Det var riktig! Spill videre!</h3>
+	 <% else %>
+	 <h3>Det var feil... Spill videre!</h3>
 	<% end %>
 	<br>	
 <% end %>

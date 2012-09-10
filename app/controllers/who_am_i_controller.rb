@@ -9,7 +9,7 @@ class WhoAmIController < ApplicationController
     if request.post?
       @obj = WhoAmI.find(params[:session])
       answered_user_id = params[:user_id]
-      if answered_user_id.to_i == @obj.correct_user_id.to_i
+      if (answered_user_id.to_i == @obj.correct_user_id.to_i) && (@obj.answer==nil)
           @obj.answer = true
       else 
         @obj.answer = false
@@ -22,7 +22,7 @@ class WhoAmIController < ApplicationController
 
 
     if @session==nil || @session.played
-      @users = User.random(2013,4).where("facebook_id IS NOT NULL")
+      @users = User.random(2013,4).where("profile_picture_file_name IS NOT NULL")
 
       @correct_user = @users[Random.rand(@users.length)]
       @session = WhoAmI.new 
