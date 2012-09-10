@@ -2,7 +2,7 @@
 <p><b><b/></p>
 <hr />
 <div class="picture">
-      <%= @correct_user.profile_picture.url(:large) %>
+      <%= image_tag @correct_user.profile_picture.url(:large) %>
     </div>
 <br>
 <% @players.each do |user| %>
