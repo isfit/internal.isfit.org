@@ -1,5 +1,6 @@
 class WhoAmIController < ApplicationController
   def index
+    redirect_to who_am_i_game_path
   end
 
   def game
