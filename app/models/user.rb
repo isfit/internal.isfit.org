@@ -16,6 +16,15 @@ class User < ActiveRecord::Base
 
   attr_readonly :username, :ldap_id, :email
 
+   has_attached_file :profile_picture, { 
+     :url => "/system/:hash.:extension",
+     :hash_secret => "kakekakekakemonster",
+     styles:  {
+      large: {geometry: "180x180#"},
+      small: {geometry: "50x50#"}
+      }
+   }
+
   # Return full name of user
   def full_name
     "#{given_name} #{family_name}"
@@ -39,7 +48,7 @@ class User < ActiveRecord::Base
 
   # Returns a number of random users from a given festival
   def self.random(year=2013, limit=5)
-    self.in_festival(year,"RAND()").limit(limit)
+    self.in_festival(year,"RAND()").limit(limit).where("users.id > 1")
   end
 
   def name_reversed

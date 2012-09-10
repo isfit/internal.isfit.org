@@ -10,9 +10,12 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by_username(params[:login])
-    if user && user.authenticate(params[:password]) && user.role?(:internal)
+    if user && !user.password_digest.nil? && user.authenticate(params[:password]) && user.role?(:internal)
       session[:user_id] = user.id
       redirect_to_target_or_default root_url, notice: generate_motivational(user)
+    elsif user && user.password_digest.nil?
+      flash.now[:alert] = "Invalid login or password, contact orakel@isfit.org."
+      render action: 'new'
     else
       flash.now[:alert] = "Invalid login or password."
       render action: 'new'
@@ -29,6 +32,9 @@ class SessionsController < ApplicationController
   end
 
   def mail_password
+    if params[:username].nil?
+      return render :forgot_password
+    end
     new_pass = random_password
     user = User.find_by_username(params[:username])
     if user.nil?
@@ -36,7 +42,7 @@ class SessionsController < ApplicationController
       return render :forgot_password
     end
     user.password = new_pass
-    if user.save!
+    if !user.private_email.nil? && user.save!
       user.changeLdapPassword(new_pass)
       UserMailer.forgot_password_mail(user.private_email, new_pass).deliver
       return redirect_to login_path, :notice => "A new password has been sent to your private email"

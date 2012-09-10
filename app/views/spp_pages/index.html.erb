@@ -8,6 +8,7 @@
   <thead>
     <tr>
       <th>Title en</th>
+      <th>Title no</th>
       <th></th>
       <th></th>
       <th></th>
@@ -17,6 +18,7 @@
   <% @spp_pages.each do |spp_page| %>
     <tr>
       <td><%= spp_page.title_en %></td>
+      <td><%= spp_page.title_no %></td>
       <td><%= link_to 'Show', spp_page, :class => "btn-primary btn" %></td>
       <td><%= link_to 'Edit', edit_spp_page_path(spp_page), :class => "btn" %></td>
       <td><%= link_to 'Destroy', spp_page, confirm: 'Are you sure?', method: :delete, :class => "btn btn-danger" %></td>

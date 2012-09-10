@@ -2,8 +2,8 @@
     <h3><%= position.title_en %></h3>
     <% position.users.each do |user| %>
         <div class="user">
-            <% if user.facebook_id %>
-                <img class="pull-left" src="http://graph.facebook.com/<%= user.facebook_id %>/picture">
+          <% if user.profile_picture? %>
+            <%= image_tag user.profile_picture.url(:small), {:alt => "", :class => "pull-left"} %>
             <% else %>
                 <img class="pull-left" src="http://profile.ak.fbcdn.net/static-ak/rsrc.php/v1/yo/r/UlIqmHJn-SK.gif">
             <% end %>

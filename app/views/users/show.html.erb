@@ -1,11 +1,11 @@
 <div class="user readable">
-  <% if @user.facebook_id %>
+  <% if @user.profile_picture? %>
     <div class="picture pull-right" >
-      <img src="https://graph.facebook.com/<%= @user.facebook_id %>/picture?type=large"/>
+      <%= image_tag @user.profile_picture.url(:large) %>
     </div>
   <% elsif @user == current_user %>
     <div class="pull-right">
-      <p>No picture? <%= link_to "Connect to Facebook!", oauth_start_path %></p>
+      <p>No picture? Upload yours at <%= link_to "edit profile", edit_user_path(@user) %></p>
     </div>
   <% end %>
   <div><%=render @user %></div>

@@ -32,9 +32,9 @@ class Participant < ActiveRecord::Base
     }
 
   validates :essay2, :length => {
-    :maximum   => 260,
+    :maximum   => 310,
     :tokenizer => lambda { |str| str.scan(/\s+|$/) },
-    :too_long  => "too long, maximum 250 words"
+    :too_long  => "too long, maximum 310 words"
     }
 
 	validates_presence_of :birthdate, :message => "not valid"
