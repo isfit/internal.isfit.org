@@ -1,2 +1,19 @@
-<h1>WhoAmI#highscore</h1>
-<p>Find me in app/views/who_am_i/highscore.html.erb</p>
+<h1>Highscore</h1>
+
+<h3>Hvem har flest riktige?</h3>
+<ul style="list-style-type: decimal";>
+    <% @points_sorted.each do |user,value| %>
+        <li><%= user.full_name %> -> <%= value %></li>
+    <% end %>
+</ul>
+
+<h3>Hvilken bruker er best prosent-vis (Ant. riktige svar / ant. feil svar)?</h3>
+<ul style="list-style-type: decimal";>
+    <% @best_ratio_sorted.each do |user,value| %>
+        <li><%= user.full_name %> -> <%= "%0.2f" % (value*100) %>%</li>
+    <% end %>
+</ul>
+
+<a href="game">
+	<button class="btn-large">Spill mer!</button></a>
+</div>

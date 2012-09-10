@@ -1,10 +1,27 @@
-<h1>Who I am?!?</h1>
-<div class="span6" style="text-align:center">
- <div class="picture pull-middle" >
-      <img src="https://graph.facebook.com/<%= @user1.facebook_id %>/picture?type=large"/>
+<h1>Who am I?</h1>
+<p><b><b/></p>
+<hr />
+<div class="picture">
+      <%= @correct_user.profile_picture.url(:large) %>
     </div>
-<div class="btn-group">
-  <button class="btn"><%= @user1.full_name %></button>
-  <button class="btn"><%= @user2.full_name %></button>
-  <button class="btn">3</button>
+<br>
+<% @players.each do |user| %>
+	<form method="POST" >
+	<%= form_tag %>
+	<input type="hidden" name="session" value="<%= @session.id%>">
+	<input type="hidden" name="user_id" value="<%= user.id%>">
+	<input class="btn" type="submit" name="user_name" value="<%= user.full_name%>">
+</form>
+<% end %>
+	<% if @obj %>
+	<% if @obj.answer %>
+		<h3 style="color:green">Det var riktig! Spill videre!</h3>
+	 <% else %>
+	 <h3 style="color:red">Det var feil... Spill videre!</h3>
+	<% end %>
+	<br>	
+<% end %>
+<br>
+<a href="highscore">
+	<button class="btn-large">Gå til highscorelisten</button></a>
 </div>
