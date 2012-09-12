@@ -9,6 +9,11 @@ InternalIsfitOrg::Application.routes.draw do
   post "what_am_i/game" => "what_am_i#game"
   get "what_am_i/highscore" => "what_am_i#highscore"
 
+  get "users/status", controller: "card_checker", action: "status"
+  get "users/status/init", controller: "card_checker", action: "init"
+  post "users/status/update", controller: "card_checker", action: "update"
+
+
   resources :spp_pages
 
   scope "/wiki" do

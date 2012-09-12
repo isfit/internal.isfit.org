@@ -1,0 +1,42 @@
+<h1> Status </h1>
+Missing hover effect on table head for sortable
+<table class="table table-bordered table-striped sortable">
+  <thead>
+    <tr>
+      <th>Navn</th>
+      <th>Organisasjon (Gruppe)</th>
+      <th>Kort status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <td><%= user.full_name %></td>
+    
+      <% if user.positions.last.groups.last.section_id %>
+        <td>
+          <%= Section.find(user.positions.last.groups.last.section_id).name_no %>
+          (<%= user.positions.last.groups.last.name_no %>)
+        </td>
+      <% else %>
+          <td><%= user.positions.last.groups.last.name_no %></td>
+      <% end %>
+      <td>
+          <form id="samfundet" class="card_form">
+            <input type="hidden" name="samfundet" value="<%= CardChecker.find_by_user_id(user.id).id %>">
+            <div class="btn btn-mini <%='btn-success' if CardChecker.find_by_user_id(user.id).samfundet_card %>">Samfundet</div>
+          </form>
+          <form id="ntnu" class="card_form">
+            <input type="hidden" name="ntnu" value="<%= CardChecker.find_by_user_id(user.id).id %>">
+            <div class="btn btn-mini <%='btn-success' if CardChecker.find_by_user_id(user.id).ntnu_card %>">NTNU</div>
+          </form>
+          <form id="check" class="card_form">
+            <input type="hidden" name="check" value="<%= CardChecker.find_by_user_id(user.id).id %>">
+            <div class="btn btn-mini <%='btn-success' if CardChecker.find_by_user_id(user.id).check_card %>">Card no.3</div>
+          </form>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+  

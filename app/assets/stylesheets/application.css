@@ -16,4 +16,5 @@
  *= require "organization_chart"
  *= require_self
  *= require "what_am_i"
+ *= require "user"
 */
