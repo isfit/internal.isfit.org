@@ -1,16 +1,23 @@
 <h1>Highscore</h1>
-
-<h3>Hvem har flest riktige?</h3>
+</br>
+<h3>TOPP 10</h3>
 <ul style="list-style-type: decimal";>
-    <% @points_sorted.each do |user,value| %>
-        <li><%= user.full_name %> -> <%= value %></li>
+    <% @points_sorted.each do |userkey,value| %>
+        <li><%= User.find(userkey).full_name %> -> <%= value %></li>
     <% end %>
 </ul>
 
-<h3>Hvilken bruker er best prosent-vis (Ant. riktige svar / ant. feil svar)?</h3>
+<h3>Hvem har flest riktige svar / ant. svar? (Av top 10 med flest riktige)</h3>
 <ul style="list-style-type: decimal";>
-    <% @best_ratio_sorted.each do |user,value| %>
-        <li><%= user.full_name %> -> <%= "%0.2f" % (value*100) %>%</li>
+    <% @best_ratio_sorted.each do |userkey,value| %>
+        <li><%= User.find(userkey).full_name %> -> <%= "%0.2f" % (value*100) %>%</li>
+    <% end %>
+</ul>
+
+<h3>Hvem kjenner ISFiT best?</h3>
+<ul style="list-style-type: decimal";>
+    <% @best_correct_guessed.each do |userkey,value| %>
+        <li><%= User.find(userkey).full_name %> -> <%= "%0.2f" % (value*100) %>%</li>
     <% end %>
 </ul>
 

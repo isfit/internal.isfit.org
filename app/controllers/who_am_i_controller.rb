@@ -10,13 +10,9 @@ class WhoAmIController < ApplicationController
     if request.post?
       @obj = WhoAmI.find(params[:session])
       answered_user_id = params[:user_id]
-      if (answered_user_id.to_i == @obj.correct_user_id.to_i) && (@obj.answer==nil)
-          @obj.answer = true
-      else 
-        @obj.answer = false
-      end
-    @obj.played = true
-    @obj.save
+      @obj.answer = answered_user_id.to_i
+      @obj.played = true
+      @obj.save
     end
 
     @session = WhoAmI.where(user_id: current_user.id).order("created_at DESC").limit(1).first
@@ -50,23 +46,23 @@ class WhoAmIController < ApplicationController
   end
 
   def highscore
-    whoAmIs = WhoAmI.where(played: true)
-    points = Hash.new {|h,k| h[k] = 0} #Which player has most correct guesses?
-    played = Hash.new {|h,k| h[k] = 0} #Used to find best played based correct/wrong ratio
-    puts played
+    mostPoints =  WhoAmI.where("correct_user_id = answer").group(:user_id).order("count_all DESC").limit(10).count
+    most_guessed = WhoAmI.where("correct_user_id = answer").group(:correct_user_id).order("count_all DESC").limit(10).count
+
     best_ratio = Hash.new {|h,k| h[k] = 0} #Which player has the best correct/wrong ratio?
+    best_guessed = Hash.new {|h,k| h[k] = 0} 
 
-    whoAmIs.each do |who|
-        played[User.find(who.user_id)] += 1
-
-        if who.answer == true
-          points[User.find(who.user_id)] += 1
-
-          #Using .to_f to get floating point
-          best_ratio[User.find(who.user_id)] = points[User.find(who.user_id)].to_f / played[User.find(who.user_id)]
-        end
+    most_guessed.each do |key,value|
+      best_guessed[key] = most_guessed[key].to_f / WhoAmI.where("correct_user_id = #{key}").where(played: true).count.to_f
     end
-    @points_sorted = points.sort_by {|k,v| v}.reverse
+
+
+    mostPoints.each do |key,value|
+      best_ratio[key] = mostPoints[key].to_f / User.find(key).who_am_is.where(played:true).count
+      
+    end
+    @points_sorted = mostPoints.sort_by {|k,v| v}.reverse
     @best_ratio_sorted = best_ratio.sort_by {|k,v| v}.reverse
+    @best_correct_guessed = best_guessed.sort_by {|k,v| v}.reverse
   end
 end

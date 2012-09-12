@@ -14,7 +14,7 @@
 </form>
 <% end %>
 	<% if @obj %>
-	<% if @obj.answer %>
+	<% if @obj.answer == @obj.correct_user_id %>
 		<h3 style="color:green">Det var riktig! Spill videre!</h3>
 	 <% else %>
 	 <h3 style="color:red">Det var feil... Spill videre!</h3>
