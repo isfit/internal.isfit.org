@@ -1,7 +1,7 @@
 <div class="hero-unit">
-	<% if current_user.profile_picture? %>
+	<% if kvitter.user.profile_picture? %>
     	<div class="thumbnail pull-left" >
-      		<%= image_tag current_user.profile_picture.url(:small) %>
+      		<%= image_tag kvitter.user.profile_picture.url(:small) %>
     	</div>
   	<% end %>
 
