@@ -9,6 +9,11 @@ InternalIsfitOrg::Application.routes.draw do
   post "what_am_i/game" => "what_am_i#game"
   get "what_am_i/highscore" => "what_am_i#highscore"
 
+  get "users/status", controller: "card_checker", action: "status"
+  get "users/status/init", controller: "card_checker", action: "init"
+  post "users/status/update", controller: "card_checker", action: "update"
+
+
   resources :spp_pages
 
   scope "/wiki" do
@@ -46,6 +51,7 @@ InternalIsfitOrg::Application.routes.draw do
 
   post "kvitters/create" => "kvitters#create"
   get "kvitters/last(:.format)" => "kvitters#last"
+  get "kvitters/" => "kvitters#index", as: "kvitters"
   
   get "contact_logs/new/:contact_log_unit_id" => "contact_logs#new", as: "new_contact_log_with_unit"
   resources :contact_logs

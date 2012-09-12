@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :groups, through: :positions
   has_many :room_bookings
+  has_many :kvitters
   has_and_belongs_to_many :roles
   has_and_belongs_to_many :positions
   has_many :who_am_is

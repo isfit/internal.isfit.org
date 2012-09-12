@@ -20,4 +20,16 @@ class KvittersController < ApplicationController
       format.json { render :json => @kvitters.to_json(methods: :username) }
     end
   end
+
+  def index
+    @kvitters = Kvitter.paginate(page: params[:page]).order("created_at desc")
+
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def within_a_div
+    index
+  end
 end

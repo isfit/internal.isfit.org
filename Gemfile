@@ -29,6 +29,8 @@ gem 'private_pub'
 gem 'rack-mini-profiler'
 gem 'ransack'
 gem 'simple_form'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 # Denne spammer oss med mail atm... Må tunes :P
  gem 'exception_notification', :require => 'exception_notifier'

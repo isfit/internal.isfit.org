@@ -31,6 +31,7 @@ class UsersController < ApplicationController
       redirect_to root_url, notice: "Placeholdersen is only a figment of your imagination."
     else
       @user = User.find(params[:id])
+      @kvitters = Kvitter.where(user_id: @user.id).order('created_at DESC').limit(10)
       respond_to do |format|
         format.vcf { render @user}
         format.html
@@ -80,5 +81,4 @@ class UsersController < ApplicationController
       redirect_to root_url
     end
   end
-
 end
