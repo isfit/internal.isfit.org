@@ -3,14 +3,15 @@ load_and_authorize_resource
   def status
     @users = User.in_festival(2013)
     @users.each do |user|
-      card = CardChecker.find_or_create_by_user_id(user.id)
-      if card.ntnu_card == nil
+      card = CardChecker.find_by_user_id(user.id)
+      if !card
+        card = CardChecker.new
+        card.user_id = user.id
         card.ntnu_card = false
         card.samfundet_card = false
         card.check_card = false
         card.save
       end
-
     end
   end
 
