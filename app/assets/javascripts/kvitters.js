@@ -1,3 +1,15 @@
+$(document).ready(function() {
+  if ($('#kvitter-index').length) {
+    $('.kvitter-message').each(function(index) {
+      $(this).html(format($(this).text()));
+    });
+
+    $('.kvitter-user').each(function(index) {
+      $(this).html(format($(this).text()));
+    });
+  }
+});
+
 if(!String.linkify) {
   String.prototype.linkify = function() {
 
@@ -30,6 +42,7 @@ function downloadKvitters() {
     $('#kvitter').append('<h1 rel="popover" data-original-title="Kvitter" data-content="Kvitter is the internal Twitter of ISFiT. Write something inspiring, engaging, or simply informing, and share it with the world!">Kvitter</span>');
     $('#kvitter').append('<form name="kvitter" id="kvitter-form" action="kvitters/create.json" method="post"><textarea rows="2" style="width: 100%;"  name="message" placeholder="Si noe inspirerende..."></textarea><input type="submit" class="btn btn-small" value="Kvitr!" /></form>');
     $('#kvitter').append('<ul id="kvitter-posts"></ul>');
+    $('#kvitter').append('<a href="/kvitters" class="btn btn-primary">Se flere</a>');
     $('[rel=popover]').popover({
       offset: 10
     });

@@ -1,0 +1,16 @@
+<div class="hero-unit">
+	<% if current_user.profile_picture? %>
+    	<div class="thumbnail pull-left" >
+      		<%= image_tag @user.profile_picture.url(:small) %>
+    	</div>
+  	<% end %>
+
+	<p class="kvitter-user"><%= "@" + kvitter.user.username %></p>
+	<p class="kvitter-message"><%= kvitter.message %></p>
+	<span class="small">
+		<p>
+			<%= kvitter.user.full_name %>
+			<%= time_ago_in_words kvitter.created_at.to_s %> ago
+		</p>
+	</span>
+</div>
