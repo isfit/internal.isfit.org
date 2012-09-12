@@ -17,4 +17,19 @@
       No task added.<br>
     <% end %>
   </div>
+  <div id="kvitter-index">
+    <h5>Last Kvitters</h5>
+    <% if !@kvitters || @kvitters.empty? %>
+      <% if @user == current_user %>
+        <%= "Skriv din første kvitter idag!" %>
+      <% else %>
+        <%= @user.given_name %> har ikke kvitret enda :(
+      <% end %>
+    <% else %>
+      <% @kvitters.each do |kvitter| %>
+      <p class="kvitter-message"><%= kvitter.message %></p>
+      <span class="small"><p class="kvitter-user"><%= time_ago_in_words kvitter.created_at.to_s %> ago</p></span>
+      <% end %>
+    <% end %>
+  </div>
 </div>

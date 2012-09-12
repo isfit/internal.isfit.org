@@ -1,9 +1,6 @@
 <h1>Kvitter</h1>
-<%@kvitters.each do |k|%>
-<p><%= k.message %></p>
-<p><%= k.user.username %></p>
-<%end%>
-<%= form_for Kvitter.new do |f| %>
-  <%= f.text_field :message %>
-  <%= f.submit class: "primary btn",value: "Kvitre" %>
-<%end%>
+<div id='kvitter-index'>
+	<%= render partial: "kvitter", collection: @kvitters %>
+</div>
+
+<%= will_paginate @kvitters %>
