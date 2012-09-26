@@ -17,12 +17,12 @@
       <h1><small>Info about the work:</h1></small>
     </div>
     <%= f.input :work_title, input_html: { :class => "span4"}, placeholder: "Descriptive name of job" %>
-    <div class="btn-group dropup">
-      <%= f.input :deadline %>
-    </div>
+    <%= f.input :deadline %>
     <%= f.input :web_or_print, as: :radio, label: "Publishing", collection: LayoutJobsPublishing.all.collect { |s| [s.publishing, s.id]} %>
-    <%= f.input :format, placeholder: "A3" %>
+    <%= f.input :format, placeholder: "Ex 40cm x 20cm, A3" %>
     <%= f.input :description, input_html: {cols: 80, rows: 10}, placeholder: "Describe the work" %>
+    <%= f.input :status, as: :radio, label: "Status", collection: Hash[ 1 => "New", 2 => "Open", 3 => "On hold", 4 => "Resolved", 5 => "Rejected", 6 => "Deleted" ].collect { |key,value| [key, value]} %>
+
   </div>
 
   <div class="well">
