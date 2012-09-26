@@ -2,18 +2,36 @@
   <%= f.error_notification %>
 
   <div class="form-inputs form-horizontal">
+    <div class="page-header">
+      <h1><small>Contact info:</small></h1>
+    </div>
     <div class="control-group">
       <%= f.label :user_id %>
       <div class="controls">
+        <% @user ||= User.find(@layout_job.user_id) %>
         <%= link_to @user.full_name, @user %>
       </div>
     </div>
-    <%= f.input :user_info, input_html: {cols: 80, rows: 10} %>
-    <%= f.input :work_title, input_html: { :class => "span8"} %>
-    <%= f.input :deadline %>
+    <%= f.input :user_info, input_html: {cols: 80, rows: 10}, placeholder: "Write info about yourself or other people involved in the work" %>
+    <div class="page-header">
+      <h1><small>Info about the work:</h1></small>
+    </div>
+    <%= f.input :work_title, input_html: { :class => "span4"}, placeholder: "Descriptive name of job" %>
+    <div class="btn-group dropup">
+      <%= f.input :deadline %>
+    </div>
     <%= f.input :web_or_print, as: :radio, label: "Publishing", collection: LayoutJobsPublishing.all.collect { |s| [s.publishing, s.id]} %>
-    <%= f.input :format %>
-    <%= f.input :description, input_html: {cols: 80, rows: 10} %>
+    <%= f.input :format, placeholder: "A3" %>
+    <%= f.input :description, input_html: {cols: 80, rows: 10}, placeholder: "Describe the work" %>
+  </div>
+
+  <div class="well">
+    <p>
+      Har du vedlegg, slik som bilder, logoer, illustrasjoner eller tekst?
+    </p>
+    <p>
+      Send det til <%= mail_to "layout@isfit.org" %>. Nevn arbeidstittel og gjenginfo i mail med tillegg.
+    </p>
   </div>
 
   <div class="form-actions">

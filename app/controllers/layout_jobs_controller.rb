@@ -2,7 +2,11 @@ class LayoutJobsController < ApplicationController
   # GET /layout_jobs
   # GET /layout_jobs.json
   def index
-    @layout_jobs = LayoutJob.all
+    if true #current_user.role?(:layout)
+      @layout_jobs = LayoutJob.all
+    else
+      @layout_jobs = LayoutJob.where(user_id: current_user.id)
+    end
 
     respond_to do |format|
       format.html # index.html.erb

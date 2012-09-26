@@ -2,9 +2,13 @@
 <%= link_to 'Edit', edit_layout_job_path(@layout_job), :class => "btn" %>
 <%= link_to 'Back', layout_jobs_path, :class => "btn" %>
 </div>
+  <h1>
+    Title:
+    <%= @layout_job.work_title %>
+  </h1>
   <p>
   <b>User:</b>
-  <%= @layout_job.user_id %>
+  <%= link_to User.find(@layout_job.user_id).full_name ,user_path(@layout_job.user_id) %>
   </p>
 
   <p>
@@ -13,18 +17,13 @@
   </p>
 
   <p>
-  <b>Work title:</b>
-  <%= @layout_job.work_title %>
-  </p>
-
-  <p>
   <b>Deadline:</b>
   <%= @layout_job.deadline %>
   </p>
 
   <p>
-  <b>Web or print:</b>
-  <%= @layout_job.web_or_print %>
+  <b>Publishing:</b>
+  <%= @layout_job.publishing %>
   </p>
 
   <p>

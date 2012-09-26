@@ -8,9 +8,9 @@
     <tr>
               <th>User</th>
               <th>User info</th>
-              <th>Work title</th>
+              <th>Title</th>
               <th>Deadline</th>
-              <th>Web or print</th>
+              <th>Publishing</th>
               <th>Format</th>
               <th>Description</th>
             <th></th>
@@ -21,13 +21,13 @@
 
   <% @layout_jobs.each do |layout_job| %>
     <tr>
-              <td><%= layout_job.user_id %></td>
-              <td><%= layout_job.user_info %></td>
+              <td><%= link_to User.find(layout_job.user_id).full_name ,user_path(layout_job.user_id) %></td>
+              <td><%= simple_format(truncate(layout_job.user_info, length: 30, omission: "...")) %></td>
               <td><%= layout_job.work_title %></td>
               <td><%= layout_job.deadline %></td>
-              <td><%= layout_job.web_or_print %></td>
+              <td><%= layout_job.publishing %></td>
               <td><%= layout_job.format %></td>
-              <td><%= layout_job.description %></td>
+              <td><%= simple_format truncate(layout_job.description, length: 30, omission: "...") %></td>
             <td><%= link_to 'Show', layout_job, :class => "btn-primary btn" %></td>
       <td><%= link_to 'Edit', edit_layout_job_path(layout_job), :class => "btn" %></td>
       <td><%= link_to 'Destroy', layout_job, confirm: 'Are you sure?', method: :delete, :class => "btn btn-danger" %></td>
