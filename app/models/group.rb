@@ -1,6 +1,7 @@
 class Group < ActiveRecord::Base
   self.primary_key = :id
   has_and_belongs_to_many :positions
+  has_many :layout_jobs
   belongs_to :section
   belongs_to :festival
 
