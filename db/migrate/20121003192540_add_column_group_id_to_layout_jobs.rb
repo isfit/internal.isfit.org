@@ -1,4 +1,4 @@
-class AddColumnGroupToLayoutJobs < ActiveRecord::Migration
+class AddColumnGroupIdToLayoutJobs < ActiveRecord::Migration
   def change
     add_column :layout_jobs, :group_id, :integer
   end
