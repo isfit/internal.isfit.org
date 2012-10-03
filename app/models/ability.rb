@@ -46,7 +46,7 @@ class Ability
       can :manage, WikiCategory
     end
     if user.role?(:participant)
-      can :manage, Participant
+      # can :manage, Participant
     end
     if user.role?(:dialogue)
       can :manage, DialogueParticipant
