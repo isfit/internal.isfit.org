@@ -1,5 +1,7 @@
 InternalIsfitOrg::Application.routes.draw do
 
+  resources :layout_jobs
+
   get "who_am_i/index"
   get "who_am_i/game"
   get "who_am_i/highscore"
