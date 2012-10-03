@@ -2,10 +2,13 @@ class LayoutJobsController < ApplicationController
   # GET /layout_jobs
   # GET /layout_jobs.json
   def index
-    if true #current_user.role?(:layout)
+    if current_user.role?(:layout)
       @layout_jobs = LayoutJob.where('status != 6').all
+    elsif current_user.role?(:admin)
+      @layout_jobs = LayoutJob.all
     else
-      @layout_jobs = LayoutJob.where(user_id: current_user.id)
+      @group_ids = current_user.positions.last.groups.collect { |g| g.id }
+      @layout_jobs = LayoutJob.where("layout_jobs.group_id IN (?)", @group_ids)
     end
 
     respond_to do |format|

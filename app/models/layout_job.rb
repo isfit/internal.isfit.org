@@ -1,5 +1,6 @@
 class LayoutJob < ActiveRecord::Base
 	belongs_to :user
+	belongs_to :group
 	validates_presence_of :description, :user_info, :work_title
 
 	def publishing_name

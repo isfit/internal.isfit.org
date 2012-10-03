@@ -1,12 +1,13 @@
 <div class="pull-right">
   <%= link_to 'New Layout job', new_layout_job_path, :class => "btn btn-primary"%>
 </div>
-<h1>Jobs for Layout</h1>
+<h1>Your Layout jobs</h1>
 <table class="table table-bordered sortable">
   <thead>
     <tr>
       <th>User</th>
       <th>User info</th>
+      <th>Group</th>
       <th>Title</th>
       <th>Deadline</th>
       <th>Publishing</th>
@@ -22,6 +23,7 @@
   <tr>
     <td><%= link_to User.find(layout_job.user_id).full_name ,user_path(layout_job.user_id) %></td>
     <td><%= simple_format(truncate(layout_job.user_info, length: 30, omission: "...")) %></td>
+    <td><%= layout_job.group.name_en %></td>
     <td><%= layout_job.work_title %></td>
     <td><%= layout_job.deadline %></td>
     <td><%= layout_job.publishing_name %></td>

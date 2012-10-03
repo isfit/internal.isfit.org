@@ -34,14 +34,6 @@ describe LayoutJobsController do
     {}
   end
 
-  describe "GET index" do
-    it "assigns all layout_jobs as @layout_jobs" do
-      layout_job = LayoutJob.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:layout_jobs).should eq([layout_job])
-    end
-  end
-
   describe "GET show" do
     it "assigns the requested layout_job as @layout_job" do
       layout_job = LayoutJob.create! valid_attributes
