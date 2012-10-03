@@ -41,7 +41,7 @@
         <h2>Tidligere vinnere</h2>
         <ul>
             <li><h5> Top 10</h5></li>
-            <li><h5> Hvem husker ISFiT best? </h5></li>
+            <li><h5> (Kommer snart) Hvem husker ISFiT best? </h5></li>
         </ul>
             <% @best_points_weekly.each do |week, args| %>
                 <% if week != @wk_current %>
@@ -49,10 +49,6 @@
                     <ul>
                         <li>
                             <%= User.find(args[0]).full_name %> (<%= args[1] %>)
-                        </li>
-                        <li>
-                            <%= User.find(@best_guessed_weekly[week][0]).full_name %> 
-                            (<%= "%0.2f" % (@best_guessed_weekly[week][1]*100) %>%)
                         </li>
                     </ul>
                 <% end %>
