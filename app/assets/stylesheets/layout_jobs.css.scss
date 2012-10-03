@@ -1,3 +1,27 @@
 // Place all the styles related to the layout_jobs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.status_new {
+	background-color: #dff0d8;
+}
+
+.status_open {
+	background-color: #d9edf7;
+}
+
+.status_on_hold {
+	background-color: #fcf8e3;
+}
+
+.status_resolved {
+	background-color: #ddd;
+}
+
+.status_rejected {
+	background-color: #f2dede;
+}
+
+.status_deleted {
+	background-color: #f2dede
+}

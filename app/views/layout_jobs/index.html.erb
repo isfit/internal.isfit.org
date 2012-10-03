@@ -2,7 +2,7 @@
   <%= link_to 'New Layout job', new_layout_job_path, :class => "btn btn-primary"%>
 </div>
 <h1>Jobs for Layout</h1>
-<table class="table table-bordered table-striped sortable">
+<table class="table table-bordered sortable">
   <thead>
     <tr>
       <th>User</th>
@@ -15,7 +15,6 @@
       <th>Status</th>
       <th></th>
       <th></th>
-      <th></th>
     </tr>
   </thead>
 
@@ -25,13 +24,12 @@
     <td><%= simple_format(truncate(layout_job.user_info, length: 30, omission: "...")) %></td>
     <td><%= layout_job.work_title %></td>
     <td><%= layout_job.deadline %></td>
-    <td><%= layout_job.publishing %></td>
+    <td><%= layout_job.publishing_name %></td>
     <td><%= layout_job.format %></td>
     <td><%= simple_format truncate(layout_job.description, length: 30, omission: "...") %></td>
-    <td><%= layout_job.status %></td>
+    <td class=<%= layout_job.status_color %>><%= layout_job.status_name %></td>
     <td><%= link_to 'Show', layout_job, :class => "btn-primary btn" %></td>
     <td><%= link_to 'Edit', edit_layout_job_path(layout_job), :class => "btn" %></td>
-    <td><%= link_to 'Destroy', layout_job, confirm: 'Are you sure?', method: :delete, :class => "btn btn-danger" %></td>
   </tr>
   <% end %>
 </table>

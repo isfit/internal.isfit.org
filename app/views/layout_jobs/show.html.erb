@@ -1,6 +1,6 @@
 <div class="pull-right">
 <%= link_to 'Edit', edit_layout_job_path(@layout_job), :class => "btn" %>
-<%= link_to 'Back', layout_jobs_path, :class => "btn" %>
+<%= link_to 'Index', layout_jobs_path, :class => "btn btn-primary" %>
 </div>
   <h1>
     Title:
@@ -13,7 +13,7 @@
 
   <p>
   <b>User info:</b>
-  <%= @layout_job.user_info %>
+  <pre><%= @layout_job.user_info %></pre>
   </p>
 
   <p>
@@ -23,7 +23,7 @@
 
   <p>
   <b>Publishing:</b>
-  <%= @layout_job.publishing %>
+  <%= @layout_job.publishing_name %>
   </p>
 
   <p>
@@ -32,8 +32,15 @@
   </p>
 
   <p>
+    <b>Status:</b>
+    <span class=<%= @layout_job.status_color %>>
+    <%= @layout_job.status_name %>
+    </span>
+  </p>
+
+  <p>
   <b>Description:</b>
-  <%= @layout_job.description %>
+  <pre><%= @layout_job.description %></pre> 
   </p>
 
 

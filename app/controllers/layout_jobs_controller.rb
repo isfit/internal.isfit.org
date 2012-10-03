@@ -3,7 +3,7 @@ class LayoutJobsController < ApplicationController
   # GET /layout_jobs.json
   def index
     if true #current_user.role?(:layout)
-      @layout_jobs = LayoutJob.all
+      @layout_jobs = LayoutJob.where('status != 6').all
     else
       @layout_jobs = LayoutJob.where(user_id: current_user.id)
     end
@@ -30,6 +30,8 @@ class LayoutJobsController < ApplicationController
   def new
     @layout_job = LayoutJob.new
     @layout_job.user_id = current_user.id
+    @layout_job.status = 1
+    @layout_job.publishing = 4
     @user = current_user
 
     respond_to do |format|
