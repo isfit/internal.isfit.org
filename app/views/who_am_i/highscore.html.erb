@@ -44,6 +44,7 @@
             <li><h5> Hvem husker ISFiT best? </h5></li>
         </ul>
             <% @best_points_weekly.each do |week, args| %>
+                <% if week != @wk_current %>
                     <h4>Uke <%= week %>: </h4>
                     <ul>
                         <li>
@@ -54,6 +55,7 @@
                             (<%= "%0.2f" % (@best_guessed_weekly[week][1]*100) %>%)
                         </li>
                     </ul>
+                <% end %>
             <% end %> 
     </div>
 
