@@ -28,7 +28,9 @@
     <%= f.input :publishing, as: :radio, required: true , label: "Publishing", collection: @layout_job.publishing_options %>
     <%= f.input :format, placeholder: "Ex 40cm x 20cm, A3" %>
     <%= f.input :description, input_html: {cols: 80, rows: 10}, placeholder: "Describe the work" %>
-    <%= f.input :status, as: :radio, label: "Status", collection: @layout_job.status_options %>
+    <% if(current_user.role?(:admin) || current_user.role?(:layout)) %>
+      <%= f.input :status, as: :radio, label: "Status", collection: @layout_job.status_options %>
+    <% end %>
 
   </div>
 

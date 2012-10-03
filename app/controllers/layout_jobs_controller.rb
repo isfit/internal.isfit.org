@@ -33,7 +33,6 @@ class LayoutJobsController < ApplicationController
   def new
     @layout_job = LayoutJob.new
     @layout_job.user_id = current_user.id
-    @layout_job.status = 1
     @layout_job.publishing = 4
     @user = current_user
 
@@ -53,6 +52,7 @@ class LayoutJobsController < ApplicationController
   def create
     @layout_job = LayoutJob.new(params[:layout_job])
     @layout_job.user_id = current_user.id
+    @layout_job.status = 1
 
     respond_to do |format|
       if @layout_job.save
