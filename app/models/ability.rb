@@ -44,6 +44,7 @@ class Ability
       can :manage, ContactLogUnit
       can :manage, ContactLog
       can :manage, WikiCategory
+      can :manage, LayoutJob
     end
     if user.role?(:participant)
       # can :manage, Participant
