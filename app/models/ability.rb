@@ -32,6 +32,7 @@ class Ability
     end
     if user.role?(:internal)
       can :manage, Account
+      can :read, ParticipantQuote
       can :read, StaticPage
       can [:read,:create,:update], Article
       can :manage, Kvitter
@@ -48,6 +49,7 @@ class Ability
     end
     if user.role?(:participant)
       # can :manage, Participant
+      can :manage, ParticipantQuote
     end
     if user.role?(:dialogue)
       can :manage, DialogueParticipant

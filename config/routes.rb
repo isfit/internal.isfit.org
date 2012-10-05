@@ -1,5 +1,7 @@
 InternalIsfitOrg::Application.routes.draw do
 
+  resources :participant_quotes
+
   resources :layout_jobs
 
   get "who_am_i/index"

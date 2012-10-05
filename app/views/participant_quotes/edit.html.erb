@@ -1,0 +1,8 @@
+<div class="pull-right">
+  <%= link_to 'Show', @participant_quote, confirm: 'This will cancel all changes. Are you sure?', method: :get, :class => "btn" %>
+  <%= link_to 'Back', participant_quotes_path, confirm: 'This will cancel all changes. Are you sure?', method: :get , :class => "btn" %>
+</div>
+<h1>Editing participant_quote</h1>
+
+<%= render 'form' %>
+

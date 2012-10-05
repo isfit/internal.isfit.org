@@ -1,0 +1,19 @@
+<div class="alert alert-info">
+  <p>This information is <b>confidential</b> and should <b>NOT</b> be shared on social medias.</p>
+</div>
+ 
+<div class="pull-right">
+<%= link_to 'Edit', edit_participant_quote_path(@participant_quote), :class => "btn" %>
+<%= link_to 'Back', participant_quotes_path, :class => "btn" %>
+</div>
+    <blockquote>
+      <p><%= @participant_quote.quote %></p>
+      <p><small>
+        <%= link_to 'Show', @participant_quote %>
+        <% if can?(:manage, ParticipantQuote) %>
+          <%= link_to "Edit", edit_participant_quote_path(@participant_quote) %>
+          <%= link_to 'Destroy', @participant_quote, confirm: 'Are you sure?', method: :delete %>
+        <% end %>
+      </small></p>
+    </blockquote>
+ 
