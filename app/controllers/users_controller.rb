@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def username
     @user = User.find_by_username(params[:username])
+    @kvitters = Kvitter.where(user_id: @user.id).order('created_at DESC').limit(10)
     unless @user.nil?
       render action: 'show'
     else
