@@ -52,6 +52,7 @@ class Ability
     end
     if user.role?(:dialogue)
       can :manage, DialogueParticipant
+      can :read, Participant
     end
     if user.role?(:sec)
       can :manage, CardChecker
