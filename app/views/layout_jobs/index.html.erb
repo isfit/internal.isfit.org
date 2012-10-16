@@ -14,6 +14,7 @@
       <th>Format</th>
       <th>Description</th>
       <th>Status</th>
+      <th>Created at</th>
       <th></th>
       <th></th>
     </tr>
@@ -30,6 +31,7 @@
     <td><%= layout_job.format %></td>
     <td><%= simple_format truncate(layout_job.description, length: 30, omission: "...") %></td>
     <td class=<%= layout_job.status_color %>><%= layout_job.status_name %></td>
+    <td><%= simple_format truncate(layout_job.created_at.getlocal.to_s, length: 10, omission: "") %></td>
     <td><%= link_to 'Show', layout_job, :class => "btn-primary btn" %></td>
     <td><%= link_to 'Edit', edit_layout_job_path(layout_job), :class => "btn" %></td>
   </tr>
