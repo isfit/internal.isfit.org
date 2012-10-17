@@ -1,0 +1,40 @@
+<div class="pull-right">
+  <%= link_to 'New Layout job', new_layout_job_path, :class => "btn btn-primary"%>
+</div>
+<h1>Your Layout jobs</h1>
+<table class="table table-bordered sortable">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>User info</th>
+      <th>Group</th>
+      <th>Title</th>
+      <th>Deadline</th>
+      <th>Publishing</th>
+      <th>Format</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Created at</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <% @layout_jobs.each do |layout_job| %>
+  <tr>
+    <td><%= link_to User.find(layout_job.user_id).full_name ,user_path(layout_job.user_id) %></td>
+    <td><%= simple_format(truncate(layout_job.user_info, length: 30, omission: "...")) %></td>
+    <td><%= layout_job.group.name_en %></td>
+    <td><%= layout_job.work_title %></td>
+    <td><%= layout_job.deadline %></td>
+    <td><%= layout_job.publishing_name %></td>
+    <td><%= layout_job.format %></td>
+    <td><%= simple_format truncate(layout_job.description, length: 30, omission: "...") %></td>
+    <td class=<%= layout_job.status_color %>><%= layout_job.status_name %></td>
+    <td><%= simple_format truncate(layout_job.created_at.getlocal.to_s, length: 10, omission: "") %></td>
+    <td><%= link_to 'Show', layout_job, :class => "btn-primary btn" %></td>
+    <td><%= link_to 'Edit', edit_layout_job_path(layout_job), :class => "btn" %></td>
+  </tr>
+  <% end %>
+</table>
+

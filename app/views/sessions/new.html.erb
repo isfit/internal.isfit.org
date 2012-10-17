@@ -1,15 +1,25 @@
-<%= form_tag sessions_path, class: "form-stacked" do %>
-  <fieldset>
-    <legend>Login</legend>
-  <div class="type-text">
-    <%= label_tag :login, "Username or Email Address" %>
-    <%= text_field_tag :login, params[:login] %>
-  </div>
-  <div class="type-text">
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
-  </div>
-</fieldset>
-<div class="type-button"><%= submit_tag "Log in", class: "primary btn" %></div>
-<% end %>
-<%= link_to "Forgot password?", forgot_password_path  %>
+<div class="login-form-container">
+    <%= form_tag sessions_path, class: "form-stacked" do %>
+        <fieldset>
+            <legend>Login</legend>
+            <div class="type-text">
+                <%= label_tag :login, "Username or Email Address" %>
+                <%= text_field_tag :login, params[:login] %>
+            </div>
+            <div class="type-text">
+                <%= label_tag :password %>
+                <%= password_field_tag :password %>
+            </div>
+        </fieldset>
+        <div class="type-button">
+            <%= submit_tag "Log in", class: "btn-primary btn" %>
+        </div>
+    <% end %>
+
+    <%= link_to forgot_password_path do %>
+        <div class="alert alert-block">
+            <h4>Forgot your password?</h4>
+            Follow this link to reset your password. It fixes most problems.
+        </div>
+    <% end %>
+</div>

@@ -1,0 +1,51 @@
+<div class="pull-right">
+<%= link_to 'Edit', edit_layout_job_path(@layout_job), :class => "btn" %>
+<%= link_to 'Index', layout_jobs_path, :class => "btn btn-primary" %>
+</div>
+  <h1>
+    Title:
+    <%= @layout_job.work_title %>
+  </h1>
+  <p>
+  <b>User:</b>
+  <%= link_to User.find(@layout_job.user_id).full_name ,user_path(@layout_job.user_id) %>
+  </p>
+
+  <p>
+  <b>User info:</b>
+  <pre><%= @layout_job.user_info %></pre>
+  </p>
+
+  <p>
+    <b>Group:</b>
+    <%= @layout_job.group.name_en %>
+  </p>
+
+  <p>
+  <b>Deadline:</b>
+  <%= @layout_job.deadline %>
+  </p>
+
+  <p>
+  <b>Publishing:</b>
+  <%= @layout_job.publishing_name %>
+  </p>
+
+  <p>
+  <b>Format:</b>
+  <%= @layout_job.format %>
+  </p>
+
+  <p>
+    <b>Status:</b>
+    <span class=<%= @layout_job.status_color %>>
+    <%= @layout_job.status_name %>
+    </span>
+  </p>
+
+  <p>
+  <b>Description:</b>
+  <pre><%= @layout_job.description %></pre> 
+  </p>
+
+

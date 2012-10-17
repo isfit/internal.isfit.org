@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120926191116) do
+ActiveRecord::Schema.define(:version => 20121005160616) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -289,6 +289,7 @@ ActiveRecord::Schema.define(:version => 20120926191116) do
     t.text     "user_info"
     t.string   "work_title"
     t.date     "deadline"
+<<<<<<< HEAD
     t.integer  "web_or_print"
     t.string   "format"
     t.text     "description"
@@ -301,6 +302,13 @@ ActiveRecord::Schema.define(:version => 20120926191116) do
     t.string   "publishing"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "publishing"
+    t.string   "format"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "status"
+    t.integer  "group_id"
   end
 
   create_table "new_frontend_articles", :force => true do |t|
@@ -334,6 +342,16 @@ ActiveRecord::Schema.define(:version => 20120926191116) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "participant_quotes", :force => true do |t|
+    t.string   "quote"
+    t.integer  "user_id"
+    t.string   "category"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "participant_quotes", ["user_id"], :name => "index_participant_quotes_on_user_id"
 
   create_table "participants", :force => true do |t|
     t.datetime "registered_time",                                              :null => false

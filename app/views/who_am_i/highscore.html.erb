@@ -1,25 +1,62 @@
-<h1>Highscore</h1>
-</br>
-<h3>TOPP 10</h3>
-<ul style="list-style-type: decimal";>
-    <% @points_sorted.each do |userkey,value| %>
-        <li><%= User.find(userkey).full_name %> -> <%= value %></li>
-    <% end %>
-</ul>
+<div class="row">
+    <div class="span4">
+        <h1>Highscore -  Uke <%= @wk_current %></h1>
+        </br>
+        <h3>Top 10</h3>
+        <ul style="list-style-type: decimal";>
+            <% @points_sorted.each do |userkey,value| %>
+                <li><%= User.find(userkey).full_name %> -> <%= value %></li>
+            <% end %>
+        </ul>
 
-<h3>Hvem har flest riktige svar / ant. svar? (Av top 10 med flest riktige)</h3>
-<ul style="list-style-type: decimal";>
-    <% @best_ratio_sorted.each do |userkey,value| %>
-        <li><%= User.find(userkey).full_name %> -> <%= "%0.2f" % (value*100) %>%</li>
-    <% end %>
-</ul>
+        <h3>Hvem har best ratio?</h3>
+        <p>(ant. riktig / ant. spill av Top 10)</p>
+        <ul style="list-style-type: decimal";>
+            <% @best_ratio_sorted.each do |userkey,value| %>
+                <li><%= User.find(userkey).full_name %> -> <%= "%0.2f" % (value*100) %>%</li>
+            <% end %>
+        </ul>
 
-<h3>Hvem kjenner ISFiT best?</h3>
-<ul style="list-style-type: decimal";>
-    <% @best_correct_guessed.each do |userkey,value| %>
-        <li><%= User.find(userkey).full_name %> -> <%= "%0.2f" % (value*100) %>%</li>
-    <% end %>
-</ul>
+        <h3>Hvem kjenner ISFiT best?</h3>
+        <ul style="list-style-type: decimal";>
+            <% @best_correct_guessed.each do |userkey,value| %>
+                <li><%= User.find(userkey).full_name %> -> <%= "%0.2f" % (value*100) %>%</li>
+            <% end %>
+        </ul>
+    </div>
+    <div class="span4">
+        <h2>Din statistikk</h2>
+        <ul tyle="list-style-type: none";>
+            <% @user_stats.each do | string, value | %>
+                <% if string == "Prosent" %>
+                    <li><%= string %>: <%= "%0.2f" % (value*100) %>%</li>
+                <% else %>
+                    <li><%= string %>: <%= value %></li>
+                <% end %>
+            <% end %>
+        </ul>
+        <br>
+
+
+        <h2>Tidligere vinnere</h2>
+        <ul>
+            <li><h5> Top 10</h5></li>
+            <li><h5> (Kommer snart) Hvem husker ISFiT best? </h5></li>
+        </ul>
+            <% @best_points_weekly.each do |week, args| %>
+                <% if week != @wk_current %>
+                    <h4>Uke <%= week %>: </h4>
+                    <ul>
+                        <li>
+                            <%= User.find(args[0]).full_name %> (<%= args[1] %>)
+                        </li>
+                    </ul>
+                <% end %>
+            <% end %> 
+    </div>
+
+
+</div>
 
 <a href="game">
 	<button class="btn-large">Spill mer!</button></a>

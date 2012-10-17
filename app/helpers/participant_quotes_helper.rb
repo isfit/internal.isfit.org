@@ -1,0 +1,2 @@
+module ParticipantQuotesHelper
+end

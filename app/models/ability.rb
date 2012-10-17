@@ -12,10 +12,7 @@ class Ability
     if user.role?(:leader)
       can :manage, Applicant
       can :manage, Article
-      can :manage, ContactLogPerson
-      can :manage, ContactLogUnit
-      can :manage, ContactLog
-    end
+   end
     if user.role?(:wingman)
       can :manage, Applicant
     end
@@ -43,13 +40,19 @@ class Ability
       can :destroy, RoomBooking, user_id: user.id
       can :read, Room
       can :manage, WikiPage
+      can :manage, ContactLogPerson
+      can :manage, ContactLogUnit
+      can :manage, ContactLog
       can :manage, WikiCategory
+      can :manage, LayoutJob
     end
     if user.role?(:participant)
-      can :manage, Participant
+      # can :manage, Participant
+      can :manage, ParticipantQuote
     end
     if user.role?(:dialogue)
       can :manage, DialogueParticipant
+      can :read, Participant
     end
     if user.role?(:sec)
       can :manage, CardChecker

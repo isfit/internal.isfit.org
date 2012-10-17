@@ -8,7 +8,7 @@ $('#spp_fileupload').fileupload({
   },
   dropzone: $("form.file_upload"),
   done: function (e, data) {
-    str = "/system/original_pictures/"+data.result.photo.id+"/cropable/"+data.result.photo.original_picture_file_name
+    str = "/system/photos/original_pictures/000/000/"+data.result.photo.id+"/cropable/"+data.result.photo.original_picture_file_name
     $("#img1").html("<img src='"+str+"' id='spp_front_large' />");
     $("#img2").html("<img src='"+str+"' id='spp_front_small' />");
     $("#img3").html("<img src='"+str+"' id='spp_article' />");
