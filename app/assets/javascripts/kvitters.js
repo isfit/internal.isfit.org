@@ -29,6 +29,16 @@ if(!String.linkify) {
   };
 }
 
+$("a.awesome").live('click', function(event){
+  event.preventDefault(); 
+  var that = event.srcElement;
+  var count_object = $.getJSON("/kvitters/" + $(that).attr("data-id") + "/awesome.json", function(data) {
+  console.log(data);
+  $(that).next().text(data);
+  })
+})
+
+
 function format(s) {
   var sanitized = s.replace(/&(?!\w+([;\s]|$))/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   var formatted = sanitized.replace(/(\s|^)@([A-Za-z0-9_]+)/g, "<a href='/users/username/$2'> @$2</a>");
@@ -81,11 +91,12 @@ function refreshKvitters() {
 }
 
 function appendKvitter(kvitt) {
-  $('#kvitter-posts').append('<li id="kvitter-"' + kvitt.id + '"><a href="/users/'+ kvitt.user_id + '">@' + kvitt.username + '</a> ' + format(kvitt.message) + '<br><span class="small">'+ humanized_time_span(kvitt.created_at) + '</span></li>');
+  console.log(JSON.stringify(kvitt))
+  $('#kvitter-posts').append('<li id="kvitter-"' + kvitt.id + '"><a href="/users/'+ kvitt.user_id + '">@' + kvitt.username + '</a> ' + format(kvitt.message) + '<br><span class="small">'+ humanized_time_span(kvitt.created_at) + '<a href="#" class="awesome" data-id="'+kvitt.id+'"> \\o/ </a><span class="count"> ' + (kvitt.awesome_count ? kvitt.awesome_count : "0")+'</span></li>');
 }
 
 function prependKvitter(kvitt) {
-  $('#kvitter-posts').prepend('<li id="kvitter-"' + kvitt.id + '"><a href="/users/'+ kvitt.user_id + '">@' + kvitt.username + '</a> ' + format(kvitt.message) + '<br><span class="small">'+ humanized_time_span(kvitt.created_at) + '</span></li>');
+  $('#kvitter-posts').prepend('<li id="kvitter-"' + kvitt.id + '"><a href="/users/'+ kvitt.user_id + '">@' + kvitt.username + '</a> ' + format(kvitt.message) + '<br><span class="small">'+ humanized_time_span(kvitt.created_at) + '<a href="#" class="awesome" data-id="'+kvitt.id+'"> \\o/ </a><span class="count"> ' + (kvitt.awesome_count ? kvitt.awesome_count : "0")+'</span></li>');
 }
 
 jQuery.fn.exists = function(){return jQuery(this).length>0;}

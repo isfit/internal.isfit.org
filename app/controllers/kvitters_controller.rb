@@ -17,7 +17,7 @@ class KvittersController < ApplicationController
   def last
     @kvitters = Kvitter.order("created_at desc").limit(10)
     respond_to do |format|
-      format.json { render :json => @kvitters.to_json(methods: :username) }
+      format.json { render :json => @kvitters.to_json(methods: [:username, :awesome_count]) }
     end
   end
 
@@ -28,6 +28,26 @@ class KvittersController < ApplicationController
       format.html
     end
   end
+
+
+  def awesome
+    @user_liked = current_user.id
+    @liked_kvitter = params[:id]
+    if Awesome.where("kvitter_id = #{@liked_kvitter}").where("user_id = #{@user_liked}").first == nil
+      @awesome = Awesome.new
+      @awesome.user_id = @current_user.id
+      @awesome.kvitter_id = @liked_kvitter
+      if @awesome.save
+        @count = Awesome.where("kvitter_id = #{@liked_kvitter}").count
+        render :json => @count.to_json
+        return
+      end
+    end
+    render :json => Awesome.where("kvitter_id = #{@liked_kvitter}").count.to_json
+  end
+
+        
+
 
   def within_a_div
     index

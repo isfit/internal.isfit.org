@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120912171807) do
+ActiveRecord::Schema.define(:version => 20120926191116) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -71,6 +71,16 @@ ActiveRecord::Schema.define(:version => 20120912171807) do
     t.integer  "article_image_file_size"
     t.datetime "article_image_updated_at"
   end
+
+  create_table "awesomes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "kvitter_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "awesomes", ["kvitter_id"], :name => "index_awesomes_on_kvitter_id"
+  add_index "awesomes", ["user_id"], :name => "index_awesomes_on_user_id"
 
   create_table "card_checkers", :force => true do |t|
     t.boolean  "samfundet_card"
@@ -271,6 +281,26 @@ ActiveRecord::Schema.define(:version => 20120912171807) do
     t.text     "message"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "teller"
+  end
+
+  create_table "layout_jobs", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "user_info"
+    t.string   "work_title"
+    t.date     "deadline"
+    t.integer  "web_or_print"
+    t.string   "format"
+    t.text     "description"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "status"
+  end
+
+  create_table "layout_jobs_publishings", :force => true do |t|
+    t.string   "publishing"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "new_frontend_articles", :force => true do |t|
