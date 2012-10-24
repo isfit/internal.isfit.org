@@ -4,4 +4,6 @@ class Article < ActiveRecord::Base
   belongs_to :user
   has_attached_file :article_image,
     styles: {thumb: "200x200#", original: "400x400>"}
+
+  self.per_page = 10
 end
