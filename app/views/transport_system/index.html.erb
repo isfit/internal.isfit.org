@@ -1,4 +1,4 @@
-<div class="row">
+<div id="transport_search" class="row">
 	<div class="span3">
 		<h2> Kjøring </h2>
 		<form id="time_query">
@@ -8,12 +8,15 @@
 			<input type="submit" id="time_submit" value="Søk">
 		</form>
 	</div>
-	<div class="span6">
-		<div id="drives_found"></div>
-		<%= form_for Drive.new, :url=> { :action => "create" } do |f| %>
-			<strong>Fra klokken:</strong> <span id="fra_kl"></span><%= f.hidden_field :start_time %><br>
-			<strong>Til klokken:</strong> <span id="til_kl"></span> <%= f.hidden_field :end_time %><br>
-			<strong>Dato:</strong> <span id="dato"></span><br>
+	<div id="date_time_feedback" class="span2">
+		<strong>Fra klokken:</strong> <span id="fra_kl"></span><br>
+		<strong>Til klokken:</strong> <span id="til_kl"></span><br>
+		<strong>Dato:</strong> <span id="dato"></span>
+	</div>
+	<div class="span4">
+		<%= form_for Drive.new, :url=> { :action => "create"} do |f| %>
+			<%= f.hidden_field :start_time %>
+			<%= f.hidden_field :end_time %>
 			<strong>Beskrivelse:</strong><br><%= f.text_area(:description, :size => '50x10') %><br>
 			<strong>Tilgjenglige sjåfører:</strong><br> <select id="drive_driver_id" name="user_id"></select><br>
 			<strong>Tilgjenglige biler:</strong><br> <select id="drive_car_id" name="drive[car_id]"></select><br>

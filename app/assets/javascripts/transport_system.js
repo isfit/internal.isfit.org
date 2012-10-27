@@ -1,6 +1,7 @@
 $(function() {
   $("#new_drive").hide();
   $("#drives_table").hide();
+  $("#date_time_feedback").hide();
 
   //Check to see if a given start and time, and date has any available cars and drivers
 	$("#time_query").submit(function(event){
@@ -76,7 +77,8 @@ $(function() {
     return false;
 
   });
-  
+
+
   $(".edit_comment").click(function() {
     var comment = $(this).parent(),
         comment_text = comment.find("#comment_text"),
@@ -108,8 +110,7 @@ $(function() {
   
   // Parse JSON object to display available drivers, cars and such at a given time
   function updateDriveForm (data) {
-    $("#drives_found").empty();
-
+    $("#date_time_feedback").show();
 
     //For some reason we must parse a json obj to a json object.. WAT?
     var j_cars = JSON.parse(data.cars),
@@ -117,25 +118,29 @@ $(function() {
 
     if (data.drives) {
       var j_drives = JSON.parse(data.drives);
-      $("#drives_found").append('<h3>Fant '+j_drives.length+' eksisterende oppdrag</h3>');
+      var j_drives_mod = JSON.parse(data.drives_mod);
+      
+      $("#transport_search").parent().prepend('\
+          <div class="alert alert-info">\
+            <button type="button" class="close" data-dismiss="alert">x</button>\
+          Fant '+j_drives.length+' eksisterende oppdrag på gitt tidspunkt. </div>');
 
       $("#drives_table").show();
       $("#drives_table tbody").empty();
-      for (var i = 0; i<j_drives.length; i++) { 
-        $("#drives_table tbody").append("<tr>\
-          <td>"+j_drives[i].id+"</td>\
-            <td>"+j_drives[i].car_id+"</td>\
-            <td>"+j_drives[i].driver_id+"</td>\
-            <td>"+j_drives[i].description+"</td>\
-            <td>"+j_drives[i].comment+"</td>\
-            <td>"+j_drives[i].start_time+"</td>\
-            <td>"+j_drives[i].end_time+"</td>\
-            <td>"+j_drives[i].completed+"</td>\
-          </tr>")
+
+      for (var i = 0; i<j_drives_mod.length; i++) {
+        $("#drives_table tbody").append('<tr>');
+        for(var j = 0; j < j_drives_mod[i].length; j++) {
+          $("#drives_table tbody").append('<td>'+j_drives_mod[i][j]+'</td>');
+        }
+        $("#drives_table tbody").append('</tr>');
       }
     }
     else {
-        $("#drives_found").append('<h3>Fant ingen eksisterende oppdrag ved gitt tid</h3>');
+        $("#transport_search").parent().prepend('\
+          <div class="alert alert-success">\
+            <button type="button" class="close" data-dismiss="alert">x</button>\
+         Fant ingen eksisterende oppdrag på gitt tidspunkt </div>');
       }
     
     //Select Cars
@@ -165,8 +170,13 @@ $(function() {
 
     $("#dato").empty();    
     $("#dato").append(date);
-
-
-
   }
+  $(".delete_car").click(function(event) {
+    if(confirm("Er du sikker på at du vil slette bilen?\
+     \nAlle tidligere og fremtidlige oppdrag med denne bilen vil bli merket som [Slettet]")) {
+    }
+    else {
+        event.preventDefault();
+    }
+  });
 });

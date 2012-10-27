@@ -8,8 +8,8 @@ class TransportSystemController < ApplicationController
 
 			#drives_found = Drive.where("'#{start_time}' > start_time OR '#{end_time}' > end_time")
 			drives_found = Drive.where("start_time <= '#{end_time}' AND '#{start_time}' <= end_time") #all overlapping.
-			puts drives_found		
-
+			drives_mod = drives_found.map {|x| [x.id, Car.find(x.car_id).name, User.find(Driver.find(x.driver_id).user_id).given_name, x.description, x.comment, x.start_time, x.end_time, x.completed]}
+			# 
 
 			if drives_found.empty?
 				@cars = Car.all
@@ -26,7 +26,8 @@ class TransportSystemController < ApplicationController
 
 				render :json => {   :drives => drives_found.to_json,
 									:cars => available_cars.to_json,
-           						 	:drivers => drive_users.to_json}
+           						 	:drivers => drive_users.to_json,
+           						 	:drives_mod => drives_mod.to_json}
 			end
 		end
 	end
@@ -70,9 +71,10 @@ class TransportSystemController < ApplicationController
 	#POST transport/admin/add_driver
 	def admin_add_driver
 		@driver = Driver.new
-		@driver.user_id = User.find_by_username(params[:username])
+		usr = User.find_by_username(params[:username])
+		@driver.user_id = usr.id
 		if @driver.save
-			flash[:notice]="Bruker er lagret!"
+			flash[:notice]="Bruker ("+usr.given_name+") er lagret!"
 			redirect_to :action => 'admin'
     	else
     		flash[:alert]="Noe gikk galt, kontakt ISFiT IT"
@@ -94,17 +96,13 @@ class TransportSystemController < ApplicationController
 	end
 
 	def save_comment
-		puts "PARAMS:"
-		puts params
 		drive = Drive.find(params[:drive][:id])
 		drive.comment = params[:drive][:comment]
 		session[:return_to] ||= request.referer
 		if drive.save
-			flash[:notice] = "Kommentar lagret"
 			redirect_to session[:return_to]
 
 		else
-			flash[:alert] = "Noe gikk galt, kommentaren ble ikke lagret."
 			redirect_to session[:return_to]
 
 		end

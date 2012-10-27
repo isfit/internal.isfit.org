@@ -15,7 +15,7 @@
 		<% @driver_jobs.each do |job| %>
 		<tr>
 			<td><%= job.id %></td>
-			<td><% if Car.find(job.car_id) %> <%= Car.find(job.car_id).description %> <% else %> [Slettet] <% end %> </td>
+			<td><% if Car.find_by_id(job.car_id) %> <%= Car.find(job.car_id).description %> <% else %> [Slettet] <% end %> </td>
 			<td><%= job.description %></td>
 			<td id="<%= job.id %>" class="closed"><div id="comment_text"><%= job.comment %></div><a class="edit_comment" href="#">[Endre]</a></td>
 			<td><%= job.start_time.strftime("%H:%M") %></td>
