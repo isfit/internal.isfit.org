@@ -1,0 +1,42 @@
+<h3>Fjern/rediger bil</h3>
+
+<table class="table table-striped">
+	<thead>
+		<th>ID</th>
+		<th>Navn</th>
+		<th>Beskrivese</th>
+		<th>Plass</th>
+		<th>Seter</th>
+	</thead>
+	<tbody>
+		<% @cars.each do |car| %>
+		<tr>
+			<td><%= car.id%></td>
+			<td><%= car.name%></td>
+			<td><%= car.description%></td>
+			<td><%= car.space%></td>
+			<td><%= car.seats%></td>
+			<td><%= link_to "Fjern", :controller => "transport_system", :action => "admin_destroy_car", :id => car.id %></td>
+			<td><a href="#">Rediger</a></td>
+		</tr>
+		<% end %>
+	</tbody>
+
+</table>
+
+<h3>Legg til bil</h3>	
+<%= form_for Car.new, :url=> { :action => "admin_create_car" } do |f| %>
+	Navn:<br> <%= f.text_field :name %><br>
+	Beskrivelse:<br> <%= f.text_field :description %><br>
+	Plass: <br> <%= f.text_field :space %><br>
+	Seter: <br> <%= f.text_field :seats %><br>
+	<%= submit_tag("Lagre") %>
+<% end %>
+
+<h3>Legg til bruker</h3>
+<%= form_tag(:controller => "transport_system", :action => "admin_add_driver", :method => "post") do %>
+	Brukernavn: <br>
+	<%= text_field_tag(:username) %>
+	<%= submit_tag("Legg til") %>
+<% end %>
+

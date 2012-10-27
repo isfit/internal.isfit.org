@@ -17,6 +17,22 @@ InternalIsfitOrg::Application.routes.draw do
   get "users/status/init", controller: "card_checker", action: "init"
   post "users/status/update", controller: "card_checker", action: "update"
 
+  get "transport" => "transport_system#index"
+  post "transport" => "transport_system#index"
+  post "transport/create" => "transport_system#create"
+
+  get "transport/admin" => "transport_system#admin"
+  post "transport/admin" => "transport_system#admin"
+  post "transport/admin/create_car" => "transport_system#admin_create_car"
+  get "transport/admin/remove_car" => "transport_system#admin_destroy_car"
+  post "transport/admin/add_driver" => "transport_system#admin_add_driver"
+
+
+  get "transport/todo/you" => "transport_system#todo_you"
+  get "transport/todo/all" => "transport_system#todo_all"
+  post "transport/todo/update_completed" => "transport_system#update_completed"
+  post "transport/todo/save_comment" => "transport_system#save_comment"
+
 
   resources :spp_pages
 

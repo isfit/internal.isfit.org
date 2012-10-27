@@ -1,0 +1,39 @@
+<div class="row">
+	<div class="span3">
+		<h2> Kjøring </h2>
+		<form id="time_query">
+			Dato: <br><input id="date" type="date" name="date" placeholder="YYYY-MM-DD"	required/><br>
+			Fra kl: <br> <input id="start_time" type="time" name="start_time" placeholder="HH:MM" required/><br>
+			Til kl: <br><input id="end_time" type="time" name="end_time" placeholder="HH:MM" required/><br>
+			<input type="submit" id="time_submit" value="Søk">
+		</form>
+	</div>
+	<div class="span6">
+		<div id="drives_found"></div>
+		<%= form_for Drive.new, :url=> { :action => "create" } do |f| %>
+			<strong>Fra klokken:</strong> <span id="fra_kl"></span><%= f.hidden_field :start_time %><br>
+			<strong>Til klokken:</strong> <span id="til_kl"></span> <%= f.hidden_field :end_time %><br>
+			<strong>Dato:</strong> <span id="dato"></span><br>
+			<strong>Beskrivelse:</strong><br><%= f.text_area(:description, :size => '50x10') %><br>
+			<strong>Tilgjenglige sjåfører:</strong><br> <select id="drive_driver_id" name="user_id"></select><br>
+			<strong>Tilgjenglige biler:</strong><br> <select id="drive_car_id" name="drive[car_id]"></select><br>
+			<%= submit_tag("Lagre") %>
+		<% end %>
+	</div>
+</div>
+	<table id="drives_table" class="table table-striped">
+		<thead>
+			<th>ID</th>
+			<th>Bil</th>
+			<th>Sjåfør</th>
+			<th>Beskrivelse</th>
+			<th>Kommentar</th>
+			<th>Start tid</th>
+			<th>Slutt tid</th>
+			<th>Fullført?<th>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+
+

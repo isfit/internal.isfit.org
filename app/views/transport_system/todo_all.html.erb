@@ -1,0 +1,38 @@
+<h2 id="drives_title">Alle oppdrag</h2>
+<a href="/transport/todo/you">Dine oppdrag</a> | <a href="/transport/todo/all">Alle oppdrag</a><br> 
+<table id="todo_table" class="table table-striped">
+	<thead>
+		<th>ID</th>
+		<th>Bil</th>
+		<th>Sjåfør</th>
+		<th>Beskrivelse</th>
+		<th>Kommentar</th>
+		<th>Start tid</th>
+		<th>Slutt tid</th>
+		<th>Dato</th>
+		<th>Fullført?<th>
+	</thead>
+	<tbody>
+		<% @driver_jobs.each do |job| %>
+		<tr>
+			<td><%= job.id %></td>
+			<td><% if Car.find(job.car_id) %> <%= Car.find(job.car_id).description %> <% else %> [Slettet] <% end %> </td>
+			<td><%= User.find(Driver.find(job.driver_id).user_id).username	 %></td>
+			<td><%= job.description %></td>
+			<td id="<%= job.id %>" class="closed"><div id="comment_text"><%= job.comment %></div><a class="edit_comment" href="#">[Endre]</a></td>
+			<td><%= job.start_time.strftime("%H:%M") %></td>
+			<td><%= job.end_time.strftime("%H:%M") %></td>
+			<td><%= job.start_time.strftime("%Y-%m-%d") %></td>
+			<td>
+			<% if job.completed %>
+				<button id="<%= job.id %>" class="btn btn-success"><i class="icon-ok"></i></button>
+			<% else %>
+				<button id="<%= job.id %>" class="btn btn-danger"><i class="icon-remove"></i></button>
+			<% end %>
+
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+
+</table
