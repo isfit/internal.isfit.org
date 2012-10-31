@@ -1,10 +1,9 @@
-<h2 id="drives_title">Alle oppdrag</h2>
-<a href="/transport/driver/you/todo">Dine oppdrag</a> | <a href="/transport/all/todo">Alle oppdrag</a> | <a href="/transport/admin">Administrer</a><br>
-<table id="todo_table" class="table">
+<h2 id="drives_title"><%= @name %> sine oppdrag</h2>
+<a href="/transport/driver/you/todo">Dine oppdrag</a> | <a href="/transport/all/todo">Alle oppdrag</a><br> 
+<table id="todo_table" class="table table-striped">
 	<thead>
 		<th>ID</th>
 		<th>Bil</th>
-		<th>Sjåfør</th>
 		<th>Beskrivelse</th>
 		<th>Kommentar</th>
 		<th>Start tid</th>
@@ -17,7 +16,6 @@
 		<tr>
 			<td><%= job.id %></td>
 			<td><% if Car.find_by_id(job.car_id) %> <%= Car.find(job.car_id).description %> <% else %> [Slettet] <% end %> </td>
-			<td><a href="/transport/driver/<%=job.driver_id %>/todo"><%= User.find(Driver.find(job.driver_id).user_id).given_name %></a></td>
 			<td><%= job.description %></td>
 			<td id="<%= job.id %>" class="closed"><div id="comment_text"><%= job.comment %></div><a class="edit_comment" href="#">[Endre]</a></td>
 			<td><%= job.start_time.strftime("%H:%M") %></td>
@@ -25,9 +23,9 @@
 			<td class="drive_date"><%= job.start_time.strftime("%Y-%m-%d") %></td>
 			<td>
 			<% if job.completed %>
-				<button id="<%= job.id %>" class="btn btn-success"><i class="icon-ok"></i></button>
+				<button id="<%= job.id %>" class="btn btn-success">X</button>
 			<% else %>
-				<button id="<%= job.id %>" class="btn btn-danger"><i class="icon-remove"></i></button>
+				<button id="<%= job.id %>" class="btn btn-danger">X</i></button>
 			<% end %>
 
 			</td>

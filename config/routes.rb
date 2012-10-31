@@ -28,10 +28,13 @@ InternalIsfitOrg::Application.routes.draw do
   post "transport/admin/add_driver" => "transport_system#admin_add_driver"
 
 
-  get "transport/todo/you" => "transport_system#todo_you"
-  get "transport/todo/all" => "transport_system#todo_all"
+  get "transport/driver/you/todo" => "transport_system#todo_you"
+  get "transport/driver/:id/todo" => "transport_system#todo_user"
+  get "transport/all/todo" => "transport_system#todo_all"
   post "transport/todo/update_completed" => "transport_system#update_completed"
   post "transport/todo/save_comment" => "transport_system#save_comment"
+  get "transport/driver/:id/shifts" => "transport_system#driver_shifts"
+  post "transport/driver/:id/shifts/create" => "transport_system#driver_shifts"
 
 
   resources :spp_pages

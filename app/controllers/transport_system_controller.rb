@@ -1,7 +1,7 @@
 class TransportSystemController < ApplicationController
 	def index
 
-		#POST
+		#POST - Search
 		if request.post?
 			start_time =  DateTime.parse(params[:date]+" "+params[:start_time]+":00")
 			end_time = DateTime.parse(params[:date]+" "+params[:end_time]+":00")
@@ -14,14 +14,15 @@ class TransportSystemController < ApplicationController
 			if drives_found.empty?
 				@cars = Car.all
 				driver_ids = Driver.find(:all,:select=>'user_id').map {|x| x.user_id}
-				@drive_users = User.find(:all, :conditions => ["id in (?)", driver_ids])
+				@drive_users = User.find(:all, :conditions => ["id in (?)", driver_ids]).shuffle
 
            		render :json => {:cars => @cars.to_json,
            						 :drivers => @drive_users.to_json}
 
 			else
 				available_cars = Car.find(:all, :conditions => ["id not in (?)", drives_found.map{|obj| obj.car_id}])
-				available_drivers = Driver.find(:all, :conditions => ["id not in (?)", drives_found.map{|obj| obj.driver_id}])
+				available_drivers = Driver.find(:all, :conditions => ["id not in (?)", drives_found.map{|obj| obj.driver_id}]).shuffle
+				puts available_drivers
 				drive_users = User.find(:all, :conditions => ["id in (?)", available_drivers.map{|obj| obj.user_id}])
 
 				render :json => {   :drives => drives_found.to_json,
@@ -47,6 +48,7 @@ class TransportSystemController < ApplicationController
 
 	def admin
 		@cars = Car.all
+		@drivers = Driver.all
 	end
 
 	#POST transport/admin/create_car
@@ -66,6 +68,10 @@ class TransportSystemController < ApplicationController
     	@car.destroy
     	flash[:notice]="Bilen ble fjernet."
     	redirect_to  url_for :controller => 'transport_system', :action => 'admin'
+	end
+	def admin_edit_car
+		@car = Car.find(params[:id])
+		
 	end
 
 	#POST transport/admin/add_driver
@@ -92,7 +98,42 @@ class TransportSystemController < ApplicationController
 	end
 
 	def todo_all
-		@driver_jobs = Drive.all
+		@driver_jobs = Drive.order('end_time DESC')
+		current_date = DateTime.now
+		@driver_jobs_prev = Drive.where("end_time <= #{current_date}")
+		@driver_jobs_inc = Drive.where("end_time > #{current_date}")
+	end
+
+	def todo_user
+		driver_id = params[:id]
+		driver = Driver.find_by_id(driver_id)
+		if driver
+			@name = User.find_by_id(driver.user_id).given_name
+			@driver_jobs = Drive.where(:driver_id => driver_id)			
+		else
+			flash[:alert] = "Fant ikke gitt bruker."
+			redirect_to :action => 'todo_all'
+		end
+	end
+
+	def driver_shift
+		driver_id = params[:id]
+		@shifts = DriverShift.where(:driver_id => driver_id)
+
+		#POST - Create method (Opam BEKK style)
+		if request.post?
+			start_time =  DateTime.parse(params[:date]+" "+params[:start_time]+":00")
+			end_time = DateTime.parse(params[:date]+" "+params[:end_time]+":00")
+			shift = DriverShift.new(from: start_time, to: end_time, driver_id: driver_id)
+			puts "asfdsfdsjaiofsajfsa"
+			puts "asfdsfdsjaiofsajfsa"
+			puts "asfdsfdsjaiofsajfsa"
+			puts shift
+
+			shift.save
+		end
+
+
 	end
 
 	def save_comment

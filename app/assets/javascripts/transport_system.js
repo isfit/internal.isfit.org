@@ -1,12 +1,16 @@
 $(function() {
+
+  //Hide tables and feedback in /transport/
   $("#new_drive").hide();
   $("#drives_table").hide();
   $("#date_time_feedback").hide();
 
+  //Hide tables in admin
+
   //Check to see if a given start and time, and date has any available cars and drivers
 	$("#time_query").submit(function(event){
 		event.preventDefault();
-		url = $(this).attr( 'action' );
+		var url = $(this).attr( 'action' );
 
 		$.ajax({
            type: "POST",
@@ -28,6 +32,21 @@ $(function() {
          });
       return false;
 	   });
+
+  $("#shift_form").submit(function(event) {
+    event.preventDefault();
+    var url = $(this).attr('action');
+
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: $(this).serialize,
+      dateType: "json",
+      success: function(date) {
+        alert("SUCCESS");
+      }
+    });
+  });
 
   // Toggle and save a Drive objects completed boolean in /todo
   $("#todo_table tbody td button").click(function() {
@@ -78,7 +97,7 @@ $(function() {
 
   });
 
-
+  //Comment on a drive mission in todo/you and todo/all.
   $(".edit_comment").click(function() {
     var comment = $(this).parent(),
         comment_text = comment.find("#comment_text"),
@@ -107,26 +126,82 @@ $(function() {
     }
 
   });
+
+  $("#show_car_overview").click(function() {
+    var table = $("#car_table_overview");
+    if(table.hasClass('hide')) {
+        $(this).text("[Lukk]")
+        table.removeClass('hide');
+    }
+    else {
+      $(this).text("[Vis  ]")
+      table.addClass('hide');
+    }
+  });
+
+   $("#show_drivers_overview").click(function() {
+    var table = $("#drive_table_overview");
+    if(table.hasClass('hide')) {
+        $(this).text("[Lukk]")
+        table.removeClass('hide');
+    }
+    else {
+      $(this).text("[Vis  ]")
+      table.addClass('hide');
+    }
+  });
+
+
+
+  //Moves the screen to lastest/next drive mission in todo/you and todo/all
+  function moveToNext() {
+    var current_date = new Date();
+    var next_mission_date = new Date(2022,22,22);
+    var moveTo = -1;
+    $("#todo_table").find(".drive_date").each(function() {
+      var d = new Date($(this).text().split('-'));
+      if(d < next_mission_date && (d > current_date)) {
+        next_mission_date = d;
+        moveTo = $(this).parent();
+      }
+
+    });
+
+    if(moveTo == -1) {
+      moveTo = $("#todo_table tbody tr:last");
+    }
+    moveTo.attr('style', 'background: yellow');
+    var container = $('#todo_table'),
+        scrollTo = moveTo;
+
+    //container.scrollTop(scrollTo.offset().top - container.offset().top + container.scrollTop());
+  }
+    //moveToNext();
+
   
   // Parse JSON object to display available drivers, cars and such at a given time
   function updateDriveForm (data) {
     $("#date_time_feedback").show();
+    $("#drives_table tbody").empty();
+    $("#drives_table").hide();
 
     //For some reason we must parse a json obj to a json object.. WAT?
     var j_cars = JSON.parse(data.cars),
         j_drivers = JSON.parse(data.drivers);
 
+
     if (data.drives) {
       var j_drives = JSON.parse(data.drives);
       var j_drives_mod = JSON.parse(data.drives_mod);
       
+      //Alert no of current drive missions at given time.
       $("#transport_search").parent().prepend('\
           <div class="alert alert-info">\
             <button type="button" class="close" data-dismiss="alert">x</button>\
           Fant '+j_drives.length+' eksisterende oppdrag på gitt tidspunkt. </div>');
 
+      //Show the table of drives.      
       $("#drives_table").show();
-      $("#drives_table tbody").empty();
 
       for (var i = 0; i<j_drives_mod.length; i++) {
         $("#drives_table tbody").append('<tr>');

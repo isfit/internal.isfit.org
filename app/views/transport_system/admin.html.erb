@@ -1,5 +1,5 @@
-<h3>Fjern/rediger bil</h3>
-<table class="table table-striped">
+<h3 class="admin_header">Biler</h3> <a id="show_car_overview" href="#vis">[Vis]</a>
+<table id="car_table_overview" class="hide table table-striped">
 	<thead>
 		<th>ID</th>
 		<th>Navn</th>
@@ -20,8 +20,19 @@
 		</tr>
 		<% end %>
 	</tbody>
-
 </table>
+<br><br>
+<h3 class="admin_header">Sjåfører</h3> <a id="show_drivers_overview" href="#vis">[Vis]</a>
+	<table id="drive_table_overview" class="hide table table-condensed table-striped table-nonfluid">
+	<% @drivers.each do | driver | %>
+		<tr>
+			<td><%= User.find(driver.user_id).given_name %> </td>
+			<td><%= link_to "Oppdrag", {:controller => "transport_system", :action => "todo_user", :id => driver.id} %></td>
+			<td><%= link_to "Vaktliste", {:controller => "transport_system", :action => "driver_shifts", :id => driver.id} %></td>
+		</tr>
+	<% end %>
+</table>
+<br><br>
 <div class="row">
 	<div class="span3">
 		<h3>Legg til bil</h3>	

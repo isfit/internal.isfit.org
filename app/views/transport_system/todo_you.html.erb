@@ -1,5 +1,5 @@
 <h2 id="drives_title">Dine oppdrag</h2>
-<a href="/transport/todo/you">Dine oppdrag</a> | <a href="/transport/todo/all">Alle oppdrag</a><br>
+<a href="/transport/driver/you/todo">Dine oppdrag</a> | <a href="/transport/all/todo">Alle oppdrag</a><br> 
 <table id="todo_table" class="table table-striped">
 	<thead>
 		<th>ID</th>
@@ -20,7 +20,7 @@
 			<td id="<%= job.id %>" class="closed"><div id="comment_text"><%= job.comment %></div><a class="edit_comment" href="#">[Endre]</a></td>
 			<td><%= job.start_time.strftime("%H:%M") %></td>
 			<td><%= job.end_time.strftime("%H:%M") %></td>
-			<td><%= job.start_time.strftime("%Y-%m-%d") %></td>
+			<td class="drive_date"><%= job.start_time.strftime("%Y-%m-%d") %></td>
 			<td>
 			<% if job.completed %>
 				<button id="<%= job.id %>" class="btn btn-success">X</button>

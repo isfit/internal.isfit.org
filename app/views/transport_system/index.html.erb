@@ -1,29 +1,39 @@
 <div id="transport_search" class="row">
 	<div class="span3">
-		<h2> Kjøring </h2>
 		<form id="time_query">
-			Dato: <br><input id="date" type="date" name="date" placeholder="YYYY-MM-DD"	required/><br>
-			Fra kl: <br> <input id="start_time" type="time" name="start_time" placeholder="HH:MM" required/><br>
-			Til kl: <br><input id="end_time" type="time" name="end_time" placeholder="HH:MM" required/><br>
+			<div class="input-prepend">
+				<label class="control-label" for="inputIcon">Dato</label>
+				<span class="add-on"><i class="icon-calendar"></i></span>
+				<input id="date" type="date" name="date" placeholder="YYYY-MM-DD"	required/>
+				<label class="control-label" for="inputIcon">Fra klokken</label>
+				<span class="add-on"><i class="icon-time"></i></span>
+				<input id="start_time" type="time" name="start_time" placeholder="HH:MM" required/>
+				<label class="control-label" for="inputIcon">Til klokken</label>
+				<span class="add-on"><i class="icon-time"></i></span>
+				<input id="end_time" type="time" name="end_time" placeholder="HH:MM" required/>
+			</div>
 			<input type="submit" id="time_submit" value="Søk">
 		</form>
 	</div>
-	<div id="date_time_feedback" class="span2">
-		<strong>Fra klokken:</strong> <span id="fra_kl"></span><br>
-		<strong>Til klokken:</strong> <span id="til_kl"></span><br>
-		<strong>Dato:</strong> <span id="dato"></span>
+	<div id="date_time_feedback">
+		<div class="span3">
+			<%= form_for Drive.new, :url=> { :action => "create"} do |f| %>
+				<%= f.hidden_field :start_time %>
+				<%= f.hidden_field :end_time %>
+				<strong>Beskrivelse:</strong><br><%= f.text_area(:description, :size => '50x10') %><br>
+		</div>
+		<div class="span2">
+			<div id="date_time">
+				<strong>Fra klokken:</strong> <span id="fra_kl"></span><br>
+				<strong>Til klokken:</strong> <span id="til_kl"></span><br>
+				<strong>Dato:</strong> <span id="dato"></span><br><br><br>
+			</div>
+				<strong>Tilgjenglige sjåfører:</strong><br> <select id="drive_driver_id" name="user_id" required/></select><br>
+				<strong>Tilgjenglige biler:</strong><br> <select id="drive_car_id" name="drive[car_id]" required/></select><br>
+				<%= submit_tag("Lagre") %>
+		</div>
+			<% end %>
 	</div>
-	<div class="span4">
-		<%= form_for Drive.new, :url=> { :action => "create"} do |f| %>
-			<%= f.hidden_field :start_time %>
-			<%= f.hidden_field :end_time %>
-			<strong>Beskrivelse:</strong><br><%= f.text_area(:description, :size => '50x10') %><br>
-			<strong>Tilgjenglige sjåfører:</strong><br> <select id="drive_driver_id" name="user_id"></select><br>
-			<strong>Tilgjenglige biler:</strong><br> <select id="drive_car_id" name="drive[car_id]"></select><br>
-			<%= submit_tag("Lagre") %>
-		<% end %>
-	</div>
-</div>
 	<table id="drives_table" class="table table-striped">
 		<thead>
 			<th>ID</th>
