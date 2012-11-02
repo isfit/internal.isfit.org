@@ -116,26 +116,6 @@ class TransportSystemController < ApplicationController
 		end
 	end
 
-	def driver_shift
-		driver_id = params[:id]
-		@shifts = DriverShift.where(:driver_id => driver_id)
-
-		#POST - Create method (Opam BEKK style)
-		if request.post?
-			start_time =  DateTime.parse(params[:date]+" "+params[:start_time]+":00")
-			end_time = DateTime.parse(params[:date]+" "+params[:end_time]+":00")
-			shift = DriverShift.new(from: start_time, to: end_time, driver_id: driver_id)
-			puts "asfdsfdsjaiofsajfsa"
-			puts "asfdsfdsjaiofsajfsa"
-			puts "asfdsfdsjaiofsajfsa"
-			puts shift
-
-			shift.save
-		end
-
-
-	end
-
 	def save_comment
 		drive = Drive.find(params[:drive][:id])
 		drive.comment = params[:drive][:comment]

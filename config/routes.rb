@@ -33,8 +33,11 @@ InternalIsfitOrg::Application.routes.draw do
   get "transport/all/todo" => "transport_system#todo_all"
   post "transport/todo/update_completed" => "transport_system#update_completed"
   post "transport/todo/save_comment" => "transport_system#save_comment"
-  get "transport/driver/:id/shifts" => "transport_system#driver_shifts"
-  post "transport/driver/:id/shifts/create" => "transport_system#driver_shifts"
+  
+  get "transport/driver/:driver_id/shifts" => "driver_shifts#index"
+  post "transport/driver/:driver_id/shifts/create" => "driver_shifts#create"
+  get "transport/driver/:driver_id/shifts/:shift_id/destroy" => "driver_shifts#destroy"
+
 
 
   resources :spp_pages

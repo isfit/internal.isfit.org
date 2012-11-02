@@ -1,0 +1,63 @@
+<h2>Vaktliste for <%= @name %></h2>
+<div class="row">
+	<div class="span6">
+<% if not @shifts %>
+	<h2>Du har ikke oppført noen vaktlister. GET TO IT!</h2>
+<% else %>
+	<h2>Oppførte skift</h2>
+	<table id="shift_table" class="table table-striped sortable">
+		<thead>
+			<th>ID</th>
+			<th>Fra klokken</th>
+			<th>Til klokken</th>
+			<th>Dato</th>
+			<th>Fullført? (Gitt tid/dato)<th>
+		</thead>
+		<tbody>
+			<% @shifts.each do |shift| %>
+				<tr>
+					<td><%= shift.id %></td>
+					<td><%= shift.from.strftime("%H:%M")%></td>
+					<td><%= shift.to.strftime("%H:%M") %></td>
+					<td>
+						<% if shift.from.to_date == shift.to.to_date %>
+							<%= shift.from.strftime("%Y-%m-%d") %>
+						<% else %>
+							<%= shift.from.strftime("%Y-%m-%d") %> - <%= shift.to.strftime("%Y-%m-%d") %> 
+						<% end %>
+					</td>
+					<td>
+						<% if @current_datetime >  shift.to.to_date %>
+							<i class="icon-ok"></i>
+						<% else %>
+							<i class="icon-remove"></i>
+						<% end %>
+					</td>
+					<td>
+						<%= link_to "Slett", :controller => "driver_shifts", :action => "destroy", :driver_id => shift.driver_id, :shift_id => shift.id %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+<% end %>
+</div>
+	<div class="span3">
+		<h2>Nytt skift</h2>
+		<%= form_tag(:controller => "driver_shifts", :action => "create", :driver_id => params[:driver_id]) do %>
+			<div class="input-prepend">
+				<input type="hidden" name="driver_id" value="<%= @driver_id %>">
+				<label class="control-label" for="inputIcon">Dato</label>
+				<span class="add-on"><i class="icon-calendar"></i></span>
+				<input id="date" type="date" name="date" placeholder="YYYY-MM-DD"	required/>
+				<label class="control-label" for="inputIcon">Fra klokken</label>
+				<span class="add-on"><i class="icon-time"></i></span>
+				<input id="start_time" type="time" name="start_time" placeholder="HH:MM" required/>
+				<label class="control-label" for="inputIcon">Til klokken</label>
+				<span class="add-on"><i class="icon-time"></i></span>
+				<input id="end_time" type="time" name="end_time" placeholder="HH:MM" required/>
+			</div>
+			<input type="submit" id="time_submit" value="Lagre">
+			<% end %>
+	</div>
+</div>

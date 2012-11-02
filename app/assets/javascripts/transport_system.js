@@ -36,14 +36,15 @@ $(function() {
   $("#shift_form").submit(function(event) {
     event.preventDefault();
     var url = $(this).attr('action');
-
     $.ajax({
       type: "POST",
       url: url,
-      data: $(this).serialize,
-      dateType: "json",
+      data: $(this).serialize(),
       success: function(date) {
         alert("SUCCESS");
+      },
+      error: function(xhr, ajaxOptions, thrownError) {
+        alert("error");
       }
     });
   });
@@ -126,31 +127,6 @@ $(function() {
     }
 
   });
-
-  $("#show_car_overview").click(function() {
-    var table = $("#car_table_overview");
-    if(table.hasClass('hide')) {
-        $(this).text("[Lukk]")
-        table.removeClass('hide');
-    }
-    else {
-      $(this).text("[Vis  ]")
-      table.addClass('hide');
-    }
-  });
-
-   $("#show_drivers_overview").click(function() {
-    var table = $("#drive_table_overview");
-    if(table.hasClass('hide')) {
-        $(this).text("[Lukk]")
-        table.removeClass('hide');
-    }
-    else {
-      $(this).text("[Vis  ]")
-      table.addClass('hide');
-    }
-  });
-
 
 
   //Moves the screen to lastest/next drive mission in todo/you and todo/all
