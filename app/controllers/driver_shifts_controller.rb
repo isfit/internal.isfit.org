@@ -9,7 +9,7 @@ class DriverShiftsController < ApplicationController
 	def create
 		start_time =  DateTime.parse(params[:date]+" "+params[:start_time]+":00")
 		end_time = DateTime.parse(params[:date]+" "+params[:end_time]+":00")
-		shift = DriverShift.new(from: start_time, to: end_time, driver_id: params[:driver_id])
+		shift = DriverShift.new(start_time: start_time, end_time: end_time, driver_id: params[:driver_id])
 		
 		if shift.save
 			flash[:notice] = 'Vakt lagret'

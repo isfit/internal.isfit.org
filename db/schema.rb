@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121031195647) do
+ActiveRecord::Schema.define(:version => 20121103121604) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -186,8 +186,8 @@ ActiveRecord::Schema.define(:version => 20121031195647) do
   add_index "dialogue_participants", ["email"], :name => "email", :unique => true
 
   create_table "driver_shifts", :force => true do |t|
-    t.datetime "from"
-    t.datetime "to"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.integer  "driver_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

@@ -1,8 +1,9 @@
 <a href="/transport/driver/you/todo">Dine oppdrag</a> | 
 <a href="/transport/all/todo">Alle oppdrag</a> | 
 <a href="/transport/admin">Administrer</a><br>
+<h2>Søk og lagre kjøreoppdrag</h2><br>
 <div id="transport_search" class="row">
-	<div class="span3">
+	<div class="span4">
 		<form id="time_query">
 			<div class="input-prepend">
 				<label class="control-label" for="inputIcon">Dato</label>
@@ -13,8 +14,10 @@
 				<input id="start_time" type="time" name="start_time" placeholder="HH:MM" required/>
 				<label class="control-label" for="inputIcon">Til klokken</label>
 				<span class="add-on"><i class="icon-time"></i></span>
-				<input id="end_time" type="time" name="end_time" placeholder="HH:MM" required/>
+				<input id="end_time" type="time" name="end_time" placeholder="HH:MM" required/><br>
+				<%= check_box("","ignore_shifts", {}, true, false)%> <span>Ignorer vaktlister</span>
 			</div>
+			<br>
 			<input type="submit" id="time_submit" value="Søk">
 		</form>
 	</div>
@@ -37,6 +40,7 @@
 		</div>
 			<% end %>
 	</div>
+	<hr>
 	<table id="drives_table" class="table table-striped">
 		<thead>
 			<th>ID</th>

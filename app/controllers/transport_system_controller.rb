@@ -3,26 +3,51 @@ class TransportSystemController < ApplicationController
 
 		#POST - Search
 		if request.post?
+
+			# given time range of search.
 			start_time =  DateTime.parse(params[:date]+" "+params[:start_time]+":00")
 			end_time = DateTime.parse(params[:date]+" "+params[:end_time]+":00")
 
+			# 1(true) or 0(false)
+			ignore_shifts = params[:ignore_shifts]
+
+			# given drivers with shifts in the time range.
+			@drivers_w_shifts = DriverShift.where("start_time <= '#{end_time}' AND '#{start_time}' <= end_time").map{|x| x.driver_id}.uniq
+
 			#drives_found = Drive.where("'#{start_time}' > start_time OR '#{end_time}' > end_time")
 			drives_found = Drive.where("start_time <= '#{end_time}' AND '#{start_time}' <= end_time") #all overlapping.
+
+			# used to write out information about the drives found.
 			drives_mod = drives_found.map {|x| [x.id, Car.find(x.car_id).name, User.find(Driver.find(x.driver_id).user_id).given_name, x.description, x.comment, x.start_time, x.end_time, x.completed]}
-			# 
+			
 
 			if drives_found.empty?
-				@cars = Car.all
-				driver_ids = Driver.find(:all,:select=>'user_id').map {|x| x.user_id}
-				@drive_users = User.find(:all, :conditions => ["id in (?)", driver_ids]).shuffle
+				puts "NO driver found"
+				if ignore_shifts
+					puts "We are ignoring shifts"
+					driver_ids = Driver.find(:all,:select=>'user_id').map {|x| x.user_id}
+				else
+					puts "We are NOT ignoring shifts"
+					driver_ids = @drivers_w_shifts
+				end
 
-           		render :json => {:cars => @cars.to_json,
+				@cars = Car.all
+				@drive_users = User.find(:all, :conditions => ["id in (?)", driver_ids]).shuffle
+				
+				render :json => {:cars => @cars.to_json,
            						 :drivers => @drive_users.to_json}
 
 			else
+				puts "Drivers found"
+				drivers_in_drive = drives_found.map{|obj| obj.driver_id}
+				
+				if ignore_shifts
+					available_drivers = Driver.find(:all, :conditions => ["id not in (?)", drivers_in_drive])
+				else
+					available_drivers = Driver.find(:all, :conditions => ["id not in (?)", @drivers_w_shifts-drivers_in_drives])
+				end
+
 				available_cars = Car.find(:all, :conditions => ["id not in (?)", drives_found.map{|obj| obj.car_id}])
-				available_drivers = Driver.find(:all, :conditions => ["id not in (?)", drives_found.map{|obj| obj.driver_id}]).shuffle
-				puts available_drivers
 				drive_users = User.find(:all, :conditions => ["id in (?)", available_drivers.map{|obj| obj.user_id}])
 
 				render :json => {   :drives => drives_found.to_json,
