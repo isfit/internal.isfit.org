@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 class WhatAmIController < ApplicationController
+
+  load_and_authorize_resource
+
   def game
     if request.post?
       @prevGame = WhatAmI.find(params[:whatGame])

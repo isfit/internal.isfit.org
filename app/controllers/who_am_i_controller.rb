@@ -1,4 +1,6 @@
 class WhoAmIController < ApplicationController
+  load_and_authorize_resource
+
   def index
     redirect_to who_am_i_game_path
   end
