@@ -45,6 +45,8 @@ class Ability
       can :manage, ContactLog
       can :manage, WikiCategory
       can :manage, LayoutJob
+      can :mange, WhoAmI
+      can :mange, WhatAmI
     end
     if user.role?(:participant)
       # can :manage, Participant
