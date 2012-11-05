@@ -1,0 +1,51 @@
+<div class="pull-right">
+  <%= link_to 'Edit', edit_host_path(@host), :class => "btn" %>
+  <%= link_to 'Back', hosts_path, :class => "btn" %>
+</div>
+<fieldset>
+  <legend>Host</legend>
+  <p>
+  <b>First name:</b>
+  <%= @host.first_name %>
+  </p>
+
+  <p>
+  <b>Last name:</b>
+  <%= @host.last_name %>
+  </p>
+
+  <p>
+  <b>Email:</b>
+  <%= @host.email %>
+  </p>
+
+  <p>
+  <b>Phone:</b>
+  <%= @host.phone %>
+  </p>
+
+  <p>
+  <b>Address:</b>
+  <%= @host.address %>
+  </p>
+
+  <p>
+  <b>Zipcode:</b>
+  <%= @host.zipcode %>
+  </p>
+
+  <p>
+  <b>Place:</b>
+  <%= @host.place %>
+  </p>
+
+  <p>
+  <b>Number:</b>
+  <%= @host.number %>
+  </p>
+
+  <p>
+  <b>Other:</b>
+  <%= @host.other %>
+  </p>
+</fieldset>

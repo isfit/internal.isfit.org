@@ -1,0 +1,8 @@
+<div class="pull-right">
+  <%= link_to 'Show', @host, confirm: 'This will cancel all changes. Are you sure?', method: :get, :class => "btn" %>
+  <%= link_to 'Back', hosts_path, confirm: 'This will cancel all changes. Are you sure?', method: :get , :class => "btn" %>
+</div>
+<h1>Editing host</h1>
+
+<%= render 'form' %>
+

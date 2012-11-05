@@ -8,6 +8,7 @@ class Ability
     end
     if user.role?(:recruiting)
       can :manage, Applicant
+      can :manage, Host
     end
     if user.role?(:leader)
       can :manage, Applicant
