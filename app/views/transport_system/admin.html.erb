@@ -1,6 +1,12 @@
+<ul class="nav nav-tabs">
+	<li><a href="/transport">Søk og lagre oppdrag</a></li>
+    <li><a <a href="/transport/driver/you/todo">Dine oppdrag</a></li>
+    <li><a href="/transport/all/todo">Alle oppdrag</a></li>
+    <li class="active"><a href="/transport/admin">Administrer</a></li>
+</ul>
 <div class="row">
-	<h2>Sjåfører</h2>
 	<div class="span6">
+		<h3 class="muted">Sjåfører</h3>
 		<table id="drive_table_overview" class="table table-condensed table-striped">
 			<% @drivers.each do | driver | %>
 				<tr>
@@ -12,7 +18,7 @@
 		</table>
 	</div>
 	<div class="span3">
-		<h3>Legg til sjåfør</h3>
+		<h4>Legg til sjåfør</h4>
 		<%= form_tag(:controller => "transport_system", :action => "admin_add_driver", :method => "post") do %>
 			Brukernavn: <br>
 			<%= text_field_tag(:username) %><br>
@@ -22,8 +28,8 @@
 </div>
 <hr>
 <div class="row">
-	<h2>Biler</h2>
 	<div class="span6">
+		<h3 class="muted">Biler</h3>
 		<table id="car_table_overview" class="table table-condensed table-striped">
 			<thead>
 				<th>ID</th>
@@ -48,7 +54,7 @@
 		</table>
 	</div>
 	<div class="span3">
-		<h3>Legg til bil</h3>	
+		<h4>Legg til bil</h4>	
 		<%= form_for Car.new, :url=> { :action => "admin_create_car" } do |f| %>
 			Navn:<br> <%= f.text_field :name %><br>
 			Beskrivelse:<br> <%= f.text_field :description %><br>

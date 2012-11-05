@@ -128,7 +128,7 @@ $(function() {
 
   });
 
-
+  
   //Moves the screen to lastest/next drive mission in todo/you and todo/all
   function moveToNext() {
     var current_date = new Date();
@@ -203,7 +203,7 @@ $(function() {
     //Select Drivers
     $("#drive_driver_id").empty()
     for (var i = 0; i<j_drivers.length; i++) {
-      $("#drive_driver_id").append('<option value='+j_drivers[i].id+'>'+j_drivers[i].given_name+'</option>');
+      $("#drive_driver_id").append('<option value='+j_drivers[i].id+'>'+j_drivers[i].given_name+' - ('+j_drivers[i].drives_count+')</option>');
     }
 
     //Time and date

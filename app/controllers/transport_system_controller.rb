@@ -8,7 +8,7 @@ class TransportSystemController < ApplicationController
 			start_time =  DateTime.parse(params[:date]+" "+params[:start_time]+":00")
 			end_time = DateTime.parse(params[:date]+" "+params[:end_time]+":00")
 
-			# 1(true) or 0(false)
+			# true or false
 			ignore_shifts = params[:ignore_shifts]
 
 			# given drivers with shifts in the time range.
@@ -22,37 +22,38 @@ class TransportSystemController < ApplicationController
 			
 
 			if drives_found.empty?
-				puts "NO driver found"
-				if ignore_shifts
-					puts "We are ignoring shifts"
-					driver_ids = Driver.find(:all,:select=>'user_id').map {|x| x.user_id}
-				else
-					puts "We are NOT ignoring shifts"
-					driver_ids = @drivers_w_shifts
-				end
 
+				if ignore_shifts
+					#hash w/ following {:id => User.id, :given_name => User.given_name, :drives_count => Drive.where(Driver.id).count
+					driver_info = Driver.all.map {|x| {:id => x.user_id, :given_name => User.find(x.user_id).given_name, :drives_count => Drive.where(:driver_id => x.id).count}}
+
+				else
+
+					#hash w/ following {:id => User.id, :given_name => User.given_name, :drives_count => Drive.where(Driver.id).count
+					driver_info = @drivers_w_shifts.map {|x| {:id => Driver.find(x).user_id, :given_name => User.find(Driver.find(x).user_id).given_name, :drives_count => Drive.where(:driver_id => x).count}}
+				end
 				@cars = Car.all
-				@drive_users = User.find(:all, :conditions => ["id in (?)", driver_ids]).shuffle
-				
 				render :json => {:cars => @cars.to_json,
-           						 :drivers => @drive_users.to_json}
+           						 :drivers => driver_info.to_json}
 
 			else
-				puts "Drivers found"
+
 				drivers_in_drive = drives_found.map{|obj| obj.driver_id}
 				
 				if ignore_shifts
 					available_drivers = Driver.find(:all, :conditions => ["id not in (?)", drivers_in_drive])
 				else
-					available_drivers = Driver.find(:all, :conditions => ["id not in (?)", @drivers_w_shifts-drivers_in_drives])
+					available_drivers = Driver.find(:all, :conditions => ["id not in (?)", @drivers_w_shifts-drivers_in_drive])
 				end
 
 				available_cars = Car.find(:all, :conditions => ["id not in (?)", drives_found.map{|obj| obj.car_id}])
-				drive_users = User.find(:all, :conditions => ["id in (?)", available_drivers.map{|obj| obj.user_id}])
+
+				#hash w/ following {:id => User.id, :given_name => User.given_name, :drives_count => Drive.where(Driver.id).count
+				driver_info = available_drivers.map {|x| {:id => x.user_id, :given_name => User.find(x.user_id).given_name, :drives_count => Drive.where(:driver_id => x.id).count}}
 
 				render :json => {   :drives => drives_found.to_json,
 									:cars => available_cars.to_json,
-           						 	:drivers => drive_users.to_json,
+           						 	:drivers => driver_info.to_json,
            						 	:drives_mod => drives_mod.to_json}
 			end
 		end
@@ -72,8 +73,15 @@ class TransportSystemController < ApplicationController
 	end
 
 	def admin
-		@cars = Car.all
-		@drivers = Driver.all
+		current_driver = Driver.find_by_user_id(current_user.id)
+		if current_driver
+			@cars = Car.all
+			@drivers = Driver.all
+		else
+			flash[:alert] = "Du er ikke registert som en sjafor. Kontakt transport for a bli lagt til."
+			redirect_to :action => 'todo_all'
+		end
+
 	end
 
 	#POST transport/admin/create_car
@@ -118,6 +126,7 @@ class TransportSystemController < ApplicationController
 		if current_driver
 			@driver_jobs = Drive.where(:driver_id => current_driver.id)
 		else
+			flash[:alert] = "Du er ikke registert som en sjafor. Kontakt transport for a bli lagt til."
 			redirect_to :action => 'todo_all'
 		end
 	end

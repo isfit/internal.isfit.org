@@ -1,9 +1,12 @@
-<a href="/transport/driver/you/todo">Dine oppdrag</a> | 
-<a href="/transport/all/todo">Alle oppdrag</a> | 
-<a href="/transport/admin">Administrer</a><br>
-<h2>Søk og lagre kjøreoppdrag</h2><br>
+<ul class="nav nav-tabs">
+	<li class="active"><a href="/transport">Søk og lagre oppdrag</a></li>
+    <li><a <a href="/transport/driver/you/todo">Dine oppdrag</a></li>
+    <li><a href="/transport/all/todo">Alle oppdrag</a></li>
+    <li><a href="/transport/admin">Administrer</a></li>
+</ul>
+<br>
 <div id="transport_search" class="row">
-	<div class="span4">
+	<div class="span3" >
 		<form id="time_query">
 			<div class="input-prepend">
 				<label class="control-label" for="inputIcon">Dato</label>
@@ -18,10 +21,13 @@
 				<%= check_box("","ignore_shifts", {}, true, false)%> <span>Ignorer vaktlister</span>
 			</div>
 			<br>
-			<input type="submit" id="time_submit" value="Søk">
+			 <button type="submit" class="btn" id="time_submit">Søk</button>
 		</form>
 	</div>
+	<div class="span1"> &nbsp
+	</div>
 	<div id="date_time_feedback">
+
 		<div class="span3">
 			<%= form_for Drive.new, :url=> { :action => "create"} do |f| %>
 				<%= f.hidden_field :start_time %>
@@ -34,13 +40,16 @@
 				<strong>Til klokken:</strong> <span id="til_kl"></span><br>
 				<strong>Dato:</strong> <span id="dato"></span><br><br><br>
 			</div>
-				<strong>Tilgjenglige sjåfører:</strong><br> <select id="drive_driver_id" name="user_id" required/></select><br>
-				<strong>Tilgjenglige biler:</strong><br> <select id="drive_car_id" name="drive[car_id]" required/></select><br>
-				<%= submit_tag("Lagre") %>
+				<strong>Tilgjenglige sjåfører:</strong><br> 
+				<p><small>Fornavn - (Ant. registerte oppdrag)</small></p>
+				<select id="drive_driver_id" name="user_id" required/></select><br>
+				
+				<strong>Tilgjenglige biler:</strong><br> 
+				<select id="drive_car_id" name="drive[car_id]" required/></select><br>
+				<%= submit_tag("Lagre", :class =>"btn") %>
 		</div>
 			<% end %>
 	</div>
-	<hr>
 	<table id="drives_table" class="table table-striped">
 		<thead>
 			<th>ID</th>
