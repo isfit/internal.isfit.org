@@ -23,8 +23,10 @@ InternalIsfitOrg::Application.routes.draw do
 
   get "transport/admin" => "transport_system#admin"
   post "transport/admin" => "transport_system#admin"
-  post "transport/admin/create_car" => "transport_system#admin_create_car"
-  get "transport/admin/remove_car" => "transport_system#admin_destroy_car"
+  post "transport/car/create" => "car#create"
+  get "transport/car/destroy" => "car#destroy"
+  get "transport/car/:id/edit" => "car#edit"
+  put "transport/car/:id/update" => "car#update"
   post "transport/admin/add_driver" => "transport_system#admin_add_driver"
 
 
@@ -37,6 +39,8 @@ InternalIsfitOrg::Application.routes.draw do
   get "transport/driver/:driver_id/shifts" => "driver_shifts#index"
   post "transport/driver/:driver_id/shifts/create" => "driver_shifts#create"
   get "transport/driver/:driver_id/shifts/:shift_id/destroy" => "driver_shifts#destroy"
+  get "transport/driver/you/shift" => "driver_shifts#shifts_you"
+
 
 
 

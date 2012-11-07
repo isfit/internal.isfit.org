@@ -27,8 +27,7 @@ class DriverShiftsController < ApplicationController
 	def shifts_you
 		current_driver = Driver.find_by_user_id(current_user.id)
 		if current_driver
-			@shifts = DriverShift.where(:driver_id => current_driver.id).order("end_time DESC")
-			@current_datetime = DateTime.now
+			redirect_to :action => 'index', :driver_id => current_driver
 		else
 			flash[:alert] = "Du er ikke registert som en sjafor. Kontakt transport for a bli lagt til."
 			redirect_to url_for :controller => "transport_system", :action => 'todo_all'

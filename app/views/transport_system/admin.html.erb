@@ -1,6 +1,7 @@
 <ul class="nav nav-tabs">
 	<li><a href="/transport">Søk og lagre oppdrag</a></li>
-    <li><a <a href="/transport/driver/you/todo">Dine oppdrag</a></li>
+    <li><a href="/transport/driver/you/todo">Mine oppdrag</a></li>
+    <li><a href="/transport/driver/you/shift">Min vaktliste</a></li>
     <li><a href="/transport/all/todo">Alle oppdrag</a></li>
     <li class="active"><a href="/transport/admin">Administrer</a></li>
 </ul>
@@ -10,7 +11,7 @@
 		<table id="drive_table_overview" class="table table-condensed table-striped">
 			<% @drivers.each do | driver | %>
 				<tr>
-					<td><%= User.find(driver.user_id).given_name %> </td>
+					<td><%= User.find(driver.user_id).given_name %> (<%= User.find(driver.user_id).username %>) </td>
 					<td><%= link_to "Oppdrag", {:controller => "transport_system", :action => "todo_user", :id => driver.id} %></td>
 					<td><%= link_to "Vaktliste", {:controller => "driver_shifts", :action => "index", :driver_id => driver.id} %></td>
 				</tr>
@@ -46,8 +47,8 @@
 					<td><%= car.description%></td>
 					<td><%= car.space%></td>
 					<td><%= car.seats%></td>
-					<td><%= link_to "Fjern", {:controller => "transport_system", :action => "admin_destroy_car", :id => car.id, method: :delete}, {:class =>('delete_car')} %></td>
-					<td><a href="#">Rediger</a></td>
+					<td><%= link_to "Fjern", {:controller => "car", :action => "destroy", :id => car.id, method: :delete}, {:class =>('delete_car')} %></td>
+					<td><%= link_to "Rediger", {:controller => "car", :action => "edit", :id => car.id} %></td>
 				</tr>
 				<% end %>
 			</tbody>
@@ -55,7 +56,7 @@
 	</div>
 	<div class="span3">
 		<h4>Legg til bil</h4>	
-		<%= form_for Car.new, :url=> { :action => "admin_create_car" } do |f| %>
+		<%= form_for Car.new, :url=> { :controller => "car", :action => "create" } do |f| %>
 			Navn:<br> <%= f.text_field :name %><br>
 			Beskrivelse:<br> <%= f.text_field :description %><br>
 			Plass: <br> <%= f.text_field :space %><br>
