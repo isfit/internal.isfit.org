@@ -8,6 +8,7 @@ class Ability
     end
     if user.role?(:recruiting)
       can :manage, Applicant
+      can :manage, Host
     end
     if user.role?(:leader)
       can :manage, Applicant
@@ -45,6 +46,8 @@ class Ability
       can :manage, ContactLog
       can :manage, WikiCategory
       can :manage, LayoutJob
+      can :manage, WhoAmI
+      can :manage, WhatAmI
     end
     if user.role?(:participant)
       # can :manage, Participant

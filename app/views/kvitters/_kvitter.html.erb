@@ -7,6 +7,9 @@
 
 	<p class="kvitter-user"><%= "@" + kvitter.user.username %></p>
 	<p class="kvitter-message"><%= kvitter.message %></p>
+	<a href="#" class="awesome" data-id="<%= kvitter.id %>">\o/</a>
+	<span class="count"><%= kvitter.awesomes.count %></span> 
+
 	<span class="small">
 		<p>
 			<%= kvitter.user.full_name %>

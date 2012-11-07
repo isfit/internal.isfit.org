@@ -1,0 +1,30 @@
+<div class="pull-right">
+  <%= link_to 'New Host', new_host_path, :class => "btn btn-primary"%>
+</div>
+<h1>Hosts</h1>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Number</th>
+    <th></th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% @hosts.each do |host| %>
+      <tr>
+        <td><%= host.first_name %></td>
+        <td><%= host.last_name %></td>
+        <td><%= host.email %></td>
+        <td><%= host.phone %></td>
+        <td><%= host.number %></td>
+        <td><%= link_to 'Show', host, :class => "btn-primary btn" %></td>
+        <td><%= link_to 'Edit', edit_host_path(host), :class => "btn" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

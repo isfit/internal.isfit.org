@@ -1,5 +1,7 @@
 InternalIsfitOrg::Application.routes.draw do
 
+  resources :hosts
+
   resources :participant_quotes
 
   resources :layout_jobs
@@ -82,6 +84,8 @@ InternalIsfitOrg::Application.routes.draw do
   post "kvitters/create" => "kvitters#create"
   get "kvitters/last(:.format)" => "kvitters#last"
   get "kvitters/" => "kvitters#index", as: "kvitters"
+  get "kvitters/:id/awesome" => "kvitters#awesome"
+  
   
   get "contact_logs/new/:contact_log_unit_id" => "contact_logs#new", as: "new_contact_log_with_unit"
   resources :contact_logs
