@@ -2,8 +2,6 @@
 # encoding: utf-8
 class SessionsController < ApplicationController
 
-  layout "login"
-
   before_filter :login_required, except: [:new, :create, :forgot_password, :mail_password]
   def new
   end
