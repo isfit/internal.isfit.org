@@ -1,0 +1,49 @@
+body#sessions {
+  padding-top: 100px;
+  padding-bottom: 40px;
+  background: url("http://i.imgur.com/fZYG2.jpg") no-repeat !important;
+  background-attachment: fixed!important;
+  -moz-background-size: cover!important;
+  background-size: cover!important;
+}
+body#sessions .form-signin {
+  max-width: 300px;
+  padding: 19px 29px 29px;
+  margin: 0 auto 50px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+body#sessions .form-signin .form-signin-heading,
+body#sessions .form-signin .checkbox {
+  margin-bottom: 10px;
+}
+body#sessions .form-signin input[type="text"],
+body#sessions .form-signin input[type="password"] {
+  font-size: 16px;
+  width:270px;
+  height: auto;
+  margin-bottom: 15px;
+  padding: 7px 9px;
+}
+body#sessions .alert{
+  width:310px;
+  margin: 0 auto 20px;
+}
+body#sessions a.forgot-password-link {
+  display:block;
+  width: 360px;
+  margin: 0 auto;
+}
+body#sessions a.forgot-password-link:hover {
+  text-decoration: none;
+}
+
+body#sessions a.forgot-password-link:hover div.alert{
+  border-color:rgba(209,156,83,1);
+}

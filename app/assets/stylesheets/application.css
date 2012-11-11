@@ -20,9 +20,5 @@
  *= require "user"
  *= require "layout_jobs"
  *= require "transport_system"
+ *= require "sessions"
 */
-
-.login-form-container {
-    width: 300px;
-    margin: 0 auto;
-}
