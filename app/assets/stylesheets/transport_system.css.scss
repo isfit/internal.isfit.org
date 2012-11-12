@@ -10,3 +10,11 @@
 .table-nonfluid {
     width: 50%;
 }
+
+#info_list li {
+	padding-bottom: 10px;
+}
+
+.hover_table thead th:hover {
+	cursor: pointer;
+}

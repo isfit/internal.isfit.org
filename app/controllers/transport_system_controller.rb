@@ -1,6 +1,6 @@
 class TransportSystemController < ApplicationController
+    authorize_resource :class => false
 	def index
-
 		#POST - Search
 		if request.post?
 
@@ -20,7 +20,6 @@ class TransportSystemController < ApplicationController
 			# used to write out information about the drives found.
 			drives_mod = drives_found.map {|x| [x.id, Car.find(x.car_id).name, User.find(Driver.find(x.driver_id).user_id).given_name, x.description, x.comment, x.start_time, x.end_time, x.completed]}
 			
-
 			if drives_found.empty?
 
 				if ignore_shifts
@@ -73,14 +72,8 @@ class TransportSystemController < ApplicationController
 	end
 
 	def admin
-		current_driver = Driver.find_by_user_id(current_user.id)
-		if current_driver
-			@cars = Car.all
-			@drivers = Driver.all
-		else
-			flash[:alert] = "Du er ikke registert som en sjafor. Kontakt transport for a bli lagt til."
-			redirect_to :action => 'todo_all'
-		end
+		@cars = Car.all
+		@drivers = Driver.all
 
 	end
 
@@ -126,9 +119,10 @@ class TransportSystemController < ApplicationController
 		if current_driver
 			@driver_jobs = Drive.where(:driver_id => current_driver.id)
 		else
-			flash[:alert] = "Du er ikke registert som en sjafor. Kontakt transport for a bli lagt til."
-			redirect_to :action => 'todo_all'
+			redirect_to :action => 'driver_new'
 		end
+
+
 	end
 
 	def todo_all
@@ -176,4 +170,33 @@ class TransportSystemController < ApplicationController
 			@drive.save
 		end
 	end
+
+	def info
+		
+	end
+
+	def driver_new
+
+	end
+
+	def driver_register
+ 		current_driver = Driver.find_by_user_id(current_user.id)
+ 		if current_driver
+ 			flash[:alert] = "Du er allerede registert som en sjafor"
+ 			redirect_to :action => "todo_all"
+ 		else
+ 			@driver = Driver.new
+			@driver.user_id = current_user.id
+			if @driver.save
+				flash[:notice] = "Gratulerer, du er naa registert som en sjafor."
+				redirect_to :action => "admin"
+			
+			else
+				flash[:alert] = "Noe gikk galt. Du ble ikke registert som en sjaafor."
+				redirect_to :action => "admin"
+			end
+ 		end
+
+	end
+
 end

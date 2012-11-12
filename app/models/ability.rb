@@ -60,6 +60,13 @@ class Ability
     if user.role?(:sec)
       can :manage, CardChecker
     end
+    if user.role?(:transport)
+      can :manage, Drive
+      can :manage, Driver
+      can :manage, DriverShift
+      can :manage, Car
+
+    end
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

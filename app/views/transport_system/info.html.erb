@@ -1,0 +1,31 @@
+<ul class="nav nav-tabs">
+	<li><a href="/transport">Søk og lagre oppdrag</a></li>
+    <li><a href="/transport/driver/you/todo">Mine oppdrag</a></li>
+    <% if Driver.find_by_user_id(current_user.id).id == @driver_id.to_i %>
+    	<li><a href="/transport/driver/you/shift">Min vaktliste</a></li>
+    <% else %>
+    	<li><a href="/transport/driver/you/shift">Min vaktliste</a></li>
+    <% end %>
+    <li><a href="/transport/all/todo">Alle oppdrag</a></li>
+    <li><a href="/transport/admin">Administrer</a></li>
+    <li class="active"><a href="/transport/info">Info</a></li>
+</ul>
+
+<h2>Litt generell info</h2>
+<ul id="info_list">
+    <li>
+        Ingen kan bruke transport system uten å være en sjåfør. De kan bare se "todo" listen for alle sjåfører.
+    </li>
+    <li>
+        Folk som har tilgang til Administrer siden har muligheten til å legge til nye sjåfører ved å skrive inn brukernavnet på isfit (brukernavn@isfit.org)<br>
+        Hvorfor er ikke alle i transport sjåfører til å begynne med!? Det er mye enkler å ha oversikt og kontinuerlig legge til nye sjåfører når de blir tatt opp i ISFiT. Og kanskje ikke alle i transport har oppgaven med å være sjåfør.
+    </li>
+    <li>
+        Bare medlemmer av transport seksjonen har tilgang til alt under dette systemet (med unntak av IT)
+    </li>
+    <li>
+        Alle sjåfører kan føre inn og godkjenne alt. M.a.o. en sjåfør kan sette et oppdrag som godkjent for en annen sjåfør, man kan legge til vakter på vegne av andre sjåfører og kommentere alle oppdrag, etc.
+    </li>
+    <li>
+        Knappene under "Fullført?" lagres automatisk i databasen.
+    </li>

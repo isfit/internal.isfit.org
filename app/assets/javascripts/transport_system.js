@@ -58,13 +58,17 @@ $(function() {
       url: '/transport/todo/update_completed',
       data: {id: button.attr('id')}  ,
       success: function(data) {
+        button.empty();
         if (button.hasClass("btn-success")) {
           button.removeClass("btn-success");
           button.addClass("btn-danger");
+          button.append('<i class="icon-remove">');
         }
         else {
           button.removeClass("btn-danger");
           button.addClass("btn-success");
+          button.append('<i class="icon-ok">');
+
         }
       }
     });
