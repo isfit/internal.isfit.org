@@ -1,14 +1,16 @@
 <%= content_for :sidebar do %>
   <div class="well">
     <ul class="nav nav-list">
-      <% WikiCategory.where(deleted: false).order("title ASC").each do |category| %>
-        <li class="nav-header"><%= category.title %></li>
-        <% category.wiki_pages.group("slug").order("slug, created_at ASC").each do |page| %>
-          <% unless WikiPage.where(slug: page.slug).order("created_at DESC").limit(1).first.deleted == true %>
-            <li><%= link_to page.title, "/wiki/#{category.slug}/#{page.slug}" %></li>
-          <% end %>
+      <% @last = 0 %>
+      <% WikiPage.find_by_sql("SELECT * FROM wiki_categories AS w, (#{WikiPage.where(deleted: nil).group("slug").order("slug, created_at DESC").to_sql}) AS p WHERE p.wiki_category_id = w.id ORDER BY w.title ASC").each do |page| %>
+        <% if page.wiki_category_id != @last %>
+        <% category = WikiCategory.find(page.wiki_category_id) unless page.wiki_category_id.nil? %>
+            <li class="nav-header"><%= category.title unless page.wiki_category_id.nil? %> </li>
+          <% @last = page.wiki_category_id %>
         <% end %>
-      <% end %>
+          <li><%= link_to page.title, "/wiki/#{category.nil? ? "none":category.slug}/#{page.slug}" %></li>
+          <% end %>
     </ul>
   </div>
-<% end %>
+  <% end %>
+
