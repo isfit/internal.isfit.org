@@ -1,0 +1,4 @@
+<%= form_for Drive.new, :url=> { :action => "create" } do |f| %>
+	Beskrivelse:<br> <%= f.text_field :description %><br>
+	Bil:<br> <%= select("drive", "car", Car.all.collect {|c| [c.name+" - "+c.description, c.id]}) %><br>
+<% end %>

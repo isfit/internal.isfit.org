@@ -31,6 +31,7 @@ gem 'ransack'
 gem 'simple_form'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+gem 'whenever', :require => false
 
 # Denne spammer oss med mail atm... Må tunes :P
  gem 'exception_notification', :require => 'exception_notifier'

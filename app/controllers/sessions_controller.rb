@@ -2,8 +2,6 @@
 # encoding: utf-8
 class SessionsController < ApplicationController
 
-  layout "login"
-
   before_filter :login_required, except: [:new, :create, :forgot_password, :mail_password]
   def new
   end
@@ -75,6 +73,9 @@ class SessionsController < ApplicationController
     motivationals << "Har du det bra i dag, #{user.given_name}?"
     motivationals << "Jeg digger deg!"
     motivationals << "Du vet det du gjør blir umåtelig verdsatt? Tusen takk!"
+    motivationals << "Ha en superduper dag, fylt med masse kjærlighet og kos!"
+    motivationals << "<a href='http://www.youtube.com/watch?v=spSJc7vq6cY'>You better redneckognize.</a>"
+    motivationals << "<a href='http://qkme.me/3rl1oi'>Brace yourself. ISFiT is coming.</a>"
     if user.id == 672
       motivationals << "Du er den beste presidenten ISFiT kunne hatt, #{user.given_name}. Jeg håper du vet det."
     end

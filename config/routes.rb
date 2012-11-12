@@ -1,5 +1,7 @@
 InternalIsfitOrg::Application.routes.draw do
 
+  resources :hosts
+
   resources :participant_quotes
 
   resources :layout_jobs
@@ -16,6 +18,32 @@ InternalIsfitOrg::Application.routes.draw do
   get "users/status", controller: "card_checker", action: "status"
   get "users/status/init", controller: "card_checker", action: "init"
   post "users/status/update", controller: "card_checker", action: "update"
+
+  get "transport" => "transport_system#index"
+  post "transport" => "transport_system#index"
+  post "transport/create" => "transport_system#create"
+
+  get "transport/admin" => "transport_system#admin"
+  post "transport/admin" => "transport_system#admin"
+  post "transport/car/create" => "car#create"
+  get "transport/car/destroy" => "car#destroy"
+  get "transport/car/:id/edit" => "car#edit"
+  put "transport/car/:id/update" => "car#update"
+  post "transport/admin/add_driver" => "transport_system#admin_add_driver"
+
+
+  get "transport/driver/you/todo" => "transport_system#todo_you"
+  get "transport/driver/:id/todo" => "transport_system#todo_user"
+  get "transport/all/todo" => "transport_system#todo_all"
+  post "transport/todo/update_completed" => "transport_system#update_completed"
+  post "transport/todo/save_comment" => "transport_system#save_comment"
+  
+  get "transport/driver/:driver_id/shifts" => "driver_shifts#index"
+  post "transport/driver/:driver_id/shifts/create" => "driver_shifts#create"
+  get "transport/driver/:driver_id/shifts/:shift_id/destroy" => "driver_shifts#destroy"
+  get "transport/driver/you/shift" => "driver_shifts#shifts_you"
+
+
 
 
   resources :spp_pages

@@ -1,0 +1,14 @@
+<ul class="nav nav-tabs">
+	<li><a href="/transport">Søk og lagre oppdrag</a></li>
+    <li class="active"><a <a href="/transport/driver/you/todo">Dine oppdrag</a></li>
+    <li><a href="/transport/all/todo">Alle oppdrag</a></li>
+    <li><a href="/transport/admin">Administrer</a></li>
+</ul>
+<h2>Rediger bil</h2>
+<%= form_for @car, :url => {:action => "update"} do |f| %>
+			Navn:<br> <%= f.text_field :name %><br>
+			Beskrivelse:<br> <%= f.text_field :description %><br>
+			Plass: <br> <%= f.text_field :space %><br>
+			Seter: <br> <%= f.text_field :seats %><br>
+			<%= submit_tag("Lagre") %>
+<% end %>

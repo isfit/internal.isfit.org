@@ -1,0 +1,69 @@
+<ul class="nav nav-tabs">
+	<li class="active"><a href="/transport">Søk og lagre oppdrag</a></li>
+    <li><a <a href="/transport/driver/you/todo">Mine oppdrag</a></li>
+    <li><a href="/transport/driver/you/shift">Min vaktliste</a></li>
+    <li><a href="/transport/all/todo">Alle oppdrag</a></li>
+    <li><a href="/transport/admin">Administrer</a></li>
+</ul>
+<br>
+<div id="transport_search" class="row">
+	<div class="span3" >
+		<form id="time_query">
+			<div class="input-prepend">
+				<label class="control-label" for="inputIcon">Dato</label>
+				<span class="add-on"><i class="icon-calendar"></i></span>
+				<input id="date" type="date" name="date" placeholder="YYYY-MM-DD"	required/>
+				<label class="control-label" for="inputIcon">Fra klokken</label>
+				<span class="add-on"><i class="icon-time"></i></span>
+				<input id="start_time" type="time" name="start_time" placeholder="HH:MM" required/>
+				<label class="control-label" for="inputIcon">Til klokken</label>
+				<span class="add-on"><i class="icon-time"></i></span>
+				<input id="end_time" type="time" name="end_time" placeholder="HH:MM" required/><br>
+				<%= check_box("","ignore_shifts", {}, true, false)%> <span>Ignorer vaktlister</span>
+			</div>
+			<br>
+			 <button type="submit" class="btn" id="time_submit">Søk</button>
+		</form>
+	</div>
+	<div class="span1"> &nbsp
+	</div>
+	<div id="date_time_feedback">
+
+		<div class="span3">
+			<%= form_for Drive.new, :url=> { :action => "create"} do |f| %>
+				<%= f.hidden_field :start_time %>
+				<%= f.hidden_field :end_time %>
+				<strong>Beskrivelse:</strong><br><%= f.text_area(:description, :size => '50x10') %><br>
+		</div>
+		<div class="span2">
+			<div id="date_time">
+				<strong>Fra klokken:</strong> <span id="fra_kl"></span><br>
+				<strong>Til klokken:</strong> <span id="til_kl"></span><br>
+				<strong>Dato:</strong> <span id="dato"></span><br><br><br>
+			</div>
+				<strong>Tilgjenglige sjåfører:</strong><br> 
+				<p><small>Fornavn - (Ant. registerte oppdrag)</small></p>
+				<select id="drive_driver_id" name="user_id" required/></select><br>
+				
+				<strong>Tilgjenglige biler:</strong><br> 
+				<select id="drive_car_id" name="drive[car_id]" required/></select><br>
+				<%= submit_tag("Lagre", :class =>"btn") %>
+		</div>
+			<% end %>
+	</div>
+	<table id="drives_table" class="table table-striped">
+		<thead>
+			<th>ID</th>
+			<th>Bil</th>
+			<th>Sjåfør</th>
+			<th>Beskrivelse</th>
+			<th>Kommentar</th>
+			<th>Start tid</th>
+			<th>Slutt tid</th>
+			<th>Fullført?<th>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+
+

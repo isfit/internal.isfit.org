@@ -1,25 +1,13 @@
-<div class="login-form-container">
-    <%= form_tag sessions_path, class: "form-stacked" do %>
-        <fieldset>
-            <legend>Login</legend>
-            <div class="type-text">
-                <%= label_tag :login, "Username or Email Address" %>
-                <%= text_field_tag :login, params[:login] %>
-            </div>
-            <div class="type-text">
-                <%= label_tag :password %>
-                <%= password_field_tag :password %>
-            </div>
-        </fieldset>
-        <div class="type-button">
-            <%= submit_tag "Log in", class: "btn-primary btn" %>
-        </div>
-    <% end %>
+<%= form_tag sessions_path, class: "form-signin" do %>
+  <h2 class="form-signin-heading">Please sign in</h2>
+  <%= text_field_tag :login, params[:login], class:"input-block-level", placeholder:"Username or email" %>
+  <%= password_field_tag :password, nil, class:"input-block-level", placeholder:"Password" %>
+  <%= submit_tag "Log in", class: "btn btn-large btn-primary" %>
+<% end %>
 
-    <%= link_to forgot_password_path do %>
-        <div class="alert alert-block">
-            <h4>Forgot your password?</h4>
-            Follow this link to reset your password. It fixes most problems.
-        </div>
-    <% end %>
-</div>
+<%= link_to forgot_password_path, class: "forgot-password-link" do %>
+  <div class="alert alert-block">
+    <h4>Trouble logging in?</h4>
+    Follow this link to reset your password. It fixes most problems.
+  </div>
+<% end %>

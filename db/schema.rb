@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121005160616) do
+ActiveRecord::Schema.define(:version => 20121105180754) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -92,6 +92,15 @@ ActiveRecord::Schema.define(:version => 20121005160616) do
   end
 
   add_index "card_checkers", ["user_id"], :name => "index_card_checkers_on_user_id"
+
+  create_table "cars", :force => true do |t|
+    t.string   "description"
+    t.string   "space"
+    t.integer  "seats"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "name"
+  end
 
   create_table "contact_log_people", :force => true do |t|
     t.string   "first_name"
@@ -176,6 +185,39 @@ ActiveRecord::Schema.define(:version => 20121005160616) do
 
   add_index "dialogue_participants", ["email"], :name => "email", :unique => true
 
+  create_table "driver_shifts", :force => true do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer  "driver_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "driver_shifts", ["driver_id"], :name => "index_driver_shifts_on_driver_id"
+
+  create_table "drivers", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "drivers", ["user_id"], :name => "index_drivers_on_user_id"
+
+  create_table "drives", :force => true do |t|
+    t.integer  "driver_id"
+    t.integer  "car_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.text     "description"
+    t.text     "comment"
+    t.boolean  "completed"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "drives", ["car_id"], :name => "index_drives_on_car_id"
+  add_index "drives", ["driver_id"], :name => "index_drives_on_driver_id"
+
   create_table "festivals", :id => false, :force => true do |t|
     t.integer "id",   :default => 0, :null => false
     t.integer "year"
@@ -252,6 +294,20 @@ ActiveRecord::Schema.define(:version => 20121005160616) do
     t.integer "position_id"
   end
 
+  create_table "hosts", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "address"
+    t.integer  "zipcode"
+    t.string   "place"
+    t.integer  "number"
+    t.text     "other"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "internal_tabs", :force => true do |t|
     t.string   "title"
     t.string   "tag"
@@ -289,19 +345,6 @@ ActiveRecord::Schema.define(:version => 20121005160616) do
     t.text     "user_info"
     t.string   "work_title"
     t.date     "deadline"
-<<<<<<< HEAD
-    t.integer  "web_or_print"
-    t.string   "format"
-    t.text     "description"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.integer  "status"
-  end
-
-  create_table "layout_jobs_publishings", :force => true do |t|
-    t.string   "publishing"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
     t.integer  "publishing"
     t.string   "format"
     t.text     "description"
