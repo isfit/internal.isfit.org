@@ -1,4 +1,5 @@
 class DriverShiftsController < ApplicationController
+
 	def index
 		@driver_id = params[:driver_id]
 		@name = User.find_by_id(Driver.find(@driver_id).user_id).given_name
@@ -20,8 +21,12 @@ class DriverShiftsController < ApplicationController
 	end
 
 	def destroy
-		DriverShift.find(params[:shift_id]).destroy
-		redirect_to  url_for :controller => 'driver_shifts', :action => 'index', :driver_id => params[:driver_id]
+		if DriverShift.find(params[:shift_id]).destroy
+			flash[:notice] = "Vakt slettet."
+		else
+			flash[:alert] = "Noe gikk galt, vakten ble ikke slettet"
+		end
+		redirect_to  url_for :action => 'index', :driver_id => params[:driver_id]
 	end
 
 	def shifts_you
@@ -29,8 +34,7 @@ class DriverShiftsController < ApplicationController
 		if current_driver
 			redirect_to :action => 'index', :driver_id => current_driver
 		else
-			flash[:alert] = "Du er ikke registert som en sjafor. Kontakt transport for a bli lagt til."
-			redirect_to url_for :controller => "transport_system", :action => 'todo_all'
+			redirect_to :controller => 'transport_system', :action => 'driver_new'
 		end
 	end
 end

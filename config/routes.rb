@@ -19,32 +19,47 @@ InternalIsfitOrg::Application.routes.draw do
   get "users/status/init", controller: "card_checker", action: "init"
   post "users/status/update", controller: "card_checker", action: "update"
 
-  get "transport" => "transport_system#index"
-  post "transport" => "transport_system#index"
-  post "transport/create" => "transport_system#create"
+  scope "/transport" do
+    # drives search and create
+    get "", controller: "transport_system", action: "index"
+    post "", controller: "transport_system", action: "index"
+    post "/create", controller: "transport_system", action: "create"
 
-  get "transport/admin" => "transport_system#admin"
-  post "transport/admin" => "transport_system#admin"
-  post "transport/car/create" => "car#create"
-  get "transport/car/destroy" => "car#destroy"
-  get "transport/car/:id/edit" => "car#edit"
-  put "transport/car/:id/update" => "car#update"
-  post "transport/admin/add_driver" => "transport_system#admin_add_driver"
+    # car handling
+    post "/car/create", controller: "car", action: "create"
+    get "/car/destroy", controller: "car", action: "destroy"
+    get "/car/:id/edit", controller: "car", action: "edit"
+    get "/car/:id/update", controller: "car", action: "update"
+
+    # admin
+    get "/admin", controller: "transport_system", action: "admin"
+    post "/admin", controller: "transport_system", action: "admin"
+    post "/admin/add_driver", controller: "transport_system", action: "admin_add_driver"
+
+    # driver todo
+    get "/driver/you/todo", controller: "transport_system", action: "todo_you"
+    get "/driver/:id/todo", controller: "transport_system", action: "todo_user"
+    get "/all/todo", controller: "transport_system", action: "todo_all"
+    
+    # todo functionality 
+    post "todo/update_completed", controller: "transport_system", action: "update_completed"
+    post "/todo/save_comment", controller: "transport_system", action: "save_comment"
+
+    # driver shifts
+    get "/driver/:driver_id/shifts", controller: "driver_shifts", action: "index"
+    post "/driver/:driver_id/shifts/create",  controller: "driver_shifts", action: "create"
+    get "/driver/:driver_id/shifts/:shift_id/destroy", controller: "driver_shifts", action: "destroy"
+    get "driver/you/shift", controller: "driver_shifts", action: "shifts_you"
+
+    # driver creational
+    get "/driver/new", controller: "transport_system", action: "driver_new"
+    get "/driver/register", controller: "transport_system", action: "driver_register"
+
+    #other
+    get "/info", controller: "transport_system", action: "info"
 
 
-  get "transport/driver/you/todo" => "transport_system#todo_you"
-  get "transport/driver/:id/todo" => "transport_system#todo_user"
-  get "transport/all/todo" => "transport_system#todo_all"
-  post "transport/todo/update_completed" => "transport_system#update_completed"
-  post "transport/todo/save_comment" => "transport_system#save_comment"
-  
-  get "transport/driver/:driver_id/shifts" => "driver_shifts#index"
-  post "transport/driver/:driver_id/shifts/create" => "driver_shifts#create"
-  get "transport/driver/:driver_id/shifts/:shift_id/destroy" => "driver_shifts#destroy"
-  get "transport/driver/you/shift" => "driver_shifts#shifts_you"
-
-
-
+  end
 
   resources :spp_pages
 

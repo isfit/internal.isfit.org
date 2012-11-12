@@ -4,6 +4,8 @@
     <li><a href="/transport/driver/you/shift">Min vaktliste</a></li>
     <li><a href="/transport/all/todo">Alle oppdrag</a></li>
     <li><a href="/transport/admin">Administrer</a></li>
+    <li><a href="/transport/info">Info</a></li>
+
 </ul>
 <table id="todo_table" class="table table-striped">
 	<thead>
@@ -28,9 +30,9 @@
 			<td class="drive_date"><%= job.start_time.strftime("%Y-%m-%d") %></td>
 			<td>
 			<% if job.completed %>
-				<button id="<%= job.id %>" class="btn btn-success">X</button>
+				<button id="<%= job.id %>" class="btn btn-success"><i class="icon-ok"></i></button>
 			<% else %>
-				<button id="<%= job.id %>" class="btn btn-danger">X</i></button>
+				<button id="<%= job.id %>" class="btn btn-danger"><i class="icon-remove"></i></button>
 			<% end %>
 
 			</td>
