@@ -63,6 +63,14 @@ class User < ActiveRecord::Base
     role = Role.where(name:r).first
     roles.include?(role)
   end
+
+  def birthday_notify
+
+  end
+
+  def birthday?
+    Date.parse("#{Date.today.year}#{self.date_of_birth.strftime("%m%d")}").today?
+  end
  
   def changeLdapPassword(pass)
     require 'net/ldap'
