@@ -1,5 +1,5 @@
 class DriverShiftsController < ApplicationController
-
+	authorize_resource :class => false
 	def index
 		@driver_id = params[:driver_id]
 		@name = User.find_by_id(Driver.find(@driver_id).user_id).given_name
