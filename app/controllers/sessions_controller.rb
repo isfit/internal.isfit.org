@@ -79,6 +79,12 @@ class SessionsController < ApplicationController
     if user.id == 672
       motivationals << "Du er den beste presidenten ISFiT kunne hatt, #{user.given_name}. Jeg håper du vet det."
     end
+    if user.id == 66
+      motivationals << "Urv, Qnt-Vatr".tr("A-Za-z", "N-ZA-Mn-za-m")
+    end
+    if user.birthday?
+      return "Gratulerer med dagen, #{user.given_name}!"
+    end
     if Time.now.saturday?
       return "Skal vi danse natten bort, #{user.given_name}?"
     end

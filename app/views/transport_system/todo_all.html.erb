@@ -6,7 +6,7 @@
     <li><a href="/transport/admin">Administrer</a></li>
     <li><a href="/transport/info">Info</a></li>
 </ul>
-<table id="todo_table" class="table">
+<table id="todo_table" class="table sortable">
 	<thead>
 		<th>ID</th>
 		<th>Bil</th>
@@ -23,7 +23,11 @@
 		<tr>
 			<td><%= job.id %></td>
 			<td><% if Car.find_by_id(job.car_id) %> <%= Car.find(job.car_id).description %> <% else %> [Slettet] <% end %> </td>
+			<% if Driver.find_by_id(job.driver_id) %>
 			<td><a href="/transport/driver/<%=job.driver_id %>/todo"><%= User.find(Driver.find(job.driver_id).user_id).given_name %></a></td>
+			<% else %>
+			<td>[Bruker slettet]</td>
+			<% end %>
 			<td><%= job.description %></td>
 			<td id="<%= job.id %>" class="closed"><div id="comment_text"><%= job.comment %></div><a class="edit_comment" href="#">[Endre]</a></td>
 			<td><%= job.start_time.strftime("%H:%M") %></td>

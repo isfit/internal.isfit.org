@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
   end
 
   def self.birthday_notify
-    users_with_birthday = self.all.select{ |u| u.birthday? }
+    users_with_birthday = self.in_festival.birthday_users
     users_with_birthday.each do |user|
       age = Time.now.year - user.date_of_birth.year
       k = Kvitter.new
@@ -73,6 +73,16 @@ class User < ActiveRecord::Base
       k.message = "Internal gratulerer #{user.full_name} med #{age.to_s}-årsdagen. Hipp hurra!"
       k.save
     end
+  end
+
+  def self.birthday_users
+    month = Time.now.month.to_s
+    day   = Time.now.day.to_s
+
+    month = '0'+month if month.length == 1
+    day   = '0'+day   if day.length == 1
+
+    self.where("date_of_birth LIKE '%#{month}-#{day}'")
   end
 
   def birthday?

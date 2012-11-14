@@ -67,13 +67,18 @@ class TransportSystemController < ApplicationController
 		else
 			flash[:notice]="Noe gikk galt, bilen ble ikke lagret!"
 		end
-		redirect_to  url_for :controller => 'transport_system', :action => 'index'
+		redirect_to  url_for :action => 'index'
 
 	end
 
 	def admin
-		@cars = Car.all
-		@drivers = Driver.all
+		current_driver = Driver.find_by_user_id(current_user.id)
+		if current_driver
+			@cars = Car.all
+			@drivers = Driver.all
+		else
+			redirect_to  url_for :action => 'driver_new'
+		end
 
 	end
 
