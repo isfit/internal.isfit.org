@@ -1,6 +1,7 @@
 # RVM bootstrap
 #$:.unshift(File.expand_path("~/.rvm/lib"))
 require 'rvm/capistrano'
+require "whenever/capistrano"
 set :rvm_ruby_string, '1.9.2-p290'
 set :rvm_type, :user
 
@@ -10,6 +11,7 @@ set :application, "isfit.org"
 set :repository,  "git@github.com:isfit/internal.isfit.org"
 
 set :scm, :git
+set :whenever_command, "bundle exec whenever"
 
 role :web, "nova.isfit.org"                          # Your HTTP server, Apache/etc
 role :app, "nova.isfit.org"                          # This may be the same as your `Web` server
