@@ -11,6 +11,8 @@ class LayoutJobsController < ApplicationController
       @layout_jobs = LayoutJob.where("layout_jobs.group_id IN (?)", @group_ids)
     end
 
+    flash[:notice] = params[:notice]
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @layout_jobs }
