@@ -169,13 +169,15 @@ $(function() {
     var j_cars = JSON.parse(data.cars),
         j_drivers = JSON.parse(data.drivers);
 
-
+    //Remove any previous notification (or else they stack up)
+    $("#transport_notification").empty();
     if (data.drives) {
       var j_drives = JSON.parse(data.drives);
       var j_drives_mod = JSON.parse(data.drives_mod);
       
+
       //Alert no of current drive missions at given time.
-      $("#transport_search").parent().prepend('\
+      $("#transport_notification").append('\
           <div class="alert alert-info">\
             <button type="button" class="close" data-dismiss="alert">x</button>\
           Fant '+j_drives.length+' eksisterende oppdrag på gitt tidspunkt. </div>');
@@ -192,7 +194,7 @@ $(function() {
       }
     }
     else {
-        $("#transport_search").parent().prepend('\
+        $("#transport_notification").append('\
           <div class="alert alert-success">\
             <button type="button" class="close" data-dismiss="alert">x</button>\
          Fant ingen eksisterende oppdrag på gitt tidspunkt </div>');
@@ -226,6 +228,8 @@ $(function() {
     $("#dato").empty();    
     $("#dato").append(date);
   }
+
+  //Removal of car functionality for admins.
   $(".delete_car").click(function(event) {
     if(confirm("Er du sikker på at du vil slette bilen?\
      \nAlle tidligere og fremtidlige oppdrag med denne bilen vil bli merket som [Slettet]")) {

@@ -18,7 +18,7 @@ class TransportSystemController < ApplicationController
 			drives_found = Drive.where("start_time <= '#{end_time}' AND '#{start_time}' <= end_time") #all overlapping.
 
 			# used to write out information about the drives found.
-			drives_mod = drives_found.map {|x| [x.id, Car.find(x.car_id).name, User.find(Driver.find(x.driver_id).user_id).given_name, x.description, x.comment, x.start_time, x.end_time, x.completed]}
+			drives_mod = drives_found.map {|x| [x.id, Car.find(x.car_id).name, User.find(Driver.find(x.driver_id).user_id).given_name, x.description, x.comment, x.start_time.strftime("%Y-%m-%d %H:%M"), x.end_time.strftime("%Y-%m-%d %H:%M"), x.completed]}
 			
 			if drives_found.empty?
 
