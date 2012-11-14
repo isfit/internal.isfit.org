@@ -2,7 +2,7 @@
   <div class="well">
     <ul class="nav nav-list">
       <% @last = 0 %>
-        <% WikiPage.find_by_sql("SELECT * FROM wiki_categories AS w, (#{WikiPage.select("*").from("(#{WikiPage.order("created_at DESC").to_sql}) as p").group("slug").order("slug DESC").to_sql}) AS p WHERE p.wiki_category_id = w.id ORDER BY w.title ASC").each do |page| %>
+        <% WikiPage.find_by_sql("SELECT * FROM wiki_categories AS w, (#{WikiPage.select("*").from("(#{WikiPage.where(deleted: nil).order("created_at DESC").to_sql}) as p").group("slug").order("slug DESC").to_sql}) AS p WHERE p.wiki_category_id = w.id ORDER BY w.title ASC").each do |page| %>
         <% if page.wiki_category_id != @last %>
         <% category = WikiCategory.find(page.wiki_category_id) unless page.wiki_category_id.nil? %>
             <li class="nav-header"><%= category.title unless page.wiki_category_id.nil? %> </li>
