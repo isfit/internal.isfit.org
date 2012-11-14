@@ -2,7 +2,7 @@
   <%= link_to 'New Host', new_host_path, :class => "btn btn-primary"%>
 </div>
 <h1>Hosts</h1>
-
+<h3><%= @hosts.length %> people able to host <%= @sum_of_available_beds %> participants.</h3>
 <table class="table table-bordered table-striped">
   <thead>
     <th>First name</th>
