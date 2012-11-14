@@ -37,5 +37,6 @@ namespace :deploy do
     run "ln -nfs #{shared_path}/config/password.yml #{release_path}/config/password.yml"
   end
 end
+before "whenever:update_crontab", "bundle:install"
 after 'deploy:update_code', 'deploy:symlink_shared'
 
