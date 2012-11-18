@@ -31,7 +31,7 @@ if(!String.linkify) {
 
 $("a.awesome").live('click', function(event){
   event.preventDefault(); 
-  var that = event.srcElement;
+  var that = event.srcElement || event.target;
   var count_object = $.getJSON("/kvitters/" + $(that).attr("data-id") + "/awesome.json", function(data) {
   console.log(data);
   $(that).next().text(data);
