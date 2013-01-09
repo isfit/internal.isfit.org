@@ -12,6 +12,7 @@
     <th>Number</th>
     <th></th>
     <th></th>
+    <th></th>
   </thead>
   <tbody>
     <% @hosts.each do |host| %>
@@ -23,8 +24,8 @@
         <td><%= host.number %></td>
         <td><%= link_to 'Show', host, :class => "btn-primary btn" %></td>
         <td><%= link_to 'Edit', edit_host_path(host), :class => "btn" %></td>
+        <td><%= link_to 'Destroy', host, :confirm => "Remove #{host.first_name} #{host.last_name}?", :method => :delete, :class => "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-

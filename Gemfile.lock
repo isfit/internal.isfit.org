@@ -235,6 +235,8 @@ GEM
       railties (>= 3.0)
       rspec (~> 2.11.0)
     rubyzip (0.9.9)
+    rvm-capistrano (1.2.7)
+      capistrano (>= 2.0.0)
     sass (3.2.3)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
@@ -335,6 +337,7 @@ DEPENDENCIES
   ransack
   rmagick
   rspec-rails
+  rvm-capistrano
   sass-rails
   simple_form
   spork (> 0.9.0rc)

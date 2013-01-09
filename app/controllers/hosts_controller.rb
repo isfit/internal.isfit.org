@@ -4,7 +4,7 @@ class HostsController < ApplicationController
   # GET /hosts
   # GET /hosts.json
   def index
-    @hosts = Host.all
+    @hosts = Host.where(deleted: false)
     @sum_of_available_beds = @hosts.collect {|h| h.number}.sum
 
     respond_to do |format|
@@ -76,7 +76,8 @@ class HostsController < ApplicationController
   # DELETE /hosts/1.json
   def destroy
     @host = Host.find(params[:id])
-    @host.destroy
+    @host.deleted = true
+    @host.save
 
     respond_to do |format|
       format.html { redirect_to hosts_url }
