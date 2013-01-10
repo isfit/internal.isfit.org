@@ -5,7 +5,7 @@ class HostsController < ApplicationController
   # GET /hosts.json
   def index
     @hosts = Host.where(deleted: false)
-    @sum_of_available_beds = @hosts.collect {|h| h.number}.sum
+    @sum_of_available_beds = @hosts.sum(:number)
 
     respond_to do |format|
       format.html # index.html.erb
