@@ -70,7 +70,13 @@ class WhoAmIController < ApplicationController
     # Returns all users scores for each week 
     # as [week, user_id]=>points/value
     # sorted at week primary with highest value/points first.
-    points_weeks = WhoAmI.where("correct_user_id = answer").group("week(created_at)").group(:user_id).order("week_created_at DESC").order("count_all DESC").count
+    points_weeks = WhoAmI
+      .where("correct_user_id = answer")
+      .group("week(created_at)")
+      .group(:user_id)
+      .order("week_created_at DESC")
+      .order("count_all DESC")
+      .count
     
     # finds the user with highest points in a week
     points_weeks.each do |ar, value|
@@ -86,11 +92,20 @@ class WhoAmIController < ApplicationController
     guessed_weekly = Hash.new
 
     # [week, user_id]=>points/value
-    guessed_weeks = WhoAmI.where("correct_user_id = answer").group("week(created_at)").group(:correct_user_id).order("week_created_at DESC").order("count_all DESC").count
+    guessed_weeks = WhoAmI
+      .where("correct_user_id = answer")
+      .group("week(created_at)")
+      .group(:correct_user_id)
+      .order("week_created_at DESC")
+      .order("count_all DESC")
+      .count
+
     guessed_weeks.each do | ar, value |
-      wk_s = Date.commercial(yr_current, ar[0], 1)
-      wk_e = Date.commercial(yr_current, ar[0], 7)
-      guessed_weekly[ar] = guessed_weeks[ar] / WhoAmI.where("correct_user_id = #{ar[1]}").where(:created_at=>wk_s..wk_e).where(played: true).count.to_f
+      unless ar[0].eql? 53
+        wk_s = Date.commercial(yr_current, ar[0], 1)
+        wk_e = Date.commercial(yr_current, ar[0], 7)
+        guessed_weekly[ar] = guessed_weeks[ar] / WhoAmI.where("correct_user_id = #{ar[1]}").where(:created_at=>wk_s..wk_e).where(played: true).count.to_f
+      end
     end
 
     # Search through dict with [week, user_id] => ratio
