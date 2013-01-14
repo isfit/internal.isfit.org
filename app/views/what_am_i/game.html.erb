@@ -1,14 +1,15 @@
 <h1>What I am?!</h1>
-<a href="highscore">Highscores</a>
+<a href="highscore" class="btn btn-large btn-info">Highscores</a>
 
 <div id="what_question" class="what_seperate">    
 <% @users.each do |user| %>
     <% if user.id == @whatGame.correct_user_id %>
-        <h2> Hvem har tittelen: <%= user.positions.last.title_no %></h2>
-        <h3></h3>  
+        <legend> Hvem har tittelen: <strong><%= user.positions.last.title_no %></strong></legend>
     <% end %>
 <% end %>
 </div>
+
+<% @btn_classes = ["btn", "btn-primary", "btn-info", "btn-success", "btn-warning", "btn-danger", "btn-inverse"] %>
 
 <div id="what_guesses" class="what_seperate">
 <% @users.each_with_index do |user,index| %>
@@ -19,7 +20,7 @@
         <%= form_tag %>
         <input type="hidden" name="whatGame" value="<%= @whatGame.id %>">
         <input type="hidden" name="user_id" value="<%= user.id %>">
-        <input class="span3" class="btn" type="submit" name="user_name" value="<%= user.full_name %>">
+        <input class="span3 btn btn-large <%= @btn_classes.sample %>" type="submit" name="user_name" value="<%= user.full_name %>">
     </form>
 <% end %>
 </div>

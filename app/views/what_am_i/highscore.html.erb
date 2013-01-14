@@ -1,27 +1,27 @@
 <h1>Highscores - Top 10</h1>
-<a href="game">Tilbake til spillet</a>
+<a href="game" class="btn btn-success btn-large">Spill mer!</a>
 <br><br>
 <div class="row">
     <div class="span4">
         <h3>Hvem har flest riktige?</h3>
         <ul style="list-style-type: decimal";>
-            <% @points_sorted.each do |user,value| %>
-                <li><%= user.full_name %> (<%= value %>)</li>
+            <% @points_sorted.each do |user| %>
+                <li><%= user.given_name + " " + user.family_name %> (<%= user.score %>)</li>
             <% end %>
         </ul>
 
         <h3>Hvem husker ISFiT best?</h3>
         <ul style="list-style-type: decimal";>
-            <% @guessed_sorted.each do |user,value| %>
-                <li><%= user.full_name %></li>
+            <% @guessed_sorted.each do |user| %>
+                <li><%= user.given_name + " " + user.family_name %></li>
             <% end %>
         </ul>
 
         <h3>Hvilken bruker er best prosent-vis?</h3>
         <p> (Du må ha 10 eller flere spill for å bli med i listen) </p>
         <ul style="list-style-type: decimal";>
-            <% @best_ratio_sorted.each do |user,value| %>
-                <li><%= user.full_name %> (<%= "%0.2f" % (value*100) %>%)</li>
+            <% @best_ratio_sorted.each do |user| %>
+                <li><%= user.given_name + " " + user.family_name %> (<%= user.ratio.round(2) %>%)</li>
             <% end %>
         </ul>
     </div>
@@ -31,7 +31,7 @@
         <ul tyle="list-style-type: none";>
             <% @user_stats.each do | string, value | %>
                 <% if string == "Prosent" %>
-                    <li><%= string %>: <%= "%0.2f" % (value*100) %>%</li>
+                    <li><%= string %>: <%= (value*100).round(2) %>%</li>
                 <% else %>
                     <li><%= string %>: <%= value %></li>
                 <% end %>

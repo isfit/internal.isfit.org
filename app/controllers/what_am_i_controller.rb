@@ -61,39 +61,64 @@ class WhatAmIController < ApplicationController
   end
 
   def highscore
-    whatAmIs = WhatAmI.where(played: true)
-    points = Hash.new {|h,k| h[k] = 0} #Which player has most correct guesses?
-    guessed = Hash.new {|h,k| h[k] = 0} #Which person is easiest to guess?
-    played = Hash.new {|h,k| h[k] = 0} #Used to find best played based correct/wrong ratio
-    best_ratio = Hash.new {|h,k| h[k] = 0} #Which player has the best correct/wrong ratio?
+    @points_sorted = User
+      .joins(:what_am_is)
+      .select("users.id, given_name, family_name, COUNT(*) AS score")
+      .where("what_am_is.played = 1 AND answer = 1")
+      .group("users.id")
+      .order("score DESC")
+      .limit(10)
 
-    whatAmIs.each do |what|
-      if what.played == true
-        played[User.find(what.user_id)] += 1
+    @best_ratio_sorted = User.find_by_sql(
+      "SELECT u_id, given_name, family_name, points, played, ratio
+      FROM (
+        SELECT derived.u_id, given_name, family_name, SUM(score) as points, SUM(total) AS played, (SUM(score)/SUM(total)*100) AS ratio
+        FROM (
+          SELECT users.id AS u_id, users.given_name AS given_name, users.family_name AS family_name, Count(*) AS score, 0 as total
+          FROM `users`
+          INNER JOIN `what_am_is` ON `what_am_is`.`user_id` = `users`.`id`
+          WHERE (what_am_is.played = 1 AND answer = 1)
+          GROUP BY users.id
+          UNION
+          SELECT users.id AS u_id, users.given_name AS given_name, users.family_name AS family_name, 0 AS score, Count(*) AS total
+          FROM `users`
+          INNER JOIN `what_am_is` ON `what_am_is`.`user_id` = `users`.`id`
+          WHERE (what_am_is.played = 1)
+          GROUP BY users.id
+        ) AS derived
+        GROUP BY u_id
+        ORDER BY ratio DESC
+      ) AS final
+      WHERE (played > 9)
+      LIMIT 10")
 
-        if what.answer == true
-          guessed[User.find(what.guessed_user_id)] += 1
-          points[User.find(what.user_id)] += 1
-        else
-          guessed[User.find(what.guessed_user_id)] -= 1
-        end
-        #Only eligible for Top 10 ratio if you've played 10 or more games.
-        if played[User.find(what.user_id)] >= 10
-          #Using .to_f to get floating point
-          best_ratio[User.find(what.user_id)] = points[User.find(what.user_id)].to_f / played[User.find(what.user_id)]
-        end
-      end
-    end
+    @guessed_sorted = User.find_by_sql(
+      "SELECT derived.correct_user_id, SUM(c) as correct, c, u.id, u.given_name, u.family_name
+      FROM (
+        SELECT *, (COUNT(*)) as c
+        FROM what_am_is
+        WHERE answer = 1
+        GROUP BY guessed_user_id
+        UNION
+        SELECT *, (-COUNT(*)) as c
+        FROM what_am_is
+        WHERE answer=0
+        GROUP BY guessed_user_id
+      ) AS derived
+      INNER JOIN users u ON derived.guessed_user_id = u.id
+      GROUP By guessed_user_id
+      ORDER BY correct DESC
+      LIMIT 10")
 
-    #Sorting all descending (highest to lowest) and only showing Top 10.
-    @guessed_sorted = guessed.sort_by {|k,v| v}.reverse[0..9]
-    @points_sorted = points.sort_by {|k,v| v}.reverse[0..9]
-    @best_ratio_sorted = best_ratio.sort_by {|k,v| v}.reverse[0..9]
+    @user_games = WhatAmI.where(user_id: current_user.id)
+    @points     = @user_games.where(answer: 1).count
+    @played     = @user_games.where(played: 1).count
+    @ratio      = @points.to_f / @played
 
     @user_stats = {
-      "Poeng" => points[current_user],
-      "Antall spill" => played[current_user],
-      "Prosent" => best_ratio[current_user]
+      "Poeng" => @points,
+      "Antall spill" => @played,
+      "Prosent" => @ratio
     }
   end
 
