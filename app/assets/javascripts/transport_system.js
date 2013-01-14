@@ -4,6 +4,11 @@ $(function() {
   $("#new_drive").hide();
   $("#drives_table").hide();
   $("#date_time_feedback").hide();
+  $('.example').tooltip({ 
+        selector: 'A'
+    });
+
+
 
   //Hide tables in admin
 
@@ -51,12 +56,12 @@ $(function() {
 
   // Toggle and save a Drive objects completed boolean in /todo
   $("#todo_table tbody td button").click(function() {
-    var button = $(this);
+    var button = $(this),
+    url = button.attr('id');
 
     $.ajax({
-      type: 'POST',
-      url: '/transport/todo/update_completed',
-      data: {id: button.attr('id')}  ,
+      type: 'PUT',
+      url: url,
       success: function(data) {
         button.empty();
         if (button.hasClass("btn-success")) {
@@ -73,90 +78,19 @@ $(function() {
       }
     });
   });
-  //Submit the newly edit comment.
-  $("#comment_form").live("submit", function(event) {
-    var form = $(this);
-    event.preventDefault();
-    $.ajax({
-      type: 'POST',
-      url: '/transport/todo/save_comment',
-      data: form.serialize(),
-      success: function(data) { 
 
-        // Add the newly saved text back into closed format.
-        //Cannot use click trigger on .edit_comment (its a class), but same func.
-        var text = form.find("#comment_textarea").val();
-        var comment_text = form.parent();
-        comment_text.parent().addClass("closed");
-        comment_text.empty();
-        comment_text.text(text);
-
-        //Bootstap success notification
-        $("#drives_title").parent().prepend('\
-          <div class="alert alert-success">\
-            <button type="button" class="close" data-dismiss="alert">×</button>\
-          Kommentar lagret </div>');
-      }
-    });
-    return false;
-
-  });
-
-  //Comment on a drive mission in todo/you and todo/all.
-  $(".edit_comment").click(function() {
-    var comment = $(this).parent(),
-        comment_text = comment.find("#comment_text"),
-        comment_text_content = comment_text.text(),
-        comment_id = $(this).parent().attr('id');
-
-    if(comment.hasClass("closed")) {
-      comment.removeClass("closed");
-      comment_text.empty();
-
-      var form = $('<form id="comment_form"></form>');
-      form.append('<textarea name="drive[comment]" rows="3" id="comment_textarea">'+comment_text_content+'</textarea>');
-      form.append('<input type="hidden" name="drive[id]" value="'+comment_id+'">');
-      form.append('<br> <input id="submit_comment" type="submit" value="Lagre">');
-
-      comment_text.append(form);
-      $(this).text("[Angre]");
-
+  $(".expand").click(function() {
+    var d = $(this);
+    if(d.hasClass("fall")) {
+      d.removeClass("fall");
+      $(this).find(".minimize").addClass("expand_y");
     }
     else {
-      var textarea = comment_text.find("textarea").text();
-      comment_text.empty();
-      comment_text.text(comment_text_content);
-      comment.addClass("closed");
-      $(this).text("[Endre]");
-    }
+      d.addClass("fall")
+      $(this).find(".minimize").removeClass("expand_y");
 
+    }
   });
-
-  
-  //Moves the screen to lastest/next drive mission in todo/you and todo/all
-  function moveToNext() {
-    var current_date = new Date();
-    var next_mission_date = new Date(2022,22,22);
-    var moveTo = -1;
-    $("#todo_table").find(".drive_date").each(function() {
-      var d = new Date($(this).text().split('-'));
-      if(d < next_mission_date && (d > current_date)) {
-        next_mission_date = d;
-        moveTo = $(this).parent();
-      }
-
-    });
-
-    if(moveTo == -1) {
-      moveTo = $("#todo_table tbody tr:last");
-    }
-    moveTo.attr('style', 'background: yellow');
-    var container = $('#todo_table'),
-        scrollTo = moveTo;
-
-    //container.scrollTop(scrollTo.offset().top - container.offset().top + container.scrollTop());
-  }
-    //moveToNext();
 
   
   // Parse JSON object to display available drivers, cars and such at a given time
@@ -238,4 +172,6 @@ $(function() {
         event.preventDefault();
     }
   });
+
+
 });

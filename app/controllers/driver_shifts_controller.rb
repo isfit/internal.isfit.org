@@ -34,7 +34,23 @@ class DriverShiftsController < ApplicationController
 		if current_driver
 			redirect_to :action => 'index', :driver_id => current_driver
 		else
-			redirect_to :controller => 'transport_system', :action => 'driver_new'
+			redirect_to :controller => 'drive_admin', :action => 'driver_new'
+		end
+	end
+
+	def all
+		@drivers = Driver.all
+		if request.post?
+			start_time =  DateTime.parse(params[:date]+" "+params[:start_time]+":00")
+			end_time = DateTime.parse(params[:date]+" "+params[:end_time]+":00")
+
+			drivers = params[:driver_ids]
+			drivers.each do |driver|
+				shift = DriverShift.new(start_time: start_time, end_time: end_time, driver_id: driver)
+				shift.save
+			end
+			flash[:notice] = "Vaktene har blitt lagret."
+			redirect_to :controller => 'drive_admin', :action =>'index'
 		end
 	end
 end

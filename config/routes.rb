@@ -20,47 +20,41 @@ InternalIsfitOrg::Application.routes.draw do
   post "users/status/update", controller: "card_checker", action: "update"
 
   scope "/transport" do
-    # drives search and create
-    get "", controller: "transport_system", action: "index"
-    post "", controller: "transport_system", action: "index"
-    post "/create", controller: "transport_system", action: "create"
-
-    # car handling
-    post "/car/create", controller: "car", action: "create"
-    get "/car/destroy", controller: "car", action: "destroy"
-    get "/car/:id/edit", controller: "car", action: "edit"
-    get "/car/:id/update", controller: "car", action: "update"
-
-    # admin
-    get "/admin", controller: "transport_system", action: "admin"
-    post "/admin", controller: "transport_system", action: "admin"
-    post "/admin/add_driver", controller: "transport_system", action: "admin_add_driver"
-
-    # driver todo
-    get "/driver/you/todo", controller: "transport_system", action: "todo_you"
-    get "/driver/:id/todo", controller: "transport_system", action: "todo_user"
-    get "/all/todo", controller: "transport_system", action: "todo_all"
-    
-    # todo functionality 
-    post "todo/update_completed", controller: "transport_system", action: "update_completed"
-    post "/todo/save_comment", controller: "transport_system", action: "save_comment"
+    get "", controller: "drives", action: "search"
+    post "", controller: "drives", action: "search"
 
     # driver shifts
-    get "/driver/:driver_id/shifts", controller: "driver_shifts", action: "index"
-    post "/driver/:driver_id/shifts/create",  controller: "driver_shifts", action: "create"
-    get "/driver/:driver_id/shifts/:shift_id/destroy", controller: "driver_shifts", action: "destroy"
-    get "driver/you/shift", controller: "driver_shifts", action: "shifts_you"
-
-    # driver creational
-    get "/driver/new", controller: "transport_system", action: "driver_new"
-    get "/driver/register", controller: "transport_system", action: "driver_register"
-
+    get "/shifts/driver/:driver_id/", controller: "driver_shifts", action: "index"
+    post "/shifts/driver/:driver_id/create",  controller: "driver_shifts", action: "create"
+    get "/shifts/driver/:driver_id/:shift_id/destroy", controller: "driver_shifts", action: "destroy"
+    get "/shifts/you", controller: "driver_shifts", action: "shifts_you"
     #other
-    get "/info", controller: "transport_system", action: "info"
+    get "/info", controller: "drive_admin", action: "info"
 
+    resources :car
+    resources :drives do
+      collection do
+        get "all", action: :show_all
+        post "all/search", action: :range_search
+        get "driver/:id", action: :show_user, :as => :driver
+        get "you", action: :show_you
+        match 'search' => 'drives#search', :via => [:get, :post], :as => :search
+      end
+        member do
+          put "toogle_completed", action: :toogle_completed
+        end
+    end
+      resources :drive_admin, :as => :admin do
+        collection do
+            match 'shifts' => 'driver_shifts#all', :via => [:get, :post], :as => :shifts
+            post "new_driver", action: :create_driver
+            get "driver_new", action: :driver_new
+            get "driver_register", action: :driver_register
 
+        end
+      end
   end
-
+  
   resources :spp_pages
 
   scope "/wiki" do

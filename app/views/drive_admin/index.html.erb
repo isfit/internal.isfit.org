@@ -1,12 +1,13 @@
 <ul class="nav nav-tabs">
-	<li><a href="/transport">Søk og lagre oppdrag</a></li>
-    <li><a href="/transport/driver/you/todo">Mine oppdrag</a></li>
-    <li><a href="/transport/driver/you/shift">Min vaktliste</a></li>
-    <li><a href="/transport/all/todo">Alle oppdrag</a></li>
-    <li class="active"><a href="/transport/admin">Administrer</a></li>
-    <li><a href="/transport/info">Info</a></li>
-
+    <li><%= link_to(:"Søk og lagre oppdrag",search_drives_path) %></li>
+    <li><%= link_to(:"Mine oppdrag",you_drives_path) %></li>
+    <li><%= link_to(:"Min vaktliste", shifts_you_path)%></li>
+    <li><%= link_to(:"Alle oppdrag", all_drives_path) %></li>
+    <li class="active"><%= link_to(:"Administrer", admin_index_path) %></li>
+    <li><%= link_to(:"Info", info_path) %></li>
 </ul>
+<%= link_to("Sett opp vaktlister", shifts_admin_index_path) %>
+<br>
 <div class="row">
 	<div class="span6">
 		<h3 class="muted">Sjåfører</h3>
@@ -14,7 +15,7 @@
 			<% @drivers.each do | driver | %>
 				<tr>
 					<td><%= User.find(driver.user_id).given_name %> (<%= User.find(driver.user_id).username %>) </td>
-					<td><%= link_to "Oppdrag", {:controller => "transport_system", :action => "todo_user", :id => driver.id} %></td>
+					<td><%= link_to(:Oppdrag, driver_drives_path(driver.id)) %></td>
 					<td><%= link_to "Vaktliste", {:controller => "driver_shifts", :action => "index", :driver_id => driver.id} %></td>
 				</tr>
 			<% end %>
@@ -22,7 +23,7 @@
 	</div>
 	<div class="span3">
 		<h4>Legg til sjåfør</h4>
-		<%= form_tag(:controller => "transport_system", :action => "admin_add_driver", :method => "post") do %>
+		<%= form_tag(:controller => "drive_admin", :action => "create_driver", :method => "post") do %>
 			Brukernavn: <br>
 			<%= text_field_tag(:username) %><br>
 			<%= submit_tag("Lagre") %>
@@ -49,8 +50,12 @@
 					<td><%= car.description%></td>
 					<td><%= car.space%></td>
 					<td><%= car.seats%></td>
-					<td><%= link_to "Fjern", {:controller => "car", :action => "destroy", :id => car.id, method: :delete}, {:class =>('delete_car')} %></td>
-					<td><%= link_to "Rediger", {:controller => "car", :action => "edit", :id => car.id} %></td>
+					<td>
+						<%= link_to(:Fjern, car_path(car.id), method: :delete, confirm: "Alle oppdrag denne bilen hadde/har vil bli vist som [Slettet], prøv heller rediger først. Er du sikker på at du vil slette bilen?")%>
+					</td>
+					<td>
+						<%= link_to(:Rediger, edit_car_path(car.id))%>
+					</td>
 				</tr>
 				<% end %>
 			</tbody>

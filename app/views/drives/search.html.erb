@@ -1,16 +1,16 @@
-<div id="transport_notification"></div>
 <ul class="nav nav-tabs">
-	<li class="active"><a href="/transport">Søk og lagre oppdrag</a></li>
-    <li><a <a href="/transport/driver/you/todo">Mine oppdrag</a></li>
-    <li><a href="/transport/driver/you/shift">Min vaktliste</a></li>
-    <li><a href="/transport/all/todo">Alle oppdrag</a></li>
-    <li><a href="/transport/admin">Administrer</a></li>
-    <li><a href="/transport/info">Info</a></li>
+    <li class="active"><%= link_to(:"Søk og lagre oppdrag",search_drives_path) %></li>
+    <li><%= link_to(:"Mine oppdrag",you_drives_path) %></li>
+    <li><%= link_to(:"Min vaktliste", shifts_you_path)%></li>
+    <li><%= link_to(:"Alle oppdrag", all_drives_path) %></li>
+    <li><%= link_to(:"Administrer", admin_index_path) %></li>
+    <li><%= link_to(:Info, info_path) %></li>
 </ul>
+
 <br>
 <div id="transport_search" class="row">
 	<div class="span3" >
-		<form id="time_query">
+		<form id="time_query" action="<%= search_drives_path%>" method="POST">
 			<div class="input-prepend">
 				<label class="control-label" for="inputIcon">Dato</label>
 				<span class="add-on"><i class="icon-calendar"></i></span>
@@ -53,6 +53,7 @@
 		</div>
 			<% end %>
 	</div>
+	<br>
 	<table id="drives_table" class="table table-striped">
 		<thead>
 			<th>ID</th>

@@ -1,0 +1,76 @@
+<ul class="nav nav-tabs">
+    <li><%= link_to(:"Søk og lagre oppdrag",search_drives_path) %></li>
+    <li><%= link_to(:"Mine oppdrag",you_drives_path) %></li>
+    <li><%= link_to(:"Min vaktliste", shifts_you_path)%></li>
+    <li class="active"><%= link_to(:"Alle oppdrag", all_drives_path) %></li>
+    <li><%= link_to(:"Administrer", admin_index_path) %></li>
+    <li><%= link_to(:Info, info_path) %></li>
+</ul>
+<h3 class="muted">Søk på Oppdrag</h3>
+<%= form_tag(all_search_drives_path, :method => "post", :class => "form-inline") do %>
+	<label class="control-label" for="inputIcon">Fra</label>
+	<span class="add-on"><i class="icon-calendar"></i></span>
+	<input id="date" type="date" name="start_date" placeholder="YYYY-MM-DD" value="<%= Date.today %>"	required/>
+	<label class="control-label" for="inputIcon">Til</label>
+	<span class="add-on"><i class="icon-calendar"></i></span>
+	<input id="date" type="date" name="end_date" placeholder="YYYY-MM-DD"	required/>
+  <%= submit_tag("Søk") %>
+<% end %>
+
+<table id="todo_table"  class="table table-hover sortable" <a href="#" rel="tooltip" title="Click to expand/collapse"> </a>
+	<thead>
+		<th>ID</th>
+		<th>Bil</th>
+		<th>Sjåfør</th>
+		<th>Beskrivelse</th>
+		<th>Kommentar</th>
+		<th>Start tid</th>
+		<th>Slutt tid</th>
+		<th>Dato</th>
+		<th>Fullført?<th>
+	</thead>
+	<tbody>
+		<% @driver_jobs.each do |job| %>
+		<tr class="expand">
+			<td><%= job.id %></td>
+			<td><% if Car.find_by_id(job.car_id) %> <%= Car.find(job.car_id).description %> <% else %> [Slettet] <% end %> </td>
+			<% if Driver.find_by_id(job.driver_id) %>
+				<td>
+				<%= link_to(User.find(Driver.find(job.driver_id).user_id).given_name, driver_drives_path(job.driver_id)) %>
+				</td>
+			
+			<% else %>
+				<td>[Bruker slettet]</td>
+			<% end %>
+			<td>
+				<div class="minimize expand_y">
+					<%= simple_format(job.description) %>
+				</div>
+			</td>
+			<td id="<%=(job.id) %>" class="closed">
+				<div class="minimize expand_y" id="comment_text">
+					<%= simple_format(job.comment) %>
+				</div>
+			</td>
+			<td><%= job.start_time.strftime("%H:%M") %></td>
+			<td><%= job.end_time.strftime("%H:%M") %></td>
+			<td class="drive_date"><%= job.start_time.strftime("%m-%d") %></td>
+			<td>
+			<% if job.completed %>
+				<button id="<%= toogle_completed_drife_path(job.id) %>" class="btn btn-success"><i class="icon-ok"></i></button>
+			<% else %>
+				<button id="<%= toogle_completed_drife_path(job.id) %>" class="btn btn-danger"><i class="icon-remove"></i></button>
+			<% end %>
+
+			</td>
+			<td>
+				<%= link_to(:Fjern, drife_path(job.id), method: :delete, confirm: "Er du sikker på at du vil slette denne kjøringen? Husk, du kan redigere/endre den.") %>
+			</td>
+			<td>
+				<%= link_to(:Endre, edit_drife_path(job.id))%>
+			</td>
+			</tr>
+		<% end %>
+	</tbody>
+
+</table

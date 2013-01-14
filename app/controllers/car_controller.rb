@@ -6,7 +6,11 @@ class CarController < ApplicationController
     	else
     		flash[:alert]="Noe gikk galt, kontakt ISFiT IT"
       	end
-      	redirect_to  url_for :controller => 'transport_system', :action => 'admin'
+      	redirect_to  url_for :controller => 'drive_admin', :action => 'index'
+	end
+
+	def show
+		@car = Car.find(params[:id])
 	end
 
 	def destroy
@@ -16,7 +20,7 @@ class CarController < ApplicationController
     	else
     		flash[:alert] = "Noe gikk galt. Bilen ble ikke fjernet."
     	end
-    	redirect_to  url_for :controller => 'transport_system', :action => 'admin'
+      	redirect_to  url_for :controller => 'drive_admin', :action => 'index'
 	end
 
 	#GET
@@ -32,6 +36,6 @@ class CarController < ApplicationController
     	else
     		flash[:alert] = "Noe gikk galt, endringen ble ikke lagret!"
     	end
-    	redirect_to  url_for :controller => 'transport_system', :action => 'admin'
+      	redirect_to  url_for :controller => 'drive_admin', :action => 'index'
 	end
 end

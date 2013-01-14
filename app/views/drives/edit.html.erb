@@ -1,0 +1,32 @@
+<ul class="nav nav-tabs">
+    <li><%= link_to(:"Søk og lagre oppdrag",search_drives_path) %></li>
+    <li><%= link_to(:"Mine oppdrag",you_drives_path) %></li>
+    <li><%= link_to(:"Min vaktliste", shifts_you_path)%></li>
+    <li><%= link_to(:"Alle oppdrag", all_drives_path) %></li>
+    <li><%= link_to(:"Administrer", admin_index_path) %></li>
+    <li><%= link_to(:Info, info_path) %></li>
+</ul>
+<div class="row">
+  <%= bootstrap_form_for(@drive) do |f| %>
+    <%= f.error_messages %>
+ 	  <div class="span5">
+      	<%= f.text_area :description, :class => :span4 %>
+    </div>
+    <div class="span3">
+    	<%= f.text_area :comment, :class => :span4 %>
+	  </div>
+</div>
+
+<div class="row">
+  <div class="span5">
+    <%= f.text_field :start_time, :value => @drive.try(:start_time).try(:strftime,'%Y-%m-%d %H:%M') %>
+    <%= f.text_field :end_time, :value => @drive.try(:end_time).try(:strftime,'%Y-%m-%d %H:%M') %>
+  </div>
+  <div class="span3">      
+    <% driver_array = Driver.all.map { |driver| [User.find(driver.user_id).given_name, driver.id] } %>
+    <%= f.select :driver_id, options_for_select(driver_array, @drive.driver_id) %>
+
+  <div>
+</div>
+<%= submit_tag( "Oppdater" ) %>
+  <% end %>

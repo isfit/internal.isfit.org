@@ -1,10 +1,10 @@
 <ul class="nav nav-tabs">
-	<li><a href="/transport">Søk og lagre oppdrag</a></li>
-    <li><a href="/transport/driver/you/todo">Mine oppdrag</a></li>
-    <li><a href="/transport/driver/you/shift">Min vaktliste</a></li>
-    <li><a href="/transport/all/todo">Alle oppdrag</a></li>
-    <li><a href="/transport/admin">Administrer</a></li>
-    <li class="active"><a href="/transport/info">Info</a></li>
+    <li><%= link_to(:"Søk og lagre oppdrag",search_drives_path) %></li>
+    <li><%= link_to(:"Mine oppdrag",you_drives_path) %></li>
+    <li><%= link_to(:"Min vaktliste", shifts_you_path)%></li>
+    <li><%= link_to(:"Alle oppdrag", all_drives_path) %></li>
+    <li><%= link_to(:"Administrer", admin_index_path) %></li>
+    <li class="active"><%= link_to(:Info, info_path) %></li>
 </ul>
 
 <h2>Litt generell info</h2>

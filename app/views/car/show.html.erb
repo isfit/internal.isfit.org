@@ -7,11 +7,7 @@
     <li><%= link_to(:Info, info_path) %></li>
 </ul>
 
-<h2>Rediger bil</h2>
-<%= form_for @car, :url => {:action => "update"} do |f| %>
-			Navn:<br> <%= f.text_field :name %><br>
-			Beskrivelse:<br> <%= f.text_field :description %><br>
-			Plass: <br> <%= f.text_field :space %><br>
-			Seter: <br> <%= f.text_field :seats %><br>
-			<%= submit_tag("Lagre") %>
-<% end %>
+    Navn:<br> <%= @car.name %><br>
+    Beskrivelse:<br> <%=@car.description %><br>
+    Plass: <br> <%= @car.space %><br>
+    Seter: <br> <%= @car.seats %><br>
