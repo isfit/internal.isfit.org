@@ -23,7 +23,7 @@
     <%= f.text_field :end_time, :value => @drive.try(:end_time).try(:strftime,'%Y-%m-%d %H:%M') %>
   </div>
   <div class="span3">      
-    <% driver_array = Driver.all.map { |driver| [User.find(driver.user_id).given_name, driver.id] } %>
+    <% driver_array = Driver.all.map { |driver| [User.find(driver.user_id).full_name+ " ("+User.find(driver.user_id).username+")", driver.id] } %>
     <%= f.select :driver_id, options_for_select(driver_array, @drive.driver_id) %>
 
   </div>

@@ -12,7 +12,7 @@
 		<%= form_tag(shifts_admin_index_path, :method=>"post") do |f| %>
 			<% @drivers.each do |driver| %>
 				<%= check_box_tag("driver_ids[]", driver.id) %>
-				<%= User.find(driver.user_id).full_name %>
+				<%= User.find(driver.user_id).full_name+" ("+User.find(driver.user_id).username+")" %>
 				<br>
 			<% end %>
 	</div>
