@@ -57,9 +57,9 @@
 			<td class="drive_date"><%= job.start_time.strftime("%m-%d") %></td>
 			<td>
 			<% if job.completed %>
-				<button id="<%= toogle_completed_drife_path(job.id) %>" class="btn btn-success"><i class="icon-ok"></i></button>
+				<button id="<%= toogle_completed_drife_path(job.id) %>" class="btn btn-success" sorttable_customkey="99"><i class="icon-ok"></i></button>
 			<% else %>
-				<button id="<%= toogle_completed_drife_path(job.id) %>" class="btn btn-danger"><i class="icon-remove"></i></button>
+				<button id="<%= toogle_completed_drife_path(job.id) %>" class="btn btn-danger" sorttable_customkey="1"><i class="icon-remove"></i></button>
 			<% end %>
 
 			</td>

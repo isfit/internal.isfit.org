@@ -26,7 +26,7 @@
     <% driver_array = Driver.all.map { |driver| [User.find(driver.user_id).given_name, driver.id] } %>
     <%= f.select :driver_id, options_for_select(driver_array, @drive.driver_id) %>
 
-  <div>
+  </div>
 </div>
 <%= submit_tag( "Oppdater" ) %>
   <% end %>
