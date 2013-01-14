@@ -35,7 +35,7 @@ gem 'bootstrap-will_paginate'
 gem 'whenever', :require => false
 
 # Denne spammer oss med mail atm... Må tunes :P
- gem 'exception_notification', :require => 'exception_notifier'
+gem 'exception_notification', "~>2.6.1", :require => 'exception_notifier'
 
 group :assets do
   gem 'sass-rails'
