@@ -45,7 +45,7 @@
         </ul>
             <% @best_points_weekly.each do |week, args| %>
                 <% if week != @wk_current %>
-                    <h4>Uke <%= week %>: </h4>
+                    <h4><%= week.to_s[0..3] + ", Uke " + week.to_s[4..5] %>: </h4>
                     <ul>
                         <li>
                             <%= User.find(args[0]).full_name %> (<%= args[1] %>)
