@@ -1,27 +1,34 @@
 <h1>Who am I?</h1>
+<div class="pull-right">
+	<a href="highscore" class="btn btn-large btn-primary">Gå til highscorelisten</button></a>
+</div>
+
 <p><b><b/></p>
-<hr />
 <div class="picture">
-      <%= image_tag @correct_user.profile_picture.url(:large) %>
-    </div>
+  <%= image_tag @correct_user.profile_picture.url(:large) %>
+</div>
+<hr />
 <br>
-<% @players.each do |user| %>
-	<form method="POST" >
-	<%= form_tag %>
-	<input type="hidden" name="session" value="<%= @session.id%>">
-	<input type="hidden" name="user_id" value="<%= user.id%>">
-	<input class="btn" type="submit" name="user_name" value="<%= user.full_name%>">
-</form>
-<% end %>
+<div id="what_guesses" class="what_seperate">
+	<% @players.each_with_index do |user, index| %>
+		<% if index == 2 %>
+    	<br>
+    <% end %>
+		<form method="POST" >
+			<%= form_tag %>
+			<input type="hidden" name="session" value="<%= @session.id%>">
+			<input type="hidden" name="user_id" value="<%= user.id%>">
+			<input class="span3 btn btn-large btn-info" type="submit" name="user_name" value="<%= user.full_name %>">
+		</form>
+	<% end %>
+
 	<% if @obj %>
 	<% if @obj.answer == @obj.correct_user_id %>
 		<h3 style="color:green">Det var riktig! Spill videre!</h3>
-	 <% else %>
-	 <h3 style="color:red">Det var feil... Spill videre!</h3>
+	<% else %>
+		<h3 style="color:red">Det var feil... Spill videre!</h3>
 	<% end %>
 	<br>	
 <% end %>
 <br>
-<a href="highscore">
-	<button class="btn-large">Gå til highscorelisten</button></a>
 </div>

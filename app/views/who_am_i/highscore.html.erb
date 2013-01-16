@@ -1,6 +1,10 @@
+<a href="game">
+    <button class="btn-large btn-primary">Spill mer!</button></a>
+</div>
+
 <div class="row">
     <div class="span4">
-        <h1>Highscore -  Uke <%= @wk_current %></h1>
+        <h1>Highscore -  Uke <%= @current_week_number %></h1>
         </br>
         <h3>Top 10</h3>
         <ul style="list-style-type: decimal";>
@@ -37,14 +41,9 @@
         </ul>
         <br>
 
-
         <h2>Tidligere vinnere</h2>
-        <ul>
-            <li><h5> Top 10</h5></li>
-            <li><h5> (Kommer snart) Hvem husker ISFiT best? </h5></li>
-        </ul>
             <% @best_points_weekly.each do |week, args| %>
-                <% if week != @wk_current %>
+                <% if week != @current_week_number %>
                     <h4><%= week.to_s[0..3] + ", Uke " + week.to_s[4..5] %>: </h4>
                     <ul>
                         <li>
@@ -54,10 +53,4 @@
                 <% end %>
             <% end %> 
     </div>
-
-
-</div>
-
-<a href="game">
-	<button class="btn-large">Spill mer!</button></a>
 </div>
