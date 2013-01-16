@@ -7,7 +7,7 @@ $(function() {
   $('.example').tooltip({ 
         selector: 'A'
     });
-
+  $("#todo_table").tablesorter(); 
 
 
   //Hide tables in admin

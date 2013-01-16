@@ -17,7 +17,7 @@
   <%= submit_tag("Søk") %>
 <% end %>
 
-<table id="todo_table"  class="table table-hover sortable" <a href="#" rel="tooltip" title="Click to expand/collapse"> </a>
+<table id="todo_table"  class="table table-hover tablesorter" <a href="#" rel="tooltip" title="Click to expand/collapse"> </a>
 	<thead>
 		<th>ID</th>
 		<th>Bil</th>
@@ -54,12 +54,14 @@
 			</td>
 			<td><%= job.start_time.strftime("%H:%M") %></td>
 			<td><%= job.end_time.strftime("%H:%M") %></td>
-			<td class="drive_date"><%= job.start_time.strftime("%m-%d") %></td>
+			<td class="drive_date"><%= job.start_time.strftime("%Y-%m-%d") %></td>
 			<td>
 			<% if job.completed %>
-				<button id="<%= toogle_completed_drife_path(job.id) %>" class="btn btn-success" sorttable_customkey="99"><i class="icon-ok"></i></button>
+				<div style="visibility:hidden; display:inline;">0</div>
+				<button id="<%= toogle_completed_drife_path(job.id) %>" class="btn btn-success" value="0"><i class="icon-ok"></i></button>
 			<% else %>
-				<button id="<%= toogle_completed_drife_path(job.id) %>" class="btn btn-danger" sorttable_customkey="1"><i class="icon-remove"></i></button>
+			<div style="visibility:hidden; display:inline;">1</div>
+				<button id="<%= toogle_completed_drife_path(job.id) %>" class="btn btn-danger" value="1"><i class="icon-remove"></i></button>
 			<% end %>
 
 			</td>

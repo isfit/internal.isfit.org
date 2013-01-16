@@ -115,9 +115,6 @@ class DrivesController < ApplicationController
 
 	def show_all
 		@driver_jobs = Drive.order('end_time DESC')
-		current_date = DateTime.now
-		@driver_jobs_prev = Drive.where("end_time <= #{current_date}")
-		@driver_jobs_inc = Drive.where("end_time > #{current_date}")
 	end
 
 	def show_user
