@@ -1,3 +1,5 @@
+#!/bin/env ruby
+# encoding: utf-8
 class DrivesController < ApplicationController
 	load_and_authorize_resource :drive
 	def search
@@ -140,5 +142,37 @@ class DrivesController < ApplicationController
 			@drive.save
 		end
 		render :json => {:header => "OK"}.to_json
+	end
+
+	def create_repeating
+		if request.post?
+			start_time =  params[:start_time]
+			s_h,s_m = start_time.split(":")
+			
+			end_time = params[:end_time]
+			e_h,e_m = end_time.split(":")
+
+			start_week = params[:start_week].to_i
+			end_week = params[:end_week].to_i
+			days = params[:days]
+			year = Date.today.year
+
+			for week in start_week..end_week
+				for day in days
+					drive = Drive.new
+					drive.start_time = DateTime.commercial(year,week,day.to_i+1,s_h.to_i,s_m.to_i)
+					drive.end_time = DateTime.commercial(year,week,day.to_i+1,e_h.to_i,e_m.to_i)
+					drive.save
+				end
+			end
+
+			if (start_week-end_week) < 0
+				flash[:alert] = "ERROR"
+			end
+		end
+		current_week = Date.today.cweek
+		ending_week = 8
+		@weeks_array = *(current_week..ending_week)
+		@days = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"]
 	end
 end

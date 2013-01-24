@@ -1,6 +1,5 @@
 class DriveAdminController < ApplicationController
-	authorize_resource :class => false
-
+	load_and_authorize_resource :drive
 	def index
 		current_driver = Driver.find_by_user_id(current_user.id)
 		if current_driver

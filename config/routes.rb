@@ -39,6 +39,8 @@ InternalIsfitOrg::Application.routes.draw do
         get "driver/:id", action: :show_user, :as => :driver
         get "you", action: :show_you
         match 'search' => 'drives#search', :via => [:get, :post], :as => :search
+        match 'repeating' => 'drives#create_repeating', :via => [:get, :post], :as => :repeating
+
       end
         member do
           put "toogle_completed", action: :toogle_completed

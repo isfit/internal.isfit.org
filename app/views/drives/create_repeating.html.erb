@@ -1,0 +1,34 @@
+<ul class="nav nav-tabs">
+    <li><%= link_to(:"Søk og lagre oppdrag",search_drives_path) %></li>
+    <li><%= link_to(:"Mine oppdrag",you_drives_path) %></li>
+    <li><%= link_to(:"Min vaktliste", shifts_you_path)%></li>
+    <li><%= link_to(:"Alle oppdrag", all_drives_path) %></li>
+    <li><%= link_to(:"Administrer", admin_index_path) %></li>
+    <li><%= link_to(:Info, info_path) %></li>
+</ul>
+<p class="text-warning">Husk, alle oppdrag som blir laget her vil ikke ha en tilegnet sjåfør, dette må føres inn manuelt under Endre funksjonaliteten til et oppdrag.</p>
+<%= form_tag(:method => "post") do |f| %>
+	<div id="weeks">
+		<% weeks = @weeks_array.map {|week| [week,week]} %>
+		Fra uke: <%= select_tag( :start_week, options_for_select(weeks)) %>
+		Til uke: <%= select_tag( :end_week, options_for_select(weeks)) %>
+	</div>
+	<br>
+	<div id="days">
+		<% @days.each_with_index do |day, index| %>
+			<%= day %>
+			<%= check_box_tag("days[]", index) %>
+		<% end %>
+	</div>
+	<br>
+			<div class="input-prepend">
+		<label class="control-label" for="inputIcon">Fra klokken</label>
+		<span class="add-on"><i class="icon-time"></i></span>
+		<input id="start_time" type="time" name="start_time" placeholder="HH:MM" required/>
+		<label class="control-label" for="inputIcon">Til klokken</label>
+		<span class="add-on"><i class="icon-time"></i></span>
+		<input id="end_time" type="time" name="end_time" placeholder="HH:MM" required/>
+	</div>
+	<br>
+	<button type="submit" class="btn" id="time_submit">Søk</button>
+<% end %>
