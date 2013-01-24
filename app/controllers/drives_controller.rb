@@ -9,12 +9,14 @@ class DrivesController < ApplicationController
 			# given time range of search.
 			start_time =  DateTime.parse(params[:date]+" "+params[:start_time]+":00")
 			end_time = DateTime.parse(params[:date]+" "+params[:end_time]+":00")
-
+			if start_time > end_time
+				end_time += 1
+			end
 			# true or false
 			ignore_shifts = params[:ignore_shifts]
 
 			# given drivers with shifts in the time range.
-			@drivers_w_shifts = DriverShift.where("start_time <= '#{end_time}' AND '#{start_time}' <= end_time").map{|x| x.driver_id}.uniq
+			@drivers_w_shifts = DriverShift.where("(start_time <= '#{start_time}' AND end_time >= '#{start_time}') AND (start_time <= '#{end_time}' AND end_time >= '#{end_time}')").map{|x| x.driver_id}.uniq
 
 			#drives_found = Drive.where("'#{start_time}' > start_time OR '#{end_time}' > end_time")
 			drives_found = Drive.where("start_time <= '#{end_time}' AND '#{start_time}' <= end_time") #all overlapping.

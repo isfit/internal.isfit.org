@@ -16,18 +16,15 @@
 				<br>
 			<% end %>
 	</div>
+
 	<div class="span4">
 		<h4 class="muted">2. Sett ønsket tid og dato for vakt</h4>
 		<div class="input-prepend">
 				<label class="control-label" for="inputIcon">Dato</label>
 				<span class="add-on"><i class="icon-calendar"></i></span>
 				<input id="date" type="date" name="date" placeholder="YYYY-MM-DD"	required/>
-				<label class="control-label" for="inputIcon">Fra klokken</label>
-				<span class="add-on"><i class="icon-time"></i></span>
-				<input id="start_time" type="time" name="start_time" placeholder="HH:MM" required/>
-				<label class="control-label" for="inputIcon">Til klokken</label>
-				<span class="add-on"><i class="icon-time"></i></span>
-				<input id="end_time" type="time" name="end_time" placeholder="HH:MM" required/>
+				<label class="control-label" for="inputIcon">Skift</label>
+				<%= select_tag(:shift_type, options_for_select(@shifts)) %>
 			</div>
 		<h4 class="muted">3. Lagre</h4>
 		<%= submit_tag("Lagre") %>

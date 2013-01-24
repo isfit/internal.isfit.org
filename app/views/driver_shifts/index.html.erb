@@ -39,7 +39,7 @@
 						<% if shift.start_time.to_date == shift.end_time.to_date %>
 							<%= shift.start_time.strftime("%Y-%m-%d") %>
 						<% else %>
-							<%= shift.start_time.strftime("%Y-%m-%d") %> - <%= shift.end_time.strftime("%Y-%m-%d") %> 
+							<%= shift.start_time.strftime("%Y-%m-%d") %> til <%= shift.end_time.strftime("%Y-%m-%d") %> 
 						<% end %>
 					</td>
 					<td>
@@ -63,7 +63,7 @@
 		<%= form_tag(:controller => "driver_shifts", :action => "create", :driver_id => params[:driver_id]) do %>
 			<div class="input-prepend">
 				<input type="hidden" name="driver_id" value="<%= @driver_id %>">
-				<label class="control-label" for="inputIcon">Dato</label>
+				<label class="control-label" for="inputIcon">Start dato</label>
 				<span class="add-on"><i class="icon-calendar"></i></span>
 				<input id="date" type="date" name="date" placeholder="YYYY-MM-DD"	required/>
 				<label class="control-label" for="inputIcon">Fra klokken</label>

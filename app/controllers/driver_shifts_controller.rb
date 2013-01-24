@@ -10,6 +10,9 @@ class DriverShiftsController < ApplicationController
 	def create
 		start_time =  DateTime.parse(params[:date]+" "+params[:start_time]+":00")
 		end_time = DateTime.parse(params[:date]+" "+params[:end_time]+":00")
+		if start_time > end_time
+			end_time += 1 #increase date by 1
+		end
 		shift = DriverShift.new(start_time: start_time, end_time: end_time, driver_id: params[:driver_id])
 		
 		if shift.save
@@ -40,9 +43,25 @@ class DriverShiftsController < ApplicationController
 
 	def all
 		@drivers = Driver.all
+		@shifts = [
+			['Dagskift (07:30 - 16:00)', 1], 
+			['Kveldskift (15:30 - 22:30)', 2], 
+			['Nattskift (22:00 - 08:00)', 3]
+		]
 		if request.post?
-			start_time =  DateTime.parse(params[:date]+" "+params[:start_time]+":00")
-			end_time = DateTime.parse(params[:date]+" "+params[:end_time]+":00")
+			shift_type = params[:shift_type].to_i
+			if shift_type == 1
+				start_time = DateTime.parse(params[:date] + " 07:30")
+				end_time = DateTime.parse(params[:date] + " 16:00")
+			elsif shift_type == 2
+				start_time = DateTime.parse(params[:date] + " 15:30")
+				end_time = DateTime.parse(params[:date] + " 22:30")
+			
+			else #Natt
+				start_time = DateTime.parse(params[:date] + " 22:00")
+				end_time = DateTime.parse(params[:date] + " 08:00")
+				end_time += 1 #Increase date by one
+			end
 
 			drivers = params[:driver_ids]
 			drivers.each do |driver|
