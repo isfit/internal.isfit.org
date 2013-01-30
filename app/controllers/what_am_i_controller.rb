@@ -40,7 +40,7 @@ class WhatAmIController < ApplicationController
     game = WhatAmI.where(user_id: @current_user_id,played: false).order("created_at DESC").limit(1).first
 
     #If user has a previous unplayed game, give him that one again.
-    if game
+    if game && !(User.find(game.correct_user_id).positions.empty?)
       @whatGame = game
       @users[0] = User.find(@whatGame.user_1_id)
       @users[1] = User.find(@whatGame.user_2_id)
