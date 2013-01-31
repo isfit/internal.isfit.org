@@ -3,6 +3,24 @@ class LayoutJob < ActiveRecord::Base
 	belongs_to :group
 	validates_presence_of :description, :user_info, :work_title
 
+	def owner
+		if owner_id
+			User.find(owner_id).full_name
+		else
+			"Ingen enda"
+		end
+	end
+
+	def color
+		colors = ["#dff0d8", "#d9edf7", "#fcf8e3", "#ddd", "#f2dede"]
+
+		if owner_id
+			colors.fetch(owner_id % 4)
+		else
+			"#f2dede"
+		end
+	end
+
 	def publishing_name
 		case self.publishing
 		when 1

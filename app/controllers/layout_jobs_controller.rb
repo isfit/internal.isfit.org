@@ -2,6 +2,9 @@ class LayoutJobsController < ApplicationController
   # GET /layout_jobs
   # GET /layout_jobs.json
   def index
+    layout_group_id = 98
+    @layout_users = User.joins(:groups).where("groups.id = ?", layout_group_id)
+
     if current_user.role?(:layout)
       @layout_jobs = LayoutJob.where('status != 6').all
     elsif current_user.role?(:admin)
