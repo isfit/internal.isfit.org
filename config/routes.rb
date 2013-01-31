@@ -4,7 +4,11 @@ InternalIsfitOrg::Application.routes.draw do
 
   resources :participant_quotes
 
-  resources :layout_jobs
+  resources :layout_jobs do
+    collection do
+      post :receive_edit, action: :receive_edit, as: "receive_edit"
+    end
+  end
 
   get "who_am_i/index"
   get "who_am_i/game"

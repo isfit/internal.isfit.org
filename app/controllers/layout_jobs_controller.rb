@@ -52,6 +52,16 @@ class LayoutJobsController < ApplicationController
     @layout_job = LayoutJob.find(params[:id])
   end
 
+  # POST /layout_jobs/1/receive_edit
+  def receive_edit
+    #abort(params.to_s)
+    @layout_job = LayoutJob.find(params[:id].to_i)
+    @layout_job.owner_id = params[:value].to_i
+    @layout_job.save
+
+    render text: User.find(params[:value].to_i).full_name
+  end
+
   # POST /layout_jobs
   # POST /layout_jobs.json
   def create
