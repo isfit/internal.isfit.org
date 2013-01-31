@@ -9,9 +9,7 @@ class LayoutJobsController < ApplicationController
     else
       @group_ids = current_user.positions.last.groups.collect { |g| g.id }
       @layout_jobs = LayoutJob.where("layout_jobs.group_id IN (?)", @group_ids)
-    end
 
-    flash[:notice] = params[:notice]
 
     respond_to do |format|
       format.html # index.html.erb

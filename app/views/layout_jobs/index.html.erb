@@ -1,11 +1,5 @@
 <div class="pull-right">
-  <% flash = "Layout have entered exam-mode, and will be with low capacity for new tasks until january 24th. We will, though, be at the office every day from 10th to 24th working with the large printed matters.<br/><br/> Please contact us at AD@isfit.org or by telephone for urgent jobs.<br/><br/>Press the button one more time if you still want to make a new job online." %>
-  <% if params[:notice].nil? %>
-    <%= link_to 'New Layout job', layout_jobs_path(:notice => flash), :class => "btn btn-primary" %>
-  <% else %>
-    <%= link_to 'New Layout job', new_layout_job_path, :class => "btn btn-primary"%>
-  <% end %>
-
+  <%= link_to 'New Layout job', new_layout_job_path, :class => "btn btn-primary"%>
 </div>
 <h1>Your Layout jobs</h1>
 <table class="table table-bordered sortable">
