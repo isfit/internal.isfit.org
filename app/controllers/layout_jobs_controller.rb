@@ -10,6 +10,11 @@ class LayoutJobsController < ApplicationController
       @group_ids = current_user.positions.last.groups.collect { |g| g.id }
       @layout_jobs = LayoutJob.where("layout_jobs.group_id IN (?)", @group_ids)
 
+      if @layout_jobs.empty? && params[:redirect].nil?
+        redirect_to new_layout_job_path
+        return
+      end
+    end
 
     respond_to do |format|
       format.html # index.html.erb
