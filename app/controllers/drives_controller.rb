@@ -25,7 +25,6 @@ class DrivesController < ApplicationController
 			drives_mod = drives_found.map {|x| [x.id, Car.find(x.car_id).name, User.find(Driver.find(x.driver_id).user_id).given_name, x.description, x.comment, x.start_time.strftime("%Y-%m-%d %H:%M"), x.end_time.strftime("%Y-%m-%d %H:%M"), x.completed]}
 			
 			if drives_found.empty?
-				puts "FAKK"
 
 				if ignore_shifts
 					#hash w/ following {:id => User.id, :given_name => User.given_name, :drives_count => Drive.where(Driver.id).count
@@ -41,8 +40,6 @@ class DrivesController < ApplicationController
            						 :drivers => driver_info.to_json}
 
 			else
-				puts "EMPTY"
-
 				drivers_in_drive = drives_found.map{|obj| obj.driver_id}
 				
 				if ignore_shifts
