@@ -43,6 +43,7 @@ class SessionsController < ApplicationController
     private_email = user.private_email
     if private_email.nil? || private_email.empty?
       flash.now[:alert] = "We have no private email on record to send new password to, please contact orakel@isfit.org"
+      return render :forgot_password
     end
     if user.save!
       user.changeLdapPassword(new_pass)
