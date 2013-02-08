@@ -59,6 +59,7 @@ class Ability
     end
     if user.role?(:sec)
       can :manage, CardChecker
+      can :manage, Host
     end
     if user.role?(:transport)
       can :manage, Drive
