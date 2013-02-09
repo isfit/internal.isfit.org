@@ -33,6 +33,9 @@ class KvittersController < ApplicationController
   def awesome
     @user_liked = current_user.id
     @liked_kvitter = params[:id]
+
+    self_awesoming Kvitter.find(@liked_kvitter).user_id
+
     if Awesome.where("kvitter_id = #{@liked_kvitter}").where("user_id = #{@user_liked}").first == nil
       @awesome = Awesome.new
       @awesome.user_id = @current_user.id
@@ -46,10 +49,17 @@ class KvittersController < ApplicationController
     render :json => Awesome.where("kvitter_id = #{@liked_kvitter}").count.to_json
   end
 
-        
-
-
   def within_a_div
     index
+  end
+
+  private
+  def self_awesoming(user_id_on_kvitter)
+    if user_id_on_kvitter == current_user.id
+      k = Kvitter.new
+      k.user_id = 1
+      k.message = "Kleint? @#{User.find(user_id_on_kvitter).username} ga nettopp en awesome til sin egen kvitter. #PlaceholdersenSerAlt"
+      k.save
+    end
   end
 end
