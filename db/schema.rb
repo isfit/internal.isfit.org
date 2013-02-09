@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130107161621) do
+ActiveRecord::Schema.define(:version => 20130209113926) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -218,6 +218,30 @@ ActiveRecord::Schema.define(:version => 20130107161621) do
   add_index "drives", ["car_id"], :name => "index_drives_on_car_id"
   add_index "drives", ["driver_id"], :name => "index_drives_on_driver_id"
 
+  create_table "events", :id => false, :force => true do |t|
+    t.integer  "id",                 :default => 0, :null => false
+    t.string   "title"
+    t.integer  "event_type_id"
+    t.date     "date"
+    t.integer  "price_member"
+    t.integer  "price_other"
+    t.text     "ingress"
+    t.text     "description"
+    t.integer  "related_evend_id"
+    t.boolean  "deleted"
+    t.boolean  "important"
+    t.boolean  "visible"
+    t.string   "ticket_url"
+    t.string   "spotify"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.string   "facebook_event_id"
+    t.string   "promo_file_name"
+    t.string   "promo_content_type"
+    t.integer  "promo_file_size"
+    t.datetime "promo_updated_at"
+  end
+
   create_table "festivals", :id => false, :force => true do |t|
     t.integer "id",   :default => 0, :null => false
     t.integer "year"
@@ -251,6 +275,7 @@ ActiveRecord::Schema.define(:version => 20130107161621) do
     t.string   "frontend_article_image_content_type"
     t.integer  "frontend_article_image_file_size"
     t.datetime "frontend_article_image_updated_at"
+    t.text     "sidebar"
   end
 
   create_table "gallery_albums", :force => true do |t|
@@ -294,7 +319,8 @@ ActiveRecord::Schema.define(:version => 20130107161621) do
     t.integer "position_id"
   end
 
-  create_table "hosts", :force => true do |t|
+  create_table "hosts", :id => false, :force => true do |t|
+    t.integer  "id",         :default => 0,     :null => false
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
@@ -304,10 +330,10 @@ ActiveRecord::Schema.define(:version => 20130107161621) do
     t.string   "place"
     t.integer  "number"
     t.text     "other"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
-    t.integer  "deleted",    :limit => 1
-    t.integer  "student",    :limit => 1
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "student"
+    t.boolean  "deleted",    :default => false
   end
 
   create_table "internal_tabs", :force => true do |t|
@@ -350,10 +376,12 @@ ActiveRecord::Schema.define(:version => 20130107161621) do
     t.integer  "publishing"
     t.string   "format"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
     t.integer  "status"
     t.integer  "group_id"
+    t.integer  "owner_id"
+    t.integer  "number",      :default => 1
   end
 
   create_table "new_frontend_articles", :force => true do |t|
