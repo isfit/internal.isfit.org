@@ -15,4 +15,7 @@ class Kvitter < ActiveRecord::Base
   	self.awesomes.count
   end
 
+  def user_full_name
+    self.user.given_name + " " + self.user.family_name
+  end
 end
