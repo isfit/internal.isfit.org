@@ -92,11 +92,33 @@ function refreshKvitters() {
 
 function appendKvitter(kvitt) {
   console.log(JSON.stringify(kvitt))
-  $('#kvitter-posts').append('<li id="kvitter-"' + kvitt.id + '"><a href="/users/'+ kvitt.user_id + '">@' + kvitt.username + '</a> ' + format(kvitt.message) + '<br><span class="small">'+ humanized_time_span(kvitt.created_at) + '<a href="#" class="awesome" data-id="'+kvitt.id+'"> \\o/ </a><span class="count"> ' + (kvitt.awesome_count ? kvitt.awesome_count : "0")+'</span></li>');
+  $('#kvitter-posts').append(kvitterFormatting(kvitt));
 }
 
 function prependKvitter(kvitt) {
-  $('#kvitter-posts').prepend('<li id="kvitter-"' + kvitt.id + '"><a href="/users/'+ kvitt.user_id + '">@' + kvitt.username + '</a> ' + format(kvitt.message) + '<br><span class="small">'+ humanized_time_span(kvitt.created_at) + '<a href="#" class="awesome" data-id="'+kvitt.id+'"> \\o/ </a><span class="count"> ' + (kvitt.awesome_count ? kvitt.awesome_count : "0")+'</span></li>');
+  $('#kvitter-posts').prepend(kvitterFormatting(kvitt));
+}
+
+function kvitterFormatting(kvitt) {
+  return '' +
+    '<li id="kvitter-"'+kvitt.id+'">'+
+      '<strong>' + kvitt.user_full_name + '</strong>' +
+      '<br />' +
+      format(kvitt.message) +
+      '<br />'+
+      '<span class="small">'+
+        '<a href="/users/'+ kvitt.user_id + '">' +
+          '@'+kvitt.username +
+        '</a> ' +
+        humanized_time_span(kvitt.created_at) +
+      '</span>'+
+      '<span class="pull-right"><strong>'+
+        '<a href="#" class="awesome" data-id="'+kvitt.id+'"> \\o/ </a>'+
+        '<span class="count"> ' +
+          (kvitt.awesome_count ? kvitt.awesome_count : "0")+
+        '</span></strong>'+
+      '</span>'+
+    '</li>'
 }
 
 jQuery.fn.exists = function(){return jQuery(this).length>0;}
