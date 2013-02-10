@@ -5,6 +5,12 @@ class UsersController < ApplicationController
 
   def username
     @user = User.find_by_username(params[:username])
+
+    if @user.id == 1
+      redirect_to root_url, notice: "Placeholdersen is only a figment of your imagination."
+      return
+    end
+
     @kvitters = Kvitter.where(user_id: @user.id).order('created_at DESC').limit(10) if @user
     unless @user.nil?
       render action: 'show'
