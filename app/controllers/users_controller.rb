@@ -6,19 +6,21 @@ class UsersController < ApplicationController
   def username
     @user = User.find_by_username(params[:username])
 
-    if @user.id == 1
+    if @user && @user.id == 1
       redirect_to root_url, notice: "Placeholdersen is only a figment of your imagination."
       return
     end
 
-    @kvitters = Kvitter.where(user_id: @user.id).order('created_at DESC').limit(10) if @user
-    unless @user.nil?
+    if !@user.nil?
+      @kvitters = Kvitter
+        .where(user_id: @user.id)
+        .order('created_at DESC').limit(10)
       render action: 'show'
     else
       if params[:username] == "yourmama"
         render action: 'yourmama', layout:false
       else
-#	redirect_to "http://twitter.com/#{params[:username]}"
+        #	redirect_to "http://twitter.com/#{params[:username]}"
         redirect_to root_path, alert: "Could not find user with username #{params[:username]}. Try <a href=\"http://twitter.com/#{params[:username]}\">Twitter</a> instead?"
       end
     end
