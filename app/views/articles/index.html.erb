@@ -1,3 +1,7 @@
+<%= content_for :sidebar do %>
+  <%= render 'shared/user_quest_widget' %>
+<% end %>
+
 <div class="articles">
     <%= link_to "Create article", new_article_path, class: "btn btn-primary" %>
     <% for article in @articles %>
