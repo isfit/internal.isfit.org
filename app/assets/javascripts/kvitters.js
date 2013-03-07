@@ -40,7 +40,7 @@ if(!String.linkify) {
   };
 }
 
-$("a.awesome").live('click', function(event){
+$('document').on('click', 'a.awesome', function(event){
   event.preventDefault(); 
   var that = event.srcElement || event.target;
   var count_object = $.getJSON("/kvitters/" + $(that).attr("data-id") + "/awesome.json", function(data) {

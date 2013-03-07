@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.2'
+gem 'rails', '3.2.12'
 
 gem 'sqlite3'
 gem 'mysql2'
@@ -41,7 +41,7 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
-#  gem 'bootstrap-sass'
+  gem 'bootstrap-sass'
 end
 
 group :development do
