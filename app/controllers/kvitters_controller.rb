@@ -18,11 +18,13 @@ class KvittersController < ApplicationController
     @kvitters = Kvitter.order("created_at desc").limit(10)
     respond_to do |format|
       format.json do
-        render json: @kvitters.to_json(methods:
+        render json: {  kvitters: @kvitters.to_json(methods:
                                         [:username,
                                          :awesome_count,
                                          :user_full_name,
-                                        ])
+                                        ]),
+                        user_given_name: current_user.given_name.to_json
+                      }
       end
     end
   end
