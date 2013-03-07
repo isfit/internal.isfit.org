@@ -18,7 +18,7 @@
     <% end %>
   </div>
   <div>
-    <% @quests = UserQuest.where("npc_id = ? AND status = 1 AND deadline > ?", current_user.id, DateTime.now) %>
+    <% @quests = UserQuest.where("npc_id = ? AND status = 1 AND deadline > ? AND hero_id = ?", current_user.id, DateTime.now, @user.id) %>
     <% if @quests.count > 0 %>
       <h5>Active Quests</h5>
       <% @quests.each do |q| %>
