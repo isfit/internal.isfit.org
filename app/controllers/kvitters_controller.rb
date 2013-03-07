@@ -40,9 +40,9 @@ class KvittersController < ApplicationController
     @user_liked = current_user.id
     @liked_kvitter = params[:id]
 
-    self_awesoming Kvitter.find(@liked_kvitter).user_id
-
     if Awesome.where("kvitter_id = #{@liked_kvitter}").where("user_id = #{@user_liked}").first == nil
+      # self_awesoming Kvitter.find(@liked_kvitter).user_id
+
       @awesome = Awesome.new
       @awesome.user_id = @current_user.id
       @awesome.kvitter_id = @liked_kvitter
