@@ -112,4 +112,6 @@ $(function() {
 
 });
 
-
+$('#user-search').change(function() {
+  $('#user-search-form').submit();
+});

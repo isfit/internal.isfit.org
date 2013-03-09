@@ -8,6 +8,7 @@ $(document).ready(function() {
       $(this).html(format($(this).text()));
     });
   }
+
 });
 
 if(!String.linkify) {
@@ -40,14 +41,14 @@ if(!String.linkify) {
   };
 }
 
-$('document').on('click', 'a.awesome', function(event){
-  event.preventDefault(); 
+$(document).on('click', 'a.awesome',  function(event){
+  event.preventDefault();
   var that = event.srcElement || event.target;
   var count_object = $.getJSON("/kvitters/" + $(that).attr("data-id") + "/awesome.json", function(data) {
-  console.log(data);
-  $(that).next().text(data);
-  })
-})
+    console.log(data);
+    $(that).next().text(data);
+  });
+});
 
 
 function format(s) {
