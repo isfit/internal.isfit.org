@@ -47,7 +47,7 @@ class HostsController < ApplicationController
 
     respond_to do |format|
       if @host.save
-        format.html { redirect_to @host, notice: 'Host was successfully created.' }
+        format.html { redirect_to hosts_path, notice: 'Host was successfully created.' }
         format.json { render json: @host, status: :created, location: @host }
       else
         format.html { render action: "new" }

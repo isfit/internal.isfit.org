@@ -17,6 +17,15 @@
       No task added.<br>
     <% end %>
   </div>
+  <div>
+    <% @quests = UserQuest.where("npc_id = ? AND status = 1 AND deadline > ? AND hero_id = ?", current_user.id, DateTime.now, @user.id) %>
+    <% if @quests.count > 0 %>
+      <h5>Active Quests</h5>
+      <% @quests.each do |q| %>
+        <q><%= q.quest.quest_text %> <%= current_user.full_name %></q> <%= link_to "Approve", user_quest_finish_path(q) %>
+      <% end %>
+    <% end %>
+  </div>
   <div id="kvitter-index">
     <h5>Last Kvitters</h5>
     <% if !@kvitters || @kvitters.empty? %>

@@ -1,0 +1,18 @@
+<%= content_for :sidebar do %>
+  <%= render 'shared/user_quest_widget' %>
+<% end %>
+
+<h1>Highscore List</h1>
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Completed quests</th>
+  </tr>
+<% @stats.each do |id,number| %>
+  <tr>
+    <td><%= User.find_by_id(id).full_name %></td>
+    <td><%= number %></td>
+  </tr>
+<% end %>
+</table>

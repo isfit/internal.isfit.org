@@ -99,16 +99,19 @@ function select_user(){
     var searchString = $('#user-search').val();
     var formattedSearch = searchString.split('@');
     formattedSearch = formattedSearch[formattedSearch.length-1]
-    window.location = "/users/username/" + formattedSearch
+    window.location.href = "/users/username/" + formattedSearch
     return false;
 }
 $(function() {
   getUsersJSON();
   
   $('#user-search-form').submit(function() {
-    select_user();  
+    select_user();
+    return false;
   });
 
 });
 
-
+$('#user-search').change(function() {
+  $('#user-search-form').submit();
+});

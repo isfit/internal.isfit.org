@@ -70,7 +70,7 @@ class WhatAmIController < ApplicationController
       .limit(10)
 
     @best_ratio_sorted = User.find_by_sql(
-      "SELECT u_id, given_name, family_name, points, played, ratio
+      "SELECT u_id AS id, given_name, family_name, points, played, ratio
       FROM (
         SELECT derived.u_id, given_name, family_name, SUM(score) as points, SUM(total) AS played, (SUM(score)/SUM(total)*100) AS ratio
         FROM (
