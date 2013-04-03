@@ -3,7 +3,7 @@ class ParticipantsController < ApplicationController
 
   def index
     @search = Participant.search(params[:q])
-    @participants = @search.result.where("country_id = 8 or country_id = 11 or country_id = 164 or country_id = 29")
+    @participants = @search.result
   end
 
   def show
