@@ -218,30 +218,6 @@ ActiveRecord::Schema.define(:version => 20130307174551) do
   add_index "drives", ["car_id"], :name => "index_drives_on_car_id"
   add_index "drives", ["driver_id"], :name => "index_drives_on_driver_id"
 
-  create_table "events", :id => false, :force => true do |t|
-    t.integer  "id",                 :default => 0, :null => false
-    t.string   "title"
-    t.integer  "event_type_id"
-    t.date     "date"
-    t.integer  "price_member"
-    t.integer  "price_other"
-    t.text     "ingress"
-    t.text     "description"
-    t.integer  "related_evend_id"
-    t.boolean  "deleted"
-    t.boolean  "important"
-    t.boolean  "visible"
-    t.string   "ticket_url"
-    t.string   "spotify"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
-    t.string   "facebook_event_id"
-    t.string   "promo_file_name"
-    t.string   "promo_content_type"
-    t.integer  "promo_file_size"
-    t.datetime "promo_updated_at"
-  end
-
   create_table "festivals", :id => false, :force => true do |t|
     t.integer "id",   :default => 0, :null => false
     t.integer "year"
@@ -662,10 +638,10 @@ ActiveRecord::Schema.define(:version => 20130307174551) do
   add_index "static_pages", ["user_id"], :name => "index_static_pages_on_user_id"
 
   create_table "user_quests", :force => true do |t|
-    t.integer  "hero_id_id"
-    t.integer  "quest_id_id"
+    t.integer  "hero_id"
+    t.integer  "quest_id"
     t.integer  "npc_type"
-    t.integer  "npc_id_id"
+    t.integer  "npc_id"
     t.integer  "status"
     t.datetime "deadline"
     t.datetime "completed_at"
