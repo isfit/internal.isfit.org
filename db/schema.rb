@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130307174551) do
+ActiveRecord::Schema.define(:version => 20130403164800) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -185,16 +185,6 @@ ActiveRecord::Schema.define(:version => 20130307174551) do
 
   add_index "dialogue_participants", ["email"], :name => "email", :unique => true
 
-  create_table "driver_shifts", :force => true do |t|
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.integer  "driver_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "driver_shifts", ["driver_id"], :name => "index_driver_shifts_on_driver_id"
-
   create_table "drivers", :force => true do |t|
     t.integer  "user_id"
     t.datetime "created_at", :null => false
@@ -217,6 +207,20 @@ ActiveRecord::Schema.define(:version => 20130307174551) do
 
   add_index "drives", ["car_id"], :name => "index_drives_on_car_id"
   add_index "drives", ["driver_id"], :name => "index_drives_on_driver_id"
+
+  create_table "events", :force => true do |t|
+    t.string   "title"
+    t.string   "body"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.integer  "created_by_id"
+    t.integer  "organizer_id"
+    t.string   "place"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "events", ["created_by_id"], :name => "index_events_on_created_by_id"
 
   create_table "festivals", :id => false, :force => true do |t|
     t.integer "id",   :default => 0, :null => false
@@ -587,6 +591,16 @@ ActiveRecord::Schema.define(:version => 20130307174551) do
     t.text    "description_en"
     t.text    "description_no"
   end
+
+  create_table "shifts", :force => true do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer  "driver_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "shifts", ["driver_id"], :name => "index_shifts_on_driver_id"
 
   create_table "spp_articles", :force => true do |t|
     t.string   "title_en"
