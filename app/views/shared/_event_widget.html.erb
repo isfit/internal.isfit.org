@@ -5,7 +5,7 @@
   
   <% if evts.empty? %>
     <p>Check back later.</p>
-    <p>Or you could always <%= link_to("host an event", "#") %>!</p>
+    <p>Or you could always <%= link_to("host an event", new_event_path) %>!</p>
   <% else %>
     <table>
       <% evts.each do |ev| %>
