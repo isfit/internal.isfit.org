@@ -7,6 +7,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require ./jquery/jquery.fileupload
+//= require ./jquery/jquery.fileupload-ui.js
 //= require_tree ./jquery
 //= require private_pub
 //= require_tree .
