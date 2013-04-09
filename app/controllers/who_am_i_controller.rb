@@ -1,3 +1,5 @@
+require_dependency 'am_i_games/highscorer'
+
 class WhoAmIController < ApplicationController
   load_and_authorize_resource
 
@@ -41,21 +43,85 @@ class WhoAmIController < ApplicationController
   end
 
   def highscore
-    @current_week_number = Date.today.cweek
-    current_year = Date.today.year
+    @highscorer = Internal::AmIGames::Highscorer.new(:who_am_is)
+    set_weeks
+    best_points_weekly
+    best_ratio_sorted
+    best_correct_guessed
+    user_stats
+  end
 
-    first_day_of_current_week = Date.commercial(current_year, @current_week_number, 1)
-    last_day_of_current_week  = Date.commercial(current_year, @current_week_number, 7)
+  private
+  def best_correct_guessed
+    ########################################################
+    # => HIGHSCORE LIST FOR THIS WEEK
+    ########################################################
 
-    first_week_of_gameplay = WhoAmI.first.created_at.to_datetime.cweek
-    
+    #most points and most guessed for this week.
+
+    w_most_guessed = WhoAmI
+      .where("correct_user_id = answer")
+      .where(created_at: @current_week_range)
+      .group(:correct_user_id)
+      .order("count_all DESC")
+      .limit(10)
+      .count
+
+    best_guessed = Hash.new {|h,k| h[k] = 0} #Which player is most guessed correcrly
+
+    w_most_guessed.each do |key,value|
+      best_guessed[key] = w_most_guessed[key] / WhoAmI.where("correct_user_id = #{key}").where(:created_at=>@current_week_range).where(played: true).count.to_f
+    end
+
+    #@points_sorted = w_most_points.sort_by {|k,v| v}.reverse
+    @best_correct_guessed = best_guessed.sort_by {|k,v| v}.reverse
+  end
+
+  def best_ratio_sorted
+    ########################################################
+    # => HIGHSCORE LIST FOR THIS WEEK
+    ########################################################
+
+    #most points for this week.
+    w_most_points =  WhoAmI
+      .where("correct_user_id = answer")
+      .where(created_at: @current_week_range)
+      .group(:user_id)
+      .order("count_all DESC")
+      .limit(10)
+      .count
+
+    #weekly
+    best_ratio = Hash.new {|h,k| h[k] = 0} #Which player has the best correct/wrong ratio?
+
+    w_most_points.each do |key,value|
+      best_ratio[key] = w_most_points[key].to_f / User.find(key).who_am_is.where(played:true).where(:created_at=>@current_week_range).count
+    end
+
+    #@points_sorted = w_most_points.sort_by {|k,v| v}.reverse
+    @best_ratio_sorted = best_ratio.sort_by {|k,v| v}.reverse
+  end
+
+  def user_stats
+    @user_stats = {
+      "Poeng" => WhoAmI
+                  .where("correct_user_id = answer")
+                  .where(:user_id =>current_user.id)
+                  .count,
+      "Antall spill" => WhoAmI
+                  .where(:user_id =>current_user.id)
+                  .count
+    }
+  end
+
+  def best_points_weekly
 
     ########################################################
     # => FINDING THE USER WITH MOST POINTS FOR EACH WEEK
     ########################################################
     @best_points_weekly = Hash.new
 
-    # Returns all users scores for each week 
+    # Returns all users scores for each week
     # as [week, user_id]=>points/value
     # sorted at week primary with highest value/points first.
     points_weeks = WhoAmI
@@ -75,62 +141,17 @@ class WhoAmIController < ApplicationController
         @best_points_weekly[week] = user, points
       end
     end
+  end
 
-    ########################################################
-    # => HIGHSCORE LIST FOR THIS WEEK
-    ########################################################
-    
-    current_week_range = first_day_of_current_week..last_day_of_current_week
+  def set_weeks
+    @current_week_number = Date.today.cweek
+    @current_year = Date.today.year
 
-    #most points and most guessed for this week.
-    w_most_points =  WhoAmI
-      .where("correct_user_id = answer")
-      .where(created_at: current_week_range)
-      .group(:user_id)
-      .order("count_all DESC")
-      .limit(10)
-      .count
+    @first_day_of_current_week = Date.commercial(@current_year, @current_week_number, 1)
+    @last_day_of_current_week  = Date.commercial(@current_year, @current_week_number, 7)
 
-    @points_sorted = WhoAmI
-      .where("correct_user_id = answer")
-      .where(created_at: current_week_range)
-      .group(:user_id)
-      .order("count_all DESC")
-      .limit(10)
-      .count
+    @first_week_of_gameplay = WhoAmI.first.created_at.to_datetime.cweek
 
-    w_most_guessed = WhoAmI
-      .where("correct_user_id = answer")
-      .where(:created_at=>current_week_range)
-      .group(:correct_user_id)
-      .order("count_all DESC")
-      .limit(10)
-      .count
-
-    #weekly
-    best_ratio = Hash.new {|h,k| h[k] = 0} #Which player has the best correct/wrong ratio?
-    best_guessed = Hash.new {|h,k| h[k] = 0} #Which player is most guessed correcrly
-
-    w_most_guessed.each do |key,value|
-      best_guessed[key] = w_most_guessed[key] / WhoAmI.where("correct_user_id = #{key}").where(:created_at=>current_week_range).where(played: true).count.to_f
-    end
-
-    w_most_points.each do |key,value|
-      best_ratio[key] = w_most_points[key].to_f / User.find(key).who_am_is.where(played:true).where(:created_at=>current_week_range).count
-    end
-
-    #@points_sorted = w_most_points.sort_by {|k,v| v}.reverse
-    @best_ratio_sorted = best_ratio.sort_by {|k,v| v}.reverse
-    @best_correct_guessed = best_guessed.sort_by {|k,v| v}.reverse
-
-    @user_stats = {
-      "Poeng" => WhoAmI
-                  .where("correct_user_id = answer")
-                  .where(:user_id =>current_user.id)
-                  .count,
-      "Antall spill" => WhoAmI
-                  .where(:user_id =>current_user.id)
-                  .count
-    }
+    @current_week_range = @first_day_of_current_week..@last_day_of_current_week
   end
 end

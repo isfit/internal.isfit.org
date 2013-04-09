@@ -5,8 +5,15 @@
     <div class="span4">
         <h3>Hvem har flest riktige?</h3>
         <ul style="list-style-type: decimal";>
-            <% @points_sorted.each do |user| %>
+            <% @highscorer.points_sorted.each do |user| %>
                 <li><%= link_to user.full_name, user %> (<%= user.score %>)</li>
+            <% end %>
+        </ul>
+
+        <h3>Top 10 Uke <%= Date.today.cweek %></h3>
+        <ul style="list-style-type: decimal";>
+            <% @highscorer.points_sorted_current_week.each do |userkey,value| %>
+                <li><%= link_to User.find(userkey).full_name, user_path(userkey) %> -> <%= value %></li>
             <% end %>
         </ul>
 

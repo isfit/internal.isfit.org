@@ -65,7 +65,6 @@ class WhatAmIController < ApplicationController
 
   def highscore
     @highscorer = Internal::AmIGames::Highscorer.new(:what_am_is)
-    @points_sorted = @highscorer.points_sorted
 
     @best_ratio_sorted = User.find_by_sql(
       "SELECT u_id AS id, given_name, family_name, points, played, ratio
