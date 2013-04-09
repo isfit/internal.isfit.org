@@ -25,6 +25,9 @@ module Internal
 
         current_week_range = first_day_of_current_week..last_day_of_current_week
 
+        @first_day_of_current_week = first_day_of_current_week
+        @last_day_of_current_week = last_day_of_current_week
+
         game_class
           .where(correct_condition)
           .where(created_at: current_week_range)
@@ -34,6 +37,18 @@ module Internal
           .count
       end
 
+      def best_known_users_of_current_week
+        User
+          .select('users.id, given_name, family_name, SUM(correct_user_id=answer) / COUNT(*) AS ratio')
+          .joins('INNER JOIN `who_am_is` ON `who_am_is`.`correct_user_id` = `users`.`id`')
+          .where('who_am_is.created_at BETWEEN ? AND ?', @first_day_of_current_week, @last_day_of_current_week)
+          .where('who_am_is.played = 1')
+          .group(:correct_user_id)
+          .order('ratio DESC')
+          .limit(10)
+          .delete_if { |user| user.ratio < 0.25 }
+      end
+
       def user_stats_for(id)
         user_games = game_class.where(user_id: id)
         points     = user_games.where(correct_condition).count
@@ -41,15 +56,19 @@ module Internal
         ratio      = points.to_f / played
 
         {
-          "Poeng" => points,
-          "Antall spill" => played,
-          "Prosent" => ratio,
+          points_earned: points,
+          played_games: played,
+          percentage_won: ratio,
         }
       end
 
       private
       def game_class
         game.to_s.singularize.camelize.constantize
+      end
+
+      def game_string
+        game.to_s
       end
 
       def correct_condition

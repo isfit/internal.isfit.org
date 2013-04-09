@@ -47,22 +47,9 @@ class WhoAmIController < ApplicationController
     set_weeks
     best_points_weekly
     best_ratio_sorted_this_week
-    best_correct_guessed_this_week
   end
 
   private
-  def best_correct_guessed_this_week
-    @best_correct_guessed = User
-      .select('users.id, SUM(correct_user_id=answer) / COUNT(*) AS ratio')
-      .joins('INNER JOIN `who_am_is` ON `who_am_is`.`correct_user_id` = `users`.`id`')
-      .where('who_am_is.created_at BETWEEN ? AND ?', @first_day_of_current_week, @last_day_of_current_week)
-      .where('who_am_is.played = 1')
-      .group(:correct_user_id)
-      .order('ratio DESC')
-      .limit(10)
-      .delete_if { |user| user.ratio < 0.25 }
-  end
-
   def best_ratio_sorted_this_week
     weekly_most_points =  WhoAmI
       .where("correct_user_id = answer")
