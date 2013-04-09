@@ -18,12 +18,11 @@ module Internal
       end
 
       def points_sorted_current_week
-        @current_week_number = Date.today.cweek
+        current_week_number = Date.today.cweek
         current_year = Date.today.year
-        first_day_of_current_week = Date.commercial(current_year, @current_week_number, 1)
-        last_day_of_current_week  = Date.commercial(current_year, @current_week_number, 7)
+        first_day_of_current_week = Date.commercial(current_year, current_week_number, 1)
+        last_day_of_current_week  = Date.commercial(current_year, current_week_number, 7)
         first_week_of_gameplay = WhoAmI.first.created_at.to_datetime.cweek
-
 
         current_week_range = first_day_of_current_week..last_day_of_current_week
         #game = :what_am_is
@@ -34,6 +33,19 @@ module Internal
           .order("count_all DESC")
           .limit(10)
           .count
+      end
+
+      def user_stats_for(current_user)
+        @user_games = WhatAmI.where(user_id: current_user.id)
+        @points     = @user_games.where(answer: 1).count
+        @played     = @user_games.where(played: 1).count
+        @ratio      = @points.to_f / @played
+
+        @user_stats = {
+          "Poeng" => @points,
+          "Antall spill" => @played,
+          "Prosent" => @ratio
+        }
       end
 
       private

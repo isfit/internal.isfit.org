@@ -106,17 +106,5 @@ class WhatAmIController < ApplicationController
       GROUP By guessed_user_id
       ORDER BY correct DESC
       LIMIT 10")
-
-    @user_games = WhatAmI.where(user_id: current_user.id)
-    @points     = @user_games.where(answer: 1).count
-    @played     = @user_games.where(played: 1).count
-    @ratio      = @points.to_f / @played
-
-    @user_stats = {
-      "Poeng" => @points,
-      "Antall spill" => @played,
-      "Prosent" => @ratio
-    }
   end
-
 end

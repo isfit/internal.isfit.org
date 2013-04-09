@@ -103,14 +103,19 @@ class WhoAmIController < ApplicationController
   end
 
   def user_stats
+    points = WhoAmI
+      .where("correct_user_id = answer")
+      .where(:user_id =>current_user.id)
+      .count
+    played = WhoAmI
+       .where(:user_id =>current_user.id)
+      .count
+    ratio = points.to_f / played
+
     @user_stats = {
-      "Poeng" => WhoAmI
-                  .where("correct_user_id = answer")
-                  .where(:user_id =>current_user.id)
-                  .count,
-      "Antall spill" => WhoAmI
-                  .where(:user_id =>current_user.id)
-                  .count
+      "Poeng" => points,
+      "Antall spill" => played,
+      "Prosent" => ratio,
     }
   end
 

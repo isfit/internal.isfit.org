@@ -35,8 +35,8 @@
 
     <div class="span3">
         <h3>Din statistikk</h3>
-        <ul tyle="list-style-type: none";>
-            <% @user_stats.each do | string, value | %>
+        <ul style="list-style-type: none";>
+            <% @highscorer.user_stats_for(current_user).each do | string, value | %>
                 <% if string == "Prosent" %>
                     <li><%= string %>: <%= (value*100).round(2) %>%</li>
                 <% else %>

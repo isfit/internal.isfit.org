@@ -37,7 +37,7 @@
     </div>
     <div class="span4">
         <h2>Din statistikk</h2>
-        <ul tyle="list-style-type: none";>
+        <ul style="list-style-type: none";>
             <% @user_stats.each do | string, value | %>
                 <% if string == "Prosent" %>
                     <li><%= string %>: <%= "%0.2f" % (value*100) %>%</li>
