@@ -1,0 +1,10 @@
+<ul class="nav nav-tabs">
+	<li><%= link_to(:"Søk og lagre oppdrag", search_drives_path) %></li>
+	<% if Driver.find_by_user_id(current_user.id) %>
+		<li><%= link_to(:"Mine oppdrag", driver_drives_path(Driver.find_by_user_id(current_user.id)))  %></li>
+		<li><%= link_to(:"Min vaktliste", driver_shifts_path(Driver.find_by_user_id(current_user.id))) %></li>
+
+	<% end %>
+	<li><%= link_to(:"Alle oppdrag", drives_path) %></li>
+	<li><%= link_to(:"Lag flere vaktlister", shifts_new_path) %></li>
+</ul>

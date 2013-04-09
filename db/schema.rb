@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130307174551) do
+ActiveRecord::Schema.define(:version => 20130403164800) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -185,16 +185,6 @@ ActiveRecord::Schema.define(:version => 20130307174551) do
 
   add_index "dialogue_participants", ["email"], :name => "email", :unique => true
 
-  create_table "driver_shifts", :force => true do |t|
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.integer  "driver_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "driver_shifts", ["driver_id"], :name => "index_driver_shifts_on_driver_id"
-
   create_table "drivers", :force => true do |t|
     t.integer  "user_id"
     t.datetime "created_at", :null => false
@@ -217,30 +207,6 @@ ActiveRecord::Schema.define(:version => 20130307174551) do
 
   add_index "drives", ["car_id"], :name => "index_drives_on_car_id"
   add_index "drives", ["driver_id"], :name => "index_drives_on_driver_id"
-
-  create_table "events", :id => false, :force => true do |t|
-    t.integer  "id",                 :default => 0, :null => false
-    t.string   "title"
-    t.integer  "event_type_id"
-    t.date     "date"
-    t.integer  "price_member"
-    t.integer  "price_other"
-    t.text     "ingress"
-    t.text     "description"
-    t.integer  "related_evend_id"
-    t.boolean  "deleted"
-    t.boolean  "important"
-    t.boolean  "visible"
-    t.string   "ticket_url"
-    t.string   "spotify"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
-    t.string   "facebook_event_id"
-    t.string   "promo_file_name"
-    t.string   "promo_content_type"
-    t.integer  "promo_file_size"
-    t.datetime "promo_updated_at"
-  end
 
   create_table "festivals", :id => false, :force => true do |t|
     t.integer "id",   :default => 0, :null => false
@@ -612,6 +578,16 @@ ActiveRecord::Schema.define(:version => 20130307174551) do
     t.text    "description_no"
   end
 
+  create_table "shifts", :force => true do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer  "driver_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "shifts", ["driver_id"], :name => "index_shifts_on_driver_id"
+
   create_table "spp_articles", :force => true do |t|
     t.string   "title_en"
     t.string   "title_no"
@@ -662,10 +638,10 @@ ActiveRecord::Schema.define(:version => 20130307174551) do
   add_index "static_pages", ["user_id"], :name => "index_static_pages_on_user_id"
 
   create_table "user_quests", :force => true do |t|
-    t.integer  "hero_id_id"
-    t.integer  "quest_id_id"
+    t.integer  "hero_id"
+    t.integer  "quest_id"
     t.integer  "npc_type"
-    t.integer  "npc_id_id"
+    t.integer  "npc_id"
     t.integer  "status"
     t.datetime "deadline"
     t.datetime "completed_at"

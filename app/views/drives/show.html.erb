@@ -1,0 +1,22 @@
+<%= render "nav" %>
+<h2>Kjøreoppdrag #<%= @drive.id%></h2>
+<h3><%= link_to(:"Endre", edit_drive_path(@drive)) %></h3>
+<br>
+<div class="row">
+	<div class="span3">
+		<h4>Sjåfør</h4>
+		<%= link_to(@drive.driver_desc, driver_path(@drive.driver)) %><br>
+		
+		<h4>Bil</h4>
+		 <%= @drive.car_desc %>
+	</div>
+	<div class="span3">
+		<h3>Beskrivelse</h3>
+		<%= simple_format(@drive.description) %>
+	</div>
+	<div class="span3">
+		<h3>Kommentar</h3>
+		<%= simple_format(@drive.comment) %>
+	</div>
+</div>
+<br>

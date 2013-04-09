@@ -1,0 +1,6 @@
+<% if @drives.empty? %>
+	<h3>Fant ingen kjøreoppdrag på oppgitt dato og tid.</h3>
+<% else %>
+	<h3>Kjøreoppdrag i gitt tidsrom.</h3>
+	<%= render "drives_table" %>
+<% end %>

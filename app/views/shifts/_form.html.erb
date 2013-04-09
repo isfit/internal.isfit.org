@@ -1,0 +1,12 @@
+<h3 class="muted">Nytt skift</h3>
+<br>
+<%= form_for [@driver, @shift] do |f| %>
+	<%= f.error_messages %>
+	<p>
+		<%= select_tag(:shift_id,options_for_select(Shift.get_shifts_option_array)) %>
+	</p>
+	<p>
+		<%= text_field_tag(:date,nil, :placeholder => "YYYY-MM-DD" )%>
+	</p>	
+	<%= f.submit "Lag nytt skift" %>
+<% end %>
