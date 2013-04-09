@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+
+require_dependency 'am_i_games/highscorer'
+
 class WhatAmIController < ApplicationController
 
   load_and_authorize_resource
@@ -61,13 +64,8 @@ class WhatAmIController < ApplicationController
   end
 
   def highscore
-    @points_sorted = User
-      .joins(:what_am_is)
-      .select("users.id, given_name, family_name, COUNT(*) AS score")
-      .where("what_am_is.played = 1 AND answer = 1")
-      .group("users.id")
-      .order("score DESC")
-      .limit(10)
+    @highscorer = Internal::AmIGames::Highscorer.new(:what_am_is)
+    @points_sorted = @highscorer.points_sorted
 
     @best_ratio_sorted = User.find_by_sql(
       "SELECT u_id AS id, given_name, family_name, points, played, ratio
