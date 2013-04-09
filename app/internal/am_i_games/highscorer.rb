@@ -35,16 +35,16 @@ module Internal
           .count
       end
 
-      def user_stats_for(current_user)
-        @user_games = WhatAmI.where(user_id: current_user.id)
-        @points     = @user_games.where(answer: 1).count
-        @played     = @user_games.where(played: 1).count
-        @ratio      = @points.to_f / @played
+      def user_stats_for(id)
+        user_games = game_class.where(user_id: id)
+        points     = user_games.where(correct_condition).count
+        played     = user_games.where(played: 1).count
+        ratio      = points.to_f / played
 
-        @user_stats = {
-          "Poeng" => @points,
-          "Antall spill" => @played,
-          "Prosent" => @ratio
+        {
+          "Poeng" => points,
+          "Antall spill" => played,
+          "Prosent" => ratio,
         }
       end
 

@@ -38,7 +38,7 @@
     <div class="span4">
         <h2>Din statistikk</h2>
         <ul style="list-style-type: none";>
-            <% @user_stats.each do | string, value | %>
+            <% @highscorer.user_stats_for(current_user.id).each do | string, value | %>
                 <% if string == "Prosent" %>
                     <li><%= string %>: <%= "%0.2f" % (value*100) %>%</li>
                 <% else %>

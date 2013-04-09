@@ -46,20 +46,13 @@ class WhoAmIController < ApplicationController
     @highscorer = Internal::AmIGames::Highscorer.new(:who_am_is)
     set_weeks
     best_points_weekly
-    best_ratio_sorted
-    best_correct_guessed
-    user_stats
+    best_ratio_sorted_this_week
+    best_correct_guessed_this_week
   end
 
   private
-  def best_correct_guessed
-    ########################################################
-    # => HIGHSCORE LIST FOR THIS WEEK
-    ########################################################
-
-    #most points and most guessed for this week.
-
-    w_most_guessed = WhoAmI
+  def best_correct_guessed_this_week
+    weekly_most_guessed = WhoAmI
       .where("correct_user_id = answer")
       .where(created_at: @current_week_range)
       .group(:correct_user_id)
@@ -67,23 +60,22 @@ class WhoAmIController < ApplicationController
       .limit(10)
       .count
 
-    best_guessed = Hash.new {|h,k| h[k] = 0} #Which player is most guessed correcrly
+    best_guessed = Hash.new {|h,k| h[k] = 0}
 
-    w_most_guessed.each do |key,value|
-      best_guessed[key] = w_most_guessed[key] / WhoAmI.where("correct_user_id = #{key}").where(:created_at=>@current_week_range).where(played: true).count.to_f
+    weekly_most_guessed.each do |key,value|
+      games_with_user = WhoAmI
+        .where(correct_user_id: key)
+        .where(created_at: @current_week_range)
+        .where(played: true)
+        .count
+      best_guessed[key] = weekly_most_guessed[key].to_f / games_with_user
     end
 
-    #@points_sorted = w_most_points.sort_by {|k,v| v}.reverse
     @best_correct_guessed = best_guessed.sort_by {|k,v| v}.reverse
   end
 
-  def best_ratio_sorted
-    ########################################################
-    # => HIGHSCORE LIST FOR THIS WEEK
-    ########################################################
-
-    #most points for this week.
-    w_most_points =  WhoAmI
+  def best_ratio_sorted_this_week
+    weekly_most_points =  WhoAmI
       .where("correct_user_id = answer")
       .where(created_at: @current_week_range)
       .group(:user_id)
@@ -91,32 +83,19 @@ class WhoAmIController < ApplicationController
       .limit(10)
       .count
 
-    #weekly
-    best_ratio = Hash.new {|h,k| h[k] = 0} #Which player has the best correct/wrong ratio?
+    best_ratio = Hash.new {|h,k| h[k] = 0}
 
-    w_most_points.each do |key,value|
-      best_ratio[key] = w_most_points[key].to_f / User.find(key).who_am_is.where(played:true).where(:created_at=>@current_week_range).count
+    weekly_most_points.each do |key,value|
+      games_played = User
+        .find(key)
+        .who_am_is
+        .where(played:true)
+        .where(created_at: @current_week_range)
+        .count
+      best_ratio[key] = weekly_most_points[key].to_f / games_played
     end
 
-    #@points_sorted = w_most_points.sort_by {|k,v| v}.reverse
     @best_ratio_sorted = best_ratio.sort_by {|k,v| v}.reverse
-  end
-
-  def user_stats
-    points = WhoAmI
-      .where("correct_user_id = answer")
-      .where(:user_id =>current_user.id)
-      .count
-    played = WhoAmI
-       .where(:user_id =>current_user.id)
-      .count
-    ratio = points.to_f / played
-
-    @user_stats = {
-      "Poeng" => points,
-      "Antall spill" => played,
-      "Prosent" => ratio,
-    }
   end
 
   def best_points_weekly
