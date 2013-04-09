@@ -22,10 +22,9 @@ module Internal
         current_year = Date.today.year
         first_day_of_current_week = Date.commercial(current_year, current_week_number, 1)
         last_day_of_current_week  = Date.commercial(current_year, current_week_number, 7)
-        first_week_of_gameplay = WhoAmI.first.created_at.to_datetime.cweek
 
         current_week_range = first_day_of_current_week..last_day_of_current_week
-        #game = :what_am_is
+
         game_class
           .where(correct_condition)
           .where(created_at: current_week_range)

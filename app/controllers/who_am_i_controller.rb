@@ -52,26 +52,15 @@ class WhoAmIController < ApplicationController
 
   private
   def best_correct_guessed_this_week
-    weekly_most_guessed = WhoAmI
-      .where("correct_user_id = answer")
-      .where(created_at: @current_week_range)
+    @best_correct_guessed = User
+      .select('users.id, SUM(correct_user_id=answer) / COUNT(*) AS ratio')
+      .joins('INNER JOIN `who_am_is` ON `who_am_is`.`correct_user_id` = `users`.`id`')
+      .where('who_am_is.created_at BETWEEN ? AND ?', @first_day_of_current_week, @last_day_of_current_week)
+      .where('who_am_is.played = 1')
       .group(:correct_user_id)
-      .order("count_all DESC")
+      .order('ratio DESC')
       .limit(10)
-      .count
-
-    best_guessed = Hash.new {|h,k| h[k] = 0}
-
-    weekly_most_guessed.each do |key,value|
-      games_with_user = WhoAmI
-        .where(correct_user_id: key)
-        .where(created_at: @current_week_range)
-        .where(played: true)
-        .count
-      best_guessed[key] = weekly_most_guessed[key].to_f / games_with_user
-    end
-
-    @best_correct_guessed = best_guessed.sort_by {|k,v| v}.reverse
+      .delete_if { |user| user.ratio < 0.25 }
   end
 
   def best_ratio_sorted_this_week

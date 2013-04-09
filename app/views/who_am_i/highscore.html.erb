@@ -23,7 +23,9 @@
 
         <h3>Hvem kjenner ISFiT best?</h3>
         <ul style="list-style-type: decimal";>
-            <% @best_correct_guessed.each do |userkey,value| %>
+            <% @best_correct_guessed.each do |user| %>
+                <% userkey = user.id %>
+                <% value = user.ratio %>
                 <li><%= link_to User.find(userkey).full_name, user_path(userkey) %> -> <%= "%0.2f" % (value*100) %>%</li>
             <% end %>
         </ul>
