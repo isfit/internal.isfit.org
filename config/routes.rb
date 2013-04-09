@@ -2,6 +2,8 @@ InternalIsfitOrg::Application.routes.draw do
 
   resources :hosts
 
+  resources :events
+
   resources :participant_quotes
 
   resources :layout_jobs
