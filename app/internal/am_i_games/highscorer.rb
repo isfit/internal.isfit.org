@@ -37,6 +37,17 @@ module Internal
           .count
       end
 
+      def best_known_users
+        User
+          .select("users.id, given_name, family_name, SUM(#{correct_condition}) / COUNT(*) AS ratio")
+          .joins("INNER JOIN #{game_string} ON #{game_string}.correct_user_id = users.id")
+          .where("#{game_string}.played = 1")
+          .group(:correct_user_id)
+          .order('ratio DESC, family_name ASC, given_name ASC')
+          .limit(10)
+          .delete_if { |user| user.ratio < 0.25 }
+      end
+
       def best_known_users_of_current_week
         User
           .select('users.id, given_name, family_name, SUM(correct_user_id=answer) / COUNT(*) AS ratio')
@@ -47,6 +58,21 @@ module Internal
           .order('ratio DESC')
           .limit(10)
           .delete_if { |user| user.ratio < 0.25 }
+      end
+
+      def best_ratio_sorted
+        @best_ratio_sorted = User.find_by_sql("
+        SELECT user_id AS id, ratio, played_sum, given_name, family_name
+        FROM (
+          SELECT user_id, SUM(#{correct_condition}) / COUNT(*) AS ratio, COUNT(*) as played_sum FROM #{game_string}
+          WHERE played = 1
+          GROUP BY user_id
+          ORDER BY ratio DESC
+        ) as derived
+        INNER JOIN users ON users.id = derived.user_id
+        WHERE played_sum > 9
+        ORDER BY ratio DESC, played_sum DESC
+        LIMIT 10")
       end
 
       def highscore_weekly_number_one

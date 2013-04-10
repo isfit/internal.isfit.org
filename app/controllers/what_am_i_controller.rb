@@ -65,46 +65,5 @@ class WhatAmIController < ApplicationController
 
   def highscore
     @highscorer = Internal::AmIGames::Highscorer.new(:what_am_is)
-
-    @best_ratio_sorted = User.find_by_sql(
-      "SELECT u_id AS id, given_name, family_name, points, played, ratio
-      FROM (
-        SELECT derived.u_id, given_name, family_name, SUM(score) as points, SUM(total) AS played, (SUM(score)/SUM(total)*100) AS ratio
-        FROM (
-          SELECT users.id AS u_id, users.given_name AS given_name, users.family_name AS family_name, Count(*) AS score, 0 as total
-          FROM `users`
-          INNER JOIN `what_am_is` ON `what_am_is`.`user_id` = `users`.`id`
-          WHERE (what_am_is.played = 1 AND answer = 1)
-          GROUP BY users.id
-          UNION
-          SELECT users.id AS u_id, users.given_name AS given_name, users.family_name AS family_name, 0 AS score, Count(*) AS total
-          FROM `users`
-          INNER JOIN `what_am_is` ON `what_am_is`.`user_id` = `users`.`id`
-          WHERE (what_am_is.played = 1)
-          GROUP BY users.id
-        ) AS derived
-        GROUP BY u_id
-        ORDER BY ratio DESC
-      ) AS final
-      WHERE (played > 9)
-      LIMIT 10")
-
-    @guessed_sorted = User.find_by_sql(
-      "SELECT derived.correct_user_id, SUM(c) as correct, c, u.id, u.given_name, u.family_name
-      FROM (
-        SELECT *, (COUNT(*)) as c
-        FROM what_am_is
-        WHERE answer = 1
-        GROUP BY guessed_user_id
-        UNION
-        SELECT *, (-COUNT(*)) as c
-        FROM what_am_is
-        WHERE answer=0
-        GROUP BY guessed_user_id
-      ) AS derived
-      INNER JOIN users u ON derived.guessed_user_id = u.id
-      GROUP By guessed_user_id
-      ORDER BY correct DESC
-      LIMIT 10")
   end
 end

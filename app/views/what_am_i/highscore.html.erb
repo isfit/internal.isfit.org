@@ -21,21 +21,28 @@
 
     <h3>Hvem husker ISFiT best?</h3>
     <ul style="list-style-type: decimal";>
-      <% @guessed_sorted.each do |user| %>
-      <li><%= link_to user.full_name, user %></li>
+      <% @highscorer.best_known_users.each do |user| %>
+        <li>
+          <%= link_to user.full_name, user %> ->
+          <%= number_to_percentage(user.ratio * 100, precision: 2) %>
+        </li>
       <% end %>
     </ul>
 
     <h3>Hvilken bruker er best prosent-vis?</h3>
     <p> (Du må ha 10 eller flere spill for å bli med i listen) </p>
     <ul style="list-style-type: decimal";>
-      <% @best_ratio_sorted.each do |user| %>
-      <li><%= link_to user.full_name, user %> (<%= user.ratio.round(2) %>%)</li>
+      <% @highscorer.best_ratio_sorted.each do |user| %>
+      <li>
+        <%= link_to user.full_name, user %> ->
+        <%= number_to_percentage(user.ratio * 100, precision: 2) %>
+        in <%= user.played_sum %> played
+      </li>
       <% end %>
     </ul>
   </div>
 
-  <div class="span3">
+  <div class="span4">
     <h3>Din statistikk</h3>
     <ul style="list-style-type: none";>
       <% @highscorer.user_stats_for(current_user.id).each do |sym, val| %>
