@@ -50,27 +50,14 @@ class WhoAmIController < ApplicationController
 
   private
   def best_ratio_sorted_this_week
-    weekly_most_points =  WhoAmI
-      .where("correct_user_id = answer")
-      .where(created_at: @current_week_range)
-      .group(:user_id)
-      .order("count_all DESC")
-      .limit(10)
-      .count
-
-    best_ratio = Hash.new {|h,k| h[k] = 0}
-
-    weekly_most_points.each do |key,value|
-      games_played = User
-        .find(key)
-        .who_am_is
-        .where(played:true)
+      @best_ratio_sorted =  WhoAmI
+        .joins(:user)
+        .select("given_name, family_name, user_id, SUM(correct_user_id = answer) / COUNT(*) AS ratio")
+        .where(played: true)
         .where(created_at: @current_week_range)
-        .count
-      best_ratio[key] = weekly_most_points[key].to_f / games_played
-    end
-
-    @best_ratio_sorted = best_ratio.sort_by {|k,v| v}.reverse
+        .group(:user_id)
+        .order("ratio DESC")
+        .limit(10)
   end
 
 
