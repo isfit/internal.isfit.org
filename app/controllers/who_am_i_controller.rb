@@ -45,7 +45,6 @@ class WhoAmIController < ApplicationController
   def highscore
     @highscorer = Internal::AmIGames::Highscorer.new(:who_am_is)
     set_weeks
-    best_points_weekly
     best_ratio_sorted_this_week
   end
 
@@ -74,34 +73,7 @@ class WhoAmIController < ApplicationController
     @best_ratio_sorted = best_ratio.sort_by {|k,v| v}.reverse
   end
 
-  def best_points_weekly
 
-    ########################################################
-    # => FINDING THE USER WITH MOST POINTS FOR EACH WEEK
-    ########################################################
-    @best_points_weekly = Hash.new
-
-    # Returns all users scores for each week
-    # as [week, user_id]=>points/value
-    # sorted at week primary with highest value/points first.
-    points_weeks = WhoAmI
-      .where("correct_user_id = answer")
-      .group("yearweek(created_at, 1)")
-      .group(:user_id)
-      .order("yearweek_created_at_1 DESC")
-      .order("count_all DESC")
-      .count
-
-    # finds the user with highest points in a week
-    points_weeks.each do |week_and_user, points|
-      week, user = week_and_user
-
-      unless @best_points_weekly.has_key?(week)
-        # order by score so first user in each week is the best
-        @best_points_weekly[week] = user, points
-      end
-    end
-  end
 
   def set_weeks
     @current_week_number = Date.today.cweek

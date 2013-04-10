@@ -49,6 +49,35 @@ module Internal
           .delete_if { |user| user.ratio < 0.25 }
       end
 
+      def highscore_weekly_number_one
+        # Returns all users scores for each week as [week, user_id]=>points/value
+        # sorted at week primary with highest value/points first.
+        points_weeks = game_class
+          .where(correct_condition)
+          .group("yearweek(created_at, 1)")
+          .group(:user_id)
+          .order("yearweek_created_at_1 DESC")
+          .order("count_all DESC")
+          .count
+
+        # We always meet the highest score first, since the hash is ordered by
+        # score. We therefore ignore all weeks that already have a high score.
+        highscore_weekly = Hash.new
+        current_week = Date.today.year.to_s + Date.today.cweek.to_s
+
+        points_weeks.each do |week_and_user, points|
+          week, user = week_and_user
+
+          next if week.to_s.eql? current_week
+
+          unless highscore_weekly.has_key?(week)
+            highscore_weekly[week] = [user, points]
+          end
+        end
+
+        highscore_weekly
+      end
+
       def user_stats_for(id)
         user_games = game_class.where(user_id: id)
         points     = user_games.where(correct_condition).count
