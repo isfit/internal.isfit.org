@@ -50,10 +50,10 @@ module Internal
 
       def best_known_users_of_current_week
         User
-          .select('users.id, given_name, family_name, SUM(correct_user_id=answer) / COUNT(*) AS ratio')
-          .joins('INNER JOIN `who_am_is` ON `who_am_is`.`correct_user_id` = `users`.`id`')
-          .where('who_am_is.created_at BETWEEN ? AND ?', @first_day_of_current_week, @last_day_of_current_week)
-          .where('who_am_is.played = 1')
+          .select("users.id, given_name, family_name, SUM(#{correct_condition}) / COUNT(*) AS ratio")
+          .joins("INNER JOIN #{game_string} ON #{game_string}.correct_user_id = users.id")
+          .where("#{game_string}.created_at BETWEEN ? AND ?", @first_day_of_current_week, @last_day_of_current_week)
+          .where("#{game_string}.played = 1")
           .group(:correct_user_id)
           .order('ratio DESC')
           .limit(10)
