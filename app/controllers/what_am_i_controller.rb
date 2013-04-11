@@ -9,7 +9,7 @@ class WhatAmIController < ApplicationController
 
   def game
     score_game(params) if request.post?
-    create_new_game
+    get_or_create_new_game
   end
 
   def highscore
@@ -31,7 +31,7 @@ class WhatAmIController < ApplicationController
     end
   end
 
-  def create_new_game
+  def get_or_create_new_game
     creator = Internal::AmIGames::WhatAmICreator.new current_user
     @game = creator.game
     @users = creator.users

@@ -16,19 +16,9 @@
     <% end %>
 		<form method="POST" >
 			<%= form_tag %>
-			<input type="hidden" name="session" value="<%= @session.id%>">
+			<input type="hidden" name="session" value="<%= @game.id%>">
 			<input type="hidden" name="user_id" value="<%= user.id%>">
 			<input class="span3 btn btn-large btn-info" type="submit" name="user_name" value="<%= user.full_name %>">
 		</form>
 	<% end %>
-
-	<% if @obj %>
-	<% if @obj.answer == @obj.correct_user_id %>
-		<h3 style="color:green">Det var riktig! Spill videre!</h3>
-	<% else %>
-		<h3 style="color:red">Det var feil... Spill videre!</h3>
-	<% end %>
-	<br>	
-<% end %>
-<br>
 </div>

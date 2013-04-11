@@ -16,7 +16,7 @@
     <h3>Hvem har best ratio?</h3>
     <p>(ant. riktig / ant. spill av Top 10)</p>
     <ul style="list-style-type: decimal";>
-      <% @best_ratio_sorted.each do |user| %>
+      <% @highscorer.best_ratio_sorted_current_week.each do |user| %>
         <li><%= link_to User.find(user.user_id).full_name, user_path(user.user_id) %> -> <%= "%0.2f" % (user.ratio*100) %>%</li>
       <% end %>
     </ul>

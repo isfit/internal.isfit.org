@@ -18,16 +18,6 @@ module Internal
       end
 
       def points_sorted_current_week
-        current_week_number = Date.today.cweek
-        current_year = Date.today.year
-        first_day_of_current_week = Date.commercial(current_year, current_week_number, 1)
-        last_day_of_current_week  = Date.commercial(current_year, current_week_number, 7)
-
-        current_week_range = first_day_of_current_week..last_day_of_current_week
-
-        @first_day_of_current_week = first_day_of_current_week
-        @last_day_of_current_week = last_day_of_current_week
-
         game_class
           .where(correct_condition)
           .where(created_at: current_week_range)
@@ -39,8 +29,10 @@ module Internal
 
       def best_known_users
         User
-          .select("users.id, given_name, family_name, SUM(#{correct_condition}) / COUNT(*) AS ratio")
-          .joins("INNER JOIN #{game_string} ON #{game_string}.correct_user_id = users.id")
+          .select("users.id, given_name, family_name,
+                   SUM(#{correct_condition}) / COUNT(*) AS ratio")
+          .joins("INNER JOIN #{game_string}
+                  ON #{game_string}.correct_user_id = users.id")
           .where("#{game_string}.played = 1")
           .group(:correct_user_id)
           .order('ratio DESC, family_name ASC, given_name ASC')
@@ -50,9 +42,12 @@ module Internal
 
       def best_known_users_of_current_week
         User
-          .select("users.id, given_name, family_name, SUM(#{correct_condition}) / COUNT(*) AS ratio")
-          .joins("INNER JOIN #{game_string} ON #{game_string}.correct_user_id = users.id")
-          .where("#{game_string}.created_at BETWEEN ? AND ?", @first_day_of_current_week, @last_day_of_current_week)
+          .select("users.id, given_name, family_name,
+                   SUM(#{correct_condition}) / COUNT(*) AS ratio")
+          .joins("INNER JOIN #{game_string}
+                  ON #{game_string}.correct_user_id = users.id")
+          .where("#{game_string}.created_at BETWEEN ? AND ?",
+                  current_week_range.first, current_week_range.last)
           .where("#{game_string}.played = 1")
           .group(:correct_user_id)
           .order('ratio DESC')
@@ -61,18 +56,32 @@ module Internal
       end
 
       def best_ratio_sorted
-        @best_ratio_sorted = User.find_by_sql("
-        SELECT user_id AS id, ratio, played_sum, given_name, family_name
-        FROM (
-          SELECT user_id, SUM(#{correct_condition}) / COUNT(*) AS ratio, COUNT(*) as played_sum FROM #{game_string}
-          WHERE played = 1
-          GROUP BY user_id
-          ORDER BY ratio DESC
-        ) as derived
-        INNER JOIN users ON users.id = derived.user_id
-        WHERE played_sum > 9
-        ORDER BY ratio DESC, played_sum DESC
-        LIMIT 10")
+        User.find_by_sql(
+          "SELECT user_id AS id, ratio, played_sum, given_name, family_name
+          FROM (
+            SELECT user_id, SUM(#{correct_condition}) / COUNT(*) AS ratio,
+                   COUNT(*) as played_sum FROM #{game_string}
+            WHERE played = 1
+            GROUP BY user_id
+            ORDER BY ratio DESC
+          ) as derived
+          INNER JOIN users ON users.id = derived.user_id
+          WHERE played_sum > 9
+          ORDER BY ratio DESC, played_sum DESC
+          LIMIT 10"
+        )
+      end
+
+      def best_ratio_sorted_current_week
+        WhoAmI
+          .joins(:user)
+          .select("given_name, family_name, user_id,
+                   SUM(correct_user_id = answer) / COUNT(*) AS ratio")
+          .where(played: true)
+          .where(created_at: current_week_range)
+          .group(:user_id)
+          .order("ratio DESC")
+          .limit(10)
       end
 
       def highscore_weekly_number_one
@@ -89,11 +98,9 @@ module Internal
         # We always meet the highest score first, since the hash is ordered by
         # score. We therefore ignore all weeks that already have a high score.
         highscore_weekly = Hash.new
-        current_week = Date.today.year.to_s + Date.today.cweek.to_s
 
         points_weeks.each do |week_and_user, points|
           week, user = week_and_user
-
           next if week.to_s.eql? current_week
 
           unless highscore_weekly.has_key?(week)
@@ -107,7 +114,7 @@ module Internal
       def user_stats_for(id)
         user_games = game_class.where(user_id: id)
         points     = user_games.where(correct_condition).count
-        played     = user_games.where(played: 1).count
+        played     = user_games.where(played: true).count
         ratio      = points.to_f / played
 
         {
@@ -136,6 +143,19 @@ module Internal
         elsif game.eql? :who_am_is
           "answer = correct_user_id"
         end
+      end
+
+      def current_week
+        Date.today.year.to_s + Date.today.cweek.to_s
+      end
+
+      def current_week_range
+        current_week = Date.today.cweek
+        current_year = Date.today.year
+        first_day_current_week = Date.commercial(current_year, current_week, 1)
+        last_day_current_week  = Date.commercial(current_year, current_week, 7)
+
+        first_day_current_week..last_day_current_week
       end
     end
   end
