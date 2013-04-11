@@ -14,6 +14,7 @@ class UserQuestsController < ApplicationController
 
   def stats
     @stats = UserQuest.where("status = 2").group("hero_id").order("count_all DESC").limit(20).count("*")
+    @quests = UserQuest.where("status = 2").group("quest_id").order("count_all DESC").count("*")
   end
 
 end

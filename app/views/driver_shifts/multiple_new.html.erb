@@ -1,0 +1,29 @@
+<%= render "nav" %>
+<div class="row">
+	<div class="span3">
+		<h3 class="muted">1. Velg sjåfører for ønsket vakt</h3>
+		<%= form_tag(driver_shifts_create_path, :method=>"post") do |f| %>
+			<% @drivers.each do |driver| %>
+				<%= check_box_tag("driver_ids[]", driver.id) %>
+				<%= driver.username %>
+				<br>
+			<% end %>
+	</div>
+
+	<div class="span4" class="input-prepend">
+		<h3 class="muted">2. Sett ønsket dato og tid for vakt</h3>
+		<p>	
+			<span class="add-on"><i class="icon-calendar"></i></span>
+			<%= text_field_tag(:date,nil, :placeholder => "YYYY-MM-DD", :required => true)%>
+		</p>
+		<p>
+			<span class="add-on"><i class="icon-time"></i></span>
+			<%= select_tag(:shift_id,options_for_select(DriverShift.get_shifts_option_array), :required => true) %>
+
+		</p>
+<h3 class="muted">3. Lagre</h3>
+<%= submit_tag("Lagre") %>
+
+</div>
+</div>
+<% end %>

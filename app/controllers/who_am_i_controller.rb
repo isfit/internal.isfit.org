@@ -1,3 +1,5 @@
+require_dependency 'am_i_games/highscorer'
+
 class WhoAmIController < ApplicationController
   load_and_authorize_resource
 
@@ -6,131 +8,51 @@ class WhoAmIController < ApplicationController
   end
 
   def game
-    if request.post?
-      @obj = WhoAmI.find(params[:session])
-      answered_user_id = params[:user_id]
-      @obj.answer = answered_user_id.to_i
-      @obj.played = true
-      @obj.save
-    end
+    score_game(params) if request.post?
+    @game = get_or_create_new_game
 
-    @session = WhoAmI.where(user_id: current_user.id).order("created_at DESC").limit(1).first
-
-    if @session==nil || @session.played
-      @users = User.random(2013,4).where("profile_picture_file_name IS NOT NULL")
-
-      @correct_user = @users[Random.rand(@users.length)]
-      @session = WhoAmI.new 
-      @session.correct_user_id = @correct_user.id
-      @session.user_id = current_user.id
-      @session.user1_id = @users[0].id
-      @session.user2_id = @users[1].id
-      @session.user3_id = @users[2].id
-      @session.user4_id = @users[3].id
-      @session.save
-    end
-
-    @players = [User.find(@session.user1_id),User.find(@session.user2_id), User.find(@session.user3_id),User.find(@session.user4_id)]
-
-    @correct_user = User.find(@session.correct_user_id)
-  end
-
-
-  def feedback
-    @session.correct_user_id 
+    @players = [ User.find(@game.user1_id),
+                 User.find(@game.user2_id),
+                 User.find(@game.user3_id),
+                 User.find(@game.user4_id), ]
+    @correct_user = User.find(@game.correct_user_id)
   end
 
   def highscore
+    @highscorer = Internal::AmIGames::Highscorer.new(:who_am_is)
     @current_week_number = Date.today.cweek
-    current_year = Date.today.year
+  end
 
-    first_day_of_current_week = Date.commercial(current_year, @current_week_number, 1)
-    last_day_of_current_week  = Date.commercial(current_year, @current_week_number, 7)
+  private
+  def score_game params
+    game = WhoAmI.find(params[:session])
+    answered_user_id = params[:user_id]
+    game.answer = answered_user_id.to_i
+    game.played = true
+    game.save
 
-    first_week_of_gameplay = WhoAmI.first.created_at.to_datetime.cweek
-    
-
-    ########################################################
-    # => FINDING THE USER WITH MOST POINTS FOR EACH WEEK
-    ########################################################
-    @best_points_weekly = Hash.new
-
-    # Returns all users scores for each week 
-    # as [week, user_id]=>points/value
-    # sorted at week primary with highest value/points first.
-    points_weeks = WhoAmI
-      .where("correct_user_id = answer")
-      .group("yearweek(created_at, 1)")
-      .group(:user_id)
-      .order("yearweek_created_at_1 DESC")
-      .order("count_all DESC")
-      .count
-
-    # finds the user with highest points in a week
-    points_weeks.each do |week_and_user, points|
-      week, user = week_and_user
-
-      unless @best_points_weekly.has_key?(week)
-        # order by score so first user in each week is the best
-        @best_points_weekly[week] = user, points
-      end
+    if game.answer.eql? game.correct_user_id
+      flash[:notice] = "Det var riktig! Spill videre!"
+    else
+      flash[:alert] = "Det var feil... Spill videre!"
     end
+  end
 
-    ########################################################
-    # => HIGHSCORE LIST FOR THIS WEEK
-    ########################################################
-    
-    current_week_range = first_day_of_current_week..last_day_of_current_week
+  def get_or_create_new_game
+    old_game = WhoAmI.where(user_id: current_user.id).order("created_at DESC").limit(1).first
+    return old_game unless old_game.nil? || old_game.played?
 
-    #most points and most guessed for this week.
-    w_most_points =  WhoAmI
-      .where("correct_user_id = answer")
-      .where(created_at: current_week_range)
-      .group(:user_id)
-      .order("count_all DESC")
-      .limit(10)
-      .count
+    users = User.random(2013,4).where("profile_picture_file_name IS NOT NULL")
 
-    @points_sorted = WhoAmI
-      .where("correct_user_id = answer")
-      .where(created_at: current_week_range)
-      .group(:user_id)
-      .order("count_all DESC")
-      .limit(10)
-      .count
-
-    w_most_guessed = WhoAmI
-      .where("correct_user_id = answer")
-      .where(:created_at=>current_week_range)
-      .group(:correct_user_id)
-      .order("count_all DESC")
-      .limit(10)
-      .count
-
-    #weekly
-    best_ratio = Hash.new {|h,k| h[k] = 0} #Which player has the best correct/wrong ratio?
-    best_guessed = Hash.new {|h,k| h[k] = 0} #Which player is most guessed correcrly
-
-    w_most_guessed.each do |key,value|
-      best_guessed[key] = w_most_guessed[key] / WhoAmI.where("correct_user_id = #{key}").where(:created_at=>current_week_range).where(played: true).count.to_f
-    end
-
-    w_most_points.each do |key,value|
-      best_ratio[key] = w_most_points[key].to_f / User.find(key).who_am_is.where(played:true).where(:created_at=>current_week_range).count
-    end
-
-    #@points_sorted = w_most_points.sort_by {|k,v| v}.reverse
-    @best_ratio_sorted = best_ratio.sort_by {|k,v| v}.reverse
-    @best_correct_guessed = best_guessed.sort_by {|k,v| v}.reverse
-
-    @user_stats = {
-      "Poeng" => WhoAmI
-                  .where("correct_user_id = answer")
-                  .where(:user_id =>current_user.id)
-                  .count,
-      "Antall spill" => WhoAmI
-                  .where(:user_id =>current_user.id)
-                  .count
-    }
+    correct_user = users[Random.rand(users.length)]
+    game = WhoAmI.new 
+    game.correct_user_id = correct_user.id
+    game.user_id = current_user.id
+    game.user1_id = users[0].id
+    game.user2_id = users[1].id
+    game.user3_id = users[2].id
+    game.user4_id = users[3].id
+    game.save
+    game
   end
 end

@@ -1,75 +1,97 @@
-class DriverShiftsController < ApplicationController
-	load_and_authorize_resource :drive
+#!/bin/env ruby
+# encoding: utf-8
+class DriverShiftsController < TransportAdminController
+	before_filter :find_driver
+	before_filter :new_shift, :only => [:index]
+	before_filter :validate_form, :only => [:create,:multiple_create]
+	before_filter :empty_driver_ids, :only => [:multiple_create]
+
 	def index
-		@driver_id = params[:driver_id]
-		@name = User.find_by_id(Driver.find(@driver_id).user_id).given_name
-		@shifts = DriverShift.where(:driver_id => @driver_id).order("end_time DESC")
-		@current_datetime = DateTime.now
+		@shifts = @driver.shifts.all
 	end
-	#POST
+
+	def show
+		@shift = @driver.shifts.find(params[:id])
+	end
+
+	def new
+		@shift = DriverShift.new
+	end
+
 	def create
-		start_time =  DateTime.parse(params[:date]+" "+params[:start_time]+":00")
-		end_time = DateTime.parse(params[:date]+" "+params[:end_time]+":00")
-		if start_time > end_time
-			end_time += 1 #increase date by 1
-		end
-		shift = DriverShift.new(start_time: start_time, end_time: end_time, driver_id: params[:driver_id])
+		dates = DriverShift.shift_options_to_datetime(
+										params[:shift_id].to_i,
+										params[:date])
+		shift = @driver.shifts.new(dates)
 		
 		if shift.save
-			flash[:notice] = 'Vakt lagret'
+			flash[:notice] = "Vakt lagret."
 		else
-			flash[:alert] = 'Obs. Noe gikk, galt vakten ble ikke lagret! Prov igjen'
+			flash[:notice] = "Vakten ble ikke lagret."
 		end
-		redirect_to  url_for :controller => 'driver_shifts', :action => 'index'
+		redirect_to driver_shifts_path(@driver)
+	end
+
+	def update
+
 	end
 
 	def destroy
-		if DriverShift.find(params[:shift_id]).destroy
-			flash[:notice] = "Vakt slettet."
-		else
-			flash[:alert] = "Noe gikk galt, vakten ble ikke slettet"
-		end
-		redirect_to  url_for :action => 'index', :driver_id => params[:driver_id]
+		@shift = DriverShift.find(params[:id])
+		@shift.destroy
+		flash[:notice] = "Skiftet er slettet."
+		redirect_to driver_shifts_path(@driver)
 	end
 
-	def shifts_you
-		current_driver = Driver.find_by_user_id(current_user.id)
-		if current_driver
-			redirect_to :action => 'index', :driver_id => current_driver
-		else
-			redirect_to :controller => 'drive_admin', :action => 'driver_new'
-		end
-	end
-
-	def all
+	def multiple_new
 		@drivers = Driver.all
-		@shifts = [
-			['Dagskift (07:30 - 16:00)', 1], 
-			['Kveldskift (15:30 - 22:30)', 2], 
-			['Nattskift (22:00 - 08:00)', 3]
-		]
-		if request.post?
-			shift_type = params[:shift_type].to_i
-			if shift_type == 1
-				start_time = DateTime.parse(params[:date] + " 07:30")
-				end_time = DateTime.parse(params[:date] + " 16:00")
-			elsif shift_type == 2
-				start_time = DateTime.parse(params[:date] + " 15:30")
-				end_time = DateTime.parse(params[:date] + " 22:30")
-			
-			else #Natt
-				start_time = DateTime.parse(params[:date] + " 22:00")
-				end_time = DateTime.parse(params[:date] + " 08:00")
-				end_time += 1 #Increase date by one
-			end
+	end
 
-			drivers = params[:driver_ids]
-			drivers.each do |driver|
-				shift = DriverShift.new(start_time: start_time, end_time: end_time, driver_id: driver)
-				shift.save
+	def multiple_create
+		dates = DriverShift.shift_options_to_datetime(
+										params[:shift_id].to_i,
+										params[:date])
+		drivers = params[:driver_ids].map{|id| Driver.find(id)}
+		DriverShift.transaction do
+			begin
+				drivers.each do |driver|
+					shift = driver.shifts.new(dates)
+					shift.save!
+				end
+				flash[:notice] = "Vaktene ble lagret."
+				redirect_to shifts_new_path
+			rescue Exception
+				flash[:alert] = "Vaktene ble ikke lagret."
+				redirect_to shifts_new_path
 			end
-			flash[:notice] = "Vaktene har blitt lagret."
-			redirect_to :controller => 'drive_admin', :action =>'index'
+		end
+	end
+
+	private 
+	def find_driver
+		if params[:driver_id]
+			@driver = Driver.find(params[:driver_id])
+		end
+	end
+
+	def new_shift
+		@shift = DriverShift.new
+	end
+
+	def validate_form
+		dates = DriverShift.shift_options_to_datetime(
+										params[:shift_id].to_i,
+										params[:date])
+		rescue
+			flash[:alert] = "Dårlig input på dato."
+			redirect_to(:back)
+
+	end
+
+	def empty_driver_ids
+		if not params[:driver_ids]
+			flash[:alert] = "Ingen sjåfører er valgt."
+			redirect_to shifts_new_path
 		end
 	end
 end

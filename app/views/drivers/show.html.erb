@@ -1,0 +1,15 @@
+<%= render "nav" %>
+<h2>Profil for <%= @driver.username %></h2>
+<p>En del av transport systemet siden <%= @driver.created_at %></p>
+<h3><%= link_to 'Vakter', driver_shifts_path(@driver) %> |
+<%= link_to 'Kjøreoppdrag', driver_drives_path(@driver) %></h3>
+<br>
+<h3>Statistikk</h3>
+<ul>
+	<li>
+		Antall kjøreoppdrag (Total/Fullført): <%= @driver.completed_ratio %>
+	</li>
+	<li>
+		Antall vakter (Totalt): <%= @driver.shifts.count %>
+	</li>
+</ul>

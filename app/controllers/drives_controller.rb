@@ -1,102 +1,74 @@
 #!/bin/env ruby
 # encoding: utf-8
-class DrivesController < ApplicationController
-	load_and_authorize_resource :drive
-	def search
-		#POST - Search
-		if request.post?
+class DrivesController < TransportAdminController
+	#load_and_authorize_resource :drive
+	before_filter :find_driver
+	before_filter :validate_datetime, :only => [:search_result,:update]
 
-			# given time range of search.
-			start_time =  DateTime.parse(params[:date]+" "+params[:start_time]+":00")
-			end_time = DateTime.parse(params[:date]+" "+params[:end_time]+":00")
-			if start_time > end_time
-				end_time += 1
+	def search_result
+		datetimes = Drive.get_datetimes_from_params(params)
+
+			@drivers_w_shifts = Driver.with_shift_inside_date_range(
+										datetimes[:start_time],
+										datetimes[:end_time])
+			@drives = Drive.drives_inside_date_range(
+											datetimes[:start_time],
+											datetimes[:end_time])
+
+			@available_drivers = Driver.all_and_limit_by_drives(@drives)
+			@available_cars = Car.all_and_limit_by_drives(@drives)
+
+
+			if not params[:ignore_shifts]	
+				@available_drivers = @drivers_w_shifts-@available_drivers
 			end
-			# true or false
-			ignore_shifts = params[:ignore_shifts]
 
-			# given drivers with shifts in the time range.
-			@drivers_w_shifts = DriverShift.where("(start_time <= '#{start_time}' AND end_time >= '#{start_time}') AND (start_time <= '#{end_time}' AND end_time >= '#{end_time}')").map{|x| x.driver_id}.uniq
+			@drive = Drive.new(datetimes)
 
-			#drives_found = Drive.where("'#{start_time}' > start_time OR '#{end_time}' > end_time")
-			drives_found = Drive.where("start_time <= '#{end_time}' AND '#{start_time}' <= end_time") #all overlapping.
-
-			# used to write out information about the drives found.
-			drives_mod = drives_found.map {|x| [x.id, Car.find(x.car_id).name, User.find(Driver.find(x.driver_id).user_id).given_name, x.description, x.comment, x.start_time.strftime("%Y-%m-%d %H:%M"), x.end_time.strftime("%Y-%m-%d %H:%M"), x.completed]}
-			
-			if drives_found.empty?
-
-				if ignore_shifts
-					#hash w/ following {:id => User.id, :given_name => User.given_name, :drives_count => Drive.where(Driver.id).count
-					driver_info = Driver.all.map {|x| {:id => x.user_id, :given_name => User.find(x.user_id).given_name, :drives_count => Drive.where(:driver_id => x.id).count}}
-
-				else
-
-					#hash w/ following {:id => User.id, :given_name => User.given_name, :drives_count => Drive.where(Driver.id).count
-					driver_info = @drivers_w_shifts.map {|x| {:id => Driver.find(x).user_id, :given_name => User.find(Driver.find(x).user_id).given_name, :drives_count => Drive.where(:driver_id => x).count}}
-				end
-				@cars = Car.all
-				render :json => {:cars => @cars.to_json,
-           						 :drivers => driver_info.to_json}
-
-			else
-				drivers_in_drive = drives_found.map{|obj| obj.driver_id}
-				
-				if ignore_shifts
-					available_drivers = Driver.find(:all, :conditions => ["id not in (?)", drivers_in_drive])
-				else
-					available_drivers = Driver.find(:all, :conditions => ["id in (?)", @drivers_w_shifts-drivers_in_drive])
-				end
-
-				available_cars = Car.find(:all, :conditions => ["id not in (?)", drives_found.map{|obj| obj.car_id}])
-
-				#hash w/ following {:id => User.id, :given_name => User.given_name, :drives_count => Drive.where(Driver.id).count
-				driver_info = available_drivers.map {|x| {:id => x.user_id, :given_name => User.find(x.user_id).given_name, :drives_count => Drive.where(:driver_id => x.id).count}}
-
-				render :json => {   :drives => drives_found.to_json,
-									:cars => available_cars.to_json,
-           						 	:drivers => driver_info.to_json,
-           						 	:drives_mod => drives_mod.to_json}
-			end
-		end
 	end
+
+
+	def search
+	end
+
 	def range_search
-		start_time =  DateTime.parse(params[:start_date])
-		end_time = DateTime.parse(params[:end_date])
-		@driver_jobs = Drive.where("start_time <= '#{end_time}' AND '#{start_time}' <= end_time") #all overlapping.
-		render :template => "drives/show_all"
+		@drives = drives.in_range(params[:start_time],params[:end_time])
+		render :template => "drives/index"
 	end
 
 	def create
-		@drive = Drive.new(params[:drive])
-		@drive.completed = false
-		@drive.driver_id = Driver.find_by_user_id(params[:user_id]).id
+		@drive = drives.new(params[:drive])
+		@drive.completed =false
 		if @drive.save
 			flash[:notice]="Oppdraget er lagret!"
 		else
-			flash[:notice]="Noe gikk galt, bilen ble ikke lagret!"
+			flash[:alert]="Noe gikk galt, oppdraget ble ikke lagret!"
 		end
-		redirect_to  url_for :action => 'search'
+		render :action => 'search'
 
+	end
+
+	def show
+		@drive = drives.find(params[:id])
 	end
 
 	def edit
-		@drive = Drive.find(params[:id])
+		@drive = drives.find(params[:id])
 	end
 
 	def update
-		@drive = Drive.find(params[:id])
+		@drive = drives.find(params[:id])
 		if @drive.update_attributes(params[:drive])
 			flash[:notice]="Endringer oppdatert!"
-			redirect_to :action => "show_all"
+			redirect_to :action => "index"
 		else
 			flash[:alert]="Endringene ble IKKE oppdartet, prov igjen."
-			render action: "edit"
+			render :action =>	"edit"
 		end
 	end
 
 	def destroy
-		@drive = Drive.find(params[:id])
+		@drive = drives.find(params[:id])
     	if @drive.destroy
     		flash[:notice]="Oppdraget ble fjernet."
     	else
@@ -105,32 +77,16 @@ class DrivesController < ApplicationController
     	redirect_to(:back)
 	end
 
-	def show_you
-		current_driver = Driver.find_by_user_id(current_user.id)
-		if current_driver
-			@driver_jobs = Drive.where(:driver_id => current_driver.id)
-		else
-			redirect_to :controller => 'drive_admin',:action => 'driver_new'
-		end
 
 
+	def index
+		@drives = drives.all
 	end
 
 	def show_all
 		@driver_jobs = Drive.order('end_time DESC')
 	end
 
-	def show_user
-		driver_id = params[:id]
-		driver = Driver.find_by_id(driver_id)
-		if driver
-			@name = User.find_by_id(driver.user_id).given_name
-			@driver_jobs = Drive.where(:driver_id => driver_id)			
-		else
-			flash[:alert] = "Fant ikke gitt bruker."
-			redirect_to :action => 'show_all'
-		end
-	end
 
 	def toogle_completed
 		@drive = Drive.find(params[:id])
@@ -145,35 +101,19 @@ class DrivesController < ApplicationController
 		render :json => {:header => "OK"}.to_json
 	end
 
-	def create_repeating
-		if request.post?
-			start_time =  params[:start_time]
-			s_h,s_m = start_time.split(":")
-			
-			end_time = params[:end_time]
-			e_h,e_m = end_time.split(":")
+	private
+	def drives
+		@driver ? @driver.drives : Drive
+	end
 
-			start_week = params[:start_week].to_i
-			end_week = params[:end_week].to_i
-			days = params[:days]
-			year = Date.today.year
+	def find_driver
+		@driver = Driver.find(params[:driver_id]) if params[:driver_id]
+	end
 
-			for week in start_week..end_week
-				for day in days
-					drive = Drive.new
-					drive.start_time = DateTime.commercial(year,week,day.to_i+1,s_h.to_i,s_m.to_i)
-					drive.end_time = DateTime.commercial(year,week,day.to_i+1,e_h.to_i,e_m.to_i)
-					drive.save
-				end
-			end
-
-			if (start_week-end_week) < 0
-				flash[:alert] = "ERROR"
-			end
-		end
-		current_week = Date.today.cweek
-		ending_week = 8
-		@weeks_array = *(current_week..ending_week)
-		@days = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"]
+	def validate_datetime
+		datetimes = Drive.get_datetimes_from_params(params)
+		rescue
+			flash[:alert] = "Dårlig input på dato og tid, prøv igjen."
+			redirect_to (:back)
 	end
 end

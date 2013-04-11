@@ -1,0 +1,10 @@
+<h3>Tidligere vinnere</h3>
+<% @highscorer.highscore_weekly_number_one.each do |week, args| %>
+  <h4><%= week.to_s[0..3] + ", Uke " + week.to_s[4..5] %>: </h4>
+  <ul>
+    <li>
+      <% user = User.find args[0] %>
+      <%= link_to user.full_name, user %> (<%= args[1] %>)
+    </li>
+  </ul>
+<% end %>

@@ -1,57 +1,16 @@
 <a href="game">
-    <button class="btn-large btn-primary">Spill mer!</button></a>
-</div>
+  <button class="btn btn-large btn-primary pull-right">Spill mer!</button>
+</a>
+<h1>Highscores Who Am I</h1>
 
 <div class="row">
-    <div class="span4">
-        <h1>Highscore -  Uke <%= @current_week_number %></h1>
-        </br>
-        <h3>Top 10</h3>
-        <ul style="list-style-type: decimal";>
-            <% @points_sorted.each do |userkey,value| %>
-                <li><%= link_to User.find(userkey).full_name, user_path(userkey) %> -> <%= value %></li>
-            <% end %>
-        </ul>
+  <div class="span4">
+    <%= render 'shared/am_i_games/weekly_highscores' %>
+    <%= render 'shared/am_i_games/all_time_highscores' %>
+  </div>
 
-        <h3>Hvem har best ratio?</h3>
-        <p>(ant. riktig / ant. spill av Top 10)</p>
-        <ul style="list-style-type: decimal";>
-            <% @best_ratio_sorted.each do |userkey,value| %>
-                <li><%= link_to User.find(userkey).full_name, user_path(userkey) %> -> <%= "%0.2f" % (value*100) %>%</li>
-            <% end %>
-        </ul>
-
-        <h3>Hvem kjenner ISFiT best?</h3>
-        <ul style="list-style-type: decimal";>
-            <% @best_correct_guessed.each do |userkey,value| %>
-                <li><%= link_to User.find(userkey).full_name, user_path(userkey) %> -> <%= "%0.2f" % (value*100) %>%</li>
-            <% end %>
-        </ul>
-    </div>
-    <div class="span4">
-        <h2>Din statistikk</h2>
-        <ul tyle="list-style-type: none";>
-            <% @user_stats.each do | string, value | %>
-                <% if string == "Prosent" %>
-                    <li><%= string %>: <%= "%0.2f" % (value*100) %>%</li>
-                <% else %>
-                    <li><%= string %>: <%= value %></li>
-                <% end %>
-            <% end %>
-        </ul>
-        <br>
-
-        <h2>Tidligere vinnere</h2>
-            <% @best_points_weekly.each do |week, args| %>
-                <% if week != @current_week_number %>
-                    <h4><%= week.to_s[0..3] + ", Uke " + week.to_s[4..5] %>: </h4>
-                    <ul>
-                        <li>
-                            <% user = User.find args[0] %>
-                            <%= link_to user.full_name, user %> (<%= args[1] %>)
-                        </li>
-                    </ul>
-                <% end %>
-            <% end %> 
-    </div>
+  <div class="span4">
+    <%= render 'shared/am_i_games/your_stats' %>
+    <%= render 'shared/am_i_games/earlier_winners' %>
+  </div>
 </div>

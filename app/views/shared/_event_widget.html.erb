@@ -1,0 +1,20 @@
+<% evts = Event.where("start_at >= :sd", {:sd => Time.now}).all %>
+
+<div class="well widget">
+  <h2>Upcoming events</h2>
+  
+  <% if evts.empty? %>
+    <p>Check back later.</p>
+    <p>Or you could always <%= link_to("host an event", new_event_path) %>!</p>
+  <% else %>
+    <table>
+      <% evts.each do |ev| %>
+        <tr>
+          <td><%= ev.start_at.strftime("%d %B") %></td>
+          <td style="padding-left: 1em;"><%= link_to(ev.title, event_path(ev.id)) %></td>
+        </tr>
+      <% end %>
+    </table>
+    <p style="text-align: right;"><small><%= link_to("Host an event", new_event_path) %></small></p>
+  <% end %>
+</div>

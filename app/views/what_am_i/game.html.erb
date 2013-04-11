@@ -4,11 +4,7 @@
 </div>
 
 <div id="what_question" class="what_seperate">    
-  <% @users.each do |user| %>
-    <% if user.id == @whatGame.correct_user_id %>
-      <legend> Hvem har tittelen: <strong><%= user.positions.last.title_no %></strong></legend>
-    <% end %>
-  <% end %>
+  <legend> Hvem har tittelen: <strong><%= @correct_user.positions.last.title_no %></strong></legend>
 </div>
 
 <div id="what_guesses" class="what_seperate">
@@ -18,7 +14,7 @@
     <% end %>
     <form method="POST" >
       <%= form_tag %>
-      <input type="hidden" name="whatGame" value="<%= @whatGame.id %>">
+      <input type="hidden" name="whatGame" value="<%= @game.id %>">
       <input type="hidden" name="user_id" value="<%= user.id %>">
       <input class="span3 btn btn-large btn-info" type="submit" name="user_name" value="<%= user.full_name %>">
     </form>

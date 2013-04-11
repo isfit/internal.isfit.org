@@ -14,7 +14,7 @@ class UserQuest < ActiveRecord::Base
     @quest.status = 1
     @quest.npc_type = 1
     @quest.quest_id = Quest.order("rand()").first.id
-    @quest.deadline = DateTime.now + 30.minutes
+    @quest.deadline = DateTime.now + 7.days
     @quest.save
   end
 
