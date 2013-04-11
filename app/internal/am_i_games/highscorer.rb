@@ -73,10 +73,10 @@ module Internal
       end
 
       def best_ratio_sorted_current_week
-        WhoAmI
-          .joins(:user)
-          .select("given_name, family_name, user_id,
-                   SUM(correct_user_id = answer) / COUNT(*) AS ratio")
+        game_class
+          .select("user_id,
+                   SUM(#{correct_condition}) / COUNT(*) AS ratio,
+                   COUNT(*) AS played_sum")
           .where(played: true)
           .where(created_at: current_week_range)
           .group(:user_id)

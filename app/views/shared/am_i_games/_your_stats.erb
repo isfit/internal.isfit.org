@@ -1,0 +1,14 @@
+<h3>Din statistikk</h3>
+<ul style="list-style-type: none";>
+  <% @highscorer.user_stats_for(current_user.id).each do |sym, val| %>
+    <% string = sym.to_s.humanize %>
+    <li>
+      <%= string %>:
+      <% if sym.eql? :percentage_won %>
+        <%= number_to_percentage(val * 100, precision: 2) %>
+      <% else %>
+        <%= val %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

@@ -1,82 +1,16 @@
 <a href="game">
   <button class="btn btn-large btn-primary pull-right">Spill mer!</button>
 </a>
-<h1>Highscores - Top 10</h1>
+<h1>Highscores What Am I</h1>
 
 <div class="row">
   <div class="span4">
-    <h3>Top 10 Uke <%= Date.today.cweek %></h3>
-    <ul style="list-style-type: decimal";>
-      <% @highscorer.points_sorted_current_week.each do |userkey,value| %>
-      <li><%= link_to User.find(userkey).full_name, user_path(userkey) %> -> <%= value %></li>
-      <% end %>
-    </ul>
-
-    <h3>Hvem kjenner ISFiT best denne uken?</h3>
-    <ul style="list-style-type: decimal";>
-      <% @highscorer.best_known_users_of_current_week.each do |user| %>
-        <li>
-          <%= link_to user.full_name, user_path(user) %> ->
-          <%= number_to_percentage(user.ratio * 100, precision: 2) %>
-        </li>
-      <% end %>
-    </ul>
-
-    <h3>Hvem har flest riktige?</h3>
-    <ul style="list-style-type: decimal";>
-      <% @highscorer.points_sorted.each do |user| %>
-      <li><%= link_to user.full_name, user %> (<%= user.score %>)</li>
-      <% end %>
-    </ul>
-
-    <h3>Hvem husker ISFiT best?</h3>
-    <ul style="list-style-type: decimal";>
-      <% @highscorer.best_known_users.each do |user| %>
-        <li>
-          <%= link_to user.full_name, user %> ->
-          <%= number_to_percentage(user.ratio * 100, precision: 2) %>
-        </li>
-      <% end %>
-    </ul>
-
-    <h3>Hvilken bruker er best prosent-vis?</h3>
-    <p> (Du må ha 10 eller flere spill for å bli med i listen) </p>
-    <ul style="list-style-type: decimal";>
-      <% @highscorer.best_ratio_sorted.each do |user| %>
-      <li>
-        <%= link_to user.full_name, user %> ->
-        <%= number_to_percentage(user.ratio * 100, precision: 2) %>
-        in <%= user.played_sum %> played
-      </li>
-      <% end %>
-    </ul>
+    <%= render 'shared/am_i_games/weekly_highscores' %>
+    <%= render 'shared/am_i_games/all_time_highscores' %>
   </div>
 
   <div class="span4">
-    <h3>Din statistikk</h3>
-    <ul style="list-style-type: none";>
-      <% @highscorer.user_stats_for(current_user.id).each do |sym, val| %>
-      <% string = sym.to_s.humanize %>
-      <li>
-        <%= string %>:
-        <% if sym.eql? :percentage_won %>
-        <%= number_to_percentage(val * 100, precision: 2) %>
-        <% else %>
-        <%= val %>
-        <% end %>
-      </li>
-      <% end %>
-    </ul>
-
-    <h2>Tidligere vinnere</h2>
-    <% @highscorer.highscore_weekly_number_one.each do |week, args| %>
-      <h4><%= week.to_s[0..3] + ", Uke " + week.to_s[4..5] %>: </h4>
-      <ul>
-        <li>
-          <% user = User.find args[0] %>
-          <%= link_to user.full_name, user %> (<%= args[1] %>)
-        </li>
-      </ul>
-    <% end %>
+    <%= render 'shared/am_i_games/your_stats' %>
+    <%= render 'shared/am_i_games/earlier_winners' %>
   </div>
 </div>
