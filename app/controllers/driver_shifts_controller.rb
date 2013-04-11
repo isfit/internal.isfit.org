@@ -1,6 +1,6 @@
 #!/bin/env ruby
 # encoding: utf-8
-class ShiftsController < TransportAdminController
+class DriverShiftsController < TransportAdminController
 	before_filter :find_driver
 	before_filter :new_shift, :only => [:index]
 	before_filter :validate_form, :only => [:create,:multiple_create]
@@ -15,11 +15,11 @@ class ShiftsController < TransportAdminController
 	end
 
 	def new
-		@shift = Shift.new
+		@shift = DriverShift.new
 	end
 
 	def create
-		dates = Shift.shift_options_to_datetime(
+		dates = DriverShift.shift_options_to_datetime(
 										params[:shift_id].to_i,
 										params[:date])
 		shift = @driver.shifts.new(dates)
@@ -37,7 +37,7 @@ class ShiftsController < TransportAdminController
 	end
 
 	def destroy
-		@shift = Shift.find(params[:id])
+		@shift = DriverShift.find(params[:id])
 		@shift.destroy
 		flash[:notice] = "Skiftet er slettet."
 		redirect_to driver_shifts_path(@driver)
@@ -48,11 +48,11 @@ class ShiftsController < TransportAdminController
 	end
 
 	def multiple_create
-		dates = Shift.shift_options_to_datetime(
+		dates = DriverShift.shift_options_to_datetime(
 										params[:shift_id].to_i,
 										params[:date])
 		drivers = params[:driver_ids].map{|id| Driver.find(id)}
-		Shift.transaction do
+		DriverShift.transaction do
 			begin
 				drivers.each do |driver|
 					shift = driver.shifts.new(dates)
@@ -75,11 +75,11 @@ class ShiftsController < TransportAdminController
 	end
 
 	def new_shift
-		@shift = Shift.new
+		@shift = DriverShift.new
 	end
 
 	def validate_form
-		dates = Shift.shift_options_to_datetime(
+		dates = DriverShift.shift_options_to_datetime(
 										params[:shift_id].to_i,
 										params[:date])
 		rescue

@@ -208,8 +208,6 @@ ActiveRecord::Schema.define(:version => 20130403164800) do
   add_index "drives", ["car_id"], :name => "index_drives_on_car_id"
   add_index "drives", ["driver_id"], :name => "index_drives_on_driver_id"
 
-
-=======
   create_table "events", :force => true do |t|
     t.string   "title"
     t.string   "body"
@@ -223,7 +221,6 @@ ActiveRecord::Schema.define(:version => 20130403164800) do
   end
 
   add_index "events", ["created_by_id"], :name => "index_events_on_created_by_id"
-
 
   create_table "festivals", :id => false, :force => true do |t|
     t.integer "id",   :default => 0, :null => false
