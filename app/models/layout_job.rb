@@ -1,7 +1,31 @@
+require_dependency 'layout_jobs/publishings'
+require_dependency 'layout_jobs/statuses'
+
 class LayoutJob < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :group
 	validates_presence_of :description, :user_info, :work_title
+
+	# Returner alle personene som er med i layout, i et format som kan gis
+	# direkte til jEditable.
+  def self.users_json
+    layout_group_id = 98
+    leader_id = 854
+
+    User
+      .joins(:groups)
+      .where("groups.id = ?", layout_group_id)
+      .map {|user| {user.id => user.full_name} unless user.id.eql? 1 }
+      .compact
+      .push({selected: leader_id.to_s})
+      .reduce(&:merge)
+      .to_json
+      .to_s
+  end
+
+  def self.status_options_json
+  	self.status_options.map {|arr| { arr[1] => arr[0] }}.reduce(&:merge).to_json
+  end
 
 	def owner
 		if owner_id
@@ -22,69 +46,22 @@ class LayoutJob < ActiveRecord::Base
 	end
 
 	def publishing_name
-		case self.publishing
-		when 1
-			"Web"
-		when 2
-			"Print"
-		when 3
-			"Both"
-		when 4
-			"Other"
-		end
+		Internal::LayoutJobs::Publishings.name_for(self.publishing)
 	end
 
-	def publishing_options
-		[
-			["Web", 1],
-			["Print", 2],
-			["Both", 3],
-			["Other", 4]
-		]
+	def self.publishing_options
+		Internal::LayoutJobs::Publishings.publishing_options
 	end
 
-	def status_options
-		[
-			["New", 1],
-			["Open", 2],
-			["On hold", 3],
-			["Resolved", 4],
-			["Rejected", 5],
-			["Deleted", 6]
-		]
+	def self.status_options
+		Internal::LayoutJobs::Statuses.status_options
 	end
 
 	def status_name
-		case self.status
-		when 1
-			"New"
-		when 2
-			"Open"
-		when 3
-			"On hold"
-		when 4
-			"Resolved"
-		when 5
-			"Rejected"
-		when 6
-			"Deleted"
-		end
+		Internal::LayoutJobs::Statuses.name_for(self.status)
 	end
 
 	def status_color
-		case self.status
-		when 1
-			"status_new"
-		when 2
-			"status_open"
-		when 3
-			"status_on_hold"
-		when 4
-			"status_resolved"
-		when 5
-			"status_rejected"
-		when 6
-			"status_deleted"
-		end
+		Internal::LayoutJobs::Statuses.color_for(self.status)
 	end
 end

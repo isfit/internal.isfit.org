@@ -1,10 +1,10 @@
+require_dependency 'layout_jobs/edit_receiver'
+
 class LayoutJobsController < ApplicationController
   # GET /layout_jobs
   # GET /layout_jobs.json
-  def index
-    layout_group_id = 98
-    @layout_users = User.joins(:groups).where("groups.id = ?", layout_group_id)
 
+  def index
     if current_user.role?(:layout)
       @layout_jobs = LayoutJob.where('status != 6').all
     elsif current_user.role?(:admin)
@@ -57,12 +57,13 @@ class LayoutJobsController < ApplicationController
 
   # POST /layout_jobs/1/receive_edit
   def receive_edit
-    #abort(params.to_s)
-    @layout_job = LayoutJob.find(params[:id].to_i)
-    @layout_job.owner_id = params[:value].to_i
-    @layout_job.save
+    receiver = Internal::LayoutJobs::EditReceiver.new(
+      params[:id].to_i,
+      params[:value],
+      params[:type]
+    )
 
-    render text: User.find(params[:value].to_i).full_name
+    render(text: receiver.result)
   end
 
   # POST /layout_jobs
