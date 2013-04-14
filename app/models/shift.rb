@@ -1,4 +1,4 @@
-class DriverShift < ActiveRecord::Base
+class Shift < ActiveRecord::Base
   belongs_to :driver
   SHIFTS = [
   	["Dagskift","07:30","16:00"],
