@@ -1,5 +1,5 @@
 class DialogueParticipant < ActiveRecord::Base
-  set_primary_key 'id'
+  self.primary_key = 'id'
   belongs_to :country
 
 	validates_presence_of :first_name
