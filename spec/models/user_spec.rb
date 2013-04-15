@@ -12,6 +12,8 @@ describe User do
   before(:each) do
     User.delete_all
     @user = create(:user)
+    @user.stub(:role?).and_return(false)
+    @user.stub(:role?).with(:internal).and_return(true)
   end
 
 
@@ -45,8 +47,8 @@ describe User do
     user.authenticate('badpassword').should be_false
   end
 
-  pending "should return full name capitalized on full_name method" do
-    user = new_user(given_name: "iver", family_name: "dihle skjervum")
+  it "should return full name on full_name method" do
+    user = new_user(given_name: "Iver", family_name: "Dihle Skjervum")
     user.full_name.should == "Iver Dihle Skjervum"
   end
 

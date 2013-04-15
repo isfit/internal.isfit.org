@@ -19,6 +19,7 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe ParticipantQuotesController do
+  login_user
 
   # This should return the minimal set of attributes required to create a valid
   # ParticipantQuote. As you add validations to ParticipantQuote, be sure to
@@ -66,6 +67,8 @@ describe ParticipantQuotesController do
   end
 
   describe "POST create" do
+    before(:each) { controller.stub(:current_user) { User.new } }
+    
     describe "with valid params" do
       it "creates a new ParticipantQuote" do
         expect {
