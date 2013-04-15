@@ -16,7 +16,7 @@ describe UsersController do
     login_user
 
     before do
-      @controller.stubs(:current_user).returns(create(:user))
+      @controller.stub(:current_user) { User.new }
     end
 
     it "edit action should render edit template" do

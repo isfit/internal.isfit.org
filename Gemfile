@@ -51,7 +51,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'mocha'
   gem 'capybara-webkit'
   gem 'rspec-rails'
   gem 'webrat'

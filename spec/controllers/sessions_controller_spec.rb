@@ -11,7 +11,7 @@ describe SessionsController do
   end
 
   it "create action should render new template when authentication is invalid" do
-    User.stubs(:authenticate).returns(nil)
+    User.stub(:authenticate) { nil }
     post :create
     response.should render_template(:new)
     session['user_id'].should be_nil

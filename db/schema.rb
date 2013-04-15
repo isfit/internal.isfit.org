@@ -183,7 +183,7 @@ ActiveRecord::Schema.define(:version => 20130403164800) do
     t.boolean  "notified_rejected",                       :default => false, :null => false
   end
 
-  add_index "dialogue_participants", ["email"], :name => "email", :unique => true
+  #add_index "dialogue_participants", ["email"], :name => "email", :unique => true
 
   create_table "drivers", :force => true do |t|
     t.integer  "user_id"
@@ -209,7 +209,6 @@ ActiveRecord::Schema.define(:version => 20130403164800) do
   add_index "drives", ["driver_id"], :name => "index_drives_on_driver_id"
 
 
-=======
   create_table "events", :force => true do |t|
     t.string   "title"
     t.string   "body"
