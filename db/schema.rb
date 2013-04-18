@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130403164800) do
+ActiveRecord::Schema.define(:version => 20130417135207) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -183,7 +183,17 @@ ActiveRecord::Schema.define(:version => 20130403164800) do
     t.boolean  "notified_rejected",                       :default => false, :null => false
   end
 
-  #add_index "dialogue_participants", ["email"], :name => "email", :unique => true
+  add_index "dialogue_participants", ["email"], :name => "email", :unique => true
+
+  create_table "driver_shifts", :force => true do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer  "driver_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "driver_shifts", ["driver_id"], :name => "index_shifts_on_driver_id"
 
   create_table "drivers", :force => true do |t|
     t.integer  "user_id"
@@ -208,7 +218,6 @@ ActiveRecord::Schema.define(:version => 20130403164800) do
   add_index "drives", ["car_id"], :name => "index_drives_on_car_id"
   add_index "drives", ["driver_id"], :name => "index_drives_on_driver_id"
 
-
   create_table "events", :force => true do |t|
     t.string   "title"
     t.string   "body"
@@ -222,7 +231,6 @@ ActiveRecord::Schema.define(:version => 20130403164800) do
   end
 
   add_index "events", ["created_by_id"], :name => "index_events_on_created_by_id"
-
 
   create_table "festivals", :id => false, :force => true do |t|
     t.integer "id",   :default => 0, :null => false
@@ -358,12 +366,13 @@ ActiveRecord::Schema.define(:version => 20130403164800) do
     t.integer  "publishing"
     t.string   "format"
     t.text     "description"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.integer  "status"
     t.integer  "group_id"
     t.integer  "owner_id"
-    t.integer  "number",      :default => 1
+    t.integer  "number",         :default => 1
+    t.date     "last_proofread"
   end
 
   create_table "new_frontend_articles", :force => true do |t|
@@ -593,16 +602,6 @@ ActiveRecord::Schema.define(:version => 20130403164800) do
     t.text    "description_en"
     t.text    "description_no"
   end
-
-  create_table "shifts", :force => true do |t|
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.integer  "driver_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "shifts", ["driver_id"], :name => "index_shifts_on_driver_id"
 
   create_table "spp_articles", :force => true do |t|
     t.string   "title_en"

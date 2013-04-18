@@ -1,6 +1,9 @@
 rvm: 
   - 1.9.2
   - 1.9.3
+before_install:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
 bundler_args: "--without development production"
 before_script: "./config/ci/before_travis.sh"
 script: "bundle exec rake spec"
