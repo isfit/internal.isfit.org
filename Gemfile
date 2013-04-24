@@ -61,6 +61,7 @@ group :test do
   # Pretty printed test output
   gem 'turn', :require => false
 	gem 'factory_girl_rails'
+  gem 'selenium-webdriver'
 	gem 'capybara'
 	gem 'spork', "> 0.9.0rc"
 	gem 'guard-rspec'
