@@ -3,6 +3,8 @@ InternalIsfitOrg::Application.routes.draw do
   resources :hosts
 
   resources :events
+  get "events/:id/attend" => "events#attend"
+  get "events/:id/remove" => "events#remove"
 
   resources :participant_quotes
 

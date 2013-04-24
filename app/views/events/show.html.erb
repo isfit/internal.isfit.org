@@ -5,5 +5,21 @@
 <p><strong>Start:</strong> <%= @event.start_at.strftime("%d.%m %H:%M") %></p>
 <p><strong>End:</strong> <%= @event.end_at.strftime("%d.%m %H:%M") %></p>
 
-
 <!-- <p><strong>Organizer:</strong> <%= link_to(@event.organizer.full_name, user_path(@event.organizer)) %></p> -->
+<h2>Attending</h2>
+<% unless @rsvp_list.empty? %>
+<ul>
+  <% @rsvp_list.each do |person| %>
+    <li><%= person.full_name %></li>
+  <% end %>
+</ul>
+<% else %>
+<p>Noone is attending. Be the first!</p>
+<% end %>
+
+
+<% if @is_attending %>
+  <p><a href="<%= @event.id %>/remove/">Do not attend!</a></p>
+<% else %>
+  <p><a href="<%= @event.id %>/attend/">Attend!</a></p>
+<% end %>

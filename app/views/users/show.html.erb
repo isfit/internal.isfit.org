@@ -26,6 +26,19 @@
       <% end %>
     <% end %>
   </div>
+  <div id="events_attending">
+    <h5>Events</h5>
+    <% unless @user.events.empty? %>
+    <ul>
+      <% @user.events.each do |event| %>
+        <li><%= event.title %></li>
+      <% end %>
+    </ul>
+    <% else %>
+    <p><%= @user.given_name %> is not attending any events.</p>
+    <% end %>
+
+  </div>
   <div id="kvitter-index">
     <h5>Last Kvitters</h5>
     <% if !@kvitters || @kvitters.empty? %>
@@ -41,4 +54,5 @@
       <% end %>
     <% end %>
   </div>
+
 </div>
