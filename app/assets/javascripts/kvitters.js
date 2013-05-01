@@ -29,7 +29,7 @@ if(!String.linkify) {
     var matchHashtag = this.match(hashtagPattern);
     if (matchHashtag != null) {
       for (var i = 0; i < matchHashtag.length; i++) {
-        console.log("Hashtag: " + matchHashtag[i]);
+        //console.log("Hashtag: " + matchHashtag[i]);
       }
     }
 
@@ -45,7 +45,7 @@ $(document).on('click', 'a.awesome',  function(event){
   event.preventDefault();
   var that = event.srcElement || event.target;
   var count_object = $.getJSON("/kvitters/" + $(that).attr("data-id") + "/awesome.json", function(data) {
-    console.log(data);
+    //console.log(data);
     $(that).next().text(data);
   });
 });
@@ -110,7 +110,7 @@ function refreshKvitters() {
 }
 
 function appendKvitter(kvitt) {
-  console.log(JSON.stringify(kvitt))
+  //console.log(JSON.stringify(kvitt))
   $('#kvitter-posts').append(kvitterFormatting(kvitt));
 }
 

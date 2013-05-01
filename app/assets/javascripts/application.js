@@ -93,7 +93,7 @@ function getUsersJSON() {
       var searchString = user.given_name + " " + user.family_name + " - @" + user.username;
       userArray.push(searchString);
     });
-    console.log(JSON.stringify(userArray));
+    //console.log(JSON.stringify(userArray));
     $('#user-search').attr('data-source', JSON.stringify(userArray));
   });
 }
