@@ -27,6 +27,17 @@ class LayoutJob < ActiveRecord::Base
   	self.status_options.map {|arr| { arr[1] => arr[0] }}.reduce(&:merge).to_json
   end
 
+  def self.jobs_for_role roles, positions
+    if roles.one? {|r| r.name.eql? 'layout'}
+      self.where('status != 6').order(:updated_at)
+    elsif roles.one? {|r| r.name.eql? 'admin'}
+      self.order(:updated_at)
+    else
+      @group_ids = positions.last.groups.collect { |g| g.id }
+      self.where("layout_jobs.group_id IN (?)", @group_ids)
+    end
+  end
+
 	def owner
 		if owner_id
 			User.find(owner_id).full_name

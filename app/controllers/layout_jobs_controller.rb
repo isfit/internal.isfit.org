@@ -5,18 +5,12 @@ class LayoutJobsController < ApplicationController
   # GET /layout_jobs.json
 
   def index
-    if current_user.role?(:layout)
-      @layout_jobs = LayoutJob.where('status != 6').all
-    elsif current_user.role?(:admin)
-      @layout_jobs = LayoutJob.all
-    else
-      @group_ids = current_user.positions.last.groups.collect { |g| g.id }
-      @layout_jobs = LayoutJob.where("layout_jobs.group_id IN (?)", @group_ids)
-
-      if @layout_jobs.empty? && params[:redirect].nil?
-        redirect_to new_layout_job_path
-        return
-      end
+    @layout_jobs = LayoutJob.jobs_for_role(current_user.roles, 
+                                           current_user.positions)
+    
+    if @layout_jobs.empty? && params[:redirect].nil?
+      redirect_to new_layout_job_path
+      return
     end
 
     respond_to do |format|

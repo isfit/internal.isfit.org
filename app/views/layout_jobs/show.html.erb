@@ -2,9 +2,10 @@
 <%= link_to 'Edit', edit_layout_job_path(@layout_job), :class => "btn" %>
 <%= link_to 'Index', layout_jobs_path, :class => "btn btn-primary" %>
 </div>
+
+<div class="span6">
   <h1>
-    Title:
-    <%= @layout_job.work_title %>
+    Title: <%= @layout_job.work_title %>
   </h1>
   <p>
   <b>User:</b>
@@ -27,6 +28,11 @@
   </p>
 
   <p>
+  <b>Last proofread:</b>
+  <%= @layout_job.last_proofread || "Not set" %>
+  </p>
+
+  <p>
   <b>Publishing:</b>
   <%= @layout_job.publishing_name %>
   </p>
@@ -44,8 +50,12 @@
   </p>
 
   <p>
-  <b>Description:</b>
-  <pre><%= @layout_job.description %></pre> 
+    <b>Owner:</b>
+    <%= @layout_job.owner %>
   </p>
 
-
+  <p>
+  <b>Description:</b>
+  <pre><%= raw @layout_job.description %></pre>
+  </p>
+</div>

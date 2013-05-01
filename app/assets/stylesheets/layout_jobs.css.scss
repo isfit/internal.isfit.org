@@ -2,32 +2,31 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$red: #f2dede;
+$green: #dff0d8;
+$yellow: #fcf8e3;
+$grey: #ddd;
+
 .status_new {
-	background-color: #dff0d8;
+  background-color: $red;
 }
 
-.status_open {
-	background-color: #d9edf7;
+.status_started {
+	background-color: $yellow;
 }
 
 .status_on_hold {
-	background-color: #fcf8e3;
+	background-color: $grey;
 }
 
-.status_resolved {
-	background-color: #ddd;
+.status_finished {
+	background-color: $green;
 }
 
-.status_rejected {
-	background-color: #f2dede;
-}
-
-.status_deleted {
-	background-color: #f2dede
-}
-
-.layout-jobs-description {
-  overflow: hidden;
-  height: auto;
-  max-height: 120px;
+.layout-jobs {
+  .description {
+    overflow: hidden;
+    height: auto;
+    max-height: 120px;
+  }
 }

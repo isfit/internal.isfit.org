@@ -6,13 +6,13 @@ module Internal
         when 1
           "New"
         when 2
-          "Open"
+          "Started"
         when 3
           "On hold"
         when 4
-          "Resolved"
+          "Finished"
         when 5
-          "Rejected"
+          "[rejected]"
         when 6
           "Deleted"
         end
@@ -23,26 +23,26 @@ module Internal
         when 1
           "status_new"
         when 2
-          "status_open"
+          "status_started"
         when 3
           "status_on_hold"
         when 4
-          "status_resolved"
+          "status_finished"
         when 5
-          "status_rejected"
+          ""
         when 6
-          "status_deleted"
+          ""
         end
       end
 
       def self.status_options
         [
           ["New", 1],
-          ["Open", 2],
+          ["Started", 2],
           ["On hold", 3],
-          ["Resolved", 4],
-          ["Rejected", 5],
-          ["Deleted", 6]
+          ["Finished", 4],
+          [],
+          ["Remove", 6],
         ]
       end
     end
