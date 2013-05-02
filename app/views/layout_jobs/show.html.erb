@@ -23,6 +23,13 @@
   </p>
 
   <p>
+    <b>Eksporter til google calendar:</b>
+    <a href="http://www.google.com/calendar/event?action=TEMPLATE&text=<%= url_encode "ISFiT layout: #{@layout_job.work_title}" %>&dates=<%= google_date(@layout_job.last_proofread) %>T160000Z/<%= google_date(@layout_job.last_proofread) %>T180000Z&details=<%= url_encode "Owner: #{@layout_job.owner}, for group: #{@layout_job.group.name_en}" %>&location=ISFiT-kontoret&trp=false&sprop=ISFiT&sprop=name:internal.isfit.org"  target="_blank">
+      <img src="//www.google.com/calendar/images/ext/gc_button1.gif" border=0>
+    </a>
+  </p>
+
+  <p>
   <b>Deadline:</b>
   <%= @layout_job.deadline %>
   </p>
