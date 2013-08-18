@@ -10,12 +10,20 @@
 		<td><%= @applicant.id %></td>
 	</tr>
 	<tr>
+		<td><b>Birthyear</b></td>
+		<td><%= @applicant.birthyear %></td>
+	</tr>
+	<tr>
 		<td><b>E-mail</b></td>
 		<td><%= @applicant.mail %></td>
 	</tr>
 	<tr>
 		<td><b>Phone</b></td>
 		<td><%= @applicant.phone %></td>
+	</tr>
+	<tr>
+		<td><b>Place of study</b></td>
+		<td><%= @applicant.place_of_study %></td>
 	</tr>
 	<tr>
 		<td><b>First choice</b></td>
@@ -57,6 +65,12 @@
     <td colspan="2">
       <h3>Relevant experience</h3>
       <%= format(@applicant.background) %>
+    </td>
+	</tr>
+	<tr>
+    <td colspan="2">
+      <h3>Motivation</h3>
+      <%= format(@applicant.heardof) %>
     </td>
 	</tr>
 	<tr>

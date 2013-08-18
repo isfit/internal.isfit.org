@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130424160951) do
+ActiveRecord::Schema.define(:version => 20130811210303) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20130424160951) do
     t.integer  "position_id_2"
     t.integer  "position_id_3"
     t.integer  "status",                            :default => 0
+    t.text     "comment"
     t.string   "interview_place_1"
     t.string   "interview_place_2"
     t.string   "interview_place_3"
@@ -54,7 +55,8 @@ ActiveRecord::Schema.define(:version => 20130424160951) do
     t.string   "dn",                 :limit => 512
     t.integer  "has_account",        :limit => 1,   :default => 0,     :null => false
     t.integer  "is_notified",                       :default => 0,     :null => false
-    t.text     "comment"
+    t.string   "birthyear"
+    t.string   "place_of_study"
   end
 
   create_table "articles", :force => true do |t|

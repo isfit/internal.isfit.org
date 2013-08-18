@@ -10,7 +10,10 @@
         <td>Lastname</td>
         <td><%= f.text_field :lastname  %></td>
       </tr>
-
+      <tr>
+        <td>Birthyear</td>
+        <td><%= f.text_field :birthyear %></td>
+      </tr>
       <tr>
         <td>E-mail</td>
         <td><%= f.text_field :mail %></td>
@@ -18,6 +21,10 @@
       <tr>
         <td>Phone</td>
         <td><%= f.phone_field :phone %></td>
+      </tr>
+      <tr>
+        <td>Place of study</td>
+        <td><%= f.text_field :place_of_study %></td>
       </tr>
       <tr>
         <td>First choice</td>
@@ -48,6 +55,10 @@
       <tr valign="top">
         <td>Relevant experience</td>
         <td><%= f.text_area :background , class: "span5"  %></td>
+      </tr>
+      <tr valign="top">
+        <td>Motivation</td>
+        <td><%= f.text_area :heardof , class: "span5"  %></td>
       </tr>
       <tr>
         <td>Status</td>
