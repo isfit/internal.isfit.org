@@ -109,14 +109,12 @@ class ApplicantsController < ApplicationController
   end
 
   def index
-    #if current_user.role?(:admin) || current_user.role?(:recruiting) || current_user.role?(:board)
-    #  @applicants = Applicant.where(deleted: false).all
-    #elsif current_user.role?(:wingman)
-    #  @applicants = Applicant.applicants_in_same_section(current_user)
-    #elsif current_user.role?(:interviewer) || current_user.role?(:leader)
-    #  @applicants = Applicant.applicants_in_same_group( current_user )
-    if current_user.role?(:admin) || current_user.role?(:board)
+    if current_user.role?(:admin) || current_user.role?(:recruiting) || current_user.role?(:board)
       @applicants = Applicant.where(deleted: false).all
+    elsif current_user.role?(:wingman)
+      @applicants = Applicant.applicants_in_same_section(current_user)
+    elsif current_user.role?(:interviewer) || current_user.role?(:leader)
+      @applicants = Applicant.applicants_in_same_group( current_user )
     else
       CanCan::AccessDenied
     end
