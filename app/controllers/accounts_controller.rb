@@ -137,6 +137,9 @@ class AccountsController < ApplicationController
       end
     end
 
+    # Add other
+    unit_choices.push(["Other", -1])
+
     # Must parse unit_choices to set disable on accounts with ID=-1
     unit_choices_text = ""
     unit_choices.each do |choice|
@@ -146,6 +149,7 @@ class AccountsController < ApplicationController
         unit_choices_text += "<option value=\"" + choice[1].to_s + "\">" + choice[0].to_s + "</option>"
       end
     end
+
     unit_choices
   end
 
