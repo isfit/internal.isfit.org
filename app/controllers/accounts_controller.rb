@@ -138,7 +138,7 @@ class AccountsController < ApplicationController
     end
 
     # Add other
-    unit_choices.push(["Other", -1])
+    unit_choices.push(["Other", 99])
 
     # Must parse unit_choices to set disable on accounts with ID=-1
     unit_choices_text = ""
