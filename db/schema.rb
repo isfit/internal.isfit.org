@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130811210303) do
+ActiveRecord::Schema.define(:version => 20131028183810) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -316,6 +316,15 @@ ActiveRecord::Schema.define(:version => 20130811210303) do
   create_table "groups_positions", :id => false, :force => true do |t|
     t.integer "group_id"
     t.integer "position_id"
+  end
+
+  create_table "hashtags", :force => true do |t|
+    t.string "tag"
+  end
+
+  create_table "hashtags_kvitters", :force => true do |t|
+    t.integer "kvitter_id"
+    t.integer "hashtag_id"
   end
 
   create_table "hosts", :id => false, :force => true do |t|

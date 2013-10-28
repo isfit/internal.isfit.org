@@ -1,5 +1,6 @@
 class Kvitter < ActiveRecord::Base
   belongs_to :user
+  has_and_belongs_to_many :hashtags
 
   has_many :awesomes
 

@@ -1,4 +1,4 @@
-$('#kvitter-index').append('<%= j render(partial: "kvitter", collection: @kvitters) %>');
+$('#kvitter-index').append('<%= j render(partial: "shared/kvitter", collection: @kvitters) %>');
 <% if @kvitters.next_page %>
   $('.pagination').replaceWith('<%= j will_paginate(@kvitters) %>');
 <% else %>

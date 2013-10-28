@@ -1,6 +1,6 @@
-<h1>Kvitter</h1>
+<h1><%= @hashtag.tag %></h1>
 <div id='kvitter-index'>
 	<%= render partial: "shared/kvitter", collection: @kvitters %>
 </div>
 
-<%= will_paginate @kvitters %>
+<%= will_paginate @kvitters if @kvitters %>

@@ -24,7 +24,7 @@ if(!String.linkify) {
     var emailAddressPattern = /(([a-zA-Z0-9_\-\.]+)@[a-zA-Z_]+?(?:\.[a-zA-Z]{2,6}))+/gim;
 
     // #{word}
-    var hashtagPattern = /(^|\s)#\w[\wæøå-]+(\b|$)/gim;
+    var hashtagPattern = /#\w[\wæøå-]+(\b|$)/gim;
 
     var matchHashtag = this.match(hashtagPattern);
     if (matchHashtag != null) {
@@ -37,7 +37,8 @@ if(!String.linkify) {
       .replace(urlPattern, '<a target="_blank" href="$&">$&</a>')
       .replace(pseudoUrlPattern, '$1<a target="_blank" href="http://$2">$2</a>')
       .replace(emailAddressPattern, '<a target="_blank" href="mailto:$1">$1</a>')
-      .replace(hashtagPattern, '<a target="_self" href="#">$&</a>');
+      .replace(hashtagPattern, '<a href="hashtags/$&">$&</a>')
+      .replace(/\/#/g, '/%23'); // Replace /#<hashtag> with /%23<hashtag> because links cannot contain #(anchor)
   };
 }
 

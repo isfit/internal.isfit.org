@@ -91,7 +91,8 @@ InternalIsfitOrg::Application.routes.draw do
   get "kvitters/last(:.format)" => "kvitters#last"
   get "kvitters/" => "kvitters#index", as: "kvitters"
   get "kvitters/:id/awesome" => "kvitters#awesome"
-  
+
+  get "hashtags/:hashtag" => "hashtags#show"
   
   get "contact_logs/new/:contact_log_unit_id" => "contact_logs#new", as: "new_contact_log_with_unit"
   resources :contact_logs
