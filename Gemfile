@@ -9,6 +9,7 @@ gem 'mysql2'
 gem 'compass', ">=0.12.rc.0"
 
 # Spesifikke gems her
+gem 'pry'
 gem 'capistrano'
 gem 'rvm-capistrano'
 gem 'cancan'
