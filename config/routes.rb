@@ -14,6 +14,8 @@ InternalIsfitOrg::Application.routes.draw do
     end
   end
 
+  get "indaba_speakers" => "indaba_speakers#index"
+
   get "who_am_i/index"
   get "who_am_i/game"
   get "who_am_i/highscore"
