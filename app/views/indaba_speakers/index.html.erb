@@ -1,7 +1,7 @@
 <h1>All contact logs</h1>
-
 <div class="container-fluid contact-log">
-  <table class="table table-bordered table-striped sortable">
+<%=select_tag "years", options_for_select(@years.collect{ |u| [u.year, u.year] }, params[:year])%>
+  <table class="table table-bordered sortable">
     <thead>
         <th class="span1">Etternavn</th>
         <th class="span1">Fornavn</th>
@@ -14,19 +14,12 @@
       <td><%= speaker.lastname %></td>
       <td><%= speaker.firstname %></td>
       <td><%= speaker.profession %></td>
-      <td><%= speaker.status_name %></td>
+      <td class = <%= speaker.status_color_class%>><%= speaker.status_name %></td>
       <td width="100px">
-        <div class="btn-group">
-          <%# link_to("Show", speaker, class: "btn btn-info") %>
-          <a href="#" class="btn btn-info dropdown-toggle" data-toggle="dropdown">Show<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><%# link_to("Delete", speaker,  method: :delete, confirm: 'Are you sure you want to delete this contact log?') %></li>
-          </ul>
-        </div>
+        <%= link_to 'Show', speaker, class: "btn btn-info"%>   
       </td>
     </tr>
     <% end %>
   </table>
 </div>
-
 
