@@ -9,9 +9,8 @@ class IndabaSpeakersController < ApplicationController
 
   def show
     @indaba_speaker = IndabaSpeaker.find(params[:id])
-    userid = @indaba_speaker.kontaktperson
-    @contact_person = User.find(userid)
-   
+    #userid = @indaba_speaker.contact_person
+    #@contact_person = User.find(userid)
   end
 
 end

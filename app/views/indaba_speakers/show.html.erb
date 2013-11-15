@@ -27,17 +27,12 @@
 
 <p>
   <b>Facts:</b>
-  <%= @indaba_speaker.fakta %>
+  <%= @indaba_speaker.facts %>
 </p>
 
 <p>
   <b>Invited to:</b>
-  <%= @indaba_speaker.invitert_til %>
-</p>
-
-<p>
-  <b>Contact person:</b>
-  <%= @contact_person.given_name + " " + @contact_person.family_name %>
+  <%= @indaba_speaker.invited_to %>
 </p>
 
 <p>
@@ -48,6 +43,7 @@
   <b>Contact information:</b>
   <%= @indaba_speaker.contactinfo %>
 </p>
+
 <p>
   <b>Comments:</b>
   <%= @indaba_speaker.comment %>
