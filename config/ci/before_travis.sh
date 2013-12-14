@@ -9,4 +9,4 @@ bundle exec rake db:create
 bundle exec rake db:schema:load
 
 # Add secret
-rake secret > config/secret.yml
+bundle exec rake secret > config/secret.yml
