@@ -35,6 +35,7 @@ namespace :deploy do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
     run "ln -nfs #{shared_path}/config/oauth.yml #{release_path}/config/oauth.yml"
     run "ln -nfs #{shared_path}/config/password.yml #{release_path}/config/password.yml"
+    run "ln -nfs #{shared_path}/config/secret.yml #{release_path}/config/secret.yml"
   end
 end
 before "whenever:update_crontab", "bundle:install"
