@@ -7,3 +7,6 @@ mysql -e 'create database isfit13_internal_test;'
 echo "Set up test database"
 bundle exec rake db:create
 bundle exec rake db:schema:load
+
+# Add secret
+rake secret > config/secret.yml
