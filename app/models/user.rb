@@ -61,6 +61,9 @@ class User < ActiveRecord::Base
     "#{self.family_name}, #{self.given_name}"
   end
 
+  def id_hash
+    Digest::MD5.hexdigest(self.id.to_s + Rails.configuration.secret_token)
+  end
 
   #Return if user has role
   def role?(r)

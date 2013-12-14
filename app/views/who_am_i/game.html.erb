@@ -17,7 +17,7 @@
 		<form method="POST" >
 			<%= form_tag %>
 			<input type="hidden" name="session" value="<%= @game.id%>">
-			<input type="hidden" name="user_id" value="<%= user.id%>">
+			<input type="hidden" name="user_hash" value="<%= user.id_hash %>">
 			<input class="span3 btn btn-large btn-info" type="submit" name="user_name" value="<%= user.full_name %>">
 		</form>
 	<% end %>

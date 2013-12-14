@@ -26,7 +26,7 @@ class WhoAmIController < ApplicationController
   private
   def score_game params
     game = WhoAmI.find(params[:session])
-    answered_user_id = params[:user_id]
+    answered_user_id = de_hash game, params[:user_hash]
     game.answer = answered_user_id.to_i
     game.played = true
     game.save
@@ -54,5 +54,13 @@ class WhoAmIController < ApplicationController
     game.user4_id = users[3].id
     game.save
     game
+  end
+
+  def de_hash game, user_hash
+    users = [User.find(game.user1_id),
+             User.find(game.user2_id),
+             User.find(game.user3_id),
+             User.find(game.user4_id)]
+    users.each { |u| return u.id if u.id_hash.eql?(user_hash)}
   end
 end
