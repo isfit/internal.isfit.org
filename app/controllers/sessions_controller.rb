@@ -58,7 +58,7 @@ class SessionsController < ApplicationController
   private 
   def random_password(size = 8) 
     chars = (('A'..'Z').to_a + ('a'..'z').to_a + ('0'..'9').to_a) - %w(i o O 1 I l 0)
-    (1..size).collect{|a| chars[rand(chars.size)] }.join 
+    Array.new(size).collect{ chars.sample }.join
   end
 
   def generate_motivational(user)
