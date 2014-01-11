@@ -70,7 +70,7 @@ function downloadKvitters() {
     $('#kvitter').empty();
     $('#kvitter').append('<h1 rel="popover" data-original-title="Kvitter" data-content="Kvitter is the internal Twitter of ISFiT. Write something inspiring, engaging, or simply informing, and share it with the world!">Kvitter</span>');
     $('#kvitter').append('<form name="kvitter" id="kvitter-form" action="kvitters/create.json" method="post"><textarea rows="3" style="width: 100%;"  name="message" placeholder="Si noe inspirerende, ' + user_given_name + '..."></textarea><input type="submit" class="btn btn-info" value="Kvitr!" /></form>');
-    $('#kvitter').append('<ul id="kvitter-posts"></ul>');
+    $('#kvitter').append('<ul id="kvitter-posts" class="media-list"></ul>');
     $('#kvitter').append('<a href="/kvitters" class="btn btn-info btn-kvitter-see-more">Se flere</a>');
     $('[rel=popover]').popover({
       offset: 10
@@ -121,23 +121,28 @@ function prependKvitter(kvitt) {
 
 function kvitterFormatting(kvitt) {
   return '' +
-    '<li id="kvitter-"'+kvitt.id+'" class="kvitter">'+
-      '<strong>' + kvitt.user_full_name + '</strong>' +
-      '<br />' +
-      format(kvitt.message) +
-      '<br />'+
-      '<span class="small">'+
-        '<a href="/users/'+ kvitt.user_id + '">' +
-          '@'+kvitt.username +
-        '</a> ' +
-        humanized_time_span(kvitt.created_at) +
-      '</span>'+
-      '<span class="pull-right"><strong>'+
-        '<a href="#" class="awesome" data-id="'+kvitt.id+'"> \\o/ </a>'+
-        '<span class="count"> ' +
-          (kvitt.awesome_count ? kvitt.awesome_count : "0")+
-        '</span></strong>'+
-      '</span>'+
+    '<li id="kvitter-"'+kvitt.id+'" class="kvitter media">'+
+      '<a class="pull-left" href="#">' +
+        '<img class="media-object" src="' + kvitt.user_image + '">' +
+      '</a>' +
+      '<div class="media-body">' +
+        '<strong>' + kvitt.user_full_name + '</strong>' +
+        '<br />' +
+        format(kvitt.message) +
+        '<br />'+
+        '<span class="small">'+
+          '<a href="/users/'+ kvitt.user_id + '">' +
+            '@'+kvitt.username +
+          '</a> ' +
+          humanized_time_span(kvitt.created_at) +
+        '</span>'+
+        '<span class="pull-right"><strong>'+
+          '<a href="#" class="awesome" data-id="'+kvitt.id+'"> \\o/ </a>'+
+          '<span class="count"> ' +
+            (kvitt.awesome_count ? kvitt.awesome_count : "0")+
+          '</span></strong>'+
+        '</span>'+
+      '</div>' +
     '</li>'
 }
 

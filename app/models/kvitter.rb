@@ -19,4 +19,8 @@ class Kvitter < ActiveRecord::Base
   def user_full_name
     self.user.given_name + " " + self.user.family_name
   end
+
+  def user_image
+    self.user.profile_picture.url(:small)
+  end
 end

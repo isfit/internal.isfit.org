@@ -25,6 +25,7 @@ class KvittersController < ApplicationController
                                         [:username,
                                          :awesome_count,
                                          :user_full_name,
+                                         :user_image,
                                         ]),
                         user_given_name: current_user.given_name.to_json
                       }
