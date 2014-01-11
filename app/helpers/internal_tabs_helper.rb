@@ -6,14 +6,28 @@ module InternalTabsHelper
       else
         InternalTab.arrange.map do |tab,children|
           url = url_for_arranged_tab(children)
-          content_tag(:li ,link_to(tab.title.capitalize, url)) if url
+          dropdown(tab, children) if url
         end.join.html_safe
       end
     end
   end
 
+  def dropdown(tab, children)
+    content_tag(:li, class: "dropdown") do
+      link_to(raw(tab.title.capitalize + '' + content_tag(:b, "", class: "caret")), '#', class: "dropdown-toggle", data: { toggle: "dropdown" }) +
+      content_tag(:ul, class: "dropdown-menu") do
+        children.map do |sublink, children|
+          content_tag(:li, link_to(sublink.title, url_for_arranged_tab(children)))
+        end.join.html_safe
+      end.html_safe
+    end
+  end
+
   def sublinks
     links = current_tab.new_record? ? [] : current_tab.descendants.arrange
+
+    return if links.empty?
+
     content_tag :ul, class: "nav nav-pills" do
       links.map do |sublink,children|
         if can_access_link? sublink
@@ -31,9 +45,8 @@ module InternalTabsHelper
     menu_groups = current_sublink.new_record? ? [] : current_sublink.descendants.arrange
     menu_groups.map do |group, links|
       if url_for_arranged_tab(links)
-        content_tag(:div, class: "well widget") do
-          content_tag(:ul, class: "nav nav-list") do
-            content_tag(:li, group.title, class: "nav-header") + 
+          content_tag(:ul, class: "nav nav-pills") do
+            if links.size > 1
               links.map do |menu_link,value|
                 if can_access_link? menu_link
                   li_class = menu_link == current_menu_link ? "active":""

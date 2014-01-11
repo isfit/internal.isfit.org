@@ -1,3 +1,15 @@
+<% content_for :sidebar do %>
+  <div id="kvitter" class="well widget"></div>
+<% end %>
+
+<div class="well">
+  <h3>Hva skjer i ISFiT nå?</h3>
+  <h4>Opptak!</h4>
+  <p>Følg med på <%= link_to "rekrutteringssiden", applicants_path %> for å se søkere strømme inn :)</p>
+  <h4>Apps!</h4>
+  <p>Gå til <%= link_to "mail", "http://mail.isfit.no" %> eller <%= link_to "docs", "http://docs.isfit.no" %>.</p>
+</div>
+
 <div class="articles">
     <%= link_to "Create article", new_article_path, class: "btn btn-primary" %>
     <% for article in @articles %>
