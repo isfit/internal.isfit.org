@@ -11,3 +11,9 @@ function select_person(){
     });
   });
 }
+
+$(document).ready(function() {
+	$('.contact_log, .sortable > thead > tr').find('th.sort').each(function(i) {
+		$(this).append(' <i class="icon-chevron-up"></i> <i class="icon-chevron-down"></i>');
+	});
+});

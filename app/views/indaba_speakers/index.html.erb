@@ -3,11 +3,13 @@
 <%=select_tag "years", options_for_select(@years.collect{ |u| [u.year, u.year] }, params[:year])%>
   <table class="table table-bordered sortable">
     <thead>
-        <th class="span1">Etternavn</th>
-        <th class="span1">Fornavn</th>
-        <th class="span1">Stilling</th>
-        <th class="span1">Status</th>
+      <tr>
+        <th class="span1 sort">Etternavn</th>
+        <th class="span1 sort">Fornavn</th>
+        <th class="span1 sort">Stilling</th>
+        <th class="span1 sort">Status</th>
         <th class="span1"></th>
+      </tr>
     </thead>
     <% for speaker in @indaba_speakers %>
     <tr>
