@@ -16,6 +16,15 @@ class Position < ActiveRecord::Base
     Position.where("publish_from < '#{Time.now.strftime("%Y-%m-%d %H:%M") }' AND publish_to > '#{forskyvning.strftime("%Y-%m-%d %H:%M")}'")
   end
 
+  def title_no
+    title = self[:title_no]
+    if title.eql?("Nestleder")
+      section = self.groups.first.section.name_no
+      title = "#{title} - #{section}"
+    end
+    title
+  end
+
   def select_name
     "#{self.title_en} - #{self.groups.first.name_en}"
   end
