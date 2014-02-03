@@ -153,6 +153,9 @@ InternalIsfitOrg::Application.routes.draw do
   get "pads/:hexid" => "pads#show", :as => "pad"
   get "pads/:hexid/delete" => "pads#delete", :as => "delete_pad"
 
+  get "plingfest" => "applicants#notifier"
+  get "last_applicant" => "applicants#last"
+
   resources :applicants do
     collection do 
       get 'statistics'

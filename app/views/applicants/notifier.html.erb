@@ -1,0 +1,33 @@
+<% content_for :script do %>
+	<script language="javascript" type="text/javascript">
+		function playSound(soundfile) {
+			document.getElementById("sound").innerHTML="<embed src=\""+"http://soundjax.com/reddo/74421^Ding.mp3"+"\" hidden=\"true\" autostart=\"true\" loop=\"false\" />";
+		}
+
+		$(document).ready(
+			setInterval(function() {
+				var last_count = $("#sound").data('count');
+				console.log(last_count);
+				$.getJSON('/last_applicant.json?last_count=' + last_count, function(data) {
+			    var applicant = data.applicant;
+			    var count = data.count;
+
+			    if (! jQuery.isEmptyObject(applicant)) {
+
+			    	console.log('forandring');
+			    	$("#sound").data('count', count);
+			    	console.log($("#sound").data('count'));
+			    	playSound();
+			    	console.log('lyd spilt?');
+			    	alert('Ny soker: ' + applicant.firstname + ' ' + applicant.lastname);
+			    	console.log('alerted');
+			    } else {
+			    	console.log('ingen forandring');
+			    }
+			  });
+			}, 5000)
+		);
+ 	</script>
+<% end %>
+
+<span id="sound" data-count="<%= @count %>"></span>

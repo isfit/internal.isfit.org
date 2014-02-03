@@ -98,6 +98,26 @@ class ApplicantsController < ApplicationController
     end
   end
 
+  def notifier
+    @count = Applicant.count
+  end
+
+  def last
+    last_count = params[:last_count].to_i
+    @count = Applicant.count
+
+    if @count > last_count
+      @applicant = Applicant.last
+    end
+
+    respond_to do |format|
+      format.json do
+        render json: { applicant: @applicant,
+                       count:     @count }
+      end
+    end
+  end
+
   def update
     @applicant = Applicant.find(params[:id])
     if @applicant.update_attributes(params[:applicant])
