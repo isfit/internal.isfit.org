@@ -5,11 +5,11 @@
 $ ->
 	$(".room_reservation_uavl").tooltip()
 	
-	$(".room_reservation_avl:not(.disabled)").on "click", ->
+	$(".room_booking_element").on "click", "a.room_reservation_avl:not(.disabled)", ->
 		values = {}
 		$.each $(@).parent().serializeArray(), (i,field) ->
 			values[field.name] = field.value
-		$(@).removeClass("room_reservation_avl").addClass("room_reservation_self disabled")
+		$(@).removeClass("room_reservation_avl").addClass("room_reservation_self")
 		$.post "/room_bookings", values, (data) =>
 			$(@).data("booking", data.id)
 			$(@).removeClass("btn-success disabled").addClass("btn-danger")
@@ -17,7 +17,7 @@ $ ->
 			str = "<div class='alert alert-success' data-pushed ='#{new Date()}'>You have reserved #{data.room} at #{data.reserved_at} </div>"
 			$("#room_reservation_summary").html(str)
 
-	$(".room_reservation_self:not(.disabled)").on "click",  ->
+	$(".room_booking_element").on "click", ".room_reservation_self:not(.disabled)", ->
 		id = $(@).data("booking")
 		$(@).removeClass("room_reservation_self").addClass("room_reservation_avl disabled")
 		$.post  "/room_bookings/#{id}", {_method: 'delete'}, (data) =>

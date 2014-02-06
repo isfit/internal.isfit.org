@@ -30,7 +30,7 @@
             <tr>
               <th><%= time %>:00</th>
               <% @date_range.each do |day| %>
-                <td>
+                <td class="room_booking_element">
                   <% booking = @room_bookings.find{ |r| r[:room_id] == room.id &&  r[:reserved_at] == (day + time.hour)} %>
                   <%= render 'form', reserved_at: (day+time.hour), booking: booking , room:room%>
                 </td>
