@@ -35,7 +35,7 @@
 <div class="media">
   <% if kvitter.user.profile_picture? %>
       <a class="pull-left" href="#" >
-          <img data-src="<%= kvitter.user.profile_picture.url(:large) %>", class="media-object" %>
+          <img src="<%= kvitter.user.profile_picture.url(:large) %>", class="media-object" %>
       </a>
     <% end %>
   <div class="media-body">
@@ -51,5 +51,5 @@
       </p>
     </span>
   </div>
-  <hr />
 </div>
+<hr />
