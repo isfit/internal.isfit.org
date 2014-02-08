@@ -42,7 +42,7 @@ class WhoAmIController < ApplicationController
     old_game = WhoAmI.where(user_id: current_user.id).order("created_at DESC").limit(1).first
     return old_game unless old_game.nil? || old_game.played?
 
-    users = User.random(2013,4).where("profile_picture_file_name IS NOT NULL")
+    users = User.random(2015,4).where("profile_picture_file_name IS NOT NULL")
 
     correct_user = users[Random.rand(users.length)]
     game = WhoAmI.new 

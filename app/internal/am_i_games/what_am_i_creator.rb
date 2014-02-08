@@ -33,7 +33,7 @@ module Internal
       end
 
       def new_game
-        @users = User.random(2013,4)
+        @users = User.random(2015,4)
         correct_id = users[Random.rand(users.length)].id
 
         @game = WhatAmI.create!(

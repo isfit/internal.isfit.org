@@ -1,7 +1,7 @@
 class CardCheckerController < ApplicationController
 load_and_authorize_resource
   def status
-    @users = User.in_festival(2013)
+    @users = User.in_festival
     @users.each do |user|
       card = CardChecker.find_by_user_id(user.id)
       if !card

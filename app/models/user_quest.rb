@@ -10,7 +10,7 @@ class UserQuest < ActiveRecord::Base
   def self.generate_quest(current_user)
     @quest = UserQuest.new
     @quest.hero_id = current_user.id
-    @quest.npc_id = User.random(2013,1).first.id
+    @quest.npc_id = User.random(2015,1).first.id
     @quest.status = 1
     @quest.npc_type = 1
     @quest.quest_id = Quest.order("rand()").first.id

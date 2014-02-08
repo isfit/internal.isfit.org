@@ -47,13 +47,13 @@ class User < ActiveRecord::Base
   end
 
   # Returns all users in a given festival
-  def self.in_festival(year=2013, sort_columns="family_name, given_name")
+  def self.in_festival(year=2015, sort_columns="family_name, given_name")
     id = Festival.find_by_year(year).id
     joins(:positions => :groups).joins("LEFT OUTER JOIN sections ON sections.id = groups.section_id").where("groups.festival_id = ? OR sections.festival_id = ?", id,id).group("users.id").order(sort_columns)
   end
 
   # Returns a number of random users from a given festival
-  def self.random(year=2013, limit=5)
+  def self.random(year=2015, limit=5)
     self.in_festival(year,"RAND()").limit(limit).where("users.id > 1")
   end
 
