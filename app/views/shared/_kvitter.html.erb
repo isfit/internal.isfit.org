@@ -6,7 +6,7 @@
   function processScroll() {
     var url = $('.pagination .next_page > a').attr('href')
     if ((url != 'undefined') && ($(window).scrollTop() > ($(document).height() - $(window).height()  - 50))) {
-      $('.pagination').text("Fetching more products...");
+      $('.pagination').text("Henter flere kvitters...");
       $.getScript(url);
     }
   }
@@ -32,22 +32,24 @@
   </script>
 <% end %>
 
-<div class="hero-unit">
-	<% if kvitter.user.profile_picture? %>
-    	<div class="thumbnail pull-left" >
-      		<%= image_tag kvitter.user.profile_picture.url(:small) %>
-    	</div>
-  	<% end %>
+<div class="media">
+  <% if kvitter.user.profile_picture? %>
+      <a class="pull-left" href="#" >
+          <img data-src="<%= kvitter.user.profile_picture.url(:large) %>", class="media-object" %>
+      </a>
+    <% end %>
+  <div class="media-body">
+    <p class="kvitter-user"><%= kvitter.user.full_name %></p>
+    <p class="kvitter-message"><%= kvitter.message %></p>
+    <a href="#" class="awesome" data-id="<%= kvitter.id %>">\o/</a>
+    <span class="count"><%= kvitter.awesomes.count %></span>
 
-	<p class="kvitter-user"><%= kvitter.user.full_name %></p>
-	<p class="kvitter-message"><%= kvitter.message %></p>
-	<a href="#" class="awesome" data-id="<%= kvitter.id %>">\o/</a>
-	<span class="count"><%= kvitter.awesomes.count %></span> 
-
-	<span class="small">
-		<p>
-			<span class="kvitter-user"><%= link_to "@" + kvitter.user.username, kvitter.user %></span>
-			<%= time_ago_in_words kvitter.created_at.to_s %> ago
-		</p>
-	</span>
+    <span class="small">
+      <p>
+        <span class="kvitter-user"><%= link_to "@" + kvitter.user.username, kvitter.user %></span>
+        <%= time_ago_in_words kvitter.created_at.to_s %> ago
+      </p>
+    </span>
+  </div>
+  <hr />
 </div>
