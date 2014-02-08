@@ -21,6 +21,10 @@ class Kvitter < ActiveRecord::Base
   end
 
   def user_image
-    self.user.profile_picture.url(:small)
+    if self.user.profile_picture?
+      self.user.profile_picture.url(:small)
+    else
+      nil
+    end
   end
 end

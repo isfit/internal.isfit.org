@@ -120,11 +120,16 @@ function prependKvitter(kvitt) {
 }
 
 function kvitterFormatting(kvitt) {
-  return '' +
-    '<li id="kvitter-"'+kvitt.id+'" class="kvitter media">'+
+  var formatted = '' +
+    '<li id="kvitter-"'+kvitt.id+'" class="kvitter media">';
+
+  if (kvitt.user_image !== null) {
+    formatted = formatted +
       '<a class="pull-left" href="#">' +
         '<img class="media-object" src="' + kvitt.user_image + '">' +
-      '</a>' +
+      '</a>';
+  }
+  formatted = formatted +
       '<div class="media-body">' +
         '<strong>' + kvitt.user_full_name + '</strong>' +
         '<br />' +
@@ -143,7 +148,8 @@ function kvitterFormatting(kvitt) {
           '</span></strong>'+
         '</span>'+
       '</div>' +
-    '</li>'
+    '</li>';
+  return formatted;
 }
 
 jQuery.fn.exists = function(){return jQuery(this).length>0;}
