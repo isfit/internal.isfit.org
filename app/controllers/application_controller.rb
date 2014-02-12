@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :login_required
   before_filter :_reload_libs, :if => :_reload_libs?
+  before_filter :set_locale
 
   # Gets tab, parrent of sublink
   def current_tab
@@ -34,6 +35,10 @@ class ApplicationController < ActionController::Base
     RELOAD_LIBS.each do |lib|
       require_dependency lib
     end
+  end
+
+  def set_locale
+    I18n.locale = params[:locale] || :nb
   end
 
   # Get for constant RELOAD_LIBS

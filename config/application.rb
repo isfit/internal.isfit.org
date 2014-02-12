@@ -44,5 +44,10 @@ module InternalIsfitOrg
 
     # Enable the asset pipeline
     config.assets.enabled = true
+
+    # Enable i18n with norwegian as default locale
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
+    config.i18n.default_locale = :nb
+    config.i18n.available_locales = [:en, :nb]
   end
 end
