@@ -1,0 +1,6 @@
+nb:
+  articles:
+    index:
+      create: 'Lag ny artikkel'
+      created: 'Laget for'
+      ago: 'siden av'

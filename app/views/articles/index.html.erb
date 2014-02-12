@@ -11,7 +11,7 @@
 </div>
 
 <div class="articles">
-    <%= link_to "Create article", new_article_path, class: "btn btn-primary" %>
+    <%= link_to t('articles.index.create'), new_article_path, class: "btn btn-primary" %>
     <% for article in @articles %>
       <div class="article">
         <div class="btn-group pull-right">
@@ -20,7 +20,7 @@
         </div>
         <h1><%= link_to article.title, article %>
         </h1>
-          <small>Created <%= time_ago_in_words(article.created_at) %> ago by <%= link_to article.user.full_name, article.user %>.</small>
+          <small><%= "#{t('articles.index.created')} #{time_ago_in_words(article.created_at)} #{t('articles.index.ago')} " %><%= link_to article.user.full_name, article.user %>.</small>
         <%= image_tag article.article_image.url(:thumb), class: :right %> 
         <p>
           <%= format(truncate(article.body, length: 1000, omission: "...")) %>
