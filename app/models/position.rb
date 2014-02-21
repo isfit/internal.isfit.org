@@ -19,8 +19,11 @@ class Position < ActiveRecord::Base
   def title_no
     title = self[:title_no]
     if title.eql?("Nestleder")
-      section = self.groups.first.section.name_no
-      title = "#{title} - #{section}"
+      section = self.groups.first.section
+      if section
+        section_name = section.name_no
+        title = "#{title} - #{section_name}"
+      end
     end
     title
   end
