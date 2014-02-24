@@ -8,6 +8,18 @@
 <p>
   <%= format @article.body %>
 </p>
+<p>
+	<h3>Attendings</h3>
+</p>	
+<p>
+	<ul>
+		<% for article_attending in @article_attendings %>
+			<li><%= User.find(article_attending.user_id).given_name + " " + User.find(article_attending.user_id).family_name %> </li>
+		<% end %>
+	</ul>
+</p>
+
+
 
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', articles_path %>

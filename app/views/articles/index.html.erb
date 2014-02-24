@@ -17,6 +17,13 @@
         <div class="btn-group pull-right">
           <%= link_to :edit, edit_article_path(article), :class => "btn"%>
           <%= link_to :delete, article, confirm: "Are you sure?", method: :delete, :class => "btn btn-danger"  %>
+
+          <% if article.attending && ArticlesAttending.where(:user_id => current_user.id, :article_id => article.id).blank? %>
+            <%= link_to 'Attend', attending_article_path(article), :class =>"btn", method: :post %>
+          <% elsif article.attending && ArticlesAttending.where(:user_id => current_user.id, :article_id => article.id).blank? == false %>
+            <%= link_to 'Not attend', not_attending_article_path(article), :class =>"btn", method: :post %>
+          <% end %>
+
         </div>
         <h1><%= link_to article.title, article %>
         </h1>
@@ -26,7 +33,19 @@
           <%= format(truncate(article.body, length: 1000, omission: "...")) %>
           <%= article.body.length > 1000 ? (link_to("Read more...", article)):'' %>
         </p>
+          <% if article.attending %>
+            <small>
+              <%= ArticlesAttending.where(:user_id => current_user.id, :article_id => article.id).count() %> people are attending.
+            </small>
+          <% else %>
+            <small>
+              It is not possible to attend this article.
+            </smal>
+          <% end %>
+
       </div>
   <% end %>
 </div>
 <%= will_paginate @articles %>
+
+
