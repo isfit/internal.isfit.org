@@ -4,8 +4,10 @@
 
 <div class="well">
   <h3>Hva skjer i ISFiT nå?</h3>
+  <% if current_user_can_see_applications? %>
   <h4>Opptak!</h4>
   <p>Følg med på <%= link_to "rekrutteringssiden", applicants_path %> for å se søkere strømme inn :)</p>
+  <% end %>
   <h4>Apps!</h4>
   <p>Gå til <%= link_to "mail", "http://mail.isfit.no" %> eller <%= link_to "docs", "http://docs.isfit.no" %>.</p>
 </div>
