@@ -41,6 +41,11 @@ module InternalTabsHelper
     end
   end
 
+  def any_menu_groups?
+    menu_groups = current_sublink.new_record? ? [] : current_sublink.descendants.arrange
+    menu_groups.any?
+  end
+
   def menu_groups
     menu_groups = current_sublink.new_record? ? [] : current_sublink.descendants.arrange
     menu_groups.map do |group, links|

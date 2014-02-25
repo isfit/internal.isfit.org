@@ -88,11 +88,13 @@
     </div> <!-- end navbar -->
 
     <div class="container">
+      <% if any_menu_groups? %>
       <div class="row">
         <div id="submeny" class="span10 offset2">
           <%= menu_groups %>
         </div>
       </div>
+      <% end %>
 
       <div class="row">
         <% if content_for? :sidebar %>
