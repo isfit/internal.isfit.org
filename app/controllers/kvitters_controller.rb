@@ -68,7 +68,7 @@ class KvittersController < ApplicationController
 
   private
   def create_hashtags id, message
-    hashtags = message.scan(/#\w[\wæøå-]+/)
+    hashtags = message.scan(/#[\wæøåÆØÅ][\wæøåÆØÅ-]+/)
 
     hashtags.each do |h|
       hashtag = Hashtag.where(tag: h).first_or_create
