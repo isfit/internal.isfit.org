@@ -8,4 +8,12 @@ class Article < ActiveRecord::Base
   has_many :articles_attendings
 
   self.per_page = 10
+
+  def attending_count
+    self.articles_attendings.count
+  end
+
+  def user_attending? user
+    self.articles_attendings.where(user_id: user.id).any?
+  end
 end

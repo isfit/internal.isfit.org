@@ -18,10 +18,12 @@
           <%= link_to :edit, edit_article_path(article), :class => "btn"%>
           <%= link_to :delete, article, confirm: "Are you sure?", method: :delete, :class => "btn btn-danger"  %>
 
-          <% if article.attending && ArticlesAttending.where(:user_id => current_user.id, :article_id => article.id).blank? %>
-            <%= link_to 'Attend', attending_article_path(article), :class =>"btn", method: :post %>
-          <% elsif article.attending && ArticlesAttending.where(:user_id => current_user.id, :article_id => article.id).blank? == false %>
-            <%= link_to 'Not attend', not_attending_article_path(article), :class =>"btn", method: :post %>
+          <% if article.attending %>
+            <% if article.user_attending? current_user %>
+              <%= link_to 'Not attend', not_attending_article_path(article), :class =>"btn", method: :post %>
+            <% else %>
+              <%= link_to 'Attend', attending_article_path(article), :class =>"btn", method: :post %>
+            <% end %>
           <% end %>
 
         </div>
@@ -35,7 +37,7 @@
         </p>
           <% if article.attending %>
             <small>
-              <%= ArticlesAttending.where(:article_id => article.id).count() %> people are attending.
+              <%= article.attending_count %> people are attending.
             </small>
           <% else %>
             <small>
