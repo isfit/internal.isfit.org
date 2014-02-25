@@ -89,9 +89,11 @@
 
     <div class="container">
       <div class="row">
-        <div id="submeny" class="span8 offset2">
-          <%= menu_groups %>
-        </div>
+        <% if any_menu_groups? %>
+          <div id="submeny" class="span8 offset2">
+            <%= menu_groups %>
+          </div>
+        <% end %>
 
         <% if content_for? :sidebar %>
           <div id="sidebar" class="span4">
