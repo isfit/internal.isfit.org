@@ -24,7 +24,7 @@ if(!String.linkify) {
     var emailAddressPattern = /(([a-zA-Z0-9_\-\.]+)@[a-zA-Z_]+?(?:\.[a-zA-Z]{2,6}))+/gim;
 
     // #{word}
-    var hashtagPattern = /#\w[\wæøå-]+(\b|$)/gim;
+    var hashtagPattern = /#[\wæøåÆØÅ][\wæøåÆØÅ-]+(\b|$)/gim;
 
     var matchHashtag = this.match(hashtagPattern);
     if (matchHashtag != null) {
