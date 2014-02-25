@@ -130,7 +130,7 @@ class AccountsController < ApplicationController
     # Accounts tied to specific sections (section_id non-nil)
     sections = Section.where(:festival_id => 4)
     sections.each do |section|
-      unit_choices.push([section.name_en, -1])
+      unit_choices.push([section.name, -1])
       section_accounts = Account.where(:section_id => section.id)
       section_accounts.each do |section_account|
         unit_choices.push([" -> #{section_account.name}", section_account.id])
