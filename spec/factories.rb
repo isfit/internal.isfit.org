@@ -21,7 +21,8 @@ FactoryGirl.define do
   end
 
   factory :account do
-    name "TestAccount"
+    name_nb "TestKonto"
+    name_en "TestAccount"
   end
 
   factory :room do
