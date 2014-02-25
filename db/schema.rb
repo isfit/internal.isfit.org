@@ -11,10 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131028183810) do
+ActiveRecord::Schema.define(:version => 20140212105654) do
 
   create_table "accounts", :force => true do |t|
-    t.string   "name"
+    t.string   "name_nb"
+    t.string   "name_en"
     t.integer  "section_id"
     t.integer  "account_number"
     t.datetime "created_at"
@@ -342,6 +343,26 @@ ActiveRecord::Schema.define(:version => 20131028183810) do
     t.datetime "updated_at",                    :null => false
     t.boolean  "student"
     t.boolean  "deleted",    :default => false
+  end
+
+  create_table "indaba_speakers", :force => true do |t|
+    t.integer  "year",                          :default => 0
+    t.string   "firstname",      :limit => 128
+    t.string   "lastname",       :limit => 128
+    t.string   "profession",     :limit => 128
+    t.string   "pseudonym",      :limit => 128
+    t.text     "facts"
+    t.text     "invited_to"
+    t.integer  "contact_person",                :default => 0
+    t.text     "resources"
+    t.text     "contactinfo"
+    t.text     "comment"
+    t.integer  "status",                        :default => 0
+    t.integer  "meeting",                       :default => 0
+    t.integer  "nationality",                   :default => 0
+    t.integer  "sex",                           :default => 0
+    t.datetime "timecoming"
+    t.datetime "timeleaving"
   end
 
   create_table "internal_tabs", :force => true do |t|
@@ -787,6 +808,18 @@ ActiveRecord::Schema.define(:version => 20131028183810) do
   add_index "wiki_pages", ["slug"], :name => "index_wiki_pages_on_slug"
   add_index "wiki_pages", ["user_id"], :name => "index_wiki_pages_on_user_id"
   add_index "wiki_pages", ["wiki_category_id"], :name => "index_wiki_pages_on_wiki_category_id"
+
+  create_table "workloads", :force => true do |t|
+    t.integer  "load"
+    t.string   "type"
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "workloads", ["group_id"], :name => "index_workloads_on_group_id"
+  add_index "workloads", ["user_id"], :name => "index_workloads_on_user_id"
 
   create_table "workshops", :force => true do |t|
     t.string   "name"
