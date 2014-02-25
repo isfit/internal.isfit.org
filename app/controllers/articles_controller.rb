@@ -3,7 +3,6 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    #binding.pry
     @articles = Article.order('created_at DESC').paginate(:page => params[:page])
 
     respond_to do |format|
@@ -32,15 +31,12 @@ class ArticlesController < ApplicationController
     redirect_to article_path(@article_id), notice: 'You was successfully removed from this event.'
   end
 
-
-
   # GET /articles/1
   # GET /articles/1.json
   def show
     @article = Article.find(params[:id])
 
     @article_attendings = @article.articles_attendings
-
 
     respond_to do |format|
       format.html # show.html.erb
