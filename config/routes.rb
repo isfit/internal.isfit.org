@@ -180,6 +180,9 @@ InternalIsfitOrg::Application.routes.draw do
   end
   resources :static_pages
   resources :articles
+  post 'articles/attending/:article_id' => 'articles#attending', as: :attending_article
+  post 'articles/notattending/:article_id' => 'articles#notattending', as: :not_attending_article
+
   resources :applicants
   match 'user/edit' => 'users#edit', :as => :edit_current_user
   match 'signup' => 'users#new', :as => :signup

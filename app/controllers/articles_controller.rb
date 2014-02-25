@@ -11,13 +11,32 @@ class ArticlesController < ApplicationController
     end
   end
 
- 
+  def attending
+    @user_id = current_user.id
+    @article_id = params[:article_id]
+    @article_attending = ArticlesAttending.new(user_id: @user_id, article_id: @article_id)
 
+    if @article_attending.save
+      redirect_to article_path(@article_id), notice: 'You was successfully added to this event.'
+    else
+      redirect_to root_path, notice: 'You did not get added to this event.'
+    end
+
+  end
+
+  def notattending
+    @user_id = current_user.id
+    @article_id = params[:article_id]
+    ArticlesAttending.where(user_id: @user_id, article_id: @article_id).destroy_all
+    redirect_to article_path(@article_id), notice: 'You was successfully removed from this event.'
+  end
 
   # GET /articles/1
   # GET /articles/1.json
   def show
     @article = Article.find(params[:id])
+
+    @article_attendings = @article.articles_attendings
 
     respond_to do |format|
       format.html # show.html.erb
