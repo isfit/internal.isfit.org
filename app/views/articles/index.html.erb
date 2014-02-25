@@ -35,7 +35,7 @@
         </p>
           <% if article.attending %>
             <small>
-              <%= ArticlesAttending.where(:user_id => current_user.id, :article_id => article.id).count() %> people are attending.
+              <%= ArticlesAttending.where(:article_id => article.id).count() %> people are attending.
             </small>
           <% else %>
             <small>
