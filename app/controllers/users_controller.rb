@@ -78,16 +78,20 @@ class UsersController < ApplicationController
   end
 
   def impersonate
-    if current_user.role?(:admin)
-      user = User.find_by_username(params[:username])
-      unless user.nil?
-        session[:user_id] = user.id
-        redirect_to root_url
-      else
-        redirect_to root_url
+    user = User.find_by_username(params[:username])
+
+    if current_user.role?(:admin) && !user.nil?
+      if session[:impersonator_user_id].nil?
+        session[:impersonator_user_id] = current_user.id
       end
-    else
-      redirect_to root_url
+
+      session[:user_id] = user.id
+
+      if (session[:impersonator_user_id].eql? session[:user_id])
+        session[:impersonator_user_id] = nil
+      end
     end
+
+    redirect_to root_url
   end
 end

@@ -12,6 +12,9 @@
     <a href="/users/<%=user.id%>.vcf">
       <button id="vcard-button" class="btn-info btn">VCard</button>
     </a>
+  <% if current_user.role? 'admin' %>
+    <%= link_to "Impersonate", impersonate_users_path(user.username), class: "btn btn-info" %>
+  <% end %>
 
 </div>
 <div id="twitter" class="modal fade">

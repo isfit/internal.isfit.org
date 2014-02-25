@@ -108,6 +108,14 @@
                 <i class="icon-<%= notice ? "success":"warning-sign" %>"></i> <strong><%= notice ? raw((notice)) : raw(alert) %></strong>
               </div>
             <% end %>
+            <% if session[:impersonator_user_id] %>
+              <div class="alert alert-success">
+                <i class="icon-success"></i>
+                <strong>
+                  <%= raw "For å bli deg selv, #{link_to "trykk her.", impersonate_users_path(User.find(session[:impersonator_user_id]).username)}" %>
+                </strong>
+              </div>
+            <% end %>
             <%= content_tag :h1, yield(:title) if show_title? %>
             <%= yield %>
           </div>
