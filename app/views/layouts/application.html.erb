@@ -89,10 +89,12 @@
 
     <div class="container">
       <div class="row">
-        <div id="submeny" class="span8 offset2">
+        <div id="submeny" class="span10 offset2">
           <%= menu_groups %>
         </div>
+      </div>
 
+      <div class="row">
         <% if content_for? :sidebar %>
           <div id="sidebar" class="span4">
             <%= yield :sidebar %>
@@ -101,7 +103,6 @@
         <% else %>
           <div id="content" class="span12">
         <% end %>
-          <div>
             <% if notice or alert %>
               <div class="alert alert-<%= notice ? "success":"error" %>">
                 <a href="#" class="close" data-dismiss="alert">x</a>
