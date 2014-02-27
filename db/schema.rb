@@ -11,7 +11,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140212105654) do
+
+ActiveRecord::Schema.define(:version => 20140224191458) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name_nb"
@@ -73,6 +74,12 @@ ActiveRecord::Schema.define(:version => 20140212105654) do
     t.string   "article_image_content_type"
     t.integer  "article_image_file_size"
     t.datetime "article_image_updated_at"
+    t.boolean  "attending",                  :default => false
+  end
+
+  create_table "articles_attendings", :force => true do |t|
+    t.integer "article_id"
+    t.integer "user_id"
   end
 
   create_table "awesomes", :force => true do |t|
@@ -140,13 +147,12 @@ ActiveRecord::Schema.define(:version => 20140212105654) do
   end
 
   create_table "countries", :id => false, :force => true do |t|
-    t.integer "id",                     :default => 0, :null => false
-    t.string  "name",                                  :null => false
-    t.integer "region_id",                             :null => false
-    t.string  "code",      :limit => 4,                :null => false
+    t.integer "id",   :default => 0, :null => false
+    t.string  "name"
   end
 
-  create_table "dialogue_participants", :force => true do |t|
+  create_table "dialogue_participants", :id => false, :force => true do |t|
+    t.integer  "id",                                      :default => 0,     :null => false
     t.datetime "registered_time",                                            :null => false
     t.string   "first_name",                                                 :null => false
     t.string   "middle_name",              :limit => 64
@@ -185,8 +191,6 @@ ActiveRecord::Schema.define(:version => 20140212105654) do
     t.boolean  "notified_invited",                        :default => false, :null => false
     t.boolean  "notified_rejected",                       :default => false, :null => false
   end
-
-  add_index "dialogue_participants", ["email"], :name => "email", :unique => true
 
   create_table "driver_shifts", :force => true do |t|
     t.datetime "start_time"
@@ -414,32 +418,6 @@ ActiveRecord::Schema.define(:version => 20140212105654) do
     t.date     "last_proofread"
   end
 
-  create_table "new_frontend_articles", :force => true do |t|
-    t.string   "title_en"
-    t.string   "title_no"
-    t.text     "ingress_en"
-    t.text     "ingress_no"
-    t.text     "body_en"
-    t.text     "body_no"
-    t.integer  "weight"
-    t.boolean  "deleted"
-    t.string   "sub_title_no"
-    t.string   "sub_title_en"
-    t.string   "byline"
-    t.integer  "byline_user_id"
-    t.boolean  "mail_sent"
-    t.datetime "show_article"
-    t.boolean  "got_comments"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "list"
-    t.string   "image_text_no"
-    t.string   "image_text_en"
-    t.boolean  "published"
-    t.string   "image_credits"
-    t.boolean  "press_release"
-  end
-
   create_table "pads", :force => true do |t|
     t.string   "hexid"
     t.datetime "created_at"
@@ -456,7 +434,8 @@ ActiveRecord::Schema.define(:version => 20140212105654) do
 
   add_index "participant_quotes", ["user_id"], :name => "index_participant_quotes_on_user_id"
 
-  create_table "participants", :force => true do |t|
+  create_table "participants", :id => false, :force => true do |t|
+    t.integer  "id",                                        :default => 0,     :null => false
     t.datetime "registered_time",                                              :null => false
     t.datetime "checked_in"
     t.datetime "picked_up"
@@ -534,8 +513,6 @@ ActiveRecord::Schema.define(:version => 20140212105654) do
     t.boolean  "special_invite",                            :default => false, :null => false
     t.boolean  "deleted",                                   :default => false
   end
-
-  add_index "participants", ["email"], :name => "email", :unique => true
 
   create_table "photos", :force => true do |t|
     t.string   "image_text_en"
@@ -667,18 +644,19 @@ ActiveRecord::Schema.define(:version => 20140212105654) do
     t.datetime "spp_article_image_updated_at"
   end
 
-  create_table "spp_pages", :force => true do |t|
+  create_table "spp_pages", :id => false, :force => true do |t|
+    t.integer  "id",             :default => 0, :null => false
     t.string   "title_en"
-    t.string   "ingress_en"
+    t.text     "ingress_en"
     t.text     "body_en"
     t.string   "image_text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "byline_func_id"
     t.string   "byline"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
     t.string   "title_no"
-    t.text     "body_no"
     t.text     "ingress_no"
+    t.text     "body_no"
   end
 
   create_table "static_pages", :force => true do |t|
