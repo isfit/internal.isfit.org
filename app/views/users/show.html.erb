@@ -17,7 +17,7 @@
       <dd><%= @user.phone %></dd>
       <% end %>
 
-      <% unless @user.address.empty? && @user.postal_code.nil? %>
+      <% unless @user.address.blank? && @user.postal_code.nil? %>
       <dt>Address</dt>
       <dd>
         <% if @user.address %><%= @user.address %><% end %>
@@ -27,7 +27,7 @@
       <% end %>
     </dl>
 
-    <% unless @user.date_of_birth.nil? && @user.local_paper.empty? %>
+    <% unless @user.date_of_birth.nil? && @user.local_paper.blank? %>
     <dl class="dl-horizontal">
       <% unless @user.date_of_birth.nil? %>
       <dt>Date of bith</dt>
@@ -87,7 +87,7 @@
     </p>
     <% end %>
 
-    <% unless @user.twitter_username.empty? %>
+    <% unless @user.twitter_username.blank? %>
     <p>
       <a href="https://twitter.com/<%= @user.twitter_username%>">
         <button id="twitter-button" class="btn-info btn" style="width: 100%;">Twitter</button>
