@@ -14,12 +14,15 @@ class ArticlesController < ApplicationController
   def attending
     @user_id = current_user.id
     @article_id = params[:article_id]
-    @article_attending = ArticlesAttending.new(user_id: @user_id, article_id: @article_id)
-
-    if @article_attending.save
-      redirect_to article_path(@article_id), notice: 'You was successfully added to this event.'
+    if(ArticlesAttending.where(:user_id => @user_id, :article_id => @article_id).blank?)
+      @article_attending = ArticlesAttending.new(user_id: @user_id, article_id: @article_id)
+      if @article_attending.save
+        redirect_to article_path(@article_id), notice: 'You was successfully added to this event.'
+      else
+        redirect_to root_path, notice: 'You did not get added to this event.'
+      end
     else
-      redirect_to root_path, notice: 'You did not get added to this event.'
+      redirect_to root_path, notice: 'You are already attending.'
     end
 
   end
@@ -27,8 +30,12 @@ class ArticlesController < ApplicationController
   def notattending
     @user_id = current_user.id
     @article_id = params[:article_id]
-    ArticlesAttending.where(user_id: @user_id, article_id: @article_id).destroy_all
-    redirect_to article_path(@article_id), notice: 'You was successfully removed from this event.'
+    if(!ArticlesAttending.where(:user_id => @user_id, :article_id => @article_id).blank?)
+      ArticlesAttending.where(user_id: @user_id, article_id: @article_id).destroy_all
+      redirect_to article_path(@article_id), notice: 'You was successfully removed from this event.'
+    else
+      redirect_to root_path, notice: 'You are already not attending.'
+    end
   end
 
   # GET /articles/1
