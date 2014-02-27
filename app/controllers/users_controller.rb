@@ -41,7 +41,6 @@ class UsersController < ApplicationController
     end
 
     @user = User.find(params[:id])
-    @quests = UserQuest.where("npc_id = ? AND status = 1 AND deadline > ? AND hero_id = ?", current_user.id, DateTime.now, @user.id)
 
     respond_to do |format|
       format.vcf { render @user}

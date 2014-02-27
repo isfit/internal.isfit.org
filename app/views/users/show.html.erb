@@ -61,16 +61,6 @@
       <% end %>
     </section>
 
-    <% if @quests.count > 0 %>
-    <section id="user-quests">
-      <h4>Active Quests</h4>
-
-      <% @quests.each do |q| %>
-          <q><%= q.quest.quest_text %> <%= current_user.full_name %></q> <%= link_to "Approve", user_quest_finish_path(q) %>
-      <% end %>
-    </section>
-    <% end %>
-
     <% if current_user.role? 'admin' %>
     <section id="user-roles">
       <h4>Roller</h4>
