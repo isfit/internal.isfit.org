@@ -1,38 +1,123 @@
-<div class="user readable">
-  <% if @user.profile_picture? %>
-    <div class="picture pull-right" >
-      <%= image_tag @user.profile_picture.url(:large) %>
-    </div>
-  <% elsif @user == current_user %>
-    <div class="pull-right">
-      <p>No picture? Upload yours at <%= link_to "edit profile", edit_user_path(@user) %></p>
-    </div>
-  <% end %>
-  <div><%=render @user %></div>
-  <div>
-    <h5>Tasks</h5>
-    <% if @user.tasks %>
-      <%= format(@user.tasks) %><br>
-    <% else %>
-      No task added.<br>
-    <% end %>
+</div></div>
+
+<div class="row">
+  <div class="span12">
+    <h1><%= @user.full_name %></h1>
   </div>
-  <div>
+</div>
+
+<div class="row">
+  <div class="span10">
+    <dl class="dl-horizontal" style="margin-top: 0;">
+      <dt>E-mail</dt>
+      <dd><a href="mailto:<%= @user.username %>@isfit.org"><%= @user.username %>@isfit.org</a></dd>
+
+      <% if @user.phone %>
+      <dt>Phone</dt>
+      <dd><%= @user.phone %></dd>
+      <% end %>
+
+      <% if @user.address || @user.postal_code %>
+      <dt>Adresse</dt>
+      <dd>
+        <% if @user.address %><%= @user.address %><% end %>
+        <% if @user.address && @user.postal_code %><br /><% end %>
+        <% if @user.postal_code %><%= @user.postal_code %> <%= @user.city %><% end %>
+      </dd>
+      <% end %>
+    </dl>
+
+    <% if @user.date_of_birth || @user.local_paper %>
+    <dl class="dl-horizontal">
+      <% if @user.date_of_birth %>
+      <dt>Date of bith</dt>
+      <dd><%= @user.date_of_birth %> (<%= time_ago_in_words(@user.date_of_birth) %>)</dd>
+      <% end %>
+
+      <% if @user.local_paper %>
+      <dt>Local newspaper</dt>
+      <dd><%= @user.local_paper %></dd>
+      <% end %>
+    </dl>
+    <% end %>
+
+    <section id="user-positions">
+      <h4><%= pluralize(@user.positions.count, "position")%></h4>
+
+      <ul>
+        <% @user.positions.reverse.each do |position| %>
+          <li><%= position.title_en %> - <%= position.groups.first.name_en %>, <%= position.festival_year %></li>
+        <% end %>
+      </ul>
+    </section>
+
+    <section id="user-tasks">
+      <h4>Tasks</h4>
+
+      <% unless @user.tasks.blank? %>
+        <%= format(@user.tasks) %>
+      <% else %>
+        <p>No task added.</p>
+      <% end %>
+    </section>
+
     <% @quests = UserQuest.where("npc_id = ? AND status = 1 AND deadline > ? AND hero_id = ?", current_user.id, DateTime.now, @user.id) %>
     <% if @quests.count > 0 %>
-      <h5>Active Quests</h5>
-      <% @quests.each do |q| %>
-        <q><%= q.quest.quest_text %> <%= current_user.full_name %></q> <%= link_to "Approve", user_quest_finish_path(q) %>
-      <% end %>
-    <% end %>
-  </div>
+    <section id="user-quests">
+      <h4>Active Quests</h4>
 
-  <% if current_user.role? 'admin' %>
-    <h5>Roller</h5>
-    <ul>
+      <% @quests.each do |q| %>
+          <q><%= q.quest.quest_text %> <%= current_user.full_name %></q> <%= link_to "Approve", user_quest_finish_path(q) %>
+      <% end %>
+    </section>
+    <% end %>
+
+    <% if current_user.role? 'admin' %>
+    <section id="user-roles">
+      <h4>Roller</h4>
+
+      <ul>
       <% @user.roles.each do |r| %>
         <li><%= r.name %></li>
       <% end %>
-    </ul>
-  <% end %>
-</div>
+      </ul>
+    <% end %>
+    </section>
+  </div>
+
+  <div class="span2">
+    <% if @user.profile_picture? %>
+      <p><%= image_tag @user.profile_picture.url(:large), class: "img-rounded" %></p>
+    <% elsif @user == current_user %>
+      <p>No picture? Upload yours at <%= link_to "edit profile", edit_user_path(@user) %></p>
+    <% end %>
+
+    <% if @user.facebook_id %>
+    <p>
+      <a href="http://facebook.com/<%= @user.facebook_id %>">
+        <button id="facebook-button" class="btn-info btn" style="width: 100%;>Facebook</button>
+      </a>
+    </p>
+    <% end %>
+
+    <% if @user.twitter_username %>
+    <p>
+      <a href="https://twitter.com/<%= @user.twitter_username%>">
+        <button id="twitter-button" class="btn-info btn" style="width: 100%;">Twitter</button>
+      </a>
+    </p>
+    <% end %>
+
+    <p>
+      <a href="/users/<%= @user.id %>.vcf">
+        <button id="vcard-button" class="btn-info btn" style="width: 100%;">vCard</button>
+      </a>
+    </p>
+
+    <% if current_user.role? 'admin' %>
+    <p>
+      <a href="<%= impersonate_users_path(@user.username) %>">
+        <button id="twitter-button" class="btn-info btn" style="width: 100%;">Impersonate</button>
+      </a>
+    </p>
+    <% end %>
