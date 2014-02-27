@@ -61,7 +61,6 @@
       <% end %>
     </section>
 
-    <% @quests = UserQuest.where("npc_id = ? AND status = 1 AND deadline > ? AND hero_id = ?", current_user.id, DateTime.now, @user.id) %>
     <% if @quests.count > 0 %>
     <section id="user-quests">
       <h4>Active Quests</h4>
@@ -95,7 +94,7 @@
     <% if @user.facebook_id %>
     <p>
       <a href="http://facebook.com/<%= @user.facebook_id %>">
-        <button id="facebook-button" class="btn-info btn" style="width: 100%;>Facebook</button>
+        <button id="facebook-button" class="btn-info btn" style="width: 100%;">Facebook</button>
       </a>
     </p>
     <% end %>

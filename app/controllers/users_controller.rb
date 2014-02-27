@@ -38,15 +38,15 @@ class UsersController < ApplicationController
   def show
     if params[:id] == "1"
       redirect_to root_url, notice: "Placeholdersen is only a figment of your imagination."
-    else
-      @user = User.find(params[:id])
-      @kvitters = Kvitter.where(user_id: @user.id).order('created_at DESC').limit(10)
-      respond_to do |format|
-        format.vcf { render @user}
-        format.html
-      end
     end
 
+    @user = User.find(params[:id])
+    @quests = UserQuest.where("npc_id = ? AND status = 1 AND deadline > ? AND hero_id = ?", current_user.id, DateTime.now, @user.id)
+
+    respond_to do |format|
+      format.vcf { render @user}
+      format.html
+    end
   end
 
   def index
