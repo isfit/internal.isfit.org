@@ -116,4 +116,8 @@ class User < ActiveRecord::Base
       ldap.replace_attribute dn, :sambaNTPassword, OpenSSL::Digest::MD4.hexdigest(Iconv.iconv("UCS-2", "UTF-8", pass).join).upcase
     end
   end
+
+  def latest_position
+    self.positions.last
+  end
 end

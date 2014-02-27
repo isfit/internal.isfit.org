@@ -3,6 +3,12 @@
 <div class="row">
   <div class="span12">
     <h1><%= @user.full_name %></h1>
+
+    <p><em>
+      <% unless @user.latest_position.festival_year.to_s == CURRENT_FESTIVAL_YEAR %>Pang <%= @user.latest_position.festival_year %> -<% end %>
+      <%= @user.latest_position.title_en %> -
+      <%= @user.latest_position.groups.first.name_en %>
+    </em></p>
   </div>
 </div>
 
