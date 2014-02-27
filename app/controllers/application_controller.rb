@@ -38,7 +38,13 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    I18n.locale = params[:locale] || :nb
+    if params[:locale]
+      session[:locale] = params[:locale]
+    end
+
+    if session[:locale]
+      I18n.locale = session[:locale]
+    end
   end
 
   # Get for constant RELOAD_LIBS
