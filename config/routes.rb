@@ -191,6 +191,7 @@ InternalIsfitOrg::Application.routes.draw do
   resources :users do 
     collection do
       get 'impersonate/:username', action: :impersonate, as: :impersonate
+      get 'unimpersonate', action: :unimpersonate
       get 'username/:username', action: :username
       get 'change_password', action: :change_password
       post 'change_password', action: :change_password

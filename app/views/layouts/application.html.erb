@@ -116,7 +116,7 @@
             <div class="alert alert-success">
                 <i class="icon-success"></i>
                 <strong>
-                  <%= raw "For å bli deg selv, #{link_to "trykk her.", impersonate_users_path(User.find(session[:impersonator_user_id]).username)}" %>
+                  <%= raw "For å bli deg selv, #{link_to "trykk her.", unimpersonate_users_path}" %>
                 </strong>
             </div>
           <% end %>

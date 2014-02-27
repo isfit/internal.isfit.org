@@ -93,4 +93,13 @@ class UsersController < ApplicationController
 
     redirect_to root_url
   end
+
+  def unimpersonate
+    user = User.find_by_id(session[:impersonator_user_id])
+
+    session[:user_id] = user.id
+    session[:impersonator_user_id] = nil
+
+    redirect_to root_url
+  end
 end
