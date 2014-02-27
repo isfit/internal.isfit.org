@@ -10,6 +10,12 @@ class WikiPage < ActiveRecord::Base
     self.wiki_page
   end
 
+  def self.find_last_edit
+    self.find_by_sql("SELECT * FROM wiki_categories AS w, (#{WikiPage.select("*")
+      .from("(#{WikiPage.where(deleted: nil)
+      .order("created_at DESC").to_sql}) as p").group("slug").order("slug DESC")
+    .to_sql}) AS p WHERE p.wiki_category_id = w.id ORDER BY w.title ASC")
+  end
   private
 
   def sluggify
