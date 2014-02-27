@@ -72,9 +72,9 @@
                   <li><%= link_to "Change password", change_password_users_path %></li>
                   <li class="divider"></li>
                   <% if I18n.locale.to_s.eql?('nb') %>
-                    <li><%= link_to "English", '/?locale=en' %></li>
+                    <li><%= link_to "English", '?locale=en' %></li>
                   <% else %>
-                    <li><%= link_to "Norsk", '/?locale=nb' %></li>
+                    <li><%= link_to "Norsk", '?locale=nb' %></li>
                   <% end %>
                   <li class="divider"></li>
                   <li><%= link_to "Logout", logout_path %></li> 
