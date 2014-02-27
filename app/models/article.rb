@@ -16,4 +16,10 @@ class Article < ActiveRecord::Base
   def user_attending? user
     self.articles_attendings.where(user_id: user.id).any?
   end
+
+  def attending_users
+    self.articles_attendings.map do |attendings|
+      User.find(attendings.user_id).full_name
+    end
+  end
 end

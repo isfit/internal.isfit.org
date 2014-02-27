@@ -36,7 +36,7 @@ class ArticlesController < ApplicationController
   def show
     @article = Article.find(params[:id])
 
-    @article_attendings = @article.articles_attendings
+    @attending_users = @article.attending_users
 
     respond_to do |format|
       format.html # show.html.erb

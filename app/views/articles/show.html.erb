@@ -13,8 +13,8 @@
 </p>	
 <p>
 	<ul>
-		<% for article_attending in @article_attendings %>
-			<li><%= User.find(article_attending.user_id).given_name + " " + User.find(article_attending.user_id).family_name %> </li>
+		<% for user in @attending_users %>
+			<li><%= user %> </li>
 		<% end %>
 	</ul>
 </p>
