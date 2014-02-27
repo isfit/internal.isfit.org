@@ -12,13 +12,13 @@
       <dt>E-mail</dt>
       <dd><a href="mailto:<%= @user.username %>@isfit.org"><%= @user.username %>@isfit.org</a></dd>
 
-      <% if @user.phone %>
+      <% unless @user.phone.empty? %>
       <dt>Phone</dt>
       <dd><%= @user.phone %></dd>
       <% end %>
 
-      <% if @user.address || @user.postal_code %>
-      <dt>Adresse</dt>
+      <% unless @user.address.empty? && @user.postal_code.nil? %>
+      <dt>Address</dt>
       <dd>
         <% if @user.address %><%= @user.address %><% end %>
         <% if @user.address && @user.postal_code %><br /><% end %>
@@ -27,14 +27,14 @@
       <% end %>
     </dl>
 
-    <% if @user.date_of_birth || @user.local_paper %>
+    <% unless @user.date_of_birth.nil? && @user.local_paper.empty? %>
     <dl class="dl-horizontal">
-      <% if @user.date_of_birth %>
+      <% unless @user.date_of_birth.nil? %>
       <dt>Date of bith</dt>
       <dd><%= @user.date_of_birth %> (<%= time_ago_in_words(@user.date_of_birth) %>)</dd>
       <% end %>
 
-      <% if @user.local_paper %>
+      <% unless @user.local_paper.empty? %>
       <dt>Local newspaper</dt>
       <dd><%= @user.local_paper %></dd>
       <% end %>
@@ -51,15 +51,13 @@
       </ul>
     </section>
 
+    <% unless @user.tasks.blank? %>
     <section id="user-tasks">
       <h4>Tasks</h4>
 
-      <% unless @user.tasks.blank? %>
-        <%= format(@user.tasks) %>
-      <% else %>
-        <p>No task added.</p>
-      <% end %>
+      <%= format(@user.tasks) %>
     </section>
+    <% end %>
 
     <% if current_user.role? 'admin' %>
     <section id="user-roles">
@@ -89,7 +87,7 @@
     </p>
     <% end %>
 
-    <% if @user.twitter_username %>
+    <% unless @user.twitter_username.empty? %>
     <p>
       <a href="https://twitter.com/<%= @user.twitter_username%>">
         <button id="twitter-button" class="btn-info btn" style="width: 100%;">Twitter</button>
