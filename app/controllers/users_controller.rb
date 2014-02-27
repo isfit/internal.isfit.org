@@ -38,15 +38,14 @@ class UsersController < ApplicationController
   def show
     if params[:id] == "1"
       redirect_to root_url, notice: "Placeholdersen is only a figment of your imagination."
-    else
-      @user = User.find(params[:id])
-      @kvitters = Kvitter.where(user_id: @user.id).order('created_at DESC').limit(10)
-      respond_to do |format|
-        format.vcf { render @user}
-        format.html
-      end
     end
 
+    @user = User.find(params[:id])
+
+    respond_to do |format|
+      format.vcf { render @user}
+      format.html
+    end
   end
 
   def index
@@ -78,16 +77,29 @@ class UsersController < ApplicationController
   end
 
   def impersonate
-    if current_user.role?(:admin)
-      user = User.find_by_username(params[:username])
-      unless user.nil?
-        session[:user_id] = user.id
-        redirect_to root_url
-      else
-        redirect_to root_url
+    user = User.find_by_username(params[:username])
+
+    if current_user.role?(:admin) && !user.nil?
+      if session[:impersonator_user_id].nil?
+        session[:impersonator_user_id] = current_user.id
       end
-    else
-      redirect_to root_url
+
+      session[:user_id] = user.id
+
+      if (session[:impersonator_user_id].eql? session[:user_id])
+        session[:impersonator_user_id] = nil
+      end
     end
+
+    redirect_to root_url
+  end
+
+  def unimpersonate
+    user = User.find_by_id(session[:impersonator_user_id])
+
+    session[:user_id] = user.id
+    session[:impersonator_user_id] = nil
+
+    redirect_to root_url
   end
 end
