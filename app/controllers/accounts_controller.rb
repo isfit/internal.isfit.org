@@ -55,6 +55,10 @@ class AccountsController < ApplicationController
     @unit_choices_text = get_unit_choices_text
   end
 
+  def invoice
+    @unit_choices_text = get_unit_choices_text
+  end
+
   def festihvalen
     @unit_choices_text = get_unit_choices_text
   end

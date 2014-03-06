@@ -1,0 +1,55 @@
+<h1>Invoice form</h1>
+<p>Fill in the form below and press "Create form" to
+generate a printable invoice form.</p>
+<%= form_tag print_invoice_accounts_path do %>
+<table class="table table-bordered" width="400">
+	<tr>
+		<td width="150">Date:</td>
+		<td><%= Time.now.strftime("%d.%m.%Y") %></td>
+	</tr>
+	<tr valign="top">
+		<td>Name:</td>
+		<td><%= "#{current_user.full_name_reversed}" %><br /><br /></td>
+	</tr>
+    <tr valign="top">
+        <td>Due date:</td>
+        <td><%= text_field(:voucher, :due, :class => 'date') %></td>
+    </tr>
+	<tr valign="top">
+    <td><%=label_tag :unit%></td>
+		<td><%= select(:voucher, :unit, @unit_choices_text) %><br /></td>
+	</tr>
+	<tr>
+		<td>Refund:</td>
+		<td><%= check_box(:voucher, :refund) %></td>
+	</tr>
+	<tr>
+		<td><%=label_tag :account_number %></td>
+		<td>
+			<%= text_field(:voucher, :account_no, :style => 'width: 250px') %>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td>Attachments:</td>
+		<td><%= select(:voucher, :attachments, [0,1,2,3,4,5,6,7,8,9,10], {}, 
+			{:style => 'width: 50px'}) %></td>
+	</tr>
+	<tr valign="top" class='addline'>
+		<td id="amount_col">
+			Amount (NOK):<br />
+			<%= text_field(:voucher, :amount1, :class => 'amount', 'data-number' => '1') %>
+		</td>
+		<td id="desc_col">
+			Description:<br />
+			<%= text_field(:voucher, :description1, :class => 'description', 'data-number' => '1') %>
+		</td>
+	</tr>
+	<tr>
+		<td><%= submit_tag("Create invoice", class: "primary btn") %></td>
+    <% end %>
+		<td valign="top">
+			<input type="button" class='addrow btn' value="Add row" />
+			<input type="button" class='removerow btn' value="Remove row"  />
+		</td>
+	</tr>
+</table>
