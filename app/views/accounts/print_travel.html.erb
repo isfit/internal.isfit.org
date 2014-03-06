@@ -64,10 +64,20 @@
 			</tr>
 			<tr>
 				<td class="line" colspan="2">
-				<b>Purpose of travel:</b><br /><br />
+				<b>Purpose of travel:</b><br />
 				<%= params[:voucher][:purpose] %>
 				</td>
 			</tr>
+            <tr>
+                <td class="line">
+                    <b>Departure:</b><br />
+                    <%= params[:voucher][:departure] %>
+                </td>
+                <td class="line">
+                    <b>Return:</b><br />
+                    <%= params[:voucher][:return] %>
+                </td>
+            </tr>
 			<tr>
 				<td colspan="2"><br /></td>
 			</tr>
@@ -75,38 +85,21 @@
 				<td class="line" colspan="2">
 					<table width="100%" cellspacing="0">
 						<tr>
-							<td><b>Date</b></td>
 							<td><b>Route</b></td>
 							<td><b>Means</b></td>
 							<td><b>Amount</b></td>
-							<td><b>Internal</b></td>
 						</tr>
-					<% for i in 1..(params[:carriers].size / 4) %>
+					<% for i in 1..(params[:carriers].size / 3) %>
 						<tr valign="top">
-							<td width="15%"><%= params[:carriers]["date#{i}"] %></td>
-							<td width="40%"><%= params[:carriers]["route#{i}"] %></td>
-							<td width="20%"><%= params[:carriers]["means#{i}"] %></td>
+							<td width="60%"><%= params[:carriers]["route#{i}"] %></td>
+							<td width="30%"><%= params[:carriers]["means#{i}"] %></td>
 							<td align="right" width="10%"><%= params[:carriers]["amount#{i}"] %></td>
-							<td width="15%"></td>
 						</tr>
 					<% end %>
 						<tr>
-							<td colspan="2"></td>
+							<td></td>
 							<td style="border-left: 1px solid black; border-top: 1px solid black;">Total:</td>
 							<td style="border-top: 1px solid black" align="right"><%=@sum.to_s%></td>
-							<td style="border-top: 1px solid black"></td>
-						</tr>
-						<tr>
-							<td colspan="2"></td>
-							<td style="border-left: 1px solid black">T. advance</td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td colspan="2"></td>
-							<td style="border-left: 1px solid black"><b>For payment</b></td>
-							<td></td>
-							<td></td>
 						</tr>
 					</table>
 				</td>

@@ -83,7 +83,7 @@ class AccountsController < ApplicationController
     @account = Account.find(params[:voucher][:unit]) if params[:voucher][:unit]
 
     params[:voucher].keys.each do |key|
-      if key =~ /date\d+|route\d+|means\d+|amount\d+/ then
+      if key =~ /route\d+|means\d+|amount\d+/ then
         usages[key] = params[:voucher][key]
       end
     end
