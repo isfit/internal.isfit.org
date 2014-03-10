@@ -116,6 +116,9 @@ class AccountsController < ApplicationController
     for i in 1..((params[:usages].size / 2)  )
       @sum += params[:usages]["amount#{i}"].sub(/,/, '.').to_d
     end
+
+    AccountsMailer.invoice_mail(params[:voucher][:due], @sum).deliver
+
     render layout:false
   end
 
