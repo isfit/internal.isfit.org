@@ -140,9 +140,11 @@ InternalIsfitOrg::Application.routes.draw do
     collection do
       get 'travel'
       get 'voucher'
+      get 'invoice'
       get 'festihvalen'
       post 'print_travel'
       post 'print_voucher'
+      post 'print_invoice'
       post 'print_festihvalen'
     end
   end
