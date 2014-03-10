@@ -101,6 +101,24 @@ class AccountsController < ApplicationController
 
   end
 
+  def print_invoice
+    usages = {}
+    @account = Account.find(params[:voucher][:unit]) if params[:voucher][:unit]
+
+    params[:voucher].keys.each do |key|
+      if key =~ /amount\d+|description\d+/ then
+        usages[key] = params[:voucher][key]
+      end
+    end
+    params[:usages] = usages
+    @sum = 0.0
+
+    for i in 1..((params[:usages].size / 2)  )
+      @sum += params[:usages]["amount#{i}"].sub(/,/, '.').to_d
+    end
+    render layout:false
+  end
+
   def print_festihvalen
     usages = {}
     @account = Account.find(params[:voucher][:unit]) if params[:voucher][:unit]
