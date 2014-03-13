@@ -18,7 +18,7 @@ class WikiPagesController < ApplicationController
   end
 
   def wiki_show
-    @wiki_page = WikiPage.where(slug: params[:page_slug]).order("created_at DESC").limit(1).first
+    @wiki_page = WikiPage.where(slug: params[:page_slug].force_encoding('cp1252')).order("created_at DESC").limit(1).first
     render 'show'
   end
 
