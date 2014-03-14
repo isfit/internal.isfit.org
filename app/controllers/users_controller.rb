@@ -36,8 +36,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    if params[:id] == "1"
-      redirect_to root_url, notice: "Placeholdersen is only a figment of your imagination."
+    if params[:id].eql?(1)
+      notice = "Placeholdersen is only a figment of your imagination."
+      redirect_to(root_url, notice: notice) and return
     end
 
     @user = User.find(params[:id])
