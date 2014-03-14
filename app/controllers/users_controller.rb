@@ -36,7 +36,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    if params[:id].eql?(1)
+    binding.pry
+    if params[:id].to_i.eql?(1)
       notice = "Placeholdersen is only a figment of your imagination."
       redirect_to(root_url, notice: notice) and return
     end
