@@ -21,6 +21,7 @@
       <th class="header"><%= "First interview"%></th>
       <th class="header"><%= "Second"%></th>
       <th class="header"><%= "Thirds"%></th>
+      <th class="header"><%= "Created at"%></th>
     </tr>
   </thead>
   <% @applicants.each do |applicant| %>
@@ -45,6 +46,7 @@
       <td><%= (applicant.interview_place_1 != '' and applicant.interview_time_1) ? applicant.interview_time_1.strftime("%d.%m %H:%M") : '-' %></td>
       <td><%= (applicant.interview_place_2 != '' and applicant.interview_time_2) ? applicant.interview_time_2.strftime("%d.%m %H:%M") : '-' %></td>
       <td><%= (applicant.interview_place_3 != '' and applicant.interview_time_3) ? applicant.interview_time_3.strftime("%d.%m %H:%M") : '-' %></td>
+      <td><%= applicant.created_at.strftime("%Y-%m-%d %H:%M:%S") %> </td>
     </tr>
   <% end %>
 </table>

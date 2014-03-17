@@ -55,6 +55,14 @@
 		<td><b>Interview Time 3</b></td>
     <td><%= @applicant.interview_time_3 %> <%= @applicant.interview_place_3 %></td>
 	</tr>
+	<tr>
+		<td><b>Created at</b></td>
+    <td><%= @applicant.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+	</tr>
+		<tr>
+		<td><b>Updated at</b></td>
+    <td><%= @applicant.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+	</tr>
   <tr>
     <td colspan="2">
 		<h3>Information about self</h3>
