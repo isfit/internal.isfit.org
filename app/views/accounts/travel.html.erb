@@ -5,39 +5,47 @@ generate a printable travel refund form.</p>
 <table class="table table-bordered" width="725">
 	<tr>
 		<td width="150">Date:</td>
-		<td colspan="3"><%= Time.now.strftime("%d.%m.%Y") %></td>
+		<td colspan="2"><%= Time.now.strftime("%d.%m.%Y") %></td>
 	</tr>
 	<tr>
 		<td>Name:</td>
-		<td colspan="3"><%= current_user.full_name_reversed %></td>
+		<td colspan="2"><%= current_user.full_name_reversed %></td>
 	</tr>
 	<tr>
 		<td>Unit:</td>
-		<td colspan="3">
+		<td colspan="2">
 		  <%= select(:voucher, :unit, @unit_choices_text) %></td>
 	</tr>
 	<tr>
 		<td>Refund account number:</td>
-		<td colspan="3">
+		<td colspan="2">
 			<%= text_field(:voucher, :account_no, :style => 'width: 250px') %>
 		</td>
 	</tr>
 	<tr>
 		<td>Purpose of travel:</td>
-		<td colspan="3">
+		<td colspan="2">
 			<%= text_field(:voucher, :purpose, :style => 'width: 250px') %>
 		</td>
 	</tr>
+    <tr>
+        <td>Departure date:</td>
+        <td colspan="2">
+            <%= text_field(:voucher, :departure, :class => 'date', 'data-number' => '1') %>
+        </td>
+    </tr>
+    <tr>
+        <td>Return date:</td>
+        <td colspan="2">
+            <%= text_field(:voucher, :return, :class => 'date', 'data-number' => '1') %>
+        </td>
+    </tr>
 	<tr>
 		<td>Attachments:</td>
-		<td colspan="3"><%= select(:voucher, :attachments, [0,1,2,3,4,5,6,7,8,9,10], {}, 
+		<td colspan="2"><%= select(:voucher, :attachments, [0,1,2,3,4,5,6,7,8,9,10], {},
 			{:style => 'width: 50px'}) %></td>
 	</tr>
 	<tr valign="top" class="addline">
-		<td id="date_col" >
-			Date:<br />
-			<%= text_field(:voucher, :date1, :class => 'date', 'data-number' => '1') %>
-		</td>
 		<td id="route_col">
 			Travel route:<br />
 			<%= text_field(:voucher, :route1, :class => 'route', 'data-number' => '1') %>

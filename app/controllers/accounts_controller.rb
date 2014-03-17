@@ -55,6 +55,10 @@ class AccountsController < ApplicationController
     @unit_choices_text = get_unit_choices_text
   end
 
+  def invoice
+    @unit_choices_text = get_unit_choices_text
+  end
+
   def festihvalen
     @unit_choices_text = get_unit_choices_text
   end
@@ -83,7 +87,7 @@ class AccountsController < ApplicationController
     @account = Account.find(params[:voucher][:unit]) if params[:voucher][:unit]
 
     params[:voucher].keys.each do |key|
-      if key =~ /date\d+|route\d+|means\d+|amount\d+/ then
+      if key =~ /route\d+|means\d+|amount\d+/ then
         usages[key] = params[:voucher][key]
       end
     end
@@ -95,6 +99,27 @@ class AccountsController < ApplicationController
 
     render layout:false
 
+  end
+
+  def print_invoice
+    usages = {}
+    @account = Account.find(params[:voucher][:unit]) if params[:voucher][:unit]
+
+    params[:voucher].keys.each do |key|
+      if key =~ /amount\d+|description\d+/ then
+        usages[key] = params[:voucher][key]
+      end
+    end
+    params[:usages] = usages
+    @sum = 0.0
+
+    for i in 1..((params[:usages].size / 2)  )
+      @sum += params[:usages]["amount#{i}"].sub(/,/, '.').to_d
+    end
+
+    AccountsMailer.invoice_mail(params[:voucher][:due], @sum).deliver
+
+    render layout:false
   end
 
   def print_festihvalen

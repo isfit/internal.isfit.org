@@ -132,9 +132,9 @@ class ApplicantsController < ApplicationController
     if current_user.role?(:admin) || current_user.role?(:recruiting) || current_user.role?(:board)
       @applicants = Applicant.where(deleted: false, has_account: false).all
     elsif current_user.role?(:wingman)
-      @applicants = Applicant.applicants_in_same_section(current_user).where(has_account: false)
+      @applicants = Applicant.applicants_in_same_section(current_user)
     elsif current_user.role?(:interviewer) || current_user.role?(:leader)
-      @applicants = Applicant.applicants_in_same_group( current_user).where(has_account: false)
+      @applicants = Applicant.applicants_in_same_group( current_user)
     else
       CanCan::AccessDenied
     end

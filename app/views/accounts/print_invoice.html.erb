@@ -31,7 +31,7 @@
 	<body>
 		<%= image_tag('header.png', :style => 'float: left') %>
 		<br /><br />
-		<h2>&nbsp;&nbsp;Travel refund form</h2>
+		<h2>&nbsp;&nbsp;Invoice form</h2>
 		<br /><br /><br />
 		<table width="600px" cellspacing="0">
 			<tr class="height" valign="top">
@@ -47,9 +47,10 @@
 			<tr class="height" valign="top">
 				<td class="line">
           <b>Unit:</b><br />
-          <%= @account.account_number %>.
-          <%= @account.name %>
-
+          <% if @account %>
+            <%= @account.account_number %>.
+            <%= @account.name %>
+          <% end %>
 				</td>
 				<td class="line">
 					<b>Attachments:</b><br />
@@ -57,55 +58,54 @@
 				</td>
 			</tr>
 			<tr class="height" valign="top">
-				<td class="line" colspan="2">
+				<td class="line">
+					<b>Refund:</b><br />
+					<%= params[:voucher][:refund] == '1' ? "Yes" : "No" %>
+				</td>
+				<td class="line">
 					<b>Refund account number:</b><br />
 					<%= params[:voucher][:account_no] %>
-				</td>
-			</tr>
-			<tr>
-				<td class="line" colspan="2">
-				<b>Purpose of travel:</b><br />
-				<%= params[:voucher][:purpose] %>
-				</td>
+                </td>
 			</tr>
             <tr>
-                <td class="line">
-                    <b>Departure:</b><br />
-                    <%= params[:voucher][:departure] %>
-                </td>
-                <td class="line">
-                    <b>Return:</b><br />
-                    <%= params[:voucher][:return] %>
+                <td colspan="2" class="line">
+                    <strong>Due date:</strong><br />
+                    <%= params[:voucher][:due] %>
                 </td>
             </tr>
-			<tr>
-				<td colspan="2"><br /></td>
+			<tr valign="top">
+				<td colspan="2"><br /><b>Usage</b>:</td>
 			</tr>
 			<tr>
 				<td class="line" colspan="2">
 					<table width="100%" cellspacing="0">
 						<tr>
-							<td><b>Route</b></td>
-							<td><b>Means</b></td>
+							<td><b>Description</b></td>
+							<td></td>
+							<td></td>
 							<td><b>Amount</b></td>
+							<td></td>
 						</tr>
-					<% for i in 1..(params[:carriers].size / 3) %>
+					<% for i in 1..(params[:usages].size / 2) %>
 						<tr valign="top">
-							<td width="60%"><%= params[:carriers]["route#{i}"] %></td>
-							<td width="30%"><%= params[:carriers]["means#{i}"] %></td>
-							<td align="right" width="10%"><%= params[:carriers]["amount#{i}"] %></td>
+							<td width="40%%"><%= params[:usages]["description#{i}"] %></td>
+							<td width="15%"></td>
+							<td width="20%"></td>
+							<td width="15%" align="right"><%= params[:usages]["amount#{i}"] %></td>
+							<td width="10%"></td>
 						</tr>
 					<% end %>
 						<tr>
-							<td></td>
+							<td colspan="2"></td>
 							<td style="border-left: 1px solid black; border-top: 1px solid black;">Total:</td>
-							<td style="border-top: 1px solid black" align="right"><%=@sum.to_s%></td>
+							<td id="sum" style="border-top: 1px solid black" align="right"><%=@sum.to_s%></td>
+							<td style="border-top: 1px solid black"></td>
 						</tr>
 					</table>
 				</td>
 			</tr>
 			<tr valign="top">
-				<td colspan="2"><br />Form must be handed in no later than <b>1 week after the trip</b>. All <b>original tickets</b> must be attached, or else outlays will not be refunded.<br /><br /></td>
+				<td colspan="2"><br /></td>
 			</tr>
 			<tr class="sigheight" valign="top">
 				<td class="line" colspan="2">
@@ -125,39 +125,31 @@
 			</tr>
 			<tr class="height" valign="top">
 				<td class="line">
-					<b>Budget post:</b>
+					<b>Valuteringsdato:</b>
 				</td>
 				<td class="line">
-					<b>Accounting date:</b>
+					<b>Bilagsdato:</b>
 				</td>
 			</tr>
-			<tr>
-				<td colspan="2">
-					<table align=center width="80%">
-						<tr>
-							<td rowspan="2">
-								<b>For accounting:</b>
-								<br/>
-							</td>
-							<td>
-								FirstOffice
-							</td>
-							<td colspan="2" align="center">
-								Current accounts
-							</td>
-						</tr>
-						<tr>
-							<td>
-								For entry:
-							</td>
-							<td align="center">
-								<b>D</b>
-							</td>
-							<td align="center">
-								<b>C</b>
-							</td>
-						</tr>
-					</table>
+			<tr class="height" valign="top">
+				<td class="line">
+					<b>Debitkonto:</b>
+				</td>
+				<td class="line">
+					<b>Kreditkonto:</b>
+				</td>
+			</tr>
+			<tr class="height" valign="top">
+				<td class="line">
+					<b>Beløp:</b>
+				</td>
+				<td class="line">
+					<b>Mva:</b>
+				</td>
+			</tr>
+			<tr class="height" valign="top">
+				<td colspan="2" class="line">
+					<b>Ført av:</b>
 				</td>
 			</tr>
 		</table>

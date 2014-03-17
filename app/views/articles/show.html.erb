@@ -19,5 +19,12 @@
 	</ul>
 </p>
 
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+<div class="btn-group">
+	<% if @article.user_attending? current_user %>
+	    <%= link_to 'Not attend', not_attending_article_path(@article),:class => "btn btn-primary", method: :post %>
+	<% else %>
+		<%= link_to 'Attend', attending_article_path(@article),:class => "btn btn-primary", method: :post %>
+	<% end %>
+	<%= link_to 'Edit', edit_article_path(@article), :class =>"btn"%>
+	<%= link_to 'Back', articles_path, :class =>"btn" %>
+</div>
