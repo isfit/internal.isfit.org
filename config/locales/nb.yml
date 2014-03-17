@@ -4,3 +4,8 @@ nb:
       create: 'Lag ny artikkel'
       created: 'Laget for'
       ago: 'siden av'
+  organization_chart:
+    index:
+      header: 'Organisasjonskart for ISFiT'
+    group:
+      position_header: 'Posisjon'
