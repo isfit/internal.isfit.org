@@ -16,4 +16,10 @@ class Group < ActiveRecord::Base
     end
     return @users.uniq{|x| x.id}
   end
+
+  def name
+    locale = I18n.locale.to_s
+    locale = 'no' if locale.eql?('nb')
+    self.send"#{__method__}_#{locale}"
+  end
 end

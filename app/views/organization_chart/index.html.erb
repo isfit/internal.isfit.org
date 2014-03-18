@@ -1,11 +1,12 @@
-<h1>Organization Chart of ISFiT <%= CURRENT_FESTIVAL_YEAR %> <%= link_to organization_chart_path(:format => :vcf) do %><%= image_tag "icon/vcard.png" %><% end %></h1>
+<h1><%= t("organization_chart.index.header") %> <%= CURRENT_FESTIVAL_YEAR %> <%= link_to organization_chart_path(:format => :vcf) do %><%= image_tag "icon/vcard.png" %><% end %></h1>
 
 <div class="tabbable" id="org-chart">
     <ul class="nav nav-tabs">
-        <li class="active"><%= link_to @board.name_en, {action: "board", id: @board.id}, remote: true, id: "section_#{@board.id}"  %></li>
-        <% @sections.each do |section| %>
-            <li><%= link_to section.name_en, {action: "section", id: section.id }, remote: true, id: "section_#{section.id}" %></li>
-        <% end %>
+        <li class="active"><%= link_to @board.name, {action: "board", id: @board.id}, remote: true, id: "section_#{@board.id}"  %></li>
+            <% @sections.each do |section| %>
+                <li><%= link_to section.name, {action: "section", id: section.id }, remote: true, id: "section_#{section.id}" %></li>
+            <% end %>
+        <li><%= link_to @research.name, {action: "board", id: @research.id}, remote: true, id: "section_#{@research.id}" %></li> 
     </ul>
     <div class="tab-content">
         <%= render partial: "group", locals: { group: @board } %>

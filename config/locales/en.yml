@@ -4,3 +4,8 @@ en:
       create: 'Create article'
       created: 'Created'
       ago: 'ago by'
+  organization_chart:
+    index:
+      header: 'Organization Chart of ISFiT'
+    group:
+      position_header: 'Position'

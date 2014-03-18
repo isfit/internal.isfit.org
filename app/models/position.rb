@@ -16,13 +16,27 @@ class Position < ActiveRecord::Base
     Position.where("publish_from < '#{Time.now.strftime("%Y-%m-%d %H:%M") }' AND publish_to > '#{forskyvning.strftime("%Y-%m-%d %H:%M")}'")
   end
 
+  def title
+    locale = I18n.locale.to_s
+    locale = 'no' if locale.eql?('nb')
+    self.send"#{__method__}_#{locale}"
+  end
+
   def title_no
     title = self[:title_no]
     if title.eql?("Nestleder")
       section = self.groups.first.section
       if section
-        section_name = section.name_no
+        section_name = section.name
         title = "#{title} - #{section_name}"
+      end
+    end
+
+    if title.eql?("Booker")
+      group = self.groups.first
+      if group
+        group_name = group.name
+        title = "#{title} - #{group_name}"
       end
     end
     title
