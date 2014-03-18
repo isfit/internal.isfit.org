@@ -117,7 +117,7 @@ class AccountsController < ApplicationController
       @sum += params[:usages]["amount#{i}"].sub(/,/, '.').to_d
     end
 
-    AccountsMailer.invoice_mail(params[:voucher][:due], @sum).deliver
+    AccountsMailer.invoice_mail(params[:voucher][:due], @sum, current_user.full_name_reversed, @account.name).deliver
 
     render layout:false
   end
