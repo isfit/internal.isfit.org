@@ -9,3 +9,4 @@ en:
       header: 'Organization Chart of ISFiT'
     group:
       position_header: 'Position'
+      group: 'Group'

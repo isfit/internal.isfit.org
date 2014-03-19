@@ -2,7 +2,7 @@
 <p>
     <b>Email:</b> <%= mail_to section.email %><br>
 </p>
-<h2>Groups</h2>
+<h2><%= t("organization_chart.group.group")%></h2>
 <div class="tabbable" id="org-chart-section">
     <ul class="nav nav-pills">
         <%= render :partial => "group_link", :collection => section.groups %>
