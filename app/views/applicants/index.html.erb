@@ -35,7 +35,10 @@
           </ul>
         </div>
       </td>
-      <td><%= applicant.lastname %></td>
+      <td>
+        <%= raw "<i class=\"icon-lock\"></i> " if applicant.locked %>
+        <%= applicant.lastname %>
+      </td>
       <td><%= applicant.firstname %></td>
       <td><%= applicant.first_position.title_no %></td>
       <td><%= applicant.second_position ? 
