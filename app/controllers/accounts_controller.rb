@@ -93,7 +93,7 @@ class AccountsController < ApplicationController
     end
     params[:carriers] = usages
     @sum = 0.0
-    for i in 1..(params[:carriers].size / 4)
+    for i in 1..(params[:carriers].size / 3)
       @sum += params[:carriers]["amount#{i}"].sub(/,/, '.').to_d
     end
 
