@@ -9,3 +9,4 @@ nb:
       header: 'Organisasjonskart for ISFiT'
     group:
       position_header: 'Posisjon'
+      group: 'Gjeng'
