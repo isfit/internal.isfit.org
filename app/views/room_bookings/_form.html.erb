@@ -1,7 +1,7 @@
 <%= form_for RoomBooking.new do |f| %>
   <%= f.hidden_field :reserved_at, value: reserved_at %>
   <%= f.hidden_field :room_id, value: room.id %>
-  <% disabled = Time.zone.now > reserved_at  || Time.zone.now + 2.weeks < reserved_at%>
+  <% disabled = Time.zone.now > reserved_at  || Time.zone.now + 4.weeks < reserved_at%>
   <% if booking %>
     <% if booking[:user] == current_user %>
       <%= content_tag :a ,class: "btn btn-mini btn-danger room_reservation_self #{'disabled' if disabled}", data: {booking: booking[:id]} do %>
