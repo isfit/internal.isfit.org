@@ -1,3 +1,4 @@
+#encoding:utf-8
 class ApplicantsController < ApplicationController
   load_and_authorize_resource
 
@@ -38,8 +39,11 @@ class ApplicantsController < ApplicationController
   end
 
   def show
-    #@recruiting = can_access?('applicants', 'browse_all')
     @applicant = Applicant.find(params[:id])
+
+    unless visible_applicants.any? {|a| a.id.eql?(@applicant.id)}
+      redirect_to(applicants_path, alert: "Du har ikke tilgang til denne søkeren") and return
+    end
 
     @status = {	0 => 'Not contacted',
       1 => 'Meeting planned',
@@ -53,6 +57,10 @@ class ApplicantsController < ApplicationController
     @applicant = Applicant.find(params[:id])
     @positions = Position.published
     @interviewers = User.in_festival
+
+    unless visible_applicants.any? {|a| a.id.eql?(@applicant.id)}
+      redirect_to(applicants_path, alert: "Du har ikke tilgang til denne søkeren") and return
+    end
 
     @status = {	0 => 'Not contacted',
       1 => 'Meeting planned',
@@ -129,6 +137,18 @@ class ApplicantsController < ApplicationController
   end
 
   def index
+    @applicants = visible_applicants
+
+    @status = {	0 => 'Not contacted',
+      1 => 'Meeting planned',
+      2 => 'Meeting done',
+      3 => 'Of interest',
+      4 => 'Recruited',
+      5 => 'Not of interest' }
+  end
+
+  private
+  def visible_applicants
     if current_user.role?(:admin) || current_user.role?(:recruiting) || current_user.role?(:board)
       @applicants = Applicant.where(deleted: false, has_account: false).all
     elsif current_user.role?(:wingman) || current_user.role?(:leader)
@@ -138,11 +158,5 @@ class ApplicantsController < ApplicationController
     else
       CanCan::AccessDenied
     end
-    @status = {	0 => 'Not contacted',
-      1 => 'Meeting planned',
-      2 => 'Meeting done',
-      3 => 'Of interest',
-      4 => 'Recruited',
-      5 => 'Not of interest' }
   end
 end 
