@@ -118,6 +118,12 @@ class ApplicantsController < ApplicationController
       @applicant = Applicant.last
     end
 
+
+    unless visible_applicants.any? {|a| a.id.eql?(@applicant.id)}
+      @applicant.firstname = "Hemmelig"
+      @applicant.lastname = "søker"
+    end
+
     respond_to do |format|
       format.json do
         render json: { applicant: @applicant,
