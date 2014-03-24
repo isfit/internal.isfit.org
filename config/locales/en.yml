@@ -10,3 +10,8 @@ en:
     group:
       position_header: 'Position'
       group: 'Group'
+  gender:
+    male: 'Male'
+    female: 'Female'
+    other: 'Other'
+    choose: 'Select gender'
