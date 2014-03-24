@@ -41,8 +41,9 @@ class WhoAmIController < ApplicationController
   def get_or_create_new_game
     old_game = WhoAmI.where(user_id: current_user.id).order("created_at DESC").limit(1).first
     return old_game unless old_game.nil? || old_game.played?
+    random = Random.rand(2) + 1
 
-    users = User.random(2015,4).where("profile_picture_file_name IS NOT NULL")
+    users = User.random(2015,4).where("profile_picture_file_name IS NOT NULL AND gender LIKE "+random.to_s())
 
     correct_user = users[Random.rand(users.length)]
     game = WhoAmI.new 
