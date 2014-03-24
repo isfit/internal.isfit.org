@@ -8,7 +8,7 @@ set :rvm_type, :user
 require 'bundler/capistrano'
 
 set :application, "isfit.org"
-set :repository,  "git@github.com:isfit/internal.isfit.org"
+set :repository,  "https://github.com/isfit/internal.isfit.org.git"
 
 set :scm, :git
 set :whenever_command, "bundle exec whenever"
