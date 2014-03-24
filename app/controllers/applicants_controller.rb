@@ -116,12 +116,11 @@ class ApplicantsController < ApplicationController
 
     if @count > last_count
       @applicant = Applicant.last
-    end
 
-
-    unless visible_applicants.any? {|a| a.id.eql?(@applicant.id)}
-      @applicant.firstname = "Hemmelig"
-      @applicant.lastname = "søker"
+      unless visible_applicants.any? {|a| a.id.eql?(@applicant.id)}
+        @applicant.firstname = "Hemmelig"
+        @applicant.lastname = "søker"
+      end
     end
 
     respond_to do |format|
