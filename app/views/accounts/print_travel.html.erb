@@ -99,7 +99,7 @@
 						<tr>
 							<td></td>
 							<td style="border-left: 1px solid black; border-top: 1px solid black;">Total:</td>
-							<td style="border-top: 1px solid black" align="right">
+							<td style="border-top: 1px solid black; white-space: nowrap;" align="right">
 							<%=number_to_currency(@sum.to_s, unit:'')%></td>
 						</tr>
 					</table>
@@ -126,10 +126,31 @@
 			</tr>
 			<tr class="height" valign="top">
 				<td class="line">
-					<b>Budget post:</b>
+					<b>Valuteringsdato:</b>
 				</td>
 				<td class="line">
-					<b>Accounting date:</b>
+					<b>Bilagsdato:</b>
+				</td>
+			</tr>
+			<tr class="height" valign="top">
+				<td class="line">
+					<b>Debitkonto:</b>
+				</td>
+				<td class="line">
+					<b>Kreditkonto:</b>
+				</td>
+			</tr>
+			<tr class="height" valign="top">
+				<td class="line">
+					<b>Beløp:</b>
+				</td>
+				<td class="line">
+					<b>Mva:</b>
+				</td>
+			</tr>
+			<tr class="height" valign="top">
+				<td colspan="2" class="line">
+					<b>Ført av:</b>
 				</td>
 			</tr>
 			<tr>
