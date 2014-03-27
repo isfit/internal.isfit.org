@@ -99,7 +99,7 @@
 						<tr>
 							<td></td>
 							<td style="border-left: 1px solid black; border-top: 1px solid black;">Total:</td>
-							<td style="border-top: 1px solid black" align="right">
+							<td style="border-top: 1px solid black; white-space: nowrap;" align="right">
 							<%=number_to_currency(@sum.to_s, unit:'')%></td>
 						</tr>
 					</table>
@@ -126,39 +126,31 @@
 			</tr>
 			<tr class="height" valign="top">
 				<td class="line">
-					<b>Budget post:</b>
+					<b>Value date:</b>
 				</td>
 				<td class="line">
-					<b>Accounting date:</b>
+					<b>Document date:</b>
 				</td>
 			</tr>
-			<tr>
-				<td colspan="2">
-					<table align=center width="80%">
-						<tr>
-							<td rowspan="2">
-								<b>For accounting:</b>
-								<br/>
-							</td>
-							<td>
-								FirstOffice
-							</td>
-							<td colspan="2" align="center">
-								Current accounts
-							</td>
-						</tr>
-						<tr>
-							<td>
-								For entry:
-							</td>
-							<td align="center">
-								<b>D</b>
-							</td>
-							<td align="center">
-								<b>C</b>
-							</td>
-						</tr>
-					</table>
+			<tr class="height" valign="top">
+				<td class="line">
+					<b>Debit Account:</b>
+				</td>
+				<td class="line">
+					<b>Credit Account:</b>
+				</td>
+			</tr>
+			<tr class="height" valign="top">
+				<td class="line">
+					<b>Total:</b>
+				</td>
+				<td class="line">
+					<b>VAT:</b>
+				</td>
+			</tr>
+			<tr class="height" valign="top">
+				<td colspan="2" class="line">
+					<b>Accountant responsible:</b>
 				</td>
 			</tr>
 		</table>
