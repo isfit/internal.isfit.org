@@ -1,0 +1,17 @@
+<% content_for :head do %>
+<% end %>
+
+<%#content_for :script do %>
+    <!--script type="text/javascript"
+     src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+    </script-->
+<%# end %>
+  <h2>Legg til tider når <%=@group.name%> ikke kan intervju</h2>
+
+  <div id="datetimepicker4" class="input-append">
+    <input data-format="yyyy-MM-dd" type="text"></input>
+    <span class="add-on">
+      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+      </i>
+    </span>
+  </div>

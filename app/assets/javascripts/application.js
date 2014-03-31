@@ -12,6 +12,7 @@
 //= require_tree ./jquery
 //= require private_pub
 //= require_tree .
+//= require bootstrap-datetimepicker
 //= require_self
 
 $(function() {

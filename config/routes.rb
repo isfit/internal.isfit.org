@@ -158,10 +158,13 @@ InternalIsfitOrg::Application.routes.draw do
   get "plingfest" => "applicants#notifier"
   get "last_applicant" => "applicants#last"
 
+
   resources :applicants do
     collection do 
       get 'statistics'
       get 'interviews'
+      get 'generator'
+      get 'set_group_time'
     end
   end
 

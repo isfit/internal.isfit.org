@@ -152,6 +152,28 @@ class ApplicantsController < ApplicationController
       5 => 'Not of interest' }
   end
 
+  def generator
+    if generator_access
+      interview_times = {
+        one: [["27.03.2014", "10.30", "12.00"], ["28.03.2014", "16.00", "18.00"]],
+        two: [""],
+      }
+    else
+      redirect_to applicants_path, notice: "You do not have access to this site"
+    end
+
+  end
+
+  def set_group_time
+    if access_to_interview_time
+      @group = current_user.groups.last
+    else
+
+    end
+
+
+  end
+
   private
   def visible_applicants
     if current_user.role?(:admin) || current_user.role?(:recruiting) || current_user.role?(:board)
@@ -163,5 +185,21 @@ class ApplicantsController < ApplicationController
     else
       CanCan::AccessDenied
     end
+  end
+
+  def generator_access
+    if current_user.role?(:admin) || current_user.role?(:recruiting) || current_user.role?(:board)
+      return true
+    end
+    return false
+  end
+
+  def access_to_interview_time
+    if current_user.role?(:admin) || current_user.role?(:recruiting) || current_user.role?(:board)
+      return true
+    elsif current_user.role?(:wingman) || current_user.role?(:leader)
+      return true
+    end
+    return false
   end
 end 

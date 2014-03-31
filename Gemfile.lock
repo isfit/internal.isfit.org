@@ -35,6 +35,7 @@ GEM
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
     bluecloth (2.2.0)
+    bootstrap-datetimepicker-rails (0.0.11)
     bootstrap-sass (2.3.2.2)
       sass (~> 3.2)
     bootstrap-will_paginate (0.0.9)
@@ -298,6 +299,7 @@ DEPENDENCIES
   ancestry
   bcrypt-ruby
   bluecloth
+  bootstrap-datetimepicker-rails
   bootstrap-sass (~> 2.3.2.1)
   bootstrap-will_paginate
   cancan
