@@ -35,8 +35,7 @@ gem 'simple_form'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'whenever', :require => false
-gem 'bootstrap-datetimepicker-rails'
-
+gem 'fullcalendar-rails'
 # Denne spammer oss med mail atm... Må tunes :P
 gem 'exception_notification', "~>2.6.1", :require => 'exception_notifier'
 

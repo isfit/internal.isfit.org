@@ -35,7 +35,6 @@ GEM
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
     bluecloth (2.2.0)
-    bootstrap-datetimepicker-rails (0.0.11)
     bootstrap-sass (2.3.2.2)
       sass (~> 3.2)
     bootstrap-will_paginate (0.0.9)
@@ -112,6 +111,7 @@ GEM
       eventmachine (>= 0.12.0)
     ffi (1.8.1)
     formatador (0.2.4)
+    fullcalendar-rails (1.6.4.0)
     guard (1.7.0)
       formatador (>= 0.2.4)
       listen (>= 0.6.0)
@@ -299,7 +299,6 @@ DEPENDENCIES
   ancestry
   bcrypt-ruby
   bluecloth
-  bootstrap-datetimepicker-rails
   bootstrap-sass (~> 2.3.2.1)
   bootstrap-will_paginate
   cancan
@@ -311,6 +310,7 @@ DEPENDENCIES
   database_cleaner
   exception_notification (~> 2.6.1)
   factory_girl_rails
+  fullcalendar-rails
   guard-rspec
   guard-spork
   jbuilder

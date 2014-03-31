@@ -12,8 +12,8 @@
 //= require_tree ./jquery
 //= require private_pub
 //= require_tree .
-//= require bootstrap-datetimepicker
 //= require_self
+//= require fullcalendar
 
 $(function() {
   $('.sortable').tablesorter({ sortList: [[1,0]] });
