@@ -97,9 +97,9 @@ InternalIsfitOrg::Application.routes.draw do
   get "hashtags/:hashtag" => "hashtags#show"
   
   get "contact_logs/new/:contact_log_unit_id" => "contact_logs#new", as: "new_contact_log_with_unit"
-  resources :contact_logs
-  resources :contact_log_units
-  resources :contact_log_people
+  resources :contact_logs, except: [:edit, :update, :create]
+  resources :contact_log_units, except: [:edit, :update, :create]
+  resources :contact_log_people, except: [:edit, :update, :create]
   resources :rooms 
   get "room_bookings/:week/:year" => "room_bookings#new", as: "new_room_booking"
   resources :room_bookings
