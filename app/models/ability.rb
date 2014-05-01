@@ -72,8 +72,9 @@ class Ability
       can [:index, :create_driver, :info, :driver_new, :driver_register], :drive_admin
       #can [:index, :create, :admin, :admin_create_car, :admin_destroy_car, :admin_edit_car, :admin_add_driver, :todo_all, :todo_you, :todo_user, :save_comment, :update_completed, :info, :driver_new, :driver_register ], :transport_system
       can [:index, :create, :destroy, :shifts_you], :driver_shift
-
-
+    end
+    if user.role?(:plenarysessions)
+      can :manage, IndabaSpeaker
     end
     # Define abilities for the passed in user here. For example:
     #
