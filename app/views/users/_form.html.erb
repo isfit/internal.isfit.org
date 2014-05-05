@@ -11,6 +11,7 @@
     <%= f.text_field :address %>
     <%= f.text_field :postal_code %> 
     <%= f.text_field :city %>
+    <%= f.select :gender, [[t('gender.choose'), nil],[t('gender.male'), 1], [t('gender.female'), 2], [t('gender.other'), 0]] %>
   <% end %>
 
   <fieldset>

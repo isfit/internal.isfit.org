@@ -10,3 +10,8 @@ nb:
     group:
       position_header: 'Posisjon'
       group: 'Gjeng'
+  gender:
+    male: 'Mann'
+    female: 'Kvinne'
+    other: 'Annet'
+    choose: 'Velg kjønn'

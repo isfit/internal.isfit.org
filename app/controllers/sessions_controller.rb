@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by_username(params[:login])
+    user = User.where(username: params[:login]).first || User.where(google_apps_username: params[:login]).first
     if user && !user.password_digest.nil? && user.authenticate(params[:password]) && user.role?(:internal)
       session[:user_id] = user.id
       redirect_to_target_or_default root_url, notice: generate_motivational(user)
