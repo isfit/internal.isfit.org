@@ -58,7 +58,7 @@
               <ul class="nav pull-right"> 
                 <li>
                   <form id="user-search-form" class="navbar-search pull-right">
-                    <input id="user-search" type="text" class="search-query span2" placeholder="Søk på navn..." data-provide="typeahead" data-source=''>
+                    <input id="user-search" type="text" class="search-query col-md-2" placeholder="Søk på navn..." data-provide="typeahead" data-source=''>
                   </form>
                 </li>
                 <li class="dropdown"> 
@@ -93,7 +93,7 @@
     <div class="container">
       <% if any_menu_groups? %>
       <div class="row">
-        <div id="submeny" class="span10 offset2">
+        <div id="submeny" class="col-md-10 col-md-offset-2">
           <%= menu_groups %>
         </div>
       </div>
@@ -101,12 +101,12 @@
 
       <div class="row">
         <% if content_for? :sidebar %>
-        <div id="sidebar" class="span4">
+        <div id="sidebar" class="col-md-4">
           <%= yield :sidebar %>
         </div>
-        <div id="content" class="span8">
+        <div id="content" class="col-md-8">
         <% else %>
-        <div id="content" class="span12">
+        <div id="content" class="col-md-12">
         <% end %>
           <% if notice or alert %>
             <div class="alert alert-<%= notice ? "success":"error" %>">

@@ -1,11 +1,11 @@
 <%= bootstrap_form_for(@contact_log_person) do |f| %>
   <%= f.error_messages %>
   <%= f.fieldset "" do %>
-          <%= f.text_field :first_name , class: "span6"%>
-          <%= f.text_field :last_name , class: "span6"%>
-          <%= f.text_field :email , class: "span6"%>
-          <%= f.text_field :phone , class: "span6"%>
-	<%= f.text_field :role, class: "span6" %>
+          <%= f.text_field :first_name , class: "col-md-6"%>
+          <%= f.text_field :last_name , class: "col-md-6"%>
+          <%= f.text_field :email , class: "col-md-6"%>
+          <%= f.text_field :phone , class: "col-md-6"%>
+	<%= f.text_field :role, class: "col-md-6" %>
 	<%= f.select("contact_log_status_id", ContactLogStatus.status_selection) %>
       <% end %>
   <%= f.submit "Submit", class: "btn" %>

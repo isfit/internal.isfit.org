@@ -1,13 +1,13 @@
 <%= render "nav" %>
 <div class="row">
-	<div id="drivers" class="span3">
+	<div id="drivers" class="col-md-3">
 		<h2> Sjåfører </h4>
 		<% @drivers.each do |driver| %>
 			<h5><%= link_to driver.username, driver %></h5>
 		<% end %>
 	</div>
 
-	<div id="driver_create" class="span4">
+	<div id="driver_create" class="col-md-4">
 		<h2>Legg til ny sjåfør</h2>
 		<%= render "form" %>
 	</div>

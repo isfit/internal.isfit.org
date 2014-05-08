@@ -7,7 +7,7 @@
     <li><%= link_to(:"Info", info_path) %></li>
 </ul>
 <div class="row">
-	<div class="span3">
+	<div class="col-md-3">
 		<h4 class="muted">1. Velg sjåfører for ønsket vakt</h4>
 		<%= form_tag(shifts_admin_index_path, :method=>"post") do |f| %>
 			<% @drivers.each do |driver| %>
@@ -17,7 +17,7 @@
 			<% end %>
 	</div>
 
-	<div class="span4">
+	<div class="col-md-4">
 		<h4 class="muted">2. Sett ønsket tid og dato for vakt</h4>
 		<div class="input-prepend">
 				<label class="control-label" for="inputIcon">Start dato</label>
