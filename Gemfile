@@ -43,7 +43,7 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
-  gem 'bootstrap-sass', '~>2.3.2.1'
+  gem 'bootstrap-sass', '~> 3.1.1'
 end
 
 group :development do

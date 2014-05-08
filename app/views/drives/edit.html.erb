@@ -2,21 +2,21 @@
 <div class="row">
   <%= bootstrap_form_for(@drive) do |f| %>
     <%= f.error_messages %>
- 	  <div class="span5">
-      	<%= f.text_area :description, :class => :span4 %>
+ 	  <div class="col-md-5">
+      	<%= f.text_area :description, :class => :col-md-4 %>
     </div>
-    <div class="span3">
-    	<%= f.text_area :comment, :class => :span4 %>
+    <div class="col-md-3">
+    	<%= f.text_area :comment, :class => :col-md-4 %>
 	  </div>
 </div>
 
 <div class="row">
-  <div class="span5">
+  <div class="col-md-5">
     <%= f.text_field :start_time, :value => @drive.try(:start_time).try(:strftime,'%Y-%m-%d %H:%M') %>
 
     <%= f.text_field :end_time, :value => @drive.try(:end_time).try(:strftime,'%Y-%m-%d %H:%M') %>
   </div>
-  <div class="span3 alert alert-block">      
+  <div class="col-md-3 alert alert-block">      
       <button type="button" class="close" data-dismiss="alert">&times;</button>
       <h4>Danger zone!</h4>   
       Gitt sjåfør og bil er nødvendigvis ikke tilgjengelig ved endringer.<br>

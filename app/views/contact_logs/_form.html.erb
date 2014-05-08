@@ -34,7 +34,7 @@
 <%= hidden_field :contact_log_person, :contact_log_unit_id, :value => @contact_log_unit.id.to_s %>
     </div>
 <h3>Log entry: </h3>
-    <%= f.text_area :content , class: "span6" %>
+    <%= f.text_area :content , class: "col-md-6" %>
     <% end %>
   <%= f.submit "Submit", class: "btn" %>
 <% end %>

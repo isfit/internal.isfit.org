@@ -1,10 +1,10 @@
 <%= formatting %>
-<%= bootstrap_form_for(@wiki_page) do |f| %>
+<%= simple_form_for(@wiki_page) do |f| %>
   <%= f.error_messages %>
-  <%= f.fieldset "wiki_page" do %>
+  	<fieldset>
     <%= f.collection_select(:wiki_category_id, WikiCategory.where(deleted: false).order("title ASC"), :id, :title, prompt: true) %>
     <%= f.text_field :title %>
-    <%= f.text_area :body %>
-  <% end %>
+    <%= f.text_area :body%>
+    </fieldset>
   <%= f.submit "Submit", class: "btn" %>
 <% end %>

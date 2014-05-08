@@ -35,7 +35,7 @@ GEM
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
     bluecloth (2.2.0)
-    bootstrap-sass (2.3.2.2)
+    bootstrap-sass (3.1.1.1)
       sass (~> 3.2)
     bootstrap-will_paginate (0.0.9)
       will_paginate
@@ -298,7 +298,7 @@ DEPENDENCIES
   ancestry
   bcrypt-ruby
   bluecloth
-  bootstrap-sass (~> 2.3.2.1)
+  bootstrap-sass (~> 3.1.1)
   bootstrap-will_paginate
   cancan
   capistrano
