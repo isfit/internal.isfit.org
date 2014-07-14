@@ -13,6 +13,7 @@ The rest of the articles will be listed under archive</p>
     <th>Created</th>
     <th>Priority</th>
     <th>Published</th>
+    <th>Type</th>
     <th></th>
   </tr>
 </thead>
@@ -23,6 +24,7 @@ The rest of the articles will be listed under archive</p>
 		  <td><%= article.created_at.strftime("%d %b %Y") %></td>
 		  <td><%= link_to("up", moveup_frontend_article_path(article), class: "btn")%> <%=link_to("down", movedown_frontend_article_path(article), class: "btn")%></td>
 		  <td><%= article.list ? "Yes" : "No" %></td>
+      <td><%= article.blog ? "Blog" : "Article" %></td>
       <td width="70px">
         <div class="btn-group">
           <%= link_to("Edit", edit_frontend_article_path(article), class: "btn btn-info") %>
@@ -33,6 +35,8 @@ The rest of the articles will be listed under archive</p>
           </ul>
         </div>
       </td>
+
+
     </tr>
   <% end %>
 </table>
