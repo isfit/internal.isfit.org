@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140505191437) do
+ActiveRecord::Schema.define(:version => 20140707210202) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name_nb"
@@ -283,6 +283,7 @@ ActiveRecord::Schema.define(:version => 20140505191437) do
     t.integer  "frontend_article_image_file_size"
     t.datetime "frontend_article_image_updated_at"
     t.text     "sidebar"
+    t.boolean  "blog",                                             :default => false
   end
 
   create_table "gallery_albums", :force => true do |t|
