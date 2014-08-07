@@ -45,6 +45,10 @@ class SessionsController < ApplicationController
       flash.now[:alert] = "We have no private email on record to send new password to, please contact orakel@isfit.org"
       return render :forgot_password
     end
+    unless user.hasLdapAccount?
+      flash.now[:alert] = "You seem to no longer have an account with ISFiT. Contact orakel@isfit.org with your name and username if you are still a volunteer for ISFiT."
+      return render :forgot_password
+    end
     if user.save!
       user.changeLdapPassword(new_pass)
       UserMailer.forgot_password_mail(private_email, new_pass).deliver
