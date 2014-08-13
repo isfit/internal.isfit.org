@@ -13,4 +13,14 @@ module UsersHelper
     end
   end
 
+  def get_mail_links(user)
+    orgLink = mail_to "#{user.username}@isfit.org"
+    if(user.google_apps_username)
+      noLink = mail_to "#{user.google_apps_username}@isfit.no"
+      noLink + " (" + orgLink + ")".html_safe
+    else
+      orgLink
+    end
+  end
+
 end
