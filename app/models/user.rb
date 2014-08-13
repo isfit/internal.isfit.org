@@ -117,6 +117,22 @@ class User < ActiveRecord::Base
     end
   end
 
+  def hasLdapAccount?
+    require 'net/ldap'
+    require 'openssl'
+    require 'iconv'
+    ldap = Net::LDAP::new
+    password = YAML::load(File.open('config/password.yml'))
+    treebase = "dc=isfit,dc=org"
+    filters = Net::LDAP::Filter.eq("uid", self.username)
+    user = ldap.search(:base => treebase, :filter => filters).first
+    if user.nil?
+      false
+    else
+      true
+    end
+  end
+
   def latest_position
     self.positions.last
   end
