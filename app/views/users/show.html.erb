@@ -16,7 +16,7 @@
   <div class="span10">
     <dl class="dl-horizontal" style="margin-top: 0;">
       <dt>E-mail</dt>
-      <dd><a href="mailto:<%= @user.username %>@isfit.org"><%= @user.username %>@isfit.org</a></dd>
+      <dd><%= get_mail_links(@user)%></dd>
 
       <% unless @user.phone.empty? %>
       <dt>Phone</dt>
