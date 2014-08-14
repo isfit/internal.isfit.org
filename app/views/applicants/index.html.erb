@@ -26,10 +26,13 @@
   </thead>
   <% @applicants.each do |applicant| %>
     <tr>
-      <td width="70px">
-        <div class="btn-group">
+      <td width="100px">
+        <div class="btn-group btn-group-sm">
           <%= link_to "Show", applicant, class: "btn btn-info" %>
-          <a href="#" class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+         
+            <button  type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+              <span class="caret"></span>
+            </button>
           <ul class="dropdown-menu">
             <li><%= link_to "Edit", edit_applicant_path(applicant) %></li>
           </ul>
