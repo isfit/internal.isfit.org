@@ -1,5 +1,8 @@
 <div class="pagination">
   <ul>
+    <li><%=link_to "Current Week", current_week %></li>
+  </ul>
+  <ul>
     <li><%=link_to "Prev", prev_week %></a></li>
     <li class="active"><a href="#"><%=params[:week]%> / <%=params[:year]%></a></li>
     <li><%=link_to "Next", next_week%></li>
