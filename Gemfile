@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.12'
+gem 'rails', '4.1.0'
 
 gem 'sqlite3'
 gem 'mysql2'
@@ -13,13 +13,13 @@ gem 'pry'
 gem 'capistrano'
 gem 'rvm-capistrano'
 gem 'cancan'
-gem 'rails-i18n', '~> 3.0.0'
+gem 'rails-i18n'
 gem 'ancestry'
 gem 'paperclip'
 gem 'rack'
 gem 'rake'
 gem "bcrypt-ruby", :require => "bcrypt"
-gem 'jquery-rails'
+gem "jquery-rails", "~> 2.3.0"
 gem 'memcache-client'
 gem 'therubyracer'
 gem 'mini_magick', :require=>'RMagick'
@@ -31,7 +31,8 @@ gem 'jbuilder'
 gem 'private_pub'
 gem 'rack-mini-profiler'
 gem 'ransack'
-gem 'simple_form'
+gem 'activemodel'
+gem 'simple_form', '~> 3.1.0.rc2'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'whenever', :require => false
@@ -44,6 +45,7 @@ group :assets do
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'bootstrap-sass', '~> 3.1.1'
+  gem 'bootstrap-datepicker-rails'
 end
 
 group :development do

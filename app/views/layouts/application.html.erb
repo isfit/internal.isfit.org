@@ -46,19 +46,22 @@
     <div id="navbar" class="navbar navbar-fixed-top navbar-inverse">
       <div class="navbar-inner">
         <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <div class="navbar-header">
+          <a class="btn navbar-btn" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <%= link_to "ISFiT Internal", root_path, :class => :brand %>
-          <div class="collapse nav-collapse">
+          <%= link_to "ISFiT Internal", root_path, :class => 'navbar-brand' %>
+          
+          </div>
+          <div class="collapse navbar-collapse">
             <%= tabs %>
             <% if current_user %>
-              <ul class="nav pull-right"> 
+              <ul class="nav navbar-nav pull-right"> 
                 <li>
-                  <form id="user-search-form" class="navbar-search pull-right">
-                    <input id="user-search" type="text" class="search-query col-md-2" placeholder="Søk på navn..." data-provide="typeahead" data-source=''>
+                  <form id="user-search-form" class="navbar-form navbar-right" role="search">
+                    <input id="user-search" type="text" class="form-control search-query col-md-2" placeholder="Søk på navn..." data-provide="typeahead" data-source=''>
                   </form>
                 </li>
                 <li class="dropdown"> 

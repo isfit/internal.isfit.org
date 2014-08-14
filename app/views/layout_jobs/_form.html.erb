@@ -1,51 +1,36 @@
-<%= simple_form_for(@layout_job) do |f| %>
+<%= simple_form_for(@layout_job, html: { class: 'form-horizontal' }, wrapper: :horizontal_form) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs form-horizontal">
     <div class="page-header">
       <h1><small>Contact info:</small></h1>
     </div>
-    <div class="control-group">
-      <%= f.label :user_id %>
-      <div class="controls">
-        <% @user ||= User.find(@layout_job.user_id) %>
-        <%= link_to @user.full_name, @user %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :group_id %>
-      <div class="controls">
-        <% @user ||= User.find(@layout_job.user_id) %>
-        <%= select("layout_job", "group_id", @user.positions.last.groups.collect { |g| [ g.name_en, g.id ] }) %>
-      </div>
-    </div>
+    <% @user ||= User.find(@layout_job.user_id) %>
+    <% provide :user_id_link do link_to @user.full_name, @user end%>
+    <%= f.input :user_id, as: :custom_content, content: yield(:user_id_link) %>
+    <%= f.input :group_id, collection: @user.positions.last.groups.collect { |g| [ g.name_en, g.id ] } %>
     <%= f.input :user_info, input_html: {cols: 80, rows: 10}, placeholder: "Write info about yourself or other people involved in the work" %>
     <div class="page-header">
       <h1><small>Info about the work:</h1></small>
     </div>
     <%= f.input :work_title, input_html: { :class => "col-md-4"}, placeholder: "Descriptive name of job" %>
-    <%= f.input :deadline, input_html: { :class => "col-md-2" } %>
-    <%= f.input :publishing, as: :radio, required: true , label: "Publishing", collection: LayoutJob.publishing_options %>
+    <%= f.input :deadline, as: :string, input_html: {class: "datepicker"}%>
+    <%= f.input :publishing, as: :radio_buttons , required: true , label: "Publishing", collection: LayoutJob.publishing_options %>
     <%= f.input :format, placeholder: "Ex 40cm x 20cm, A3" %>
     <%= f.input :description, input_html: {cols: 80, rows: 10}, placeholder: "Describe the work" %>
     
     <% if(current_user.role?(:admin) || current_user.role?(:layout)) %>
       <%= f.input :last_proofread, input_html: { :class => "col-md-2" }, include_blank: true %>
-      <%= f.input :status, as: :radio, label: "Status", collection: LayoutJob.status_options %>
+      <%= f.input :status, as: :radio_buttons , label: "Status", collection: LayoutJob.status_options %>
     <% end %>
-
-  </div>
-
-  <div class="well">
-    <p>
-      Har du vedlegg, slik som bilder, logoer, illustrasjoner eller tekst?
-    </p>
-    <p>
-      Send det til <%= mail_to "ad@isfit.org" %>. Nevn arbeidstittel og gjenginfo i mail med tillegg.
-    </p>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+    <div class="col-sm-offset-3">
+      <div class="well">
+      <p>
+        Har du vedlegg, slik som bilder, logoer, illustrasjoner eller tekst?
+      </p>
+      <p>
+        Send det til <%= mail_to "ad@isfit.org" %>. Nevn arbeidstittel og gjenginfo i mail med tillegg.
+      </p>
+      </div>
+      <%= f.button :submit %>
+    </div>
 <% end %>

@@ -1,6 +1,6 @@
 module InternalTabsHelper
   def tabs
-    content_tag :ul, class: "nav" do
+    content_tag :ul, class: "nav navbar-nav" do
       unless logged_in?
         content_tag(:li,link_to('Log in', {} , {class: 'active'})).html_safe
       else

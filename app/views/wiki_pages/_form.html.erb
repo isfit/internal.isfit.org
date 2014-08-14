@@ -1,10 +1,9 @@
 <%= formatting %>
-<%= simple_form_for(@wiki_page) do |f| %>
+<%= simple_form_for(@wiki_page,  html: { class: 'form-vertical' }, wrapper: :vertical_form) do |f| %>
   <%= f.error_messages %>
-  	<fieldset>
-    <%= f.collection_select(:wiki_category_id, WikiCategory.where(deleted: false).order("title ASC"), :id, :title, prompt: true) %>
-    <%= f.text_field :title %>
-    <%= f.text_area :body%>
-    </fieldset>
-  <%= f.submit "Submit", class: "btn" %>
+    <%= f.input :wiki_category_id,  collection: WikiCategory.where(deleted: false).order("title ASC"), 
+    	prompt: "Choose a category", as: :select %>
+    <%= f.input :title %>
+    <%= f.input :body, :input_html => { :rows => 10 }, as: :text %>
+  <%= f.button :submit %>
 <% end %>
