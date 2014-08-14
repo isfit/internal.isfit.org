@@ -15,6 +15,11 @@ module RoomBookingsHelper
     new_room_booking_path(w,y)
   end
 
+  def current_week
+    date = Date.today
+    new_room_booking_path(date.cweek,date.year)
+  end
+
   def disabled?(current_user, reserved_at)
     if current_user.role?(:admin) && Time.zone.now <= reserved_at
       disabled = false
