@@ -7,7 +7,12 @@
 
 <p>
   <b>Section:</b>
-  <%= @account.section %>
+  <%= @account.section.name if @account.section %>
+</p>
+
+<p>
+<b>Contact Email:</b>
+	<%= @account.contact_email %>
 </p>
 
 <p>
