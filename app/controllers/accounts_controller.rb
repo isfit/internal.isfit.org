@@ -79,6 +79,9 @@ class AccountsController < ApplicationController
     for i in 1..((params[:usages].size / 2)  )
       @sum += params[:usages]["amount#{i}"].sub(/,/, '.').to_d
     end
+
+    AccountsMailer.voucher_mail(params[:usages], @sum, current_user.full_name_reversed, @account.contact_email).deliver
+
     render layout:false
   end
 
