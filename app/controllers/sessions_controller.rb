@@ -66,6 +66,7 @@ class SessionsController < ApplicationController
   end
 
   def generate_motivational(user)
+
     motivationals = []
     motivationals << "Takk for at du er den du er, #{user.given_name}."
     motivationals << "Håper du får en fin dag!"
@@ -85,21 +86,35 @@ class SessionsController < ApplicationController
     motivationals << "Ha en superduper dag, fylt med masse kjærlighet og kos!"
     motivationals << "<a href='http://www.youtube.com/watch?v=spSJc7vq6cY'>You better redneckognize.</a>"
     motivationals << "<a href='http://qkme.me/3rl1oi'>Brace yourself. ISFiT is coming.</a>"
-    if user.id == 672
+    if user.id == 483
       motivationals << "Du er den beste presidenten ISFiT kunne hatt, #{user.given_name}. Jeg håper du vet det."
     end
-    if user.id == 66
-      motivationals << "Urv, Qnt-Vatr".tr("A-Za-z", "N-ZA-Mn-za-m")
+    if user.id == 850
+      motivationals << "Du er den søteste it-sjefen isfit har hatt <3 <3 <3 :)"
     end
+    if user.gender == nil && user.profile_picture_file_name == nil
+      return "Du har enda ikke valgt kjønn og lastet opp bilde på din profil. Vennligst #{view_context.link_to 'klikk her', edit_user_path(current_user.id) } for å gjøre dette slik at du dukker opp i spiller 'Who am I'."
+    elsif user.gender == nil
+      return "Du har enda ikke valgt kjønn. Vennligst #{view_context.link_to 'klikk her', edit_user_path(current_user.id) } for å gjøre dette og dukke opp i spillet 'Who am I'."
+    elsif user.profile_picture_file_name == nil
+      return "Du har enda ikke lagt inn et bilde av deg selv.Vennligst #{view_context.link_to 'klikk her', edit_user_path(current_user.id) } for å gjøre dette og dukke opp i spillet 'Who am I'. "
+    end  
     if user.birthday?
       return "Gratulerer med dagen, #{user.given_name}!"
     end
     if Time.now.saturday?
       return "Skal vi danse natten bort, #{user.given_name}?"
     end
+    if user.id == 1352
+      return ""
+    end
     if Time.now.hour > 22 || Time.now.hour < 5
       return "Husk: en god ISFiT-funksjonær er en funksjonær som også sover!"
     end
+    if Time.now.monday?
+      return "It works!"
+    end
+
     
     return motivationals[rand(motivationals.size)]
   end
