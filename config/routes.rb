@@ -7,7 +7,7 @@ InternalIsfitOrg::Application.routes.draw do
   get "events/:id/remove" => "events#remove"
 
 #for å legge til ny subsciber
-  post 'subscription/:subscription' => 'subscription#new_subscriber'
+  post 'subscription/:subscription' => 'subscription#new_subscriber', as: 'subscription'
 
   resources :participant_quotes
 
