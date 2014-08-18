@@ -66,7 +66,6 @@ class SessionsController < ApplicationController
   end
 
   def generate_motivational(user)
-
     motivationals = []
     motivationals << "Takk for at du er den du er, #{user.given_name}."
     motivationals << "Håper du får en fin dag!"
@@ -104,9 +103,6 @@ class SessionsController < ApplicationController
     end
     if Time.now.saturday?
       return "Skal vi danse natten bort, #{user.given_name}?"
-    end
-    if user.id == 1352
-      return ""
     end
     if Time.now.hour > 22 || Time.now.hour < 5
       return "Husk: en god ISFiT-funksjonær er en funksjonær som også sover!"
