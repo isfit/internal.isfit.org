@@ -75,6 +75,17 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
+
+        subscriptions.each do |subscriber|
+          if subscriber.subscriberid == 2
+            #send mail
+            id = subscriber.user_id
+            email = User.find(id).email
+            subscriber_mailer.article_mail(mail, @article)
+          end 
+        end
+
+        
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render json: @article, status: :created, location: @article }
       else
