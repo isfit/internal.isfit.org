@@ -29,7 +29,7 @@ gem 'oauth2'
 gem 'net-ldap'
 gem 'jbuilder'
 gem 'private_pub'
-gem 'rack-mini-profiler'
+#gem 'rack-mini-profiler'
 gem 'ransack'
 gem 'activemodel'
 gem 'simple_form', '~> 3.1.0.rc2'
@@ -41,10 +41,10 @@ gem 'whenever', :require => false
 gem 'exception_notification', "~>2.6.1", :require => 'exception_notifier'
 
 group :assets do
-  gem 'sass-rails'
+  gem 'sass-rails', '~> 4.0.3'
   gem 'coffee-rails'
   gem 'uglifier'
-  gem 'bootstrap-sass', '~> 3.1.1'
+  gem 'bootstrap-sass', '~> 3.2.0'
   gem 'bootstrap-datepicker-rails'
 end
 

@@ -10,6 +10,8 @@
 //= require ./jquery/jquery.fileupload
 //= require ./jquery/jquery.fileupload-ui.js
 //= require_tree ./jquery
+//= require bootstrap
+//= require bootstrap-sprockets
 //= require bootstrap-datepicker
 //= require private_pub
 //= require_tree .

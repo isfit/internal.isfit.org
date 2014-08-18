@@ -43,27 +43,27 @@
     </script>
 
     <!-- navbar starts here -->
-    <div id="navbar" class="navbar navbar-fixed-top navbar-inverse">
-      <div class="navbar-inner">
-        <div class="container">
+    <nav id="navbar" class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
         <div class="navbar-header">
-          <a class="btn navbar-btn" data-toggle="collapse" data-target=".navbar-collapse">
+          <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </a>
+          </button>
           <%= link_to "ISFiT Internal", root_path, :class => 'navbar-brand' %>
           
           </div>
           <div class="collapse navbar-collapse">
             <%= tabs %>
             <% if current_user %>
-              <ul class="nav navbar-nav pull-right"> 
-                <li>
-                  <form id="user-search-form" class="navbar-form navbar-right" role="search">
-                    <input id="user-search" type="text" class="form-control search-query col-md-2" placeholder="Søk på navn..." data-provide="typeahead" data-source=''>
-                  </form>
-                </li>
+
+              <form id="user-search-form" class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                  <input id="user-search" type="text" class="form-control search-query input-sm" placeholder="Søk på navn..." data-provide="typeahead" data-source=''>
+                </div>
+              </form>
+              <ul class="nav navbar-nav navbar-right"> 
                 <li class="dropdown"> 
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.full_name %> <b class="caret"></b></a> 
                 <ul class="dropdown-menu"> 
@@ -90,26 +90,25 @@
             <% end %>
           </div> <!-- end nav-collapse -->
         </div> <!-- end container -->
-      </div> <!-- end navbar-inner -->
-    </div> <!-- end navbar -->
+    </nav> <!-- end navbar -->
 
     <div class="container">
       <% if any_menu_groups? %>
-      <div class="row">
-        <div id="submeny" class="col-md-10 col-md-offset-2">
-          <%= menu_groups %>
+        <div class="row">
+          <div id="submeny" class="col-md-10 col-md-offset-2">
+            <%= menu_groups %>
+          </div>
         </div>
-      </div>
       <% end %>
 
       <div class="row">
         <% if content_for? :sidebar %>
-        <div id="sidebar" class="col-md-4">
-          <%= yield :sidebar %>
-        </div>
-        <div id="content" class="col-md-8">
+          <div id="sidebar" class="col-md-4">
+            <%= yield :sidebar %>
+          </div>
+          <div id="content" class="col-md-8">
         <% else %>
-        <div id="content" class="col-md-12">
+          <div id="content" class="col-md-12">
         <% end %>
           <% if notice or alert %>
             <div class="alert alert-<%= notice ? "success":"error" %>">

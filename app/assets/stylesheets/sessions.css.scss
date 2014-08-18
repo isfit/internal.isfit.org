@@ -6,6 +6,11 @@ body#sessions {
   -moz-background-size: cover!important;
   background-size: cover!important;
 }
+.login {
+  max-width: 330px;
+  padding: 0px;
+  margin: 0 auto;
+}
 body#sessions .form-signin {
   max-width: 300px;
   padding: 19px 29px 29px;
@@ -30,15 +35,6 @@ body#sessions .form-signin input[type="password"] {
   height: auto;
   margin-bottom: 15px;
   padding: 7px 9px;
-}
-body#sessions .alert{
-  width:310px;
-  margin: 0 auto 20px;
-}
-body#sessions a.forgot-password-link {
-  display:block;
-  width: 360px;
-  margin: 0 auto;
 }
 body#sessions a.forgot-password-link:hover {
   text-decoration: none;

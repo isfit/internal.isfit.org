@@ -1,14 +1,2 @@
+@import "bootstrap-sprockets";
 @import "bootstrap";
-@import "bootstrap-responsive";
-
-.pagination .page_info {
-	color: #D83415;
-	text-align: center;
-}
-
-.pagination .previous_page {
-	a {
-		border-left-width: 1px;
-		.border-radius(3px 0 0 3px);
-	}
-}
