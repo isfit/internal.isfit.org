@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    if @user.update_attributes(params[:user])
+    if @user.update_attributes(params[:F])
       redirect_to root_url, notice: "Your profile has been updated."
     else
       render action: 'edit'
@@ -64,6 +64,7 @@ class UsersController < ApplicationController
   end
 
   def update_password
+
     if params[:new_password] == params[:new_verified_password]
       current_user.password = params[:new_password]
       if current_user.save
