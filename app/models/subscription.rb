@@ -9,4 +9,8 @@ class Subscription < ActiveRecord::Base
   	}
   	choiches[object]
   end
+
+  def self.article_subscribers
+  	User.joins(:subscriptions).where('subscriptions.subscription_id = ?', 2)
+  end
 end
