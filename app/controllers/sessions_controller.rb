@@ -107,9 +107,6 @@ class SessionsController < ApplicationController
     if Time.now.hour > 22 || Time.now.hour < 5
       return "Husk: en god ISFiT-funksjonær er en funksjonær som også sover!"
     end
-    if Time.now.monday?
-      return "It works!"
-    end
 
     
     return motivationals[rand(motivationals.size)]
