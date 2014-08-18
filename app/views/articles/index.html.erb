@@ -1,5 +1,10 @@
 <% content_for :sidebar do %>
+  <div class="hidden-xs">
   <div id="kvitter" class="well widget"></div>
+  </div>
+  <div class="visible-xs">
+  <%= link_to "kvitter", kvitters_path, class: "btn btn-primary" %>
+  </div>
 <% end %>
 
 <div class="well">
@@ -24,7 +29,7 @@
               <%= link_to 'Attend', attending_article_path(article), :class => "btn btn-primary", method: :post %>
             <% end %>
           <% end %>
-          <%= link_to :edit, edit_article_path(article), :class => "btn" %>
+          <%= link_to :edit, edit_article_path(article), :class => "btn btn-primary" %>
           <%= link_to :delete, article, confirm: "Are you sure?", method: :delete, :class => "btn btn-danger"  %>
 
     
