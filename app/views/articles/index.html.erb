@@ -15,7 +15,11 @@
 
 <div class="articles">
     <%= link_to t('articles.index.create'), new_article_path, class: "btn btn-primary" %>
-    <%= link_to t('Abonnér på artikler'), subscription_path(Subscription.subscribe(:articles)), class: "btn btn-primary", method: :post %>
+    <% if false #current_user.subscribes(Subscription.subscribe(:articles)) %>
+      <%= link_to t('Abonnér på artikler'), subscription_path(Subscription.subscribe(:articles)), class: "btn btn-primary", method: :post %>
+    <% else %>
+      <%= link_to t('Avabonner'), unsubscription_path(Subscription.subscribe(:articles)), class: "btn btn-primary", method: :post %>
+    <% end %>
     <% for article in @articles %>
       <div class="article">
         <div class="btn-group pull-right">

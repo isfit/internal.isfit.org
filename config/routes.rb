@@ -8,6 +8,7 @@ InternalIsfitOrg::Application.routes.draw do
 
 #for å legge til ny subsciber
   post 'subscription/:subscription' => 'subscription#new_subscriber', as: 'subscription'
+  post 'unsubscription/:unsubscription' => 'subscription#undo_subscriber', as: 'unsubscription' 
 
   resources :participant_quotes
 
