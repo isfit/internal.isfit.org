@@ -15,7 +15,7 @@
 
 <div class="articles">
     <%= link_to t('articles.index.create'), new_article_path, class: "btn btn-primary" %>
-    <% if false #current_user.subscribes(Subscription.subscribe(:articles)) %>
+    <% if (Subscription.subscriber?(current_user,Subscription.subscribe(:articles))) %>
       <%= link_to t('Abonnér på artikler'), subscription_path(Subscription.subscribe(:articles)), class: "btn btn-primary", method: :post %>
     <% else %>
       <%= link_to t('Avabonner'), unsubscription_path(Subscription.subscribe(:articles)), class: "btn btn-primary", method: :post %>
