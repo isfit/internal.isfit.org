@@ -70,6 +70,7 @@ class ArticlesController < ApplicationController
   # POST /articles
   # POST /articles.json
   def create
+    binding.pry
     @article = Article.new(params[:article])
     @article.user = current_user
 
