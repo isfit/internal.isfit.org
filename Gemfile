@@ -9,7 +9,6 @@ gem 'mysql2'
 gem 'compass'
 
 # Spesifikke gems her
-gem 'pry'
 gem 'capistrano'
 gem 'rvm-capistrano'
 gem 'cancancan', '~> 1.9'
@@ -53,11 +52,12 @@ gem 'datetimepicker-rails', :git => 'git://github.com/zpaulovics/datetimepicker-
 group :development do
   # gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'nifty-generators'
+  gem 'pry'
   gem 'yard'
 end
 
 group :development, :test do
-  gem 'capybara-webkit'
+  #gem 'capybara-webkit'
   gem 'rspec-rails'
   gem 'webrat'
   gem 'database_cleaner'
@@ -67,7 +67,8 @@ end
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
-  gem 'selenium-webdriver'
+  #gem 'selenium-webdriver''
+  gem 'capybara-webkit'
 	gem 'capybara'
   gem 'spork-rails', '~> 4.0.0'
 	gem 'guard-rspec'
