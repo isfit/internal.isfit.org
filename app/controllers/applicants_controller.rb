@@ -5,7 +5,7 @@ class ApplicantsController < ApplicationController
 
   def statistics
     @positions = Position.published
-    @applicants = Applicant.where(deleted: false, has_account: false)
+    @applicants = visible_applicants
     @simple_stat = Hash.new
     @positions.each do |p|
       @simple_stat[p] = Float((@applicants.find_all {|a| a.position_id_1 == p.id}).size)/Float(p.number)
@@ -155,11 +155,11 @@ class ApplicantsController < ApplicationController
   private
   def visible_applicants
     if current_user.role?(:admin) || current_user.role?(:recruiting) || current_user.role?(:board)
-      @applicants = Applicant.where(deleted: false, has_account: false).all
+      return Applicant.where(deleted: false, has_account: false).all
     elsif current_user.role?(:wingman) || current_user.role?(:leader)
-      @applicants = Applicant.applicants_in_same_section(current_user)
+      return Applicant.applicants_in_same_section(current_user)
     elsif current_user.role?(:interviewer)
-      @applicants = Applicant.applicants_in_same_group( current_user)
+      return Applicant.applicants_in_same_group( current_user)
     else
       CanCan::AccessDenied
     end
