@@ -1,12 +1,9 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "participant_quotes/edit" do
   before(:each) do
-    @participant_quote = assign(:participant_quote, stub_model(ParticipantQuote,
-      :quote => "MyString",
-      :user => nil,
-      :category => "MyString"
-    ))
+    @participant_quote = ParticipantQuote.new(quote: "MyString", user: nil, category: "MyString")
+
   end
 
   it "renders the edit participant_quote form" do

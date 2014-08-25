@@ -1,12 +1,9 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "participant_quotes/show" do
   before(:each) do
     controller.stub(:current_user) { User.first }
-    @participant_quote = assign(:participant_quote, stub_model(ParticipantQuote,
-      :quote => "Quote",
-      :user => nil,
-    ))
+    @participant_quote = ParticipantQuote.create(quote: "Quote", user: nil, category: "MyString")
   end
 
   it "renders attributes in <p>" do

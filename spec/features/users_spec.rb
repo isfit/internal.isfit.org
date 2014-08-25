@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 def coupled_quests user
   quest = Quest.create! quest_text: "Lorem ipsum", accepted: 1
@@ -11,9 +11,10 @@ def coupled_quests user
 end
 
 describe "Users" do
+  self.use_transactional_fixtures = false
   before :each do
     @user = create(:user)
-    coupled_quests @user
+    #coupled_quests @user
   end
   it "should display unsucessfull text when not logged in" do
     visit login_path

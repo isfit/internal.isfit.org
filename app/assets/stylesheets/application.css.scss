@@ -10,7 +10,7 @@
  *= require "prettyPhoto"
  *= require "jquery.fileupload-ui"
  *= require "jquery.jvectormap"
- *= require "jqueryui"
+ *= require "jquery-ui"
  *= require "room_bookings"
  *= require "internal_tabs"
  *= require "organization_chart"
@@ -22,5 +22,5 @@
  *= require "transport_system"
  *= require "sessions"
  *= require "bootstrap_override"
- *= require bootstrap-datepicker3
+ *= require bootstrap-datetimepicker.min
 */

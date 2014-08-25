@@ -1,12 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "participant_quotes/new" do
   before(:each) do
-    assign(:participant_quote, stub_model(ParticipantQuote,
-      :quote => "MyString",
-      :user => nil,
-      :category => "MyString"
-    ).as_new_record)
+    assign(:participant_quote, ParticipantQuote.new(quote: "MyString", user: nil, category: "MyString"))
   end
 
   it "renders new participant_quote form" do

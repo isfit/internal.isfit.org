@@ -6,20 +6,21 @@ gem 'sqlite3'
 gem 'mysql2'
 
 # Asset template engines
-gem 'compass', ">=0.12.rc.0"
+gem 'compass'
 
 # Spesifikke gems her
 gem 'pry'
 gem 'capistrano'
 gem 'rvm-capistrano'
-gem 'cancan'
+gem 'cancancan', '~> 1.9'
 gem 'rails-i18n'
 gem 'ancestry'
 gem 'paperclip'
 gem 'rack'
 gem 'rake'
 gem "bcrypt-ruby", :require => "bcrypt"
-gem "jquery-rails", "~> 2.3.0"
+gem "jquery-rails", "~> 3.1.1"
+gem "jquery-ui-rails"
 gem 'memcache-client'
 gem 'therubyracer'
 gem 'mini_magick', :require=>'RMagick'
@@ -38,15 +39,16 @@ gem 'bootstrap-will_paginate'
 gem 'whenever', :require => false
 
 # Denne spammer oss med mail atm... Må tunes :P
-gem 'exception_notification', "~>2.6.1", :require => 'exception_notifier'
+gem 'exception_notification', "~>4.0.1", :require => 'exception_notifier'
 
-group :assets do
-  gem 'sass-rails', '~> 4.0.3'
-  gem 'coffee-rails'
-  gem 'uglifier'
-  gem 'bootstrap-sass', '~> 3.2.0'
-  gem 'bootstrap-datepicker-rails'
-end
+gem 'sass-rails', '~> 4.0.3'
+gem 'coffee-rails', '~> 4.0.1'
+gem 'uglifier', '>= 1.3.0'
+gem 'bootstrap-sass', '~> 3.2.0'
+#gem 'bootstrap-datepicker-rails'
+gem 'momentjs-rails', '~> 2.8.1'
+gem 'datetimepicker-rails', :git => 'git://github.com/zpaulovics/datetimepicker-rails.git',  \
+    :branch => 'master', :submodules => true
 
 group :development do
   # gem 'ruby-debug19', :require => 'ruby-debug'
@@ -58,16 +60,16 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'webrat'
   gem 'database_cleaner'
+  gem 'factory_girl_rails'
 end
 
 group :test do
   gem 'capybara-webkit'
   # Pretty printed test output
   gem 'turn', :require => false
-	gem 'factory_girl_rails'
-  gem 'selenium-webdriver', '~> 2.35.1'
+  gem 'selenium-webdriver'
 	gem 'capybara'
-	gem 'spork', "> 0.9.0rc"
+  gem 'spork-rails', '~> 4.0.0'
 	gem 'guard-rspec'
 	gem 'guard-spork'
 end
