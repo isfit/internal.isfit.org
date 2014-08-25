@@ -27,7 +27,8 @@ class KvittersController < ApplicationController
                                          :user_full_name,
                                          :user_image,
                                         ]),
-                        user_given_name: current_user.given_name.to_json
+                        user_given_name: current_user.given_name.to_json,
+                        button: Subscription.kvitter_button(current_user).to_json,
                       }
       end
     end

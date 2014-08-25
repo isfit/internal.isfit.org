@@ -66,10 +66,10 @@ function downloadKvitters() {
   $.getJSON('/kvitters/last.json', function(data) {
     var kvitters = JSON.parse(data.kvitters);
     var user_given_name = JSON.parse(data.user_given_name);
-    console.log("hei");
+    var button = JSON.parse(data.button);
     $('#kvitter').empty();
     $('#kvitter').append('<h1 rel="popover" data-original-title="Kvitter" data-content="Kvitter is the internal Twitter of ISFiT. Write something inspiring, engaging, or simply informing, and share it with the world!">Kvitter</span>');
-    $('#kvitter').append('<form name="kvitter" id="kvitter-form" action="kvitters/create.json" method="post"><textarea rows="3" style="width: 100%;"  name="message" placeholder="Si noe inspirerende, ' + user_given_name + '..."></textarea><input type="submit" class="btn btn-info" value="Kvitr!" /><a href="/subscription/1" class="btn btn-info pull-right">Abonner </a></form>');
+    $('#kvitter').append('<form name="kvitter" id="kvitter-form" action="kvitters/create.json" method="post"><textarea rows="3" style="width: 100%;"  name="message" placeholder="Si noe inspirerende, ' + user_given_name + '..."></textarea><input type="submit" class="btn btn-info" value="Kvitr!" />' + button + '</form>');
     $('#kvitter').append('<ul id="kvitter-posts" class="media-list"></ul>');
     $('#kvitter').append('<a href="/kvitters" class="btn btn-info btn-kvitter-see-more">Se flere</a>');
     $('[rel=popover]').popover({
