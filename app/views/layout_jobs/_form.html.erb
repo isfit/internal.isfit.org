@@ -13,13 +13,13 @@
       <h1><small>Info about the work:</h1></small>
     </div>
     <%= f.input :work_title, input_html: { :class => "col-md-4"}, placeholder: "Descriptive name of job" %>
-    <%= f.input :deadline, as: :string, input_html: {class: "datepicker"}%>
+    <%= f.input :deadline, as: :date_picker %>
     <%= f.input :publishing, as: :radio_buttons , required: true , label: "Publishing", collection: LayoutJob.publishing_options %>
     <%= f.input :format, placeholder: "Ex 40cm x 20cm, A3" %>
     <%= f.input :description, input_html: {cols: 80, rows: 10}, placeholder: "Describe the work" %>
     
     <% if(current_user.role?(:admin) || current_user.role?(:layout)) %>
-      <%= f.input :last_proofread, input_html: { :class => "col-md-2" }, include_blank: true %>
+      <%= f.input :last_proofread, as: :date_picker, input_html: { class: "col-md-2" }, include_blank: true %>
       <%= f.input :status, as: :radio_buttons , label: "Status", collection: LayoutJob.status_options %>
     <% end %>
     <div class="col-sm-offset-3">

@@ -1,4 +1,4 @@
-require "spec_helper"
+require 'rails_helper'
 
 describe IsfitPagesController do
   describe "routing" do

@@ -12,7 +12,9 @@
 //= require_tree ./jquery
 //= require bootstrap
 //= require bootstrap-sprockets
-//= require bootstrap-datepicker
+//= require moment
+//= require bootstrap-datetimepicker
+//= require pickers
 //= require private_pub
 //= require_tree .
 //= require_self

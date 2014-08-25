@@ -4,10 +4,10 @@
     <%= f.input :title, :class => "col-md-6" %>
     <%= f.input :body, :class => "col-md-6" %>
     <%= f.input :sticky %>
-    <%= f.input :end_at %>
+    <%= f.input :end_at, :as => :datetime_picker %>
     <%= f.input :attending %>
     <%= f.input :deleted %>
-    <%= f.input :article_image %>
+    <%= f.input :article_image, as: :file %>
   </fieldset>
   <%= f.submit %>
 <% end %>

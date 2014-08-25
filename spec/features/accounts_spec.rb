@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 require 'integration_js_helper'
 
 def coupled_quests user
@@ -11,10 +11,11 @@ def coupled_quests user
   UserQuest.stub(:generate_quest).with(any_args) { user_quest }
 end
 
-describe "Accounts", js: true do
+feature "Accounts", js: true do
+  self.use_transactional_fixtures = false
   before :each do
     user = create(:admin_user)
-    coupled_quests user
+    #coupled_quests user
     Festival.stub(:find_by_year).with(any_args) { Festival.new }
     create(:account)
     visit login_path

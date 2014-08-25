@@ -17,7 +17,7 @@ class DialogueParticipant < ActiveRecord::Base
 	validates_presence_of :field_of_study
 
   validates_format_of :email,
-      			:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i,
+      			:with => /@/,
       			:message => 'address is invalid.'
 	validates_confirmation_of :email, :message => "address should match confirmation."
 	validates_uniqueness_of :email, :message => " address is already in use."

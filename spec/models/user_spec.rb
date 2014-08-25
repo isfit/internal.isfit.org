@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe User do
   def new_user(attributes = {})
@@ -22,11 +22,15 @@ describe User do
   end
 
   it "should validate password is longer than 3 characters" do
-    new_user(:password => 'bad').should have(1).error_on(:password)
+    user = new_user(:password => 'bad')
+    expect(user.valid?).to be_falsey
+    expect(user.errors[:password].size).to eq(1)
   end
 
   it "should require matching password confirmation" do
-    new_user(:password_confirmation => 'nonmatching').should have(1).error_on(:password)
+    user = new_user(:password_confirmation => 'nonmatching')
+    expect(user.valid?).to be_falsey
+    expect(user.errors[:password_confirmation].size).to eq(1)
   end
 
   it "should authenticate by username" do
@@ -44,7 +48,7 @@ describe User do
   it "should not authenticate bad password" do
     user = new_user(:username => 'foobar', :password => 'secret12')
     user.save!
-    user.authenticate('badpassword').should be_false
+    user.authenticate('badpassword').should be false
   end
 
   it "should return full name on full_name method" do
