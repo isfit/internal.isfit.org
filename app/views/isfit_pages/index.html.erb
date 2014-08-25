@@ -7,6 +7,7 @@
   <tr>
     <th>English title</th>
     <th>Norwegian title</th>
+    <th>Tab</th>
     <th>Action</th>
   </tr>
 </thead>
@@ -15,6 +16,7 @@
   <tr>
     <td><%= isfit_page.title_en %></td>
     <td><%= isfit_page.title_no %></td>
+    <td><%= tab_name isfit_page.tab_id %>
     <td width="75px">
       <div class="btn-group">
     <%= link_to 'Edit', edit_isfit_page_path(isfit_page), class: "btn btn-info" %>

@@ -1,0 +1,33 @@
+<%= formatting %>
+<div class="tabbable">
+  <%= form_for(@isfit_tab, html: {class: "form-stacked"} ) do |f| %>
+    <% if @isfit_tab.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@isfit_tab.errors.count, "error") %> prohibited this isfit_page from being saved:</h2>
+
+        <ul>
+          <% @isfit_tab.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="tab-content">
+        <div class="field">
+          <%= f.label :deleted %>
+          <%= f.check_box :deleted %>
+        </div>
+        <div class="field">
+          <%= f.label :name_en %>
+          <%= f.text_field :name_en , class: "span9"%>
+        </div>
+        <div class="field">
+          <%= f.label :name_no %>
+          <%= f.text_field :name_no, class: "span9" %>
+        </div>
+    </div>
+    <div class="actions">
+      <%= f.submit class: "btn-primary btn" %>
+    </div>
+  <% end %>
+</div>

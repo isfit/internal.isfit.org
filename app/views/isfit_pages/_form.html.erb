@@ -28,6 +28,10 @@
           <%= f.label :deleted %>
           <%= f.check_box :deleted %>
         </div>
+        <div class="field">
+          <%= f.label :tab_id %>
+          <%= f.collection_select :tab_id, @isfit_tabs, :id, :name_no, include_blank: true %>
+        </div>
       </div>
       <div class="tab-pane" id="english">
         <div class="field">
