@@ -40,14 +40,19 @@ class IsfitTabsController < ApplicationController
   # POST /isfit_tabs
   # POST /isfit_tabs.json
   def create
-
     @isfit_tab = IsfitTab.new(params[:isfit_tab])
     @isfit_tab.tag_en = @isfit_tab.name_en.parameterize
     @isfit_tab.tag_no = @isfit_tab.name_no.parameterize
-    @isfit_tab.path = "tabs"
-    @isfit_tab.weight = 7
+    if @isfit_tab.name_en.eql?("News")
+      @isfit_tab.path = "root"
+      @isfit_tab.weight = 1
+    elsif @isfit_tab.name_en.eql?("Workshops")
+      @isfit_tab.path = "workshops"
+    else
+      @isfit_tab.path = "tabs"
+    end
 
-    if IsfitTab.count == 1
+    if IsfitTab.count == 0
       @isfit_tab.weight = 1
     else
       @isfit_tab.weight = IsfitTab.where(deleted: 0).order("weight desc").limit(1).first.weight + 1
@@ -91,8 +96,18 @@ class IsfitTabsController < ApplicationController
   # DELETE /isfit_tabs/1.json
   def destroy
     @isfit_tab = IsfitTab.find(params[:id])
+    @isfit_pages = IsfitPage.where(tab_id: params[:id])
+    @isfit_pages.each do |page|
+      page.tab_id = nil
+      page.tab_weight = -1
+      page.save
+    end
+    @isfit_tabs = IsfitTab.where("weight > #{@isfit_tab.weight} AND deleted = 0").order("weight ASC")
+    @isfit_tabs.each do |tab|
+      tab.weight = tab.weight - 1
+      tab.save
+    end
     @isfit_tab.destroy
-
     respond_to do |format|
       format.html { redirect_to isfit_tabs_url }
       format.json { head :no_content }
