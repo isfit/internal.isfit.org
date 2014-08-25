@@ -6,4 +6,9 @@ class SubscriberMailer < ActionMailer::Base
 
     mail(to: "#{username}@isfit.org", from: 'orakel@isfit.org', subject: subject, body: body)
 	end
+	def kvitter_mail(username, kvitter)
+	subject = "[ISFiT] [New kvitter] #{kvitter.user.username} "
+    body = "#{kvitter.user.username} har kvittret! Her er den fantastiske meldingen: #{kvitter.message}"
+    mail(to: "#{username}@isfit.org", from: 'orakel@isfit.org', subject: subject, body: body)
+	end
 end
