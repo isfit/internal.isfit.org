@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140815111157) do
+ActiveRecord::Schema.define(:version => 20140825164602) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name_nb"
@@ -352,6 +352,13 @@ ActiveRecord::Schema.define(:version => 20140815111157) do
     t.boolean  "blog",                                             :default => false
   end
 
+  create_table "frontend_hashtags", :force => true do |t|
+    t.string   "hashtag"
+    t.integer  "article_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "functionaries", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -464,6 +471,20 @@ ActiveRecord::Schema.define(:version => 20140815111157) do
     t.string  "tag",                           :null => false
     t.boolean "deleted",    :default => false, :null => false
     t.integer "tab_id"
+    t.integer "tab_weight", :default => -1
+  end
+
+  create_table "isfit_tabs", :force => true do |t|
+    t.string   "name_en"
+    t.string   "name_no"
+    t.string   "tag_no"
+    t.string   "tag_en"
+    t.string   "path"
+    t.integer  "weight"
+    t.string   "icon"
+    t.boolean  "deleted"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "kvitters", :force => true do |t|
@@ -777,6 +798,15 @@ ActiveRecord::Schema.define(:version => 20140815111157) do
   end
 
   add_index "static_pages", ["user_id"], :name => "index_static_pages_on_user_id"
+
+  create_table "subscriptions", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "subscription_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "subscriptions", ["user_id"], :name => "index_subscriptions_on_user_id"
 
   create_table "transport_types", :force => true do |t|
     t.string   "name"

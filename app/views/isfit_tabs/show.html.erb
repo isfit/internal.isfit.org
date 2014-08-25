@@ -1,0 +1,39 @@
+<div class="">
+<h1>General information</h1>
+<p>Norwegian name: <%=@isfit_tab.name_no %></p>
+<p>English name: <%=@isfit_tab.name_en %></p>
+<h1>All pages assigned to this tab.</h1>
+<p>If an page has weight -1, push the set weight button to create an weight for the page.</p>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Weight</th>
+      <th>Norwegian title</th>
+      <th>English title</th>
+      <th></th>
+      <th>Rank</th>
+    </tr>
+  </thead>
+
+  <% @isfit_pages.each do |isfit_page| %>
+    <tr>
+      <td> <%= isfit_page.tab_weight %></td>
+      <td><%= isfit_page.title_no %></td>
+      <td><%= isfit_page.title_en %></td>
+      <td width="75px">
+        <%= link_to 'Show', isfit_page, class: "btn" %>
+      </td>
+      <td>
+      	<% if has_weight isfit_page %>
+      		<%= link_to("up", moveup_page_isfit_tab_path(isfit_page), class: "btn")%> <%=link_to("down", movedown_page_isfit_tab_path(isfit_page), class: "btn")%>
+      	<% else %>
+      		<%= link_to("Set weight", set_weight_page_isfit_tab_path(isfit_page), class: "btn")%>
+      	<% end %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>
+<%= link_to 'Edit', edit_isfit_tab_path(@isfit_tab), :class => "btn" %>
+<%= link_to 'Back', isfit_tabs_path, :class => "btn" %>
+
