@@ -259,7 +259,6 @@ GEM
       rspec-mocks (~> 3.1.0)
       rspec-support (~> 3.1.0)
     rspec-support (3.1.2)
-    rubyzip (1.1.6)
     rvm-capistrano (1.5.4)
       capistrano (~> 2.15.4)
     sass (3.2.19)
@@ -268,11 +267,6 @@ GEM
       sass (~> 3.2.0)
       sprockets (~> 2.8, <= 2.11.0)
       sprockets-rails (~> 2.0)
-    selenium-webdriver (2.43.0)
-      childprocess (~> 0.5)
-      multi_json (~> 1.0)
-      rubyzip (~> 1.0)
-      websocket (~> 1.0)
     simple_form (3.1.0.rc2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
@@ -314,7 +308,6 @@ GEM
       nokogiri (>= 1.2.0)
       rack (>= 1.0)
       rack-test (>= 0.5.3)
-    websocket (1.2.1)
     websocket-driver (0.3.5)
     whenever (0.9.3)
       chronic (>= 0.6.3)
@@ -367,7 +360,6 @@ DEPENDENCIES
   rspec-rails
   rvm-capistrano
   sass-rails (~> 4.0.3)
-  selenium-webdriver
   simple_form (~> 3.1.0.rc2)
   spork-rails (~> 4.0.0)
   sqlite3
