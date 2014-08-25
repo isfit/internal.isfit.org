@@ -24,8 +24,8 @@ class IsfitPagesController < ApplicationController
   # GET /isfit_pages/new
   # GET /isfit_pages/new.json
   def new
+    @isfit_tabs = IsfitTab.where(deleted: 0).all
     @isfit_page = IsfitPage.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @isfit_page }
@@ -34,6 +34,7 @@ class IsfitPagesController < ApplicationController
 
   # GET /isfit_pages/1/edit
   def edit
+    @isfit_tabs = IsfitTab.where(deleted: 0).all
     @isfit_page = IsfitPage.find(params[:id])
   end
 
@@ -41,7 +42,11 @@ class IsfitPagesController < ApplicationController
   # POST /isfit_pages.json
   def create
     @isfit_page = IsfitPage.new(params[:isfit_page])
-
+    if IsfitPage.where("tab_id = #{@isfit_page.tab_id} AND deleted = 0").count == 1
+      @isfit_page.tab_weight = 1
+    else
+      @isfit_page.tab_weight = IsfitPage.where("tab_id = #{@isfit_page.tab_id} AND deleted = 0").order("tab_weight desc").limit(1).first.weight + 1
+    end
     respond_to do |format|
       if @isfit_page.save
         format.html { redirect_to @isfit_page, notice: 'Isfit page was successfully created.' }
