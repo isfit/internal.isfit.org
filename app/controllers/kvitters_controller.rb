@@ -4,13 +4,14 @@ class KvittersController < ApplicationController
   protect_from_forgery :except => :create
 
   def create
-    logger.debug "Kom hit"
     @kvitter = Kvitter.new
     @kvitter.message = params[:message]
     @kvitter.user_id = current_user.id
     if @kvitter.save
       create_hashtags @kvitter.id, @kvitter.message
-
+      Subscription.kvitter_subscribers.each do |user|
+          SubscriberMailer.kvitter_mailer(kvitter.user_id,kvitter.message)
+      end
       render :json => @kvitter.to_json(methods: :username)
     else
       render :text => "failed"
