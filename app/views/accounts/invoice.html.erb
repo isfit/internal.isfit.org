@@ -19,6 +19,15 @@ generate a printable invoice form.</p>
     <td><%=label_tag :unit%></td>
 		<td><%= select(:voucher, :unit, @unit_choices_text) %><br /></td>
 	</tr>
+	<tr valign="top">
+    	<td>
+    		<%=label_tag :budget_post%>
+    	</td>
+		<td>
+			<%= text_field(:voucher, :budget_post, :style => 'width: 250px') %>
+			<br />
+		</td>
+	</tr>
 	<tr>
 		<td>Refund:</td>
 		<td><%= check_box(:voucher, :refund) %></td>
