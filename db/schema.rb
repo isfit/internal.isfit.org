@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140825111402) do
+ActiveRecord::Schema.define(:version => 20140825164602) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name_nb"
@@ -350,6 +350,13 @@ ActiveRecord::Schema.define(:version => 20140825111402) do
     t.datetime "frontend_article_image_updated_at"
     t.text     "sidebar"
     t.boolean  "blog",                                             :default => false
+  end
+
+  create_table "frontend_hashtags", :force => true do |t|
+    t.string   "hashtag"
+    t.integer  "article_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "functionaries", :force => true do |t|

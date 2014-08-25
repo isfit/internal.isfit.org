@@ -5,8 +5,8 @@ describe "isfit_tabs/show" do
     @isfit_tab = assign(:isfit_tab, stub_model(IsfitTab))
   end
 
-  it "renders attributes in <p>" do
-    render
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
-  end
+  #it "renders attributes in <p>" do
+  #  render
+  #  # Run the generator again with the --webrat flag if you want to use webrat matchers
+  #end
 end
