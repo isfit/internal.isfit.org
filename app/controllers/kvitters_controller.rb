@@ -1,4 +1,4 @@
-r# encoding: utf-8
+# encoding: utf-8
 class KvittersController < ApplicationController
   load_and_authorize_resource
   protect_from_forgery :except => :create
