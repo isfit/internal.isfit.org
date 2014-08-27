@@ -94,7 +94,7 @@ class User < ActiveRecord::Base
 
   def birthday?
     if self.date_of_birth
-      Date.parse("#{Date.today.year}#{self.date_of_birth.strftime("%m%d")}").today?
+      Date.today.strftime("%m%d") == self.date_of_birth.strftime("%m%d")
     else
       false
     end
