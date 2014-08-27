@@ -78,11 +78,6 @@ GEM
       sass (~> 3.2.5)
     cookiejar (0.3.0)
     database_cleaner (0.9.1)
-    delayed_job (4.0.2)
-      activesupport (>= 3.0, < 4.2)
-    delayed_job_active_record (4.0.1)
-      activerecord (>= 3.0, < 4.2)
-      delayed_job (>= 3.0, < 4.1)
     diff-lcs (1.2.4)
     em-http-request (1.0.3)
       addressable (>= 2.2.3)
@@ -312,7 +307,6 @@ DEPENDENCIES
   coffee-rails
   compass (>= 0.12.rc.0)
   database_cleaner
-  delayed_job_active_record
   exception_notification (~> 2.6.1)
   factory_girl_rails
   guard-rspec
