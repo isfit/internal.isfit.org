@@ -4,10 +4,14 @@
 
 <div class="well">
   <h3>Hva skjer i ISFiT nå?</h3>
-  <% if current_user_can_see_applications? %>
-  <h4>Opptak!</h4>
-  <p>Følg med på <%= link_to "rekrutteringssiden", applicants_path %> for å se søkere strømme inn :)</p>
-  <% end %>
+  <% time = Time.new.wday %>
+  <% if time == 3%>
+  <p> Husk Bong-Salg i MORGEN på kontoret</p>
+  <%= image_tag "bong.gif" %>
+  <% elsif time == 4%>
+  <p> Bong-Salg i DAG på kontoret (16:30-17:30) </p>
+  <%= image_tag "bong.gif" %>
+  <%end%>
   <h4>Apps!</h4>
   <p>Gå til <%= link_to "mail", "http://mail.isfit.no" %> eller <%= link_to "docs", "http://docs.isfit.no" %>.</p>
 </div>
