@@ -8,9 +8,14 @@ class SessionsController < ApplicationController
 
   def create
     user = User.where(username: params[:login]).first || User.where(google_apps_username: params[:login]).first
-    if user && !user.password_digest.nil? && user.authenticate(params[:password]) && user.role?(:internal)
-      session[:user_id] = user.id
-      redirect_to_target_or_default root_url, notice: generate_motivational(user)
+    if user && !user.password_digest.nil? && user.authenticate(params[:password])
+      if user.role?(:internal)
+        session[:user_id] = user.id
+        redirect_to_target_or_default root_url, notice: generate_motivational(user)
+      else
+        flash.now[:alert] = "Login and password is correct, but you don't have access to internal. Please contact orakel@isfit.org."
+        render action: 'new'
+      end
     elsif user && user.password_digest.nil?
       flash.now[:alert] = "Invalid login or password, contact orakel@isfit.org."
       render action: 'new'
