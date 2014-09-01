@@ -98,7 +98,6 @@ class AccountsController < ApplicationController
     for i in 1..(params[:carriers].size / 3)
       @sum += params[:carriers]["amount#{i}"].sub(/,/, '.').to_d
     end
-    binding.pry
     AccountsMailer.travel_mail(params[:carriers], @sum, current_user.full_name_reversed, @account.contact_email).deliver
 
     render layout:false

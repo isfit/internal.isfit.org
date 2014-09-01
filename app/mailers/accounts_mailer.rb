@@ -16,7 +16,8 @@ class AccountsMailer < ActionMailer::Base
 			test += "Description: " + desc["description#{i}"] + "\nAmount: "  + desc["amount#{i}"].sub(/,/, '.') + "\n"
 		end
 		test += "\nThe voucher has a total amount of #{sum}"
-		mail(to: to, subject: subject, body: test)
+		recipient = to || 'headofaccounting@isfit.no'
+		mail(to: recipient, subject: subject, body: test)
 	end
 
 	def travel_mail(desc, sum, name, to)
@@ -28,7 +29,7 @@ class AccountsMailer < ActionMailer::Base
 			desc["means#{i}"] + "\nAmount: " + desc["amount#{i}"].sub(/,/, '.') + "\n"
 		end
 		travel_body += "\nThe voucher has a total amount of #{sum}"
-		recipient = to if to else 'headofaccounting@isfit.no'
+		recipient = to || 'headofaccounting@isfit.no'
 		mail(to: recipient, subject: subject, body: travel_body)
 	end
 
@@ -40,6 +41,7 @@ class AccountsMailer < ActionMailer::Base
 			test += "Description: " + desc["description#{i}"] + "\nAmount: "  + desc["amount#{i}"].sub(/,/, '.') + "\n"
 		end
 		test += "\nThe invoice has a total amount of #{sum}"
-		mail(to: to, subject: subject, body: test)
+		recipient = to || 'headofaccounting@isfit.no'
+		mail(to: recipient, subject: subject, body: test)
 	end
 end
