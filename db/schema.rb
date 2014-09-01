@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140815115301) do
+ActiveRecord::Schema.define(:version => 20140825182451) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name_nb"
@@ -352,6 +352,19 @@ ActiveRecord::Schema.define(:version => 20140815115301) do
     t.boolean  "blog",                                             :default => false
   end
 
+  create_table "frontend_articles_frontend_hashtags", :force => true do |t|
+    t.integer  "frontend_articles_id"
+    t.integer  "frontend_hashtags_id"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
+
+  create_table "frontend_hashtags", :force => true do |t|
+    t.string   "hashtag"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "functionaries", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -464,6 +477,20 @@ ActiveRecord::Schema.define(:version => 20140815115301) do
     t.string  "tag",                           :null => false
     t.boolean "deleted",    :default => false, :null => false
     t.integer "tab_id"
+    t.integer "tab_weight", :default => -1
+  end
+
+  create_table "isfit_tabs", :force => true do |t|
+    t.string   "name_en"
+    t.string   "name_no"
+    t.string   "tag_no"
+    t.string   "tag_en"
+    t.string   "path"
+    t.integer  "weight"
+    t.string   "icon"
+    t.boolean  "deleted"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "kvitters", :force => true do |t|
@@ -920,8 +947,9 @@ ActiveRecord::Schema.define(:version => 20140815115301) do
     t.integer  "user_id"
     t.boolean  "published"
     t.boolean  "got_comments"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.integer  "rank",                        :default => 1, :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.string   "workshop_image_file_name"
     t.string   "workshop_image_content_type"
     t.integer  "workshop_image_file_size"

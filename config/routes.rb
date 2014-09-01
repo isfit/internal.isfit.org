@@ -1,5 +1,16 @@
 InternalIsfitOrg::Application.routes.draw do
 
+  resources :isfit_tabs do
+    member do
+      get 'moveup'
+      get 'movedown'
+      get 'moveup_page'
+      get 'movedown_page'
+      get 'set_weight_page'
+    end
+  end
+
+
   resources :hosts
 
   resources :events
