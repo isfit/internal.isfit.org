@@ -32,7 +32,8 @@
 				timeText: 'Time',
 				hourText: 'Hour',
 				minuteText: 'Minute',
-				secondText: 'Second'
+				secondText: 'Second',
+				dateFormat:'dd.mm.yy'
 			};
 			this.defaults = { // Global defaults for all the datetime picker instances
 				showButtonPanel: true,

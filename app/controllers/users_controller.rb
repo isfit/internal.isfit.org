@@ -64,6 +64,7 @@ class UsersController < ApplicationController
   end
 
   def update_password
+
     if params[:new_password] == params[:new_verified_password]
       current_user.password = params[:new_password]
       if current_user.save

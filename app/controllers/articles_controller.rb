@@ -70,11 +70,17 @@ class ArticlesController < ApplicationController
   # POST /articles
   # POST /articles.json
   def create
+  
     @article = Article.new(params[:article])
     @article.user = current_user
 
     respond_to do |format|
       if @article.save
+
+        Subscription.article_subscribers.each do |user|
+          SubscriberMailer.article_mail(user.username, @article).deliver
+        end
+
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render json: @article, status: :created, location: @article }
       else

@@ -53,13 +53,13 @@ group :development do
 end
 
 group :development, :test do
-  gem 'capybara-webkit'
   gem 'rspec-rails'
   gem 'webrat'
   gem 'database_cleaner'
 end
 
 group :test do
+  gem 'capybara-webkit'
   # Pretty printed test output
   gem 'turn', :require => false
 	gem 'factory_girl_rails'

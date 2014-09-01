@@ -17,6 +17,10 @@ InternalIsfitOrg::Application.routes.draw do
   get "events/:id/attend" => "events#attend"
   get "events/:id/remove" => "events#remove"
 
+#for å legge til ny subsciber
+  post 'subscription/:subscription' => 'subscription#new_subscriber', as: 'subscription'
+  post 'unsubscription/:unsubscription' => 'subscription#undo_subscriber', as: 'unsubscription' 
+
   resources :participant_quotes
 
   resources :layout_jobs do

@@ -4,14 +4,15 @@ class KvittersController < ApplicationController
   protect_from_forgery :except => :create
 
   def create
-    logger.debug "Kom hit"
-    @kvitter = Kvitter.new
-    @kvitter.message = params[:message]
-    @kvitter.user_id = current_user.id
-    if @kvitter.save
-      create_hashtags @kvitter.id, @kvitter.message
-
-      render :json => @kvitter.to_json(methods: :username)
+    kvitter = Kvitter.new
+    kvitter.message = params[:message]
+    kvitter.user_id = current_user.id
+    if kvitter.save
+      create_hashtags kvitter.id, kvitter.message
+      Subscription.kvitter_subscribers.each do |user|
+        SubscriberMailer.kvitter_mail(kvitter.username, kvitter).deliver
+      end
+      render :json => kvitter.to_json(methods: :username)
     else
       render :text => "failed"
     end
@@ -27,7 +28,8 @@ class KvittersController < ApplicationController
                                          :user_full_name,
                                          :user_image,
                                         ]),
-                        user_given_name: current_user.given_name.to_json
+                        user_given_name: current_user.given_name.to_json,
+                        button: Subscription.kvitter_button(current_user).to_json,
                       }
       end
     end
