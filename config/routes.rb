@@ -1,5 +1,8 @@
 InternalIsfitOrg::Application.routes.draw do
 
+  resources :motds
+
+
   resources :isfit_tabs do
     member do
       get 'moveup'

@@ -1,0 +1,12 @@
+<%= simple_form_for(@motd) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :msg %>
+    <%= f.input :datetime %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
