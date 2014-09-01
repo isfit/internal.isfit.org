@@ -24,6 +24,7 @@
       <th class="header"><%= "Created at"%></th>
     </tr>
   </thead>
+  <tbody>
   <% @applicants.each do |applicant| %>
     <tr>
       <td width="100px">
@@ -55,6 +56,17 @@
       <td><%= applicant.created_at.strftime("%Y-%m-%d %H:%M:%S") %> </td>
     </tr>
   <% end %>
+</tbody>
 </table>
 
 <%#= will_paginate @applicants %>
+<script>
+    $( document ).ready(function() {
+        console.log( "document loaded" );
+    });
+ 
+    $( window ).load(function() {
+        console.log( "window loaded" );
+    });
+    </script>
+    <div>

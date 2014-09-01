@@ -11,7 +11,7 @@ def coupled_quests user
   UserQuest.stub(:generate_quest).with(any_args) { user_quest }
 end
 
-feature "Accounts", js: true do
+describe "Accounts", js: true do
   self.use_transactional_fixtures = false
   before :each do
     user = create(:admin_user)

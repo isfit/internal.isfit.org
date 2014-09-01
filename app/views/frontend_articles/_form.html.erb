@@ -37,25 +37,35 @@
   <fieldset>
     <legend><%= t('common.common') %></legend>
       <div class="field">
-      <%= f.label :show_article %>
+      <%= f.label :show_article %> 
       <%= f.text_field :show_article, class: :datetimepicker %>
     </div>
+    <hr>
     <div class="field">
       <%= f.label :list %>
       <%= f.check_box :list %>
     </div>
+    <hr>
+    <div class="field">
+      <%= f.label :blog, "Is it a blogpost?" %>
+      <%= f.check_box :blog %>
+    </div>
+    <hr>
     <div class="field">
       <%= f.label :got_comments %>
       <%= f.check_box :got_comments %>
     </div>
+    <hr>
     <div class="field">
       <%= f.label :byline_user_id %>
       <%= f.collection_select :byline_user_id, @users, :id, :full_name_reversed %>
     </div>
+    <hr>
     <div class="field">
       <%= f.label :image_credits %>
       <%= f.text_field :image_credits %>
     </div>
+    <hr>
     <div class="field">
       <%= f.label :sidebar %>
       <%= f.text_area :sidebar %>

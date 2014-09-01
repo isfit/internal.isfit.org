@@ -14,4 +14,17 @@ module RoomBookingsHelper
     y = Date.commercial(year,week,1).next_week.end_of_week.year
     new_room_booking_path(w,y)
   end
+
+  def current_week
+    date = Date.today
+    new_room_booking_path(date.cweek,date.year)
+  end
+
+  def disabled?(current_user, reserved_at)
+    if current_user.role?(:admin) && Time.zone.now <= reserved_at
+      disabled = false
+    else
+      disabled = Time.zone.now > reserved_at  || Time.zone.now + 4.weeks < reserved_at
+    end
+  end
 end

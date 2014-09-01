@@ -37,6 +37,8 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'whenever', :require => false
 
+gem 'jquery-turbolinks'
+
 # Denne spammer oss med mail atm... Må tunes :P
 gem 'exception_notification', "~>4.0.1", :require => 'exception_notifier'
 
@@ -67,7 +69,7 @@ end
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
-  #gem 'selenium-webdriver''
+  gem 'selenium-webdriver'
   gem 'capybara-webkit'
 	gem 'capybara'
   gem 'spork-rails', '~> 4.0.0'

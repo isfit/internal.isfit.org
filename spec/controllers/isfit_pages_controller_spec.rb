@@ -25,7 +25,8 @@ describe IsfitPagesController do
   # IsfitPage. As you add validations to IsfitPage, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {tag: 'tag', title_en: 'title_en', title_no: 'title_no'}
+    {tag: 'tag', title_en: 'title_en', title_no: 'title_no', 
+     ingress_no: 'ingress_no', ingress_en: 'ingress_en', body_en: 'body_en', body_no: 'body_no'}
   end
 
   describe "GET index" do

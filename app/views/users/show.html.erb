@@ -1,13 +1,15 @@
-</div></div>
 
 <div class="row">
   <div class="col-md-12">
     <h1><%= @user.full_name %></h1>
 
     <p><em>
-      <% unless @user.latest_position.festival_year.to_s == CURRENT_FESTIVAL_YEAR %>Pang <%= @user.latest_position.festival_year %> -<% end %>
-      <%= @user.latest_position.title_en %> -
-      <%= @user.latest_position.groups.first.name_en %>
+      <% if @user.latest_position %>
+        <% unless @user.latest_position.festival_year.to_s == CURRENT_FESTIVAL_YEAR %>Pang <%= @user.latest_position.festival_year %> -<% end %>
+        <%= @user.latest_position.title_en %> -
+        <%= @user.latest_position.groups.first.name_en %>
+      <% end %>
+
     </em></p>
   </div>
 </div>
@@ -16,7 +18,7 @@
   <div class="col-md-10">
     <dl class="dl-horizontal" style="margin-top: 0;">
       <dt>E-mail</dt>
-      <dd><a href="mailto:<%= @user.username %>@isfit.org"><%= @user.username %>@isfit.org</a></dd>
+      <dd><%= get_mail_links(@user)%></dd>
 
       <% unless @user.phone.empty? %>
       <dt>Phone</dt>
@@ -114,3 +116,5 @@
       </a>
     </p>
     <% end %>
+  </div>
+</div>

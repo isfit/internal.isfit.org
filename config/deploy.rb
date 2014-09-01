@@ -25,6 +25,8 @@ set :deploy_via, :remote_cache
 default_run_options[:pty] = true  # Must be set for the password prompt from git to work
 ssh_options[:forward_agent] = true
 
+`date >> config/last_deploy.txt`
+
 namespace :deploy do
   task :start do ; end
   task :stop do ; end

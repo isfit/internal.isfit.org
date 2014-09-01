@@ -14,7 +14,7 @@ Spork.prefork do
   require 'capybara/rails'
   require 'cancan/matchers'
   
-  Capybara.javascript_driver = :webkit
+  #Capybara.javascript_driver = :webkit
   #Capybara.default_wait_time = 60
   # Requires supporting ruby files with custom matchers and macros, etc, in
   # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are

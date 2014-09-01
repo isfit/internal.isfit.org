@@ -1,4 +1,4 @@
-#RSpec.configure do |config|
+# RSpec.configure do |config|
 #  config.before(:each) do
 #    if example.metadata[:js]
 #      DatabaseCleaner.clean
@@ -15,4 +15,4 @@
 #      #Capybara.use_default_driver # this can be removed with new Capybara release
 #    end
 #  end
-#end
+# end

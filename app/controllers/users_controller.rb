@@ -42,7 +42,9 @@ class UsersController < ApplicationController
     end
 
     @user = User.find(params[:id])
-
+    if(!@user.latest_position)
+      flash.now[:alert] = "This account has not been assigned a position, please contact orakel@isfit.org to get this fixed"
+    end
     respond_to do |format|
       format.vcf { render @user}
       format.html
