@@ -25,6 +25,14 @@ generate a printable travel refund form.</p>
 			<br />
 		</td>
 	</tr>
+	<tr valign="top">
+    	<td>
+    		<%=label_tag :month_of_approval%>
+    	</td>
+		<td>
+			<%= select_month(Date.today, field_name: 'month_of_approval') %>
+		</td>
+	</tr>
 	<tr>
 		<td>Refund account number:</td>
 		<td colspan="2">

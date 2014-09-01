@@ -18,4 +18,28 @@ class AccountsMailer < ActionMailer::Base
 		test += "\nThe voucher has a total amount of #{sum}"
 		mail(to: to, subject: subject, body: test)
 	end
+
+	def travel_mail(desc, sum, name, to)
+		subject = "[ISFiT] Travel voucher for your gang has been generated"
+		travel_body = "A new travel voucher by #{name} has been generated.\n"
+
+		for i in 1..((desc.size / 2)  )
+			travel_body += "Travel route: " + desc["route#{i}"] + "\nMeans of transport: "  + 
+			desc["means#{i}"] + "\nAmount: " + desc["amount#{i}"].sub(/,/, '.') + "\n"
+		end
+		travel_body += "\nThe voucher has a total amount of #{sum}"
+		recipient = to if to else 'headofaccounting@isfit.no'
+		mail(to: recipient, subject: subject, body: travel_body)
+	end
+
+	def invoice_section_mail(desc, sum, name, to)
+		subject = "[ISFiT] Invoice for your gang has been generated"
+		test = "A new invoice by #{name} has been generated.\n"
+
+		for i in 1..((desc.size / 2)  )
+			test += "Description: " + desc["description#{i}"] + "\nAmount: "  + desc["amount#{i}"].sub(/,/, '.') + "\n"
+		end
+		test += "\nThe invoice has a total amount of #{sum}"
+		mail(to: to, subject: subject, body: test)
+	end
 end

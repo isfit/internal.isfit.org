@@ -88,7 +88,6 @@ class AccountsController < ApplicationController
   def print_travel
     usages = {}
     @account = Account.find(params[:voucher][:unit]) if params[:voucher][:unit]
-
     params[:voucher].keys.each do |key|
       if key =~ /route\d+|means\d+|amount\d+/ then
         usages[key] = params[:voucher][key]
@@ -99,6 +98,8 @@ class AccountsController < ApplicationController
     for i in 1..(params[:carriers].size / 3)
       @sum += params[:carriers]["amount#{i}"].sub(/,/, '.').to_d
     end
+    binding.pry
+    AccountsMailer.travel_mail(params[:carriers], @sum, current_user.full_name_reversed, @account.contact_email).deliver
 
     render layout:false
 
@@ -121,6 +122,7 @@ class AccountsController < ApplicationController
     end
 
     AccountsMailer.invoice_mail(params[:voucher][:due], @sum, current_user.full_name_reversed, @account.name).deliver
+    AccountsMailer.invoice_section_mail(params[:usages], @sum, current_user.full_name_reversed, @account.contact_email).deliver
 
     render layout:false
   end

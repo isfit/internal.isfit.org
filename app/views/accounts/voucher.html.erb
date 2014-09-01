@@ -24,6 +24,14 @@ generate a printable voucher form.</p>
 			<br />
 		</td>
 	</tr>
+	<tr valign="top">
+    	<td>
+    		<%=label_tag :month_of_approval%>
+    	</td>
+		<td>
+			<%= select_month(Date.today, field_name: 'month_of_approval') %>
+		</td>
+	</tr>
 	<tr>
 		<td>Refund:</td>
 		<td><%= check_box(:voucher, :refund) %></td>
