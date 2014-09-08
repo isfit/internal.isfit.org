@@ -1,5 +1,4 @@
 <p>Showing volunteer application details.</p>
-<%# binding.pry %>
 <%= form_for @applicant do |f| %>
 <% if @applicant.errors.any? %>
   <div id="error_explanation">
@@ -164,7 +163,7 @@
         <tr>
           <td></td>
           <td>
-            <%= f.collection_select(:interviewer_id_3_2, @interviewers, :id, :name_reversed, prompt: true,) %>
+            <%= f.collection_select(:interviewer_id_3_2, @interviewers, :id, :name_reversed, prompt: true) %>
           </td>
         </tr>
       <%end%>
