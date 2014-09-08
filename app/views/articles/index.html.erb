@@ -3,7 +3,32 @@
 <% end %>
 
 <div class="well">
+<div clasS="span5">
   <h3>Hva skjer i ISFiT nå?</h3>
+  
+  <table class="table table-striped table-bordered table-condensed">
+      <thead>
+      <th>Publisert</th>
+      <th>Melding</th>
+      </thead>
+      <tbody>
+        
+  <% for motd in @motd %>
+  <tr>
+  <td>
+  <%#<span class="muted"><%>
+  <%= motd.updated_at.to_s(:short)%>
+  </td>
+  <td>
+  <%= motd.msg %>
+  </td>
+  </tr>
+  <%end%>
+  </tbody>
+  </table>
+</div>
+  <hr>
+  
   <% time = Time.new.wday %>
 
   <% if time == 3%>
@@ -14,6 +39,7 @@
   <%= image_tag "bong.gif" , size: "256x256" %>
   <%end%>
 </div>
+
 
 <div class="articles">
     <%= link_to t('articles.index.create'), new_article_path, class: "btn btn-primary" %>

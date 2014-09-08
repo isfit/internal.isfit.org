@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     @articles = Article.order('created_at DESC').paginate(:page => params[:page])
-
+    @motd = Motd.order('created_at DESC').limit(5)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @articles }
@@ -78,6 +78,7 @@ class ArticlesController < ApplicationController
       if @article.save
 
         Subscription.article_subscribers.each do |user|
+          next if @article.user_id.eql? user.id
           SubscriberMailer.article_mail(user.username, @article).deliver
         end
 
