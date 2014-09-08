@@ -3,40 +3,23 @@
 <% end %>
 
 <div class="well">
-<div clasS="span5">
-  <h3>Hva skjer i ISFiT nå?</h3>
-  
-  <table class="table table-striped table-bordered table-condensed">
-      <thead>
-      <th>Publisert</th>
-      <th>Melding</th>
-      </thead>
-      <tbody>
-        
-  <% for motd in @motd %>
-  <tr>
-  <td>
-  <%#<span class="muted"><%>
-  <%= motd.updated_at.to_s(:short)%>
-  </td>
-  <td>
-  <%= motd.msg %>
-  </td>
-  </tr>
-  <%end%>
-  </tbody>
-  </table>
-</div>
-  <hr>
-  
+  <h3>Hva skjer i ISFiT nå?</h3>  
+        <% for motd in @motd %>
+              <span class="muted">
+              <%= motd.updated_at.to_s(:short)%>
+          </span>
+              <p><%= motd.msg %></p>
+          <%end%>
   <% time = Time.new.wday %>
 
   <% if time == 3%>
-  <p> Husk Bong-Salg i MORGEN på kontoret</p>
-  <%= image_tag "bong.gif", size: "256x256" %>
-  <% elsif time == 4%>
-  <p> Bong-Salg i DAG på kontoret (16:30-17:30) </p>
-  <%= image_tag "bong.gif" , size: "256x256" %>
+    <hr>
+    <p> Husk Bong-Salg i MORGEN på kontoret</p>
+    <%= image_tag "bong.gif", size: "256x256" %>
+    <% elsif time == 4%>
+    <hr>
+    <p> Bong-Salg i DAG på kontoret (16:30-17:30) </p>
+    <%= image_tag "bong.gif" , size: "256x256" %>
   <%end%>
 </div>
 
