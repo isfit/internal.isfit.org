@@ -12,6 +12,7 @@
     </tr>
     <tr>
       <th class="header"></th>
+      <th class="header">Locked</th>
       <th class="header"><%= "Last name" %></th>
       <th class="header"><%= "First name" %></th>
       <th class="header"><%= "First choice"%></th>
@@ -36,7 +37,9 @@
         </div>
       </td>
       <td>
-        <%= raw "<i class=\"icon-lock\"></i> " if applicant.locked %>
+        <%= raw "<i class=\"icon-lock\"></i> " if applicant.locked %>      
+      </td>
+      <td>
         <%= applicant.lastname %>
       </td>
       <td><%= applicant.firstname %></td>
