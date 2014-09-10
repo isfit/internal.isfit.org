@@ -9,8 +9,9 @@ gem 'mysql2'
 gem 'compass'
 
 # Spesifikke gems her
-gem 'capistrano'
-gem 'rvm-capistrano'
+gem 'capistrano', '~> 3.1'
+gem 'capistrano-rails', '~> 1.1'
+gem 'capistrano-rvm'
 gem 'cancancan', '~> 1.9'
 gem 'rails-i18n'
 gem 'ancestry'
