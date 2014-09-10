@@ -51,7 +51,7 @@ InternalIsfitOrg::Application.configure do
   config.active_support.deprecation = :notify
 
   config.middleware.use ExceptionNotification::Rack,
-    :ignore_exceptions => ['CanCan::AccessDenied'] + ExceptionNotifier.ignore_exceptions,
+    :ignore_exceptions => ['CanCan::AccessDenied'] + ExceptionNotifier.ignored_exceptions,
     :ignore_crawlers => %w{Googlebot bingbot},
     :email => {
       :email_prefix => "[Exception in internal.isfit.org] ",
