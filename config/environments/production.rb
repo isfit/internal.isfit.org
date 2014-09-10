@@ -50,7 +50,7 @@ InternalIsfitOrg::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  config.middleware.use ExceptionNotifier,
+  config.middleware.use ExceptionNotification::Rack,
     :ignore_exceptions => ['CanCan::AccessDenied'] + ExceptionNotifier.ignore_exceptions,
     :ignore_crawlers => %w{Googlebot bingbot}
     :email => {    
