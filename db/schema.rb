@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140901193427) do
+ActiveRecord::Schema.define(:version => 20140910150835) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name_nb"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20140901193427) do
   end
 
   create_table "applicants", :id => false, :force => true do |t|
-    t.integer  "id",                 :default => 0,     :null => false
+    t.integer  "id",                    :default => 0,     :null => false
     t.string   "firstname"
     t.string   "lastname"
     t.string   "mail"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(:version => 20140901193427) do
     t.integer  "position_id_1"
     t.integer  "position_id_2"
     t.integer  "position_id_3"
-    t.integer  "status",             :default => 0
+    t.integer  "status",                :default => 0
     t.text     "comment"
     t.string   "interview_place_1"
     t.string   "interview_place_2"
@@ -59,18 +59,19 @@ ActiveRecord::Schema.define(:version => 20140901193427) do
     t.integer  "interviewer_id_2_2"
     t.integer  "interviewer_id_3_1"
     t.integer  "interviewer_id_3_2"
-    t.boolean  "deleted",            :default => false
+    t.boolean  "deleted",               :default => false
     t.string   "username"
     t.string   "password"
     t.string   "dn"
-    t.boolean  "has_account",        :default => false
-    t.integer  "is_notified",        :default => 0
+    t.boolean  "has_account",           :default => false
+    t.integer  "is_notified",           :default => 0
     t.string   "birthyear"
     t.string   "place_of_study"
     t.integer  "applicant_user_id"
     t.boolean  "locked"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "recruited_position_id"
   end
 
   create_table "applications", :force => true do |t|
@@ -350,6 +351,7 @@ ActiveRecord::Schema.define(:version => 20140901193427) do
     t.datetime "frontend_article_image_updated_at"
     t.text     "sidebar"
     t.boolean  "blog",                                             :default => false
+    t.string   "frontend_tag"
   end
 
   create_table "frontend_articles_frontend_hashtags", :force => true do |t|
@@ -520,7 +522,6 @@ ActiveRecord::Schema.define(:version => 20140901193427) do
 
   create_table "motds", :force => true do |t|
     t.string   "msg"
-    t.datetime "datetime"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -820,6 +821,11 @@ ActiveRecord::Schema.define(:version => 20140901193427) do
   end
 
   add_index "subscriptions", ["user_id"], :name => "index_subscriptions_on_user_id"
+
+  create_table "tags", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "transport_types", :force => true do |t|
     t.string   "name"

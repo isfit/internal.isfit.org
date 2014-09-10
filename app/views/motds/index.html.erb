@@ -7,7 +7,7 @@
   <thead>
     <tr>
               <th>Msg</th>
-              <th>Datetime</th>
+            
             <th></th>
       <th></th>
       <th></th>
@@ -17,7 +17,6 @@
   <% @motds.each do |motd| %>
     <tr>
               <td><%= motd.msg %></td>
-              <td><%= motd.datetime %></td>
             <td><%= link_to 'Show', motd, :class => "btn-primary btn" %></td>
       <td><%= link_to 'Edit', edit_motd_path(motd), :class => "btn" %></td>
       <td><%= link_to 'Destroy', motd, confirm: 'Are you sure?', method: :delete, :class => "btn btn-danger" %></td>

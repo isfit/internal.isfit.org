@@ -3,13 +3,18 @@
 <% end %>
 
 <div class="well">
-  <h3>Hva skjer i ISFiT nå?</h3>  
+    <h3>Hva skjer i ISFiT nå?</h3>
+    <br>
         <% for motd in @motd %>
               <span class="muted">
               <%= motd.updated_at.to_s(:short)%>
           </span>
               <p><%= motd.msg %></p>
           <%end%>
+    <%if can? :create, Motd %>
+    <br>
+        <%= link_to 'Nytt Innlegg', new_motd_path, class: "pull-right" %>
+        <%end%>       
   <% time = Time.new.wday %>
 
   <% if time == 3%>

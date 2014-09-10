@@ -13,6 +13,7 @@ InternalIsfitOrg::Application.routes.draw do
     end
   end
 
+  
 
   resources :hosts
 

@@ -1,3 +1,3 @@
 class Motd < ActiveRecord::Base
-  attr_accessible :datetime, :msg
+  attr_accessible :msg
 end
