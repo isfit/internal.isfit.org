@@ -52,11 +52,11 @@ InternalIsfitOrg::Application.configure do
 
   config.middleware.use ExceptionNotification::Rack,
     :ignore_exceptions => ['CanCan::AccessDenied'] + ExceptionNotifier.ignore_exceptions,
-    :ignore_crawlers => %w{Googlebot bingbot}
-    :email => {    
+    :ignore_crawlers => %w{Googlebot bingbot},
+    :email => {
       :email_prefix => "[Exception in internal.isfit.org] ",
       :sender_address => %{"Exceptional bot" <exceptional@isfit.org>},
-      :exception_recipients => %w{exceptional@isfit.org},
+      :exception_recipients => %w{exceptional@isfit.org}
     }
 
 end
