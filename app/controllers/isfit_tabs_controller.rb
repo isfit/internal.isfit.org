@@ -48,6 +48,8 @@ class IsfitTabsController < ApplicationController
       @isfit_tab.weight = 1
     elsif @isfit_tab.name_en.eql?("Workshops")
       @isfit_tab.path = "workshops"
+    elsif @isfit_tab.name_en.eql?("Blog")
+      @isfit_tab.path = "blogs"
     else
       @isfit_tab.path = "tabs"
     end

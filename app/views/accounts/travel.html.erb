@@ -16,6 +16,23 @@ generate a printable travel refund form.</p>
 		<td colspan="2">
 		  <%= select(:voucher, :unit, @unit_choices_text) %></td>
 	</tr>
+	<tr valign="top">
+    	<td>
+    		<%=label_tag :budget_post%>
+    	</td>
+		<td>
+			<%= text_field(:voucher, :budget_post, :style => 'width: 250px') %>
+			<br />
+		</td>
+	</tr>
+	<tr valign="top">
+    	<td>
+    		<%=label_tag :month_of_approval%>
+    	</td>
+		<td>
+			<%= select_month(Date.today, field_name: 'month_of_approval') %>
+		</td>
+	</tr>
 	<tr>
 		<td>Refund account number:</td>
 		<td colspan="2">
