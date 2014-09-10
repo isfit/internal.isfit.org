@@ -39,7 +39,7 @@ gem 'bootstrap-will_paginate'
 gem 'whenever', :require => false
 
 # Denne spammer oss med mail atm... Må tunes :P
-gem 'exception_notification', "~>4.0.1", :require => 'exception_notifier'
+gem 'exception_notification', '~> 4.0.1'
 
 gem 'sass-rails', '~> 4.0.3'
 gem 'coffee-rails', '~> 4.0.1'
