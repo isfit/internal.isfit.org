@@ -1,7 +1,22 @@
 <p>Showing volunteer application details.</p>
 <%= form_for @applicant do |f| %>
+<% if @applicant.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@applicant.errors.count, "error") %> prohibited this applicant from being saved:</h2>
+ 
+    <ul>
+    <% @applicant.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
   <fieldset>
     <table class="table table-bordered">
+     <tr>
+        <td>Locked</td>
+        <td><%= f.check_box :locked %></td>
+      </tr>
      <tr>
         <td>Firstname</td>
         <td><%= f.text_field :firstname %></td>
@@ -29,20 +44,20 @@
       <tr>
         <td>First choice</td>
         <td>
-          <%= f.collection_select :position_id_1, Position.published.order("title_en ASC"), :id, :select_name, prompt: true %>
+          <%= f.collection_select :position_id_1, @positions.order("title_en ASC"), :id, :select_name, prompt: true %>
         </td>
       </tr>
       <tr>
         <td>Second choice</td>
         <td>
-          <%= f.collection_select :position_id_2, Position.published.order("title_en ASC"), :id, :select_name, prompt: true %>
+          <%= f.collection_select :position_id_2, @positions.order("title_en ASC"), :id, :select_name, prompt: true %>
         </td>
  
       </tr>
       <tr>
         <td>Third choice</td>
         <td>
-          <%= f.collection_select :position_id_3, Position.published.order("title_en ASC"), :id, :select_name, prompt: true %>
+          <%= f.collection_select :position_id_3, @positions.order("title_en ASC"), :id, :select_name, prompt: true %>
         </td>
  
 
@@ -63,6 +78,10 @@
       <tr>
         <td>Status</td>
         <td><%= f.select(:status, @status.invert) %></td>
+      </tr>
+      <tr>
+        <td>Recruited postion</td>
+        <td><%= f.collection_select :recruited_position_id, @positions.order("title_en ASC"), :id, :select_name,  :include_blank => true %></td>
       </tr>
       <tr>
         <td>Comment</td>

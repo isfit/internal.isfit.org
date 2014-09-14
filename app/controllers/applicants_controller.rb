@@ -1,6 +1,7 @@
 #encoding:utf-8
 class ApplicantsController < ApplicationController
   load_and_authorize_resource
+  before_filter :set_positions_interviewers_and_status, only: [:edit, :new, :update, :create]
 
 
   def statistics
@@ -55,19 +56,10 @@ class ApplicantsController < ApplicationController
 
   def edit
     @applicant = Applicant.find(params[:id])
-    @positions = Position.published
-    @interviewers = User.in_festival
-
     unless visible_applicants.any? {|a| a.id.eql?(@applicant.id)}
       redirect_to(applicants_path, alert: "Du har ikke tilgang til denne søkeren") and return
     end
 
-    @status = {	0 => 'Not contacted',
-      1 => 'Meeting planned',
-      2 => 'Meeting done',
-      3 => 'Of interest',
-      4 => 'Recruited',
-      5 => 'Not of interest' }
     if @applicant.deleted == false || current_user.role?(:admin)
       render :edit
     else
@@ -78,15 +70,6 @@ class ApplicantsController < ApplicationController
 
   def new
     @applicant = Applicant.new
-    @positions = Position.published
-    @interviewers = User.in_festival
-
-    @status = {	0 => 'Not contacted',
-      1 => 'Meeting planned',
-      2 => 'Meeting done',
-      3 => 'Of interest',
-      4 => 'Recruited',
-      5 => 'Not of interest' }
   end
 
   def create
@@ -94,14 +77,6 @@ class ApplicantsController < ApplicationController
     if @applicant.save
       redirect_to applicants_path, notice: "Applicant was successfully created."
     else
-    @positions = Position.published
-    @interviewers = User.in_festival
-    @status = {	0 => 'Not contacted',
-      1 => 'Meeting planned',
-      2 => 'Meeting done',
-      3 => 'Of interest',
-      4 => 'Recruited',
-      5 => 'Not of interest' }
       render "new"
     end
   end
@@ -136,7 +111,8 @@ class ApplicantsController < ApplicationController
     if @applicant.update_attributes(params[:applicant])
       redirect_to applicants_path, notice: "Applicant was successfully updated"
     else
-      redirect_to edit_applicant_path(@applicant), message: "Something went wrong"
+      render :edit
+      #redirect_to edit_applicant_path(@applicant), notice: @applicant.errors.full_messages.to_s
     end
 
   end
@@ -164,4 +140,15 @@ class ApplicantsController < ApplicationController
       CanCan::AccessDenied
     end
   end
-end 
+
+  def set_positions_interviewers_and_status
+    @positions = Position.published
+    @interviewers = User.in_festival
+    @status = { 0 => 'Not contacted',
+      1 => 'Meeting planned',
+      2 => 'Meeting done',
+      3 => 'Of interest',
+      4 => 'Recruited',
+      5 => 'Not of interest' }
+  end
+end
