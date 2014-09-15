@@ -2,7 +2,7 @@
 class SubscriberMailer < ActionMailer::Base
 	def article_mail(username, article)
 		subject = "[ISFiT] [New article] #{article.title} "
-    body = "Artikkelen #{article.title} er oppdatert. Gå til https://internal.isfit.org/article/#{article.id} for å se den nyeste artikkelen \n \n -- \n Hilsen ISFiT <3"
+    body = "Artikkelen #{article.title} er oppdatert. Gå til https://internal.isfit.org/articles/#{article.id} for å se den nyeste artikkelen \n \n -- \n Hilsen ISFiT <3"
 
     mail(to: "#{username}@isfit.org", from: 'orakel@isfit.org', subject: subject, body: body)
 	end

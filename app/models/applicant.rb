@@ -3,6 +3,13 @@ class Applicant < ActiveRecord::Base
   belongs_to :first_position, :class_name => 'Position', :foreign_key => 'position_id_1'
   belongs_to :second_position, :class_name => 'Position', :foreign_key => 'position_id_2'
   belongs_to :third_position, :class_name => 'Position', :foreign_key => 'position_id_3'
+  belongs_to :recruited_position, :class_name => 'Position', :foreign_key => 'recruited_position_id'
+  validate :recruited_validation?
+
+  def recruited_validation?
+    errors.add(:base, "When status is set to recruited, the recruited position cannot be blank") if (status == 4 && recruited_position.nil?)
+    errors.add(:base, "To set the recruited position, please set status as recruited") if (recruited_position && status != 4)
+  end  
 
 #  def groups
 #    Group.where("#{first_position.group_id} = id OR #{second_position.group_id} = id OR #{third_position.group_id} = id")

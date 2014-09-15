@@ -6,6 +6,10 @@
 <h1><%= @applicant.lastname + ', ' + @applicant.firstname %></h1>
 <table>
 	<tr>
+		<td width="150"><b>Locked</b></td>
+		<td><%= @applicant.locked %></td>
+	</tr>
+	<tr>
 		<td width="150"><b>ID</b></td>
 		<td><%= @applicant.id %></td>
 	</tr>
@@ -42,6 +46,11 @@
 	<tr>
 		<td><b>Status</b></td>
 		<td><%= @status[@applicant.status] %></td>
+	</tr>
+	<tr>
+		<td><b>Recruited position</b></td>
+		<td><%= @applicant.recruited_position ? 
+			@applicant.recruited_position.title_no : '-' %></td>
 	</tr>
 	<tr>
 		<td><b>Interview Time 1</b></td>
