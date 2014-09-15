@@ -17,9 +17,6 @@ class User < ActiveRecord::Base
   has_many :subscriptions
   has_many :who_am_is
   has_many :what_am_is
-  
-  has_many :event_rsvp
-  has_many :events, :through => :event_rsvp
 
   attr_readonly :username, :ldap_id, :email
 

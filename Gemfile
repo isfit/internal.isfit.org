@@ -8,6 +8,9 @@ gem 'mysql2'
 # Asset template engines
 gem 'compass'
 
+# Should be phased out
+gem 'protected_attributes'
+
 # Spesifikke gems her
 gem 'capistrano', '~> 3.1'
 gem 'capistrano-rails', '~> 1.1'
