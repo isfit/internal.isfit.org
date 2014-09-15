@@ -60,7 +60,7 @@
 
               <form id="user-search-form" class="navbar-form navbar-right" role="search">
                 <div class="form-group">
-                  <input id="user-search" type="text" class="form-control search-query input-sm" placeholder="Søk på navn..." data-provide="typeahead" data-source=''>
+                  <input id="user-search" type="text" class="typeahead form-control autocomplete search-query input-sm" placeholder="Søk på navn..." autocomplete="off" data-provide="typeahead" data-source=''>
                 </div>
               </form>
               <ul class="nav navbar-nav navbar-right"> 
@@ -134,7 +134,11 @@
       </div>
     </div>
     <!--Script at bottom for fast page load -->
+<<<<<<< HEAD
     <%= javascript_include_tag :application %>
+=======
+    <%= javascript_include_tag "application" %>
+>>>>>>> Fixes autocomplete for bootstrap 3
     <%= yield :script %>
 
     <script type="text/javascript">

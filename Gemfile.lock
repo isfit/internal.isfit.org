@@ -158,6 +158,9 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (5.0.2)
       railties (>= 3.2.16)
+    jquery.fileupload-rails (1.10.1)
+      jquery-ui-rails (~> 5.0)
+      railties (>= 3.1)
     json (1.8.1)
     jwt (1.0.0)
     libv8 (3.16.14.7)
@@ -348,6 +351,7 @@ DEPENDENCIES
   jbuilder
   jquery-rails (~> 3.1.1)
   jquery-ui-rails
+  jquery.fileupload-rails
   memcache-client
   mini_magick
   momentjs-rails (~> 2.8.1)

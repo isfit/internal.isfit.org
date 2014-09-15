@@ -22,6 +22,7 @@ gem 'rake'
 gem "bcrypt-ruby", :require => "bcrypt"
 gem "jquery-rails", "~> 3.1.1"
 gem "jquery-ui-rails"
+gem 'jquery.fileupload-rails'
 gem 'memcache-client'
 gem 'therubyracer'
 gem 'mini_magick', :require=>'RMagick'
@@ -38,6 +39,8 @@ gem 'simple_form', '~> 3.1.0.rc2'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'whenever', :require => false
+
+#gem 'jquery-turbolinks'
 
 # Denne spammer oss med mail atm... Må tunes :P
 gem 'exception_notification', '~> 4.0.1'

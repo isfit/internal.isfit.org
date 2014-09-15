@@ -5,16 +5,13 @@
 // the compiled file.
 //
 //= require jquery
-//= require jquery_ujs
 //= require jquery-ui
-//= require ./jquery/jquery.fileupload
-//= require ./jquery/jquery.fileupload-ui.js
-//= require_tree ./jquery
-//= require bootstrap
+//= require jquery.fileupload
 //= require bootstrap-sprockets
 //= require moment
 //= require bootstrap-datetimepicker
 //= require pickers
+//= require bootstrap3-typeahead.min
 //= require private_pub
 //= require_tree .
 //= require_self

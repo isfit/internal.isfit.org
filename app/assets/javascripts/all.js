@@ -1,10 +1,4 @@
-$( document ).ready(function() {
-console.log( "ready!all") ;
-});
-
 $(function() {
-  $('.sortable').tablesorter({ sortList: [[1,0]] });
-
   $('.chosen-select').chosen();
 
   $('[rel=popover]').popover({
@@ -74,6 +68,7 @@ $(function() {
 //User search
 
 function getUsersJSON() {
+  
   $.getJSON('/users.json', function(data) {
     var userArray = [];
     data.forEach(function(user) {
@@ -82,6 +77,7 @@ function getUsersJSON() {
     });
     //console.log(JSON.stringify(userArray));
     $('#user-search').attr('data-source', JSON.stringify(userArray));
+
   });
 }
 function select_user(){
@@ -91,6 +87,7 @@ function select_user(){
     window.location.href = "/users/username/" + formattedSearch
     return false;
 }
+
 $(function() {
   getUsersJSON();
   
@@ -105,7 +102,4 @@ $('#user-search').change(function() {
   $('#user-search-form').submit();
 });
 
-$(".autocomplete").autocomplete({
-   source :  this.element.attr('data-source'),
-   minLength:1,
-});
+
