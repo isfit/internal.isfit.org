@@ -3,18 +3,31 @@
 <% end %>
 
 <div class="well">
-  <h3>Hva skjer i ISFiT nå?</h3>
+    <h3>Hva skjer i ISFiT nå?</h3>
+    <br>
+        <% for motd in @motd %>
+              <span class="muted">
+              <%= motd.updated_at.to_s(:short)%>
+          </span>
+              <p><%= motd.msg %></p>
+          <%end%>
+    <%if can? :create, Motd %>
+    <br>
+        <%= link_to 'Nytt Innlegg', new_motd_path, class: "pull-right" %>
+        <%end%>       
   <% time = Time.new.wday %>
+
   <% if time == 3%>
-  <p> Husk Bong-Salg i MORGEN på kontoret</p>
-  <%= image_tag "bong.gif", size: "256x256" %>
-  <% elsif time == 4%>
-  <p> Bong-Salg i DAG på kontoret (16:30-17:30) </p>
-  <%= image_tag "bong.gif" , size: "256x256" %>
+    <hr>
+    <p> Husk Bong-Salg i MORGEN på kontoret</p>
+    <%= image_tag "bong.gif", size: "256x256" %>
+    <% elsif time == 4%>
+    <hr>
+    <p> Bong-Salg i DAG på kontoret (16:30-17:30) </p>
+    <%= image_tag "bong.gif" , size: "256x256" %>
   <%end%>
-  <h4>Apps!</h4>
-  <p>Gå til <%= link_to "mail", "http://mail.isfit.no" %> eller <%= link_to "docs", "http://docs.isfit.no" %>.</p>
 </div>
+
 
 <div class="articles">
     <%= link_to t('articles.index.create'), new_article_path, class: "btn btn-primary" %>

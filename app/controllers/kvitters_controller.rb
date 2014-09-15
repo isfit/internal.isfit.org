@@ -10,7 +10,8 @@ class KvittersController < ApplicationController
     if kvitter.save
       create_hashtags kvitter.id, kvitter.message
       Subscription.kvitter_subscribers.each do |user|
-        SubscriberMailer.kvitter_mail(kvitter.username, kvitter).deliver
+        next if kvitter.user_id.eql? user.id
+        SubscriberMailer.kvitter_mail(user.username, kvitter).deliver
       end
       render :json => kvitter.to_json(methods: :username)
     else

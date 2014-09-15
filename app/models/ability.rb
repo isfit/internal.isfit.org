@@ -8,6 +8,7 @@ class Ability
     end
     if user.role?(:board)
       can :manage, Applicant
+
     end
     if user.role?(:recruiting)
       can :manage, Applicant
@@ -16,6 +17,7 @@ class Ability
     if user.role?(:leader)
       can :manage, Applicant
       can :manage, Article
+      can :manage, Motd
     end
     if user.role?(:wingman)
       can :manage, Applicant
@@ -29,6 +31,7 @@ class Ability
       can :manage, SppPage
       can :manage, StaticPage
       can :manage, IsfitPage
+      can :manage, Motd
     end
     if user.role?(:spp_editor)
       can :manage, SppArticle

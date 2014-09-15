@@ -71,6 +71,9 @@
                   <li><%= link_to "Edit profile",  edit_current_user_path %></li>
                   <li><%= link_to "Change password", change_password_users_path %></li>
                   <li class="divider"></li>
+                  <li><%= link_to "Mail", "http://mail.isfit.no" %></li>
+                  <li><%= link_to "Docs", "http://docs.isfit.no" %></li>
+                  <li class="divider"></li>
                   <% if I18n.locale.to_s.eql?('nb') %>
                     <li><%= link_to "English", '?locale=en' %></li>
                   <% else %>

@@ -1,0 +1,8 @@
+<div class="pull-right">
+  <%= link_to 'Show', @motd, confirm: 'This will cancel all changes. Are you sure?', method: :get, :class => "btn" %>
+  <%= link_to 'Back', motds_path, confirm: 'This will cancel all changes. Are you sure?', method: :get , :class => "btn" %>
+</div>
+<h1>Editing motd</h1>
+
+<%= render 'form' %>
+
