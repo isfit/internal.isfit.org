@@ -5,7 +5,7 @@
   <% if booking %>
     <% if booking[:user] == current_user %>
       <%= content_tag :a ,class: "btn btn-mini btn-danger room_reservation_self #{'disabled' if disabled}", data: {booking: booking[:id]} do %>
-        <span class="glyphicon glyphicon-ok"></span>
+        <span class="glyphicon glyphicon-remove"></span>
       <% end %>
     <% else %>
       <a href="#" rel ="tooltip" data-original-title="<%=booking[:user].full_name%>" class="btn btn-mini btn-danger disabled room_reservation_uavl"><%= booking[:user].initiales %></a>
