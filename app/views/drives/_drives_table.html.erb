@@ -12,42 +12,8 @@
 		<th>Fullført?<th>
 	</thead>
 	<tbody>
-		<% @drives.each do |job| %>
-		<tr class="expand">
-			<td><%= job.id %></td>
-			<td>
-				<%= job.car_desc %>
-			</td>
-			<%if not @driver %>
-				<td><%= link_to(job.driver_name, job.driver) %></td>
-			<% end %>
-			<td>
-				<div class="minimize expand_y">
-					<%= job.description %>
-				</div>
-			</td>
-			<td id="<%= job.id %>" class="closed">
-				<div class="minimize expand_y" id="comment_text">
-					<%= job.comment %>
-				</div>
-			</td>
-			<td><%= job.time_summary %></td>
-			<td class="drive_date"><%= job.date_summary %></td>
-			<td>
-			<% if job.completed %>
-				<button id="<%= toogle_completed_drive_path(job.id) %>" class="btn btn-success"><i class="icon-ok"></i></button>
-			<% else %>
-				<button id="<%= toogle_completed_drive_path(job.id) %>" class="btn btn-danger"><i class="icon-remove"></i></button>
-			<% end %>
+		<%= render @drives %>
 
-			</td>
-			<td><%= link_to(:"Vis", drive_path(job)) %></td>
-			<td><%= link_to(:Endre, edit_drive_path(job.id))%></td>
-			<td>
-				<%= link_to(:Fjern, drive_path(job), method: :delete, confirm: "Er du sikker på at du vil slette denne kjøringen? Husk, du kan redigere/endre den.") %>
-			</td>
-		</tr>
-		<% end %>
 	</tbody>
 
 </table

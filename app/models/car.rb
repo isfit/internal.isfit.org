@@ -3,10 +3,10 @@
 class Car < ActiveRecord::Base
   def self.all_and_limit_by_drives(drives_array)
     if drives_array.empty?
-    	find(:all)
+    	where(true)
     else
     	car_array = drives_array.map{|drive| drive.car_id}
-    	find(:all, :conditions => ["id not in (?)",car_array])
+    	where("id not in (?)",car_array)
     end
   end
 

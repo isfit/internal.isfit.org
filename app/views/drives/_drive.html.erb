@@ -1,0 +1,33 @@
+<tr class="expand">
+	<td><%= drive.id %></td>
+	<td>
+		<%= drive.car_desc %>
+	</td>
+	<%if not @driver %>
+		<td><%= link_to(drive.driver_name, drive.driver) %></td>
+	<% end %>
+	<td>
+		<div class="minimize expand_y">
+			<%= drive.description %>
+		</div>
+	</td>
+	<td id="<%= drive.id %>" class="closed">
+		<div class="minimize expand_y" id="comment_text">
+			<%= drive.comment %>
+		</div>
+	</td>
+	<td><%= drive.time_summary %></td>
+	<td class="drive_date"><%= drive.date_summary %></td>
+	<td>
+	<%= form_for(drive, remote: true) do |f| %>
+		<%= f.collection_select(:status, Drive.get_statuses, :first, :last) %>
+		<%= f.submit %>
+	<% end %>
+
+	</td>
+	<td><%= link_to(:"Vis", drive_path(drive)) %></td>
+	<td><%= link_to(:Endre, edit_drive_path(drive.id))%></td>
+	<td>
+		<%= link_to(:Fjern, drive_path(drive), method: :delete, confirm: "Er du sikker på at du vil slette denne kjøringen? Husk, du kan redigere/endre den.") %>
+	</td>
+</tr>
