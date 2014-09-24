@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140915165852) do
+ActiveRecord::Schema.define(version: 20140922193328) do
 
   create_table "accounts", force: true do |t|
     t.string   "name_nb"
@@ -293,9 +293,10 @@ ActiveRecord::Schema.define(version: 20140915165852) do
     t.datetime "end_time"
     t.text     "description"
     t.text     "comment"
-    t.boolean  "completed"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "status"
+    t.integer  "group_id"
   end
 
   add_index "drives", ["car_id"], name: "index_drives_on_car_id", using: :btree
@@ -304,6 +305,13 @@ ActiveRecord::Schema.define(version: 20140915165852) do
   create_table "festivals", id: false, force: true do |t|
     t.integer "id",   default: 0, null: false
     t.integer "year"
+  end
+
+  create_table "frontend_article_frontend_hashtags", force: true do |t|
+    t.integer  "frontend_article_id"
+    t.integer  "frontend_hashtag_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "frontend_articles", force: true do |t|
@@ -337,13 +345,6 @@ ActiveRecord::Schema.define(version: 20140915165852) do
     t.text     "sidebar"
     t.boolean  "blog",                                          default: false
     t.string   "frontend_tag"
-  end
-
-  create_table "frontend_articles_frontend_hashtags", force: true do |t|
-    t.integer  "frontend_articles_id"
-    t.integer  "frontend_hashtags_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
   end
 
   create_table "frontend_hashtags", force: true do |t|
@@ -739,6 +740,12 @@ ActiveRecord::Schema.define(version: 20140915165852) do
     t.string  "tag",                                     null: false
     t.text    "description_en"
     t.text    "description_no"
+  end
+
+  create_table "shifts", force: true do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer  "driver_id"
   end
 
   create_table "spp_articles", force: true do |t|

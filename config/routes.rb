@@ -43,6 +43,7 @@ InternalIsfitOrg::Application.routes.draw do
   scope "/transport" do
     root :to => "drives#search", :via => [:post,:get], :as => "transport_root"
     get 'shifts/new' => "shifts#multiple_new"
+    get 'shifts/' => "shifts#all"
     post 'shifts/create' => "shifts#multiple_create"
     resources :drivers do
       resources :shifts

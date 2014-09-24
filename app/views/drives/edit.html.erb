@@ -1,33 +1,22 @@
 <%= render "nav" %>
-<div class="row">
-  <%= bootstrap_form_for(@drive) do |f| %>
+
+  <%= simple_form_for(@drive) do |f| %>
     <%= f.error_messages %>
- 	  <div class="col-md-5">
-      	<%= f.text_area :description, :class => :col-md-4 %>
+    <div class="row">
+      <div class="col-md-6">
+       	<%= f.input :description %>
+       	<%= f.input :comment, :class => "col-md-4" %>
+        <%= f.input :start_time, :as => :datetime_picker %>
+        <%= f.input :end_time, :as => :datetime_picker %>
+      </div>
+      <div class="col-md-6">
+        <% driver_array = Driver.all.map { |driver| [driver.username, driver.id] } %>
+        <%= f.input :driver_id, collection: driver_array %>
+
+        <% car_array = Car.all.map{|car| [car.desc, car.id]} %>
+        <%= f.input :car_id, collection: car_array %>
+        <%= f.input :status, collection: Drive.get_statuses, :value_method => :first, :label_method => :last %>
+      </div>
     </div>
-    <div class="col-md-3">
-    	<%= f.text_area :comment, :class => :col-md-4 %>
-	  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-5">
-    <%= f.text_field :start_time, :value => @drive.try(:start_time).try(:strftime,'%Y-%m-%d %H:%M') %>
-
-    <%= f.text_field :end_time, :value => @drive.try(:end_time).try(:strftime,'%Y-%m-%d %H:%M') %>
-  </div>
-  <div class="col-md-3 alert alert-block">      
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <h4>Danger zone!</h4>   
-      Gitt sjåfør og bil er nødvendigvis ikke tilgjengelig ved endringer.<br>
-
-
-    <% driver_array = Driver.all.map { |driver| [driver.username, driver.id] } %>
-    <%= f.select :driver_id, options_for_select(driver_array, @drive.driver_id) %>
-
-    <% car_array = Car.all.map{|car| [car.desc, car.id]} %>
-    <%= f.select :car_id, options_for_select(car_array, @drive.car_id) %>
-  </div>
-</div>
-<%= submit_tag("Oppdater") %>
+    <%= f.button :submit %>
   <% end %>

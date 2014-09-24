@@ -19,10 +19,10 @@ class Driver < ActiveRecord::Base
 
   def self.all_and_limit_by_drives(drives_array)
     if drives_array.empty?
-      find(:all)
+      where(true)
     else
       driver_array = drives_array.map{|drive| drive.driver_id}
-      find(:all, :conditions => ["id not in (?)",driver_array])
+      Where("id not in (?)",driver_array)
     end
   end
 

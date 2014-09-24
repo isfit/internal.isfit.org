@@ -1,12 +1,12 @@
 class Drive < ActiveRecord::Base
   belongs_to :driver
   belongs_to :car
+  belongs_to :group
 
-  validates :driver_id, :presence => true
-  validates :car_id, :presence  => true
   validates_presence_of :start_time
   validates_presence_of :end_time
 
+  
 
   def self.get_datetimes_from_params(params)
     start_time =  DateTime.parse("#{params[:date]} #{params[:start_time]}:00")
@@ -77,6 +77,15 @@ class Drive < ActiveRecord::Base
   end
 
   def self.drives_inside_date_range(start_time,end_time)
-    find(:all, :conditions => ["start_time <= ? AND ? <= end_time", end_time,start_time])
+    where("start_time <= ? AND ? <= end_time", end_time,start_time)
+  end
+
+  def self.get_statuses
+    {  
+    0 => 'New',
+    1 => 'Driver and Car assigned',
+    2 => 'Not started',
+    3 => 'On the road',
+    4 => 'Completed' }
   end
 end
