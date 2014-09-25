@@ -28,7 +28,7 @@
     <tr>
       <td><%= participant.last_name %></td>
       <td><%= participant.first_name %></td>
-      <td><%= participant.country.name %></td>
+      <td><%= participant.country.name if participant.country %></td>
       <td><%= participant.email %></td>
     </tr>
   <% end %>
