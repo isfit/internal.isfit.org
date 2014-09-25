@@ -42,7 +42,7 @@ class Ability
       can :read, StaticPage
       can [:read,:create,:update,:attending,:notattending], Article
       can :manage, Kvitter
-      can :stats, Participant
+      #can :stats, Participant
       can [:read,:create], RoomBooking
       can :destroy, RoomBooking, user_id: user.id
       can :read, Room
@@ -56,7 +56,7 @@ class Ability
       can :manage, WhatAmI
     end
     if user.role?(:participant)
-      # can :manage, Participant
+      can :manage, Participant
       can :manage, ParticipantQuote
     end
     if user.role?(:dialogue)
