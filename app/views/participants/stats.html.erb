@@ -43,10 +43,10 @@
 </div>
 
 <div class="span2">
-  <h1><%= Participant.count %></h1>
+  <h1><%= @participant.count %></h1>
   <p>Applications</p>
 
-  <h1><%= number_to_currency(Participant.where("travel_amount < 10000 AND travel_amount > 0").sum(:travel_amount), :unit =>"$") %></h1>
+  <h1><%= number_to_currency(@participant.where("travel_amount < 10000 AND travel_amount > 0").sum(:travel_amount), :unit =>"$") %></h1>
   <p>Travel support needed</p>
 
   <h1><%= @country_count.count %></h1>
