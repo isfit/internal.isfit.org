@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140922193328) do
+ActiveRecord::Schema.define(version: 20140929181919) do
 
   create_table "accounts", force: true do |t|
     t.string   "name_nb"
@@ -217,8 +217,10 @@ ActiveRecord::Schema.define(version: 20140922193328) do
   end
 
   create_table "countries", id: false, force: true do |t|
-    t.integer "id",   default: 0, null: false
-    t.string  "name",             null: false
+    t.integer "id",                  default: 0, null: false
+    t.string  "name"
+    t.integer "region_id"
+    t.string  "code",      limit: 4
   end
 
   create_table "deadlines", force: true do |t|
@@ -297,6 +299,7 @@ ActiveRecord::Schema.define(version: 20140922193328) do
     t.datetime "updated_at",  null: false
     t.integer  "status"
     t.integer  "group_id"
+    t.integer  "user_id"
   end
 
   add_index "drives", ["car_id"], name: "index_drives_on_car_id", using: :btree
@@ -529,83 +532,24 @@ ActiveRecord::Schema.define(version: 20140922193328) do
   add_index "participant_quotes", ["user_id"], name: "index_participant_quotes_on_user_id", using: :btree
 
   create_table "participants", id: false, force: true do |t|
-    t.integer  "id",                                     default: 0,     null: false
-    t.datetime "registered_time",                                        null: false
-    t.datetime "checked_in"
-    t.datetime "picked_up"
-    t.string   "first_name",                                             null: false
-    t.string   "middle_name",                limit: 64
-    t.string   "last_name",                                              null: false
-    t.string   "address1",                               default: "",    null: false
-    t.string   "address2"
-    t.string   "zipcode",                    limit: 10,  default: "",    null: false
-    t.string   "city",                                   default: "",    null: false
-    t.integer  "country_id",                             default: 0,     null: false
-    t.string   "phone",                      limit: 64,                  null: false
-    t.string   "email",                      limit: 100, default: "",    null: false
-    t.string   "fax",                        limit: 20
-    t.string   "nationality",                            default: "",    null: false
-    t.date     "birthdate",                                              null: false
-    t.string   "sex",                        limit: 2,   default: "",    null: false
-    t.string   "university",                             default: "",    null: false
-    t.string   "field_of_study",                                         null: false
-    t.string   "org_name"
-    t.string   "org_function"
-    t.string   "hear_about_isfit"
-    t.string   "hear_about_isfit_other"
-    t.integer  "workshop1",                              default: 0,     null: false
-    t.integer  "workshop2",                              default: 0,     null: false
-    t.integer  "workshop3",                              default: 0,     null: false
-    t.text     "essay1",                                                 null: false
-    t.text     "essay2",                                                 null: false
-    t.integer  "travel_apply",               limit: 1,   default: 0
-    t.text     "travel_essay"
-    t.string   "travel_amount",              limit: 20
-    t.integer  "travel_nosupport_other",     limit: 1,   default: 0
-    t.integer  "travel_nosupport_cancome",   limit: 1,   default: 0
-    t.integer  "participant_grade",          limit: 1,   default: 0,     null: false
-    t.text     "participant_comment"
-    t.integer  "participant_functionary_id",             default: 0,     null: false
-    t.integer  "theme_grade1",               limit: 1,   default: 1,     null: false
-    t.integer  "theme_grade2",               limit: 1,   default: 1,     null: false
-    t.text     "theme_comment"
-    t.text     "theme_comment_2"
-    t.integer  "theme_functionary_id_2",                 default: 0
-    t.integer  "theme_functionary_id",                   default: 0,     null: false
-    t.string   "password"
-    t.integer  "final_workshop",                         default: 0,     null: false
-    t.integer  "invited",                    limit: 1,   default: 0,     null: false
-    t.integer  "travel_assigned",            limit: 1,   default: 0,     null: false
-    t.integer  "travel_assigned_amount",                 default: 0,     null: false
-    t.text     "travel_comment"
-    t.integer  "host_id"
-    t.datetime "last_login"
-    t.boolean  "notified_invitation",                    default: false, null: false
-    t.boolean  "notified_travel_support",                default: false, null: false
-    t.boolean  "notified_rejection",                     default: false, null: false
-    t.boolean  "notified_no_travel_support",             default: false, null: false
-    t.boolean  "notified_rejection_again",               default: false, null: false
-    t.date     "arrival_date"
-    t.string   "arrival_place",              limit: 100
-    t.time     "arrival_time"
-    t.string   "arrival_carrier",            limit: 5
-    t.boolean  "arrival_isfit_trans"
-    t.string   "arrival_airline",            limit: 30
-    t.string   "arrival_flight_number",      limit: 10
-    t.date     "departure_date"
-    t.time     "departure_time"
-    t.string   "departure_carrier",          limit: 5
-    t.boolean  "departure_isfit_trans"
-    t.string   "departure_place",            limit: 100
-    t.boolean  "notified_custom",                        default: false, null: false
-    t.boolean  "blocked",                                default: false, null: false
-    t.datetime "request_travel"
-    t.integer  "accept_travel",              limit: 1
-    t.datetime "accept_travel_time"
-    t.integer  "bed",                        limit: 1,   default: 0,     null: false
-    t.integer  "bedding",                    limit: 1,   default: 0,     null: false
-    t.boolean  "special_invite",                         default: false, null: false
-    t.boolean  "deleted",                                default: false
+    t.integer  "id",                         default: 0,  null: false
+    t.string   "email",                      default: "", null: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "address1"
+    t.integer  "sex",              limit: 1
+    t.date     "birthdate"
+    t.string   "citizenship"
+    t.integer  "country_id"
+    t.integer  "citizenship_id"
+    t.string   "nationality"
+    t.text     "motivation_essay",                        null: false
+    t.integer  "workshop1"
+    t.integer  "workshop2"
+    t.integer  "workshop3"
+    t.text     "workshop_essay",                          null: false
+    t.datetime "registered_time",                         null: false
+    t.integer  "travel_amount"
   end
 
   create_table "photos", force: true do |t|
