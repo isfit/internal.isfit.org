@@ -1,11 +1,11 @@
 <ul class="nav nav-tabs">
 	<% if Driver.find_by_user_id(current_user.id) %>
-		<li><%= link_to(:"Mine oppdrag", driver_drives_path(Driver.find_by_user_id(current_user.id)))  %></li>
-		<li><%= link_to(:"Min vaktliste", driver_shifts_path(Driver.find_by_user_id(current_user.id))) %></li>
+		<li><%= link_to(:"Mine oppdrag", transport_driver_drives_path(Driver.find_by_user_id(current_user.id)))  %></li>
+		<li><%= link_to(:"Min vaktliste", transport_driver_shifts_path(Driver.find_by_user_id(current_user.id))) %></li>
 
 	<% end %>
-	<li><%= link_to(:"Alle oppdrag", drives_path) %></li>
-	<li><%= link_to(:"Nytt oppdrag", new_drive_path) %></li>
-	<li><%= link_to(:"Lag flere vaktlister", shifts_new_path) %></li>
-	<li><%= link_to(:"Biler", cars_path) %></li>
+	<li><%= link_to(:"Alle oppdrag", transport_drives_path) %></li>
+	<li><%= link_to(:"Nytt oppdrag", new_transport_drive_path) %></li>
+	<li><%= link_to(:"Lag flere vaktlister", transport_shifts_new_path) %></li>
+	<li><%= link_to(:"Biler", transport_cars_path) %></li>
 </ul>

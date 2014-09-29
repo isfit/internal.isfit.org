@@ -1,6 +1,6 @@
 #!/bin/env ruby
 # encoding: utf-8
-class ShiftsController < TransportAdminController
+class Transport::ShiftsController < ApplicationController
 	before_filter :find_driver
 	before_filter :new_shift, :only => [:index]
 	before_filter :validate_form, :only => [:create,:multiple_create]

@@ -20,9 +20,9 @@
         <td><%= car.description %></td>
         <td><%= car.seats %></td>
         <td><%= car.space %></td>
-        <td><%= link_to 'Show', car %></td>
-        <td><%= link_to 'Edit', edit_car_path(car) %></td>
-        <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', transport_car_path(car) %></td>
+        <td><%= link_to 'Edit', edit_transport_car_path(car) %></td>
+        <td><%= link_to 'Destroy', transport_car_path(car), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,7 +30,7 @@
 
 <br>
 
-<%= link_to 'New Car', new_car_path %>
+<%= link_to 'New Car', new_transport_car_path %>
 
 </div>
 <div class="col-md-6">

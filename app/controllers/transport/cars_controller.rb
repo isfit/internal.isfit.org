@@ -1,4 +1,4 @@
-class CarsController < ApplicationController
+class Transport::CarsController < ApplicationController
 	def create
 		@car = Car.new(params[:car])
 		respond_to do |format|

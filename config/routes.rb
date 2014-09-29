@@ -48,7 +48,7 @@ InternalIsfitOrg::Application.routes.draw do
   get "users/status/init", controller: "card_checker", action: "init"
   post "users/status/update", controller: "card_checker", action: "update"
 
-  scope "/transport" do
+  namespace :transport do
     root :to => "drives#search", :via => [:post,:get], :as => "transport_root"
     get 'shifts/new' => "shifts#multiple_new"
     get 'shifts/' => "shifts#all"

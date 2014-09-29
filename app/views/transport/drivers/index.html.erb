@@ -3,7 +3,7 @@
 	<div id="drivers" class="col-md-3">
 		<h2> Sjåfører </h4>
 		<% @drivers.each do |driver| %>
-			<h5><%= link_to driver.username, driver %></h5>
+			<h5><%= link_to driver.username, [:transport, driver] %></h5>
 		<% end %>
 	</div>
 

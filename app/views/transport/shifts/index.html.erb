@@ -1,5 +1,5 @@
 <%= render "transport/nav" %>
-<h2>Vaktliste for <%= link_to @driver.username, @driver %></h2>
+<h2>Vaktliste for <%= link_to @driver.username, transport_driver_path(@driver) %></h2>
 <p>Vaktlisten vil bli brukt til å få oversikt når en sjåfør skal være tilgjengelig til å bli satt på oppdrag. M.a.o hvis du ikke har noen vakter vil du ikke dukke opp i søket etter tilgjengelige sjåfører, med unntak når man velger å ignorere vaktlister. </p>
 
 
@@ -11,4 +11,4 @@
 		<%= render "form" %>
 	</div>
 </div>
-<%= link_to "Tilbake", driver_path(@driver) %>
+<%= link_to "Tilbake", transport_driver_path(@driver) %>

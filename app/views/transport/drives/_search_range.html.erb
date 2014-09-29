@@ -1,5 +1,5 @@
 <h3 class="muted">Søk på kjøreoppdrag</h3>
-<%= simple_form_for(Drive.new, :url => range_search_drives_path, :method => "get", wrapper: :inline_form,
+<%= simple_form_for(Drive.new, :url => range_search_transport_drives_path, :method => "get", wrapper: :inline_form,
 	:html => {:class => 'form-inline' }) do |f| %>
 	<%= f.input :start_time, :as => :datetime_picker %>
 	<%= f.input :end_time, :as => :datetime_picker%>

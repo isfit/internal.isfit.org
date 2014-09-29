@@ -1,6 +1,6 @@
 #!/bin/env ruby
 # encoding: utf-8
-class DriversController < TransportAdminController
+class Transport::DriversController < ApplicationController
 	before_filter :validate_username, :only => [:create]
 	def index
 		@drivers = Driver.all

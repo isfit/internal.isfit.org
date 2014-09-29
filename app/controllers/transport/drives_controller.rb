@@ -1,6 +1,6 @@
 #!/bin/env ruby
 # encoding: utf-8
-class DrivesController < TransportAdminController
+class Transport::DrivesController < ApplicationController
 	#load_and_authorize_resource :drive
 	before_filter :find_driver
 	before_filter :validate_datetime, :only => [:search_result]

@@ -24,9 +24,9 @@
 					</td>
 					<td>
 					<% if @driver %>
-						<%= link_to "Vis", [@driver,shift] %> |
+						<%= link_to "Vis", [:transport, @driver,shift] %> |
 						<%= link_to "Slett",
-						 			[@driver, shift],
+						 			[:transport, @driver, shift],
 						 			:method => :delete,
 						 			:confirm => "Er du sikker på at du vil slette dette skiftet?" %>
 					<% else %>

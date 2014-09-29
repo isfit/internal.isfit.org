@@ -3,9 +3,13 @@
 	<td>
 		<%= drive.car_desc %>
 	</td>
-	<%if not @driver %>
-		<td><%= link_to(drive.driver_name, drive.driver) %></td>
+	<td>
+	<%if drive.driver %>
+		<%= link_to(drive.driver_name, transport_driver_path(drive.driver)) %>
+	<% else %>
+		-
 	<% end %>
+	</td>
 	<td>
 		<div class="minimize expand_y">
 			<%= drive.description %>
@@ -19,7 +23,7 @@
 	<td><%= drive.time_summary %></td>
 	<td class="drive_date"><%= drive.date_summary %></td>
 	<td>
-	<%= form_for(drive, remote: true) do |f| %>
+	<%= form_for([:transport, drive], remote: true) do |f| %>
 	<div class="form-group">
 		<%= f.collection_select(:status, Drive.get_statuses, :first, :last,{}, {:class=>'form-control', onchange: "$(this).parent('form').submit();"}) %>
 	</div>
@@ -27,9 +31,9 @@
 	<% end %>
 
 	</td>
-	<td><%= link_to(:"Vis", drive_path(drive)) %></td>
-	<td><%= link_to(:Endre, edit_drive_path(drive.id))%></td>
+	<td><%= link_to(:"Vis", transport_drive_path(drive)) %></td>
+	<td><%= link_to(:Endre, edit_transport_drive_path(drive.id))%></td>
 	<td>
-		<%= link_to(:Fjern, drive_path(drive), method: :delete, confirm: "Er du sikker på at du vil slette denne kjøringen? Husk, du kan redigere/endre den.") %>
+		<%= link_to(:Fjern, transport_drive_path(drive), method: :delete, confirm: "Er du sikker på at du vil slette denne kjøringen? Husk, du kan redigere/endre den.") %>
 	</td>
 </tr>
