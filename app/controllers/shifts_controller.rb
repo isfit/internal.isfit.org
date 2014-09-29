@@ -10,6 +10,10 @@ class ShiftsController < TransportAdminController
 		@shifts = @driver.shifts.all
 	end
 
+	def all
+		@shifts = Shift.all
+	end
+	
 	def show
 		@shift = @driver.shifts.find(params[:id])
 	end

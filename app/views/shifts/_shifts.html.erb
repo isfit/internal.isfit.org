@@ -23,11 +23,15 @@
 						<% end %>
 					</td>
 					<td>
+					<% if @driver %>
 						<%= link_to "Vis", [@driver,shift] %> |
 						<%= link_to "Slett",
 						 			[@driver, shift],
 						 			:method => :delete,
 						 			:confirm => "Er du sikker på at du vil slette dette skiftet?" %>
+					<% else %>
+						<%= link_to shift.driver.username, shift.driver %>
+					<% end %>	
 					</td>
 				</tr>
 			<% end %>
