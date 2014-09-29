@@ -1,0 +1,5 @@
+class TransportResponsibleController < TransportAdminController
+
+
+end
+
