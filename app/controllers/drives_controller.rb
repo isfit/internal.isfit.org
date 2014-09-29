@@ -39,7 +39,10 @@ class DrivesController < TransportAdminController
 	end
 
 	def range_search
-		@drives = drives.in_range(params[:start_time],params[:end_time])
+		start_time = Time.parse(params[:drive][:start_time]).to_s(:db)
+		end_time = Time.parse(params[:drive][:end_time]).to_s(:db)
+
+		@drives = drives.where("start_time >= ? AND end_time <= ?",start_time,end_time)
 		render :template => "drives/index"
 	end
 
@@ -66,6 +69,7 @@ class DrivesController < TransportAdminController
 
 	def edit
 		@drive = drives.find(params[:id])
+		@user = current_user
 	end
 
 	def update
@@ -98,26 +102,13 @@ class DrivesController < TransportAdminController
 
 
 	def index
-		@drives = Drive.where(true)
+		@drives = drives.where(true)
 	end
 
 	def show_all
 		@driver_jobs = Drive.order('end_time DESC')
 	end
 
-
-	def toogle_completed
-		@drive = Drive.find(params[:id])
-		if @drive
-			if @drive.completed == false
-				@drive.completed = true
-			else
-				@drive.completed = false
-			end
-			@drive.save
-		end
-		render :json => {:header => "OK"}.to_json
-	end
 
 	private
 	def drives

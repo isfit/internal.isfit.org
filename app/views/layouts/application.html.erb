@@ -107,12 +107,14 @@
         <% else %>
           <div id="content" class="col-md-12">
         <% end %>
+        <div id="notice">
           <% if notice or alert %>
             <div class="alert alert-<%= notice ? "success":"error" %>">
               <a href="#" class="close" data-dismiss="alert">x</a>
               <i class="icon-<%= notice ? "success":"warning-sign" %>"></i> <strong><%= notice ? raw((notice)) : raw(alert) %></strong>
             </div>
           <% end %>
+
 
           <% if session[:impersonator_user_id] %>
             <div class="alert alert-success">
@@ -122,6 +124,7 @@
                 </strong>
             </div>
           <% end %>
+        </div>
 
           <%= content_tag :h1, yield(:title) if show_title? %>
 

@@ -6,5 +6,9 @@
     <%= f.input :group_id, collection: @user.positions.last.groups.collect { |g| [ g.name_en, g.id ] } %>
     <%= f.input :description %>
   </fieldset>
-  <%= f.submit %>
+  <div class="form-group">
+    	<div class="col-sm-offset-3 col-sm-9">
+    	<%= f.button :submit %>
+    	</div>
+	</div>
 <% end %>
