@@ -20,7 +20,9 @@
 	<td class="drive_date"><%= drive.date_summary %></td>
 	<td>
 	<%= form_for(drive, remote: true) do |f| %>
-		<%= f.collection_select(:status, Drive.get_statuses, :first, :last) %>
+	<div class="form-group">
+		<%= f.collection_select(:status, Drive.get_statuses, :first, :last,{}, {:class=>'form-control', onchange: "$(this).parent('form').submit();"}) %>
+	</div>
 		<%= f.submit %>
 	<% end %>
 

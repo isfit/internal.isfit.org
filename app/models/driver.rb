@@ -31,7 +31,7 @@ class Driver < ActiveRecord::Base
   end
 
   def no_of_complete_drives
-    drives.find(:all, :conditions => {:completed => true}).count
+    drives.where(status: 4).count
   end
 
   def completed_ratio

@@ -6,7 +6,7 @@
 		<%= select_tag(:shift_id,options_for_select(Shift.get_shifts_option_array)) %>
 	</p>
 	<p>
-		<%= text_field_tag(:date,nil, :placeholder => "YYYY-MM-DD" )%>
+		<%= text_field_tag(:date,nil, :placeholder => "YYYY-MM-DD", :class => 'datepicker' )%>
 	</p>	
 	<%= f.submit "Lag nytt skift" %>
 <% end %>
