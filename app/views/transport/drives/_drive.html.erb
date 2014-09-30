@@ -23,9 +23,9 @@
 	<td><%= drive.time_summary %></td>
 	<td class="drive_date"><%= drive.date_summary %></td>
 	<td>
-	<%= form_for([:transport, drive], remote: true) do |f| %>
+	<%= form_for([:transport, drive], remote: true,:html => {:class => 'small_edit_drive'}) do |f| %>
 	<div class="form-group">
-		<%= f.collection_select(:status, Drive.get_statuses, :first, :last,{}, {:class=>'form-control', onchange: "$(this).parent('form').submit();"}) %>
+		<%= f.collection_select(:status, Drive.get_statuses, :first, :last,{}, {:class=>'form-control'}) %>
 	</div>
 		<%= f.submit %>
 	<% end %>

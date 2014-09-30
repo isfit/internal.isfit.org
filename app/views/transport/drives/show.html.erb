@@ -1,12 +1,12 @@
 <%= render "transport/nav" %>
 <h2>Kjøreoppdrag #<%= @drive.id%></h2>
-<h3><%= link_to(:"Endre", edit_drive_path(@drive)) %></h3>
+<h3><%= link_to(:"Endre", edit_transport_drive_path(@drive)) %></h3>
 <br>
 <div class="row">
 	<div class="col-md-3">
 		<h4>Sjåfør</h4>
 		<% if @drive.driver %>
-			<%= link_to(@drive.driver_desc, driver_path(@drive.driver)) %><br>
+			<%= link_to(@drive.driver_desc, transport_driver_path(@drive.driver)) %><br>
 		<% else %>
 			No driver assigned
 		<% end %>

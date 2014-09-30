@@ -18,10 +18,7 @@ class Transport::DriversController < ApplicationController
 		else
 			flash[:alert] = "Noe gikk galt. #{params[:username]} ble ikke lagret som sjåfør."	
 		end
-		redirect_to drivers_path
-	end
-
-	def edit
+		redirect_to transport_drivers_path
 	end
 
 	def update
@@ -35,19 +32,20 @@ class Transport::DriversController < ApplicationController
 	end
 
 	def destroy
+		@driver = Driver.find(params[:id])
 		@driver.destroy
 		flash[:notice] = "Driver deleted"
-		redirect_to drivers_path
+		redirect_to transport_drivers_path
 	end
 
 	private
 	def validate_username
 		if not User.find_by_username(params[:username])
 			flash[:alert] = "Brukeren '#{params[:username]}' finnes ikke i ISFIT."
-			redirect_to drivers_path
+			redirect_to transport_drivers_path
 		elsif Driver.find_by_username(params[:username])
 			flash[:alert] = "Brukeren '#{params[:username]}' er allerede en sjåfør."
-			redirect_to drivers_path
+			redirect_to transport_drivers_path
 		end
 	end
 

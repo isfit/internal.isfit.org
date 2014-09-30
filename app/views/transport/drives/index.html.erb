@@ -2,7 +2,7 @@
 <%= render "search_range" %>
 
 <% if @driver %>
-	<h2>Kjøreoppdrag for <%= link_to @driver.username, @driver %></h2>
+	<h2>Kjøreoppdrag for <%= link_to @driver.username, transport_driver_path(@driver) %></h2>
 <% else %>
 	<h2>Alle kjøreoppdrag</h2>
 <% end %>

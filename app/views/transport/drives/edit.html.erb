@@ -1,6 +1,6 @@
 <%= render "transport/nav" %>
 
-  <%= simple_form_for(@drive) do |f| %>
+  <%= simple_form_for([:transport,@drive]) do |f| %>
     <%= f.error_messages %>
     <div class="row">
       <div class="col-md-6">
