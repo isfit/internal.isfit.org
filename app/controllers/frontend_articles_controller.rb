@@ -23,7 +23,10 @@ class FrontendArticlesController < ApplicationController
     @article = FrontendArticle.new
     @users = User.order('family_name')
     @pictures = Photo.order("created_at DESC")
+    @frontend_tag = ""
   end
+
+
 
   # GET /articles/1/edit
   def edit
@@ -47,6 +50,25 @@ class FrontendArticlesController < ApplicationController
     @photo = Photo.find(params[:frontend_article][:photo_id]) if Photo.exists?(params[:frontend_article][:photo_id])
     @article.frontend_article_image = @photo.original_picture if @photo
     @article.deleted = 0
+ 
+    tags = params[:frontend_article] [:frontend_tag].split('#')
+    tag_ids = []
+    tags.each do |t|  
+      if FrontendHashtag.where(hashtag: params[:frontend_article] [:frontend_tag]) == []
+        frontend_hashtag = FrontendHashtag.new
+        frontend_hashtag.hashtag = t#params[:frontend_article] [:frontend_tag]
+        if !(frontend_hashtag.save)
+          render action => "edit" 
+        end
+        frontend_hashtag_id = frontend_hashtag.id
+        tag_ids << frontend_hashtag.id
+      else
+        frontend_hashtag_id = FrontendHashtag.where(hashtag: params[:frontend_article] [:frontend_tag]).first.id
+        tag_ids << FrontendHashtag.where(hashtag: params[:frontend_article] [:frontend_tag]).first.id
+      end
+    end
+
+
     if FrontendArticle.count == 1
       @article.weight = 1
     else
@@ -63,6 +85,21 @@ class FrontendArticlesController < ApplicationController
     else
       render action => "edit" 
     end
+
+      
+    tag_ids.each do |ti|
+      fafh = FrontendArticleFrontendHashtag.new
+      fafh.frontend_hashtag_id = ti
+      fafh.frontend_article_id = @article.id
+      if !(fafh.save)
+        render action => "edit" 
+      end
+      
+
+    end
+
+    #fafh.frontend_hashtag_id = frontend_hashtag_id
+
   end
 
   def article_image(picture_id, type)

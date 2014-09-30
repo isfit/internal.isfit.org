@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140825182451) do
+ActiveRecord::Schema.define(:version => 20140915185208) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name_nb"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20140825182451) do
   end
 
   create_table "applicants", :id => false, :force => true do |t|
-    t.integer  "id",                 :default => 0,     :null => false
+    t.integer  "id",                    :default => 0,     :null => false
     t.string   "firstname"
     t.string   "lastname"
     t.string   "mail"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(:version => 20140825182451) do
     t.integer  "position_id_1"
     t.integer  "position_id_2"
     t.integer  "position_id_3"
-    t.integer  "status",             :default => 0
+    t.integer  "status",                :default => 0
     t.text     "comment"
     t.string   "interview_place_1"
     t.string   "interview_place_2"
@@ -59,18 +59,19 @@ ActiveRecord::Schema.define(:version => 20140825182451) do
     t.integer  "interviewer_id_2_2"
     t.integer  "interviewer_id_3_1"
     t.integer  "interviewer_id_3_2"
-    t.boolean  "deleted",            :default => false
+    t.boolean  "deleted",               :default => false
     t.string   "username"
     t.string   "password"
     t.string   "dn"
-    t.boolean  "has_account",        :default => false
-    t.integer  "is_notified",        :default => 0
+    t.boolean  "has_account",           :default => false
+    t.integer  "is_notified",           :default => 0
     t.string   "birthyear"
     t.string   "place_of_study"
     t.integer  "applicant_user_id"
     t.boolean  "locked"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "recruited_position_id"
   end
 
   create_table "applications", :force => true do |t|
@@ -217,7 +218,7 @@ ActiveRecord::Schema.define(:version => 20140825182451) do
 
   create_table "countries", :id => false, :force => true do |t|
     t.integer "id",   :default => 0, :null => false
-    t.string  "name"
+    t.string  "name",                :null => false
   end
 
   create_table "deadlines", :force => true do |t|
@@ -300,24 +301,16 @@ ActiveRecord::Schema.define(:version => 20140825182451) do
   add_index "drives", ["car_id"], :name => "index_drives_on_car_id"
   add_index "drives", ["driver_id"], :name => "index_drives_on_driver_id"
 
-  create_table "event_rsvps", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "event_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "events", :force => true do |t|
-    t.string   "name"
-    t.datetime "start_at"
-    t.datetime "end_at"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "festivals", :id => false, :force => true do |t|
     t.integer "id",   :default => 0, :null => false
     t.integer "year"
+  end
+
+  create_table "frontend_article_frontend_hashtags", :force => true do |t|
+    t.integer  "frontend_article_id"
+    t.integer  "frontend_hashtag_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "frontend_articles", :force => true do |t|
@@ -350,13 +343,7 @@ ActiveRecord::Schema.define(:version => 20140825182451) do
     t.datetime "frontend_article_image_updated_at"
     t.text     "sidebar"
     t.boolean  "blog",                                             :default => false
-  end
-
-  create_table "frontend_articles_frontend_hashtags", :force => true do |t|
-    t.integer  "frontend_articles_id"
-    t.integer  "frontend_hashtags_id"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.string   "frontend_tag"
   end
 
   create_table "frontend_hashtags", :force => true do |t|
@@ -516,6 +503,12 @@ ActiveRecord::Schema.define(:version => 20140825182451) do
     t.integer  "owner_id"
     t.integer  "number",         :default => 1
     t.date     "last_proofread"
+  end
+
+  create_table "motds", :force => true do |t|
+    t.string   "msg"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "pads", :force => true do |t|
@@ -705,13 +698,6 @@ ActiveRecord::Schema.define(:version => 20140825182451) do
     t.integer  "question_id"
   end
 
-  create_table "quests", :force => true do |t|
-    t.string   "quest_text"
-    t.boolean  "accepted"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "regions", :force => true do |t|
     t.string "name"
   end
@@ -814,22 +800,15 @@ ActiveRecord::Schema.define(:version => 20140825182451) do
 
   add_index "subscriptions", ["user_id"], :name => "index_subscriptions_on_user_id"
 
-  create_table "transport_types", :force => true do |t|
-    t.string   "name"
+  create_table "tags", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  create_table "user_quests", :force => true do |t|
-    t.integer  "hero_id"
-    t.integer  "quest_id"
-    t.integer  "npc_type"
-    t.integer  "npc_id"
-    t.integer  "status"
-    t.datetime "deadline"
-    t.datetime "completed_at"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+  create_table "transport_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :id => false, :force => true do |t|

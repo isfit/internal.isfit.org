@@ -2,6 +2,10 @@ class FrontendArticle < ActiveRecord::Base
   attr_accessor :x1, :y1, :x2, :y2, :x1, :y1_1, :x2_1, :y2_1, :x1_1, :y1_2, :x2_2, :y2_2,:x1_2, :photo_id
   before_save :set_byline
 
+  has_many :frontend_article_frontend_hashtag
+  has_many :frontend_hashtag, through: :frontend_article_frontend_hashtag
+
+
   has_attached_file :frontend_article_image, styles:  {
     frontpage_large: {geometry: "620x362#", processors: [:cropper] },
     article_large: {geometry: "940x480#", processors: [:cropper_half] }

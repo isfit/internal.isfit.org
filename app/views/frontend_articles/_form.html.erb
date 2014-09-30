@@ -36,9 +36,14 @@
   <div id="misc" class="hidable">
   <fieldset>
     <legend><%= t('common.common') %></legend>
-      <div class="field">
+    <div class="field">
       <%= f.label :show_article %> 
       <%= f.text_field :show_article, class: :datetimepicker %>
+    </div>
+    <hr>
+    <div class="field">
+      <%= f.label :frontend_tag, "Tags" %>
+      <%= f.text_field :frontend_tag %>
     </div>
     <hr>
     <div class="field">
@@ -51,10 +56,6 @@
       <%= f.check_box :blog %>
     </div>
     <hr>
-    <div class="field">
-      <%= f.label :got_comments %>
-      <%= f.check_box :got_comments %>
-    </div>
     <hr>
     <div class="field">
       <%= f.label :byline_user_id %>
@@ -65,12 +66,17 @@
       <%= f.label :image_credits %>
       <%= f.text_field :image_credits %>
     </div>
+
     <hr>
     <div class="field">
       <%= f.label :sidebar %>
       <%= f.text_area :sidebar %>
     </div>
     <%= f.hidden_field :photo_id %>
+    <div class="field">
+      <%= f.label :got_comments %>
+      <%= f.check_box :got_comments %>
+    </div>
  </fieldset>
  </div>
  <div id="english" class="hidable">
