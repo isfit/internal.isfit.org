@@ -1,0 +1,27 @@
+<h1>The Global Infection</h1>
+<p>Below is a list of all the newest stories on theglobalinfection.<br />
+They are listed newest first.
+</p>
+
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Created</th>
+      <th>Title</th>
+      <th>Show</th>
+      <th>Validated</th>
+      <th>Deleted</th>
+    </tr>
+  </thead>
+
+  <% @stories.each do |story| %>
+    <tr>
+      <td><%= story.created_at %></td>
+      <td><%= story.title %></td>
+      <td><%= link_to 'Show', story, :class => "btn-primary btn" %></td>
+      <td><%= story.validated %></td>
+      <td><%= story.deleted %></td>
+    </tr>
+  <% end %>
+</table>
