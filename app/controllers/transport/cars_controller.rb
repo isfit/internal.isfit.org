@@ -3,7 +3,7 @@ class Transport::CarsController < ApplicationController
 		@car = Car.new(params[:car])
 		respond_to do |format|
       	if @car.save
-		    	format.html { redirect_to @car, notice: 'Car was successfully created.' }
+		    	format.html { redirect_to [:transport,@car], notice: 'Car was successfully created.' }
 		    	format.json { render :show, status: :created, location: @car }
 		    else
 		    	format.html { render :new }
@@ -29,7 +29,7 @@ class Transport::CarsController < ApplicationController
 		@car = Car.find(params[:id])
     @car.destroy
     respond_to do |format|
-      format.html { redirect_to cars_url, notice: 'Car was successfully destroyed.' }
+      format.html { redirect_to transport_cars_url, notice: 'Car was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -47,6 +47,10 @@ class Transport::CarsController < ApplicationController
     	else
     		flash[:alert] = "Noe gikk galt, endringen ble ikke lagret!"
     	end
-      	redirect_to  url_for :controller => 'drive_admin', :action => 'index'
+    	
+      	respond_to do |format|
+			format.html { redirect_to :action => "index" }
+			format.js
+		end	
 	end
 end

@@ -33,7 +33,7 @@ class Transport::ShiftsController < ApplicationController
 		else
 			flash[:notice] = "Vakten ble ikke lagret."
 		end
-		redirect_to driver_shifts_path(@driver)
+		redirect_to transport_driver_shifts_path(@driver)
 	end
 
 	def update
@@ -44,7 +44,7 @@ class Transport::ShiftsController < ApplicationController
 		@shift = Shift.find(params[:id])
 		@shift.destroy
 		flash[:notice] = "Skiftet er slettet."
-		redirect_to driver_shifts_path(@driver)
+		redirect_to transport_driver_shifts_path(@driver)
 	end
 
 	def multiple_new
@@ -63,10 +63,10 @@ class Transport::ShiftsController < ApplicationController
 					shift.save!
 				end
 				flash[:notice] = "Vaktene ble lagret."
-				redirect_to shifts_new_path
+				redirect_to transport_shifts_new_path
 			rescue Exception
 				flash[:alert] = "Vaktene ble ikke lagret."
-				redirect_to shifts_new_path
+				redirect_to transport_shifts_new_path
 			end
 		end
 	end
@@ -95,7 +95,7 @@ class Transport::ShiftsController < ApplicationController
 	def empty_driver_ids
 		if not params[:driver_ids]
 			flash[:alert] = "Ingen sjåfører er valgt."
-			redirect_to shifts_new_path
+			redirect_to transport_shifts_new_path
 		end
 	end
 end
