@@ -132,6 +132,13 @@ InternalIsfitOrg::Application.routes.draw do
       get 'moveup'
     end
   end
+
+  resources :campaign_stories do
+    member do
+      get 'validatestory'
+      get 'delete'
+    end
+  end
   
   resources :frontend_articles do
     collection do

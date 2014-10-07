@@ -1,20 +1,31 @@
 class CampaignStoriesController < ApplicationController
 	
 	def index
-		@stories = CampaignStory.All
+		@stories = CampaignStory.stories_sorted
 	end
 
 	def show
 		@story = CampaignStory.find(params[:id])
-		@continent = Continent.find(@story.continent_id)
 	end
 
 	def destroy
-		@story = Story.find(params[:id])
-		@story.deleted = True
-		
+		story = CampaignStory.find(params[:id])
+		story.deleted = True
 
+	end
 
+	def validatestory
+		story = CampaignStory.find(params[:id])
+		story.validated = !story.validated
+		story.save
+		redirect_to action: "index"
+	end
+
+	def delete
+		story = CampaignStory.find(params[:id])
+		story.deleted = !story.deleted
+		story.save
+		redirect_to action: "index"
 	end
 
 end
