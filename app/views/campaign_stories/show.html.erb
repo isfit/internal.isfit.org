@@ -14,3 +14,4 @@
 <h3>Email: <%= @story.email %></h3>
 
 <%= link_to 'Show', @story, :class => "btn-warning btn" %>
+<%= link_to 'Delete', @story, confirm: 'Are you sure?', method: :delete, :class => "btn btn-danger" %>

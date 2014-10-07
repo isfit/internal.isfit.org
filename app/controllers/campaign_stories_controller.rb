@@ -7,6 +7,13 @@ class CampaignStoriesController < ApplicationController
 	def show
 		@story = CampaignStory.find(params[:id])
 		@continent = Continent.find(@story.continent_id)
+	end
+
+	def destroy
+		@story = Story.find(params[:id])
+		@story.deleted = True
+		
+
 
 	end
 
