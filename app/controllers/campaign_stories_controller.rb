@@ -8,12 +8,6 @@ class CampaignStoriesController < ApplicationController
 		@story = CampaignStory.find(params[:id])
 	end
 
-	def destroy
-		story = CampaignStory.find(params[:id])
-		story.deleted = True
-
-	end
-
 	def validatestory
 		story = CampaignStory.find(params[:id])
 		story.validated = !story.validated

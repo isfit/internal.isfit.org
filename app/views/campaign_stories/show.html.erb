@@ -3,27 +3,31 @@
 </div>
 
 <h4>Created: <%= @story.created_at %></h4>
+
 <h3><%= Continent.find(@story.continent_id).display_name %> - 
 	<% if @story.happened_in_id %>
 		<%= Country.find(@story.happened_in_id).name %>
 	<% end %>
 </h3>
+
 <h1><%= @story.title %></h1>
+
 <h2>Story:</h2>
-<p>
-	<%= simple_format @story.story %>
-</p>
+<p><%= simple_format @story.story %></p>
+
 <h2>Solution:</h2>
-<p>
-	<%= simple_format @story.solution %>
-</p>
+<p><%= simple_format @story.solution %></p>
+
 <h4>Author: <%= @story.author %></h3>
+
 <h4>Athour Nationality:
 	<% if @story.author_nationality_id %>
 		<%= Country.find(@story.author_nationality_id).name %>
 	<% end %>
 </h4>
+
 <h4>Email: <%= @story.email %></h4>
+
 <% if !@story.validated %>
 	<%= link_to "Validate", validatestory_campaign_story_path(@story), :class => "btn-success btn" %>
 <% else %>
