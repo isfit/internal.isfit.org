@@ -79,6 +79,8 @@ class DrivesController < TransportAdminController
 		respond_to do |format|
 			format.html { redirect_to :action => "index" }
 			format.js
+
+		
 		end		
 		#if @drive.update_attributes(params[:drive])
 		#	flash[:notice]="Endringer oppdatert!"
