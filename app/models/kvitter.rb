@@ -5,6 +5,7 @@ class Kvitter < ActiveRecord::Base
   has_many :awesomes
 
   validates :message, :presence => true
+  validate :unique_message_from_user
   
   self.per_page = 10
 
@@ -27,4 +28,11 @@ class Kvitter < ActiveRecord::Base
       nil
     end
   end
+
+  private
+    def unique_message_from_user
+      unless Kvitter.where(user_id: self.user_id, message: self.message).empty?
+        errors.add(:base, "Can't kvitter the same message twice")
+      end
+    end
 end
