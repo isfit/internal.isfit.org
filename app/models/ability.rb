@@ -67,6 +67,9 @@ class Ability
       can :manage, CardChecker
       can :manage, Host
     end
+    if user.role?(:campaign)
+      can :manage, CampaignStory
+    end
     if user.role?(:transport)
       can :manage, Drive
       can :manage, Driver
