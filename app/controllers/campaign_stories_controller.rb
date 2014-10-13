@@ -1,5 +1,6 @@
 class CampaignStoriesController < ApplicationController
-	
+	load_and_authorize_resource
+
 	def index
 		@stories = CampaignStory.stories_sorted
 	end
@@ -12,6 +13,11 @@ class CampaignStoriesController < ApplicationController
 		story = CampaignStory.find(params[:id])
 		story.validated = !story.validated
 		story.save
+		if story.validated?
+			unless story.email.nil?
+				CampaignMailer.validated_mail(story).deliver
+			end
+		end
 		redirect_to action: "index"
 	end
 
