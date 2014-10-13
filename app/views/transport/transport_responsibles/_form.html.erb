@@ -1,0 +1,12 @@
+<%= simple_form_for([:transport,@transport_responsible], wrapper: :horizontal_form, :html => {:class => 'form-horizontal' }) do |f| %>
+  <%= f.error_messages %>
+  <fieldset>
+    <%= f.input :user_id %>
+    <%= f.input :group_id, collection: Group.current { |g| [ g.name_en, g.id ] } %>
+  </fieldset>
+  <div class="form-group">
+    	<div class="col-sm-offset-3 col-sm-9">
+    	<%= f.button :submit %>
+    	</div>
+	</div>
+<% end %>

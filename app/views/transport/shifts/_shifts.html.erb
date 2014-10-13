@@ -29,8 +29,10 @@
 						 			[:transport, @driver, shift],
 						 			:method => :delete,
 						 			:confirm => "Er du sikker på at du vil slette dette skiftet?" %>
+					<% elsif shift.driver %>
+						<%= link_to shift.driver.username,[:transport, shift.driver] %>
 					<% else %>
-						<%= link_to shift.driver.username, shift.driver %>
+						No Driver
 					<% end %>	
 					</td>
 				</tr>

@@ -2,10 +2,14 @@ class Drive < ActiveRecord::Base
   belongs_to :driver
   belongs_to :car
   belongs_to :group
+  belongs_to :user
 
   validates_presence_of :start_time
   validates_presence_of :end_time
 
+  scope :by_group, -> group { where(group: group) }
+  scope :by_user, -> user { where(user: user) }
+  scope :occuring, -> { where("start_time <= ? AND ? <= end_time", Time.zone.now,Time.zone.now)}
   
 
   def self.get_datetimes_from_params(params)
@@ -87,5 +91,9 @@ class Drive < ActiveRecord::Base
     2 => 'Not started',
     3 => 'On the road',
     4 => 'Completed' }
+  end
+
+  def get_status
+    Drive.get_statuses[status]
   end
 end

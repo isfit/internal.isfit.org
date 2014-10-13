@@ -4,6 +4,8 @@
 <br>
 <div class="row">
 	<div class="col-md-3">
+		<h4>Kontakt Person</h4>
+		<%= link_to(@drive.user.full_name,@drive.user) %>
 		<h4>Sjåfør</h4>
 		<% if @drive.driver %>
 			<%= link_to(@drive.driver_desc, transport_driver_path(@drive.driver)) %><br>
@@ -16,6 +18,10 @@
 		<% else %>
 			No car assigned
 		<% end %>
+		<h4>Status</h4>
+		<%= @drive.get_status %>
+		<h4>Gjeng</h4>
+		<%= @drive.group.name %>
 	</div>
 	<div class="col-md-3">
 		<h3>Beskrivelse</h3>

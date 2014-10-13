@@ -1,7 +1,9 @@
 <%= form_tag(transport_drivers_path, :method => "post") do %>
-	<p>
+	<div class="form-group">
 		Brukernavn<br>
-		<%= text_field_tag(:username) %>
-	</p>
-	<%= submit_tag("Lagre") %>
+		<%= text_field_tag(:username, nil, options = {:class => 'form-control'}) %>
+	</div>
+	<div class="form-group">
+		<%= submit_tag("Lagre",:class => 'btn btn-default') %>
+	</div>
 <% end %>

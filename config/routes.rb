@@ -49,7 +49,7 @@ InternalIsfitOrg::Application.routes.draw do
   post "users/status/update", controller: "card_checker", action: "update"
 
   namespace :transport do
-    root :to => "drives#search", :via => [:post,:get], :as => "transport_root"
+    root :to => "drives#index", :via => [:get], :as => "transport_root"
     get 'shifts/new' => "shifts#multiple_new"
     get 'shifts/' => "shifts#all"
     post 'shifts/create' => "shifts#multiple_create"
@@ -57,7 +57,7 @@ InternalIsfitOrg::Application.routes.draw do
       resources :shifts
       resources :drives
     end
-
+    resources :transport_responsibles
     resources :cars
     resources :drives do
       collection do

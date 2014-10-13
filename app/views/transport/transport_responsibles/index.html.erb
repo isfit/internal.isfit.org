@@ -1,0 +1,33 @@
+<%= render "transport/nav" %>
+
+<h1>Transport Responsibles</h1>
+	<table class="table">
+		<thead>
+			<th>User</th>
+			<th>Group</th>
+		</thead>	
+    <% @transport_responsibles.each do |transport_responsible| %>
+    	<tr>
+    		<td>
+	    		<%= link_to transport_responsible.user.full_name, transport_responsible.user %>
+	    	</td>
+	    	<td>
+		    	<%= transport_responsible.group.name %>
+		    </td>
+		    <td>
+					<div class="btn-group">
+			  		<%= link_to(:"Vis", transport_transport_responsible_path(transport_responsible), :class => 'btn btn-info') %>
+			  		<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+				    	<span class="caret"></span>
+				    	<span class="sr-only">Toggle Dropdown</span>
+				  	</button>
+						<ul class="dropdown-menu" role="menu">
+						  <li><%= link_to(:Endre, edit_transport_transport_responsible_path(transport_responsible))%></li>
+						  <li><%= link_to(:Fjern, transport_transport_responsible_path(transport_responsible), method: :delete, confirm: "Er du sikker på at du vil slette denne personen? Husk, du kan redigere/endre den.") %></li>
+						</ul>
+					</div>
+				</td>
+    	</tr>
+    <% end %> 
+	</table>
+	<%= link_to 'New transport responsible', new_transport_transport_responsible_path %>
