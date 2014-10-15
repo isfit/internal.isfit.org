@@ -10,8 +10,7 @@ class Drive < ActiveRecord::Base
   scope :by_group, -> group { where(group: group) }
   scope :by_user, -> user { where(user: user) }
   scope :occuring, -> { where("start_time <= ? AND ? <= end_time", Time.zone.now,Time.zone.now)}
-  
-
+  scope :by_status, -> status {where(status: status)}
   def self.get_datetimes_from_params(params)
     start_time =  DateTime.parse("#{params[:date]} #{params[:start_time]}:00")
     end_time =  DateTime.parse("#{params[:date]} #{params[:end_time]}:00")

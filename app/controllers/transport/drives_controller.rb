@@ -34,6 +34,10 @@ class Transport::DrivesController < ApplicationController
 
 	end
 
+	def dashboard
+		@drives = Drive.order('end_time DESC')
+		@drivers = Driver.all
+	end
 
 	def search
 	end

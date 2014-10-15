@@ -52,6 +52,7 @@ InternalIsfitOrg::Application.routes.draw do
     root :to => "drives#index", :via => [:get], :as => "transport_root"
     get 'shifts/new' => "shifts#multiple_new"
     get 'shifts/' => "shifts#all"
+    get 'dashboard' => "drives#dashboard"
     post 'shifts/create' => "shifts#multiple_create"
     resources :drivers do
       resources :shifts
