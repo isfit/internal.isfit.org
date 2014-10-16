@@ -14,6 +14,7 @@
 //= require pickers
 //= require bootstrap3-typeahead.min
 //= require private_pub
+//= require fullcalendar
 //= require_tree .
 //= require_self
 

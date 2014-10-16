@@ -11,6 +11,7 @@ class Drive < ActiveRecord::Base
   scope :by_user, -> user { where(user: user) }
   scope :occuring, -> { where("start_time <= ? AND ? <= end_time", Time.zone.now,Time.zone.now)}
   scope :by_status, -> status {where(status: status)}
+  scope :between, -> start_time, end_time { where("start_time >= ? AND end_time <= ?", start_time,end_time)}
   def self.get_datetimes_from_params(params)
     start_time =  DateTime.parse("#{params[:date]} #{params[:start_time]}:00")
     end_time =  DateTime.parse("#{params[:date]} #{params[:end_time]}:00")
@@ -94,5 +95,10 @@ class Drive < ActiveRecord::Base
 
   def get_status
     Drive.get_statuses[status]
+  end
+
+  def qwerty
+    #"/transport/drive/#{id}"
+    Rails.application.routes.url_helpers.transport_drive_path(self)
   end
 end

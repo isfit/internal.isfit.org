@@ -37,7 +37,17 @@ class Transport::DrivesController < ApplicationController
 	def dashboard
 		@drives = Drive.order('end_time DESC')
 		@drivers = Driver.all
+		if(params.has_key?(:start) && params.has_key?(:end))
+			start = Time.at(params[:start].to_i).to_s(:db)
+			end_time = Time.at(params[:end].to_i).to_s(:db)
+			drives = Drive.between(start,end_time) 
+		end
+		respond_to do |format|
+    	format.html
+    	format.json { render json: drives, root: false }
+  	end
 	end
+
 
 	def search
 	end
