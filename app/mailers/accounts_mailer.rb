@@ -24,7 +24,7 @@ class AccountsMailer < ActionMailer::Base
 		subject = "[ISFiT] Travel voucher for your gang has been generated"
 		travel_body = "A new travel voucher by #{name} has been generated.\n"
 
-		for i in 1..((desc.size / 2)  )
+		for i in 1..((desc.size / 3)  )
 			travel_body += "Travel route: " + desc["route#{i}"] + "\nMeans of transport: "  + 
 			desc["means#{i}"] + "\nAmount: " + desc["amount#{i}"].sub(/,/, '.') + "\n"
 		end
