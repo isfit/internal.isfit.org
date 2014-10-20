@@ -40,7 +40,7 @@ class MotdsController < ApplicationController
   # POST /motds
   # POST /motds.json
   def create
-    @motd = Motd.new(params[:motd])
+    @motd = Motd.new(motd_params)
 
     respond_to do |format|
       if @motd.save
@@ -80,4 +80,8 @@ class MotdsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  private
+    def motd_params
+      params.require(:motd).permit(:msg)
+    end
 end
