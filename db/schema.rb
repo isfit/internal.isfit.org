@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140825182451) do
+ActiveRecord::Schema.define(:version => 20141020165130) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name_nb"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20140825182451) do
   end
 
   create_table "applicants", :id => false, :force => true do |t|
-    t.integer  "id",                 :default => 0,     :null => false
+    t.integer  "id",                    :default => 0,     :null => false
     t.string   "firstname"
     t.string   "lastname"
     t.string   "mail"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(:version => 20140825182451) do
     t.integer  "position_id_1"
     t.integer  "position_id_2"
     t.integer  "position_id_3"
-    t.integer  "status",             :default => 0
+    t.integer  "status",                :default => 0
     t.text     "comment"
     t.string   "interview_place_1"
     t.string   "interview_place_2"
@@ -59,18 +59,19 @@ ActiveRecord::Schema.define(:version => 20140825182451) do
     t.integer  "interviewer_id_2_2"
     t.integer  "interviewer_id_3_1"
     t.integer  "interviewer_id_3_2"
-    t.boolean  "deleted",            :default => false
+    t.boolean  "deleted",               :default => false
     t.string   "username"
     t.string   "password"
     t.string   "dn"
-    t.boolean  "has_account",        :default => false
-    t.integer  "is_notified",        :default => 0
+    t.boolean  "has_account",           :default => false
+    t.integer  "is_notified",           :default => 0
     t.string   "birthyear"
     t.string   "place_of_study"
     t.integer  "applicant_user_id"
     t.boolean  "locked"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "recruited_position_id"
   end
 
   create_table "applications", :force => true do |t|
@@ -152,6 +153,23 @@ ActiveRecord::Schema.define(:version => 20140825182451) do
   add_index "awesomes", ["kvitter_id"], :name => "index_awesomes_on_kvitter_id"
   add_index "awesomes", ["user_id"], :name => "index_awesomes_on_user_id"
 
+  create_table "campaign_stories", :id => false, :force => true do |t|
+    t.integer  "id",                    :default => 0,     :null => false
+    t.string   "author"
+    t.text     "story"
+    t.integer  "continent_id"
+    t.integer  "author_nationality_id"
+    t.integer  "happened_in_id"
+    t.string   "email"
+    t.integer  "rating"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title"
+    t.text     "solution"
+    t.boolean  "validated",             :default => false
+    t.boolean  "deleted",               :default => false
+  end
+
   create_table "card_checkers", :force => true do |t|
     t.boolean  "samfundet_card"
     t.boolean  "ntnu_card"
@@ -206,6 +224,14 @@ ActiveRecord::Schema.define(:version => 20140825182451) do
     t.datetime "updated_at",            :null => false
   end
 
+  create_table "continents", :id => false, :force => true do |t|
+    t.integer  "id",           :default => 0, :null => false
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "display_name"
+  end
+
   create_table "control_panels", :force => true do |t|
     t.boolean  "app_grade1",       :default => false
     t.boolean  "app_grade2",       :default => false
@@ -216,8 +242,10 @@ ActiveRecord::Schema.define(:version => 20140825182451) do
   end
 
   create_table "countries", :id => false, :force => true do |t|
-    t.integer "id",   :default => 0, :null => false
+    t.integer "id",                     :default => 0, :null => false
     t.string  "name"
+    t.integer "region_id"
+    t.string  "code",      :limit => 4
   end
 
   create_table "deadlines", :force => true do |t|
@@ -292,32 +320,26 @@ ActiveRecord::Schema.define(:version => 20140825182451) do
     t.datetime "end_time"
     t.text     "description"
     t.text     "comment"
-    t.boolean  "completed"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "status"
+    t.integer  "group_id"
+    t.integer  "user_id"
   end
 
   add_index "drives", ["car_id"], :name => "index_drives_on_car_id"
   add_index "drives", ["driver_id"], :name => "index_drives_on_driver_id"
 
-  create_table "event_rsvps", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "event_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "events", :force => true do |t|
-    t.string   "name"
-    t.datetime "start_at"
-    t.datetime "end_at"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "festivals", :id => false, :force => true do |t|
     t.integer "id",   :default => 0, :null => false
     t.integer "year"
+  end
+
+  create_table "frontend_article_frontend_hashtags", :force => true do |t|
+    t.integer  "frontend_article_id"
+    t.integer  "frontend_hashtag_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "frontend_articles", :force => true do |t|
@@ -350,13 +372,7 @@ ActiveRecord::Schema.define(:version => 20140825182451) do
     t.datetime "frontend_article_image_updated_at"
     t.text     "sidebar"
     t.boolean  "blog",                                             :default => false
-  end
-
-  create_table "frontend_articles_frontend_hashtags", :force => true do |t|
-    t.integer  "frontend_articles_id"
-    t.integer  "frontend_hashtags_id"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.string   "frontend_tag"
   end
 
   create_table "frontend_hashtags", :force => true do |t|
@@ -480,6 +496,18 @@ ActiveRecord::Schema.define(:version => 20140825182451) do
     t.integer "tab_weight", :default => -1
   end
 
+  create_table "isfit_parliaments", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.integer  "phone"
+    t.integer  "years_work_lost"
+    t.string   "place_of_study"
+    t.string   "remember_date"
+    t.string   "why_attend"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
   create_table "isfit_tabs", :force => true do |t|
     t.string   "name_en"
     t.string   "name_no"
@@ -518,6 +546,12 @@ ActiveRecord::Schema.define(:version => 20140825182451) do
     t.date     "last_proofread"
   end
 
+  create_table "motds", :force => true do |t|
+    t.string   "msg"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "pads", :force => true do |t|
     t.string   "hexid"
     t.datetime "created_at"
@@ -535,83 +569,24 @@ ActiveRecord::Schema.define(:version => 20140825182451) do
   add_index "participant_quotes", ["user_id"], :name => "index_participant_quotes_on_user_id"
 
   create_table "participants", :id => false, :force => true do |t|
-    t.integer  "id",                                        :default => 0,     :null => false
-    t.datetime "registered_time",                                              :null => false
-    t.datetime "checked_in"
-    t.datetime "picked_up"
-    t.string   "first_name",                                                   :null => false
-    t.string   "middle_name",                :limit => 64
-    t.string   "last_name",                                                    :null => false
-    t.string   "address1",                                  :default => "",    :null => false
-    t.string   "address2"
-    t.string   "zipcode",                    :limit => 10,  :default => "",    :null => false
-    t.string   "city",                                      :default => "",    :null => false
-    t.integer  "country_id",                                :default => 0,     :null => false
-    t.string   "phone",                      :limit => 64,                     :null => false
-    t.string   "email",                      :limit => 100, :default => "",    :null => false
-    t.string   "fax",                        :limit => 20
-    t.string   "nationality",                               :default => "",    :null => false
-    t.date     "birthdate",                                                    :null => false
-    t.string   "sex",                        :limit => 2,   :default => "",    :null => false
-    t.string   "university",                                :default => "",    :null => false
-    t.string   "field_of_study",                                               :null => false
-    t.string   "org_name"
-    t.string   "org_function"
-    t.string   "hear_about_isfit"
-    t.string   "hear_about_isfit_other"
-    t.integer  "workshop1",                                 :default => 0,     :null => false
-    t.integer  "workshop2",                                 :default => 0,     :null => false
-    t.integer  "workshop3",                                 :default => 0,     :null => false
-    t.text     "essay1",                                                       :null => false
-    t.text     "essay2",                                                       :null => false
-    t.integer  "travel_apply",               :limit => 1,   :default => 0
-    t.text     "travel_essay"
-    t.string   "travel_amount",              :limit => 20
-    t.integer  "travel_nosupport_other",     :limit => 1,   :default => 0
-    t.integer  "travel_nosupport_cancome",   :limit => 1,   :default => 0
-    t.integer  "participant_grade",          :limit => 1,   :default => 0,     :null => false
-    t.text     "participant_comment"
-    t.integer  "participant_functionary_id",                :default => 0,     :null => false
-    t.integer  "theme_grade1",               :limit => 1,   :default => 1,     :null => false
-    t.integer  "theme_grade2",               :limit => 1,   :default => 1,     :null => false
-    t.text     "theme_comment"
-    t.text     "theme_comment_2"
-    t.integer  "theme_functionary_id_2",                    :default => 0
-    t.integer  "theme_functionary_id",                      :default => 0,     :null => false
-    t.string   "password"
-    t.integer  "final_workshop",                            :default => 0,     :null => false
-    t.integer  "invited",                    :limit => 1,   :default => 0,     :null => false
-    t.integer  "travel_assigned",            :limit => 1,   :default => 0,     :null => false
-    t.integer  "travel_assigned_amount",                    :default => 0,     :null => false
-    t.text     "travel_comment"
-    t.integer  "host_id"
-    t.datetime "last_login"
-    t.boolean  "notified_invitation",                       :default => false, :null => false
-    t.boolean  "notified_travel_support",                   :default => false, :null => false
-    t.boolean  "notified_rejection",                        :default => false, :null => false
-    t.boolean  "notified_no_travel_support",                :default => false, :null => false
-    t.boolean  "notified_rejection_again",                  :default => false, :null => false
-    t.date     "arrival_date"
-    t.string   "arrival_place",              :limit => 100
-    t.time     "arrival_time"
-    t.string   "arrival_carrier",            :limit => 5
-    t.boolean  "arrival_isfit_trans"
-    t.string   "arrival_airline",            :limit => 30
-    t.string   "arrival_flight_number",      :limit => 10
-    t.date     "departure_date"
-    t.time     "departure_time"
-    t.string   "departure_carrier",          :limit => 5
-    t.boolean  "departure_isfit_trans"
-    t.string   "departure_place",            :limit => 100
-    t.boolean  "notified_custom",                           :default => false, :null => false
-    t.boolean  "blocked",                                   :default => false, :null => false
-    t.datetime "request_travel"
-    t.integer  "accept_travel",              :limit => 1
-    t.datetime "accept_travel_time"
-    t.integer  "bed",                        :limit => 1,   :default => 0,     :null => false
-    t.integer  "bedding",                    :limit => 1,   :default => 0,     :null => false
-    t.boolean  "special_invite",                            :default => false, :null => false
-    t.boolean  "deleted",                                   :default => false
+    t.integer  "id",                            :default => 0,  :null => false
+    t.string   "email",                         :default => "", :null => false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "address1"
+    t.integer  "sex",              :limit => 1
+    t.date     "birthdate"
+    t.string   "citizenship"
+    t.integer  "country_id"
+    t.integer  "citizenship_id"
+    t.string   "nationality"
+    t.text     "motivation_essay",                              :null => false
+    t.integer  "workshop1"
+    t.integer  "workshop2"
+    t.integer  "workshop3"
+    t.text     "workshop_essay",                                :null => false
+    t.datetime "registered_time",                               :null => false
+    t.string   "travel_amount"
   end
 
   create_table "photos", :force => true do |t|
@@ -705,13 +680,6 @@ ActiveRecord::Schema.define(:version => 20140825182451) do
     t.integer  "question_id"
   end
 
-  create_table "quests", :force => true do |t|
-    t.string   "quest_text"
-    t.boolean  "accepted"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "regions", :force => true do |t|
     t.string "name"
   end
@@ -753,6 +721,12 @@ ActiveRecord::Schema.define(:version => 20140825182451) do
     t.string  "tag",                                           :null => false
     t.text    "description_en"
     t.text    "description_no"
+  end
+
+  create_table "shifts", :force => true do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer  "driver_id"
   end
 
   create_table "spp_articles", :force => true do |t|
@@ -814,22 +788,22 @@ ActiveRecord::Schema.define(:version => 20140825182451) do
 
   add_index "subscriptions", ["user_id"], :name => "index_subscriptions_on_user_id"
 
-  create_table "transport_types", :force => true do |t|
-    t.string   "name"
+  create_table "tags", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  create_table "user_quests", :force => true do |t|
-    t.integer  "hero_id"
-    t.integer  "quest_id"
-    t.integer  "npc_type"
-    t.integer  "npc_id"
-    t.integer  "status"
-    t.datetime "deadline"
-    t.datetime "completed_at"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+  create_table "transport_responsibles", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transport_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :id => false, :force => true do |t|
