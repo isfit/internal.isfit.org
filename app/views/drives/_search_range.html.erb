@@ -1,6 +1,0 @@
-<h3 class="muted">Søk på kjøreoppdrag</h3>
-<%= form_tag(range_search_drives_path, :method => "get", :class => "form-inline") do %>
-	<%= text_field_tag(:start_time,nil, :placeholder => "YYYY-MM-DD")%>
-	<%= text_field_tag(:end_time,nil, :placeholder => "YYYY-MM-DD")%>
-	<%= submit_tag("Søk") %>
-<% end %>

@@ -1,0 +1,23 @@
+<%= render "transport/nav" %>
+
+  <%= simple_form_for([:transport,@drive]) do |f| %>
+    <%= f.error_messages %>
+    <div class="row">
+      <div class="col-md-6">
+       	<%= f.input :description %>
+       	<%= f.input :comment, :class => "col-md-4" %>
+        <%= f.input :start_time, :as => :datetime_picker %>
+        <%= f.input :end_time, :as => :datetime_picker %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :group_id, collection: @user.positions.last.groups.collect { |g| [ g.name_en, g.id ] } %>
+        <% driver_array = Driver.all.map { |driver| [driver.username, driver.id] } %>
+        <%= f.input :driver_id, collection: driver_array %>
+
+        <% car_array = Car.all.map{|car| [car.desc, car.id]} %>
+        <%= f.input :car_id, collection: car_array %>
+        <%= f.input :status, collection: Drive.get_statuses, :value_method => :first, :label_method => :last %>
+      </div>
+    </div>
+    <%= f.button :submit %>
+  <% end %>

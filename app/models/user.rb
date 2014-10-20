@@ -17,9 +17,6 @@ class User < ActiveRecord::Base
   has_many :subscriptions
   has_many :who_am_is
   has_many :what_am_is
-  
-  has_many :event_rsvp
-  has_many :events, :through => :event_rsvp
 
   attr_readonly :username, :ldap_id, :email
 
@@ -63,7 +60,7 @@ class User < ActiveRecord::Base
   end
 
   def id_hash
-    Digest::MD5.hexdigest(self.id.to_s + Rails.configuration.secret_token)
+    Digest::MD5.hexdigest(self.id.to_s + Rails.application.secrets.secret_key_base)
   end
 
   #Return if user has role

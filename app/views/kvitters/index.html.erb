@@ -1,8 +1,8 @@
-<h1 class="offset2">Kvitter</h1>
-<div id='kvitter-index' class="well span8 offset1">
+<h1 class="col-md-offset-2">Kvitter</h1>
+<div id='kvitter-index' class="well col-md-8 col-md-offset-1">
 	<%= render partial: "shared/kvitter", collection: @kvitters %>
 </div>
 
-<div class="offset2">
+<div class="col-md-offset-2">
 	<%= will_paginate @kvitters %>
 </div>

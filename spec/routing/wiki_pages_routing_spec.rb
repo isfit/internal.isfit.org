@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe WikiPagesController do
   describe "routing" do

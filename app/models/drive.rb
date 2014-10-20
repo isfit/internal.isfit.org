@@ -1,13 +1,24 @@
 class Drive < ActiveRecord::Base
   belongs_to :driver
   belongs_to :car
+  belongs_to :group
+  belongs_to :user
 
-  validates :driver_id, :presence => true
-  validates :car_id, :presence  => true
-  validates_presence_of :start_time
-  validates_presence_of :end_time
+  validates :start_time, presence: true, format: { 
+                        with: /\d{2}\/\d{2}\/\d{4}\s\d{2}\:\d{2}/, 
+                        message: "invalid date format" }
+  validates :end_time, presence: true, format: { 
+                        with: /\d{2}\/\d{2}\/\d{4}\s\d{2}\:\d{2}/, 
+                        message: "invalid date format" }
+  validates_presence_of :group_id
+  validates_presence_of :description
+  
 
-
+  scope :by_group, -> group { where(group: group) }
+  scope :by_user, -> user { where(user: user) }
+  scope :occuring, -> { where("start_time <= ? AND ? <= end_time", Time.zone.now,Time.zone.now)}
+  scope :by_status, -> status {where(status: status)}
+  scope :between, -> start_time, end_time { where("start_time >= ? AND end_time <= ?", start_time,end_time)}
   def self.get_datetimes_from_params(params)
     start_time =  DateTime.parse("#{params[:date]} #{params[:start_time]}:00")
     end_time =  DateTime.parse("#{params[:date]} #{params[:end_time]}:00")
@@ -77,6 +88,24 @@ class Drive < ActiveRecord::Base
   end
 
   def self.drives_inside_date_range(start_time,end_time)
-    find(:all, :conditions => ["start_time <= ? AND ? <= end_time", end_time,start_time])
+    where("start_time <= ? AND ? <= end_time", end_time,start_time)
+  end
+
+  def self.get_statuses
+    {  
+    0 => 'New',
+    1 => 'Driver and Car assigned',
+    2 => 'Not started',
+    3 => 'On the road',
+    4 => 'Completed' }
+  end
+
+  def get_status
+    Drive.get_statuses[status]
+  end
+
+  def qwerty
+    #"/transport/drive/#{id}"
+    Rails.application.routes.url_helpers.transport_drive_path(self)
   end
 end

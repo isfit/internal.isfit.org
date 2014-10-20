@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe UsersController do
   context "Not logged in" do
@@ -12,27 +12,34 @@ describe UsersController do
     end
   end
 
+
+
   context "When logged in" do
     login_user
 
+    let(:current_user)do
+      FactoryGirl.create(:user)
+    end
     before do
-      @controller.stub(:current_user) { User.new }
+      #controller.should_receive(:authenticate_user!)
+      controller.stub(:current_user).and_return current_user
     end
 
+  
     it "edit action should render edit template" do
-      get :edit, id: "ignored"
+      get :edit, {:id => current_user.id }
       response.should render_template(:edit)
     end
     
     it "update action should render edit template when user is invalid" do
       User.any_instance.stub(:valid?).and_return(false)
-      put :update, id: "ignored"
+      patch :update, id: current_user.id, user: {}
       response.should render_template(:edit)
     end
 
     it "update action should redirect when user is valid" do
       User.any_instance.stub(:valid?).and_return(true)
-      put :update, id: "ignored"
+      patch :update, id: current_user.id, user: {}
       response.should redirect_to(root_url)
     end
   end

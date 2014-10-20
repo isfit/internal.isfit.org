@@ -16,7 +16,7 @@
       <%= form_tag %>
       <input type="hidden" name="whatGame" value="<%= @game.id %>">
       <input type="hidden" name="user_id" value="<%= user.id %>">
-      <input class="span3 btn btn-large btn-info" type="submit" name="user_name" value="<%= user.full_name %>">
+      <input class="col-md-3 btn btn-large btn-info" type="submit" name="user_name" value="<%= user.full_name %>">
     </form>
   <% end %>
 </div>

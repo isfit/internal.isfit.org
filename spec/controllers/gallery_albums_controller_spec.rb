@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe GalleryAlbumsController do
   #Add this to don't care about login

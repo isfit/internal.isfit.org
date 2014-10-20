@@ -1,6 +1,6 @@
 module InternalTabsHelper
   def tabs
-    content_tag :ul, class: "nav" do
+    content_tag :ul, class: "nav navbar-nav" do
       unless logged_in?
         content_tag(:li,link_to('Log in', {} , {class: 'active'})).html_safe
       else
@@ -50,14 +50,14 @@ module InternalTabsHelper
     menu_groups = current_sublink.new_record? ? [] : current_sublink.descendants.arrange
     menu_groups.map do |group, links|
       if url_for_arranged_tab(links)
-          content_tag(:ul, class: "nav nav-pills") do
-            if links.size > 1
-              links.map do |menu_link,value|
-                if can_access_link? menu_link
-                  li_class = menu_link == current_menu_link ? "active":""
-                  content_tag(:li, link_to(menu_link.title, url_for(controller: menu_link.controller, action: menu_link.action, id: menu_link.action_id)), class: li_class)
-                end
-              end.join.html_safe
+        content_tag(:ul, class: "nav nav-pills") do
+          if links.size > 1
+            links.map do |menu_link,value|
+              if can_access_link? menu_link
+                li_class = menu_link == current_menu_link ? "active":""
+                content_tag(:li, link_to(menu_link.title, url_for(controller: menu_link.controller, action: menu_link.action, id: menu_link.action_id)), class: li_class)
+              end
+            end.join.html_safe
           end
         end
       end

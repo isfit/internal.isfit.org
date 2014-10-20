@@ -44,22 +44,21 @@ InternalIsfitOrg::Application.routes.draw do
   post "what_am_i/game" => "what_am_i#game"
   get "what_am_i/highscore" => "what_am_i#highscore"
 
-  get "user_quests/:id/finish_quest" => "user_quests#finish_quest", :as => "user_quest_finish"
-  get "user_quests/stats" => "user_quests#stats", :as => "user_quest_stats"
-
   get "users/status", controller: "card_checker", action: "status"
   get "users/status/init", controller: "card_checker", action: "init"
   post "users/status/update", controller: "card_checker", action: "update"
 
-  scope "/transport" do
-    root :to => "drives#search", :via => [:post,:get]
+  namespace :transport do
+    root :to => "drives#index", :via => [:get], :as => "transport_root"
     get 'shifts/new' => "shifts#multiple_new"
+    get 'shifts/' => "shifts#all"
+    get 'dashboard' => "drives#dashboard"
     post 'shifts/create' => "shifts#multiple_create"
     resources :drivers do
       resources :shifts
       resources :drives
     end
-
+    resources :transport_responsibles
     resources :cars
     resources :drives do
       collection do
@@ -93,7 +92,7 @@ InternalIsfitOrg::Application.routes.draw do
   resources :participants, :only => [:index] do
     collection do
       get "stats"
-      match 'search' => 'participants#search', :via => [:get, :post], :as => :search
+      get 'search' => 'participants#search', :via => [:get, :post], :as => :search
       # post "search", to: "participants#index"
       get "map_search"
     end
@@ -212,12 +211,12 @@ InternalIsfitOrg::Application.routes.draw do
   post 'articles/notattending/:article_id' => 'articles#notattending', as: :not_attending_article
 
   resources :applicants
-  match 'user/edit' => 'users#edit', :as => :edit_current_user
-  match 'signup' => 'users#new', :as => :signup
-  match 'logout' => 'sessions#destroy', :as => :logout
-  match 'login' => 'sessions#new', :as => :login
-  match 'forgot_password' => 'sessions#forgot_password', :as => :forgot_password
-  match 'mail_password' => 'sessions#mail_password', :as => :mail_password
+  get 'user/edit' => 'users#edit', :as => :edit_current_user
+  get 'signup' => 'users#new', :as => :signup
+  get 'logout' => 'sessions#destroy', :as => :logout
+  get 'login' => 'sessions#new', :as => :login
+  get 'forgot_password' => 'sessions#forgot_password', :as => :forgot_password
+  get 'mail_password' => 'sessions#mail_password', :as => :mail_password
   resources :sessions
   resources :users do 
     collection do

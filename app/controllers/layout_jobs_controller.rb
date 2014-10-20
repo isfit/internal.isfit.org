@@ -63,7 +63,7 @@ class LayoutJobsController < ApplicationController
   # POST /layout_jobs
   # POST /layout_jobs.json
   def create
-    @layout_job = LayoutJob.new(params[:layout_job])
+    @layout_job = LayoutJob.new(layout_jobs_params)
     @layout_job.user_id = current_user.id
     @layout_job.status = 1
 
@@ -84,7 +84,7 @@ class LayoutJobsController < ApplicationController
     @layout_job = LayoutJob.find(params[:id])
 
     respond_to do |format|
-      if @layout_job.update_attributes(params[:layout_job])
+      if @layout_job.update_attributes(layout_jobs_params)
         format.html { redirect_to @layout_job, notice: 'Layout job was successfully updated.' }
         format.json { head :no_content }
       else
@@ -104,5 +104,10 @@ class LayoutJobsController < ApplicationController
       format.html { redirect_to layout_jobs_url }
       format.json { head :no_content }
     end
+  end
+
+  def layout_jobs_params
+    params.require(:layout_job).permit(:group_id, :user_info, :work_title, :deadline, :publishing,
+      :format, :description, :last_proofread, :status)
   end
 end

@@ -5,6 +5,8 @@ class Group < ActiveRecord::Base
   belongs_to :section
   belongs_to :festival
 
+  scope :current, -> { where(festival: Festival.find_by_year(CURRENT_FESTIVAL_YEAR)) }
+
   def users
     @users = []
     self.positions.each do |p|

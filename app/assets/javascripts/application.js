@@ -6,11 +6,15 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-sprockets
 //= require jquery-ui
-//= require ./jquery/jquery.fileupload
-//= require ./jquery/jquery.fileupload-ui.js
-//= require_tree ./jquery
+//= require jquery.fileupload
+//= require moment
+//= require bootstrap-datetimepicker
+//= require pickers
+//= require bootstrap3-typeahead.min
 //= require private_pub
+//= require fullcalendar
 //= require_tree .
 //= require_self
 
@@ -24,8 +28,6 @@ $(function() {
   }).click(function(e) { 
     e.preventDefault()
   });
-  $('.datetimepicker').datetimepicker();
-});
 $(function () {
   $('#main').imgAreaSelect({
     minWidth: 531,

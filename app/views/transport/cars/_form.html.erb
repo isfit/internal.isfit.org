@@ -1,0 +1,11 @@
+<%= simple_form_for([:transport,@car], wrapper: :horizontal_form, :html => {:class => 'form-horizontal' }) do |f| %>
+	<%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :space %>
+    <%= f.input :seats %>
+    <div class="form-group">
+    	<div class="col-sm-offset-3 col-sm-9">
+    	<%= f.button :submit %>
+    	</div>
+	</div>
+<% end %>

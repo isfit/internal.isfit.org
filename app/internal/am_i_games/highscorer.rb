@@ -37,6 +37,7 @@ module Internal
           .group(:correct_user_id)
           .order('ratio DESC, family_name ASC, given_name ASC')
           .limit(10)
+          .to_a
           .delete_if { |user| user.ratio < 0.25 }
       end
 
@@ -52,6 +53,7 @@ module Internal
           .group(:correct_user_id)
           .order('ratio DESC')
           .limit(10)
+          .to_a
           .delete_if { |user| user.ratio < 0.25 }
       end
 

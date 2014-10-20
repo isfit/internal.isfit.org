@@ -15,7 +15,7 @@
     <%= stylesheet_link_tag :application %>
     <!--link href="/stylesheets/bootstrap/bootstrap-responsive-2.0.0.css" rel="stylesheet"-->
 
-    <%= csrf_meta_tag %>
+    <%= csrf_meta_tags %>
     <%= yield(:head) %>
   </head>
   <body>
@@ -43,24 +43,27 @@
     </script>
 
     <!-- navbar starts here -->
-    <div id="navbar" class="navbar navbar-fixed-top navbar-inverse">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+    <nav id="navbar" class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </a>
-          <%= link_to "ISFiT Internal", root_path, :class => :brand %>
-          <div class="collapse nav-collapse">
+          </button>
+          <%= link_to "ISFiT Internal", root_path, :class => 'navbar-brand' %>
+          
+          </div>
+          <div class="collapse navbar-collapse">
             <%= tabs %>
             <% if current_user %>
-              <ul class="nav pull-right"> 
-                <li>
-                  <form id="user-search-form" class="navbar-search pull-right">
-                    <input id="user-search" type="text" class="search-query span2" placeholder="Søk på navn..." data-provide="typeahead" data-source=''>
-                  </form>
-                </li>
+
+              <form id="user-search-form" class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                  <input id="user-search" type="text" class="typeahead form-control autocomplete search-query input-sm" placeholder="Søk på navn..." autocomplete="off" data-provide="typeahead" data-source=''>
+                </div>
+              </form>
+              <ul class="nav navbar-nav navbar-right"> 
                 <li class="dropdown"> 
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.full_name %> <b class="caret"></b></a> 
                 <ul class="dropdown-menu"> 
@@ -87,33 +90,34 @@
             <% end %>
           </div> <!-- end nav-collapse -->
         </div> <!-- end container -->
-      </div> <!-- end navbar-inner -->
-    </div> <!-- end navbar -->
+    </nav> <!-- end navbar -->
 
     <div class="container">
       <% if any_menu_groups? %>
-      <div class="row">
-        <div id="submeny" class="span10 offset2">
-          <%= menu_groups %>
+        <div class="row">
+          <div id="submeny" class="col-md-10 col-md-offset-2">
+            <%= menu_groups %>
+          </div>
         </div>
-      </div>
       <% end %>
 
       <div class="row">
         <% if content_for? :sidebar %>
-        <div id="sidebar" class="span4">
-          <%= yield :sidebar %>
-        </div>
-        <div id="content" class="span8">
+          <div id="sidebar" class="col-md-4">
+            <%= yield :sidebar %>
+          </div>
+          <div id="content" class="col-md-8">
         <% else %>
-        <div id="content" class="span12">
+          <div id="content" class="col-md-12">
         <% end %>
+        <div id="notice">
           <% if notice or alert %>
             <div class="alert alert-<%= notice ? "success":"error" %>">
               <a href="#" class="close" data-dismiss="alert">x</a>
               <i class="icon-<%= notice ? "success":"warning-sign" %>"></i> <strong><%= notice ? raw((notice)) : raw(alert) %></strong>
             </div>
           <% end %>
+
 
           <% if session[:impersonator_user_id] %>
             <div class="alert alert-success">
@@ -123,6 +127,7 @@
                 </strong>
             </div>
           <% end %>
+        </div>
 
           <%= content_tag :h1, yield(:title) if show_title? %>
 

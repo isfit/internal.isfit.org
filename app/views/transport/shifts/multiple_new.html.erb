@@ -1,0 +1,26 @@
+<%= render "transport/nav" %>
+<div class="row">
+	<div class="col-md-3">
+		<h3 class="muted">1. Velg sjåfører for ønsket vakt</h3>
+		<%= form_tag(transport_shifts_create_path, :method=>"post") do |f| %>
+			<% @drivers.each do |driver| %>
+				<%= check_box_tag("driver_ids[]", driver.id) %>
+				<%= driver.username %>
+				<br>
+			<% end %>
+	</div>
+
+	<div class="col-md-4" class="input-prepend">
+		<h3 class="muted">2. Sett ønsket dato og tid for vakt</h3>
+		<div class="form-group">
+			<%= select_tag(:shift_id,options_for_select(Shift.get_shifts_option_array), :class => 'form-control') %>
+		</div>
+		<div class="form-group">
+			<%= text_field_tag(:date,nil, :placeholder => "YYYY-MM-DD", :class => 'datepicker form-control', :data => {:"date-format" => "YYYY-MM-DD"})%>
+		</div>
+<h3 class="muted">3. Lagre</h3>
+<%= submit_tag("Lagre", :class => 'btn btn-default') %>
+
+</div>
+</div>
+<% end %>

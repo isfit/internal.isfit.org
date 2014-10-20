@@ -113,4 +113,9 @@ class ArticlesController < ApplicationController
       format.json { head :ok }
     end
   end
+
+#  def article_params
+#    params.require(:article).permit(:title, :body, :sticky, :end_at,
+#      :attending, :deleted, :article_image)
+#  end
 end

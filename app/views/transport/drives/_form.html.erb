@@ -1,0 +1,14 @@
+<%= simple_form_for([:transport,@drive], wrapper: :horizontal_form, :html => {:class => 'form-horizontal' }) do |f| %>
+  <%= f.error_messages %>
+  <fieldset>
+    <%= f.input :start_time, :as => :datetime_picker %>
+    <%= f.input :end_time, :as => :datetime_picker %>
+    <%= f.input :group_id, collection: @user.positions.last.groups.collect { |g| [ g.name_en, g.id ] } %>
+    <%= f.input :description %>
+  </fieldset>
+  <div class="form-group">
+    	<div class="col-sm-offset-3 col-sm-9">
+    	<%= f.button :submit %>
+    	</div>
+	</div>
+<% end %>

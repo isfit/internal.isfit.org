@@ -1,0 +1,82 @@
+<%= render 'transport/nav' %>
+<h1>Dashboard</h1>
+<div class="col-md-7">
+	<h3>Drives</h3>
+	<% Drive.get_statuses.each do |key, value| %>
+	<h4><%= value %></h4>
+	<div class="panel-group" id="accordion">
+		<% @drives.by_status(key).each do |drive| %>
+			<div class="panel panel-default">
+		    <div class="panel-heading">
+		      	<h4 class="panel-title">
+		      <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= drive.id %>">
+		      	#<%= drive.id %> | <strong>Date:</strong> <%= drive.start_time.strftime("%d.%m.%y") %>  | 
+		    	</a>
+		      	</h4>
+		    </div>
+		    <div id="collapse<%= drive.id %>" class="panel-collapse collapse">
+		      <div class="panel-body">
+		      	<strong>Start time</strong>
+		      	<p>
+		      		<%= drive.start_time %>
+		      	</p>
+		      	<strong>End time</strong>
+		      	<p>
+		      		<%= drive.end_time %>
+		      	</p>
+		      	<strong>Description</strong>
+		      	<p>
+		        	<%= drive.description %>		      		
+		      	</p>
+		      	
+		      	<% unless drive.comment.blank? %>
+		      	<strong>Comment</strong>
+		      	<p>
+		      		<%= drive.comment %>
+		      	</p>
+		      	<% end %>
+
+
+		      	<strong>Status</strong>
+		      	<p>
+		      		<%= drive.get_status %>
+		      	</p>
+
+		      	<strong>Group</strong>
+		      	<p>
+		      		<%= drive.group.name %>
+		      	</p>
+
+		      	<strong>User</strong>
+		      	<p>
+		      		<%= drive.user.full_name %>
+		      	</p>
+		      <%= link_to(:"Vis", transport_drive_path(drive)) %> |
+		    	<%= link_to(:Endre, edit_transport_drive_path(drive.id))%>
+		      </div>
+		    </div>
+		  </div>
+	  <% end %>
+	</div>
+	<% end %>
+</div>
+<div class="col-md-5">
+	<h3>Drivers</h3>
+	<div class="well">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>&nbsp</th>
+				<th>Navn</th>
+			</tr>
+		</thead>
+		<tbody>
+			<%= render @drivers %>
+		</tbody>
+	</table>
+</div>
+</div>
+<div class="col-md-12">
+	<div id="calendar">
+	</div>
+</div>
