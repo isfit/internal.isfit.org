@@ -4,9 +4,7 @@ class Transport::DrivesController < ApplicationController
 	#load_and_authorize_resource :drive
 	before_filter :find_driver
 	before_filter :validate_datetime, :only => [:search_result]
-
-
-
+	before_filter :validate_date, :only => [:create]
 	def new
 		@drive = Drive.new
 		@user = current_user
@@ -61,20 +59,20 @@ class Transport::DrivesController < ApplicationController
 	end
 
 	def create
-		@drive = drives.new(params[:drive])
+		@drive = Drive.new(params[:drive])
 		@drive.status = 1
+		@drive.user = current_user
 		@user = current_user
 
 		respond_to do |format|
-      if @drive.save
-        format.html { redirect_to @drive, notice: 'Drive was successfully created.' }
-        format.json { render :show, status: :created, location: @drive }
-      else
-        format.html { render :new }
-        format.json { render json: @drive.errors, status: :unprocessable_entity }
-      end
-    end
-
+	      if @drive.save
+	        format.html { redirect_to [:transport,@drive], notice: 'Drive was successfully created.' }
+	        format.json { render :show, status: :created, location: @drive }
+	      else
+	        format.html { render :new }
+	        format.json { render json: @drive.errors, status: :unprocessable_entity }
+	      end
+	    end
 	end
 
 	def show
@@ -138,5 +136,15 @@ class Transport::DrivesController < ApplicationController
 		rescue
 			flash[:alert] = "Dårlig input på dato og tid, prøv igjen."
 			redirect_to (:back)
+	end
+
+	def validate_date
+		begin
+			Time.zone.parse(params[:drive][:start_time])
+			Time.zone.parse(params[:drive][:end_time])
+		rescue
+			params[:drive][:start_time] = nil
+			params[:drive][:end_time] = nil
+		end
 	end
 end

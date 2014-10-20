@@ -4,8 +4,15 @@ class Drive < ActiveRecord::Base
   belongs_to :group
   belongs_to :user
 
-  validates_presence_of :start_time
-  validates_presence_of :end_time
+  validates :start_time, presence: true, format: { 
+                        with: /\d{2}\/\d{2}\/\d{4}\s\d{2}\:\d{2}/, 
+                        message: "invalid date format" }
+  validates :end_time, presence: true, format: { 
+                        with: /\d{2}\/\d{2}\/\d{4}\s\d{2}\:\d{2}/, 
+                        message: "invalid date format" }
+  validates_presence_of :group_id
+  validates_presence_of :description
+  
 
   scope :by_group, -> group { where(group: group) }
   scope :by_user, -> user { where(user: user) }
