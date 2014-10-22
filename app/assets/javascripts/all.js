@@ -1,10 +1,8 @@
-$(function() {
+$(function () {
   $('.chosen-select').chosen();
 
-  $('[rel=popover]').popover({
-    offset: 10
-  }).click(function(e) { 
-    e.preventDefault()
+  $('[rel=popover]').popover({offset: 10}).click(function(e) {
+    e.preventDefault();
   });
 });
 $(function () {
@@ -30,7 +28,7 @@ $(function () {
       $('input[name=y1_1]').val(selection.y1);
       $('input[name=x2_1]').val(selection.x2);
       $('input[name=y2_1]').val(selection.y2);
-    } 
+    }
   });
   $('#photo-article').imgAreaSelect({
     minWidth: 531,
@@ -42,7 +40,7 @@ $(function () {
       $('input[name=y1_2]').val(selection.y1);
       $('input[name=x2_2]').val(selection.x2);
       $('input[name=y2_2]').val(selection.y2);
-    } 
+    }
   });
 });
 
@@ -56,7 +54,7 @@ function getTwitterFeed(username) {
       $('#status-'+item.id).append('<blockquote><p style="font-size: 13px;">' + item.text.linkify() + '</p><small>' + item.user.name + ' @ ' + item.user.location + '</small>');
     });
   });
-};
+}
 
 $(function() {
   if ($('#twitter-button').exists()) {
@@ -83,8 +81,8 @@ function getUsersJSON() {
 function select_user(){
     var searchString = $('#user-search').val();
     var formattedSearch = searchString.split('@');
-    formattedSearch = formattedSearch[formattedSearch.length-1]
-    window.location.href = "/users/username/" + formattedSearch
+    formattedSearch = formattedSearch[formattedSearch.length-1];
+    window.location.href = "/users/username/" + formattedSearch;
     return false;
 }
 
@@ -101,5 +99,3 @@ $(function() {
 $('#user-search').change(function() {
   $('#user-search-form').submit();
 });
-
-
