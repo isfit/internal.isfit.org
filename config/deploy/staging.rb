@@ -20,7 +20,7 @@ set :use_sudo, false
 
 set :deploy_to, "/srv/www/staging-internal.isfit.org"
 set :deploy_via, :remote_cache
-set :branch, "transport"
+set :branch, "master"
 
 set :rails_env, 'production'
 

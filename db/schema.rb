@@ -727,6 +727,8 @@ ActiveRecord::Schema.define(version: 20141020165130) do
     t.datetime "start_time"
     t.datetime "end_time"
     t.integer  "driver_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "spp_articles", force: true do |t|
