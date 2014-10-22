@@ -71,7 +71,7 @@ function getUsersJSON() {
   
   $.getJSON('/users.json', function(data) {
     var userArray = [];
-    data.forEach(function(user) {
+    data.users.forEach(function(user) {
       var searchString = user.given_name + " " + user.family_name + " - @" + user.username;
       userArray.push(searchString);
     });
