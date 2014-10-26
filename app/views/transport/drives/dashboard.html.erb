@@ -9,8 +9,10 @@
 			<div class="panel panel-default">
 		    <div class="panel-heading">
 		      	<h4 class="panel-title">
-		      <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= drive.id %>">
-		      	#<%= drive.id %> | <strong>Date:</strong> <%= drive.start_time.strftime("%d.%m.%y") %>  | 
+		      	<a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= drive.id %>">
+		      		#<%= drive.id %> | 
+		      		<strong>Date:</strong> 
+		      		<%= drive.start_time.strftime("%d.%m.%y") %>  | 
 		    	</a>
 		      	</h4>
 		    </div>
@@ -44,12 +46,16 @@
 
 		      	<strong>Group</strong>
 		      	<p>
-		      		<%= drive.group.name %>
+		      		<% if drive.group %>
+		      			<%= drive.group.name %>
+		      		<% end %>
 		      	</p>
 
 		      	<strong>User</strong>
 		      	<p>
-		      		<%= drive.user.full_name %>
+		      		<% if drive.user %>
+		      			<%= drive.user.full_name %>
+		      		<% end %>
 		      	</p>
 		      <%= link_to(:"Vis", transport_drive_path(drive)) %> |
 		    	<%= link_to(:Endre, edit_transport_drive_path(drive.id))%>
