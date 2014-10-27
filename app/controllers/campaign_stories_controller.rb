@@ -13,7 +13,6 @@ class CampaignStoriesController < ApplicationController
 		story = CampaignStory.find(params[:id])
 		story.validated = !story.validated
 		story.save
-		binding.pry
 		if story.validated?
 			unless story.email.blank?
 				CampaignMailer.validated_mail(story).deliver
