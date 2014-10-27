@@ -4,7 +4,7 @@ class Article < ActiveRecord::Base
   belongs_to :user
   has_attached_file :article_image,
     styles: {thumb: "200x200#", original: "400x400>"}
-
+  validates_attachment_content_type :article_image, :content_type => /\Aimage\/.*\Z/
   has_many :articles_attendings
 
   self.per_page = 10

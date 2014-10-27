@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
       small: {geometry: "50x50#"}
     }
   }
+  validates_attachment_content_type :profile_picture, :content_type => /\Aimage\/.*\Z/
 
   # Return full name of user
   def full_name
@@ -103,7 +104,7 @@ class User < ActiveRecord::Base
     require 'openssl'
     require 'iconv'
     ldap = Net::LDAP::new
-    password = YAML::load(File.open('config/password.yml'))
+    password = Rails.application.secrets.ldap
     treebase = "dc=isfit,dc=org"
     filters = Net::LDAP::Filter.eq("uid", self.username)
     dn = ldap.search(:base => treebase, :filter => filters).first.dn
@@ -120,7 +121,7 @@ class User < ActiveRecord::Base
     require 'openssl'
     require 'iconv'
     ldap = Net::LDAP::new
-    password = YAML::load(File.open('config/password.yml'))
+    password = Rails.application.secrets.ldap
     treebase = "dc=isfit,dc=org"
     filters = Net::LDAP::Filter.eq("uid", self.username)
     user = ldap.search(:base => treebase, :filter => filters).first
