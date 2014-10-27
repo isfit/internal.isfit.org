@@ -216,7 +216,7 @@ InternalIsfitOrg::Application.routes.draw do
   get 'logout' => 'sessions#destroy', :as => :logout
   get 'login' => 'sessions#new', :as => :login
   get 'forgot_password' => 'sessions#forgot_password', :as => :forgot_password
-  get 'mail_password' => 'sessions#mail_password', :as => :mail_password
+  post 'mail_password' => 'sessions#mail_password', :as => :mail_password
   resources :sessions
   resources :users do 
     collection do
