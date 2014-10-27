@@ -11,6 +11,7 @@ class Photo < ActiveRecord::Base
     spp_one_third_article: {geometry: "210x310#", processors: [:cropper_spp_one_third] },
     spp_full_article: {geometry: "700x320#", processors: [:cropper_spp_full] }
     }
+  validates_attachment_content_type :original_picture, :content_type => /\Aimage\/.*\Z/
 #  has_attached_file :half_article_picture  
 #  has_attached_file :full_article_picture, styles: {thumb: "200x200#", processors: [:cropper] }
 #  has_attached_file :spp_one_third_article_picture 

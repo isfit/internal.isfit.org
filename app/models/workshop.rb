@@ -8,4 +8,5 @@ class Workshop < ActiveRecord::Base
     :original => "940x1480>",
     :thumb => "120x230>"
   }
+  validates_attachment_content_type :workshop_image, :content_type => /\Aimage\/.*\Z/
 end
