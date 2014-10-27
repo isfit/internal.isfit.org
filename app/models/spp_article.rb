@@ -6,7 +6,8 @@ class SppArticle < ActiveRecord::Base
     front_small: {geometry: "220x131#", processors: [:cropper_half] },
     article: {geometry: "447x346#", processors: [:cropper_spp_one_third] }
     }
- 
+  validates_attachment_content_type :spp_article_image, :content_type => /\Aimage\/.*\Z/
+
   def cropping?
     true
   end

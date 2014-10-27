@@ -1,50 +1,56 @@
-<%= bootstrap_form_for @user, :html => { :multipart => true } do |f| %>
-  <%= f.error_messages %>
+<%= simple_form_for(@user, wrapper: :horizontal_form, html: { class: 'form-horizontal'}) do |f| %>
 
-  <%= f.fieldset "Personal information" do %>
-    <%= f.text_field :given_name %>
-    <%= f.text_field :family_name %>
-    <%= f.text_field :date_of_birth, placeholder: "YYYY-MM-DD" %>
-    <%= f.text_field :phone %>
-    <%= f.text_field :private_email %>
-    <%= f.text_field :twitter_username %>
-    <%= f.text_field :address %>
-    <%= f.text_field :postal_code %> 
-    <%= f.text_field :city %>
-    <%= f.select :gender, [[t('gender.choose'), nil],[t('gender.male'), 1], [t('gender.female'), 2], [t('gender.other'), 0]] %>
-  <% end %>
+<fieldset>
+  <legend>Personal information</legend>
+  <%= f.input :given_name %>
+  <%= f.input :family_name %>
+  <%= f.input :date_of_birth, :as => :date_picker %>
+  <%= f.input :phone %>
+  <%= f.input :private_email %>
+  <%= f.input :twitter_username %>
+  <%= f.input :address %>
+  <%= f.input :postal_code %>
+  <%= f.input :city %>
+  <%= f.input :gender, collection: [[t('gender.choose'), nil],[t('gender.male'), 1], [t('gender.female'), 2], [t('gender.other'), 0]], prompt: nil %>
+</fieldset>
 
-  <fieldset>
-    <legend>Education</legend>
-    <%= f.text_field :study %>
-  </fieldset>
-  <fieldset>
-    <legend>Tasks</legend>
-    <%= f.text_area :tasks, size: "10x10" %>
-  </fieldset>
+<fieldset>
+  <legend>Education</legend>
+  <%= f.input :study %>
+</fieldset>
+<fieldset>
+  <legend>Tasks</legend>
+  <%= f.input :tasks %>
+</fieldset>
+<fieldset>
+  <legend>Administration</legend>
+  <%= f.input :cardnumber_samfundet, hint: "Your samfundet car number is the member id at the
+  bottom right corner of the card" %>
+</fieldset>
+<fieldset>
+  <legend>Next of kin</legend>
+  <%= f.input :next_of_kin_name %>
+  <%= f.input :next_of_kin_tlf %>
+</fieldset>
+<fieldset>
+  <legend>Allergies</legend>
+  <%= f.input :vegetarian, as: :boolean %>
+  <%= f.input :lactose_allergy, as: :boolean %>
+  <%= f.input :gluten_allergy, as: :boolean %>
+  <%= f.input :nut_allergy, as: :boolean %>
+  <%= f.input :fruit_allergy, as: :boolean %>
+  <%= f.input :other_allergy %>
+</fieldset>
+<fieldset>
+  <legend>Other</legend>
+  <%= f.input :local_paper, hint: "Please enter your local newspaper, so we can try to publish stories about ISFiT in them" %>
 
-  <fieldset>
-    <legend>Administration</legend>
-    <%= f.text_field :cardnumber_samfundet, "hint-title" => "Samfundet cardnumber", "hint-content" => "Your samfundet card number is the member id at the bottom right corner of the card." %>
-  </fieldset>
-  <fieldset>
-    <legend>Next of kin</legend>
-    <%= f.text_field :next_of_kin_name %>
-    <%= f.text_field :next_of_kin_tlf %>
-  </fieldset>
-  <fieldset>
-    <legend>Allergies</legend>
-    <%= f.check_box :vegetarian %>
-    <%= f.check_box :lactose_allergy %>
-    <%= f.check_box :gluten_allergy %>
-    <%= f.check_box :nut_allergy %>
-    <%= f.check_box :fruit_allergy %>
-    <%= f.text_field :other_allergy %>
-  </fieldset>
-  <fieldset>
-    <legend>Other</legend>
-    <%= f.text_field :local_paper, "hint-title" => "Local newspaper", "hint-content" => "Please enter your local newspaper, so we can try to publish stories about ISFiT in them" %>
-    <%= f.file_field :profile_picture %>
-  </fieldset>
-    <%= f.submit (@user.new_record? ? "Sign up" : "Update"), class: "btn-primary btn" %>
+  <%= f.input :profile_picture %>
+</fieldset>
+  <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-9">
+      <%= f.submit (@user.new_record? ? "Sign up" : "Update"), class: "btn-primary btn" %>
+      </div>
+  </div>
+
 <% end %>
