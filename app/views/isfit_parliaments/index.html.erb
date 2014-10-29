@@ -1,0 +1,12 @@
+<h1>Søkere til ISFiT parliaments</h1>
+
+  <% @isfit_parliaments.each do |p|%>
+    <table class="table">
+      <th>Navn</th>
+      <th>email</th>
+        <tr>
+          <td><%=link_to p.name, p %></td>
+          <td><%=p.email %></td>
+        </tr>
+      </table>
+<% end %>
