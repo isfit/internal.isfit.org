@@ -8,7 +8,11 @@
         <span class="glyphicon glyphicon-remove"></span>
       <% end %>
     <% else %>
-      <a href="#" rel ="tooltip" data-original-title="<%=booking[:user].full_name%>" class="btn btn-mini btn-danger disabled room_reservation_uavl"><%= booking[:user].initiales %></a>
+      <div data-toggle="tooltip" data-placement="top" title="<%=booking[:user].full_name%>">
+        <button type="button" class="btn btn-mini disabled btn-danger room_reservation_uavl">
+          <%= booking[:user].initiales %>
+        </button>
+      </div>
     <% end %>
   <% else %>
     <a class="btn btn-mini btn-success room_reservation_avl <%='disabled' if disabled %>"><span class="glyphicon glyphicon-ok"></span></a>
