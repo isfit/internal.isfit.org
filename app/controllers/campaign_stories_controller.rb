@@ -14,7 +14,7 @@ class CampaignStoriesController < ApplicationController
 		story.validated = !story.validated
 		story.save
 		if story.validated?
-			unless story.email.nil?
+			unless story.email.blank?
 				CampaignMailer.validated_mail(story).deliver
 			end
 		end
