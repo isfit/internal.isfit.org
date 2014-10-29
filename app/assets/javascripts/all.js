@@ -1,3 +1,5 @@
+$(function () { $("[data-toggle='tooltip']").tooltip(); });
+
 $(function () {
   $('.chosen-select').chosen();
 
