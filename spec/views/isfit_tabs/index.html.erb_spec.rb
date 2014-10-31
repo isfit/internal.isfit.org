@@ -1,10 +1,10 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "isfit_tabs/index" do
   before(:each) do
     assign(:isfit_tabs, [
-      stub_model(IsfitTab),
-      stub_model(IsfitTab)
+      IsfitTab.create!(name_en: 'name_en', name_no: 'name_no'),
+      IsfitTab.create!(name_en: 'name_en', name_no: 'name_no')
     ])
   end
 

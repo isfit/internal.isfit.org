@@ -1,14 +1,10 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "motds/index" do
   before(:each) do
     assign(:motds, [
-      stub_model(Motd,
-        :msg => "Msg"
-      ),
-      stub_model(Motd,
-        :msg => "Msg"
-      )
+      Motd.create!(msg: "Msg"),
+      Motd.create!(msg: "Msg")
     ])
   end
 

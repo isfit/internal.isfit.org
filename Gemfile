@@ -19,7 +19,7 @@ gem 'ancestry'
 gem 'paperclip'
 gem 'rack'
 gem 'rake'
-gem "bcrypt-ruby", :require => "bcrypt"
+gem 'bcrypt', '~> 3.1.9'
 gem "jquery-rails", "~> 3.1.1"
 gem "jquery-ui-rails"
 gem 'jquery.fileupload-rails'
