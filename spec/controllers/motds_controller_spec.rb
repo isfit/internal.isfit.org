@@ -19,7 +19,7 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe MotdsController do
-
+  login_user
   # This should return the minimal set of attributes required to create a valid
   # Motd. As you add validations to Motd, be sure to
   # update the return value of this method accordingly.

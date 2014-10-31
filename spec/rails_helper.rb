@@ -55,6 +55,7 @@ Spork.prefork do
     #config.include Capybara::DSL
 
     config.extend ControllerMacros, :type => :controller
+    config.extend RequestMacros, :type => :request
 
     # RSpec Rails can automatically mix in different behaviours to your tests
     # based on their file location, for example enabling you to call `get` and

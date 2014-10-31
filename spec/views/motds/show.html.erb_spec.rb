@@ -1,10 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "motds/show" do
   before(:each) do
-    @motd = assign(:motd, stub_model(Motd,
-      :msg => "Msg"
-    ))
+    @motd = assign(:motd, Motd.create!(msg: "Msg"))
   end
 
   it "renders attributes in <p>" do

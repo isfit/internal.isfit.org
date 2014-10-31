@@ -1,8 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "isfit_tabs/new" do
   before(:each) do
-    assign(:isfit_tab, stub_model(IsfitTab).as_new_record)
+    assign(:isfit_tab, IsfitTab.new(name_en: 'name_en', name_no: 'name_no'))
   end
 
   it "renders new isfit_tab form" do
