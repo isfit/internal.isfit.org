@@ -3,8 +3,8 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.order('created_at DESC').paginate(:page => params[:page])
-    @motd = Motd.order('created_at DESC').limit(3)
+    @articles = Article.includes(:user).order(created_at: :desc).paginate(:page => params[:page])
+    @motd = Motd.order(created_at: :desc).limit(3)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @articles }

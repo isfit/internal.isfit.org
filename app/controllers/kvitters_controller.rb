@@ -37,7 +37,7 @@ class KvittersController < ApplicationController
   end
 
   def index
-    @kvitters = Kvitter.order("created_at DESC").paginate(page: params[:page])
+    @kvitters = Kvitter.includes(:user).order(created_at: :desc).paginate(page: params[:page])
 
     respond_to do |format|
       format.html

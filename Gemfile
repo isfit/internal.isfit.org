@@ -63,6 +63,7 @@ group :development do
   gem 'yard'
   gem 'bullet'
   gem 'brakeman', :require => false
+  gem 'webrick', '~> 1.3.1'
 end
 
 group :development, :test do
