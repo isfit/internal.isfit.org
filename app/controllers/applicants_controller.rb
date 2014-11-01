@@ -25,7 +25,7 @@ class ApplicantsController < ApplicationController
       end
     end
 
-    @simple_stat = @simple_stat.sort {|a,b| b[1] <=> a[1]}  
+    @simple_stat = @simple_stat.sort {|a,b| b[1] <=> a[1]}
     @stat = @stat.sort {|a,b| b[1] <=> a[1]}
 
   end

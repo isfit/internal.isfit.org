@@ -8,7 +8,7 @@ class SubscriptionController < ApplicationController
 	def undo_subscriber
 		unsubscriber = params[:unsubscription]
 		Subscription.where(user_id: current_user.id, subscription_id: unsubscriber).destroy_all
-		
+
 		redirect_to root_path
 	end
 end

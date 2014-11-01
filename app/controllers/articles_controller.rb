@@ -70,7 +70,7 @@ class ArticlesController < ApplicationController
   # POST /articles
   # POST /articles.json
   def create
-  
+
     @article = Article.new(params[:article])
     @article.user = current_user
 
@@ -98,7 +98,7 @@ class ArticlesController < ApplicationController
     if @article.update_attributes(params[:article])
       redirect_to @article, notice: 'Article was successfully updated.'
     else
-      render action: "edit"       
+      render action: "edit"
     end
   end
 

@@ -61,6 +61,8 @@ group :development do
   gem 'nifty-generators'
   gem 'pry'
   gem 'yard'
+  gem 'bullet'
+  gem 'brakeman', :require => false
 end
 
 group :development, :test do

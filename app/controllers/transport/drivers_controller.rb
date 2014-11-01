@@ -16,7 +16,7 @@ class Transport::DriversController < ApplicationController
 		if @driver.save
 			flash[:notice] = "#{params[:username]} lagt til som sjåfør"
 		else
-			flash[:alert] = "Noe gikk galt. #{params[:username]} ble ikke lagret som sjåfør."	
+			flash[:alert] = "Noe gikk galt. #{params[:username]} ble ikke lagret som sjåfør."
 		end
 		redirect_to transport_drivers_path
 	end

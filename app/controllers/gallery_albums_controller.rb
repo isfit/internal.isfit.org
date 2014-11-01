@@ -1,8 +1,8 @@
 class GalleryAlbumsController < ApplicationController
-  
+
   def index
     @albums = GalleryAlbum.order('created_at DESC')
-    
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @album }
@@ -11,12 +11,12 @@ class GalleryAlbumsController < ApplicationController
 
   def show
     @album = GalleryAlbum.find(params[:id])
-    
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @album }
     end
-    
+
   end
 
   def new
@@ -31,7 +31,7 @@ class GalleryAlbumsController < ApplicationController
   def edit
     @album = GalleryAlbum.find(params[:id])
   end
-  
+
   def create
     @album = GalleryAlbum.new(params[:gallery_album])
     @album.user = current_user
@@ -70,16 +70,16 @@ class GalleryAlbumsController < ApplicationController
       format.json { head :ok }
     end
   end
-  
+
   # Photo methods, JSON only.
-  
+
   def add_photo
     @photo = GalleryPhoto.new
     @photo.photo = params[:files][0]
     @photo.save
     render json: { photo: @photo }
   end
-  
+
   def destroy_photo
     @photo = GalleryPhoto.find(params[:id])
     if (@photo.destroy)
@@ -88,12 +88,12 @@ class GalleryAlbumsController < ApplicationController
       render json: false
     end
   end
-  
+
   def update_photo
     @photo =  GalleryPhoto.find(params[:id])
     if @photo.update_attributes(params[:photo])
       head :ok
-    else  
+    else
       render json: @photo.errors, status: :unprocessable_entity
     end
   end

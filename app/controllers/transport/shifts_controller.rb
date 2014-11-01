@@ -13,7 +13,7 @@ class Transport::ShiftsController < ApplicationController
 	def all
 		@shifts = Shift.all
 	end
-	
+
 	def show
 		@shift = @driver.shifts.find(params[:id])
 	end
@@ -27,7 +27,7 @@ class Transport::ShiftsController < ApplicationController
 										params[:shift_id].to_i,
 										params[:date])
 		shift = @driver.shifts.new(dates)
-		
+
 		if shift.save
 			flash[:notice] = "Vakt lagret."
 		else
@@ -71,7 +71,7 @@ class Transport::ShiftsController < ApplicationController
 		end
 	end
 
-	private 
+	private
 	def find_driver
 		if params[:driver_id]
 			@driver = Driver.find(params[:driver_id])

@@ -47,10 +47,10 @@ class Transport::CarsController < ApplicationController
     	else
     		flash[:alert] = "Noe gikk galt, endringen ble ikke lagret!"
     	end
-    	
+
       	respond_to do |format|
 			format.html { redirect_to :action => "index" }
 			format.js
-		end	
+		end
 	end
 end

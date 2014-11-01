@@ -60,7 +60,7 @@ class UsersController < ApplicationController
     end
   end
   def change_password
-  
+
   end
 
   def update_password
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
     if params[:new_password] == params[:new_verified_password]
       current_user.password = params[:new_password]
       if current_user.save
-     	current_user.changeLdapPassword(params[:new_password]) 
+     	current_user.changeLdapPassword(params[:new_password])
       else
         flash.now[:alert] = "Try a longer password"
         return render :change_password

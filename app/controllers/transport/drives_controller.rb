@@ -24,7 +24,7 @@ class Transport::DrivesController < ApplicationController
 			@available_cars = Car.all_and_limit_by_drives(@drives)
 
 
-			if not params[:ignore_shifts]	
+			if not params[:ignore_shifts]
 				@available_drivers = @drivers_w_shifts-@available_drivers
 			end
 
@@ -38,7 +38,7 @@ class Transport::DrivesController < ApplicationController
 		if(params.has_key?(:start) && params.has_key?(:end))
 			start = Time.at(params[:start].to_i).to_s(:db)
 			end_time = Time.at(params[:end].to_i).to_s(:db)
-			drives = Drive.between(start,end_time) 
+			drives = Drive.between(start,end_time)
 		end
 		respond_to do |format|
     	format.html
@@ -87,11 +87,11 @@ class Transport::DrivesController < ApplicationController
 	def update
 		@drive = drives.find(params[:id])
 		@drive.update_attributes(params[:drive])
-		
+
 		respond_to do |format|
 			format.html { redirect_to :action => "index" }
 			format.js
-		end		
+		end
 		#if @drive.update_attributes(params[:drive])
 		#	flash[:notice]="Endringer oppdatert!"
 		#	redirect_to :action => "index"

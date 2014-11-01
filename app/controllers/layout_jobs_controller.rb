@@ -5,9 +5,8 @@ class LayoutJobsController < ApplicationController
   # GET /layout_jobs.json
 
   def index
-    @layout_jobs = LayoutJob.jobs_for_role(current_user.roles, 
-                                           current_user.positions)
-    
+    @layout_jobs = LayoutJob.jobs_for_role(current_user.roles, current_user.positions)
+
     if @layout_jobs.empty? && params[:redirect].nil?
       redirect_to new_layout_job_path
       return

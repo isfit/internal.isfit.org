@@ -42,7 +42,7 @@ class IsfitPagesController < ApplicationController
   # POST /isfit_pages.json
   def create
     @isfit_page = IsfitPage.new(params[:isfit_page])
-    if @isfit_page.tab_id 
+    if @isfit_page.tab_id
       if IsfitPage.where("tab_id = #{@isfit_page.tab_id} AND deleted = 0").count == 0
         @isfit_page.tab_weight = 1
       else
