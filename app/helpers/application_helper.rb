@@ -45,7 +45,17 @@ module ApplicationHelper
     return false if current.empty?
 
     current.each do |c|
-      return url_for(controller: c.controller, action: c.action, id:c.action_id) if can_access_link?(c)
+      # url_for retains the namespace when creating new urls. So if current url is
+      # /transport/drives, the url_for(controller: "frontend_articles", action: "index")
+      # will be /transport/articles/
+      # The rails official solution is to prepend a slash before the controller
+      if can_access_link?(c)
+        begin
+          return url_for(controller: c.controller, action: c.action, id:c.action_id)
+        rescue ActionController::UrlGenerationError
+          return url_for(controller: "/#{c.controller}", action: c.action, id:c.action_id)
+        end
+      end
     end
 
     children.each do |child|
