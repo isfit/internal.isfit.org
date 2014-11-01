@@ -14,7 +14,7 @@ class Group < ActiveRecord::Base
         if u.id > 1
           @users << u
         end
-      end            
+      end
     end
     return @users.uniq{|x| x.id}
   end

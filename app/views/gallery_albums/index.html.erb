@@ -7,7 +7,7 @@
 
 <% @albums.each do |album| %>
 
-	<%= link_to(album.title, gallery_album_path(album)) %> 
+	<%= link_to(album.title, gallery_album_path(album)) %>
 	<%= album.description %>
 	<%= link_to("Edit", edit_gallery_album_path(album)) %>
 	<%= link_to("Destroy", album, method: "delete", confirm: "Are you sure?")%>

@@ -4,7 +4,7 @@
 
 <h1>Participants Stats</h1>
 <div class="col-md-6">
-  
+
   <%= render 'shared/participant_map' %>
 
   <div id="part-work"><h2>Workshop stats</h2></div>
@@ -18,7 +18,7 @@
         <th>3rd choice</th>
       </tr>
     </thead>
-    <% @workshops.each do |workshop| %> 
+    <% @workshops.each do |workshop| %>
       <tr>
         <td><%= workshop.name %></td>
         <td><%= @workshop1_count[workshop.number] %></td>

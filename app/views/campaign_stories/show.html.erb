@@ -4,7 +4,7 @@
 
 <h4>Created: <%= @story.created_at %></h4>
 
-<h3><%= Continent.find(@story.continent_id).display_name %> - 
+<h3><%= Continent.find(@story.continent_id).display_name %> -&nbsp
 	<% if @story.happened_in_id %>
 		<%= Country.find(@story.happened_in_id).name %>
 	<% end %>

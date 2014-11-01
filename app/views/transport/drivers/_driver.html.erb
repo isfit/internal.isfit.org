@@ -1,10 +1,10 @@
 <tr>
-	<td>
-	<% if driver.drives.occuring.present? %>
-		<span class="glyphicon glyphicon-remove text-danger"></span>
-	<% else %>
-		<span class="glyphicon glyphicon-ok text-success"></span>
-	<% end %>
-	</td>
-	<td><%= link_to(driver.username, [:transport,driver]) %></td>
+  <td>
+  <% if driver.drives.occuring.present? %>
+    <span class="glyphicon glyphicon-remove text-danger"></span>
+  <% else %>
+    <span class="glyphicon glyphicon-ok text-success"></span>
+  <% end %>
+  </td>
+  <td><%= link_to(driver.username, [:transport,driver]) %></td>
 </tr>

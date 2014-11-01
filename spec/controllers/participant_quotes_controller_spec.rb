@@ -68,7 +68,7 @@ describe ParticipantQuotesController do
 
   describe "POST create" do
     before(:each) { controller.stub(:current_user) { User.new } }
-    
+
     describe "with valid params" do
       it "creates a new ParticipantQuote" do
         expect {

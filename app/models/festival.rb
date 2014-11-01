@@ -3,7 +3,7 @@ class Festival < ActiveRecord::Base
   has_many :sections
   has_many :groups
   def users
-    @users = [] 
+    @users = []
     self.sections.each do |s|
       @users += s.users
     end

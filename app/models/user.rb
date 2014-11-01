@@ -5,7 +5,7 @@
 # brukes til å hente attributter, seksjoner, gjenger etc. av en bruker
 
 class User < ActiveRecord::Base
-  
+
   validates :password, length: {minimum: 8}, allow_blank: true
   self.primary_key = :id
   has_secure_password
@@ -98,7 +98,7 @@ class User < ActiveRecord::Base
       false
     end
   end
- 
+
   def changeLdapPassword(pass)
     require 'net/ldap'
     require 'openssl'

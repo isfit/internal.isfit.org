@@ -6,7 +6,7 @@ class Kvitter < ActiveRecord::Base
 
   validates :message, :presence => true
   validate :unique_message_from_user
-  
+
   self.per_page = 10
 
   def username
@@ -14,7 +14,7 @@ class Kvitter < ActiveRecord::Base
   end
 
   def awesome_count
-  	self.awesomes.count
+    self.awesomes.count
   end
 
   def user_full_name

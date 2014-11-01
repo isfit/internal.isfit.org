@@ -35,13 +35,11 @@
 	</tr>
 	<tr>
 		<td><b>Second choice</b></td>
-		<td><%= @applicant.second_position ? 
-			@applicant.second_position.title_no : '-' %></td>
+		<td><%= @applicant.second_position ? @applicant.second_position.title_no : '-' %></td>
 	</tr>
 	<tr>
 		<td><b>Third choice</b></td>
-		<td><%= @applicant.third_position ? 
-			@applicant.third_position.title_no : '-' %></td>
+		<td><%= @applicant.third_position ? @applicant.third_position.title_no : '-' %></td>
   </tr>
 	<tr>
 		<td><b>Status</b></td>
@@ -49,8 +47,7 @@
 	</tr>
 	<tr>
 		<td><b>Recruited position</b></td>
-		<td><%= @applicant.recruited_position ? 
-			@applicant.recruited_position.title_no : '-' %></td>
+		<td><%= @applicant.recruited_position ? @applicant.recruited_position.title_no : '-' %></td>
 	</tr>
 	<tr>
 		<td><b>Interview Time 1</b></td>

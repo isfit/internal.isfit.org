@@ -46,7 +46,7 @@ class ApplicantsController < ApplicationController
       redirect_to(applicants_path, alert: "Du har ikke tilgang til denne søkeren") and return
     end
 
-    @status = {	0 => 'Not contacted',
+    @status = {  0 => 'Not contacted',
       1 => 'Meeting planned',
       2 => 'Meeting done',
       3 => 'Of interest',
@@ -120,7 +120,7 @@ class ApplicantsController < ApplicationController
   def index
     @applicants = visible_applicants
 
-    @status = {	0 => 'Not contacted',
+    @status = {  0 => 'Not contacted',
       1 => 'Meeting planned',
       2 => 'Meeting done',
       3 => 'Of interest',
