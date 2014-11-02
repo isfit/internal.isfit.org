@@ -27,7 +27,7 @@ class PhotosController < ApplicationController
         @photo.original_picture.reprocess!
         format.html {redirect_to photo_path(@photo) }
       else
-        format.html { render action: "edit" }
+        format.html { render :edit }
       end
     end
   end

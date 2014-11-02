@@ -47,7 +47,7 @@ class MotdsController < ApplicationController
         format.html { redirect_to @motd, notice: 'Motd was successfully created.' }
         format.json { render json: @motd, status: :created, location: @motd }
       else
-        format.html { render action: "new" }
+        format.html { render :new }
         format.json { render json: @motd.errors, status: :unprocessable_entity }
       end
     end
@@ -63,7 +63,7 @@ class MotdsController < ApplicationController
         format.html { redirect_to @motd, notice: 'Motd was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render :edit }
         format.json { render json: @motd.errors, status: :unprocessable_entity }
       end
     end

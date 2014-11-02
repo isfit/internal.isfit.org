@@ -27,7 +27,7 @@ class Transport::DriversController < ApplicationController
       redirect_to @driver
     else
       flash[:alert] = "Driver not updated"
-      render :action => "new"
+      render :new
     end
   end
 

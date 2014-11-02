@@ -54,7 +54,7 @@ class IsfitPagesController < ApplicationController
         format.html { redirect_to @isfit_page, notice: 'Isfit page was successfully created.' }
         format.json { render json: @isfit_page, status: :created, location: @isfit_page }
       else
-        format.html { render action: "new" }
+        format.html { render :new }
         format.json { render json: @isfit_page.errors, status: :unprocessable_entity }
       end
     end
@@ -70,7 +70,7 @@ class IsfitPagesController < ApplicationController
         format.html { redirect_to @isfit_page, notice: 'Isfit page was successfully updated.' }
         format.json { head :ok }
       else
-        format.html { render action: "edit" }
+        format.html { render :edit }
         format.json { render json: @isfit_page.errors, status: :unprocessable_entity }
       end
     end

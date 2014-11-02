@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       @kvitters = Kvitter
         .where(user_id: @user.id)
         .order('created_at DESC').limit(10)
-      render action: 'show'
+      render :show
     else
       if params[:username] == "yourmama"
         render action: 'yourmama', layout:false
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(params[:user])
       redirect_to root_url, notice: "Your profile has been updated."
     else
-      render action: 'edit'
+      render :edit
     end
   end
 

@@ -32,7 +32,6 @@ gem 'oauth2'
 gem 'net-ldap'
 gem 'jbuilder'
 gem 'private_pub'
-#gem 'rack-mini-profiler'
 gem 'ransack'
 gem 'activemodel'
 gem 'simple_form', '~> 3.1.0.rc2'
@@ -55,7 +54,7 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'momentjs-rails', '~> 2.8.1'
 gem 'datetimepicker-rails', :git => 'git://github.com/zpaulovics/datetimepicker-rails.git',  \
     :branch => 'master', :submodules => true
-
+gem 'newrelic_rpm'
 group :development do
   # gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'nifty-generators'
@@ -64,6 +63,7 @@ group :development do
   gem 'bullet'
   gem 'brakeman', :require => false
   gem 'webrick', '~> 1.3.1'
+  gem 'rack-mini-profiler', :require => false
 end
 
 group :development, :test do

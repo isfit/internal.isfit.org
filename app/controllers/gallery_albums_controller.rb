@@ -41,7 +41,7 @@ class GalleryAlbumsController < ApplicationController
         format.html { redirect_to edit_gallery_album_path(@album.id), notice: 'Album was successfully created.' }
         format.json { render json: @album, status: :created, location: @album }
       else
-        format.html { render action: "new" }
+        format.html { render :new }
         format.json { render json: @album.errors, status: :unprocessable_entity }
       end
     end
@@ -55,7 +55,7 @@ class GalleryAlbumsController < ApplicationController
         format.html { redirect_to @album, notice: 'Album was successfully updated.' }
         format.json { head :ok }
       else
-        format.html { render action: "edit" }
+        format.html { render :edit }
         format.json { render json: @album.errors, status: :unprocessable_entity }
       end
     end

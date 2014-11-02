@@ -47,7 +47,7 @@ class ContactLogUnitsController < ApplicationController
         format.html { redirect_to @contact_log_unit, notice: 'Contact log unit was successfully created.' }
         format.json { render json: @contact_log_unit, status: :created, location: @contact_log }
       else
-        format.html { render action: "new" }
+        format.html { render :new }
         format.json { render json: @contact_log_unit.errors, status: :unprocessable_entity }
       end
     end
@@ -63,7 +63,7 @@ class ContactLogUnitsController < ApplicationController
         format.html { redirect_to @contact_log_unit, notice: 'Contact log unit was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render :edit }
         format.json { render json: @contact_log_unit.errors, status: :unprocessable_entity }
       end
     end

@@ -50,7 +50,7 @@ class ParticipantQuotesController < ApplicationController
         format.html { redirect_to @participant_quote, notice: 'Participant quote was successfully created.' }
         format.json { render json: @participant_quote, status: :created, location: @participant_quote }
       else
-        format.html { render action: "new" }
+        format.html { render :new }
         format.json { render json: @participant_quote.errors, status: :unprocessable_entity }
       end
     end
@@ -66,7 +66,7 @@ class ParticipantQuotesController < ApplicationController
         format.html { redirect_to @participant_quote, notice: 'Participant quote was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render :edit }
         format.json { render json: @participant_quote.errors, status: :unprocessable_entity }
       end
     end

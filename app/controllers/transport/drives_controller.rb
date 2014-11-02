@@ -55,7 +55,7 @@ class Transport::DrivesController < ApplicationController
     end_time = Time.parse(params[:drive][:end_time]).to_s(:db)
 
     @drives = drives.where("start_time >= ? AND end_time <= ?",start_time,end_time)
-    render :template => "transport/drives/index"
+    render "transport/drives/index"
   end
 
   def create

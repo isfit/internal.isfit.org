@@ -14,14 +14,14 @@ class SessionsController < ApplicationController
         redirect_to_target_or_default root_url, notice: generate_motivational(user)
       else
         flash.now[:alert] = "Login and password is correct, but you don't have access to internal. Please contact orakel@isfit.org."
-        render action: 'new'
+        render :new
       end
     elsif user && user.password_digest.nil?
       flash.now[:alert] = "Invalid login or password, contact orakel@isfit.org."
-      render action: 'new'
+      render :new
     else
       flash.now[:alert] = "Invalid login or password."
-      render action: 'new'
+      render :new
     end
   end
 

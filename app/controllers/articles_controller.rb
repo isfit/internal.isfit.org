@@ -85,7 +85,7 @@ class ArticlesController < ApplicationController
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render json: @article, status: :created, location: @article }
       else
-        format.html { render action: "new" }
+        format.html { render :new }
         format.json { render json: @article.errors, status: :unprocessable_entity }
       end
     end
@@ -98,7 +98,7 @@ class ArticlesController < ApplicationController
     if @article.update_attributes(params[:article])
       redirect_to @article, notice: 'Article was successfully updated.'
     else
-      render action: "edit"
+      render :edit
     end
   end
 

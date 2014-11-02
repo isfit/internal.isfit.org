@@ -61,7 +61,7 @@ class FrontendArticlesController < ApplicationController
       #      end
       redirect_to(action:"index", notice: 'Article was successfully created.')
     else
-      render action => "edit"
+      render :edit
     end
   end
 
@@ -85,7 +85,7 @@ class FrontendArticlesController < ApplicationController
       end
       redirect_to(@article, notice: 'Article was successfully updated.')
     else
-      render action: "edit"
+      render :edit
     end
   end
 

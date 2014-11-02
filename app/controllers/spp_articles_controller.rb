@@ -30,7 +30,7 @@ class SppArticlesController < ApplicationController
       end
       redirect_to(spp_articles_path, notice: 'Article was successfully updated.')
     else
-      render action: "edit"
+      render :edit
     end
 
   end

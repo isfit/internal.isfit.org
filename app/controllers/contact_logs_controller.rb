@@ -54,7 +54,7 @@ class ContactLogsController < ApplicationController
         format.html { redirect_to @contact_log, notice: 'Contact log was successfully created.' }
         format.json { render json: @contact_log, status: :created, location: @contact_log }
       else
-        format.html { render action: "new" }
+        format.html { render :new }
         format.json { render json: @contact_log.errors, status: :unprocessable_entity }
       end
     end
