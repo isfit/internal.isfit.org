@@ -55,6 +55,8 @@ gem 'momentjs-rails', '~> 2.8.1'
 gem 'datetimepicker-rails', :git => 'git://github.com/zpaulovics/datetimepicker-rails.git',  \
     :branch => 'master', :submodules => true
 gem 'newrelic_rpm'
+
+gem 'actionpack-action_caching'
 group :development do
   # gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'nifty-generators'

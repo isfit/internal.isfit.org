@@ -65,9 +65,8 @@ class User < ActiveRecord::Base
   end
 
   #Return if user has role
-  def role?(r)
-    role = Role.where(name:r).first
-    roles.include?(role)
+  def role?(role)
+    self.roles.any? { |r| r.name.underscore.to_sym == role }
   end
 
   def self.birthday_notify
