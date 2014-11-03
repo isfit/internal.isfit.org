@@ -118,7 +118,7 @@ class ApplicantsController < ApplicationController
   end
 
   def index
-    @applicants = visible_applicants
+    @applicants = visible_applicants.includes(:first_position, :second_position, :third_position, :recruited_position)
 
     @status = {  0 => 'Not contacted',
       1 => 'Meeting planned',
