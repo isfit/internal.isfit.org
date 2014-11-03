@@ -14,6 +14,6 @@ class Festival < ActiveRecord::Base
   end
 
   def self.in_progress
-    find_by_year(CURRENT_FESTIVAL_YEAR)
+    Festival.find_by(year: CURRENT_FESTIVAL_YEAR)
   end
 end
