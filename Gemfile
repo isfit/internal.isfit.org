@@ -10,9 +10,7 @@ gem 'compass'
 
 
 # Spesifikke gems her
-gem 'capistrano', '~> 3.1'
-gem 'capistrano-rails', '~> 1.1'
-gem 'capistrano-rvm'
+
 gem 'cancancan', '~> 1.9'
 gem 'rails-i18n'
 gem 'ancestry'
@@ -31,7 +29,6 @@ gem 'bluecloth'
 gem 'oauth2'
 gem 'net-ldap'
 gem 'jbuilder'
-gem 'private_pub'
 gem 'ransack'
 gem 'activemodel'
 gem 'simple_form', '~> 3.1.0.rc2'
@@ -66,6 +63,9 @@ group :development do
   gem 'brakeman', :require => false
   gem 'webrick', '~> 1.3.1'
   gem 'rack-mini-profiler', :require => false
+  gem 'capistrano', '~> 3.1'
+  gem 'capistrano-rails', '~> 1.1'
+  gem 'capistrano-rvm'
 end
 
 group :development, :test do
