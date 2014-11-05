@@ -1,12 +1,20 @@
 <h1>Søkere til ISFiT parliaments</h1>
 
+  
+<table class="table">
+  <th>Navn</th>
+  <th>email</th>
   <% @isfit_parliaments.each do |p|%>
-    <table class="table">
-      <th>Navn</th>
-      <th>email</th>
-        <tr>
-          <td><%=link_to p.name, p %></td>
-          <td><%=p.email %></td>
-        </tr>
-      </table>
-<% end %>
+    <% if p.email.blank? %>
+      <tr>
+        <td><%=link_to p.name, p %></td>
+        <td>-</td>
+      </tr>
+    <% else %>
+      <tr>
+        <td><%=link_to p.name, p %></td>
+        <td><%=p.email %></td>
+      </tr>
+      <% end %>
+    <% end %>
+</table>
