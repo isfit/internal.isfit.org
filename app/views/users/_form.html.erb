@@ -12,6 +12,7 @@
   <%= f.input :postal_code %>
   <%= f.input :city %>
   <%= f.input :gender, collection: [[t('gender.choose'), nil],[t('gender.male'), 1], [t('gender.female'), 2], [t('gender.other'), 0]], prompt: nil %>
+  <%= f.input :single, as: :boolean %>
 </fieldset>
 
 <fieldset>

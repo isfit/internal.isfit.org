@@ -33,7 +33,14 @@
         <% if @user.postal_code %><%= @user.postal_code %> <%= @user.city %><% end %>
       </dd>
       <% end %>
+      <dt> Sivilstatus </dt>
+      <% if @user.single %>
+        <dd>Single</dd>
+      <% else %>
+        <dd>Har kjæreste</dd>
+      <% end %>
     </dl>
+
 
     <% unless @user.date_of_birth.nil? && @user.local_paper.blank? %>
     <dl class="dl-horizontal">
