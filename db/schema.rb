@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141020165130) do
+ActiveRecord::Schema.define(version: 20141106184003) do
 
   create_table "accounts", force: true do |t|
     t.string   "name_nb"
@@ -496,18 +496,6 @@ ActiveRecord::Schema.define(version: 20141020165130) do
     t.integer "tab_weight", default: -1
   end
 
-  create_table "isfit_parliaments", force: true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.integer  "phone"
-    t.integer  "years_work_lost"
-    t.string   "place_of_study"
-    t.string   "remember_date"
-    t.string   "why_attend"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
   create_table "isfit_tabs", force: true do |t|
     t.string   "name_en"
     t.string   "name_no"
@@ -556,6 +544,24 @@ ActiveRecord::Schema.define(version: 20141020165130) do
     t.string   "hexid"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "parliaments", id: false, force: true do |t|
+    t.integer  "id",                     default: 0, null: false
+    t.string   "name"
+    t.string   "email"
+    t.integer  "years_work_lost"
+    t.string   "place_of_study"
+    t.string   "remember_date"
+    t.string   "why_attend"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "why_ip_relevant"
+    t.string   "what_study"
+    t.integer  "how_hear_about_day"
+    t.integer  "how_corrupt"
+    t.integer  "had_cimilar_experience"
+    t.integer  "how_corrupt_tgi"
   end
 
   create_table "participant_quotes", force: true do |t|
@@ -855,6 +861,7 @@ ActiveRecord::Schema.define(version: 20141020165130) do
     t.string   "facebook_id"
     t.string   "facebook_token"
     t.string   "google_apps_username"
+    t.boolean  "single"
   end
 
   create_table "what_am_is", force: true do |t|
