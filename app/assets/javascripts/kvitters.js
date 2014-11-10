@@ -89,7 +89,7 @@ function downloadKvitters() {
         data: $('#kvitter-form').serialize(),
         dataType: 'json',
         success: function(data) {
-          prependKvitter(data, true);
+          prependKvitter(data);
           $('#kvitter-form')[0].reset();
           $('#kvitter-form > input').disabled = false;
         }
