@@ -1,7 +1,7 @@
 InternalIsfitOrg::Application.routes.draw do
 
   resources :isfit_parliaments
-
+  resources :parliaments
   resources :motds
 
 
