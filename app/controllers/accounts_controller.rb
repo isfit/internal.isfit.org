@@ -5,6 +5,9 @@ class AccountsController < ApplicationController
     @accounts = Account.all
   end
 
+  def choose
+  end
+
   # GET /accounts/1
   def show
     @account = Account.find(params[:id])

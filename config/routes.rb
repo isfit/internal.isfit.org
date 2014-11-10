@@ -163,6 +163,7 @@ InternalIsfitOrg::Application.routes.draw do
 
   resources :accounts do
     collection do
+      get 'choose'
       get 'travel'
       get 'voucher'
       get 'invoice'
