@@ -60,7 +60,7 @@
     <% end %>
 </dl>
 <br>
-  <dt>Svar på grad av korrupsjonshendelsen fra <%= link_to 'www.theglobalinfection.com','www.theglobalinfection.com' %></dt>
+  <dt>Svar på grad av korrupsjonshendelsen fra <%= link_to('theglobalinfection','http://www.theglobalinfection.com') %></dt>
   <% if @isfit_parliament.had_cimilar_experience.blank? %>
     <dd><%= @isfit_parliament.name %> har ikke svart på dette</dd>
   <% else %>
