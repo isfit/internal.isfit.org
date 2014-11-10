@@ -2,7 +2,7 @@ module Paperclip
   class CropperHalf < Thumbnail
     def transformation_command
       if crop_command
-        crop_command + super.join(' ').sub(/ -crop \S+/, '').split(' ') 
+        crop_command + super.join(' ').sub(/ -crop \S+/, '').split(' ')
         # super returns an array like this: ["-resize", "100x", "-crop", "100x100+0+0", "+repage"]
       else
         super

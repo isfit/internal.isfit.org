@@ -24,7 +24,7 @@
   <div id="img3"></div>
 </div>
 <%= form_for(@spp_article, html: {class: "form-stacked"}) do |f| %>
-<% if f.error_messages %>  
+<% if f.error_messages %>
     <div class="alert-message block-message error" data-alert="true">
       <a href="#" class="close">x</a>
       <%= f.error_messages %>
@@ -55,7 +55,7 @@
       <%= f.label :byline %>
       <%= f.text_field :byline %>
     </div>
- 
+
     <div class="field">
       <%= f.label :got_comments %>
       <%= f.check_box :got_comments %>
@@ -98,7 +98,7 @@
     <div class="field">
       <%= f.label :body_no %>
       <%= f.text_area :body_no, class: "col-md-12" %>
-    </div>  
+    </div>
   </fieldset>
   </div>
   <div class="hidable" id="preview">

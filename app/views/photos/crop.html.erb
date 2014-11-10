@@ -2,53 +2,53 @@
 <script>
 
 var ratio = <%= @photo.original_picture_geometry(:original).width / @photo.original_picture_geometry(:cropable).width %>
-$('#full').imgAreaSelect({ 
-  minWidth: 540, 
+$('#full').imgAreaSelect({
+  minWidth: 540,
   minHeight: 250,
-  aspectRatio: '2.16:1',  
-  handles: true, 
-  onSelectEnd: function (img, selection) { 
-    $('#x1').val(Math.round(selection.x1*ratio)); 
-    $('#y1').val(Math.round(selection.y1*ratio)); 
-    $('#x2').val(Math.round(selection.x2*ratio)); 
-    $('#y2').val(Math.round(selection.y2*ratio)); 
-    } 
+  aspectRatio: '2.16:1',
+  handles: true,
+  onSelectEnd: function (img, selection) {
+    $('#x1').val(Math.round(selection.x1*ratio));
+    $('#y1').val(Math.round(selection.y1*ratio));
+    $('#x2').val(Math.round(selection.x2*ratio));
+    $('#y2').val(Math.round(selection.y2*ratio));
+    }
 });
-$('#half').imgAreaSelect({ 
-  minWidth: 260, 
+$('#half').imgAreaSelect({
+  minWidth: 260,
   minHeight: 340,
-  aspectRatio: '0.76:1',  
-  handles: true, 
-  onSelectEnd: function (img, selection) { 
-    $('#x1_1').val(Math.round(selection.x1*ratio)); 
-    $('#y1_1').val(Math.round(selection.y1*ratio)); 
-    $('#x2_1').val(Math.round(selection.x2*ratio)); 
-    $('#y2_1').val(Math.round(selection.y2*ratio)); 
-    } 
+  aspectRatio: '0.76:1',
+  handles: true,
+  onSelectEnd: function (img, selection) {
+    $('#x1_1').val(Math.round(selection.x1*ratio));
+    $('#y1_1').val(Math.round(selection.y1*ratio));
+    $('#x2_1').val(Math.round(selection.x2*ratio));
+    $('#y2_1').val(Math.round(selection.y2*ratio));
+    }
 });
-$('#spp_one_third').imgAreaSelect({ 
-  minWidth: 210, 
+$('#spp_one_third').imgAreaSelect({
+  minWidth: 210,
   minHeight: 310,
-  aspectRatio: '0.72:1',  
-  handles: true, 
-  onSelectEnd: function (img, selection) { 
-    $('#x1_2').val(Math.round(selection.x1*ratio)); 
-    $('#y1_2').val(Math.round(selection.y1*ratio)); 
-    $('#x2_2').val(Math.round(selection.x2*ratio)); 
-    $('#y2_2').val(Math.round(selection.y2*ratio)); 
-    } 
+  aspectRatio: '0.72:1',
+  handles: true,
+  onSelectEnd: function (img, selection) {
+    $('#x1_2').val(Math.round(selection.x1*ratio));
+    $('#y1_2').val(Math.round(selection.y1*ratio));
+    $('#x2_2').val(Math.round(selection.x2*ratio));
+    $('#y2_2').val(Math.round(selection.y2*ratio));
+    }
 });
-$('#spp_full').imgAreaSelect({ 
-  minWidth: 700, 
+$('#spp_full').imgAreaSelect({
+  minWidth: 700,
   minHeight: 320,
-  aspectRatio: '2.19:1',  
-  handles: true, 
-  onSelectEnd: function (img, selection) { 
-    $('#x1_3').val(Math.round(selection.x1*ratio)); 
-    $('#y1_3').val(Math.round(selection.y1*ratio)); 
-    $('#x2_3').val(Math.round(selection.x2*ratio)); 
-    $('#y2_3').val(Math.round(selection.y2*ratio)); 
-    } 
+  aspectRatio: '2.19:1',
+  handles: true,
+  onSelectEnd: function (img, selection) {
+    $('#x1_3').val(Math.round(selection.x1*ratio));
+    $('#y1_3').val(Math.round(selection.y1*ratio));
+    $('#x2_3').val(Math.round(selection.x2*ratio));
+    $('#y2_3').val(Math.round(selection.y2*ratio));
+    }
 });
 
 </script>
@@ -71,7 +71,7 @@ $('#spp_full').imgAreaSelect({
 <p></p>
 
 <%= form_for @photo do |f| %>
-  <% for attribute in [:x1, :y1, :x2, :y2, :x1, :y1_1, :x2_1, :y2_1, :x1_1, :y1_2, :x2_2, :y2_2, :x1_3, :y1_3, :x2_3, :y2_3  
+  <% for attribute in [:x1, :y1, :x2, :y2, :x1, :y1_1, :x2_1, :y2_1, :x1_1, :y1_2, :x2_2, :y2_2, :x1_3, :y1_3, :x2_3, :y2_3
 ] %>
     <%= f.hidden_field attribute, id: attribute %>
   <% end %>
@@ -79,7 +79,7 @@ $('#spp_full').imgAreaSelect({
     <%#= hidden_field_tag :x1_1, ""%>
   <%#= hidden_field_tag :y1_1, ""%>
   <%#= hidden_field_tag :x2_1, ""%>
-  <%#= hidden_field_tag :y2_1, ""%> 
+  <%#= hidden_field_tag :y2_1, ""%>
   <%#= hidden_field_tag :x1_2, ""%>
   <%#= hidden_field_tag :y1_2, ""%>
   <%#= hidden_field_tag :x2_2, ""%>
@@ -87,6 +87,6 @@ $('#spp_full').imgAreaSelect({
   <%#= hidden_field_tag :x1_3, ""%>
   <%#= hidden_field_tag :y1_3, ""%>
   <%#= hidden_field_tag :x2_3, ""%>
-  <%#= hidden_field_tag :y2_3, ""%> 
+  <%#= hidden_field_tag :y2_3, ""%>
   <%#= submit_tag 'Save' %>
 <%end%>

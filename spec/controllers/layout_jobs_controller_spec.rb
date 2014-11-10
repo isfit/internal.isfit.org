@@ -8,7 +8,7 @@ describe LayoutJobsController do
       @controller.stub(:current_user) { @user }
 
       @deleted_status = 6
-      
+
       @position = Position.create!
       @user.stub(:positions) { [@position] }
       @group = Group.create! tag: 'lol'

@@ -25,7 +25,7 @@ class Transport::TransportResponsiblesController < ApplicationController
   # POST /transport/transport_responsibles.json
   def create
     @transport_responsible = TransportResponsible.new(transport_responsible_params)
-    
+
     respond_to do |format|
       if @transport_responsible.save
         format.html { redirect_to [:transport,@transport_responsible], notice: 'Transport responsible was successfully created.' }

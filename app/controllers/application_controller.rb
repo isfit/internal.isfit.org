@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
   # Gets the current menu_link_group, parent of menu_link
   def current_menu_link_group
-    @current_menu_link_group ||= current_menu_link.parent || InternalTab.new 
+    @current_menu_link_group ||= current_menu_link.parent || InternalTab.new
   end
 
   # Gets the current link from InternalTab by looking at the given controller and action

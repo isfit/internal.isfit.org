@@ -66,13 +66,13 @@ class IsfitTabsController < ApplicationController
           format.html { redirect_to @isfit_tab, notice: 'Isfit tab was successfully created.' }
           format.json { render json: @isfit_tab, status: :created, location: @isfit_tab }
         else
-          format.html { render action: "new" }
+          format.html { render :new }
           format.json { render json: @isfit_tab.errors, status: :unprocessable_entity }
         end
       end
     else
       respond_to do |format|
-        format.html { render action: "new" }
+        format.html { render :new }
         format.json { render json: @isfit_tab.errors, status: :unprocessable_entity }
       end
     end
@@ -88,7 +88,7 @@ class IsfitTabsController < ApplicationController
         format.html { redirect_to @isfit_tab, notice: 'Isfit tab was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render :edit }
         format.json { render json: @isfit_tab.errors, status: :unprocessable_entity }
       end
     end

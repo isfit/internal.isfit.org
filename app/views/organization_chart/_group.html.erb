@@ -5,4 +5,4 @@
     <% end %>
 </p>
 <h2><%= t("organization_chart.group.position_header") %></h2>
-<%= render partial: "position", collection: group.positions %>
+<%= render partial: "position", collection: group.positions.includes(:users) %>

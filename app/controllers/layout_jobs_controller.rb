@@ -5,9 +5,8 @@ class LayoutJobsController < ApplicationController
   # GET /layout_jobs.json
 
   def index
-    @layout_jobs = LayoutJob.jobs_for_role(current_user.roles, 
-                                           current_user.positions)
-    
+    @layout_jobs = LayoutJob.jobs_for_role(current_user.roles, current_user.positions)
+
     if @layout_jobs.empty? && params[:redirect].nil?
       redirect_to new_layout_job_path
       return
@@ -72,7 +71,7 @@ class LayoutJobsController < ApplicationController
         format.html { redirect_to @layout_job, notice: 'Layout job was successfully created.' }
         format.json { render json: @layout_job, status: :created, location: @layout_job }
       else
-        format.html { render action: "new" }
+        format.html { render :new }
         format.json { render json: @layout_job.errors, status: :unprocessable_entity }
       end
     end
@@ -88,7 +87,7 @@ class LayoutJobsController < ApplicationController
         format.html { redirect_to @layout_job, notice: 'Layout job was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render :edit }
         format.json { render json: @layout_job.errors, status: :unprocessable_entity }
       end
     end

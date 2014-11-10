@@ -22,7 +22,7 @@ The rest of the articles will be listed under archive</p>
       <td><%= article.created_at.strftime("%d %b %Y") %></td>
       <td><%= link_to("up", moveup_spp_article_path(article), class: "btn")%> <%=link_to("down", movedown_spp_article_path(article), class: "btn")%></td>
       <td width="100px">
-        <div class="btn-group">  
+        <div class="btn-group">
           <%= link_to("<i class='icon-pencil'></i> Edit".html_safe, edit_spp_article_path(article), class: "btn btn-info") %>
           <a href="#" class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
           <ul class="dropdown-menu">

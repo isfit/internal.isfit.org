@@ -3,8 +3,8 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.order('created_at DESC').paginate(:page => params[:page])
-    @motd = Motd.order('created_at DESC').limit(3)
+    @articles = Article.includes(:user).order(created_at: :desc).paginate(:page => params[:page])
+    @motd = Motd.order(created_at: :desc).limit(3)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @articles }
@@ -70,7 +70,7 @@ class ArticlesController < ApplicationController
   # POST /articles
   # POST /articles.json
   def create
-  
+
     @article = Article.new(params[:article])
     @article.user = current_user
 
@@ -85,7 +85,7 @@ class ArticlesController < ApplicationController
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render json: @article, status: :created, location: @article }
       else
-        format.html { render action: "new" }
+        format.html { render :new }
         format.json { render json: @article.errors, status: :unprocessable_entity }
       end
     end
@@ -98,7 +98,7 @@ class ArticlesController < ApplicationController
     if @article.update_attributes(params[:article])
       redirect_to @article, notice: 'Article was successfully updated.'
     else
-      render action: "edit"       
+      render :edit
     end
   end
 

@@ -1,7 +1,7 @@
 class CampaignStory < ActiveRecord::Base
-	self.primary_key = :id
+  self.primary_key = :id
 
-	def self.stories_sorted
-		CampaignStory.order(created_at: :desc)
-	end
+  def self.stories_sorted
+    CampaignStory.order(created_at: :desc)
+  end
 end

@@ -2,15 +2,15 @@ class Subscription < ActiveRecord::Base
   belongs_to :user
 
   def self.subscribe object
-  	choiches = {
-  		kvitters: 1,
-  		articles: 2,
-  	}
-  	choiches[object]
+    choiches = {
+      kvitters: 1,
+      articles: 2,
+    }
+    choiches[object]
   end
 
   def self.article_subscribers
-  	User.joins(:subscriptions).where('subscriptions.subscription_id = ?', 2)
+    User.joins(:subscriptions).where('subscriptions.subscription_id = ?', 2)
   end
 
     def self.kvitter_subscribers

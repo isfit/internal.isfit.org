@@ -1,10 +1,10 @@
 class IndabaSpeakersController < ApplicationController
-	def index
+  def index
     tempYear = params[:year] || "2013"
-		@indaba_speakers = IndabaSpeaker.where(year: tempYear).order('firstname ASC').all
+    @indaba_speakers = IndabaSpeaker.where(year: tempYear).order('firstname ASC').all
     @year = tempYear
     @years = IndabaSpeaker.select("Distinct(year)").all
-	end
+  end
 
 
   def show

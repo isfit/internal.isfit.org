@@ -26,7 +26,7 @@ class AccountsController < ApplicationController
     if @account.save
       redirect_to @account, notice: 'Account was successfully created.'
     else
-      render action: "new" 
+      render :new
     end
   end
 
@@ -34,9 +34,9 @@ class AccountsController < ApplicationController
   def update
     @account = Account.find(params[:id])
     if @account.update_attributes(params[:account])
-      redirect_to @account, notice: 'Account was successfully updated.' 
+      redirect_to @account, notice: 'Account was successfully updated.'
     else
-      render action: "edit" 
+      render :edit
     end
   end
 
@@ -44,7 +44,7 @@ class AccountsController < ApplicationController
   def destroy
     @account = Account.find(params[:id])
     @account.destroy
-    redirect_to accounts_url 
+    redirect_to accounts_url
   end
 
   def voucher

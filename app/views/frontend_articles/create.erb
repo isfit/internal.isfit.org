@@ -8,7 +8,7 @@
 <h1><%= params[:id] ? "Edit" : "Create new" %> article</h1>
 
 	<% form_for :article, @article, :html=> { :multipart => true },
-		:url => { :action => "create", 
+		:url => { :action => "create",
 		:id => params[:id]  } do |f|
 	%>
 
@@ -116,7 +116,7 @@ Upload new picture:
 			<strong>emphasized text</strong>
 		</td>
 	</tr>
-	<tr valign="top"> 
+	<tr valign="top">
 		<td>Unordered list</td>
 		<td> - Candy<br /> - Gum<br /> - Booze</td>
 		<td>

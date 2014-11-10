@@ -3,7 +3,7 @@ class Festival < ActiveRecord::Base
   has_many :sections
   has_many :groups
   def users
-    @users = [] 
+    @users = []
     self.sections.each do |s|
       @users += s.users
     end
@@ -14,6 +14,6 @@ class Festival < ActiveRecord::Base
   end
 
   def self.in_progress
-    find_by_year(CURRENT_FESTIVAL_YEAR)
+    Festival.find_by(year: CURRENT_FESTIVAL_YEAR)
   end
 end
