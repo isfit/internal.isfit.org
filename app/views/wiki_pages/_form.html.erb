@@ -1,7 +1,8 @@
 <%= formatting %>
 <%= simple_form_for(@wiki_page,  html: { class: 'form-vertical' }, wrapper: :vertical_form) do |f| %>
   <%= f.error_messages %>
-    <%= f.input :wiki_category_id,  collection: WikiCategory.where(deleted: false).order("title ASC"), 
+    <%= f.input :wiki_category_id,
+    	collection: WikiCategory.where(deleted: false).order("title ASC"),
     	prompt: "Choose a category", as: :select %>
     <%= f.input :title %>
     <%= f.input :body, :input_html => { :rows => 10 }, as: :text %>

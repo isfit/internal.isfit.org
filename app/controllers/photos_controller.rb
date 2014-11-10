@@ -27,7 +27,7 @@ class PhotosController < ApplicationController
         @photo.original_picture.reprocess!
         format.html {redirect_to photo_path(@photo) }
       else
-        format.html { render action: "edit" }
+        format.html { render :edit }
       end
     end
   end
@@ -38,7 +38,7 @@ class PhotosController < ApplicationController
     @picture.save!
 
     respond_to do |format|
-      format.html {redirect_to crop_photo_path(@picture) } 
+      format.html {redirect_to crop_photo_path(@picture) }
     end
   end
 
@@ -103,7 +103,7 @@ class PhotosController < ApplicationController
     #@tmp_img.close
 
     #respond_to do |format|
-    #  format.html {redirect_to photos_path(params[:tab])} 
+    #  format.html {redirect_to photos_path(params[:tab])}
     #end
 
   end

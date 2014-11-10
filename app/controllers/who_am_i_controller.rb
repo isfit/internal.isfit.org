@@ -46,7 +46,7 @@ class WhoAmIController < ApplicationController
     users = User.random(2015,4).where("profile_picture_file_name IS NOT NULL AND gender LIKE "+random.to_s())
 
     correct_user = users[Random.rand(users.length)]
-    game = WhoAmI.new 
+    game = WhoAmI.new
     game.correct_user_id = correct_user.id
     game.user_id = current_user.id
     game.user1_id = users[0].id

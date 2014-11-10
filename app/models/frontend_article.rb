@@ -7,7 +7,7 @@ class FrontendArticle < ActiveRecord::Base
     article_large: {geometry: "940x480#", processors: [:cropper_half] }
   }
   validates_attachment_content_type :frontend_article_image, :content_type => /\Aimage\/.*\Z/
- 
+
   def cropping?
     true
   end

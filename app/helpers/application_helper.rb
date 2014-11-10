@@ -31,7 +31,7 @@ module ApplicationHelper
   end
 
   # Traverses a given tab for each of its children
-  # Works recursive, and traveres the tree-structure of the internal menu system. 
+  # Works recursive, and traveres the tree-structure of the internal menu system.
   # Also check for access before returning the url
   #
   # @param [Hash] a hash with keys as InternalTab and values as a hash of nested InternalTab
@@ -83,7 +83,7 @@ module ApplicationHelper
 
   def can_access_link?(link)
     access = can?(link.action.to_sym, Kernel.const_get(link.controller.classify)) rescue true
-    link.controller && link.action && access   
+    link.controller && link.action && access
   end
 
 

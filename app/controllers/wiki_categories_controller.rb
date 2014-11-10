@@ -48,7 +48,7 @@ class WikiCategoriesController < ApplicationController
         format.html { redirect_to @wiki_category, notice: 'Wiki category was successfully created.' }
         format.json { render json: @wiki_category, status: :created, location: @wiki_category }
       else
-        format.html { render action: "new" }
+        format.html { render :new }
         format.json { render json: @wiki_category.errors, status: :unprocessable_entity }
       end
     end
@@ -64,7 +64,7 @@ class WikiCategoriesController < ApplicationController
         format.html { redirect_to @wiki_category, notice: 'Wiki category was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render :edit }
         format.json { render json: @wiki_category.errors, status: :unprocessable_entity }
       end
     end

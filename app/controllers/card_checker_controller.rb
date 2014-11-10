@@ -43,7 +43,7 @@ load_and_authorize_resource
         card.check_card = true
       end
       card.save
-    
+
     end
     render :nothing => true
 
@@ -52,4 +52,4 @@ load_and_authorize_resource
 
 end
 
-  
+

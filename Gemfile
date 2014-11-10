@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '4.1.0'
+gem 'rails', '4.1.7'
 
 gem 'sqlite3'
 gem 'mysql2'
@@ -10,9 +10,7 @@ gem 'compass'
 
 
 # Spesifikke gems her
-gem 'capistrano', '~> 3.1'
-gem 'capistrano-rails', '~> 1.1'
-gem 'capistrano-rvm'
+
 gem 'cancancan', '~> 1.9'
 gem 'rails-i18n'
 gem 'ancestry'
@@ -31,8 +29,6 @@ gem 'bluecloth'
 gem 'oauth2'
 gem 'net-ldap'
 gem 'jbuilder'
-gem 'private_pub'
-#gem 'rack-mini-profiler'
 gem 'ransack'
 gem 'activemodel'
 gem 'simple_form', '~> 3.1.0.rc2'
@@ -55,12 +51,21 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'momentjs-rails', '~> 2.8.1'
 gem 'datetimepicker-rails', :git => 'git://github.com/zpaulovics/datetimepicker-rails.git',  \
     :branch => 'master', :submodules => true
+gem 'newrelic_rpm'
 
+gem 'actionpack-action_caching'
 group :development do
   # gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'nifty-generators'
   gem 'pry'
   gem 'yard'
+  gem 'bullet'
+  gem 'brakeman', :require => false
+  gem 'webrick', '~> 1.3.1'
+  gem 'rack-mini-profiler', :require => false
+  gem 'capistrano', '~> 3.1'
+  gem 'capistrano-rails', '~> 1.1'
+  gem 'capistrano-rvm'
 end
 
 group :development, :test do

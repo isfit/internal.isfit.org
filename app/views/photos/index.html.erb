@@ -3,7 +3,7 @@
 $(document).ready(function() {
   $("#stuff_item_id").change(function() {
     temp = $(this).val();
-    str = "/~skjervum/internal.isfit.org_rails3/i2011/public/images/article/photos/original_pictures/"+temp+"/thumb.jpg"; 
+    str = "/~skjervum/internal.isfit.org_rails3/i2011/public/images/article/photos/original_pictures/"+temp+"/thumb.jpg";
     $("#img_pre").attr("src", str);
     $.post("index.js", $(this).serialize(), null, "script");
     return false;

@@ -4,15 +4,15 @@ class Drive < ActiveRecord::Base
   belongs_to :group
   belongs_to :user
 
-  validates :start_time, presence: true, format: { 
-                        with: /\d{2}\/\d{2}\/\d{4}\s\d{2}\:\d{2}/, 
+  validates :start_time, presence: true, format: {
+                        with: /\d{2}\/\d{2}\/\d{4}\s\d{2}\:\d{2}/,
                         message: "invalid date format" }
-  validates :end_time, presence: true, format: { 
-                        with: /\d{2}\/\d{2}\/\d{4}\s\d{2}\:\d{2}/, 
+  validates :end_time, presence: true, format: {
+                        with: /\d{2}\/\d{2}\/\d{4}\s\d{2}\:\d{2}/,
                         message: "invalid date format" }
   validates_presence_of :group_id
   validates_presence_of :description
-  
+
 
   scope :by_group, -> group { where(group: group) }
   scope :by_user, -> user { where(user: user) }
@@ -30,7 +30,7 @@ class Drive < ActiveRecord::Base
   end
 
   def car_name
-  	car.name
+    car.name
   end
 
   def car_desc
@@ -68,11 +68,11 @@ class Drive < ActiveRecord::Base
   end
 
   def start_time_to_s
-  	start_time.strftime("%Y-%m-%d %H:%M")
+    start_time.strftime("%Y-%m-%d %H:%M")
   end
 
   def end_time_to_s
-  	end_time.strftime("%Y-%m-%d %H:%M")
+    end_time.strftime("%Y-%m-%d %H:%M")
   end
 
   def time_summary
@@ -92,7 +92,7 @@ class Drive < ActiveRecord::Base
   end
 
   def self.get_statuses
-    {  
+    {
     0 => 'New',
     1 => 'Driver and Car assigned',
     2 => 'Not started',

@@ -47,7 +47,7 @@ class SppPagesController < ApplicationController
         format.html { redirect_to @spp_page, notice: 'Spp page was successfully created.' }
         format.json { render json: @spp_page, status: :created, location: @spp_page }
       else
-        format.html { render action: "new" }
+        format.html { render :new }
         format.json { render json: @spp_page.errors, status: :unprocessable_entity }
       end
     end
@@ -63,7 +63,7 @@ class SppPagesController < ApplicationController
         format.html { redirect_to @spp_page, notice: 'Spp page was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render :edit }
         format.json { render json: @spp_page.errors, status: :unprocessable_entity }
       end
     end

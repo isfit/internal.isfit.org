@@ -3,7 +3,7 @@
 <% if @applicant.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@applicant.errors.count, "error") %> prohibited this applicant from being saved:</h2>
- 
+
     <ul>
     <% @applicant.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
@@ -52,14 +52,14 @@
         <td>
           <%= f.collection_select :position_id_2, @positions.order("title_en ASC"), :id, :select_name, prompt: true %>
         </td>
- 
+
       </tr>
       <tr>
         <td>Third choice</td>
         <td>
           <%= f.collection_select :position_id_3, @positions.order("title_en ASC"), :id, :select_name, prompt: true %>
         </td>
- 
+
 
       </tr>
 
@@ -105,7 +105,7 @@
         <td>Interviewers</td>
         <td>
           <%= f.collection_select(:interviewer_id_1_1, @interviewers,   :id, :name_reversed, prompt: true) %>
-        </td>	
+        </td>
       </tr>
       <tr>
         <td></td>

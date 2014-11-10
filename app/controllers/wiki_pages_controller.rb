@@ -3,7 +3,7 @@ class WikiPagesController < ApplicationController
   # GET /wiki_pages.json
   def index
     @wiki_page = WikiPage.where(slug: "getting-started").order("created_at DESC").limit(1).first
-    render "show"
+    render :show
   end
 
   # GET /wiki_pages/1
@@ -26,7 +26,7 @@ class WikiPagesController < ApplicationController
       return
     end
 
-    render 'show'
+    render :show
   end
 
   # GET /wiki_pages/new
@@ -56,7 +56,7 @@ class WikiPagesController < ApplicationController
         format.html { redirect_to @wiki_page, notice: 'Wiki page was successfully created.' }
         format.json { render json: @wiki_page, status: :created, location: @wiki_page }
       else
-        format.html { render action: "new" }
+        format.html { render :new }
         format.json { render json: @wiki_page.errors, status: :unprocessable_entity }
       end
     end
@@ -74,7 +74,7 @@ class WikiPagesController < ApplicationController
         format.html { redirect_to @wiki_page, notice: 'Wiki page was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render :edit }
         format.json { render json: @wiki_page.errors, status: :unprocessable_entity }
       end
     end

@@ -21,7 +21,7 @@ class DialogueParticipantsController < ApplicationController
         format.html { redirect_to dialogue_participants_path, notice: "Participant successfully updated!" }
       else
         @countries = Country.all
-        format.html { render action: "edit" }
+        format.html { render :edit }
       end
     end
   end

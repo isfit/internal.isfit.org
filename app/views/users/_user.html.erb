@@ -12,7 +12,7 @@
     <a href="/users/<%=user.id%>.vcf">
       <button id="vcard-button" class="btn-info btn">VCard</button>
     </a>
-  <% if current_user.role? 'admin' %>
+  <% if current_user.role?(:admin) %>
     <%= link_to "Impersonate", impersonate_users_path(user.username), class: "btn btn-info" %>
   <% end %>
 
@@ -32,11 +32,11 @@
 
 <h6><%= pluralize(user.positions.count, "position")%></h6>
 <ul id="user-positions">
-  <% user.positions.reverse.each do |position| %> 
+  <% user.positions.reverse.each do |position| %>
     <li><%= position.title_en %> - <%= position.groups.first.name_en %>, <%=position.festival_year%></li>
   <% end %>
 </ul>
-<p>  
+<p>
 <% if user.date_of_birth %>
   <b>Date of birth:</b> <%= user.date_of_birth %> (<%= time_ago_in_words(user.date_of_birth) %>)<br>
 <% end %>

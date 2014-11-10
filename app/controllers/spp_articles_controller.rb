@@ -23,14 +23,14 @@ class SppArticlesController < ApplicationController
 
     @photo = Photo.find(params[:spp_article][:photo_id]) if Photo.exists?(params[:spp_article][:photo_id])
     @article.spp_article_image = @photo.original_picture if @photo
- 
+
     if @article.update_attributes(params[:spp_article])
       if not params[:spp_article][:photo_id] == ""
         @article.reprocess_photos
       end
       redirect_to(spp_articles_path, notice: 'Article was successfully updated.')
     else
-      render action: "edit" 
+      render :edit
     end
 
   end

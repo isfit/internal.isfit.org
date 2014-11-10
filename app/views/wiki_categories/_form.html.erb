@@ -1,7 +1,7 @@
 <%= bootstrap_form_for(@wiki_category) do |f| %>
   <%= f.error_messages %>
   <%= f.fieldset "Category" do %>
-    <%= f.text_field :title %>
+  <%= f.text_field :title %>
   <% end %>
   <%= f.submit "Submit", class: "btn" %>
 <% end %>

@@ -24,7 +24,7 @@ class ParticipantsController < ApplicationController
       else
         @countries = Country.all
         @workshops = Workshop.all
-        format.html { render action: "edit" }
+        format.html { render :edit }
       end
     end
   end

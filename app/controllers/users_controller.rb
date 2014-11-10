@@ -15,12 +15,12 @@ class UsersController < ApplicationController
       @kvitters = Kvitter
         .where(user_id: @user.id)
         .order('created_at DESC').limit(10)
-      render action: 'show'
+      render :show
     else
       if params[:username] == "yourmama"
         render action: 'yourmama', layout:false
       else
-        #	redirect_to "http://twitter.com/#{params[:username]}"
+        #  redirect_to "http://twitter.com/#{params[:username]}"
         redirect_to root_path, alert: "Could not find user with username #{params[:username]}. Try <a href=\"http://twitter.com/#{params[:username]}\">Twitter</a> instead?"
       end
     end
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(params[:user])
       redirect_to root_url, notice: "Your profile has been updated."
     else
-      render action: 'edit'
+      render :edit
     end
   end
 
@@ -60,7 +60,7 @@ class UsersController < ApplicationController
     end
   end
   def change_password
-  
+
   end
 
   def update_password
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
     if params[:new_password] == params[:new_verified_password]
       current_user.password = params[:new_password]
       if current_user.save
-     	current_user.changeLdapPassword(params[:new_password]) 
+       current_user.changeLdapPassword(params[:new_password])
       else
         flash.now[:alert] = "Try a longer password"
         return render :change_password
