@@ -103,13 +103,9 @@ function downloadKvitters() {
 function refreshKvitters() {
   $.getJSON('/kvitters/last.json?time='+kvitter_time, function(data) {
     var kvitters = JSON.parse(data.kvitters);
-    console.log(data);
-    console.log(kvitter_time);
     kvitters.forEach(function(kvitter){
       var el = $('#kvitter-'+kvitter.id);
-      console.log(kvitter.id);
       if (el.length == 1) {
-        console.log("Change count")
         el.find('.count').html((kvitter.teller ? kvitter.teller : "0"));
       }
       else {
