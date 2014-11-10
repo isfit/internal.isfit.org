@@ -34,7 +34,9 @@
       </dd>
       <% end %>
       <dt> Sivilstatus </dt>
-      <% if @user.single %>
+      <% if @user.single.nil? %>
+        <dd>Ikke oppgitt</dd>
+      <% elsif @user.single %>
         <dd>Single</dd>
       <% else %>
         <dd>Har kjæreste</dd>
