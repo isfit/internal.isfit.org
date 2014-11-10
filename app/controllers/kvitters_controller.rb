@@ -9,10 +9,10 @@ class KvittersController < ApplicationController
     kvitter.user_id = current_user.id
     if kvitter.save
       create_hashtags kvitter.id, kvitter.message
-      Subscription.kvitter_subscribers.each do |user|
-        next if kvitter.user_id.eql? user.id
-        SubscriberMailer.kvitter_mail(user.username, kvitter).deliver
-      end
+      #Subscription.kvitter_subscribers.each do |user|
+      #  next if kvitter.user_id.eql? user.id
+      #  SubscriberMailer.kvitter_mail(user.username, kvitter).deliver
+      #end
       render :json => kvitter.to_json(methods: :username)
     else
       render :text => "failed"
@@ -20,18 +20,27 @@ class KvittersController < ApplicationController
   end
 
   def last
-    @kvitters = Kvitter.order("created_at desc").limit(10)
+    if params[:time]
+      time = Time.zone.at(params[:time].to_f/1000).to_s(:db)
+      @kvitters = Kvitter.after(time)
+    else
+      @kvitters = Kvitter.order(created_at: :desc).limit(10)
+    end
     respond_to do |format|
       format.json do
-        render json: {  kvitters: @kvitters.to_json(methods:
+        if params[:time]
+          render json: {  kvitters: @kvitters.to_json }
+        else
+          render json: {  kvitters: @kvitters.to_json(methods:
                                         [:username,
-                                         :awesome_count,
                                          :user_full_name,
                                          :user_image,
                                         ]),
                         user_given_name: current_user.given_name.to_json,
                         button: Subscription.kvitter_button(current_user).to_json,
                       }
+          #render json: { kvitters: @kvitters.to_json}
+        end
       end
     end
   end

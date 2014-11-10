@@ -1,14 +1,10 @@
 module InternalTabsHelper
   def tabs
     content_tag :ul, class: "nav navbar-nav" do
-      unless logged_in?
-        content_tag(:li,link_to('Log in', {} , {class: 'active'})).html_safe
-      else
         InternalTab.arrange.map do |tab,children|
           url = url_for_arranged_tab(children)
           dropdown(tab, children) if url
         end.join.html_safe
-      end
     end
   end
 

@@ -67,6 +67,7 @@ function downloadKvitters() {
     var kvitters = JSON.parse(data.kvitters);
     var user_given_name = JSON.parse(data.user_given_name);
     var button = JSON.parse(data.button);
+    kvitter_time = new Date().getTime();
     $('#kvitter').empty();
     $('#kvitter').append('<h1 rel="popover" data-original-title="Kvitter" data-content="Kvitter is the internal Twitter of ISFiT. Write something inspiring, engaging, or simply informing, and share it with the world!">Kvitter</span>');
     $('#kvitter').append('<form name="kvitter" id="kvitter-form" action="kvitters/create.json" method="post"><textarea rows="3" style="width: 100%;"  name="message" placeholder="Si noe inspirerende, ' + user_given_name + '..."></textarea><input type="submit" class="btn btn-info" value="Kvitr!" />' + button + '</form>');
@@ -88,7 +89,7 @@ function downloadKvitters() {
         data: $('#kvitter-form').serialize(),
         dataType: 'json',
         success: function(data) {
-          prependKvitter(data);
+          prependKvitter(data, true);
           $('#kvitter-form')[0].reset();
           $('#kvitter-form > input').disabled = false;
         }
@@ -100,12 +101,20 @@ function downloadKvitters() {
 }
 
 function refreshKvitters() {
-  $.getJSON('/kvitters/last.json', function(data) {
+  $.getJSON('/kvitters/last.json?time='+kvitter_time, function(data) {
     var kvitters = JSON.parse(data.kvitters);
-
-    $('#kvitter-posts').empty();
+    console.log(data);
+    console.log(kvitter_time);
     kvitters.forEach(function(kvitter){
-      appendKvitter(kvitter);
+      var el = $('#kvitter-'+kvitter.id);
+      console.log(kvitter.id);
+      if (el.length == 1) {
+        console.log("Change count")
+        el.find('.count').html((kvitter.teller ? kvitter.teller : "0"));
+      }
+      else {
+        prependKvitter(kvitter);
+      }
     });
   });
 }
@@ -118,10 +127,9 @@ function appendKvitter(kvitt) {
 function prependKvitter(kvitt) {
   $('#kvitter-posts').prepend(kvitterFormatting(kvitt));
 }
-
 function kvitterFormatting(kvitt) {
-  var formatted = '' +
-    '<li id="kvitter-"'+kvitt.id+'" class="kvitter media">';
+
+  var formatted = '' + '<li id="kvitter-'+kvitt.id+'" class="kvitter media">';
 
   if (kvitt.user_image !== null) {
     formatted = formatted +
@@ -144,7 +152,7 @@ function kvitterFormatting(kvitt) {
         '<span class="pull-right"><strong>'+
           '<a href="#" class="awesome" data-id="'+kvitt.id+'"> \\o/ </a>'+
           '<span class="count"> ' +
-            (kvitt.awesome_count ? kvitt.awesome_count : "0")+
+            (kvitt.teller ? kvitt.teller : "0")+
           '</span></strong>'+
         '</span>'+
       '</div>' +
