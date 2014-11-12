@@ -17,14 +17,14 @@
   <tbody>
     <% @hosts.each do |host| %>
       <tr>
-        <td><%= host.first_name %></td>
-        <td><%= host.last_name %></td>
+        <td><%= host.firstname %></td>
+        <td><%= host.lastname %></td>
         <td><%= host.email %></td>
         <td><%= host.phone %></td>
-        <td><%= host.number %></td>
+        <td><%= host.capacity %></td>
         <td><%= link_to 'Show', host, :class => "btn-primary btn" %></td>
         <td><%= link_to 'Edit', edit_host_path(host), :class => "btn" %></td>
-        <td><%= link_to 'Destroy', host, :confirm => "Remove #{host.first_name} #{host.last_name}?", :method => :delete, :class => "btn btn-danger" %></td>
+        <td><%= link_to 'Destroy', host, :confirm => "Remove #{host.firstname} #{host.lastname}?", :method => :delete, :class => "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
