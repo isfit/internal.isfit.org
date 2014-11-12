@@ -1,20 +1,16 @@
-<h1>Søkere til ISFiT parliaments</h1>
+<div class="col">
+  <div class="col-md-8"><h1>Søkere til ISFiT parliaments</h1></div>
+  <div class="col-md-4"><h3> antall søkere <%= @isfit_parliaments.count %></h3></div>
 
-  
+
 <table class="table">
   <th>Navn</th>
   <th>email</th>
   <% @isfit_parliaments.each do |p|%>
-    <% if p.email.blank? %>
-      <tr>
-        <td><%=link_to p.name, p %></td>
-        <td>-</td>
-      </tr>
-    <% else %>
+      <% if p.read?(:notRead)
       <tr>
         <td><%=link_to p.name, p %></td>
         <td><%=p.email %></td>
       </tr>
-      <% end %>
     <% end %>
 </table>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141020165130) do
+ActiveRecord::Schema.define(version: 20141112184639) do
 
   create_table "accounts", force: true do |t|
     t.string   "name_nb"
@@ -441,20 +441,25 @@ ActiveRecord::Schema.define(version: 20141020165130) do
   end
 
   create_table "hosts", id: false, force: true do |t|
-    t.integer  "id",         default: 0,     null: false
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.string   "phone"
+    t.integer  "id",         default: 0, null: false
+    t.string   "firstname"
+    t.string   "lastname"
     t.string   "address"
     t.integer  "zipcode"
-    t.string   "place"
-    t.integer  "number"
-    t.text     "other"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "student"
-    t.boolean  "deleted",    default: false
+    t.string   "city"
+    t.string   "phone"
+    t.integer  "capacity"
+    t.text     "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email"
+    t.boolean  "beenhost"
+    t.integer  "sex"
+    t.boolean  "isstudent"
+    t.boolean  "animales"
+    t.integer  "sleeping"
+    t.boolean  "extraday"
+    t.boolean  "deleted"
   end
 
   create_table "information_categories", force: true do |t|
@@ -494,18 +499,6 @@ ActiveRecord::Schema.define(version: 20141020165130) do
     t.boolean "deleted",    default: false, null: false
     t.integer "tab_id"
     t.integer "tab_weight", default: -1
-  end
-
-  create_table "isfit_parliaments", force: true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.integer  "phone"
-    t.integer  "years_work_lost"
-    t.string   "place_of_study"
-    t.string   "remember_date"
-    t.string   "why_attend"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
   end
 
   create_table "isfit_tabs", force: true do |t|
@@ -556,6 +549,32 @@ ActiveRecord::Schema.define(version: 20141020165130) do
     t.string   "hexid"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "parlament_selectors", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "parliament_id"
+    t.integer  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "parliaments", id: false, force: true do |t|
+    t.integer  "id",                     default: 0, null: false
+    t.string   "name"
+    t.string   "email"
+    t.integer  "years_work_lost"
+    t.string   "place_of_study"
+    t.string   "remember_date"
+    t.string   "why_attend"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "why_ip_relevant"
+    t.string   "what_study"
+    t.integer  "how_hear_about_day"
+    t.integer  "how_corrupt"
+    t.integer  "had_cimilar_experience"
+    t.integer  "how_corrupt_tgi"
   end
 
   create_table "participant_quotes", force: true do |t|
@@ -855,6 +874,7 @@ ActiveRecord::Schema.define(version: 20141020165130) do
     t.string   "facebook_id"
     t.string   "facebook_token"
     t.string   "google_apps_username"
+    t.boolean  "single"
   end
 
   create_table "what_am_is", force: true do |t|
