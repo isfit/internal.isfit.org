@@ -24,7 +24,7 @@
         <td><%= host.capacity %></td>
         <td><%= link_to 'Show', host, :class => "btn-primary btn" %></td>
         <td><%= link_to 'Edit', edit_host_path(host), :class => "btn" %></td>
-        <td><%= link_to 'Destroy', host, :confirm => "Remove #{host.firstname} #{host.lastname}?", :method => :delete, :class => "btn btn-danger" %></td>
+        <td><%= link_to 'Remove', host, data: { confirm: "Remove #{host.firstname} #{host.lastname}?" }, :method => :delete, :class => "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>

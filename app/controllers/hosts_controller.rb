@@ -44,6 +44,7 @@ class HostsController < ApplicationController
   # POST /hosts.json
   def create
     @host = Host.new(params[:host])
+    @host.deleted = false
 
     respond_to do |format|
       if @host.save
