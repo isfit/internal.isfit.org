@@ -7,7 +7,6 @@
   <th>Navn</th>
   <th>email</th>
   <% @isfit_parliaments.each do |p|%>
-      <% if p.read?(:notRead)
       <tr>
         <td><%=link_to p.name, p %></td>
         <td><%=p.email %></td>
