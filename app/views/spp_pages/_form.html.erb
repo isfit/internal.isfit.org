@@ -1,14 +1,13 @@
 <%= formatting %>
-<%= bootstrap_form_for(@spp_page) do |f| %>
+<%= simple_form_for(@spp_page) do |f| %>
   <%= f.error_messages %>
-  <%= f.fieldset "spp_page" do %>
-          <%= f.text_field :title_en, class: "col-md-6" %>
-          <%= f.text_field :title_no, class: "col-md-6" %>
-          <%= f.text_area :ingress_en , class: "col-md-6", rows: 3%>
-          <%= f.text_area :ingress_no , class: "col-md-6", rows: 3%>
-          <%= f.text_area :body_en , class: "col-md-6"%>
-          <%= f.text_area :body_no , class: "col-md-6"%>
-          <%= f.text_field :image_text , class: "col-md-6"%>
-      <% end %>
+  <%= f.input :title_en %>
+  <%= f.input :title_no %>
+  <%= f.input :ingress_en %>
+  <%= f.input :ingress_no %>
+  <%= f.input :body_en, :input_html => { rows: 10 } %>
+  <%= f.input :body_no, :input_html => { rows: 10 } %>
+  <%= f.input :image_text %>
+
   <%= f.submit "Submit", class: "btn" %>
 <% end %>
