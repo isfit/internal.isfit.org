@@ -1,6 +1,6 @@
 # encoding: utf-8
 class IndabaSpeaker < ActiveRecord::Base
-	def status_name
+  def status_name
     case self.status
     when 1
       "Forkastet"
@@ -21,7 +21,7 @@ class IndabaSpeaker < ActiveRecord::Base
     else
       "Ukjent status"
     end
-	end
+  end
   def status_color_class
      case self.status
     when 1

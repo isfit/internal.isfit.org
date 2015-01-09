@@ -6,7 +6,7 @@
             <% @sections.each do |section| %>
                 <li><%= link_to section.name, {action: "section", id: section.id }, remote: true, id: "section_#{section.id}" %></li>
             <% end %>
-        <li><%= link_to @research.name, {action: "board", id: @research.id}, remote: true, id: "section_#{@research.id}" %></li> 
+        <li><%= link_to @research.name, {action: "board", id: @research.id}, remote: true, id: "section_#{@research.id}" %></li>
     </ul>
     <div class="tab-content">
         <%= render partial: "group", locals: { group: @board } %>

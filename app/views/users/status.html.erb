@@ -12,7 +12,7 @@ Missing hover effect on table head for sortable
     <% @users.each do |user| %>
     <tr>
       <td><%= user.full_name %></td>
-    
+
       <% if user.positions.last.groups.last.section_id %>
         <td>
           <%= Section.find(user.positions.last.groups.last.section_id).name_no %>
@@ -31,4 +31,4 @@ Missing hover effect on table head for sortable
     <% end %>
   </tbody>
 </table>
-  
+

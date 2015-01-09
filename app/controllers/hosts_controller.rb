@@ -5,7 +5,7 @@ class HostsController < ApplicationController
   # GET /hosts.json
   def index
     @hosts = Host.where(deleted: false)
-    @sum_of_available_beds = @hosts.sum(:number)
+    @sum_of_available_beds = @hosts.sum(:capacity)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -44,13 +44,14 @@ class HostsController < ApplicationController
   # POST /hosts.json
   def create
     @host = Host.new(params[:host])
+    @host.deleted = false
 
     respond_to do |format|
       if @host.save
         format.html { redirect_to hosts_path, notice: 'Host was successfully created.' }
         format.json { render json: @host, status: :created, location: @host }
       else
-        format.html { render action: "new" }
+        format.html { render :new }
         format.json { render json: @host.errors, status: :unprocessable_entity }
       end
     end
@@ -66,7 +67,7 @@ class HostsController < ApplicationController
         format.html { redirect_to @host, notice: 'Host was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render :edit }
         format.json { render json: @host.errors, status: :unprocessable_entity }
       end
     end

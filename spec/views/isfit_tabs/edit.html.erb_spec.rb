@@ -1,8 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "isfit_tabs/edit" do
   before(:each) do
-    @isfit_tab = assign(:isfit_tab, stub_model(IsfitTab))
+    @isfit_tab = assign(:isfit_tab, IsfitTab.create!(name_en: 'name_en', name_no: 'name_no'))
   end
 
   it "renders the edit isfit_tab form" do

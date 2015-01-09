@@ -52,7 +52,7 @@ class InternalTabsController < ApplicationController
     (eval("#{cont}.action_methods") -
      ApplicationController.methods -
      ApplicationController.action_methods -
-     Object.methods - 
+     Object.methods -
      ApplicationController.new.methods).sort.each {|met|
       ret << met
     }

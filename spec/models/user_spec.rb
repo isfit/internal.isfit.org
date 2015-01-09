@@ -56,12 +56,12 @@ describe User do
     user.full_name.should == "Iver Dihle Skjervum"
   end
 
-  describe "abilities" do 
+  describe "abilities" do
     subject { ability }
     let(:ability) {Ability.new(@user)}
     context "When is an ordinary func" do
       it "should only be able to delete his own room bookings" do
-       should be_able_to(:destroy, RoomBooking.new(:user => @user)) 
+       should be_able_to(:destroy, RoomBooking.new(:user => @user))
        should_not be_able_to(:destroy, RoomBooking.new)
       end
     end

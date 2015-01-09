@@ -1,4 +1,4 @@
-<%= render :partial => "menu" %>
+<%= render "menu" %>
 <div class="pull-right">
   <%= link_to 'New Wiki page', new_wiki_page_path, :class => "btn btn-primary"%>
 </div>
@@ -7,14 +7,14 @@
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
-              <th>Title</th>
-              <th>Body</th>
-              <th>User</th>
-              <th>Slug</th>
-              <th>Wiki category</th>
-              <th>Lock</th>
-              <th>Deleted</th>
-            <th></th>
+      <th>Title</th>
+      <th>Body</th>
+      <th>User</th>
+      <th>Slug</th>
+      <th>Wiki category</th>
+      <th>Lock</th>
+      <th>Deleted</th>
+      <th></th>
       <th></th>
       <th></th>
     </tr>
@@ -22,14 +22,14 @@
 
   <% @wiki_pages.each do |wiki_page| %>
     <tr>
-              <td><%= wiki_page.title %></td>
-              <td><%= wiki_page.body %></td>
-              <td><%= wiki_page.user %></td>
-              <td><%= wiki_page.slug %></td>
-              <td><%= wiki_page.wiki_category %></td>
-              <td><%= wiki_page.lock %></td>
-              <td><%= wiki_page.deleted %></td>
-            <td><%= link_to 'Show', wiki_page, :class => "btn-primary btn" %></td>
+      <td><%= wiki_page.title %></td>
+      <td><%= wiki_page.body %></td>
+      <td><%= wiki_page.user %></td>
+      <td><%= wiki_page.slug %></td>
+      <td><%= wiki_page.wiki_category %></td>
+      <td><%= wiki_page.lock %></td>
+      <td><%= wiki_page.deleted %></td>
+      <td><%= link_to 'Show', wiki_page, :class => "btn-primary btn" %></td>
       <td><%= link_to 'Edit', edit_wiki_page_path(wiki_page), :class => "btn" %></td>
       <td><%= link_to 'Destroy', wiki_page, confirm: 'Are you sure?', method: :delete, :class => "btn btn-danger" %></td>
     </tr>

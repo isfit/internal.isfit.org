@@ -25,7 +25,7 @@ class ApplicantsController < ApplicationController
       end
     end
 
-    @simple_stat = @simple_stat.sort {|a,b| b[1] <=> a[1]}  
+    @simple_stat = @simple_stat.sort {|a,b| b[1] <=> a[1]}
     @stat = @stat.sort {|a,b| b[1] <=> a[1]}
 
   end
@@ -46,7 +46,7 @@ class ApplicantsController < ApplicationController
       redirect_to(applicants_path, alert: "Du har ikke tilgang til denne søkeren") and return
     end
 
-    @status = {	0 => 'Not contacted',
+    @status = {  0 => 'Not contacted',
       1 => 'Meeting planned',
       2 => 'Meeting done',
       3 => 'Of interest',
@@ -118,9 +118,9 @@ class ApplicantsController < ApplicationController
   end
 
   def index
-    @applicants = visible_applicants
+    @applicants = visible_applicants.includes(:first_position, :second_position, :third_position, :recruited_position)
 
-    @status = {	0 => 'Not contacted',
+    @status = {  0 => 'Not contacted',
       1 => 'Meeting planned',
       2 => 'Meeting done',
       3 => 'Of interest',

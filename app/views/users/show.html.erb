@@ -1,4 +1,3 @@
-
 <div class="row">
   <div class="col-md-12">
     <h1><%= @user.full_name %></h1>
@@ -33,7 +32,16 @@
         <% if @user.postal_code %><%= @user.postal_code %> <%= @user.city %><% end %>
       </dd>
       <% end %>
+      <dt> Sivilstatus </dt>
+      <% if @user.single.nil? %>
+        <dd>Ikke oppgitt</dd>
+      <% elsif @user.single %>
+        <dd>Single</dd>
+      <% else %>
+        <dd>Har kjæreste</dd>
+      <% end %>
     </dl>
+
 
     <% unless @user.date_of_birth.nil? && @user.local_paper.blank? %>
     <dl class="dl-horizontal">
@@ -67,7 +75,7 @@
     </section>
     <% end %>
 
-    <% if current_user.role? 'admin' %>
+    <% if current_user.role?(:admin) %>
     <section id="user-roles">
       <h4>Roller</h4>
 
@@ -109,7 +117,7 @@
       </a>
     </p>
 
-    <% if current_user.role? 'admin' %>
+    <% if current_user.role?(:admin) %>
     <p>
       <a href="<%= impersonate_users_path(@user.username) %>">
         <button id="twitter-button" class="btn-info btn" style="width: 100%;">Impersonate</button>

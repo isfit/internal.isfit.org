@@ -13,7 +13,7 @@ Spork.prefork do
   require 'rspec/rails'
   require 'capybara/rails'
   require 'cancan/matchers'
-  
+
   Capybara.javascript_driver = :webkit
   #Capybara.default_wait_time = 60
   # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -41,20 +41,21 @@ Spork.prefork do
     config.before(:suite) do
       DatabaseCleaner.strategy = :transaction
     end
-    
+
     config.before(:each) do
       DatabaseCleaner.start
     end
-    
+
     config.after(:each) do
       DatabaseCleaner.clean
-    end 
+    end
 
     #config.fail_fast = true
 
     #config.include Capybara::DSL
 
     config.extend ControllerMacros, :type => :controller
+    config.extend RequestMacros, :type => :request
 
     # RSpec Rails can automatically mix in different behaviours to your tests
     # based on their file location, for example enabling you to call `get` and

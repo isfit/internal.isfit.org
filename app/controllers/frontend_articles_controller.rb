@@ -59,9 +59,9 @@ class FrontendArticlesController < ApplicationController
       #        @article.mail_sent = 1
       #        @article.save
       #      end
-      redirect_to(action:"index", notice: 'Article was successfully created.') 
+      redirect_to(action:"index", notice: 'Article was successfully created.')
     else
-      render action => "edit" 
+      render :edit
     end
   end
 
@@ -78,14 +78,14 @@ class FrontendArticlesController < ApplicationController
 
     @photo = Photo.find(params[:frontend_article][:photo_id]) if Photo.exists?(params[:frontend_article][:photo_id])
     @article.frontend_article_image = @photo.original_picture if @photo
- 
+
     if @article.update_attributes(params[:frontend_article])
       if not params[:frontend_article][:photo_id] == ""
         @article.reprocess_photos
       end
       redirect_to(@article, notice: 'Article was successfully updated.')
     else
-      render action: "edit" 
+      render :edit
     end
   end
 

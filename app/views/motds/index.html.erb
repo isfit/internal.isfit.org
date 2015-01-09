@@ -6,9 +6,8 @@
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
-              <th>Msg</th>
-            
-            <th></th>
+      <th>Msg</th>
+      <th></th>
       <th></th>
       <th></th>
     </tr>
@@ -16,11 +15,11 @@
 
   <% @motds.each do |motd| %>
     <tr>
-              <td><%= motd.msg %></td>
-            <td><%= link_to 'Show', motd, :class => "btn-primary btn" %></td>
+      <td><%= motd.msg %></td>
+      <td><%= link_to 'Show', motd, :class => "btn-primary btn" %></td>
       <td><%= link_to 'Edit', edit_motd_path(motd), :class => "btn" %></td>
       <td><%= link_to 'Destroy', motd, confirm: 'Are you sure?', method: :delete, :class => "btn btn-danger" %></td>
     </tr>
-    <% end %>
-  </table>
+  <% end %>
+</table>
 

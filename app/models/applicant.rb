@@ -9,12 +9,12 @@ class Applicant < ActiveRecord::Base
   def recruited_validation?
     errors.add(:base, "When status is set to recruited, the recruited position cannot be blank") if (status == 4 && recruited_position.nil?)
     errors.add(:base, "To set the recruited position, please set status as recruited") if (recruited_position && status != 4)
-  end  
+  end
 
 #  def groups
 #    Group.where("#{first_position.group_id} = id OR #{second_position.group_id} = id OR #{third_position.group_id} = id")
 #  end
-#  scope :akkur, lambda { |range| 
+#  scope :akkur, lambda { |range|
 #    joins("JOIN groups g1 ON g1.id = #{first_position.group_id}, JOIN groups g2 ON g2.id = #{second_position.group_id}, JOIN groups g3 ON g3.id =  #{third_position.group_id}").where("g1.id = #{user.position.group_id} OR g2.id "
 
   def self.applicants_in_same_section(user)
@@ -34,7 +34,7 @@ class Applicant < ActiveRecord::Base
     end
     return app
   end
-  
+
   def self.applicants_in_same_group(user)
     applicants = Applicant.where(deleted: 0).where(has_account: false).all
     app = Array.new

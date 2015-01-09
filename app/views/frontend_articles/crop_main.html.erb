@@ -1,28 +1,29 @@
 <script type="text/javascript">
 </script>
 
-
 <h1>Crop picture here:</h1>
 <h3>Large front-article<h3>
-    <%=image_tag @picture.original_picture.url, :id=>"main", :width => '600px' %>
-    <h3>Small front-article<h3>
-        <%=image_tag @picture.original_picture.url, :id=>"half" , :width => '600px'%>
-        <h3>Article header - photo</h3>
-        <%=image_tag @picture.original_picture.url, :id=>"photo-article" , :width => '600px'%>
+<%=image_tag @picture.original_picture.url, :id=>"main", :width => '600px' %>
 
-        <%= form_tag( {:action => "crop_create", :tab => params[:tab], :picture => @picture.id, :id=>params[:id]}) do  %>
-          <%= hidden_field_tag :x1, ""%>
-          <%= hidden_field_tag :y1, ""%>
-          <%= hidden_field_tag :x2, ""%>
-          <%= hidden_field_tag :y2, ""%>
-          <%= hidden_field_tag :x1_1, ""%>
-          <%= hidden_field_tag :y1_1, ""%>
-          <%= hidden_field_tag :x2_1, ""%>
-          <%= hidden_field_tag :y2_1, ""%>
-          <%= hidden_field_tag :x1_2, ""%>
-          <%= hidden_field_tag :y1_2, ""%>
-          <%= hidden_field_tag :x2_2, ""%>
-          <%= hidden_field_tag :y2_2, ""%> 
+<h3>Small front-article<h3>
+<%=image_tag @picture.original_picture.url, :id=>"half" , :width => '600px'%>
 
-          <%= submit_tag 'Save' %>
-        <%end%>
+<h3>Article header - photo</h3>
+<%=image_tag @picture.original_picture.url, :id=>"photo-article" , :width => '600px'%>
+
+<%= form_tag( {:action => "crop_create", :tab => params[:tab], :picture => @picture.id, :id=>params[:id]}) do  %>
+  <%= hidden_field_tag :x1, ""%>
+  <%= hidden_field_tag :y1, ""%>
+  <%= hidden_field_tag :x2, ""%>
+  <%= hidden_field_tag :y2, ""%>
+  <%= hidden_field_tag :x1_1, ""%>
+  <%= hidden_field_tag :y1_1, ""%>
+  <%= hidden_field_tag :x2_1, ""%>
+  <%= hidden_field_tag :y2_1, ""%>
+  <%= hidden_field_tag :x1_2, ""%>
+  <%= hidden_field_tag :y1_2, ""%>
+  <%= hidden_field_tag :x2_2, ""%>
+  <%= hidden_field_tag :y2_2, ""%>
+
+  <%= submit_tag 'Save' %>
+<%end%>

@@ -551,14 +551,6 @@ ActiveRecord::Schema.define(version: 20141112184639) do
     t.datetime "updated_at"
   end
 
-  create_table "parlament_selectors", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "parliament_id"
-    t.integer  "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "parliaments", id: false, force: true do |t|
     t.integer  "id",                     default: 0, null: false
     t.string   "name"

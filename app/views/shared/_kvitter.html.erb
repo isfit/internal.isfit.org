@@ -1,4 +1,4 @@
-<% content_for :script do %> 
+<% content_for :script do %>
   <script>
   var scrollTimer;
   var lastScrollFireTime = 0;
@@ -42,7 +42,7 @@
     <p class="kvitter-user"><%= kvitter.user.full_name %></p>
     <p class="kvitter-message"><%= kvitter.message %></p>
     <a href="#" class="awesome" data-id="<%= kvitter.id %>">\o/</a>
-    <span class="count"><%= kvitter.awesomes.count %></span>
+    <span class="count"><%= kvitter.teller %></span>
 
     <span class="small">
       <p>

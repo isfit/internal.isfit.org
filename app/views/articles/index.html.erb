@@ -19,7 +19,7 @@
     <%if can? :create, Motd %>
     <br>
         <%= link_to 'Nytt Innlegg', new_motd_path, class: "pull-right" %>
-        <%end%>       
+        <%end%>
   <% time = Time.new.wday %>
 
   <% if time == 3%>
@@ -54,13 +54,13 @@
           <%= link_to :edit, edit_article_path(article), :class => "btn btn-primary" %>
           <%= link_to :delete, article, confirm: "Are you sure?", method: :delete, :class => "btn btn-danger"  %>
 
-    
+
 
         </div>
         <h1><%= link_to article.title, article %>
         </h1>
           <small><%= "#{t('articles.index.created')} #{time_ago_in_words(article.created_at)} #{t('articles.index.ago')} " %><%= link_to article.user.full_name, article.user %>.</small>
-        <%= image_tag article.article_image.url(:thumb), class: :right %> 
+        <%= image_tag article.article_image.url(:thumb), class: :right %>
         <p>
           <%= format(truncate(article.body, length: 1000, omission: "...")) %>
           <%= article.body.length > 1000 ? (link_to("Read more...", article)):'' %>

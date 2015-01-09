@@ -49,7 +49,7 @@ private
     options = args.extract_options!
     if options["hint-title"].nil? || options["hint-content"].nil?
       ''
-    else 
+    else
       content_tag :p, class: "btn", rel: "popover", "data-original-title" => options["hint-title"], "data-content" => options["hint-content"] do
         "What is this?"
       end

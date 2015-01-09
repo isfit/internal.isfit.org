@@ -31,7 +31,7 @@ module ApplicationHelper
   end
 
   # Traverses a given tab for each of its children
-  # Works recursive, and traveres the tree-structure of the internal menu system. 
+  # Works recursive, and traveres the tree-structure of the internal menu system.
   # Also check for access before returning the url
   #
   # @param [Hash] a hash with keys as InternalTab and values as a hash of nested InternalTab
@@ -45,7 +45,17 @@ module ApplicationHelper
     return false if current.empty?
 
     current.each do |c|
-      return url_for(controller: c.controller, action: c.action, id:c.action_id) if can_access_link?(c)
+      # url_for retains the namespace when creating new urls. So if current url is
+      # /transport/drives, the url_for(controller: "frontend_articles", action: "index")
+      # will be /transport/articles/
+      # The rails official solution is to prepend a slash before the controller
+      if can_access_link?(c)
+        begin
+          return url_for(controller: c.controller, action: c.action, id:c.action_id)
+        rescue ActionController::UrlGenerationError
+          return url_for(controller: "/#{c.controller}", action: c.action, id:c.action_id)
+        end
+      end
     end
 
     children.each do |child|
@@ -73,7 +83,7 @@ module ApplicationHelper
 
   def can_access_link?(link)
     access = can?(link.action.to_sym, Kernel.const_get(link.controller.classify)) rescue true
-    link.controller && link.action && access   
+    link.controller && link.action && access
   end
 
 

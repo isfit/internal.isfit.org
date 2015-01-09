@@ -14,14 +14,14 @@ class SessionsController < ApplicationController
         redirect_to_target_or_default root_url, notice: generate_motivational(user)
       else
         flash.now[:alert] = "Login and password is correct, but you don't have access to internal. Please contact orakel@isfit.org."
-        render action: 'new'
+        render :new
       end
     elsif user && user.password_digest.nil?
       flash.now[:alert] = "Invalid login or password, contact orakel@isfit.org."
-      render action: 'new'
+      render :new
     else
       flash.now[:alert] = "Invalid login or password."
-      render action: 'new'
+      render :new
     end
   end
 
@@ -60,12 +60,12 @@ class SessionsController < ApplicationController
       return redirect_to login_path, :notice => "A new password has been sent to your private email"
     else
       flash.now[:alert] = "Could not generate new password please contact orakel@isfit.org"
-      return render :forgot_password	
+      return render :forgot_password
     end
   end
 
-  private 
-  def random_password(size = 8) 
+  private
+  def random_password(size = 8)
     chars = (('A'..'Z').to_a + ('a'..'z').to_a + ('0'..'9').to_a) - %w(i o O 1 I l 0)
     Array.new(size).collect{ chars.sample }.join
   end
@@ -102,7 +102,7 @@ class SessionsController < ApplicationController
       return "Du har enda ikke valgt kjønn. Vennligst #{view_context.link_to 'klikk her', edit_user_path(current_user.id) } for å gjøre dette og dukke opp i spillet 'Who am I'."
     elsif user.profile_picture_file_name == nil
       return "Du har enda ikke lagt inn et bilde av deg selv.Vennligst #{view_context.link_to 'klikk her', edit_user_path(current_user.id) } for å gjøre dette og dukke opp i spillet 'Who am I'. "
-    end  
+    end
     if user.birthday?
       return "Gratulerer med dagen, #{user.given_name}!"
     end
@@ -113,7 +113,7 @@ class SessionsController < ApplicationController
       return "Husk: en god ISFiT-funksjonær er en funksjonær som også sover!"
     end
 
-    
+
     return motivationals[rand(motivationals.size)]
   end
 

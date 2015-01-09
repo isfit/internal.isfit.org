@@ -5,7 +5,7 @@
 # brukes til å hente attributter, seksjoner, gjenger etc. av en bruker
 
 class User < ActiveRecord::Base
-  
+
   validates :password, length: {minimum: 8}, allow_blank: true
   self.primary_key = :id
   has_secure_password
@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
 
   # Returns all users in a given festival
   def self.in_festival(year=2015, sort_columns="family_name, given_name")
-    id = Festival.find_by_year(year).id
+    id = Festival.find_by(year: year).id
     joins(:positions => :groups).joins("LEFT OUTER JOIN sections ON sections.id = groups.section_id").where("groups.festival_id = ? OR sections.festival_id = ?", id,id).group("users.id").order(sort_columns)
   end
 
@@ -65,9 +65,8 @@ class User < ActiveRecord::Base
   end
 
   #Return if user has role
-  def role?(r)
-    role = Role.where(name:r).first
-    roles.include?(role)
+  def role?(role)
+    self.roles.any? { |r| r.name.underscore.to_sym == role }
   end
 
   def self.birthday_notify
@@ -98,7 +97,7 @@ class User < ActiveRecord::Base
       false
     end
   end
- 
+
   def changeLdapPassword(pass)
     require 'net/ldap'
     require 'openssl'

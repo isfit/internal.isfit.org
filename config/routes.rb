@@ -20,7 +20,7 @@ InternalIsfitOrg::Application.routes.draw do
     end
   end
 
-  
+
 
   resources :hosts
 
@@ -30,7 +30,7 @@ InternalIsfitOrg::Application.routes.draw do
 
 #for å legge til ny subsciber
   post 'subscription/:subscription' => 'subscription#new_subscriber', as: 'subscription'
-  post 'unsubscription/:unsubscription' => 'subscription#undo_subscriber', as: 'unsubscription' 
+  post 'unsubscription/:unsubscription' => 'subscription#undo_subscriber', as: 'unsubscription'
 
   resources :participant_quotes
 
@@ -78,7 +78,7 @@ InternalIsfitOrg::Application.routes.draw do
       end
     end
   end
-  
+
   resources :spp_pages
 
   scope "/wiki" do
@@ -109,7 +109,7 @@ InternalIsfitOrg::Application.routes.draw do
 
   get 'oauth/start'
   get 'oauth/callback'
-  
+
   resources :isfit_pages
 
   resources :presentations
@@ -120,12 +120,12 @@ InternalIsfitOrg::Application.routes.draw do
   get "kvitters/:id/awesome" => "kvitters#awesome"
 
   get "hashtags/:hashtag" => "hashtags#show"
-  
+
   get "contact_logs/new/:contact_log_unit_id" => "contact_logs#new", as: "new_contact_log_with_unit"
   resources :contact_logs, except: [:edit, :update, :create]
   resources :contact_log_units, except: [:edit, :update, :create]
   resources :contact_log_people, except: [:edit, :update, :create]
-  resources :rooms 
+  resources :rooms
   get "room_bookings/:week/:year" => "room_bookings#new", as: "new_room_booking"
   resources :room_bookings
 
@@ -145,7 +145,7 @@ InternalIsfitOrg::Application.routes.draw do
       get 'delete'
     end
   end
-  
+
   resources :frontend_articles do
     collection do
       post 'photo'
@@ -158,7 +158,7 @@ InternalIsfitOrg::Application.routes.draw do
       post 'crop_create'
     end
   end
-  
+
   resources :gallery_albums do
     collection do
       post 'add_photo'
@@ -170,6 +170,7 @@ InternalIsfitOrg::Application.routes.draw do
 
   resources :accounts do
     collection do
+      get 'choose'
       get 'travel'
       get 'voucher'
       get 'invoice'
@@ -191,7 +192,7 @@ InternalIsfitOrg::Application.routes.draw do
   get "last_applicant" => "applicants#last"
 
   resources :applicants do
-    collection do 
+    collection do
       get 'statistics'
       get 'interviews'
     end
@@ -207,7 +208,7 @@ InternalIsfitOrg::Application.routes.draw do
       post :crop_create
     end
   end
-  resources :internal_tabs do 
+  resources :internal_tabs do
     collection do
       post 'get_actions'
     end
@@ -225,7 +226,7 @@ InternalIsfitOrg::Application.routes.draw do
   get 'forgot_password' => 'sessions#forgot_password', :as => :forgot_password
   match 'mail_password', to: 'sessions#mail_password', via: [:get, :post], :as => :mail_password
   resources :sessions
-  resources :users do 
+  resources :users do
     collection do
       get 'impersonate/:username', action: :impersonate, as: :impersonate
       get 'unimpersonate', action: :unimpersonate

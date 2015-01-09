@@ -4,12 +4,12 @@ class Driver < ActiveRecord::Base
   has_many :drives
 
   def username
-  	"#{user.full_name} (#{user.username})"
+    "#{user.full_name} (#{user.username})"
   end
 
   def self.with_shift_inside_date_range(start_time, end_time)
-  	shifts = Shift.shifts_inside_date_range(start_time,end_time)
-  	shifts.map {|shift| Driver.find(shift.driver_id)}.uniq
+    shifts = Shift.shifts_inside_date_range(start_time,end_time)
+    shifts.map {|shift| Driver.find(shift.driver_id)}.uniq
 
   end
 
@@ -39,6 +39,6 @@ class Driver < ActiveRecord::Base
   end
 
   def name
-  	"#{user.given_name}"
+    "#{user.given_name}"
   end
 end
