@@ -1,15 +1,22 @@
-<div class="col">
+<div class="row">
   <div class="col-md-8"><h1>Søkere til ISFiT parliaments</h1></div>
   <div class="col-md-4"><h3> antall søkere <%= @isfit_parliaments.count %></h3></div>
+</div>
 
 
-<table class="table">
-  <th>Navn</th>
-  <th>email</th>
+<table class="table table-bordered table-striped sortable">
+  <thead>
+    <th>Søker nr</th>
+    <th>Status</th>
+  </thead>
+  <tbody>
+  <% x = 1 %>
   <% @isfit_parliaments.each do |p|%>
       <tr>
-        <td><%=link_to p.name, p %></td>
-        <td><%=p.email %></td>
+        <td><%=link_to "Søker #{x}", p %></td>
+        <td><%= evalueted?(p.status) %></td>
       </tr>
+      <% x += 1 %>
     <% end %>
+  </tbody>
 </table>

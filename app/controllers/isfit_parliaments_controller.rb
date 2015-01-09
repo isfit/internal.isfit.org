@@ -4,7 +4,7 @@ class IsfitParliamentsController < ApplicationController
   # GET /isfit_parliaments
   # GET /isfit_parliaments.json
   def index
-    @isfit_parliaments = IsfitParliament.all
+    @isfit_parliament = IsfitParliament.all
 
     respond_to do |format|
       format.html # index.html.erb

@@ -37,6 +37,14 @@ module ParliamentsHelper
     end
   end
 
+  def evalueted?(ans)
+    case ans
+    when 0 then "Vurdert"
+    else "Ikke Vurdert"
+    end
+  end
+
+
 
 
 end

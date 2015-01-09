@@ -9,6 +9,7 @@
       <dd><%= @isfit_parliament.place_of_study %></dd>
   </dl>
 </dl>
+
 <br>
 <dl>
   <dt>Hvorfor tror du det er relevant for norske studenter å være med på ISFiT Parliament?</dt>
@@ -75,4 +76,12 @@
     <dd><%= @isfit_parliament.why_attend %></dd>
     <% end %>
 </dl>
+<br>
+<br>
+  <%if @isfit_parliament.status.blank? %> 
+   <%= link_to 'Vurder', seen_parliament_path(@isfit_parliament), class: "btn btn-primary", method: :post %>
+   <%end%>
+
+<br>
+<br>
 <br>
