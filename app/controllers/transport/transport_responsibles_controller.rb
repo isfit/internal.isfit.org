@@ -4,7 +4,7 @@ class Transport::TransportResponsiblesController < ApplicationController
   # GET /transport/transport_responsibles
   # GET /transport/transport_responsibles.json
   def index
-    @transport_responsibles = TransportResponsible.all
+    @transport_responsibles = TransportResponsible.includes(:user, :group)
   end
 
   # GET /transport/transport_responsibles/1

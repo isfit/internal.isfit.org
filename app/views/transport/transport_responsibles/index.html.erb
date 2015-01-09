@@ -9,7 +9,9 @@
     <% @transport_responsibles.each do |transport_responsible| %>
     	<tr>
     		<td>
-	    		<%= link_to transport_responsible.user.full_name, transport_responsible.user %>
+    			<% if transport_responsible.user %>
+	    			<%= link_to transport_responsible.user.full_name, transport_responsible.user %>
+	    		<% end %>
 	    	</td>
 	    	<td>
 		    	<%= transport_responsible.group.name %>

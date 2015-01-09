@@ -114,7 +114,7 @@ class Transport::DrivesController < ApplicationController
 
 
   def index
-    @drives = drives.where(true)
+    @drives = drives.includes(:car, :user).includes(driver: :user)
   end
 
   def show_all

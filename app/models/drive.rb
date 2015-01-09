@@ -4,12 +4,9 @@ class Drive < ActiveRecord::Base
   belongs_to :group
   belongs_to :user
 
-  validates :start_time, presence: true, format: {
-                        with: /\d{2}\/\d{2}\/\d{4}\s\d{2}\:\d{2}/,
-                        message: "invalid date format" }
-  validates :end_time, presence: true, format: {
-                        with: /\d{2}\/\d{2}\/\d{4}\s\d{2}\:\d{2}/,
-                        message: "invalid date format" }
+  validates_presence_of :start_time
+  #validates :start_time, presence: true
+  #validates :end_time, presence: true
   validates_presence_of :group_id
   validates_presence_of :description
 
@@ -76,14 +73,20 @@ class Drive < ActiveRecord::Base
   end
 
   def time_summary
-    "#{start_time.strftime("%H:%M")} - #{end_time.strftime("%H:%M")}"
+    if end_time
+      "#{start_time.strftime("%H:%M")} - #{end_time.strftime("%H:%M")}"
+    else
+      "#{start_time.strftime("%H:%M")}"
+    end
   end
 
   def date_summary
-    if start_time.strftime("%d") == end_time.strftime("%d")
+    if (start_time.strftime("%d") == end_time.strftime("%d") if end_time)
       "#{start_time.strftime("%Y-%m-%d")}"
-    else
+    elsif end_time
       "#{start_time.strftime("%Y-%m-%d")} - #{end_time.strftime("%Y-%m-%d")}"
+    else
+      "#{start_time.strftime("%Y-%m-%d")}"
     end
   end
 

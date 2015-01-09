@@ -3,7 +3,7 @@
 class Transport::DriversController < ApplicationController
   before_filter :validate_username, :only => [:create]
   def index
-    @drivers = Driver.all
+    @drivers = Driver.includes(:user)
   end
 
   def show

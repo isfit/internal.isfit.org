@@ -27,7 +27,7 @@
 	<div class="form-group">
 		<%= f.collection_select(:status, Drive.get_statuses, :first, :last,{}, {:class=>'form-control'}) %>
 	</div>
-		<%= f.submit %>
+		<%= submit_tag "", :style => "display: none;" %>
 	<% end %>
 
 	</td>
