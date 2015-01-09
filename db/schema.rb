@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141106184003) do
+ActiveRecord::Schema.define(version: 20141112184639) do
 
   create_table "accounts", force: true do |t|
     t.string   "name_nb"
@@ -441,20 +441,25 @@ ActiveRecord::Schema.define(version: 20141106184003) do
   end
 
   create_table "hosts", id: false, force: true do |t|
-    t.integer  "id",         default: 0,     null: false
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.string   "phone"
+    t.integer  "id",         default: 0, null: false
+    t.string   "firstname"
+    t.string   "lastname"
     t.string   "address"
     t.integer  "zipcode"
-    t.string   "place"
-    t.integer  "number"
-    t.text     "other"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "student"
-    t.boolean  "deleted",    default: false
+    t.string   "city"
+    t.string   "phone"
+    t.integer  "capacity"
+    t.text     "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email"
+    t.boolean  "beenhost"
+    t.integer  "sex"
+    t.boolean  "isstudent"
+    t.boolean  "animales"
+    t.integer  "sleeping"
+    t.boolean  "extraday"
+    t.boolean  "deleted"
   end
 
   create_table "information_categories", force: true do |t|

@@ -1,5 +1,12 @@
 InternalIsfitOrg::Application.routes.draw do
 
+  resources :parliaments do
+    member do
+      post 'seen'
+
+    end
+  end
+
   resources :motds
 
 

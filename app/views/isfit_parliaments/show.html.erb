@@ -1,0 +1,83 @@
+<h1><%= @isfit_parliament.name %></h1>
+  
+<dl class="dl-horizontal">
+  <dl>
+    <dt>email</dt>
+      <dd><%= @isfit_parliament.email %></dd>
+    <dt>Studieplass</dt>
+      <dd><%= @isfit_parliament.place_of_study %></dd>
+  </dl>
+</dl>
+<br>
+<dl>
+  <dt>Hvorfor tror du det er relevant for norske studenter å være med på ISFiT Parliament?</dt>
+  <% if @isfit_parliament.why_ip_relevant.blank? %>
+    <dd><%= @isfit_parliament.name %> har ikke svart</dd>
+  <% else %>
+    <dd><%= @isfit_parliament.why_ip_relevant %></dd>
+    <% end %>
+  </dl>
+<br>
+<dl>
+  <dt>Kommer du til å huske 13 februar?</dt>
+  <% if @isfit_parliament.remember_date %>
+    <dd><%= @isfit_parliament.name %> har ikke svart</dd>
+  <% else %>
+    <dd><%= @isfit_parliament.remember_date %></dd>
+    <% end %>
+</dl>
+<br>
+  <dt>Hvordan hørte du om denne dagen?</dt>
+  <% if @isfit_parliament.how_hear_about_day.blank? %>
+    <dd><%= @isfit_parliament.name %> har ikke svart på dette</dd>
+  <% else %>
+    <dd><%= @isfit_parliament.how_hear_about_day %></dd>
+    <% end %>
+</dl>
+<br>
+  <dt>Hvor mange Norske årsverk (et års arbeid for en person) tror du går tapt i Norge hvert år på grunn av korrupsjon?</dt>
+  <% if @isfit_parliament.years_work_lost.blank? %>
+    <dd><%= @isfit_parliament.name %> har ikke svart på dette</dd>
+  <% else %>
+    <dd><%= @isfit_parliament.years_work_lost %></dd>
+    <% end %>
+</dl>
+<br>
+  <dt>Svar på spørsmålet om korrupsjon</dt>
+  <% if @isfit_parliament.how_corrupt.blank? %>
+    <dd><%= @isfit_parliament.name %> har ikke svart på dette</dd>
+  <% else %>
+    <dd><%= @isfit_parliament.how_corrupt %></dd>
+    <% end %>
+</dl>
+<br>
+  <dt>Har du opplevd en lignende hendelse selv?</dt>
+  <% if @isfit_parliament.had_cimilar_experience.blank? %>
+    <dd><%= @isfit_parliament.name %> har ikke svart på dette</dd>
+  <% else %>
+    <dd><%= @isfit_parliament.had_cimilar_experience %></dd>
+    <% end %>
+</dl>
+<br>
+  <dt>Svar på grad av korrupsjonshendelsen fra <%= link_to('theglobalinfection','http://www.theglobalinfection.com') %></dt>
+  <% if @isfit_parliament.had_cimilar_experience.blank? %>
+    <dd><%= @isfit_parliament.name %> har ikke svart på dette</dd>
+  <% else %>
+    <dd><%= @isfit_parliament.had_cimilar_experience %></dd>
+    <% end %>
+</dl>
+<br>
+  <dt>Hvorfor har du lyst til å delta på ISFiT Parliament?</dt>
+  <% if @isfit_parliament.why_attend.blank? %>
+    <dd><%= @isfit_parliament.name %> har ikke svart på dette</dd>
+  <% else %>
+    <dd><%= @isfit_parliament.why_attend %></dd>
+    <% end %>
+</dl>
+
+
+
+
+
+
+
