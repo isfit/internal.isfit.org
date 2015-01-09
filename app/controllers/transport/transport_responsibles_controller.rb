@@ -1,4 +1,5 @@
 class Transport::TransportResponsiblesController < ApplicationController
+  load_and_authorize_resource
   before_action :set_transport_responsible, only: [:show, :edit, :update, :destroy]
 
   # GET /transport/transport_responsibles
