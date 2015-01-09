@@ -1,6 +1,7 @@
 #!/bin/env ruby
 # encoding: utf-8
 class Transport::ShiftsController < ApplicationController
+  load_and_authorize_resource
   before_filter :find_driver
   before_filter :new_shift, :only => [:index]
   before_filter :validate_form, :only => [:create,:multiple_create]
@@ -48,7 +49,7 @@ class Transport::ShiftsController < ApplicationController
   end
 
   def multiple_new
-    @drivers = Driver.all
+    @drivers = Driver.includes(:user)
   end
 
   def multiple_create

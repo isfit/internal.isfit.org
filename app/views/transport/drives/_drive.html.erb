@@ -1,7 +1,7 @@
 <tr class="expand">
 	<td><%= drive.id %></td>
 	<td>
-		<%= drive.car_desc %>
+		<%= drive.car ? drive.car.desc : "-" %>
 	</td>
 	<td>
 	<%if drive.driver %>
@@ -22,12 +22,12 @@
 	</td>
 	<td><%= drive.time_summary %></td>
 	<td class="drive_date"><%= drive.date_summary %></td>
-	<td>
+	<td width="200px">
 	<%= form_for([:transport, drive], remote: true,:html => {:class => 'small_edit_drive'}) do |f| %>
 	<div class="form-group">
 		<%= f.collection_select(:status, Drive.get_statuses, :first, :last,{}, {:class=>'form-control'}) %>
 	</div>
-		<%= f.submit %>
+		<%= submit_tag "", :style => "display: none;" %>
 	<% end %>
 
 	</td>
