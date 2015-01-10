@@ -115,7 +115,11 @@ class Transport::DrivesController < ApplicationController
 
 
   def index
-    @drives = drives.includes(:car, :user).includes(driver: :user)
+    if TransportResponsible.find_by(user: current_user)
+      @drives = drives.by_user(current_user).includes(:car,:user).includes(driver: :user)
+    else
+      @drives = drives.includes(:car, :user).includes(driver: :user)
+    end
   end
 
   def show_all

@@ -13,7 +13,7 @@
 	<li><%= link_to(:"Transport Ansvarlige", transport_transport_responsibles_path) %></li>
 	<li><%= link_to(:"Dashboard", transport_dashboard_path) %></li>
 	<% else %>
-	<li>Mine oppdrag</li>
+	<li><%= link_to(:"Mine oppdrag", transport_transport_root_path) %></li>
 	<% end %>
 
 </ul>
