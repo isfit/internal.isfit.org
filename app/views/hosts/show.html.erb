@@ -40,7 +40,7 @@
   </p>
 
   <p>
-  <b>Number:</b>
+  <b>Number of participants:</b>
   <%= @host.capacity %>
   </p>
 
@@ -48,4 +48,63 @@
   <b>Other:</b>
   <%= @host.comments %>
   </p>
+
+  <p>
+  <b>Been host before? : </b>  
+    <% if @host.beenhost %>
+      Ja
+    <% else %>
+      nei
+    <% end %>
+  </p>
+
+  <p>
+  <b>Is student? : </b>  
+    <% if @host.isstudent %>
+      Ja
+    <% else %>
+      nei
+    <% end %>
+  </p>
+
+  <p>
+  <b>Host one extra day? : </b>  
+    <% if @host.extraday %>
+      Ja
+    <% else %>
+      nei
+    <% end %>
+  </p>
+
+  <p>
+  <b>Has animals?: </b>  
+    <% if @host.animales %>
+      Ja
+    <% else %>
+      nei
+    <% end %>
+  </p>
+  
+  <p>
+  <b>Sleeping facilities:</b>
+    <% if @host.sleeping.eql? 0 %>
+      Sofa
+    <% elsif @host.sleeping.eql? 1 %>
+      Seng
+    <% else %> 
+      Trenger å låne madrass
+    <% end %>
+  </p>
+
+  <p>
+  <b>Sex:</b>
+    <% if @host.sex.eql? 0 %>
+      Ingen kjønn er foretrukket
+    <% elsif @host.sex.eql? 1 %>
+      Kvinne
+    <% else %> 
+      Mann
+    <% end %>
+  </p>
+
 </fieldset>
