@@ -78,10 +78,17 @@
 </dl>
 <br>
 <br>
-  <%if @isfit_parliament.status.blank? %> 
-   <%= link_to 'Vurder', seen_parliament_path(@isfit_parliament), class: "btn btn-primary", method: :post %>
-   <%end%>
 
+<%= simple_form_for(@isfit_parliament, wrapper: :horizontal_form,url: seen_parliament_path, method: :post, :html => {:class => 'form-horizontal' }) do |f| %>
+  <%= f.error_messages %>
+    <%= f.input :status, collection: [["Ja",0],["Kanskje",1],["Nei",2]], as: :radio_buttons, wrapper: :vertical_radio_and_checkboxes%>
+  <div class="form-group">
+      <%= f.button :submit %>
+  </div>
+<% end %>
+
+<br>
+<br>
 <br>
 <br>
 <br>

@@ -2,6 +2,15 @@ $(function () { $("[data-toggle='tooltip']").tooltip(); });
 
 $(function () {
   $('.sortable').tablesorter({ sortList: [[1,0]] });
+  $('.sortable-filter').tablesorter({ 
+    sortList: [[1,0]], 
+    theme:"bootstrap",
+    widgets: ['filter','pager'],
+    widgetOptions: {
+      pager_size: 10,
+
+    }
+  }); 
 
   $('.chosen-select').chosen();
 

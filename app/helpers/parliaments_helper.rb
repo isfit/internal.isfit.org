@@ -39,7 +39,9 @@ module ParliamentsHelper
 
   def evalueted?(ans)
     case ans
-    when 0 then "Vurdert"
+    when 0 then "Ja"
+    when 1 then "kanskje"
+    when 2 then "Nei"
     else "Ikke Vurdert"
     end
   end

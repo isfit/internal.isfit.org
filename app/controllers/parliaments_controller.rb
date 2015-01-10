@@ -1,7 +1,7 @@
 class ParliamentsController < ApplicationController
   
   def index
-     @isfit_parliaments = Parliament.order('status ASC')
+     @isfit_parliaments = Parliament.all
    end
   
   def show
@@ -10,8 +10,7 @@ class ParliamentsController < ApplicationController
 
   def seen
     @isfit_parliament = Parliament.find(params[:id])
-    @isfit_parliament.status = 0
-    @isfit_parliament.save
+    @isfit_parliament.update_attributes(params[:parliament])
     redirect_to action: "show"
   end
 

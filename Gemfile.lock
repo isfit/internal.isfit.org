@@ -154,6 +154,8 @@ GEM
     jquery-rails (3.1.2)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-tablesorter (1.13.4)
+      railties (>= 3.1, < 5)
     jquery-ui-rails (5.0.2)
       railties (>= 3.2.16)
     jquery.fileupload-rails (1.10.1)
@@ -363,6 +365,7 @@ DEPENDENCIES
   guard-spork
   jbuilder
   jquery-rails (~> 3.1.1)
+  jquery-tablesorter
   jquery-ui-rails
   jquery.fileupload-rails
   memcache-client
@@ -385,7 +388,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 4.0.3)
   simple_calendar (~> 1.1.0)
-  simple_form (~> 3.1.0.rc2)
+  simple_form (= 3.1.0.rc2)
   spork-rails (~> 4.0.0)
   sqlite3
   therubyracer
