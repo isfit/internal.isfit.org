@@ -1,7 +1,7 @@
 
 
 $(function(){
-  $("button").click(function(){
+  $("#button-hide").click(function(){
     $("hide").toggle();
   });
 });
