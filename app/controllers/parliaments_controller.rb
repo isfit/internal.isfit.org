@@ -1,7 +1,7 @@
 class ParliamentsController < ApplicationController
   
   def index
-     @isfit_parliaments = Parliament.order()
+     @isfit_parliaments = Parliament.all
    end
   
   def show
