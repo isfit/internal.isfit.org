@@ -15,7 +15,7 @@ class Drive < ActiveRecord::Base
   scope :by_user, -> user { where(user: user) }
   scope :occuring, -> { where("start_time <= ? AND ? <= end_time", Time.zone.now,Time.zone.now)}
   scope :by_status, -> status {where(status: status)}
-  scope :between, -> start_time, end_time { where("start_time >= ? AND end_time <= ?", start_time,end_time)}
+  scope :between, -> start_time, end_time { where("start_time >= ? AND start_time <= ?", start_time,end_time)}
   def self.get_datetimes_from_params(params)
     start_time =  DateTime.parse("#{params[:date]} #{params[:start_time]}:00")
     end_time =  DateTime.parse("#{params[:date]} #{params[:end_time]}:00")
@@ -76,17 +76,17 @@ class Drive < ActiveRecord::Base
     if end_time
       "#{start_time.strftime("%H:%M")} - #{end_time.strftime("%H:%M")}"
     else
-      "#{start_time.strftime("%H:%M")}"
+      "#{start_time.strftime("%H:%M")} -"
     end
   end
 
   def date_summary
     if (start_time.strftime("%d") == end_time.strftime("%d") if end_time)
-      "#{start_time.strftime("%Y-%m-%d")}"
+      "#{start_time.strftime("%Y-%m-%d")} - "
     elsif end_time
       "#{start_time.strftime("%Y-%m-%d")} - #{end_time.strftime("%Y-%m-%d")}"
     else
-      "#{start_time.strftime("%Y-%m-%d")}"
+      "#{start_time.strftime("%Y-%m-%d")} - "
     end
   end
 
