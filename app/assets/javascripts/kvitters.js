@@ -129,7 +129,7 @@ function kvitterFormatting(kvitt) {
 
   if (kvitt.user_image !== null) {
     formatted = formatted +
-      '<a class="pull-left" href="#">' +
+      '<a class="pull-left" href="/users/'+ kvitt.user_id +'">' +
         '<img class="media-object" src="' + kvitt.user_image + '">' +
       '</a>';
   }
