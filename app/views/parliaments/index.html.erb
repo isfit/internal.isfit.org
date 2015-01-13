@@ -1,6 +1,8 @@
 <div class="row">
-  <div class="col-md-8"><h1>Søkere til ISFiT parliaments</h1></div>
-  <div class="col-md-4"><h3> antall søkere <%= @isfit_parliaments.count %></h3></div>
+  <div class="col-md-6"><h1>Søkere til ISFiT parliaments</h1></div>
+  <div class="col-md-3"><h3>Søkere status Ja: <%= @isfit_parliaments.where(status: 0).count%></h3></div>
+  <div class="col-md-3"><h3>Søkere totalt <%= @isfit_parliaments.count %></h3></div>
+
 </div>
 
 
@@ -14,7 +16,7 @@
   <% @isfit_parliaments.each do |p|%>
       <tr>
         <td><%=link_to "Søker #{x}", p %></td>
-        <td><%= evalueted?(p.status) %></td>
+        <td><%= evaluated?(p.status) %></td>
       </tr>
       <% x += 1 %>
     <% end %>

@@ -37,7 +37,7 @@ module ParliamentsHelper
     end
   end
 
-  def evalueted?(ans)
+  def evaluated?(ans)
     case ans
     when 0 then "Ja"
     when 1 then "kanskje"
