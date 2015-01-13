@@ -1,6 +1,8 @@
 class MotdsController < ApplicationController
   # GET /motds
   # GET /motds.json
+  load_and_authorize_resource
+
   def index
     @motds = Motd.all
 

@@ -1,4 +1,5 @@
 class Transport::CarsController < ApplicationController
+  load_and_authorize_resource
   def create
     @car = Car.new(params[:car])
     respond_to do |format|

@@ -1,10 +1,11 @@
 class Transport::TransportResponsiblesController < ApplicationController
+  load_and_authorize_resource
   before_action :set_transport_responsible, only: [:show, :edit, :update, :destroy]
 
   # GET /transport/transport_responsibles
   # GET /transport/transport_responsibles.json
   def index
-    @transport_responsibles = TransportResponsible.all
+    @transport_responsibles = TransportResponsible.includes(:user, :group)
   end
 
   # GET /transport/transport_responsibles/1

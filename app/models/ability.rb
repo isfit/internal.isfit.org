@@ -74,9 +74,15 @@ class Ability
       can :manage, Driver
       can :manage, Shift
       can :manage, Car
+      can :manage, TransportResponsible
       can [:index, :create_driver, :info, :driver_new, :driver_register], :drive_admin
       #can [:index, :create, :admin, :admin_create_car, :admin_destroy_car, :admin_edit_car, :admin_add_driver, :todo_all, :todo_you, :todo_user, :save_comment, :update_completed, :info, :driver_new, :driver_register ], :transport_system
       can [:index, :create, :destroy, :shifts_you], :driver_shift
+    end
+
+    if TransportResponsible.find_by(user: user)
+      can [:index, :create], Drive
+      can :read, Drive, :user_id => user.id
     end
     if user.role?(:plenarysessions)
       can :manage, IndabaSpeaker

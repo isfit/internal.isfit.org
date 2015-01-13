@@ -1,6 +1,7 @@
 #!/bin/env ruby
 # encoding: utf-8
 class Transport::DrivesController < ApplicationController
+  load_and_authorize_resource
   #load_and_authorize_resource :drive
   before_filter :find_driver
   before_filter :validate_datetime, :only => [:search_result]
@@ -114,7 +115,11 @@ class Transport::DrivesController < ApplicationController
 
 
   def index
-    @drives = drives.where(true)
+    if TransportResponsible.find_by(user: current_user)
+      @drives = drives.by_user(current_user).includes(:car,:user).includes(driver: :user)
+    else
+      @drives = drives.includes(:car, :user).includes(driver: :user)
+    end
   end
 
   def show_all

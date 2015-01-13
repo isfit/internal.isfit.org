@@ -24,7 +24,7 @@ set :branch, "master"
 
 set :rails_env, 'production'
 
-set :linked_files, %w{config/database.yml config/secrets.yml config/password.yml}
+set :linked_files, %w{config/database.yml config/secrets.yml config/password.yml config/oauth.yml}
 
 set :linked_dirs, %w{ log public/assets public/system }
 

@@ -47,7 +47,7 @@ gem 'exception_notification', '~> 4.0.1'
 gem 'sass-rails', '~> 4.0.3'
 gem 'coffee-rails', '~> 4.0.1'
 gem 'uglifier', '>= 1.3.0'
-gem 'bootstrap-sass', '~> 3.2.0'
+gem 'bootstrap-sass', '~> 3.3.1'
 #gem 'bootstrap-datepicker-rails'
 gem 'momentjs-rails', '~> 2.8.1'
 gem 'datetimepicker-rails', :git => 'git://github.com/zpaulovics/datetimepicker-rails.git',  \

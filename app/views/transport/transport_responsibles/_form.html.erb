@@ -1,7 +1,12 @@
 <%= simple_form_for([:transport,@transport_responsible], wrapper: :horizontal_form, :html => {:class => 'form-horizontal' }) do |f| %>
   <%= f.error_messages %>
   <fieldset>
-    <%= f.input :user_id, label: "User id", hint: "Bruker id finner du i organisasjonskartet" %>
+    <div class="form-group">
+      <label class="select required control-label col-sm-3">Username</label>
+      <div class="col-sm-9">
+        <%= f.select :user_id, User.all.map { |u| [u.username, u.id] }, { include_blank: true }, { class: 'chosen-select' } %>
+      </div>
+    </div>
     <%= f.input :group_id, collection: Group.current { |g| [ g.name_en, g.id ] } %>
   </fieldset>
   <div class="form-group">
