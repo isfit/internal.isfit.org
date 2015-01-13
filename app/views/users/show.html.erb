@@ -50,7 +50,7 @@
       <dd><%= @user.date_of_birth %> (<%= time_ago_in_words(@user.date_of_birth) %>)</dd>
       <% end %>
 
-      <% unless @user.local_paper.empty? %>
+      <% unless @user.local_paper.blank? %>
       <dt>Local newspaper</dt>
       <dd><%= @user.local_paper %></dd>
       <% end %>
