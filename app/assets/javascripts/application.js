@@ -17,5 +17,5 @@
 //= require jquery-tablesorter
 //= require jquery-tablesorter/addons/pager/jquery.tablesorter.pager
 //= require_tree .
-//= require chosen.jquery
+//= require chosen-jquery
 //= require_tree .

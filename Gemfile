@@ -40,6 +40,7 @@ gem 'active_model_serializers'
 gem 'fullcalendar-rails'
 #gem 'jquery-turbolinks'
 gem 'jquery-tablesorter'
+gem 'chosen-rails'
 
 # Denne spammer oss med mail atm... Må tunes :P
 gem 'exception_notification', '~> 4.0.1'
