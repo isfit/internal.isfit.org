@@ -31,7 +31,7 @@ gem 'net-ldap'
 gem 'jbuilder'
 gem 'ransack'
 gem 'activemodel'
-gem 'simple_form', '~> 3.1.0.rc2'
+gem 'simple_form', '3.1.0.rc2'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'whenever', :require => false
@@ -39,6 +39,8 @@ gem "simple_calendar", "~> 1.1.0"
 gem 'active_model_serializers'
 gem 'fullcalendar-rails'
 #gem 'jquery-turbolinks'
+gem 'jquery-tablesorter'
+gem 'chosen-rails'
 
 # Denne spammer oss med mail atm... Må tunes :P
 gem 'exception_notification', '~> 4.0.1'

@@ -14,5 +14,7 @@
 //= require pickers
 //= require bootstrap3-typeahead.min
 //= require fullcalendar
-//= require chosen.jquery
+//= require jquery-tablesorter
+//= require jquery-tablesorter/addons/pager/jquery.tablesorter.pager
+//= require chosen-jquery
 //= require_tree .
