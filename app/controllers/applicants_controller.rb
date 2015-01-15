@@ -118,7 +118,15 @@ class ApplicantsController < ApplicationController
   end
 
   def index
-    @applicants = visible_applicants.includes(:first_position, :second_position, :third_position, :recruited_position)
+    applicants  = visible_applicants
+    @applicants = if applicants.empty?
+      applicants
+    else
+      applicants.includes(:first_position,
+                          :second_position,
+                          :third_position,
+                          :recruited_position)
+    end
 
     @status = {  0 => 'Not contacted',
       1 => 'Meeting planned',
