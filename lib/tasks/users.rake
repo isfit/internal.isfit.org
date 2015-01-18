@@ -1,5 +1,5 @@
 namespace :users do
-  task :get_number_of_users_in_groups => :environment do
+  task :organization_statistics => :environment do
     sections = Festival.find(4).sections
 
     puts "ISFiT 2015 til sammen: #{ Festival.find(4).users.map(&:id).uniq.length.to_s }\n\n"
