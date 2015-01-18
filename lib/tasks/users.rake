@@ -1,12 +1,11 @@
 namespace :users do
-  task :get_number_of_users_in_groups => :environment do
+  task :organization_statistics => :environment do
     sections = Festival.find(4).sections
 
-    puts "ISFiT 2015 til sammen: " + Festival.find(4).users.map{|u| u.id}.uniq.length.to_s
-    puts "\n"
+    puts "ISFiT 2015 til sammen: #{ Festival.find(4).users.map(&:id).uniq.length.to_s }\n\n"
 
     board = Group.find(123)
-    puts "  " + board.name_no.to_s + ": " + board.users.count.to_s
+    puts "#{ board.name_no.to_s }: #{ board.users.count.to_s }"
 
     sections.each do |section|
       puts section.name_no.to_s + ": "+ section.users.map{|u| u.id }.uniq.length.to_s
