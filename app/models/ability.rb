@@ -7,7 +7,6 @@ class Ability
     end
     if user.role?(:board)
       can :manage, Applicant
-
     end
     if user.role?(:recruiting)
       can :manage, Applicant
@@ -23,6 +22,9 @@ class Ability
     end
     if user.role?(:interviewer)
       can :manage, Applicant
+    end
+    if user.role?(:parliament)
+      can :manage, Parliament
     end
     if user.role?(:editorial)
       can :manage, FrontendArticle
