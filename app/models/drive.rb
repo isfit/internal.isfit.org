@@ -96,7 +96,7 @@ class Drive < ActiveRecord::Base
 
   def self.get_statuses
     {
-    0 => 'New',
+    0 => 'Pending',
     1 => 'Driver and Car assigned',
     2 => 'Not started',
     3 => 'On the road',

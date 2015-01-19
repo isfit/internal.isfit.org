@@ -4,7 +4,7 @@
     <div class="form-group">
       <label class="select required control-label col-sm-3">Username</label>
       <div class="col-sm-9">
-        <%= f.select :user_id, User.all.map { |u| [u.username, u.id] }, { include_blank: true }, { class: 'chosen-select' } %>
+        <%= f.select :user_id, User.in_festival.map { |u| ["#{u.full_name} - @#{u.username}" , u.id] }, { include_blank: true }, { class: 'chosen-select' } %>
       </div>
     </div>
     <%= f.input :group_id, collection: Group.current { |g| [ g.name_en, g.id ] } %>

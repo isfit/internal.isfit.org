@@ -13,6 +13,8 @@ $(function() {
 				right: 'month,agendaWeek,agendaDay'
 		},
 		defaultView: 'agendaWeek',
+		firstDay: 1,
+		timeFormat: 'H(:mm)',
 		allDayDefault: false,
 	    eventSources: [
 

@@ -2,7 +2,7 @@
 	<div class="form-group">
     <label class="select required control-label">Username</label>
     <div>
-      <%= f.select :user_id, User.all.map { |u| [u.username, u.id] }, { include_blank: true }, { class: 'chosen-select' } %>
+      <%= f.select :user_id, User.in_festival.map { |u| ["#{u.full_name} - @#{u.username}", u.id] }, { include_blank: true }, { class: 'chosen-select' } %>
     </div>
 	</div>
 	<div class="form-group">
