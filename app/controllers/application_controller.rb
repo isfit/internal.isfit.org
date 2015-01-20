@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
   before_filter :_reload_libs, :if => :_reload_libs?
   before_filter :set_locale
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to main_app.root_url, alert: "Access denied!"
+  end
+
   # Gets tab, parrent of sublink
   def current_tab
     @current_tab ||= current_sublink.parent || InternalTab.new

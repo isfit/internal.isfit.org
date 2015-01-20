@@ -55,7 +55,7 @@
 
           </div>
           <div class="collapse navbar-collapse">
-            <%= tabs %> 
+            <%= tabs %>
             <% if current_user %>
 
               <form id="user-search-form" class="navbar-form navbar-right" role="search">
@@ -112,7 +112,7 @@
         <% end %>
         <div id="notice">
           <% if notice or alert %>
-            <div class="alert alert-<%= notice ? "success":"error" %>">
+            <div class="alert alert-<%= notice ? "success" : "danger" %>">
               <a href="#" class="close" data-dismiss="alert">x</a>
               <i class="icon-<%= notice ? "success":"warning-sign" %>"></i> <strong><%= notice ? raw((notice)) : raw(alert) %></strong>
             </div>
