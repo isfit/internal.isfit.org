@@ -14,7 +14,7 @@ $(function() {
 		},
 		defaultView: 'agendaWeek',
 		firstDay: 1,
-		timeFormat: 'H(:mm)',
+		timeFormat: 'HH(:mm)',
 		allDayDefault: false,
 	    eventSources: [
 
@@ -29,10 +29,22 @@ $(function() {
 
 	    ],
 	    eventRender: function(event, element) {
-        	element.attr('title', event.description);
-        	//element.tooltip({
-            //	content: event.description
-        	//});
+	    	var string = '';
+	    	string += 'Group: ' + event.group + '<br>';
+	    	if (event.driver) {
+	    		string += 'Driver: ' + event.driver + '<br>';
+	    	};
+	    	if (event.car) {
+	    		string += 'Car: ' + event.car + '<br>';
+	    	};
+	    	string += 'Desc: ' + event.description + '<br>';
+
+      	//element.attr('title', string);
+      	element.popover({
+      		html: true,
+      		content: string,
+      		trigger: 'hover',
+      	});
     	}
 
 	});
