@@ -4,16 +4,19 @@
 		<li><%= link_to(:"Min vaktliste", transport_driver_shifts_path(Driver.find_by_user_id(current_user.id))) %></li>
 
 	<% end %>
-	<li><%= link_to(:"Nytt oppdrag", new_transport_drive_path) %></li>
-	<% if current_user.role?(:transport) %>
-	<li><%= link_to(:"Alle oppdrag", transport_drives_path) %></li>
-	<li><%= link_to(:"Lag flere vaktlister", transport_shifts_new_path) %></li>
-	<li><%= link_to(:"Biler", transport_cars_path) %></li>
-	<li><%= link_to(:"Sjåfører", transport_drivers_path) %></li>
-	<li><%= link_to(:"Transport Kontakter", transport_transport_responsibles_path) %></li>
-	<li><%= link_to(:"Dashboard", transport_dashboard_path) %></li>
-	<% else %>
-	<li><%= link_to(:"Mine oppdrag", transport_transport_root_path) %></li>
+	<% if TransportResponsible.find_by(user: current_user) %>
+		<li><%= link_to(:"Nytt oppdrag", new_transport_drive_path) %></li>
+		<li><%= link_to(:"Mine oppdrag", transport_transport_root_path) %></li>
+	<% end %>
+
+	<% if can? :manage, TransportResponsible %>
+		<li><%= link_to(:"Nytt oppdrag", new_transport_drive_path) %></li>
+		<li><%= link_to(:"Alle oppdrag", transport_drives_path) %></li>
+		<li><%= link_to(:"Lag flere vaktlister", transport_shifts_new_path) %></li>
+		<li><%= link_to(:"Biler", transport_cars_path) %></li>
+		<li><%= link_to(:"Sjåfører", transport_drivers_path) %></li>
+		<li><%= link_to(:"Transport Kontakter", transport_transport_responsibles_path) %></li>
+		<li><%= link_to(:"Dashboard", transport_dashboard_path) %></li>
 	<% end %>
 
 </ul>

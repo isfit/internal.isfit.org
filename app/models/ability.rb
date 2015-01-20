@@ -90,6 +90,7 @@ class Ability
     if driver
       can :index, Drive
       can :read, Drive, :driver_id => driver.id
+      can :read, Shift, :driver_id => driver.id
     end
 
     if user.role?(:plenarysessions)
