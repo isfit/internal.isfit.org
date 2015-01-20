@@ -34,8 +34,8 @@ class Transport::DrivesController < ApplicationController
   end
 
   def dashboard
-    @drives = Drive.order('end_time DESC')
-    @drivers = Driver.all
+    @drives = Drive.includes(:user, :driver, :group).order('start_time DESC')
+    @drivers = Driver.includes(:user)
     if(params.has_key?(:start) && params.has_key?(:end))
       start = Time.at(params[:start].to_i).to_s(:db)
       end_time = Time.at(params[:end].to_i).to_s(:db)
@@ -61,9 +61,13 @@ class Transport::DrivesController < ApplicationController
 
   def create
     @drive = Drive.new(params[:drive])
-    @drive.status = 1
+    @drive.status = 0
     @drive.user = current_user
     @user = current_user
+    transport_responsible = TransportResponsible.find_by(user: current_user)
+    if transport_responsible
+      @drive.group = transport_responsible.group
+    end
 
     respond_to do |format|
         if @drive.save

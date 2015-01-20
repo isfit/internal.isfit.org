@@ -1,6 +1,6 @@
 <%= render "transport/nav" %>
 <h2>Kjøreoppdrag #<%= @drive.id%></h2>
-<h3><%= link_to(:"Endre", edit_transport_drive_path(@drive)) %></h3>
+<h3><%= link_to(:"Endre", edit_transport_drive_path(@drive)) if can? :edit, @drive %></h3>
 <br>
 <div class="row">
 	<div class="col-md-3">
@@ -22,6 +22,8 @@
 		<%= @drive.get_status %>
 		<h4>Gjeng</h4>
 		<%= @drive.group.name %>
+		<h4>Tid</h4>
+		<%= @drive.time_summary %>
 	</div>
 	<div class="col-md-3">
 		<h3>Beskrivelse</h3>

@@ -2,7 +2,7 @@
 # encoding: utf-8
 class Transport::DriversController < ApplicationController
   load_and_authorize_resource
-  before_filter :validate_username, :only => [:create]
+  #before_filter :validate_username, :only => [:create]
   def index
     @drivers = Driver.includes(:user)
   end
@@ -12,8 +12,7 @@ class Transport::DriversController < ApplicationController
   end
 
   def create
-    @driver = Driver.new
-    @driver.user_id = User.find_by_username(params[:username]).id
+    @driver = Driver.new(params[:driver])
     if @driver.save
       flash[:notice] = "#{params[:username]} lagt til som sjåfør"
     else

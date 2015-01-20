@@ -1,8 +1,8 @@
 class Shift < ActiveRecord::Base
   belongs_to :driver
   SHIFTS = [
-    ["Dagskift","07:30","16:00"],
-    ["Kveldsskift","15:30","22:30"],
+    ["Dagskift","07:30","15:00"],
+    ["Kveldsskift","14:30","22:30"],
     ["Nattskift","22:00","08:00"]
   ]
 

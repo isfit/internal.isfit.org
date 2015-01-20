@@ -2,15 +2,19 @@
 <h1>Dashboard</h1>
 <div class="col-md-7">
 	<h3>Drives</h3>
+	<div id="transport-dash">
 	<% Drive.get_statuses.each do |key, value| %>
 	<h4><%= value %></h4>
-	<div class="panel-group" id="accordion">
+	<div class="panel-group" id="accordion-<%= key %>">
 		<% @drives.by_status(key).each do |drive| %>
-			<div class="panel panel-default">
+			<div class="panel panel-default dash-drive" id="drive-<%= drive.id %>" data-time="<%= drive.start_time.to_i %>">
 		    <div class="panel-heading">
 		      	<h4 class="panel-title">
-		      <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= drive.id %>">
-		      	#<%= drive.id %> | <strong>Date:</strong> <%= drive.start_time.strftime("%d.%m.%y") %> |
+		      <a data-toggle="collapse" data-parent="#accordion-<%= key %>" href="#collapse<%= drive.id %>">
+		      	#<%= drive.id %> | <strong>Date:</strong> <%= drive.start_time.strftime("%d.%m.%y %H:%M") %> |
+		      	<% if drive.driver %>
+		      	<strong>Driver:</strong> <%= drive.driver.user.full_name %>
+		      	<% end %>
 		    	</a>
 		      	</h4>
 		    </div>
@@ -41,6 +45,12 @@
 		      	<p>
 		      		<%= drive.get_status %>
 		      	</p>
+		      	<%= form_for([:transport, drive], remote: true,:html => {:class => 'small_edit_drive'}) do |f| %>
+							<div class="form-group">
+								<%= f.collection_select(:status, Drive.get_statuses, :first, :last,{}, {:class=>'form-control'}) %>
+							</div>
+							<%= submit_tag "", :style => "display: none;" %>
+						<% end %>
 
 		      	<strong>Group</strong>
 		      	<p>
@@ -58,6 +68,7 @@
 	  <% end %>
 	</div>
 	<% end %>
+</div>
 </div>
 <div class="col-md-5">
 	<h3>Drivers</h3>

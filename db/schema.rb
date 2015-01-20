@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141112184639) do
+ActiveRecord::Schema.define(version: 20150119003805) do
 
   create_table "accounts", force: true do |t|
     t.string   "name_nb"
@@ -243,9 +243,9 @@ ActiveRecord::Schema.define(version: 20141112184639) do
 
   create_table "countries", id: false, force: true do |t|
     t.integer "id",                  default: 0, null: false
-    t.string  "name"
-    t.integer "region_id"
-    t.string  "code",      limit: 4
+    t.string  "name",                            null: false
+    t.integer "region_id",                       null: false
+    t.string  "code",      limit: 4,             null: false
   end
 
   create_table "deadlines", force: true do |t|
@@ -325,6 +325,7 @@ ActiveRecord::Schema.define(version: 20141112184639) do
     t.integer  "status"
     t.integer  "group_id"
     t.integer  "user_id"
+    t.string   "contact"
   end
 
   add_index "drives", ["car_id"], name: "index_drives_on_car_id", using: :btree
@@ -551,22 +552,32 @@ ActiveRecord::Schema.define(version: 20141112184639) do
     t.datetime "updated_at"
   end
 
+  create_table "parlament_selectors", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "parliament_id"
+    t.integer  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "parliaments", id: false, force: true do |t|
-    t.integer  "id",                     default: 0, null: false
+    t.integer  "id",                       default: 0, null: false
     t.string   "name"
     t.string   "email"
     t.integer  "years_work_lost"
     t.string   "place_of_study"
     t.string   "remember_date"
-    t.string   "why_attend"
+    t.text     "why_attend"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "why_ip_relevant"
+    t.text     "why_ip_relevant"
     t.string   "what_study"
-    t.integer  "how_hear_about_day"
+    t.string   "how_hear_about_day"
     t.integer  "how_corrupt"
     t.integer  "had_cimilar_experience"
     t.integer  "how_corrupt_tgi"
+    t.string   "how_hear_about_day_other"
+    t.integer  "status"
   end
 
   create_table "participant_quotes", force: true do |t|

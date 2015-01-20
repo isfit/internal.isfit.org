@@ -23,12 +23,16 @@
 	<td><%= drive.time_summary %></td>
 	<td class="drive_date"><%= drive.date_summary %></td>
 	<td width="200px">
-	<%= form_for([:transport, drive], remote: true,:html => {:class => 'small_edit_drive'}) do |f| %>
-	<div class="form-group">
-		<%= f.collection_select(:status, Drive.get_statuses, :first, :last,{}, {:class=>'form-control'}) %>
-	</div>
-		<%= submit_tag "", :style => "display: none;" %>
-	<% end %>
+	<% if cannot? :manage, drive %>
+	<%= Drive.get_statuses[drive.status] %>
+	</td>
+	<% else %>
+		<%= form_for([:transport, drive], remote: true,:html => {:class => 'small_edit_drive'}) do |f| %>
+		<div class="form-group">
+			<%= f.collection_select(:status, Drive.get_statuses, :first, :last,{}, {:class=>'form-control'}) %>
+		</div>
+			<%= submit_tag "", :style => "display: none;" %>
+		<% end %>
 
 	</td>
 	<td>
@@ -45,4 +49,5 @@
 		  </ul>
 		</div>
 	</td>
+	<% end %>
 </tr>
