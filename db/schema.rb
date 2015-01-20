@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150119003805) do
+ActiveRecord::Schema.define(version: 20150120173147) do
 
   create_table "accounts", force: true do |t|
     t.string   "name_nb"
@@ -439,6 +439,12 @@ ActiveRecord::Schema.define(version: 20150119003805) do
   create_table "hashtags_kvitters", force: true do |t|
     t.integer "kvitter_id"
     t.integer "hashtag_id"
+  end
+
+  create_table "host_2013", force: true do |t|
+    t.integer  "number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "hosts", id: false, force: true do |t|
