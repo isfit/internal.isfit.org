@@ -64,6 +64,10 @@ class Transport::DrivesController < ApplicationController
     @drive.status = 0
     @drive.user = current_user
     @user = current_user
+    transport_responsible = TransportResponsible.find_by(user: current_user)
+    if transport_responsible
+      @drive.group = transport_responsible.group
+    end
 
     respond_to do |format|
         if @drive.save

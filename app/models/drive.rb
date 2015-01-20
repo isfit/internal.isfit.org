@@ -7,7 +7,7 @@ class Drive < ActiveRecord::Base
   validates_presence_of :start_time
   #validates :start_time, presence: true
   #validates :end_time, presence: true
-  validates_presence_of :group_id
+  #validates_presence_of :group_id
   validates_presence_of :description
 
 

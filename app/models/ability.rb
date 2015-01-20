@@ -84,6 +84,12 @@ class Ability
       can [:index, :create], Drive
       can :read, Drive, :user_id => user.id
     end
+    driver = Driver.find_by(user: user)
+    if driver
+      can :index, Drive
+      can :read, Drive, :driver_id => driver.id
+    end
+
     if user.role?(:plenarysessions)
       can :manage, IndabaSpeaker
     end

@@ -1,11 +1,13 @@
 <%= simple_form_for([:transport,@drive], wrapper: :horizontal_form, :html => {:class => 'form-horizontal' }) do |f| %>
   <%= f.error_messages %>
   <fieldset>
-        <%= f.input :start_time, :as => :datetime_picker, hint: "Test adaw dawd aw daw dawd awd awd" %>
+        <%= f.input :start_time, :as => :datetime_picker, hint: "Her skriver du inn når Transport må være fremme på startstedet for oppdraget, altså når selve transportoppdraget skal finne sted. Dette er det tidspunktet personen eller tingen skal hentes, ikke når vi må starte fra Trafoen." %>
         <%= f.input :end_time, :as => :hidden %>
-    <%= f.input :group_id, collection: @user.positions.last.groups.collect { |g| [ g.name_en, g.id ] } %>
-    <%= f.input :description %>
-    <%= f.input :contact %>
+    <%= f.input :contact, hint: "Fullt navn og telefonnummer til den personen som har ansvaret for oppdraget, altså den personen vi tar kontakt med ved endringer i oppdraget, forsinkelser, spørsmål etc." %>
+    <% if can? :edit, @drive %>
+    <%= f.input :group_id, collection: Group.current { |g| [ g.name_en, g.id ] } %>
+    <% end %>
+    <%= f.input :description, hint: "Beskrivelse av hva/hvem som skal fraktes. Dersom det er gjenstander som skal fraktes, må (omtrentlige) ytre mål oppgis, og ikke minst HVA som skal fraktes. Dersom det er større gjenstander som skal lastes, altså at man må være mer enn én person, må dere selv stille med folk til dette." %>
   </fieldset>
   <div class="form-group">
     	<div class="col-sm-offset-3 col-sm-9">
