@@ -3,6 +3,8 @@
 </div>
 <h1>Hosts</h1>
 <h3><%= @hosts.length %> people able to host <%= @sum_of_available_beds %> participants.</h3>
+<h3><%= Date.new(2013, Time.now.month, Time.now.day)%>: <%= @hosts_2013.length %> people able to host <%= @available_beds_2013 %> participants. </h3>
+
 <table class="table table-bordered table-striped">
   <thead>
     <th>First name</th>
@@ -25,6 +27,31 @@
         <td><%= link_to 'Show', host, :class => "btn-primary btn" %></td>
         <td><%= link_to 'Edit', edit_host_path(host), :class => "btn" %></td>
         <td><%= link_to 'Remove', host, data: { confirm: "Remove #{host.firstname} #{host.lastname}?" }, :method => :delete, :class => "btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h1>Ukestatistikk 2013</h1>
+<table class="table table-bordered table-striped">
+  <thead>
+    <th>År</th>
+    <th>Uke</th>
+    <th>Verter</th>
+    <th>Senger</th>
+    <th>Verter samlet</th>
+    <th>Senger samlet</th>
+  </thead>
+  <tbody>
+    <% sum_beds, sum_hosts = 0, 0 %>
+    <% @stats_2013.each do |host| %>
+      <tr>
+        <td><%= host[0] %></td>
+        <td><%= host[1] %></td>
+        <td><%= host[2] %></td>
+        <td><%= host[3] %></td>
+        <td><%= sum_hosts += host[2] %></td>
+        <td><%= sum_beds  += host[3] %></td>
       </tr>
     <% end %>
   </tbody>
