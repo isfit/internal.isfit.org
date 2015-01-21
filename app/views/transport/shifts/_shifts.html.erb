@@ -2,19 +2,17 @@
 	<h3> Bruker har ingen vakter ennå!</h3>
 <% else %>
 	<h3 class="muted">Oppførte skift</h3>
-	<table id="shift_table" class="table table-striped sortable hover_table">
+	<table id="shift_table" class="table table-striped hover_table">
 		<thead>
 			<th>ID</th>
+			<th>Dato</th>
 			<th>Fra klokken</th>
 			<th>Til klokken</th>
-			<th>Dato</th>
 		</thead>
 		<tbody>
 			<% @shifts.each do |shift| %>
 				<tr>
 					<td><%= shift.id %></td>
-					<td><%= shift.start_time.strftime("%H:%M")%></td>
-					<td><%= shift.end_time.strftime("%H:%M") %></td>
 					<td>
 						<% if shift.start_time.to_date == shift.end_time.to_date %>
 							<%= shift.start_time.strftime("%Y-%m-%d") %>
@@ -22,6 +20,9 @@
 							<%= shift.start_time.strftime("%Y-%m-%d") %> til <%= shift.end_time.strftime("%Y-%m-%d") %>
 						<% end %>
 					</td>
+					<td><%= shift.start_time.strftime("%H:%M")%></td>
+					<td><%= shift.end_time.strftime("%H:%M") %></td>
+
 					<td>
 					<% if @driver %>
 						<%= link_to "Vis", [:transport, @driver,shift] %> |

@@ -91,12 +91,18 @@ class Transport::DrivesController < ApplicationController
 
   def update
     @drive = drives.find(params[:id])
-    @drive.update_attributes(params[:drive])
 
     respond_to do |format|
-      format.html { redirect_to :action => "index" }
-      format.js
+      if @drive.update_attributes(params[:drive])
+        format.html { redirect_to @drive, notice: 'Drive was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render :edit }
+        format.json { render json: @drive.errors, status: :unprocessable_entity }
+      end
     end
+
+
     #if @drive.update_attributes(params[:drive])
     #  flash[:notice]="Endringer oppdatert!"
     #  redirect_to :action => "index"
@@ -119,10 +125,14 @@ class Transport::DrivesController < ApplicationController
 
 
   def index
-    if TransportResponsible.find_by(user: current_user)
-      @drives = drives.by_user(current_user).includes(:car,:user).includes(driver: :user)
+    if can? :edit, Drive
+      @drives = drives.includes(:car).includes(driver: :user)
+    elsif TransportResponsible.find_by(user: current_user)
+      @drives = drives.by_user(current_user).includes(:car).includes(driver: :user)
+    elsif driver = Driver.find_by(user: current_user)
+      @drives = driver.drives.includes(:car)
     else
-      @drives = drives.includes(:car, :user).includes(driver: :user)
+      @drives = drives.includes(:car).includes(driver: :user)
     end
   end
 
