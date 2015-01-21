@@ -7,8 +7,9 @@ class Drive < ActiveRecord::Base
   validates_presence_of :start_time
   #validates :start_time, presence: true
   #validates :end_time, presence: true
-  #validates_presence_of :group_id
+  validates_presence_of :group_id
   validates_presence_of :description
+  validate :start_must_be_before_end_time
 
 
   scope :by_group, -> group { where(group: group) }
@@ -98,9 +99,8 @@ class Drive < ActiveRecord::Base
     {
     0 => 'Pending',
     1 => 'Driver and Car assigned',
-    2 => 'Not started',
-    3 => 'On the road',
-    4 => 'Completed' }
+    2 => 'On the road',
+    3 => 'Completed' }
   end
 
   def get_status
@@ -111,4 +111,11 @@ class Drive < ActiveRecord::Base
     #"/transport/drive/#{id}"
     Rails.application.routes.url_helpers.transport_drive_path(self)
   end
+
+  private
+    def start_must_be_before_end_time
+      valid = start_time && end_time && start_time < end_time
+      errors.add(:start_time, "must be before end time") unless valid
+      errors.add(:end_time, "must be after start time") unless valid
+    end
 end

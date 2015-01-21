@@ -8,7 +8,7 @@ class Transport::ShiftsController < ApplicationController
   before_filter :empty_driver_ids, :only => [:multiple_create]
 
   def index
-    @shifts = @driver.shifts.all
+    @shifts = @driver.shifts.order(:start_time)
   end
 
   def all
