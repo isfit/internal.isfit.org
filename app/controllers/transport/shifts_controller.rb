@@ -49,7 +49,7 @@ class Transport::ShiftsController < ApplicationController
   end
 
   def multiple_new
-    @drivers = Driver.joins(:user).order("users.family_name")
+    @drivers = Driver.joins(:user).order("users.given_name")
   end
 
   def multiple_create

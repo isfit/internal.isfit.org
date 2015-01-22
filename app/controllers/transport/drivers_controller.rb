@@ -4,7 +4,7 @@ class Transport::DriversController < ApplicationController
   load_and_authorize_resource
   #before_filter :validate_username, :only => [:create]
   def index
-    @drivers = Driver.joins(:user).order("users.family_name")
+    @drivers = Driver.joins(:user).order("users.given_name")
   end
 
   def show

@@ -114,8 +114,9 @@ class Drive < ActiveRecord::Base
 
   private
     def start_must_be_before_end_time
-      valid = start_time && end_time && start_time < end_time
-      errors.add(:start_time, "must be before end time") unless valid
-      errors.add(:end_time, "must be after start time") unless valid
+      if end_time
+        valid = start_time && end_time && start_time < end_time
+        errors.add(:end_time, "must be after start time") unless valid
+      end
     end
 end

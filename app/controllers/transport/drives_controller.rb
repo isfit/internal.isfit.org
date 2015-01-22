@@ -35,7 +35,7 @@ class Transport::DrivesController < ApplicationController
 
   def dashboard
     @drives = Drive.includes(:user, :driver, :group).order('start_time DESC')
-    @drivers = Driver.joins(:user).order("users.family_name")
+    @drivers = Driver.joins(:user).order("users.given_name")
     if(params.has_key?(:start) && params.has_key?(:end))
       start = Time.at(params[:start].to_i).to_s(:db)
       end_time = Time.at(params[:end].to_i).to_s(:db)
@@ -94,7 +94,7 @@ class Transport::DrivesController < ApplicationController
 
     respond_to do |format|
       if @drive.update_attributes(params[:drive])
-        format.html { redirect_to @drive, notice: 'Drive was successfully updated.' }
+        format.html { redirect_to [:transport,@drive], notice: 'Drive was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render :edit }

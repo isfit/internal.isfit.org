@@ -20,8 +20,8 @@
 			<%= drive.comment %>
 		</div>
 	</td>
-	<td><%= drive.time_summary %></td>
 	<td class="drive_date"><%= drive.date_summary %></td>
+	<td><%= drive.time_summary %></td>
 	<td width="200px">
 	<% if cannot? :manage, drive %>
 	<%= Drive.get_statuses[drive.status] %>
