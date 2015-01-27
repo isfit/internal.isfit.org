@@ -18,7 +18,7 @@
 <dl>
   <dt>Hvorfor tror du det er relevant for norske studenter å være med på ISFiT Parliament?</dt>
   <% if @isfit_parliament.why_ip_relevant.blank? %>
-    <dd><%= @isfit_parliament.name %> har ikke svart</dd>
+    <dd>har ikke svart</dd>
   <% else %>
     <dd><%= @isfit_parliament.why_ip_relevant %></dd>
     <% end %>
@@ -26,8 +26,8 @@
 <br>
 <dl>
   <dt>Kommer du til å huske 13 februar?</dt>
-  <% if @isfit_parliament.remember_date %>
-    <dd><%= @isfit_parliament.name %> har ikke svart</dd>
+  <% if @isfit_parliament.remember_date.blank? %>
+    <dd>har ikke svart</dd>
   <% else %>
     <dd><%= @isfit_parliament.remember_date %></dd>
     <% end %>
@@ -35,7 +35,7 @@
 <br>
   <dt>Hvordan hørte du om denne dagen?</dt>
   <% if @isfit_parliament.how_hear_about_day.blank? %>
-    <dd><%= @isfit_parliament.name %> har ikke svart på dette</dd>
+    <dd>har ikke svart på dette</dd>
   <% else %>
     <dd><%= hear_date?(@isfit_parliament.how_hear_about_day) %></dd>
     <% end %>
@@ -43,7 +43,7 @@
 <br>
   <dt>Hvor mange Norske årsverk (et års arbeid for en person) tror du går tapt i Norge hvert år på grunn av korrupsjon?</dt>
   <% if @isfit_parliament.years_work_lost.blank? %>
-    <dd><%= @isfit_parliament.name %> har ikke svart på dette</dd>
+    <dd>har ikke svart på dette</dd>
   <% else %>
     <dd><%= how_m_year?(@isfit_parliament.years_work_lost)%></dd>
     <% end %>
@@ -51,7 +51,7 @@
 <br>
   <dt>Svar på spørsmålet om korrupsjon</dt>
   <% if @isfit_parliament.how_corrupt.blank? %>
-    <dd><%= @isfit_parliament.name %> har ikke svart på dette</dd>
+    <dd>har ikke svart på dette</dd>
   <% else %>
     <dd><%= how_corrupt?(@isfit_parliament.how_corrupt) %></dd>
     <% end %>
@@ -59,7 +59,7 @@
 <br>
   <dt>Har du opplevd en lignende hendelse selv?</dt>
   <% if @isfit_parliament.had_cimilar_experience.blank? %>
-    <dd><%= @isfit_parliament.name %> har ikke svart på dette</dd>
+    <dd>har ikke svart på dette</dd>
   <% else %>
     <dd><%= same_exp?(@isfit_parliament.had_cimilar_experience) %></dd>
     <% end %>
@@ -67,7 +67,7 @@
 <br>
   <dt>Svar på grad av korrupsjonshendelsen fra <%= link_to('theglobalinfection','http://www.theglobalinfection.com') %></dt>
   <% if @isfit_parliament.had_cimilar_experience.blank? %>
-    <dd><%= @isfit_parliament.name %> har ikke svart på dette</dd>
+    <dd>har ikke svart på dette</dd>
   <% else %>
     <dd><%= how_corrupt?(@isfit_parliament.had_cimilar_experience) %></dd>
     <% end %>
@@ -75,7 +75,7 @@
 <br>
   <dt>Hvorfor har du lyst til å delta på ISFiT Parliament?</dt>
   <% if @isfit_parliament.why_attend.blank? %>
-    <dd><%= @isfit_parliament.name %> har ikke svart på dette</dd>
+    <dd>har ikke svart på dette</dd>
   <% else %>
     <dd><%= @isfit_parliament.why_attend %></dd>
     <% end %>
