@@ -5,49 +5,32 @@
 	</td>
 	<td>
 	<%if drive.driver %>
-		<%= link_to(drive.driver_name, transport_driver_path(drive.driver)) %>
+		<%= link_to(drive.driver_name, user_path(drive.driver.user)) %>
 	<% else %>
 		-
 	<% end %>
 	</td>
 	<td>
-		<div class="minimize expand_y">
 			<%= drive.description %>
-		</div>
 	</td>
-	<td id="<%= drive.id %>" class="closed">
-		<div class="minimize expand_y" id="comment_text">
-			<%= drive.comment %>
-		</div>
-	</td>
-	<td><%= drive.time_summary %></td>
 	<td class="drive_date"><%= drive.date_summary %></td>
+	<td><%= drive.time_summary %></td>
 	<td width="200px">
-	<% if cannot? :manage, drive %>
 	<%= Drive.get_statuses[drive.status] %>
-	</td>
-	<% else %>
-		<%= form_for([:transport, drive], remote: true,:html => {:class => 'small_edit_drive'}) do |f| %>
-		<div class="form-group">
-			<%= f.collection_select(:status, Drive.get_statuses, :first, :last,{}, {:class=>'form-control'}) %>
-		</div>
-			<%= submit_tag "", :style => "display: none;" %>
-		<% end %>
-
 	</td>
 	<td>
 		<div class="btn-group">
 		  <%= link_to(:"Vis", transport_drive_path(drive), :class => 'btn btn-info') %>
-		  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-		    <span class="caret"></span>
-		    <span class="sr-only">Toggle Dropdown</span>
-		  </button>
-		  <ul class="dropdown-menu" role="menu">
-		    <li><%= link_to(:Endre, edit_transport_drive_path(drive.id))%></li>
-		    <li><%= link_to(:Fjern, transport_drive_path(drive), method: :delete, confirm: "Er du sikker på at du vil slette denne kjøringen? Husk, du kan redigere/endre den.") %></li>
-		    <li><%= link_to(:Kontakt, drive.user) %>
-		  </ul>
+			<% if can? :edit, drive %>
+			  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+			    <span class="caret"></span>
+			    <span class="sr-only">Toggle Dropdown</span>
+			  </button>
+			  <ul class="dropdown-menu" role="menu">
+			  	<li><%= link_to(:Fjern, transport_drive_path(drive), method: :delete, data:{ confirm: "Er du sikker på at du vil slette denne kjøringen? Husk, du kan redigere/endre den."}) %></li>
+			    <li><%= link_to(:Endre, edit_transport_drive_path(drive.id))%></li>
+			  </ul>
+			<% end %>
 		</div>
 	</td>
-	<% end %>
 </tr>

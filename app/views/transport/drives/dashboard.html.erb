@@ -28,6 +28,16 @@
 		      	<p>
 		      		<%= drive.end_time %>
 		      	</p>
+		      	<strong>Contact</strong>
+		      	<p>
+		      		<%= drive.contact %>
+		      	</p>
+		      	<% unless drive.flight_number.blank? %>
+		      	<strong>Flight Number</strong>
+		      	<p>
+		      		<%= drive.flight_number %>
+		      	</p>
+		      	<% end %>
 		      	<strong>Description</strong>
 		      	<p>
 		        	<%= drive.description %>

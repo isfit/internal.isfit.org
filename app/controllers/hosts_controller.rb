@@ -7,6 +7,12 @@ class HostsController < ApplicationController
     @hosts = Host.where(deleted: false)
     @sum_of_available_beds = @hosts.sum(:capacity)
 
+    @hosts_2013 = Host2013.where('created_at<=?', Date.new(2013, Time.now.month, Time.now.day))
+    @available_beds_2013 = @hosts_2013.sum(:number)
+
+    sql = 'SELECT YEAR(created_at) as year, WEEK(created_at) as week, COUNT(*) AS hosts, SUM(number) AS beds FROM `host2013s` GROUP BY WEEK(created_at) ORDER BY year ASC, week ASC'
+    @stats_2013 = ActiveRecord::Base.connection.execute(sql)
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @hosts }

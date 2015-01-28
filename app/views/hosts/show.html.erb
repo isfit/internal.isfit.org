@@ -77,6 +77,15 @@
   </p>
 
   <p>
+  <b>Host one day early? : </b>  
+    <% if @host.Onedayearly %>
+      Ja
+    <% else %>
+      nei
+    <% end %>
+  </p>
+
+  <p>
   <b>Has animals?: </b>  
     <% if @host.animales %>
       Ja

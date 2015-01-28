@@ -35,7 +35,7 @@ class Transport::DrivesController < ApplicationController
 
   def dashboard
     @drives = Drive.includes(:user, :driver, :group).order('start_time DESC')
-    @drivers = Driver.includes(:user)
+    @drivers = Driver.joins(:user).order("users.given_name")
     if(params.has_key?(:start) && params.has_key?(:end))
       start = Time.at(params[:start].to_i).to_s(:db)
       end_time = Time.at(params[:end].to_i).to_s(:db)
@@ -86,17 +86,28 @@ class Transport::DrivesController < ApplicationController
 
   def edit
     @drive = drives.find(params[:id])
+    if @drive.end_time
+      @drivers = Driver.with_shift_inside_date_range(@drive.start_time, @drive.end_time)
+    else
+      @drivers = Driver.all
+    end
     @user = current_user
   end
 
   def update
     @drive = drives.find(params[:id])
-    @drive.update_attributes(params[:drive])
 
     respond_to do |format|
-      format.html { redirect_to :action => "index" }
-      format.js
+      if @drive.update_attributes(params[:drive])
+        format.html { redirect_to [:transport,@drive], notice: 'Drive was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render :edit }
+        format.json { render json: @drive.errors, status: :unprocessable_entity }
+      end
     end
+
+
     #if @drive.update_attributes(params[:drive])
     #  flash[:notice]="Endringer oppdatert!"
     #  redirect_to :action => "index"
@@ -119,11 +130,7 @@ class Transport::DrivesController < ApplicationController
 
 
   def index
-    if TransportResponsible.find_by(user: current_user)
-      @drives = drives.by_user(current_user).includes(:car,:user).includes(driver: :user)
-    else
-      @drives = drives.includes(:car, :user).includes(driver: :user)
-    end
+    @drives = drives.accessible_by(current_ability).includes(:car, :user).includes(driver: :user)
   end
 
   def show_all

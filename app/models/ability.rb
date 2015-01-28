@@ -81,15 +81,17 @@ class Ability
       #can [:index, :create, :admin, :admin_create_car, :admin_destroy_car, :admin_edit_car, :admin_add_driver, :todo_all, :todo_you, :todo_user, :save_comment, :update_completed, :info, :driver_new, :driver_register ], :transport_system
       can [:index, :create, :destroy, :shifts_you], :driver_shift
     end
-
-    if TransportResponsible.find_by(user: user)
-      can [:index, :create], Drive
-      can :read, Drive, :user_id => user.id
+    transport_responsible = TransportResponsible.find_by(user: user)
+    if transport_responsible
+      can :create, Drive
+      can :read, Drive, :group_id => transport_responsible.group_id
+      can [:edit,:destroy], Drive do |drive|
+        drive.group_id == transport_responsible.group_id && drive.status == 0
+      end
     end
     driver = Driver.find_by(user: user)
     if driver
-      can :index, Drive
-      can :read, Drive, :driver_id => driver.id
+      can :manage, Drive, :driver_id => driver.id
       can :read, Shift, :driver_id => driver.id
     end
 

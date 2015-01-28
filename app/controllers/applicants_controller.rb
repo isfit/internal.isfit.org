@@ -119,7 +119,7 @@ class ApplicantsController < ApplicationController
 
   def index
     applicants  = visible_applicants
-    @applicants = if applicants.empty?
+    @applicants = if applicants.empty? || applicants.class.eql?(Array)
       applicants
     else
       applicants.includes(:first_position,
