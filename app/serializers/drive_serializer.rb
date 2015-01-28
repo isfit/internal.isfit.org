@@ -1,5 +1,5 @@
 class DriveSerializer < ActiveModel::Serializer
-  attributes :id, :start, :end, :description, :driver, :title, :url, :group, :car, :status, :contact, :flight_number
+  attributes :id, :start, :end, :description, :driver, :title, :url, :group, :car, :status, :contact, :flight_number, :allDay
 
   def start
     object.start_time.as_json()
@@ -10,7 +10,21 @@ class DriveSerializer < ActiveModel::Serializer
   end
 
   def title
-    object.driver ? object.driver.user.full_name : "ID: #{object.id}"
+    if object.driver
+      object.driver.user.full_name
+    elsif object.car
+      object.car_desc
+    else
+      "ID: #{object.id}"
+    end
+  end
+
+  def allDay
+    if object.end_time
+      (object.end_time - object.start_time).to_i / 1.day > 0
+    else
+      false
+    end
   end
 
   def driver

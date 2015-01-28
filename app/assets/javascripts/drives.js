@@ -29,7 +29,7 @@ $(function() {
 
 	    ],
 	    eventRender: function(event, element) {
-	    	var string = '<dl class="dl-horizontal">';
+	    	var string = '';
 	    	string += '<strong>Status</strong><br>' + event.status + '<br>';
 	    	string += '<strong>Group</strong><br>' + event.group + '<br>';
 	    	if (event.driver) {
