@@ -105,9 +105,11 @@ class Transport::DrivesController < ApplicationController
     respond_to do |format|
       if @drive.save
         format.html { redirect_to [:transport,@drive], notice: 'Drive was successfully updated.' }
+        format.js
         format.json { head :no_content }
       else
         format.html { render :edit }
+        format.js
         format.json { render json: @drive.errors, status: :unprocessable_entity }
       end
     end

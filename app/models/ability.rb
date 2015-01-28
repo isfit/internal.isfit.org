@@ -85,7 +85,7 @@ class Ability
     if transport_responsible
       can :create, Drive
       can :read, Drive, :group_id => transport_responsible.group_id
-      can [:edit,:destroy], Drive do |drive|
+      can [:update,:destroy], Drive do |drive|
         drive.group_id == transport_responsible.group_id && drive.status == 0
       end
     end
