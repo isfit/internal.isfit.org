@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150120173147) do
+ActiveRecord::Schema.define(version: 20150128173802) do
 
   create_table "accounts", force: true do |t|
     t.string   "name_nb"
@@ -320,12 +320,13 @@ ActiveRecord::Schema.define(version: 20150120173147) do
     t.datetime "end_time"
     t.text     "description"
     t.text     "comment"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "status"
     t.integer  "group_id"
     t.integer  "user_id"
     t.string   "contact"
+    t.string   "flight_number"
   end
 
   add_index "drives", ["car_id"], name: "index_drives_on_car_id", using: :btree
@@ -441,14 +442,14 @@ ActiveRecord::Schema.define(version: 20150120173147) do
     t.integer "hashtag_id"
   end
 
-  create_table "host_2013", force: true do |t|
+  create_table "host2013s", force: true do |t|
     t.integer  "number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "hosts", id: false, force: true do |t|
-    t.integer  "id",         default: 0, null: false
+    t.integer  "id",          default: 0, null: false
     t.string   "firstname"
     t.string   "lastname"
     t.string   "address"
@@ -467,6 +468,7 @@ ActiveRecord::Schema.define(version: 20150120173147) do
     t.integer  "sleeping"
     t.boolean  "extraday"
     t.boolean  "deleted"
+    t.boolean  "Onedayearly"
   end
 
   create_table "information_categories", force: true do |t|
