@@ -1,0 +1,11 @@
+<%= simple_form_for([:transport,@drive]) do |f| %>
+  <%= f.error_messages %>
+  <div class="row">
+    <div class="col-md-6">
+     	<%= f.input :description %>
+      <%= f.input :contact %>
+      <%= f.input :flight_number %>
+    </div>
+  </div>
+  <%= f.button :submit %>
+<% end %>

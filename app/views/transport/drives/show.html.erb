@@ -3,37 +3,55 @@
 <h3><%= link_to(:"Endre", edit_transport_drive_path(@drive)) if can? :edit, @drive %></h3>
 <br>
 <div class="row">
-	<div class="col-md-3">
-		<h4>Kontakt Person</h4>
-		<%= link_to(@drive.user.full_name,@drive.user) %>
-		<h4>Sjåfør</h4>
-		<% if @drive.driver %>
-			<%= link_to(@drive.driver_desc, transport_driver_path(@drive.driver)) %><br>
-		<% else %>
-			No driver assigned
+	<div class="col-md-4">
+		<dl class="dl-horizontal">
+  		<dt>Kontakt Person</dt>
+  		<dd><%= link_to(@drive.user.full_name,@drive.user) %></dd>
+  		<dt>Sjåfør</dt>
+  		<dd>
+  			<% if @drive.driver %>
+					<%= link_to(@drive.driver_desc, transport_driver_path(@drive.driver)) %><br>
+				<% else %>
+					No driver assigned
+				<% end %>
+			</dd>
+			<dt>Bil</dt>
+			<dd>
+				<%= @drive.car ? @drive.car_desc : 'No car assigned' %>
+			</dd>
+		</dl>
+		<dl class="dl-horizontal">
+			<dt>Status</dt>
+			<dd>
+				<%= @drive.get_status %>
+			</dd>
+			<dt>Gjeng</dt>
+			<dd>
+				<%= @drive.group.name %>
+			</dd>
+		<dt>Kontakt</dt>
+		<dd><%= @drive.contact.blank? ? 'Ikke oppgitt' : @drive.contact %></dd>
+		<% unless @drive.flight_number.blank? %>
+		<dt>Flight Number</dt>
+		<dd><%= @drive.flight_number %></dd>
 		<% end %>
-		<h4>Bil</h4>
-		<% if @drive.driver %>
-			<%= @drive.car_desc %>
-		<% else %>
-			No car assigned
-		<% end %>
-		<h4>Status</h4>
-		<%= @drive.get_status %>
-		<h4>Gjeng</h4>
-		<%= @drive.group.name %>
-		<h4>Kontakt</h4>
-		<%= @drive.contact %>
-		<h4>Tid</h4>
-		<%= @drive.time_summary %>
+	</dl>
+	<dl class="dl-horizontal">
+		<dt>Date</dt>
+		<dd><%= @drive.date_summary %></dd>
+		<dt>Tid</dt>
+		<dd><%= @drive.time_summary %></dd>
+		</dl>
 	</div>
 	<div class="col-md-3">
 		<h3>Beskrivelse</h3>
 		<%= simple_format(@drive.description) %>
 	</div>
+	<% if can? :manage, @drive %>
 	<div class="col-md-3">
 		<h3>Kommentar</h3>
 		<%= simple_format(@drive.comment) %>
 	</div>
+	<% end %>
 </div>
 <br>

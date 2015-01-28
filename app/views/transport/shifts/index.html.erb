@@ -7,8 +7,10 @@
 	<div class="col-md-6">
 		<%= render "shifts" %>
 	</div>
+	<% if can? :manage, Shift %>
 	<div class="col-md-3">
 		<%= render "form" %>
 	</div>
+	<% end %>
 </div>
 <%= link_to "Tilbake", transport_driver_path(@driver) %>

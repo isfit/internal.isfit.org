@@ -1,5 +1,5 @@
 class DriveSerializer < ActiveModel::Serializer
-  attributes :id, :start, :end, :description, :driver, :title, :url, :group, :car
+  attributes :id, :start, :end, :description, :driver, :title, :url, :group, :car, :status, :contact, :flight_number
 
   def start
     object.start_time.as_json()
@@ -23,6 +23,12 @@ class DriveSerializer < ActiveModel::Serializer
 
   def car
     object.car ? object.car.desc : ''
+  end
+
+
+
+  def status
+    object.get_status
   end
 
   def url

@@ -6,13 +6,19 @@
 			<th> Sjåfør </th>
 		<% end %>
 		<th>Beskrivelse</th>
+		<% if can? :manage, Drive %>
 		<th>Kommentar</th>
+		<% end %>
 		<th>Dato</th>
 		<th>Tid</th>
 		<th>Status<th>
 	</thead>
 	<tbody>
-		<%= render @drives %>
+		<% if can? :manage, Drive %>
+			<%= render partial: "drive_admin", collection: @drives, as: :drive %>
+		<% else %>
+			<%= render @drives %>
+		<% end %>
 
 	</tbody>
 

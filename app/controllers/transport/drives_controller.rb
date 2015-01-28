@@ -86,6 +86,11 @@ class Transport::DrivesController < ApplicationController
 
   def edit
     @drive = drives.find(params[:id])
+    if @drive.end_time
+      @drivers = Driver.with_shift_inside_date_range(@drive.start_time, @drive.end_time)
+    else
+      @drivers = Driver.all
+    end
     @user = current_user
   end
 
@@ -125,15 +130,7 @@ class Transport::DrivesController < ApplicationController
 
 
   def index
-    if can? :edit, Drive
-      @drives = drives.includes(:car).includes(driver: :user)
-    elsif TransportResponsible.find_by(user: current_user)
-      @drives = drives.by_user(current_user).includes(:car).includes(driver: :user)
-    elsif driver = Driver.find_by(user: current_user)
-      @drives = driver.drives.includes(:car)
-    else
-      @drives = drives.includes(:car).includes(driver: :user)
-    end
+    @drives = drives.accessible_by(current_ability).includes(:car, :user).includes(driver: :user)
   end
 
   def show_all
