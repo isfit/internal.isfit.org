@@ -68,6 +68,7 @@ group :development do
   gem 'capistrano', '~> 3.1'
   gem 'capistrano-rails', '~> 1.1'
   gem 'capistrano-rvm'
+  gem 'quiet_assets'
 end
 
 group :development, :test do

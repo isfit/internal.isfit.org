@@ -97,8 +97,13 @@ class Transport::DrivesController < ApplicationController
   def update
     @drive = drives.find(params[:id])
 
+    @drive.attributes = params[:drive]
+    if @drive.status == 1 && @drive.status_changed?
+      TransportMailer.drive_mailer(@drive).deliver
+    end
+
     respond_to do |format|
-      if @drive.update_attributes(params[:drive])
+      if @drive.save
         format.html { redirect_to [:transport,@drive], notice: 'Drive was successfully updated.' }
         format.json { head :no_content }
       else
