@@ -13,17 +13,15 @@
 			No driver assigned
 		<% end %>
 		<h4>Bil</h4>
-		<% if @drive.driver %>
-			<%= @drive.car_desc %>
-		<% else %>
-			No car assigned
-		<% end %>
+		<% @drive.driver ? @drive.car_desc : 'No car assigned' %>
 		<h4>Status</h4>
 		<%= @drive.get_status %>
 		<h4>Gjeng</h4>
 		<%= @drive.group.name %>
 		<h4>Kontakt</h4>
-		<%= @drive.contact %>
+		<%= @drive.contact.blank? ? 'Ikke oppgitt' : @drive.contact %>
+		<h4>Date</h4>
+		<%= @drive.date_summary %>
 		<h4>Tid</h4>
 		<%= @drive.time_summary %>
 	</div>
