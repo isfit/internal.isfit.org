@@ -29,21 +29,28 @@ $(function() {
 
 	    ],
 	    eventRender: function(event, element) {
-	    	var string = '';
-	    	string += 'Group: ' + event.group + '<br>';
+	    	var string = '<dl class="dl-horizontal">';
+	    	string += '<strong>Status</strong><br>' + event.status + '<br>';
+	    	string += '<strong>Group</strong><br>' + event.group + '<br>';
 	    	if (event.driver) {
-	    		string += 'Driver: ' + event.driver + '<br>';
+	    		string += '<strong>Driver</strong><br>' + event.driver + '<br>';
 	    	};
 	    	if (event.car) {
-	    		string += 'Car: ' + event.car + '<br>';
+	    		string += '<strong>Car</strong><br> ' + event.car + '<br>';
 	    	};
-	    	string += 'Desc: ' + event.description + '<br>';
+	    	string += '<strong>Contact</strong><br>' + event.contact + '<br>';
+	    	if (event.flight_number) {
+	    		string += '<strong>Flight Number</strong><br>' + event.flight_number + '<br>';
+	    	};
+
+	    	string += '<strong>Description</strong><br>' + event.description + '<br>';
 
       	//element.attr('title', string);
       	element.popover({
       		html: true,
       		content: string,
       		trigger: 'hover',
+      		container: 'body',
       	});
     	}
 

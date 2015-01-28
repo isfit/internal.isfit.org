@@ -19,6 +19,8 @@
 			<dd>
 				<%= @drive.car ? @drive.car_desc : 'No car assigned' %>
 			</dd>
+		</dl>
+		<dl class="dl-horizontal">
 			<dt>Status</dt>
 			<dd>
 				<%= @drive.get_status %>
@@ -33,6 +35,8 @@
 		<dt>Flight Number</dt>
 		<dd><%= @drive.flight_number %></dd>
 		<% end %>
+	</dl>
+	<dl class="dl-horizontal">
 		<dt>Date</dt>
 		<dd><%= @drive.date_summary %></dd>
 		<dt>Tid</dt>
