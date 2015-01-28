@@ -12,6 +12,7 @@ They are listed newest first.
       <th>Show</th>
       <th>Validated</th>
       <th>Deleted</th>
+      <th>Edit</th>
     </tr>
   </thead>
 
@@ -32,6 +33,7 @@ They are listed newest first.
       		<span class='label label-danger'>Deleted</span>
       	<% end %>
       </td>
+      <td><%= link_to 'Edit', edit_campaign_story_path(story), :class => "btn-primary btn" %></td>
     </tr>
   <% end %>
 </table>
