@@ -98,7 +98,6 @@ class Transport::DrivesController < ApplicationController
     @drive = drives.find(params[:id])
 
     @drive.attributes = params[:drive]
-    binding.pry
     if @drive.status == 1 && @drive.status_changed?
       TransportMailer.drive_mailer(@drive).deliver
     end
