@@ -86,6 +86,11 @@ class Transport::DrivesController < ApplicationController
 
   def edit
     @drive = drives.find(params[:id])
+    if @drive.end_time
+      @drivers = Driver.with_shift_inside_date_range(@drive.start_time, @drive.end_time)
+    else
+      @drivers = Driver.all
+    end
     @user = current_user
   end
 

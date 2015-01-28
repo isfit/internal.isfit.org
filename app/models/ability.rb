@@ -91,8 +91,7 @@ class Ability
     end
     driver = Driver.find_by(user: user)
     if driver
-      can :index, Drive
-      can :read, Drive, :driver_id => driver.id
+      can :manage, Drive, :driver_id => driver.id
       can :read, Shift, :driver_id => driver.id
     end
 

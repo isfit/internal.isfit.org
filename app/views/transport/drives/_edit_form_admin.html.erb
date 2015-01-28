@@ -11,11 +11,11 @@
     </div>
     <div class="col-md-6">
       <%= f.input :group_id, collection: Group.current { |g| [ g.name_en, g.id ] } %>
-      <% driver_array = Driver.all.map { |driver| [driver.username, driver.id] } %>
-      <%= f.input :driver_id, collection: driver_array %>
+      <% driver_array = @drivers.map { |driver| [driver.username, driver.id] } %>
+      <%= f.input :driver_id, collection: driver_array, hint: 'Hvis oppdraget har en end time vises bare sjåfører som er på vakt. Hvis end time ikke er satt, vises alle sjåfører.' %>
 
       <% car_array = Car.all.map{|car| [car.desc, car.id]} %>
-      <%= f.input :car_id, collection: car_array %>
+      <%= f.input :car_id, collection: car_array, hint: 'Dette er alle bilene, du må selv passe på at bilen er tilgjengelig.' %>
       <%= f.input :status, collection: Drive.get_statuses, :value_method => :first, :label_method => :last %>
     </div>
   </div>
