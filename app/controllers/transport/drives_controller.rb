@@ -34,7 +34,11 @@ class Transport::DrivesController < ApplicationController
   end
 
   def dashboard
-    @drives = Drive.includes(:user, :driver, :group).order('start_time DESC')
+    if(params.has_key?(:time) && !params[:time].blank?)
+      @drives = Drive.inside(Time.zone.now, Time.zone.now+params[:time].to_i.days).includes(:user, :driver, :group).order(start_time: :asc)
+    else
+      @drives = Drive.includes(:user, :driver, :group).order(start_time: :asc)
+    end
     @drivers = Driver.joins(:user).order("users.given_name")
     if(params.has_key?(:start) && params.has_key?(:end))
       start = Time.at(params[:start].to_i).to_s(:db)
