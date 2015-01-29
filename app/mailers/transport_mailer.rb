@@ -2,10 +2,10 @@
 
 class TransportMailer < ActionMailer::Base
   def drive_mailer(drive)
-    subject = "[info] Transportoppdrag #{drive.start_time} er godkjent"
+    subject = "[info] Transportoppdrag #{drive.start_time.strftime('%Y-%m-%d %H:%M')} er godkjent"
     body = "Hei." +
     "\n\n" +
-		"Transportoppdraget du bestilte [dato] [starttidspunkt] er godkjent, og vil bli utført av Transport." +
+		"Transportoppdraget du bestilte med tidspunkt #{drive.start_time.strftime('%Y-%m-%d %H:%M')} er godkjent, og vil bli utført av Transport." +
 		"\n\n" +
 		"Beskrivelse av det aktuelle oppdraget:" +
 		"\n" +
