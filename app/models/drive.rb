@@ -18,6 +18,10 @@ class Drive < ActiveRecord::Base
   scope :by_status, -> status {where(status: status)}
   scope :between, -> start_time, end_time { where("(start_time >= ? OR end_time <= ?) OR (start_time <= ? AND ? <= end_time)",
      start_time,end_time, start_time, start_time)}
+  scope :inside, -> start_time, end_time { where("(start_time >= ? AND end_time <= ?) OR (start_time <= ? AND ? <= end_time) OR (start_time >= ? AND start_time <= ?)",
+     start_time,end_time, start_time, start_time, start_time, end_time)}
+  scope :start_after, -> start_time, end_time { where("(start_time >= ? AND start_time <= ?) OR (start_time <= ? AND ? <= end_time)",
+    start_time,end_time, start_time, end_time)}
   def self.get_datetimes_from_params(params)
     start_time =  DateTime.parse("#{params[:date]} #{params[:start_time]}:00")
     end_time =  DateTime.parse("#{params[:date]} #{params[:end_time]}:00")

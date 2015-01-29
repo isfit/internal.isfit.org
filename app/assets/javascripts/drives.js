@@ -3,6 +3,17 @@ $(function() {
   $('.small_edit_drive #drive_status').change(function(){
  		$(this).closest("form").submit();
   });
+  $('.dashboard_time_span #time').change(function(){
+ 		console.log("Submit")
+ 		$(this).closest("form").submit();
+  });
+
+  $('.dash-status-header').click(function() {
+  	console.log("#accordion-" + this.id);
+  	$(this).find('.glyphicon').toggleClass("glyphicon-chevron-down");
+  	$(this).find('.glyphicon').toggleClass("glyphicon-chevron-up");
+  	$('#accordion-' + this.id).toggle();
+  });
 });
 
 $(function() {
