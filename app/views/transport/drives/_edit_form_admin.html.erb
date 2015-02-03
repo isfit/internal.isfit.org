@@ -12,8 +12,11 @@
     <div class="col-md-6">
       <%= f.input :group_id, collection: Group.current { |g| [ g.name_en, g.id ] } %>
       <% driver_array = @drivers.map { |driver| [driver.username, driver.id] } %>
-      <%= f.input :driver_id, collection: driver_array, hint: 'Hvis oppdraget har en end time vises bare sjåfører som er på vakt. Hvis end time ikke er satt, vises alle sjåfører.' %>
-
+      <% avail_driver_array = @avail_drivers.map { |driver| [driver.username, driver.id ]} %>
+      <%= f.input :driver_id, as: :grouped_select,
+        collection: {'Available drivers'=> avail_driver_array, 'All drivers' => driver_array },
+        :group_method => :last,
+        hint: 'Tilgjenelige sjåfører beregnes ut ifra start tidspunkt, og tar ikke hennsyn til slutt tidspunkt. Du må selv passe på at skiftet til de gitte sjåførene er innenfor lengden på oppdraget.' %>
       <% car_array = Car.all.map{|car| [car.desc, car.id]} %>
       <%= f.input :car_id, collection: car_array, hint: 'Dette er alle bilene, du må selv passe på at bilen er tilgjengelig.' %>
       <%= f.input :status, collection: Drive.get_statuses, :value_method => :first, :label_method => :last %>
