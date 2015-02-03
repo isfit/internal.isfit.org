@@ -2,22 +2,20 @@
     <h3><%= position.title %></h3>
     <% position.users.each do |user| %>
         <div class="user">
-          <% if user.profile_picture? %>
-            <%= image_tag user.profile_picture.url(:small), {:alt => "", :class => "pull-left"} %>
+            <% if user.profile_picture? %>
+                <%= image_tag user.profile_picture.url(:small), {:alt => "", :class => "pull-left"} %>
             <% else %>
                 <img class="pull-left" src="http://profile.ak.fbcdn.net/static-ak/rsrc.php/v1/yo/r/UlIqmHJn-SK.gif">
             <% end %>
-            <% if (user.google_apps_username.nil?) %>
-                <p><%= link_to user.full_name, user_path(user) %><br>
+            <p>
+                <%= link_to user.full_name, user_path(user) %><br>
+                <% if (user.google_apps_username.nil?) %>
                     Email: <%= mail_to user.username + "@isfit.org" %><br>
-                    Tel: <%= user.phone %>
-                </p>
-            <% else %>
-                <p><%= link_to user.full_name, user_path(user) %><br>
+                <% else %>
                     Email: <%= mail_to user.google_apps_username + "@isfit.no" %><br>
-                    Tel: <%= user.phone %>  
-                </p>
-            <% end %>
+                <% end %>
+                    Tel: <%= user.phone %>
+            </p>
         </div>
     <% end %>
 </div>
