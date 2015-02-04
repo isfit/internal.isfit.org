@@ -117,6 +117,15 @@ class Drive < ActiveRecord::Base
     Rails.application.routes.url_helpers.transport_drive_path(self)
   end
 
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << column_names
+      all.each do |product|
+        csv << product.attributes.values_at(*column_names)
+      end
+    end
+  end
+
   private
     def start_must_be_before_end_time
       if end_time

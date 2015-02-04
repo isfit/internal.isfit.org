@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <ss:Styles>
+      <ss:Style ss:ID="1">
+          <ss:Font ss:Bold="1"/>
+      </ss:Style>
+  </ss:Styles>
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row ss:StyleID="1">
+        <Cell><Data ss:Type="String">ID</Data></Cell>
+        <Cell><Data ss:Type="String">Driver</Data></Cell>
+        <Cell><Data ss:Type="String">Car</Data></Cell>
+        <Cell><Data ss:Type="String">Start Time</Data></Cell>
+        <Cell><Data ss:Type="String">End Time</Data></Cell>
+        <Cell><Data ss:Type="String">Description</Data></Cell>
+        <Cell><Data ss:Type="String">Comment</Data></Cell>
+        <Cell><Data ss:Type="String">Created At</Data></Cell>
+        <Cell><Data ss:Type="String">Updated At</Data></Cell>
+        <Cell><Data ss:Type="String">Status</Data></Cell>
+        <Cell><Data ss:Type="String">User</Data></Cell>
+        <Cell><Data ss:Type="String">Contact</Data></Cell>
+        <Cell><Data ss:Type="String">Flight number</Data></Cell>
+      </Row>
+    <% @drives.each do |drive| %>
+      <Row>
+        <Cell><Data ss:Type="Number"><%= drive.id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= drive.driver ? drive.driver.username : 'No driver' %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= drive.car ? drive.car_desc : 'No car' %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= drive.start_time %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= drive.end_time %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= drive.description %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= drive.comment %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= drive.created_at %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= drive.updated_at %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= drive.get_status %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= drive.user.full_name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= drive.contact %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= drive.flight_number %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>
+

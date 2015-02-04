@@ -1,7 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 RMAGICK_BYPASS_VERSION_TEST = true
+require 'csv'
 require 'rails/all'
-
 Bundler.require(:default, Rails.env)
 
 module InternalIsfitOrg

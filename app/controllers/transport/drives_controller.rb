@@ -48,6 +48,7 @@ class Transport::DrivesController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: drives, root: false }
+      format.csv { render text: @drives.to_csv }
     end
   end
 
@@ -139,6 +140,10 @@ class Transport::DrivesController < ApplicationController
 
   def index
     @drives = drives.accessible_by(current_ability).includes(:car, :user).includes(driver: :user)
+    respond_to do |format|
+      format.html
+      format.xls
+    end
   end
 
   def show_all
