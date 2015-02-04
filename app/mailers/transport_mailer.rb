@@ -19,4 +19,16 @@ class TransportMailer < ActionMailer::Base
 
     mail(to: "#{drive.user.username}@isfit.org", from: 'orakel@isfit.org', subject: subject, body: body)
   end
+
+  def drive_rejected_mailer(drive)
+  	subject = "[oppdrag] Oppdrag #{drive.start_time.strftime('%Y-%m-%d %H:%M')} er avvist"
+  	body = "Oppdraget du bestilte #{drive.start_time.strftime('%Y-%m-%d %H:%M')} er blitt avvist.\n\n" +
+  	"Beskrivelse av oppdraget:\n" +
+  	"#{drive.description}\n\n" +
+  	"Begrunnelse:\n" +
+  	"#{drive.comment}\n\n" +
+  	"Om du vil at vi skal vurdere oppdraget på nytt, se begrunnelsen over, og oppdater oppdraget med eventuelt manglende informasjon."
+
+  	mail(to: "#{drive.user.username}@isfit.org", from: 'orakel@isfit.org', subject: subject, body: body)
+  end
 end

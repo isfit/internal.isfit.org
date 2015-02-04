@@ -105,7 +105,8 @@ class Drive < ActiveRecord::Base
     0 => 'Pending',
     1 => 'Driver and Car assigned',
     2 => 'On the road',
-    3 => 'Completed' }
+    3 => 'Completed',
+    4 => 'Rejected' }
   end
 
   def get_status

@@ -100,8 +100,14 @@ class Transport::DrivesController < ApplicationController
     @drive = drives.find(params[:id])
 
     @drive.attributes = params[:drive]
-    if @drive.status == 1 && @drive.status_changed?
-      TransportMailer.drive_mailer(@drive).deliver
+    if @drive.status_changed?
+      if @drive.status == 1
+        TransportMailer.drive_mailer(@drive).deliver
+      elsif @drive.status == 4
+        TransportMailer.drive_rejected_mailer(@drive).deliver
+      end
+    elsif @drive.status == 4
+      @drive.status = 0
     end
 
     respond_to do |format|
