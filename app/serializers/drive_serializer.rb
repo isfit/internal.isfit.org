@@ -1,5 +1,5 @@
 class DriveSerializer < ActiveModel::Serializer
-  attributes :id, :start, :end, :description, :driver, :title, :url, :group, :car, :status, :contact, :flight_number, :allDay
+  attributes :id, :start, :end, :description, :driver, :title, :url, :group, :car, :status, :contact, :flight_number, :allDay, :color
 
   def start
     object.start_time.as_json()
@@ -47,5 +47,18 @@ class DriveSerializer < ActiveModel::Serializer
 
   def url
     object.qwerty
+  end
+
+  def color
+    case object.status
+    when 0
+      'red'
+    when 1
+      'blue'
+    when 2
+      'yellow'
+    when 3
+      'green'
+    end
   end
 end

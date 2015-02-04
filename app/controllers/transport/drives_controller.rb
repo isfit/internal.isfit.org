@@ -48,6 +48,7 @@ class Transport::DrivesController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: drives, root: false }
+      format.csv { render text: @drives.to_csv }
     end
   end
 
@@ -90,11 +91,8 @@ class Transport::DrivesController < ApplicationController
 
   def edit
     @drive = drives.find(params[:id])
-    if @drive.end_time
-      @drivers = Driver.with_shift_inside_date_range(@drive.start_time, @drive.end_time)
-    else
-      @drivers = Driver.all
-    end
+    @avail_drivers = Driver.with_shift_inside_date_range(@drive.start_time, @drive.start_time)
+    @drivers = Driver.all
     @user = current_user
   end
 
@@ -102,8 +100,14 @@ class Transport::DrivesController < ApplicationController
     @drive = drives.find(params[:id])
 
     @drive.attributes = params[:drive]
-    if @drive.status == 1 && @drive.status_changed?
-      TransportMailer.drive_mailer(@drive).deliver
+    if @drive.status_changed?
+      if @drive.status == 1
+        TransportMailer.drive_mailer(@drive).deliver
+      elsif @drive.status == 4
+        TransportMailer.drive_rejected_mailer(@drive).deliver
+      end
+    elsif @drive.status == 4
+      @drive.status = 0
     end
 
     respond_to do |format|
@@ -142,6 +146,10 @@ class Transport::DrivesController < ApplicationController
 
   def index
     @drives = drives.accessible_by(current_ability).includes(:car, :user).includes(driver: :user)
+    respond_to do |format|
+      format.html
+      format.xls
+    end
   end
 
   def show_all

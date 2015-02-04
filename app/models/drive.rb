@@ -105,7 +105,8 @@ class Drive < ActiveRecord::Base
     0 => 'Pending',
     1 => 'Driver and Car assigned',
     2 => 'On the road',
-    3 => 'Completed' }
+    3 => 'Completed',
+    4 => 'Rejected' }
   end
 
   def get_status
@@ -115,6 +116,15 @@ class Drive < ActiveRecord::Base
   def qwerty
     #"/transport/drive/#{id}"
     Rails.application.routes.url_helpers.transport_drive_path(self)
+  end
+
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << column_names
+      all.each do |product|
+        csv << product.attributes.values_at(*column_names)
+      end
+    end
   end
 
   private

@@ -86,7 +86,7 @@ class Ability
       can :create, Drive
       can :read, Drive, :group_id => transport_responsible.group_id
       can [:update,:destroy], Drive do |drive|
-        drive.group_id == transport_responsible.group_id && drive.status == 0
+        drive.group_id == transport_responsible.group_id && (drive.status == 0 or drive.status == 4)
       end
     end
     driver = Driver.find_by(user: user)
