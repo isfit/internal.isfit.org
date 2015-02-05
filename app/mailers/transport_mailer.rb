@@ -17,7 +17,7 @@ class TransportMailer < ActionMailer::Base
 		"Dersom noen av opplysningene over ikke stemmer, vennligst ta kontakt på board.transportation@isfit.org." +
 		"Benytt da klammen [oppdrag] i tittelfeltet! Eks.: \"[oppdrag] Feil tidspunkt ved henting av Johan Møkkerbakken\"."
 
-    mail(to: "#{drive.user.username}@isfit.org", from: 'orakel@isfit.org', subject: subject, body: body)
+    mail(to: "#{drive.user.username}@isfit.org", from: 'board.transportation@isfit.org', subject: subject, body: body)
   end
 
   def drive_rejected_mailer(drive)
@@ -29,6 +29,6 @@ class TransportMailer < ActionMailer::Base
   	"#{drive.comment}\n\n" +
   	"Om du vil at vi skal vurdere oppdraget på nytt, se begrunnelsen over, og oppdater oppdraget med eventuelt manglende informasjon."
 
-  	mail(to: "#{drive.user.username}@isfit.org", from: 'orakel@isfit.org', subject: subject, body: body)
+    mail(to: "#{drive.user.username}@isfit.org", from: 'board.transportation@isfit.org', subject: subject, body: body)
   end
 end
