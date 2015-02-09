@@ -4,13 +4,6 @@
 		<%= drive.car ? drive.car.desc : "-" %>
 	</td>
 	<td>
-	<%if drive.driver %>
-		<%= link_to(drive.driver_name, user_path(drive.driver.user)) %>
-	<% else %>
-		-
-	<% end %>
-	</td>
-	<td>
 			<%= drive.description %>
 	</td>
 	<td class="drive_date"><%= drive.date_summary %></td>

@@ -3,6 +3,8 @@ class Driver < ActiveRecord::Base
   has_many :shifts
   has_many :drives
 
+  scope :on_shift, -> { joins(:shifts).where("(shifts.start_time <= ? AND shifts.end_time >= ?)", Time.zone.now, Time.zone.now)}
+
   def username
     "#{user.full_name} (#{user.username})"
   end
