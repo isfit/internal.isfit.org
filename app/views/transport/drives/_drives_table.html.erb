@@ -2,7 +2,7 @@
 	<thead>
 		<th>ID</th>
 		<th>Bil</th>
-		<%if not @driver %>
+		<%if can? :manage, Drive %>
 			<th> Sjåfør </th>
 		<% end %>
 		<th>Beskrivelse</th>

@@ -7,6 +7,7 @@
 		<dl class="dl-horizontal">
   		<dt>Kontakt Person</dt>
   		<dd><%= link_to(@drive.user.full_name,@drive.user) %></dd>
+  		<% if can? :manage, @drive %>
   		<dt>Sjåfør</dt>
   		<dd>
   			<% if @drive.driver %>
@@ -15,6 +16,7 @@
 					No driver assigned
 				<% end %>
 			</dd>
+			<% end %>
 			<dt>Bil</dt>
 			<dd>
 				<%= @drive.car ? @drive.car_desc : 'No car assigned' %>
