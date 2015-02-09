@@ -60,6 +60,7 @@ InternalIsfitOrg::Application.routes.draw do
     get 'shifts/new' => "shifts#multiple_new"
     get 'shifts/' => "shifts#all"
     get 'dashboard' => "drives#dashboard"
+    get 'calendar' => "drives#calendar"
     post 'shifts/create' => "shifts#multiple_create"
     resources :drivers do
       resources :shifts

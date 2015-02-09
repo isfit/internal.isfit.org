@@ -31,7 +31,7 @@ $(function() {
 
 	        // your event source
 	        {
-	            url: 'dashboard.json', // use the `url` property
+	            url: '../dashboard.json', // use the `url` property
 	            color: '#3498db',    // an option!
 	            textColor: 'black'  // an option!
 	        }
