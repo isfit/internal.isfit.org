@@ -51,7 +51,10 @@ module InternalTabsHelper
             links.map do |menu_link,value|
               if can_access_link? menu_link
                 li_class = menu_link == current_menu_link ? "active":""
-                content_tag(:li, link_to(menu_link.title, url_for(controller: menu_link.controller, action: menu_link.action, id: menu_link.action_id)), class: li_class)
+                path = menu_link.controller.split("/")
+                contr = path.second ? path.second : path.first
+                #binding.pry
+                content_tag(:li, link_to(menu_link.title, url_for(controller: contr, action: menu_link.action, id: menu_link.action_id)), class: li_class)
               end
             end.join.html_safe
           end

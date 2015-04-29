@@ -1,8 +1,0 @@
-<%= bootstrap_form_for(@contact_log_unit) do |f| %>
-  <%= f.error_messages %>
-  <%= f.fieldset "" do %>
-          <%= f.text_field :company_name , class: "col-md-6"%>
-	<%= select("contact_log_unit", "contact_log_status_id", ContactLogStatus.status_selection) %>
-      <% end %>
-  <%= f.submit "Submit", class: "btn" %>
-<% end %>

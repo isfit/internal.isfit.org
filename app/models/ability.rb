@@ -48,9 +48,6 @@ class Ability
       can :destroy, RoomBooking, user_id: user.id
       can :read, Room
       can :manage, WikiPage
-      can :manage, ContactLogPerson
-      can :manage, ContactLogUnit
-      can :manage, ContactLog
       can :manage, WikiCategory
       can :manage, LayoutJob
       can :manage, WhoAmI

@@ -1,0 +1,28 @@
+<div class="pull-right">
+  <%= link_to 'New Spp page', new_editorial_spp_page_path, :class => "btn btn-primary"%>
+</div>
+<h1>Student Peace Prize pages</h1>
+<p>Here, you can find all the pages on studentpeaceprize.org. If you would like to change where these are linked, or add new pages. Please contact orakel@isfit.org for now.</p>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Title en</th>
+      <th>Title no</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <% @spp_pages.each do |spp_page| %>
+    <tr>
+      <td><%= spp_page.title_en %></td>
+      <td><%= spp_page.title_no %></td>
+      <td><%= link_to 'Show', [:editorial,spp_page], :class => "btn-primary btn" %></td>
+      <td><%= link_to 'Edit', edit_editorial_spp_page_path(spp_page), :class => "btn" %></td>
+      <td><%= link_to 'Destroy', [:editorial,spp_page], confirm: 'Are you sure?', method: :delete, :class => "btn btn-danger" %></td>
+    </tr>
+  <% end %>
+</table>
+

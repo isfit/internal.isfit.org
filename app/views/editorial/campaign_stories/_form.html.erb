@@ -1,0 +1,10 @@
+<%= formatting %>
+<%= simple_form_for([:editorial, @story]) do |f| %>
+  <%= f.error_messages %>
+  <%= f.input :author %>
+  <%= f.input :title %>
+  <%= f.input :story %>
+  <%= f.input :solution %>
+
+  <%= f.submit "Submit", class: "btn" %>
+<% end %>

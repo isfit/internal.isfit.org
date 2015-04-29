@@ -80,7 +80,42 @@ InternalIsfitOrg::Application.routes.draw do
     end
   end
 
-  resources :spp_pages
+  namespace :editorial do
+    resources :articles
+    resources :spp_pages
+    resources :isfit_pages
+    resources :frontend_articles do
+      collection do
+        post 'photo'
+      end
+      member do
+        get 'moveup'
+        get 'movedown'
+        get 'new_pic'
+        post 'crop_main'
+        post 'crop_create'
+      end
+    end
+    resources :spp_articles do
+      collection do
+        post 'photo'
+      end
+      member do
+        get 'movedown'
+        get 'moveup'
+      end
+    end
+
+    resources :campaign_stories do
+      member do
+        get 'validatestory'
+        get 'delete'
+      end
+    end
+  end
+
+  post 'articles/attending/:article_id' => 'articles#attending', as: :attending_article
+  post 'articles/notattending/:article_id' => 'articles#notattending', as: :not_attending_article
 
   scope "/wiki" do
     get "", controller: "wiki_pages", action: "index"
@@ -111,9 +146,6 @@ InternalIsfitOrg::Application.routes.draw do
   get 'oauth/start'
   get 'oauth/callback'
 
-  resources :isfit_pages
-
-  resources :presentations
 
   post "kvitters/create" => "kvitters#create"
   get "kvitters/last(:.format)" => "kvitters#last"
@@ -130,35 +162,8 @@ InternalIsfitOrg::Application.routes.draw do
   get "room_bookings/:week/:year" => "room_bookings#new", as: "new_room_booking"
   resources :room_bookings
 
-  resources :spp_articles do
-    collection do
-      post 'photo'
-    end
-    member do
-      get 'movedown'
-      get 'moveup'
-    end
-  end
 
-  resources :campaign_stories do
-    member do
-      get 'validatestory'
-      get 'delete'
-    end
-  end
 
-  resources :frontend_articles do
-    collection do
-      post 'photo'
-    end
-    member do
-      get 'moveup'
-      get 'movedown'
-      get 'new_pic'
-      post 'crop_main'
-      post 'crop_create'
-    end
-  end
 
   resources :gallery_albums do
     collection do
@@ -182,12 +187,6 @@ InternalIsfitOrg::Application.routes.draw do
       post 'print_festihvalen'
     end
   end
-
-  # pads
-  get "pads" => "pads#index"
-  post "pads/create", :as => :create_pad
-  get "pads/:hexid" => "pads#show", :as => "pad"
-  get "pads/:hexid/delete" => "pads#delete", :as => "delete_pad"
 
   get "plingfest" => "applicants#notifier"
   get "last_applicant" => "applicants#last"
@@ -215,9 +214,6 @@ InternalIsfitOrg::Application.routes.draw do
     end
   end
   resources :static_pages
-  resources :articles
-  post 'articles/attending/:article_id' => 'articles#attending', as: :attending_article
-  post 'articles/notattending/:article_id' => 'articles#notattending', as: :not_attending_article
 
   resources :applicants
   get 'user/edit' => 'users#edit', :as => :edit_current_user
@@ -239,5 +235,5 @@ InternalIsfitOrg::Application.routes.draw do
       post 'mail_password', action: :mail_password
     end
   end
-  root :to => "articles#index"
+  root :to => "editorial/articles#index"
 end

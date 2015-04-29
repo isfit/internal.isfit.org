@@ -1,0 +1,81 @@
+<% content_for :sidebar do %>
+  <div class="hidden-xs">
+  <div id="kvitter" class="well widget"></div>
+  </div>
+  <div class="visible-xs">
+  <%= link_to "kvitter", kvitters_path, class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<div class="well">
+    <h3>Hva skjer i ISFiT nå?</h3>
+    <br>
+        <% for motd in @motd %>
+              <span class="muted">
+              <%= motd.updated_at.to_s(:short)%>
+          </span>
+              <p><%= motd.msg %></p>
+          <%end%>
+    <%if can? :create, Motd %>
+    <br>
+        <%= link_to 'Nytt Innlegg', new_motd_path, class: "pull-right" %>
+        <%end%>
+  <% time = Time.new.wday %>
+
+  <% if time == 3%>
+    <hr>
+    <p> Husk Bong-Salg i MORGEN på kontoret</p>
+    <%= image_tag "bong.gif", size: "256x256" %>
+    <% elsif time == 4%>
+    <hr>
+    <p> Bong-Salg i DAG på kontoret (16:30-17:30) </p>
+    <%= image_tag "bong.gif" , size: "256x256" %>
+  <%end%>
+</div>
+
+
+<div class="articles">
+    <%= link_to t('articles.index.create'), new_editorial_article_path, class: "btn btn-primary" %>
+    <% if (Subscription.subscriber?(current_user,Subscription.subscribe(:articles))) %>
+      <%= link_to t('Avabonner'), unsubscription_path(Subscription.subscribe(:articles)), class: "btn btn-primary", method: :post %>
+    <% else %>
+      <%= link_to t('Abonnér på artikler'), subscription_path(Subscription.subscribe(:articles)), class: "btn btn-primary", method: :post %>
+    <% end %>
+    <% for article in @articles %>
+      <div class="article">
+        <div class="btn-group pull-right">
+          <% if article.attending %>
+            <% if article.user_attending? current_user %>
+              <%= link_to 'Not attend', not_attending_article_path(article), :class => "btn btn-primary", method: :post %>
+            <% else %>
+              <%= link_to 'Attend', attending_article_path(article), :class => "btn btn-primary", method: :post %>
+            <% end %>
+          <% end %>
+          <%= link_to :edit, edit_editorial_article_path(article), :class => "btn btn-primary" %>
+          <%= link_to :delete, [:editorial,article], confirm: "Are you sure?", method: :delete, :class => "btn btn-danger"  %>
+
+
+
+        </div>
+        <h1><%= link_to article.title, [:editorial,article] %>
+        </h1>
+          <small><%= "#{t('articles.index.created')} #{time_ago_in_words(article.created_at)} #{t('articles.index.ago')} " %><%= link_to article.user.full_name, article.user %>.</small>
+        <%= image_tag article.article_image.url(:thumb), class: :right %>
+        <p>
+          <%= format(truncate(article.body, length: 1000, omission: "...")) %>
+          <%= article.body.length > 1000 ? (link_to("Read more...", article)):'' %>
+        </p>
+          <% if article.attending %>
+            <small>
+              <%= article.attending_count %> people are attending.
+            </small>
+          <% else %>
+            <small>
+              It is not possible to attend this article.
+            </small>
+          <% end %>
+
+      </div>
+  <% end %>
+</div>
+<%= will_paginate @articles %>

@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
 
   # Gets the current link from InternalTab by looking at the given controller and action
   def current_menu_link
-    @current_menu_link ||= (InternalTab.where(controller: controller_name, action: action_name).first || InternalTab.where(controller: controller_name).first || InternalTab.new)
+    @current_menu_link ||= (InternalTab.where(controller: controller_path, action: action_name).first || InternalTab.where(controller: controller_name).first || InternalTab.new)
   end
 
   # Added to autoreload libs

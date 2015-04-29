@@ -1,0 +1,30 @@
+<h1>
+  <%= @article.title %>
+</h1>
+<%= image_tag @article.article_image.url, class: :center %>
+<p>
+  <%= link_to @article.user.full_name, user_path(@article.user) %>
+</p>
+<p>
+  <%= format @article.body %>
+</p>
+<p>
+	<h3>Attendings</h3>
+</p>
+<p>
+	<ul>
+		<% for user in @attending_users %>
+			<li><%= user %> </li>
+		<% end %>
+	</ul>
+</p>
+
+<div class="btn-group">
+	<% if @article.user_attending? current_user %>
+	    <%= link_to 'Not attend', not_attending_article_path(@article),:class => "btn btn-primary", method: :post %>
+	<% else %>
+		<%= link_to 'Attend', attending_article_path(@article),:class => "btn btn-primary", method: :post %>
+	<% end %>
+	<%= link_to 'Edit', edit_editorial_article_path(@article), :class =>"btn"%>
+	<%= link_to 'Back', editorial_articles_path, :class =>"btn" %>
+</div>

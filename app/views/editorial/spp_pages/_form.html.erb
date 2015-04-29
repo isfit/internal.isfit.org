@@ -1,0 +1,13 @@
+<%= formatting %>
+<%= simple_form_for([:editorial,@spp_page]) do |f| %>
+  <%= f.error_messages %>
+  <%= f.input :title_en %>
+  <%= f.input :title_no %>
+  <%= f.input :ingress_en %>
+  <%= f.input :ingress_no %>
+  <%= f.input :body_en, :input_html => { rows: 10 } %>
+  <%= f.input :body_no, :input_html => { rows: 10 } %>
+  <%= f.input :image_text %>
+
+  <%= f.submit "Submit", class: "btn" %>
+<% end %>

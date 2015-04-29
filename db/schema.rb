@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150128173802) do
+ActiveRecord::Schema.define(version: 20150318233553) do
 
   create_table "accounts", force: true do |t|
     t.string   "name_nb"
@@ -493,6 +493,7 @@ ActiveRecord::Schema.define(version: 20150128173802) do
     t.datetime "updated_at"
     t.string   "ancestry"
     t.integer  "action_id"
+    t.string   "namespace"
   end
 
   add_index "internal_tabs", ["ancestry"], name: "index_internal_tabs_on_ancestry", using: :btree
