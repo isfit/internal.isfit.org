@@ -4,7 +4,6 @@ class OrganizationChartController < ApplicationController
     festival = Festival.in_progress
     @board = festival.groups.first
     @sections = festival.sections
-    @research = Group.find(159)
     respond_to do |format|
       format.vcf { render festival.users.uniq{|x| x.id} }
       format.html
