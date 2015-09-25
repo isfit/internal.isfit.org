@@ -181,8 +181,6 @@ GEM
     memcache-client (1.8.5)
     method_source (0.8.2)
     mime-types (2.4.3)
-    mini_magick (3.8.1)
-      subexec (~> 0.2.1)
     mini_portile (0.6.0)
     minitest (5.4.2)
     momentjs-rails (2.8.3)
@@ -191,7 +189,6 @@ GEM
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     mysql2 (0.3.16)
-    net-ldap (0.8.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
@@ -252,7 +249,6 @@ GEM
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
     ref (1.0.5)
-    rmagick (2.13.3)
     rspec (3.1.0)
       rspec-core (~> 3.1.0)
       rspec-expectations (~> 3.1.0)
@@ -312,7 +308,6 @@ GEM
       colorize
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
-    subexec (0.2.3)
     temple (0.6.10)
     terminal-table (1.4.5)
     therubyracer (0.12.1)
@@ -379,10 +374,8 @@ DEPENDENCIES
   jquery-ui-rails
   jquery.fileupload-rails
   memcache-client
-  mini_magick
   momentjs-rails (~> 2.8.1)
   mysql2
-  net-ldap
   newrelic_rpm
   nifty-generators
   oauth2
@@ -395,7 +388,6 @@ DEPENDENCIES
   rails-i18n
   rake
   ransack
-  rmagick
   rspec-rails
   sass-rails (~> 4.0.3)
   simple_calendar (~> 1.1.0)
@@ -410,3 +402,6 @@ DEPENDENCIES
   whenever
   will_paginate
   yard
+
+BUNDLED WITH
+   1.10.6

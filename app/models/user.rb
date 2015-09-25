@@ -98,39 +98,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def changeLdapPassword(pass)
-    require 'net/ldap'
-    require 'openssl'
-    require 'iconv'
-    ldap = Net::LDAP::new
-    password = Rails.application.secrets.ldap
-    treebase = "dc=isfit,dc=org"
-    filters = Net::LDAP::Filter.eq("uid", self.username)
-    dn = ldap.search(:base => treebase, :filter => filters).first.dn
-    auth = { :method => :simple, :username => "cn=password,dc=isfit,dc=org", :password => password }
-    Net::LDAP.open(:auth => auth) do |ldap|
-      ldap.replace_attribute dn, :userPassword, Net::LDAP::Password.generate(:md5,pass)
-      # TODO iconv er deprecated bruk string#encoding etterhvert...
-      ldap.replace_attribute dn, :sambaNTPassword, OpenSSL::Digest::MD4.hexdigest(Iconv.iconv("UCS-2", "UTF-8", pass).join).upcase
-    end
-  end
-
-  def hasLdapAccount?
-    require 'net/ldap'
-    require 'openssl'
-    require 'iconv'
-    ldap = Net::LDAP::new
-    password = Rails.application.secrets.ldap
-    treebase = "dc=isfit,dc=org"
-    filters = Net::LDAP::Filter.eq("uid", self.username)
-    user = ldap.search(:base => treebase, :filter => filters).first
-    if user.nil?
-      false
-    else
-      true
-    end
-  end
-
   def latest_position
     self.positions.last
   end

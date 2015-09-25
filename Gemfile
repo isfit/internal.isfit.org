@@ -23,11 +23,8 @@ gem "jquery-ui-rails"
 gem 'jquery.fileupload-rails'
 gem 'memcache-client'
 gem 'therubyracer'
-gem 'mini_magick', :require=>'RMagick'
-gem 'rmagick', :require => false
 gem 'bluecloth'
 gem 'oauth2'
-gem 'net-ldap'
 gem 'jbuilder'
 gem 'ransack'
 gem 'activemodel'
